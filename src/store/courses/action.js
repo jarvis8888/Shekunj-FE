@@ -243,6 +243,23 @@ export const successStories = () => async (dispatch) => {
     dispatch({ type: coursesTypes.SUCCESS_STORY_FAIL });
   }
 };
+export const successStoriesDetails = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: coursesTypes.SUCCESS_STORY_DETAILS_REQUEST });
+    const res = await httpServices.get(constants.SUCCESS_STORY+id);
+    dispatch({
+      type: coursesTypes.SUCCESS_STORY_DETAILS_FINISH,
+      payload:res?.data
+        // res?.data?.map((d) => ({
+        //   ...d,
+        //   image: d.image ? d?.image : httpServices.noImage,
+        //   is_collapse: false,
+        // })) || [],
+    });
+  } catch (err) {
+    dispatch({ type: coursesTypes.SUCCESS_STORY_DETAILS_FAIL });
+  }
+};
 
 export const getCategoryList = () => async (dispatch) => {
   try {

@@ -90,7 +90,7 @@ const apiConstants = {
     COURSE_MODULE_LIST: "/course/course-module-list/",
     ONLINE_TEST_CATEGORY_LIST: "/course/online-test-category-list/",
     START_USER_COURSE: "/course/start-user-course/",
-    SUCCESS_STORY: "/course/success-story",
+    SUCCESS_STORY: "/course/success-story/",
     USER_COURSE_END_TIME: "/course/user-course-end-time/",
     USER_COURSE_RESULT: "/course/user-course-result/",
     USER_TEST_COURSE: "/course/user-test-course/",

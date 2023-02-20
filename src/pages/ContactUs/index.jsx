@@ -15,12 +15,17 @@ import { contactUs } from "../../store/auth/action";
 function ContactUs() {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-
+  const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
   const validationSchema = Yup.object({
     name: Yup.string().required(t("Name is required")),
     email: Yup.string().email(t("login.form1.emailError.invalid")),
     subject: Yup.string().required(t("Subject is required")),
     message: Yup.string().required(t("Message is required")),
+    contact: Yup.string()
+      .matches(phoneRegExp, 'Phone number is not valid')
+      .min(10, "too short")
+      .max(10, "too long")
+      .required(t('Phone number is required'))
   });
   const { handleSubmit, handleChange, handleBlur, values, errors, touched, setFieldValue, isSubmitting } =
     useFormik({
@@ -29,6 +34,7 @@ function ContactUs() {
         email: "",
         subject: "",
         message: "",
+        contact: ""
       },
       validationSchema,
       onSubmit(values) {
@@ -42,6 +48,7 @@ function ContactUs() {
       setFieldValue("email","")
       setFieldValue("subject","")
       setFieldValue("message","")
+      setFieldValue("contact", "")
     }
 
   return (
@@ -101,7 +108,7 @@ function ContactUs() {
                           onBlur={handleBlur}
                           autoComplete='off'
                         />
-                        <Error error={errors.name} touched={touched.name} isSubmitting={isSubmitting}/>
+                         <Error error={errors.name} touched={touched.name} isSubmitting={isSubmitting} />
                       </div>
 
                       <div className='mb-3'>
@@ -116,7 +123,18 @@ function ContactUs() {
                         />
                         <Error error={errors.email} touched={touched.email} />
                       </div>
-
+                      <div className='mb-3'>
+                        <TextField
+                          name='contact'
+                          type='text'
+                          placeholder={t('ContactUs.placeholders.contact')}
+                          autoComplete='off'
+                          onChange={handleChange}
+                          value={values.contact}
+                          onBlur={handleBlur}
+                        />
+                        <Error error={errors.contact} touched={touched.contact} isSubmitting={isSubmitting} />
+                      </div>
                       <div className='mb-3'>
                         <TextField
                           name='subject'
