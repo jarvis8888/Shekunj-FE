@@ -115,7 +115,7 @@ const CertificatesDetail = forwardRef((props, ref) => {
       className='noselect'
       style={{ width: "100%", display: "flex", justifyContent: "center" }}
     >
-      {isLoaded === false && <Loader className={ newCer ? "set-back loader" : "loader"} />}
+      {isLoaded === false && <Loader className={ (newCer && detect?.isMobile) ? "set-back loader" : "loader"} />}
       { (detect?.isMobile && newCer && isLoaded === false) && <Loader className="duplicate_loader"/>}
       <div style={{ width: "95%" }} className=' p-0' id='capture'>
         <div className='mob_box_certificate_small ayushi-certificate2 '></div>
