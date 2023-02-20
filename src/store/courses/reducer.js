@@ -16,7 +16,8 @@ const initialState = {
   selectedFilter: null,
   categoryList: [],
   result: {},
-  currentModal: 0
+  currentModal: 0,
+  successStoriesDetails: [],
 };
 
 export const coursesReducer = (state = initialState, action) => {
@@ -214,6 +215,25 @@ export const coursesReducer = (state = initialState, action) => {
         error: null,
       };
     case coursesTypes.SUCCESS_STORY_FAIL:
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload,
+      };
+      case coursesTypes.SUCCESS_STORY_DETAILS_REQUEST:
+      return {
+        ...state,
+        isLoading: true,
+        error: null,
+      };
+    case coursesTypes.SUCCESS_STORY_DETAILS_FINISH:
+      return {
+        ...state,
+        isLoading: false,
+        successStoriesDetails: action.payload,
+        error: null,
+      };
+    case coursesTypes.SUCCESS_STORY_DETAILS_FAIL:
       return {
         ...state,
         isLoading: false,

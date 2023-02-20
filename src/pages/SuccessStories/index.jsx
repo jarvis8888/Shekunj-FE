@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { Link,useHistory } from "react-router-dom";
 import useDeviceDetect from "../../hooks/useDeviceDetect";
 
 import {
@@ -18,6 +18,7 @@ import { useTranslation } from "react-i18next";
 import axios from "axios";
 import { adsList } from "../../store/ads";
 import { Helmet } from "react-helmet-async";
+import { routingConstants } from "../../utils/constants";
 function SuccessStory() {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -293,7 +294,8 @@ function SuccessStory() {
                               <hr />
                               <button
                                 onClick={() =>
-                                  handleSetCollapse(s?.id, s?.is_collapse)
+                                  {
+                                    history.push(routingConstants.SUCCESS_STORIES + s?.id)}
                                 }
                               >
                                 {t("successStoriesPage.button.1")}{" "}
@@ -352,7 +354,9 @@ function SuccessStory() {
                               <hr />
                               <button
                                 onClick={() =>
-                                  handleSetCollapse(s?.id, s?.is_collapse)
+                                  {
+                                    history.push(routingConstants.SUCCESS_STORIES + s?.id)
+                                  }
                                 }
                               >
                                 {t("successStoriesPage.button.1")}{" "}
@@ -402,7 +406,7 @@ function SuccessStory() {
       <div className='want'>
         <Container>
           <h2>{t("successStoriesPage.content.2")}</h2>
-          <button onClick={() => history.push("/courses")} className='want_btn'>
+          <button onClick={() => history.push("/contact-us")} className='want_btn'>
             {t("successStoriesPage.button.2")}
           </button>
         </Container>

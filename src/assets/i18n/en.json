@@ -819,7 +819,8 @@
       "name" : "Name",
       "email" : "Email",
       "subject" : "Subject",
-      "msg" : "Message"
+      "msg" : "Message",
+      "contact":"Contact number"
     }
   },
 
