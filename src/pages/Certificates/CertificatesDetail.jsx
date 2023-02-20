@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory, useParams, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import jsPDF from "jspdf";
+import html2canvas from 'html2canvas';
 import * as htmlToImage from "html-to-image";
 
 import { getUserCourseCertificateDetail } from "../../store/certificate";
@@ -65,7 +66,6 @@ const CertificatesDetail = forwardRef((props, ref) => {
   useEffect(() => {
     if (isDownload) {
       setIsLoaded(false);
-      setTimeout(() => {
         const node = document.querySelector(".box_certificate_large");
         const element = node.cloneNode(true);
         element.setAttribute("id", "_new_cer_PDF");
@@ -75,28 +75,27 @@ const CertificatesDetail = forwardRef((props, ref) => {
             .getElementsByClassName("cetificateText")[0]
             .setAttribute("src", thiscer_img1?.default);
         }
-        setTimeout(() => {
+        if(certificate){
           document.body.appendChild(element);
           downloadPDF(element);
-        }, 3000);
+        }
         setNewCer(element)
-      }, 1000);
     }
-  }, []);
+  }, [certificate]);
 
   const downloadPDF = (node) => {
-    const doc = new jsPDF("landscape", "px", "A4", false, true);
-    htmlToImage.toJpeg(node, {quality: 0.93, skipAutoScale: false }).then(function (dataUrl) {
-      setIsLoaded(true);
-      const img = new Image();
-      img.src = dataUrl;
-      doc.addImage(img, "JPGE", 0, -5, 630, 448, "FAST");
-      //doc.addImage(img, "JPGE", -12, 0, 654, 470);
-      doc.save("mycertificate.pdf");
-      // doc.save(`${certificate && certificate?.last_name}`);
+    html2canvas(node,{scale:0.5}).then(canvas => {
+      const imgData = canvas.toDataURL('image/png');
+      const pdf = new jsPDF("landscape", "px", "a4", false);
+      var width = pdf.internal.pageSize.getWidth();
+      var height = pdf.internal.pageSize.getHeight();
+      pdf.addImage(imgData, 'x', 0, 0, width, height);
+      // pdf.save(`${certificate && certificate?.last_name}`);
+      pdf.save("mycertificate.pdf")
       document.getElementById("_new_cer_PDF").remove();
       setNewCer('')
-    });
+      setIsLoaded(true);
+    })
   };
 
   useImperativeHandle(ref, () => ({
