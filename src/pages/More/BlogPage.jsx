@@ -236,10 +236,10 @@ function BlogPage() {
                       {idx % 2 === 0 ? (
                         <>
                           <Col md={4} xs={12} className="showBlog">
-                            <img src={s?.image} alt='' />
+                            <img src={s?.image} alt='' onClick={() => history.push(routingConstants.MORE_BLOG + s.id)}/>
                           </Col>
                           <Col md={8} xs={12}>
-                            <h2 className="noselect">
+                            <h2 className="noselect" onClick={() => history.push(routingConstants.MORE_BLOG + s.id)}>
                               <img
                                 className='quote_img_blog'
                                 src={double_quote}
@@ -310,16 +310,16 @@ function BlogPage() {
                           </Col>
 
                           <Col md={4} xs={12} className="hideBlog">
-                            <img src={s?.image} alt='' />
+                            <img src={s?.image} alt='' onClick={() => history.push(routingConstants.MORE_BLOG + s.id)}/>
                           </Col>
                           
                         </>
                       ) : (
                         <>
                           <Col md={4} xs={12}>
-                            <img src={s?.image} alt='' />
+                            <img src={s?.image} alt='' onClick={() => history.push(routingConstants.MORE_BLOG + s.id)}/>
                           </Col>
-                          <Col md={8} xs={12}>
+                          <Col md={8} xs={12} onClick={() => history.push(routingConstants.MORE_BLOG + s.id)}>
                             <h2 className="noselect">
                               <img
                                 className='quote_img_blog'
