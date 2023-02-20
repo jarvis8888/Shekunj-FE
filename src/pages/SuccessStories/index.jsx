@@ -260,7 +260,9 @@ function SuccessStory() {
                     {idx % 2 === 0 ? (
                       <>
                         <Col md={8} xs={12}>
-                          <h2 className="noselect">
+                          <h2 className="noselect"
+                            onClick={() => history.push(routingConstants.SUCCESS_STORIES + s?.id)}
+                          >
                             <img
                               className='quote_img'
                               src={double_quote}
@@ -310,16 +312,22 @@ function SuccessStory() {
                         </Col>
 
                         <Col md={4} xs={12}>
-                          <img className='story_image' src={s?.image} alt='' />
+                          <img className='story_image' src={s?.image} alt=''
+                            onClick={() => history.push(routingConstants.SUCCESS_STORIES + s?.id)}
+                          />
                         </Col>
                       </>
                     ) : (
                       <>
                         <Col md={4} xs={12}>
-                          <img className='story_image' src={s?.image} alt='' />
+                          <img className='story_image' src={s?.image} alt='' 
+                          onClick={() => history.push(routingConstants.SUCCESS_STORIES + s?.id)}
+                          />
                         </Col>
                         <Col md={8} xs={12}>
-                          <h2 className="noselect">
+                          <h2 className="noselect" 
+                            onClick={() => history.push(routingConstants.SUCCESS_STORIES + s?.id)}
+                          >
                             <img
                               className='quote_img'
                               src={double_quote}
