@@ -84,7 +84,7 @@ const CertificatesDetail = forwardRef((props, ref) => {
   }, [certificate]);
 
   const downloadPDF = (node) => {
-    html2canvas(node,{scale:0.5}).then(canvas => {
+    html2canvas(node,{scale:0.3}).then(canvas => {
       const imgData = canvas.toDataURL('image/png');
       const pdf = new jsPDF("landscape", "px", "a4", false);
       var width = pdf.internal.pageSize.getWidth();
