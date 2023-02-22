@@ -58,7 +58,7 @@ const SuccessStoryDetails = () => {
           if (response && response.data.results.length > 0) {
             let filterArray1 = response.data.results.filter((item, index) => {
 
-              return item.image_type == "story_details";
+              return item.image_type == "success_stories_details";
 
             });
             setStoryDetailsBoxAds(filterArray1);
