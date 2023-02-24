@@ -138,7 +138,7 @@ const ProfileImage = ({ isEditable }) => {
             {image ? (
               <Cropper
                 style={{ margin: "0 auto", height: "280px", width: "200px" }}
-                zoomTo={0.7}
+                // zoomTo={0.7}
                 initialAspectRatio={1}
                 preview='.img-preview'
                 src={image}
