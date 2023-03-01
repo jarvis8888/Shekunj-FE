@@ -247,7 +247,7 @@ const EventDetails = () => {
   }, [bookEvents]);
 
   let evalData = eval(events.extra_info);
-const whatsappUrl = `https://api.whatsapp.com/send?text=%20http%3A%2F%2F${events?.whatsapp_link}`
+const whatsappUrl = `https://api.whatsapp.com/send?text=%20http%3A%2F%2F${events?.whatsapp_group_link?.whatsapp_link}`
   const whatsAppModal = () => {
     if (events && events?.whatsapp_group_link?.join_group ) {
       return (
