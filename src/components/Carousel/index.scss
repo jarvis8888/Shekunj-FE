@@ -84,24 +84,6 @@ a.item {
 
 .owl-nav button.owl-prev::before {
   content: "";
-  background-image: url("../../assets/icons/arrow_left.png");
-  border: 1px solid #dadada;
-  width: 44px;
-  height: 44px;
-  background-size: auto;
-  position: absolute;
-  background-repeat: no-repeat;
-  background-position: center;
-  border-radius: 100px;
-  padding: 20px;
-  left: 0px;
-  top: 0%;
-  right: 0;
-  margin: auto;
-}
-
-.owl-nav button.owl-next::before {
-  content: "";
   background-image: url("../../assets/icons/arrow_right.png");
   border: 1px solid #dadada;
   width: 44px;
@@ -114,6 +96,24 @@ a.item {
   padding: 20px;
   left: 0px;
   top: 70px;
+  right: 0;
+  margin: auto;
+}
+
+.owl-nav button.owl-next::before {
+  content: "";
+  background-image: url("../../assets/icons/arrow_left.png");
+  border: 1px solid #dadada;
+  width: 44px;
+  height: 44px;
+  background-size: auto;
+  position: absolute;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 100px;
+  padding: 20px;
+  left: 0px;
+  top: 0px;
   right: 0;
   margin: auto;
 }
