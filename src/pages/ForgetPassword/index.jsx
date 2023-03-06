@@ -37,7 +37,8 @@ function ForgetPassword() {
       },
       validationSchema,
       onSubmit(values) {
-        dispatch(onLogin(values, history));
+        const redirect = '/'
+        dispatch(onLogin(values, history, redirect));
       },
     });
 
