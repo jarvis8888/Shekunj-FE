@@ -805,5 +805,14 @@
   "deskTopView" : {
     "heading" : "पूर्ण डेस्कटॉप साइट में अपना शिक्षण प्रारंभ करें",
     "button" : "डेस्कटॉप दृश्य"
+  },
+  "mockTest" : {
+    "total_time" : "कुल समय",
+    "take_test" : "परीक्षा लो",
+    "detail": {
+      "career_test_time": "करियर की परीक्षा का समय",
+      "no_of_questions": "प्रश्नों की संख्या",
+      "total_score": "कुल स्कोर"
+    }
   }
 }

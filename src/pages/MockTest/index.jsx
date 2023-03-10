@@ -472,7 +472,7 @@ function MockTest() {
                 color='text.secondary'
                 fullWidth
               >
-                Total Time: {gb?.career_test_time}
+                {t(`mockTest.total_time`)}: {gb?.career_test_time}
               </Typography>
               <CardActions className='actions'>
                 <Button
@@ -485,7 +485,7 @@ function MockTest() {
                     className=''
                     key={gb?.id}
                   >
-                    Start Test
+                    {t(`mockTest.take_test`)}
                   </Link>
                 </Button>
               </CardActions>

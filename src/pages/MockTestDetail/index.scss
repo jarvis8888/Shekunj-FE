@@ -45,7 +45,7 @@
 .que_num {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  // justify-content: space-between;
 }
 
 .que_status h2 {
@@ -76,7 +76,8 @@ div#col_grey p {
   border: 1px solid #e3e4eb;
   width: 26px;
   height: 26px;
-  border-radius: 50px;
+  border-radius: 50px;  
+  
 }
 
 .que_num p {
@@ -94,7 +95,7 @@ div#col_grey p {
 }
 
 .que_status .que_num {
-  padding: 0px 15px;
+  padding: 0px 12px;
 }
 
 .time_set p img {
@@ -289,6 +290,7 @@ p#col_gre {
   width: 26px;
   height: 26px;
   border-radius: 50px;
+  margin: 5px;
 }
 
 p#col_grey {
@@ -298,6 +300,7 @@ p#col_grey {
   width: 26px;
   height: 26px;
   border-radius: 50px;
+  margin: 5px;
 }
 
 .circular_progress_module .red1-progress .MuiSlider-track {

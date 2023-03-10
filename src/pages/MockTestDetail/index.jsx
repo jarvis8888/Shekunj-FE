@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Row, Col } from "react-bootstrap";
 import { toast } from "react-toastify";
@@ -77,9 +77,10 @@ function MockTestDetail() {
   const [check4, setCheck4] = React.useState(false);
   const [isTestStarted, setIsTestStarted] = useState(false);
   const [testTime, setTestTime] = useState(null);
-  const [selectedCourseCategory, setSelectedCourseCategory] = useState(null);
-  const [selectedCourseCategoryValue, setSelectedCourseCategoryValue] =
-    useState(null);
+  // const [selectedCourseCategory, setSelectedCourseCategory] = useState(null);
+  // const [selectedCourseCategoryValue, setSelectedCourseCategoryValue] =
+  //   useState(null);
+  const target = useRef(null)
 
   const { id } = useParams();
   console.log("MockTestIdddd", id);
@@ -90,8 +91,20 @@ function MockTestDetail() {
   const { isLoading, guidanceCategory, testData, countData } = useSelector(
     (state) => state?.guidanceReducer,
   );
-  // console.log("testDataMockTest",testData)
+
   const progress = Math.round(100 / (countData?.total_career_que || 0)) || 0;
+  const question_history = JSON.parse(localStorage.getItem('question_history'))
+  useEffect(() => {
+    console.log("testDataMockTest", testData)
+    if(questionNumber!==1){
+      // setQuestionNumber(question_no)
+      localStorage.setItem('question_history', JSON.stringify({ questionNumber, question_id: testData?.id,cat_id:id }))  
+    }
+    
+   
+  }, [testData])
+  
+
 
   const { t } = useTranslation();
   const { lan } = useSelector((state) => state.languageReducer);
@@ -108,6 +121,11 @@ function MockTestDetail() {
     if (nv) {
       dispatch(endTest(nv, history));
       history.push(routingConstants.CAREER_TEST_RESULT + nv);
+    }
+    if(question_history?.questionNumber && question_history?.cat_id===id){
+      setQuestionNumber(question_history?.questionNumber)
+    }else{
+      localStorage.removeItem('question_history')
     }
   }, []);
 
@@ -230,7 +248,7 @@ function MockTestDetail() {
     if (answer) {
       dispatch(
         // postAnswer(data, history, selectedCourseCategoryValue?.id, true),
-        postAnswer(data, history,  id, true),
+        postAnswer(data, history, id, true),
       );
       setAnswer("");
     } else {
@@ -287,6 +305,7 @@ function MockTestDetail() {
         setIsTestStarted(true);
         setTestTime((parseInt(counts?.data.career_time, 10) || 0) * 60000);
       }
+      target.current?.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
@@ -348,6 +367,8 @@ function MockTestDetail() {
           ),
         );
       }
+    
+     
       setToggle((prev) => !prev);
     } else {
       toast.error(t("error.other.1"), {
@@ -357,6 +378,7 @@ function MockTestDetail() {
   };
 
   const renderTimmer = (value) => {
+
     return (
       <Timer
         initialTime={value}
@@ -370,9 +392,9 @@ function MockTestDetail() {
       >
         {() => (
           <>
-            <Timer.Hours /> :
-            <Timer.Minutes />:
-            <Timer.Seconds />
+            <Timer.Hours formatValue={(value) => `${((value < 10 ? `0${value} : ` : `${value} : `))}`} />
+            <Timer.Minutes formatValue={(value) => `${(value < 10 ? `0${value} : ` : `${value} : `)}`} />
+            <Timer.Seconds formatValue={(value) => `${(value < 10 ? `0${value}` : value)}`} />
           </>
         )}
       </Timer>
@@ -420,6 +442,7 @@ function MockTestDetail() {
       setCheck4(true);
     }
   };
+  
 
   return (
     <div>
@@ -427,9 +450,9 @@ function MockTestDetail() {
       <Container>
         <div className='maindiv_prog setmain noselect'>
 
-          
+
           <div className='select_test' key={guidanceCategory?.id}>
-            <h2>Test Started</h2>
+            {/* <h2>Test Started</h2> */}
 
             <Row>
               <Col md={8} xs={12}>
@@ -445,7 +468,7 @@ function MockTestDetail() {
                   <Row>
                     {guidanceCategory && (
                       <Col md={6} xs={12} className='mb-3'>
-                        <span>career_test_time</span> :{" "}
+                        <span>{t("mockTest.detail.career_test_time")}</span> :{" "}
                         {guidanceCategory && guidanceCategory?.career_test_time}
                       </Col>
                     )}
@@ -454,7 +477,7 @@ function MockTestDetail() {
                     {guidanceCategory?.no_of_questions && (
                       <Col md={6} xs={12}>
                         <h6>
-                          <span>no_of_questions</span> :{" "}
+                          <span>{t("mockTest.detail.no_of_questions")}</span> :{" "}
                           {guidanceCategory &&
                             guidanceCategory?.no_of_questions}
                         </h6>
@@ -462,7 +485,7 @@ function MockTestDetail() {
                     )}
                     {guidanceCategory && (
                       <Col md={6} xs={12}>
-                        <span>total_score</span> :{" "}
+                        <span>{t("mockTest.detail.total_score")}</span> :{" "}
                         {guidanceCategory && guidanceCategory?.total_score}
                       </Col>
                     )}
@@ -474,7 +497,11 @@ function MockTestDetail() {
             <Row>
               <Col md={3} xs={12} className='mt-1'>
                 <button
-                  onClick={() => handleStartCourse()}
+                  onClick={() => {
+                    handleStartCourse()
+
+                  }}
+
                   disabled={isTestStarted}
                 >
                   {isTestStarted
@@ -488,7 +515,7 @@ function MockTestDetail() {
           {isTestStarted && (
             <Row className='pt-md-5 pb-md-5'>
               <Col md={12} xs={12} className='text-left'>
-                <div className='circular_progress_module'>
+                <div ref={target} className='circular_progress_module'>
                   <Stack
                     className='d-flex justify-content-between'
                     spacing={2}
@@ -515,7 +542,7 @@ function MockTestDetail() {
               </p>
             </div>
 
-            <Row>
+            <Row >
               <Col md={8} xs={12}>
                 <div className='que_box noselect'>
                   <h2>{t("allCertificatePage.other.5")}</h2>
@@ -523,7 +550,7 @@ function MockTestDetail() {
                     <Skeleton></Skeleton>
                   ) : (
                     <p>
-                      {questionNumber}. {testData?.question}
+                      {questionNumber?.questionNumber ? questionNumber?.questionNumber : questionNumber}. {testData?.question}
                     </p>
                   )}
                   {testData && (

@@ -122,7 +122,7 @@
       "firstNameError": {
         "required": "First Name is required"
       },
-      "contactNumberError":{
+      "contactNumberError": {
         "required": "Contact Number is required"
       },
       "lastNameError": {
@@ -162,7 +162,6 @@
     },
     "google": "Register with Google"
   },
-
   "signup": {
     "heading": "Signup on Shekunj",
     "verify": "Verify",
@@ -175,33 +174,28 @@
     "loginLink": "LOGIN NOW",
     "alert": "Hey there! We let you know that, this website only promote girls education."
   },
-
   "forgot": {
     "heading": "Forgot Password",
     "label": "E-mail address",
     "button": "Submit"
   },
-
   "resetPassword": {
     "heading": "Change Password",
     "old": "Old Password",
     "label": "New Password",
     "labelConfirm": "Confirm New Password"
   },
-
   "verify": {
     "heading": "Verify your e-mail to finish signing for Sheकुंज",
     "heading2": "Thank you for choosing Sheकुंज",
     "content": "Please confirm that {{email}} is your e-mail address by clicking on the link on your given e-mail within 24 hours."
   },
-
   "verifyResult": {
     "heading": "Verify email address",
     "heading1": "Thanks!",
     "heading2": "Your email address has been verified.",
     "button": "Login"
   },
-
   "header": {
     "searchPlaceholder": "Career guidence, Online Courses, Success stories",
     "authButton": "Login/Register",
@@ -216,7 +210,6 @@
       "8": "Success story"
     }
   },
-
   "footer": {
     "links": {
       "col1": {
@@ -238,7 +231,6 @@
       }
     }
   },
-
   "homePage": {
     "mainSlider": {
       "heading": {
@@ -300,7 +292,7 @@
     },
     "community": {
       "heading": "India's Leading Women Empowerment Organization",
-      "subHeading":"Trusted By All Women",
+      "subHeading": "Trusted By All Women",
       "data": "Take a glance at the happy, glittering faces who have enrolled with SheKunj. We understand the importance of education for the solutions of tomorrow. SheKunj is a first-of-its-kind, women-centered, global network dedicated to the women empowerment",
       "button": "View Success Stories"
     },
@@ -320,11 +312,10 @@
       "homeButton": "Enroll Now"
     }
   },
-
   "aboutPage": {
     "heading": {
-      "1" : "Helping Women to Quest",
-      "2" : "the Evolution"
+      "1": "Helping Women to Quest",
+      "2": "the Evolution"
     },
     "content1": "Shekunj promotes personal growth for women to achieve their full potential and aims to empower all the women out there - be they 16 or 60 years old - through education and guidance. We are a platform working as a charioteer, by providing opportunities to every woman out there who desires to learn, grow and excel in different fields. We help them to uncover their strengths, step into power, and achieve their goals with perfection.",
     "content2": "We believe that education leads to empowerment, and that is the truth. Education has the power to make you stand out and prove the world that a WOMAN can actually fulfill her dreams on her own. We in Shekunj, have a profusion of free courses available crafted specially for women irrespective of ages. Our purpose is to bring open source of learning to women and girls and contribute in closing the knowledge gap as well as in gender diversity.",
@@ -346,7 +337,6 @@
     },
     "salesNumber": "by 100+ Women's for English Speaking Course"
   },
-
   "careerPage": {
     "heading": "Start The Journey Of Education",
     "heading2": "Choose A Session",
@@ -367,7 +357,6 @@
     "ranking": "Rankings",
     "exam": "Exams"
   },
-
   "allCertificatePage": {
     "heading": {
       "1": "Your Way to The Path of Success.",
@@ -406,7 +395,6 @@
       "4": "Figma/Prototype"
     }
   },
-
   "certificateDetailPage": {
     "content": {
       "1": {
@@ -424,7 +412,6 @@
       "4": "RAHUL BHARGAVA"
     }
   },
-
   "careerTopColleges": {
     "other": {
       "1": "7 More",
@@ -450,11 +437,10 @@
       "1": "Stream",
       "2": "State",
       "3": "City",
-      "4":"Ownership"
+      "4": "Ownership"
     },
     "noDataFound": "No data found!"
   },
-
   "careerTopSchools": {
     "heading": {
       "1": "Top Schools in India"
@@ -462,9 +448,9 @@
     "listItems": {
       "1": "State",
       "2": "Education Board",
-      "3":"City",
-      "4":"Category",
-      "5":"Ownership"
+      "3": "City",
+      "4": "Category",
+      "5": "Ownership"
     },
     "other": {
       "1": "Board",
@@ -476,14 +462,12 @@
       "7": "Adress",
       "8": "Gender",
       "9": "Levels",
-      "10":"Type",
-      "11":"Schools",
-      "12":"Showing"
+      "10": "Type",
+      "11": "Schools",
+      "12": "Showing"
     }
   },
-
   "careerGovExams": {
-
     "heading": {
       "1": "Government Policies and Schemes in India"
     },
@@ -498,12 +482,10 @@
       "5": "Whom This Scheme For",
       "6": "Age Criteria",
       "7": "Benefits",
-      "8" :"State",
-      "9" :"Website"
-
+      "8": "State",
+      "9": "Website"
     }
   },
-
   "contactUs": {
     "heading": {
       "1": "Contact us",
@@ -518,7 +500,6 @@
       "1": "Send"
     }
   },
-
   "coursesPage": {
     "banner": {
       "heading": "30+ free courses to skyrocket your career",
@@ -603,7 +584,7 @@
       "heading": {
         "1": "Your Result",
         "2": "You are an inspiration to others! Exams are always tough, but the Champions like you make it worth while by your excellent performance.",
-        "3" : "This time you couldn’t make it but next time you can! Try again, and give you 100%!"
+        "3": "This time you couldn’t make it but next time you can! Try again, and give you 100%!"
       },
       "other": {
         "1": "Congratulation",
@@ -622,7 +603,7 @@
         "1": "Get Your Certificate",
         "2": "Start Course Again",
         "3": "Go to Career Test",
-        "4" : "Start Another Course"
+        "4": "Start Another Course"
       }
     },
     "other": {
@@ -638,11 +619,10 @@
       "3": "Archive",
       "4": "More"
     },
-    "pdfSize":{
-      "heading":"Please upload the pdf."
+    "pdfSize": {
+      "heading": "Please upload the pdf."
     }
   },
-
   "dashboardPage": {
     "greeting": "Hello {{name}}!",
     "wish": "Good to see you back!",
@@ -655,7 +635,7 @@
     },
     "heading": {
       "1": "Career test",
-      "2":"Scored percentage"
+      "2": "Scored percentage"
     }
   },
   "guidanceBookPage": {
@@ -666,7 +646,9 @@
     }
   },
   "changePasswordPage": {
-    "button": { "1": "Update Password" }
+    "button": {
+      "1": "Update Password"
+    }
   },
   "userInfoPage": {
     "button": {
@@ -699,7 +681,6 @@
     "heading": {
       "1": "Choose Your Career",
       "2": "Best Career Options in India"
-      
     },
     "other": {
       "1": "No Option selected!",
@@ -807,25 +788,32 @@
       "8": "Top Colleges",
       "9": "Top Schools",
       "10": "Government Schemes",
-      "11":"Events",
-      "12":"E-magazine",
-      "13":"Blog"
+      "11": "Events",
+      "12": "E-magazine",
+      "13": "Blog"
     }
   },
   "alert": "After reload your test will end.",
-
-  "ContactUs" : {
-    "placeholders" : {
-      "name" : "Name",
-      "email" : "Email",
-      "subject" : "Subject",
-      "msg" : "Message",
-      "contact":"Contact number"
+  "ContactUs": {
+    "placeholders": {
+      "name": "Name",
+      "email": "Email",
+      "subject": "Subject",
+      "msg": "Message",
+      "contact": "Contact number"
     }
   },
-
-  "deskTopView" : {
-    "heading" : "Start Your Learning in Full Desktop Site",
-    "button" : "Desktop View"
+  "deskTopView": {
+    "heading": "Start Your Learning in Full Desktop Site",
+    "button": "Desktop View"
+  },
+  "mockTest": {
+    "total_time": "Total Time",
+    "take_test": "Take Test",
+    "detail": {
+      "career_test_time": "Career Test Time",
+      "no_of_questions": "No Of Questions",
+      "total_score": "Total Score"
+    }
   }
 }
