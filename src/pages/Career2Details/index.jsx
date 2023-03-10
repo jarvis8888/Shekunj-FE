@@ -67,7 +67,7 @@ const Career2Details = () => {
                                 <h4>{governmentExams && governmentExams.name}</h4>
                                 {governmentExams.state && (
                                     <span style={{ textTransform: "capitalize" }}>
-                                        <span>{t("careerGovExams.other.8")}</span> : {" "}
+                                        <span style={{ fontWeight: "bold"}}>{t("careerGovExams.other.8")}</span> : {" "}
                                         {governmentExams && governmentExams.state}
                                     </span>
                                 )}
@@ -75,31 +75,31 @@ const Career2Details = () => {
                                 <Row className='mt-3'>
                                     {governmentExams.scheme_level && (
                                         <Col md={6} xs={12}>
-                                            <span>{t("careerGovExams.other.4")}</span> : {" "}
+                                            <span style={{ fontWeight: "bold"}}>{t("careerGovExams.other.4")}</span> : {" "}
                                             {governmentExams?.scheme_level}
                                         </Col>
                                     )}
                                     {governmentExams.age_criteria && (
                                         <Col md={6} xs={12}>
-                                            <span>{t("careerGovExams.other.6")}</span> : {" "}
+                                            <span style={{ fontWeight: "bold"}}>{t("careerGovExams.other.6")}</span> : {" "}
                                             {governmentExams?.age_criteria}
                                         </Col>
                                     )}
                                     {governmentExams.whom_this_scheme_for && (
                                         <Col md={6} xs={12}>
-                                            <span>{t("careerGovExams.other.5")}</span> : {" "}
+                                            <span style={{ fontWeight: "bold"}}>{t("careerGovExams.other.5")}</span> : {" "}
                                             {governmentExams?.whom_this_scheme_for}
                                         </Col>
                                     )}
                                     {governmentExams.benefits && (
                                         <Col md={6} xs={12}>
-                                            <span>{t("careerGovExams.other.7")}</span> : {" "}
+                                            <span style={{ fontWeight: "bold"}}>{t("careerGovExams.other.7")}</span> : {" "}
                                             <div dangerouslySetInnerHTML={{ __html: `<div>${governmentExams?.benefits}</div>` }} />
                                         </Col>
                                     )}
                                     {governmentExams.official_link && (
                                         <Col md={12} xs={12}>
-                                            <span>{t("careerGovExams.other.9")}</span> : {" "}
+                                            <span style={{ fontWeight: "bold"}}>{t("careerGovExams.other.9")}</span> : {" "}
 
                                             <Link
                                                 to={{ pathname: governmentExams?.official_link }}
@@ -113,7 +113,7 @@ const Career2Details = () => {
 
                                 {governmentExams.about_exam && (
                                     <p style={{ textAlign: 'justify' }} className='mt-3'>
-                                        <span>
+                                        <span style={{ fontWeight: "bold"}}>
                                             {t("careerTopColleges.other.6")}
                                         </span>{" "}
                                         :{" "}

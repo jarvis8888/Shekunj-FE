@@ -89,7 +89,7 @@ const CareerDetails = () => {
                                     {topCollages.email && (
                                         <Col md={6} xs={12}>
                                             <h6>
-                                                <span>
+                                                <span style={{fontWeight: "bold" }}>
                                                     {t("careerTopColleges.other.9")}
                                                 </span>{" "}
                                                 :{" "}
@@ -101,7 +101,7 @@ const CareerDetails = () => {
                                         <Col md={6} xs={12}>
                                             <span style={{ textTransform: "capitalize" }}>
                                                 <h6>
-                                                    <span>{t("careerTopColleges.other.4")}</span>{" "}
+                                                    <span style={{fontWeight: "bold" }}>{t("careerTopColleges.other.4")}</span>{" "}
                                                     : {topCollages && topCollages.contact_no}
                                                 </h6>
                                             </span>
@@ -113,7 +113,7 @@ const CareerDetails = () => {
                                     {topCollages?.website && (
                                         <Col md={6} xs={12}>
                                             <h6>
-                                                <span>{t("careerTopColleges.other.5")}</span>:{" "}
+                                                <span style={{fontWeight: "bold" }}>{t("careerTopColleges.other.5")}</span>:{" "}
                                                 {/* <Link
                                                     to={{ pathname: topCollages?.website }}
                                                     target='_blank'
@@ -134,7 +134,7 @@ const CareerDetails = () => {
                                     {topCollages.gender_intech && (
                                         <Col md={6} xs={12}>
                                             <h6>
-                                                <span>
+                                                <span style={{fontWeight: "bold" }}>
                                                     {t("careerTopColleges.other.12")}
                                                 </span>{" "}
                                                 :{" "}
@@ -147,7 +147,7 @@ const CareerDetails = () => {
                                 <Row>
                                     {topCollages.established_year && (
                                         <Col md={6} xs={12}>
-                                            <span>
+                                            <span style={{fontWeight: "bold" }}>
                                                 {t("careerTopColleges.other.10")}
                                             </span>{" "}
                                             :{" "}
@@ -160,7 +160,7 @@ const CareerDetails = () => {
                                     {topCollages.address && (
                                         <Col md={12} xs={12}>
                                             <h6>
-                                                <span>
+                                                <span style={{fontWeight: "bold" }}>
                                                     {t("careerTopColleges.other.15")}
                                                 </span>{" "}
                                                 :{" "}
@@ -173,7 +173,7 @@ const CareerDetails = () => {
                                     {topCollages.accreditation && (
                                         <Col md={12} xs={12}>
                                             <h6>
-                                                <span>
+                                                <span style={{fontWeight: "bold" }}>
                                                     {t("careerTopColleges.other.7")}
                                                 </span>{" "}
                                                 :{" "}
@@ -185,7 +185,7 @@ const CareerDetails = () => {
 
                                 {topCollages.about_college && (
                                     <p style={{ textAlign: 'justify' }} className='mt-3'>
-                                        <span>
+                                        <span style={{fontWeight: "bold" }}>
                                             {t("careerTopColleges.other.6")}
                                         </span>{" "}
                                         :{" "}
@@ -195,7 +195,7 @@ const CareerDetails = () => {
 
                                 {topCollages.courses_offered && (
                                     <p>
-                                        <span>
+                                        <span style={{fontWeight: "bold" }}>
                                             {t("careerTopColleges.other.8")}
                                         </span>
                                         :
