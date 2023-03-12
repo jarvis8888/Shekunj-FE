@@ -19,7 +19,7 @@ function ContactUs() {
   const validationSchema = Yup.object({
     name: Yup.string().required(t("Name is required")),
     email: Yup.string().email(t("login.form1.emailError.invalid")),
-    // subject: Yup.string().required(t("Subject is required")),
+    subject: Yup.string().required(t("Subject is required")),
     message: Yup.string().required(t("Message is required")),
     contact: Yup.string()
       .matches(phoneRegExp, 'Phone number is not valid')
@@ -135,7 +135,7 @@ function ContactUs() {
                         />
                         <Error error={errors.contact} touched={touched.contact} isSubmitting={isSubmitting} />
                       </div>
-                      {/* <div className='mb-3'>
+                      <div className='mb-3'>
                         <TextField
                           name='subject'
                           type='text'
@@ -150,7 +150,7 @@ function ContactUs() {
                           touched={touched.subject}
                           isSubmitting={isSubmitting}
                         />
-                      </div> */}
+                      </div>
 
                       <div className='mb-3'>
                         <TextareaAutosize
