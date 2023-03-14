@@ -734,7 +734,7 @@ ul.star {
 }
 
 .abc_box {
-  width: 585px;
+  // width: 585px;
   height: 432px;
   background: #ec498a;
   position: relative;
@@ -745,6 +745,7 @@ ul.star {
   line-height: 52px;
   text-transform: capitalize;
   color: #ffffff;
+  min-width: 20%;
 }
 
 .container.Our_text p {

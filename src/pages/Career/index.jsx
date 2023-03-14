@@ -482,8 +482,9 @@ const CareerPage = () => {
                                 <ul>
                                   <li>
                                     <span>
-                                      {c && c.city} {c && c.state}
+                                    {t("careerTopColleges.other.13")}{"  "}
                                     </span>
+                                    : {c && c.city} {c && c.state}
                                   </li>
                                 </ul>
 
@@ -494,7 +495,7 @@ const CareerPage = () => {
                                         <span>
                                           {t("careerTopColleges.other.4")}
                                         </span>{" "}
-                                        :{c && c.contact_no}
+                                        : {c && c.contact_no}
                                       </p>
                                     </li>
                                   )}

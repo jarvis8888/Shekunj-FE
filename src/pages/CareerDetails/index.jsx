@@ -73,7 +73,8 @@ const CareerDetails = () => {
                                 <h4 className='mb-3'>{topCollages && topCollages.name}</h4>
                                 <Row>
                                     <Col md={12} xs={12}>
-
+                                        <h6>{t("careerTopColleges.other.13")}{" "}: </h6>
+                                    
                                         {topCollages && topCollages.city}
                                         {topCollages.city && (",")}
                                         {" "}

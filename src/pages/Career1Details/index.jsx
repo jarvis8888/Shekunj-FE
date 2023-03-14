@@ -69,8 +69,13 @@ const Career1Details = () => {
                                 <h4 className='mb-3'>{topSchools && topSchools.name}</h4>
                                 <Row>
                                     <Col md={12} xs={12}>
-                                        {topSchools && topSchools.city} {topSchools.city && (",")}{" "}
-                                        {topSchools && topSchools.state} {topSchools.state && ("•")}{" "}
+                                        <h6>
+                                            <span style={{ fontWeight: 'bold',justifyItems:"center" }}>{t("careerTopColleges.other.13")}{" "}</span>{" "}
+                                            :  {topSchools && topSchools.city} {topSchools.city && (",")}{" "}
+                                            {topSchools && topSchools.state} {topSchools.state && ("•")}{" "}
+                                        </h6>
+                                       
+
                                         {/* <span style={{ textTransform: "capitalize" }}>
                                             {topSchools && topSchools.school_type && topSchools.school_type||{}}
                                         </span> */}
@@ -78,12 +83,12 @@ const Career1Details = () => {
                                         {/* <h6>{topSchools.map(name => <h2>{name.name}</h2>)} </h6> */}
                                     </Col>
                                 </Row>
-                                <Row className='mt-3'>
+                                <Row>
                                     {topSchools.contact_no && (
                                         <Col md={6} xs={12}>
                                             <span style={{ textTransform: "capitalize" }}>
                                                 <h6>
-                                                    <span style={{ fontWeight: 'bold'}}>{t("careerTopColleges.other.4")}</span>{" "}
+                                                    <span style={{ fontWeight: 'bold' }}>{t("careerTopColleges.other.4")}</span>{" "}
                                                     : {topSchools && topSchools.contact_no}
                                                 </h6>
                                             </span>
@@ -92,7 +97,7 @@ const Career1Details = () => {
 
                                     {topSchools.board_type && (
                                         <Col md={6} xs={12}>
-                                            <span style={{ fontWeight: 'bold'}}>
+                                            <span style={{ fontWeight: 'bold' }}>
                                                 {t("careerTopSchools.other.1")}
                                             </span>{" "}
                                             :{" "}
@@ -105,7 +110,7 @@ const Career1Details = () => {
                                     {topSchools.email && (
                                         <Col md={6} xs={12}>
                                             <h6>
-                                                <span style={{ fontWeight: 'bold'}}>
+                                                <span style={{ fontWeight: 'bold' }}>
                                                     {t("careerTopColleges.other.9")}
                                                 </span>{" "}
                                                 :{" "}
@@ -115,8 +120,8 @@ const Career1Details = () => {
                                     )}
                                     {topSchools.established_year && (
                                         <Col md={6} xs={12}>
-                                            <span style={{ fontWeight: 'bold'}}>
-                                                 {t("careerTopColleges.other.10")}
+                                            <span style={{ fontWeight: 'bold' }}>
+                                                {t("careerTopColleges.other.10")}
                                             </span>{" "}
                                             :{" "}
                                             {topSchools && topSchools.established_year}
@@ -128,7 +133,7 @@ const Career1Details = () => {
                                     {topSchools.level && (
                                         <Col md={6} xs={12}>
                                             <h6>
-                                                <span style={{ fontWeight: 'bold'}}>
+                                                <span style={{ fontWeight: 'bold' }}>
                                                     {t("careerTopColleges.other.14")}
                                                 </span>{" "}
                                                 :{" "}
@@ -139,7 +144,7 @@ const Career1Details = () => {
                                     {topSchools.website && (
                                         <Col md={6} xs={12}>
                                             <h6>
-                                                <span style={{ fontWeight: 'bold'}}>{t("careerTopSchools.other.3")}</span> :{" "}
+                                                <span style={{ fontWeight: 'bold' }}>{t("careerTopSchools.other.3")}</span> :{" "}
                                                 <Link
                                                     // to={{ pathname: topSchools?.website }}
                                                     to={topSchools?.website}
@@ -156,7 +161,7 @@ const Career1Details = () => {
 
                                 {topSchools.about_school && (
                                     <p style={{ textAlign: 'justify' }} className='mt-3'>
-                                        <span style={{ fontWeight: 'bold'}}>
+                                        <span style={{ fontWeight: 'bold' }}>
                                             {t("careerTopSchools.other.6")}
                                         </span>{" "}
                                         :{" "}
@@ -182,8 +187,8 @@ const Career1Details = () => {
                                     </Col>
                                 </Row>
 
-                                <hr />
-                                <Row>
+                               {topSchools?.url && <hr />}
+                                {topSchools?.url && <Row>
                                     <Col md={6} xs={12}>
                                         <img src={transformGalley(topSchools.image1)} alt='Image' className='right_gallery' />
                                     </Col>
@@ -196,7 +201,7 @@ const Career1Details = () => {
                                     <Col md={6} xs={12}>
                                         <img src={transformGalley(topSchools.image4)} alt='Image' className='right_gallery' />
                                     </Col>
-                                </Row>
+                                </Row>}
                             </div>
                         </Col>
                     </Row>

@@ -275,21 +275,21 @@ const CareerPage1 = () => {
                 onClick={() => addEmail(schoolBannerAds[0]?.add_email)}
               >
                 <a href={schoolBannerAds[0]?.url_adds} target='_blank'>
-                  {detect.isMobile ? ( 
+                  {detect.isMobile ? (
                     schoolBannerAds[0]?.image_mobile && (
-                     <img
-                     src={ schoolBannerAds[0]?.image_mobile }
-                      alt='Image'
-                      className='ads_school'
-                    />)
+                      <img
+                        src={schoolBannerAds[0]?.image_mobile}
+                        alt='Image'
+                        className='ads_school'
+                      />)
                   ) : (
                     <img
-                    src={ schoolBannerAds[0]?.image}
-                     alt='Image'
-                     className='ads_school'
-                   />
+                      src={schoolBannerAds[0]?.image}
+                      alt='Image'
+                      className='ads_school'
+                    />
                   )}
-               
+
                 </a>
               </div>
             )}
@@ -479,12 +479,10 @@ const CareerPage1 = () => {
                                   {c.established_year && <li>|</li>}
                                   {c.gender_intech && (
                                     <li>
-                                      <span>
                                         <span>
                                           {t("careerTopSchools.other.10")}
                                         </span>{" "}
                                         : {c?.gender_intech}
-                                      </span>
                                     </li>
                                   )}
                                 </ul>
@@ -492,8 +490,10 @@ const CareerPage1 = () => {
                                 <ul>
                                   <li>
                                     <span>
-                                      {c && c.city}, {c && c.state}
+                                      {t("careerTopColleges.other.13")}{" "}
+
                                     </span>
+                                    : {c && c.city}, {c && c.state}
                                   </li>
                                 </ul>
 
@@ -502,11 +502,9 @@ const CareerPage1 = () => {
                                     <li>
                                       <p>
                                         <span>
-                                          <span>
-                                            {t("careerTopSchools.other.2")}
-                                          </span>{" "}
-                                          : {c?.contact_no}{" "}
+                                          {t("careerTopSchools.other.2")}{" "}
                                         </span>
+                                        : {c?.contact_no}{" "}
                                       </p>
                                     </li>
                                   )}
@@ -552,20 +550,20 @@ const CareerPage1 = () => {
                                   >
                                     {detect.isMobile ? (
                                       schoolBoxAds[0]?.image_mobile && (
-                                      <img
-                                      src={ schoolBoxAds[0]?.image_mobile }
-                                        alt='Image'
-                                        className='ads_school_box'
-                                      />)
+                                        <img
+                                          src={schoolBoxAds[0]?.image_mobile}
+                                          alt='Image'
+                                          className='ads_school_box'
+                                        />)
                                     ) : (
                                       schoolBoxAds[0]?.image && (
-                                      <img
-                                      src={ schoolBoxAds[0]?.image}
-                                        alt='Image'
-                                        className='ads_school_box'
-                                      />)
+                                        <img
+                                          src={schoolBoxAds[0]?.image}
+                                          alt='Image'
+                                          className='ads_school_box'
+                                        />)
                                     )}
-                                  
+
                                   </a>
                                 </div>
                               )}

@@ -95,10 +95,24 @@ function MockTestDetail() {
   const progress = Math.round(100 / (countData?.total_career_que || 0)) || 0;
   const question_history = JSON.parse(localStorage.getItem('question_history'))
   useEffect(() => {
-    console.log("testDataMockTest", testData)
+    // console.log("testDataMockTest", testData)
     if(questionNumber!==1){
-      // setQuestionNumber(question_no)
-      localStorage.setItem('question_history', JSON.stringify({ questionNumber, question_id: testData?.id,cat_id:id }))  
+      if(question_history?.length>0){
+        const filterHistory=question_history?.filter(his=>his.cat_id===id)
+        if(filterHistory.length>0){
+          filterHistory[0].q_no=questionNumber
+          filterHistory[0].question_id=testData?.id
+          const pos=filterHistory[0].index;
+          question_history[pos]=filterHistory[0];
+          localStorage.setItem('question_history',JSON.stringify(question_history))
+        }else{
+          question_history.push({ q_no:questionNumber, question_id: testData?.id,cat_id:id,index:question_history.length })
+          localStorage.setItem('question_history',JSON.stringify(question_history))
+        }
+      }else{
+        localStorage.setItem('question_history', JSON.stringify([{ q_no:questionNumber, question_id: testData?.id,cat_id:id ,index:0}]))  
+      }
+      
     }
     
    
@@ -122,11 +136,21 @@ function MockTestDetail() {
       dispatch(endTest(nv, history));
       history.push(routingConstants.CAREER_TEST_RESULT + nv);
     }
-    if(question_history?.questionNumber && question_history?.cat_id===id){
-      setQuestionNumber(question_history?.questionNumber)
-    }else{
-      localStorage.removeItem('question_history')
-    }
+    // if(question_history?.questionNumber && question_history?.cat_id===id){
+    //   setQuestionNumber(question_history?.questionNumber)
+    // }else{
+    //   localStorage.removeItem('question_history')
+    // }
+   const filterHistory=question_history?.filter(his=>his.cat_id===id);;
+   if(filterHistory?.length>0){
+    const fetchQuestion=filterHistory[0];
+    setQuestionNumber(fetchQuestion?.q_no)
+    //  if(fetchQuestion?.q_no && fetchQuestion?.cat_id===id){
+      
+    // }else{
+    //   localStorage.removeItem('question_history')
+    // }
+   }
   }, []);
 
   useEffect(() => {

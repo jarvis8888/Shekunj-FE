@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { Link,useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import useDeviceDetect from "../../hooks/useDeviceDetect";
 
 import {
@@ -42,7 +42,7 @@ function SuccessStory() {
   const [image, setImage] = useState("NA");
   const detect = useDeviceDetect();
 
-// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>code below>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>code below>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
   // useEffect(() => {
   //   navigator.geolocation.getCurrentPosition(async function (position, values) {
@@ -82,46 +82,46 @@ function SuccessStory() {
     navigator.geolocation.getCurrentPosition(async function (position, values) {
       const latitude = position.coords.latitude;
       const longitude = position.coords.longitude;
-  
+
       let params = {
         latitude: latitude.toString(),
         longitude: longitude.toString(),
-      } 
+      }
       axios
-      .get(
-        `/private_adds/private_add?latitude=${latitude}&longitude=${longitude}`,
-      )
-      .then((response) => {
-        if (response && response.data.results.length > 0) {
-          let filterArray1 = response.data.results.filter((item, index) => {
-           
-            return item.image_type == "success_stories_banner";
-  
-          });
-          setStoriesBannerAds(filterArray1);
-          // console.log("filterArray1success_stories_banner",filterArray1)
-            }
-          })   
-    } ,
-    function(error) {
-      console.error("Error Code = " + error.code + " - " + error.message);
-      // alert("Your location is blocked")    
-    axios
-    .get(
-      `/private_adds/private_add`,
-    )
-    .then((response) => {
-      if (response && response.data.results.length > 0) {
-          let filterArray1 = response.data.results.filter((item, index) => {   
-            return item.image_type == "success_stories_banner";
-          });
-          setStoriesBannerAds(filterArray1);
-          // console.log("filterArray1coursebox",filterArray1) 
+        .get(
+          `/private_adds/private_add?latitude=${latitude}&longitude=${longitude}`,
+        )
+        .then((response) => {
+          if (response && response.data.results.length > 0) {
+            let filterArray1 = response.data.results.filter((item, index) => {
+
+              return item.image_type == "success_stories_banner";
+
+            });
+            setStoriesBannerAds(filterArray1);
+            // console.log("filterArray1success_stories_banner",filterArray1)
           }
         })
-   }
-  )
-  },[])
+    },
+      function (error) {
+        console.error("Error Code = " + error.code + " - " + error.message);
+        // alert("Your location is blocked")    
+        axios
+          .get(
+            `/private_adds/private_add`,
+          )
+          .then((response) => {
+            if (response && response.data.results.length > 0) {
+              let filterArray1 = response.data.results.filter((item, index) => {
+                return item.image_type == "success_stories_banner";
+              });
+              setStoriesBannerAds(filterArray1);
+              // console.log("filterArray1coursebox",filterArray1) 
+            }
+          })
+      }
+    )
+  }, [])
 
 
   const addEmail = (email) => {
@@ -169,27 +169,36 @@ function SuccessStory() {
             setImage(findImage);
             setStoriesBoxAds(filterArray);
           }
-        })   .catch((error) => {
+        }).catch((error) => {
           // setMessage("No data found");
           console.log(error);
-      })
+        })
     });
     dispatch(adsList());
   }, [dispatch]);
 
+  const makeHtml = (htmlString) => {
+
+    const htmlNode = document.createElement('div');
+    htmlNode.innerHTML = htmlString;
+    htmlNode.querySelectorAll('*').forEach(function (node) {
+      node.removeAttribute('style');
+    });
+    return htmlNode.innerHTML
+  }
   return (
     <div>
       <Header loginPage={true} page='story' />
       <div className='SuccStory_banner noselect'>
 
-      <Helmet>
-      <link rel="canonical" href="https://www.shekunj.com/success-stories/" />
-        <title>Inspiring Success Stories of #SheTheChampion - Shekunj.com</title>
-        <meta name="description" content="Shekunj.com shares success stories of 
+        <Helmet>
+          <link rel="canonical" href="https://www.shekunj.com/success-stories/" />
+          <title>Inspiring Success Stories of #SheTheChampion - Shekunj.com</title>
+          <meta name="description" content="Shekunj.com shares success stories of 
         women across India who have made their dreams come true and achieved sky-high
          success. Read our success stories."/>
-        <meta name="keywords" content="women empowerment organizations, success stories, free online courses, free career guidance,"/>
-      </Helmet>
+          <meta name="keywords" content="women empowerment organizations, success stories, free online courses, free career guidance," />
+        </Helmet>
 
         <Container>
           <Row>
@@ -220,13 +229,13 @@ function SuccessStory() {
                 onClick={() => addEmail(storiesBannerAds[0]?.add_email)}
               >
                 <a href={storiesBannerAds[0]?.url_adds} target='_blank'>
-                  { detect.isMobile ? (
+                  {detect.isMobile ? (
                     storiesBannerAds[0]?.image_mobile && (
-                    <img src={ storiesBannerAds[0]?.image_mobile } alt='Image' className='ads_story_cover_img' />)
+                      <img src={storiesBannerAds[0]?.image_mobile} alt='Image' className='ads_story_cover_img' />)
                   ) : (
                     storiesBannerAds[0]?.image && (
-                    <img src={ storiesBannerAds[0]?.image} alt='Image' className='ads_story_cover_img' />
-                  ))}
+                      <img src={storiesBannerAds[0]?.image} alt='Image' className='ads_story_cover_img' />
+                    ))}
                 </a>
               </div>
 
@@ -266,7 +275,7 @@ function SuccessStory() {
                             <img
                               className='quote_img'
                               src={double_quote}
-                              style={{width:100,height:40}}
+                              style={{ width: 100, height: 40 }}
                               alt=''
                             />
                             {s?.name || t("common.n/a")}{" "}
@@ -283,9 +292,9 @@ function SuccessStory() {
                               />
                             ) : (
                               <div
-                              className="blog_content1"
+                                className="blog_content1"
                                 dangerouslySetInnerHTML={{
-                                  __html: `<div>${s.description}</div>`,
+                                  __html: makeHtml(s.description),
                                 }}
                               />
                             )}
@@ -295,16 +304,16 @@ function SuccessStory() {
                             <div className='suc_btn'>
                               <hr />
                               <button
-                                onClick={() =>
-                                  {
-                                    history.push(routingConstants.SUCCESS_STORIES + s?.id)}
+                                onClick={() => {
+                                  history.push(routingConstants.SUCCESS_STORIES + s?.id)
+                                }
                                 }
                               >
                                 {t("successStoriesPage.button.1")}{" "}
                                 {s?.is_collapse
                                   ? t("common.less1")
                                   : t("common.more1")}{" "}
-                                <img src={s?.is_collapse ? up : down1} style={{width:10,height:10}} alt='' />
+                                <img src={s?.is_collapse ? up : down1} style={{ width: 10, height: 10 }} alt='' />
                               </button>
                               <hr />
                             </div>
@@ -320,18 +329,18 @@ function SuccessStory() {
                     ) : (
                       <>
                         <Col md={4} xs={12}>
-                          <img className='story_image' src={s?.image} alt='' 
-                          onClick={() => history.push(routingConstants.SUCCESS_STORIES + s?.id)}
+                          <img className='story_image' src={s?.image} alt=''
+                            onClick={() => history.push(routingConstants.SUCCESS_STORIES + s?.id)}
                           />
                         </Col>
                         <Col md={8} xs={12}>
-                          <h2 className="noselect" 
+                          <h2 className="noselect"
                             onClick={() => history.push(routingConstants.SUCCESS_STORIES + s?.id)}
                           >
                             <img
                               className='quote_img'
                               src={double_quote}
-                              style={{width:100,height:40}}
+                              style={{ width: 100, height: 40 }}
                               alt=''
                             />
                             {s?.name || t("common.n/a")}{" "}
@@ -351,7 +360,7 @@ function SuccessStory() {
                               <div
                                 className="blog_content"
                                 dangerouslySetInnerHTML={{
-                                  __html: `<div>${s.description}</div>`,
+                                  __html: makeHtml(s.description),
                                 }}
                               />
                             )}
@@ -361,17 +370,16 @@ function SuccessStory() {
                             <div className='suc_btn'>
                               <hr />
                               <button
-                                onClick={() =>
-                                  {
-                                    history.push(routingConstants.SUCCESS_STORIES + s?.id)
-                                  }
+                                onClick={() => {
+                                  history.push(routingConstants.SUCCESS_STORIES + s?.id)
+                                }
                                 }
                               >
                                 {t("successStoriesPage.button.1")}{" "}
                                 {s?.is_collapse
                                   ? t("common.less1")
                                   : t("common.more1")}{" "}
-                                <img src={s?.is_collapse ? up : down1} style={{width:10,height:10}} alt='' />
+                                <img src={s?.is_collapse ? up : down1} style={{ width: 10, height: 10 }} alt='' />
                               </button>
                               <hr />
                             </div>
@@ -390,13 +398,13 @@ function SuccessStory() {
                           className='ads_story_cover'
                           onClick={() => addEmail(storiesBoxAds[0]?.add_email)}
                         >
-                          { detect.isMobile ? (
+                          {detect.isMobile ? (
                             storiesBoxAds[0]?.image_mobile && (
-                          <img src={ storiesBoxAds[0]?.image_mobile } alt='Image' className='ads_succ_story' />
-                          )) : (
+                              <img src={storiesBoxAds[0]?.image_mobile} alt='Image' className='ads_succ_story' />
+                            )) : (
                             storiesBoxAds[0]?.image_mobile && (
-                          <img src={ storiesBoxAds[0]?.image} alt='Image' className='ads_succ_story' />
-                          ))}
+                              <img src={storiesBoxAds[0]?.image} alt='Image' className='ads_succ_story' />
+                            ))}
                         </div>
                       )}
                     </a>

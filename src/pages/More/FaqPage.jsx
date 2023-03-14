@@ -202,14 +202,14 @@ function FaqPage() {
               <Navbar.Brand className='NavHeading'>
                 Frequently Asked Question
               </Navbar.Brand>
-              <img
+              {/* <img
                 src='/static/media/logo.de3c6070.svg'
                 width='30'
                 height='30'
                 // className="d-inline-block align-top"
                 className='faq-shekunj-logo'
                 alt='logo'
-              />
+              /> */}
             </Container>
           </Navbar>
           <Row>

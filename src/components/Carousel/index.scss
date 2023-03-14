@@ -1,7 +1,11 @@
 .owl-theme {
-  max-width: 1180px;
-  margin-left: -150px;
-  margin-top: 85px;
+  // max-width: 1180px;
+  // margin-left: -150px;
+  // margin-top: 85px;
+  margin-left: -10%;
+  // margin-top: 60px;
+  min-width: 90%;
+  width: auto;
 }
 
 a.item {
@@ -32,12 +36,23 @@ a.item {
   position: relative;
   -webkit-transform: translate3d(0px, 0px, 0px);
   overflow-x: clip !important;
+  margin-left: 30px;
+  .owl-stage{
+
+    transform: translate3d(-11650px, 0px, 0px);
+    transition: all 0.8s ease 0s;
+    width: 26214px;
+    height: 432px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
 }
 
 .owl-nav {
   position: absolute;
-  top: 0;
-  left: -16%;
+  top: 30%;
+  left: -7%;
   color: #fff;
 }
 
@@ -60,8 +75,10 @@ a.item {
   color: #fff;
   position: absolute;
   top: 70%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  // left: 50%;
+  right: 50%;
+
+  // transform: translate(-50%, -50%);
 }
 
 .abc_box .abc::after {
@@ -69,7 +86,8 @@ a.item {
   border-bottom: 2px solid #fff;
   opacity: 0.5;
   display: block;
-  width: 120px;
+  // width: 120px;
+  width: 95px;
 }
 
 .owl-carousel.owl-theme.owl-loaded.owl-drag a {
@@ -328,11 +346,11 @@ button.view_test_cate:hover {
   font-weight: bold;
   font-size: 14px;
   line-height: 19px;
-  color: #FFFFFF;
-  background: #EC498A;
+  color: #ffffff;
+  background: #ec498a;
   border-radius: 2px;
   padding: 15px 25px;
-  border: 1px solid #FFFFFF;
+  border: 1px solid #ffffff;
   text-align: center;
   display: block;
   margin: 20px auto;
@@ -341,9 +359,9 @@ button.view_test_cate:hover {
 }
 
 .courses :hover {
-  border: 1px solid #EC498A;
+  border: 1px solid #ec498a;
   background-color: transparent;
-  color: #EC498A;
+  color: #ec498a;
   user-select: none;
   transition: 1s;
   cursor: pointer;
@@ -402,17 +420,17 @@ button.view_test_cate:hover {
   z-index: -1;
 }
 
-.lSAction>.lSNext {
+.lSAction > .lSNext {
   background-position: -32px 0;
   left: 212px !important;
   top: 42% !important;
 }
 
-.lSAction>.lSPrev {
+.lSAction > .lSPrev {
   left: 216px !important;
 }
 
-.lSAction>a {
+.lSAction > a {
   top: 36% !important;
   opacity: 1 !important;
 }
@@ -442,7 +460,7 @@ button.view_test_cate:hover {
 }
 
 .tag_btn h2 {
-  font-family: 'SegoeUI_medium';
+  font-family: "SegoeUI_medium";
   font-style: normal;
   font-weight: 600;
   font-size: 16px;
@@ -496,12 +514,7 @@ button.btn.btn_Courses {
   }
 }
 
-
-
-
-
 @media screen and (min-device-width: 1270px) and (max-device-width: 1280px) {
-
   // @media screen and (max-width: 1280px) {
   #myCarousel .carousel-item {
     height: 75vh !important;
@@ -509,7 +522,6 @@ button.btn.btn_Courses {
 }
 
 @media screen and (min-device-width: 50px) and (max-device-width: 767px) {
-
   .sec2_right {
     padding: 15px !important;
   }
@@ -538,7 +550,6 @@ button.btn.btn_Courses {
   // }
 }
 
-
 @media screen and (max-width: 768px) {
   .owl-theme {
     margin-left: -101px;
@@ -555,7 +566,6 @@ button.btn.btn_Courses {
   }
 }
 
-
 @media screen and (max-width: 1280px) {
   .abc_box {
     width: 300px;
@@ -566,7 +576,6 @@ button.btn.btn_Courses {
     margin-left: -120px;
   }
 }
-
 
 @media screen and (max-width: 1366px) {
   .owl-nav {
