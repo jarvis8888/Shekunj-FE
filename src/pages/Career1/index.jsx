@@ -29,9 +29,12 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import useDeviceDetect from "../../hooks/useDeviceDetect";
+import Pagination from "../../components/Pagination";
+
 
 const CareerPage1 = () => {
-  // const [loading, setLoading] = useState(false);
+  const [offset, setOffset] = useState(10);
+  const [pageLimit, setPageLimit] = useState(10);
 
   // useEffect(() => {
   //   setLoading(true);
@@ -57,7 +60,7 @@ const CareerPage1 = () => {
         latitude: latitude.toString(),
         longitude: longitude.toString(),
       };
-      dispatch(getTopSchools(false, latitude, longitude));
+      dispatch(getTopSchools(false, latitude, longitude, pageLimit, offset));
     },
       function (error) {
         console.error("Error Code = " + error.code + " - " + error.message);
@@ -245,6 +248,26 @@ const CareerPage1 = () => {
   const handleResetSearch = () => {
     dispatch(getTopSchools());
     setSearchInput("");
+  };
+
+  const paginationBack = () => {
+    setOffset(offset-10)
+    window.scrollTo(0, 1000);
+  };
+  const paginationNext = () => {
+    
+    navigator.geolocation.getCurrentPosition(async function (position, values) {
+      const latitude = position.coords.latitude;
+      const longitude = position.coords.longitude;
+
+      let params = {
+        latitude: latitude.toString(),
+        longitude: longitude.toString(),
+      };
+      dispatch(getTopSchools(true, null, null, pageLimit, offset+10));
+    });
+    setOffset(offset+10);
+    window.scrollTo(0, 1000);
   };
 
   return (
@@ -479,10 +502,10 @@ const CareerPage1 = () => {
                                   {c.established_year && <li>|</li>}
                                   {c.gender_intech && (
                                     <li>
-                                        <span>
-                                          {t("careerTopSchools.other.10")}
-                                        </span>{" "}
-                                        : {c?.gender_intech}
+                                      <span>
+                                        {t("careerTopSchools.other.10")}
+                                      </span>{" "}
+                                      : {c?.gender_intech}
                                     </li>
                                   )}
                                 </ul>
@@ -593,6 +616,13 @@ const CareerPage1 = () => {
                   <div className='text-center'>{t("common.noDataFound")}</div>
                 )}
             </Col>
+            {/* {topSchools?.result?.count > pageLimit && (
+              <Pagination
+                finalCount={topSchools?.result?.count / pageLimit}
+                nextPage={paginationNext}
+                backPage={paginationBack}
+              />
+            )} */}
           </Row>
         </Container>
         {/* )} */}

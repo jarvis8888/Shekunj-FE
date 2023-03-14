@@ -12,6 +12,7 @@ export const getLanguage = () => {
 };
 
 // const apiBaseUrl = 'http://43.205.70.111:8000/';
+// const apiBaseUrl='https://dae8-106-214-13-112.ngrok.io/'
 const apiBaseUrl = 'https://admin.shekunj.com/';
 //const apiBaseUrl = process.env.REACT_APP_URL_API;
 axios.defaults.baseURL = `${apiBaseUrl}${getLanguage()}/api/`;
