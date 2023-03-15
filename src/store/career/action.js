@@ -9,23 +9,23 @@ import toasterConfig from "../../utils/toasterCongig";
 const constants = apiConstants.CAREER;
 
 export const getGovernmentExams =
-  (filter = null) =>
+  (filter = null,limit=null,offset=null) =>
     async (dispatch, getState) => {
       try {
-        let url = constants.GOVERNMENT_SCHEMES;
+        let url = constants.GOVERNMENT_SCHEMES+`?limit=${limit}&offset=${offset}`;
         const { governmentExams } = getState().careerReducer;
         if (filter) {
           const foundExams = governmentExams?.govt_category?.filter(
             (r) => r?.isChecked,
           );
           if (foundExams?.length > 0) {
-            url = `${url}?govt_category_id__in=${foundExams
+            url = `${url}&govt_category_id__in=${foundExams
               .map((r) => r?.id)
               .join(",")}`;
           }
         }
         dispatch({ type: coursesTypes.GOVERNMENT_EXAM_REQUEST });
-        const res = await httpServices.get(url
+        const res1 = await httpServices.get(url
         //   , navigator.geolocation.getCurrentPosition(async function (
         //   position,
         //   values,
@@ -46,6 +46,7 @@ export const getGovernmentExams =
         //   // console.log("location_resultRegister", result);
         // }),
       );
+      const res={data:res1}
         let updatedResponse = res?.data;
         const { govt_category } = res?.data;
         if (govt_category?.length > 0) {
@@ -222,8 +223,7 @@ export const getTopSchools =
         // const url = ngrok+`?latitude=${lat}&longitude=${long}&limit=${limit}&offset=${offset}`;
         const { topSchools, courseSector,ownership } = getState().careerReducer;
         dispatch({ type: coursesTypes.TOP_SCHOOL_REQUEST });
-        console.log(filter === true ? handleTopSchoolsFilter(topSchools, courseSector, ownership)
-        : filter ? url + filter : url)
+
         const res = await httpServices.get(
           filter === true ? handleTopSchoolsFilter(topSchools, courseSector, ownership,limit,offset)
             : filter ? url + filter : url
@@ -247,8 +247,8 @@ export const getTopSchools =
             //   // console.log("location_resultRegister", result);
             // }),
           );
-        let updatedPayload = res?.data;
-        let updatedResponse = res?.data;
+        let updatedPayload = res//res?.data;
+        let updatedResponse = res//res?.data;
         updatedResponse.state_list = updatedResponse?.state_list?.map(
           (obj, idx) => ({
             id: idx,
@@ -377,7 +377,7 @@ export const getTopSchools =
       }
     };
 
-const handleTopCollagesFilter = (topCollages, courseSector,ownership) => {
+const handleTopCollagesFilter = (topCollages, courseSector,ownership,limit,offset) => {
 
   const url = constants.TOP_COLLEGE_LIST;
   const stateList = topCollages?.state_list?.filter((r) => r?.isChecked);
@@ -423,76 +423,76 @@ const handleTopCollagesFilter = (topCollages, courseSector,ownership) => {
 
 
   if (streamIdString && !collageIdString && !stateIdString && !cityIdString) {
-    return `${url}?${streamIdString}`;
+    return `${url}?${streamIdString}&limit=${limit}&offset=${offset}`;
   }
   if (!streamIdString && !collageIdString && !stateIdString && cityIdString) {
-    return `${url}?${cityIdString}`;
+    return `${url}?${cityIdString}&limit=${limit}&offset=${offset}`;
   }
   if (!streamIdString && !collageIdString && stateIdString && !cityIdString) {
-    return `${url}?${stateIdString}`;
+    return `${url}?${stateIdString}&limit=${limit}&offset=${offset}`;
   }
   if (!streamIdString && collageIdString && !stateIdString && !cityIdString) {
-    return `${url}?${collageIdString}`;
+    return `${url}?${collageIdString}&limit=${limit}&offset=${offset}`;
   }
 
 
   if (streamIdString && collageIdString && !stateIdString && !cityIdString) {
-    return `${url}?${streamIdString}&${collageIdString}`;
+    return `${url}?${streamIdString}&${collageIdString}&limit=${limit}&offset=${offset}`;
   }
   if (!streamIdString && !collageIdString && stateIdString && cityIdString) {
-    return `${url}?${stateIdString}&${cityIdString}`;
+    return `${url}?${stateIdString}&${cityIdString}&limit=${limit}&offset=${offset}`;
   }
   if (streamIdString && !collageIdString && stateIdString && !cityIdString) {
-    return `${url}?${streamIdString}&${stateIdString}`;
+    return `${url}?${streamIdString}&${stateIdString}&limit=${limit}&offset=${offset}`;
   }
   if (!streamIdString && collageIdString && !stateIdString && cityIdString) {
-    return `${url}?${collageIdString}&${cityIdString}`;
+    return `${url}?${collageIdString}&${cityIdString}&limit=${limit}&offset=${offset}`;
   }
   if (streamIdString && !collageIdString && !stateIdString && cityIdString) {
-    return `${url}?${streamIdString}&${cityIdString}`;
+    return `${url}?${streamIdString}&${cityIdString}&limit=${limit}&offset=${offset}`;
   }
   if (!streamIdString && collageIdString && stateIdString && !cityIdString) {
-    return `${url}?${collageIdString}&${stateIdString}`;
+    return `${url}?${collageIdString}&${stateIdString}&limit=${limit}&offset=${offset}`;
   }
 
 
 
   if (streamIdString && collageIdString && stateIdString && !cityIdString) {
-    return `${url}?${streamIdString}&${collageIdString}&${stateIdString}`;
+    return `${url}?${streamIdString}&${collageIdString}&${stateIdString}&limit=${limit}&offset=${offset}`;
   }
   if (streamIdString && collageIdString && !stateIdString && cityIdString) {
-    return `${url}?${streamIdString}&${collageIdString}&${cityIdString}`;
+    return `${url}?${streamIdString}&${collageIdString}&${cityIdString}&limit=${limit}&offset=${offset}`;
   }
   if (streamIdString && !collageIdString && stateIdString && cityIdString) {
-    return `${url}?${streamIdString}&${stateIdString}&${cityIdString}`;
+    return `${url}?${streamIdString}&${stateIdString}&${cityIdString}&limit=${limit}&offset=${offset}`;
   }
   if (!streamIdString && collageIdString && stateIdString && cityIdString) {
-    return `${url}?${collageIdString}&${stateIdString}&${cityIdString}`;
+    return `${url}?${collageIdString}&${stateIdString}&${cityIdString}&limit=${limit}&offset=${offset}`;
   }
   if (streamIdString && collageIdString && stateIdString && cityIdString) {
-    return `${url}?${streamIdString}&${collageIdString}&${stateIdString}&${cityIdString}`;
+    return `${url}?${streamIdString}&${collageIdString}&${stateIdString}&${cityIdString}&limit=${limit}&offset=${offset}`;
   }
   return url;
 };
 
 export const getTopCollages =
-  (filter = null,lat=null,long=null) =>
+  (filter = false,lat=null,long=null, limit=null, offset=null) =>
     async (dispatch, getState) => {
 
       try {
 
-        const url = constants.TOP_COLLEGE_LIST+`?latitude=${lat}&longitude=${long}`;
+        const url = constants.TOP_COLLEGE_LIST+`?latitude=${lat}&longitude=${long}&limit=${limit}&offset=${offset}`;
         // const url1 = constants.TOP_COLLEGE_LIST;
 
         const { courseSector, topCollages,ownership } = getState().careerReducer;
         dispatch({ type: coursesTypes.TOP_COLLAGE_REQUEST });
 
-        const res = await httpServices.get(
-          filter === true ? handleTopCollagesFilter(topCollages, courseSector,ownership)
+        let res1 = await httpServices.get(
+          filter === true ? handleTopCollagesFilter(topCollages, courseSector,ownership,limit,offset)
             : filter ? url + filter : url
             
           );
-
+         const res={data:res1}
         let updatedPayload = res?.data;
         let updatedResponse = res?.data;
 
@@ -602,16 +602,18 @@ export const getTopCollages =
             return r;
           });
         }
+        
         dispatch({
           type: coursesTypes.TOP_COLLAGE_FINISH,
           payload: {
             ...res?.data,
             collage_stream_list: updatedResponse,
             collage_list:
-              res?.data?.collage_list?.map((r) => ({
-                ...r,
-                is_collapse: false,
-              })) || [],
+            { ...res?.data?.collage_list,
+              results:res?.data?.collage_list?.results?.map((r) => ({
+              ...r,
+              is_collapse: false,
+            }))} || [],
           },
         });
       } catch (error) {

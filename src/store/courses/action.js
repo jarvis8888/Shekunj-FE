@@ -62,7 +62,6 @@ export const allCourses =
 
 export const allTests = () => async (dispatch) => {
   try {
-    const url = constants.MOCKTEST;
     dispatch({ type: coursesTypes.TESTS_REQUEST });
     const res = await httpServices.get(constants.ONLINE_TEST_CATEGORY_LIST);
     // const res = await httpServices.get(url);
@@ -226,18 +225,20 @@ export const testCountSummery = (id, history) => async (dispatch) => {
   }
 };
 
-export const successStories = () => async (dispatch) => {
+export const successStories = (limit,offset,page) => async (dispatch) => {
   try {
     dispatch({ type: coursesTypes.SUCCESS_STORY_REQUEST });
-    const res = await httpServices.get(constants.SUCCESS_STORY);
+    const url=constants.SUCCESS_STORY+`?limit=${limit}&offset=${offset}&p=${page}`
+    const res = await httpServices.get(url);
     dispatch({
       type: coursesTypes.SUCCESS_STORY_FINISH,
       payload:
-        res?.data?.map((d) => ({
+        {...res?.data,
+          results:res?.data?.results?.map((d) => ({
           ...d,
           image: d.image ? d?.image : httpServices.noImage,
           is_collapse: false,
-        })) || [],
+        })) || [],}
     });
   } catch (err) {
     dispatch({ type: coursesTypes.SUCCESS_STORY_FAIL });

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
@@ -30,6 +30,7 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import useDeviceDetect from "../../hooks/useDeviceDetect";
+import Pagination from "../../components/Pagination";
 
 const CareerPage = () => {
   // const [loading, setLoading] = useState(false);
@@ -48,26 +49,28 @@ const CareerPage = () => {
 
   const { lan } = useSelector((state) => state.languageReducer);
   const { t } = useTranslation();
+  const [offset, setOffset] = useState(0);
+  const pageLimit = 10
 
   useEffect(() => {
     dispatch(reSetFilterValue());
-    
+
     navigator.geolocation.getCurrentPosition(async function (position, values) {
       const latitude = position.coords.latitude;
       const longitude = position.coords.longitude;
-      
+
 
       let params = {
         latitude: latitude.toString(),
         longitude: longitude.toString(),
       };
-      dispatch(getTopCollages(false, latitude, longitude));
+      dispatch(getTopCollages(false, latitude, longitude, pageLimit, offset));
     },
-    function(error) {
-      console.error("Error Code = " + error.code + " - " + error.message);
-      dispatch(getTopCollages(false));
-    }
-    )    
+      function (error) {
+        console.error("Error Code = " + error.code + " - " + error.message);
+        dispatch(getTopCollages(false));
+      }
+    )
   }, []);
 
   // const transformPrice = (price) => {
@@ -140,125 +143,125 @@ const CareerPage = () => {
     navigator.geolocation.getCurrentPosition(async function (position, values) {
       const latitude = position.coords.latitude;
       const longitude = position.coords.longitude;
-  
+
       let params = {
         latitude: latitude.toString(),
         longitude: longitude.toString(),
-      } 
+      }
       axios
-      .get(
-        `/private_adds/private_add?latitude=${latitude}&longitude=${longitude}`,
-      )
-      .then((response) => {
-        if (response && response.data.results.length > 0) {
-          let filterArray1 = response.data.results.filter((item, index) => {
-           
-            return item.image_type == "top_college_box";
-  
-          });
-          setCollegeBoxAds(filterArray1);
-          // console.log("filterArray1top_college_box",filterArray1)
-          let filterArray2 = response.data.results.filter((item, index) => {
-            
-            return item.image_type == "top_college_banner";
-           
-          });
-          setCollegeBannerAds(filterArray2);
-            }
-          })   
-    } ,
-    function(error) {
-      console.error("Error Code = " + error.code + " - " + error.message);
-      // alert("Your location is blocked")    
-    axios
-    .get(
-      `/private_adds/private_add`,
-    )
-    .then((response) => {
-      if (response && response.data.results.length > 0) {
-          let filterArray1 = response.data.results.filter((item, index) => {   
-            return item.image_type == "top_college_box";
-          });
-          setCollegeBoxAds(filterArray1);
-          let filterArray2 = response.data.results.filter((item, index) => {
-            return item.image_type == "top_college_banner"; 
-          });
-          setCollegeBannerAds(filterArray2);
+        .get(
+          `/private_adds/private_add?latitude=${latitude}&longitude=${longitude}`,
+        )
+        .then((response) => {
+          if (response && response.data.results.length > 0) {
+            let filterArray1 = response.data.results.filter((item, index) => {
+
+              return item.image_type == "top_college_box";
+
+            });
+            setCollegeBoxAds(filterArray1);
+            // console.log("filterArray1top_college_box",filterArray1)
+            let filterArray2 = response.data.results.filter((item, index) => {
+
+              return item.image_type == "top_college_banner";
+
+            });
+            setCollegeBannerAds(filterArray2);
           }
         })
-   }
-  )
-  },[])
- 
-
-// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Latest code >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-// useEffect(() => {
-//   dispatch(adsList())
-//   navigator.geolocation.getCurrentPosition(async function (position, values) {
-//     const latitude = position.coords.latitude;
-//     const longitude = position.coords.longitude;
-
-//     let params = {
-//       latitude: latitude.toString(),
-//       longitude: longitude.toString(),
-//     } 
-//     axios
-//     .get(
-//       `/private_adds/private_add?latitude=${latitude}&longitude=${longitude}`,
-//     )
-//     .then((response) => {
-//       if (response.data.results.length > 0) {
-//         let filterArray = response.data.results.filter((item, index) => {
-//           return  item.image_type == "top_college_box"||item.image_type ="top_college_banner";
-//         });
-//         console.log('asdjsdss',filterArray[0])
-//           if (filterArray[0].image_type == "top_college_box") {
-//             let findImage =
-//           filterArray.length > 0 ? filterArray[0].image : "NA";
-//           setImage(findImage);
-//           setCollegeBoxAds(filterArray);
-//             }else if(filterArray[0].image_type == "top_college_banner"){
-//               let findImage =
-//               filterArray.length > 0 ? filterArray[0].image : "NA";
-//               setImage(findImage);
-//               setCollegeBannerAds(filterArray);
-//             }
-//           }
-//         })
-   
-//   } ,
-//   function(error) {
-//     console.error("Error Code = " + error.code + " - " + error.message);
-//     // alert("Your location is blocked")    
-//   axios
-//   .get(
-//     `/private_adds/private_add`,
-//   )
-//   .then((response) => {
-//     if (response.data.results.length > 0) {
-//       let filterArray = response.data.results.filter((item, index) => {
-//         return  item.image_type == "top_college_box"||item.image_type == "top_college_banner";
-//       });
-//       console.log('asdjsdss',filterArray[0])
-//         if (filterArray[0].image_type == "top_college_box") {
-//           let findImage =
-//         filterArray.length > 0 ? filterArray[0].image : "NA";
-//         setImage(findImage);
-//         setCollegeBoxAds(filterArray);
-//           }else if(filterArray[0].image_type == "top_college_banner"){
-//             let findImage =
-//             filterArray.length > 0 ? filterArray[0].image : "NA";
-//             setImage(findImage);
-//             setCollegeBannerAds(filterArray);
-//           }
-//         }
-//       })
-//  }
-// )
-// },[])
+    },
+      function (error) {
+        console.error("Error Code = " + error.code + " - " + error.message);
+        // alert("Your location is blocked")    
+        axios
+          .get(
+            `/private_adds/private_add`,
+          )
+          .then((response) => {
+            if (response && response.data.results.length > 0) {
+              let filterArray1 = response.data.results.filter((item, index) => {
+                return item.image_type == "top_college_box";
+              });
+              setCollegeBoxAds(filterArray1);
+              let filterArray2 = response.data.results.filter((item, index) => {
+                return item.image_type == "top_college_banner";
+              });
+              setCollegeBannerAds(filterArray2);
+            }
+          })
+      }
+    )
+  }, [])
 
 
-// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Latest code >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  // useEffect(() => {
+  //   dispatch(adsList())
+  //   navigator.geolocation.getCurrentPosition(async function (position, values) {
+  //     const latitude = position.coords.latitude;
+  //     const longitude = position.coords.longitude;
+
+  //     let params = {
+  //       latitude: latitude.toString(),
+  //       longitude: longitude.toString(),
+  //     } 
+  //     axios
+  //     .get(
+  //       `/private_adds/private_add?latitude=${latitude}&longitude=${longitude}`,
+  //     )
+  //     .then((response) => {
+  //       if (response.data.results.length > 0) {
+  //         let filterArray = response.data.results.filter((item, index) => {
+  //           return  item.image_type == "top_college_box"||item.image_type ="top_college_banner";
+  //         });
+  //         console.log('asdjsdss',filterArray[0])
+  //           if (filterArray[0].image_type == "top_college_box") {
+  //             let findImage =
+  //           filterArray.length > 0 ? filterArray[0].image : "NA";
+  //           setImage(findImage);
+  //           setCollegeBoxAds(filterArray);
+  //             }else if(filterArray[0].image_type == "top_college_banner"){
+  //               let findImage =
+  //               filterArray.length > 0 ? filterArray[0].image : "NA";
+  //               setImage(findImage);
+  //               setCollegeBannerAds(filterArray);
+  //             }
+  //           }
+  //         })
+
+  //   } ,
+  //   function(error) {
+  //     console.error("Error Code = " + error.code + " - " + error.message);
+  //     // alert("Your location is blocked")    
+  //   axios
+  //   .get(
+  //     `/private_adds/private_add`,
+  //   )
+  //   .then((response) => {
+  //     if (response.data.results.length > 0) {
+  //       let filterArray = response.data.results.filter((item, index) => {
+  //         return  item.image_type == "top_college_box"||item.image_type == "top_college_banner";
+  //       });
+  //       console.log('asdjsdss',filterArray[0])
+  //         if (filterArray[0].image_type == "top_college_box") {
+  //           let findImage =
+  //         filterArray.length > 0 ? filterArray[0].image : "NA";
+  //         setImage(findImage);
+  //         setCollegeBoxAds(filterArray);
+  //           }else if(filterArray[0].image_type == "top_college_banner"){
+  //             let findImage =
+  //             filterArray.length > 0 ? filterArray[0].image : "NA";
+  //             setImage(findImage);
+  //             setCollegeBannerAds(filterArray);
+  //           }
+  //         }
+  //       })
+  //  }
+  // )
+  // },[])
+
+
+  // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
   const [searchInput, setSearchInput] = useState("");
   const SearchFilterHandle = (e) => {
     e.preventDefault();
@@ -268,19 +271,48 @@ const CareerPage = () => {
     dispatch(getTopCollages());
     setSearchInput("");
   };
-  
+  const paginationBack = () => {
+    navigator.geolocation.getCurrentPosition(async function (position, values) {
+      const latitude = position.coords.latitude;
+      const longitude = position.coords.longitude;
+
+      let params = {
+        latitude: latitude.toString(),
+        longitude: longitude.toString(),
+      };
+      dispatch(getTopCollages(true, latitude, longitude, pageLimit, offset - 10));
+    });
+    setOffset(offset - 10)
+    window.scrollTo(0, 1000);
+  };
+  const paginationNext = () => {
+
+    navigator.geolocation.getCurrentPosition(async function (position, values) {
+      const latitude = position.coords.latitude;
+      const longitude = position.coords.longitude;
+
+      let params = {
+        latitude: latitude.toString(),
+        longitude: longitude.toString(),
+      };
+      dispatch(getTopCollages(true, latitude, longitude, pageLimit, offset + 10));
+    });
+    setOffset(offset + 10);
+    window.scrollTo(0, 1000);
+  };
+
   return (
     <div>
-      <SEO   title={`List of Top Colleges in India & Apply - Shekunj.com`}
-    link={`https://www.shekunj.com/top-colleges-in-india`}
-  description={` Find list of top Colleges and Universities in
+      <SEO title={`List of Top Colleges in India & Apply - Shekunj.com`}
+        link={`https://www.shekunj.com/top-colleges-in-india`}
+        description={` Find list of top Colleges and Universities in
   India along with the courses offered and
   detailed information.`}
-  keywords={`top colleges in india
+        keywords={`top colleges in india
   top educational institutions in india
   top colleges in madhya pradesh
   best universities in india
-  top women colleges in india`}/>
+  top women colleges in india`} />
       <Header loginPage={true} page='career' subPage='colleges' />
 
       <Container>
@@ -290,12 +322,12 @@ const CareerPage = () => {
               <div
                 className='add_college_cover'
                 onClick={() => addEmail(collegeBannerAds[0]?.add_email)}
-              > 
+              >
                 <a href={collegeBannerAds[0]?.url_adds} target='_blank'>
-                {detect.isMobile?  ( collegeBannerAds[0]?.image_mobile && (
-                   <img src={ collegeBannerAds[0]?.image_mobile} alt='Image' className=' google_add_college' /> )): 
-                   (collegeBannerAds[0]?.image && (
-                   <img src={ collegeBannerAds[0]?.image} alt='Image' className=' google_add_college' />))
+                  {detect.isMobile ? (collegeBannerAds[0]?.image_mobile && (
+                    <img src={collegeBannerAds[0]?.image_mobile} alt='Image' className=' google_add_college' />)) :
+                    (collegeBannerAds[0]?.image && (
+                      <img src={collegeBannerAds[0]?.image} alt='Image' className=' google_add_college' />))
                   }
                 </a>
               </div>
@@ -312,7 +344,7 @@ const CareerPage = () => {
                 <h1>{t("careerTopColleges.heading.1")}</h1>
                 <p>
                   {t("careerTopColleges.other.2")}{" "}
-                  {topCollages?.collage_list?.length || 0}{" "}
+                  {topCollages?.collage_list?.results?.length || 0}{" "}
                   {t("careerTopColleges.other.3")}
                 </p>
               </Col>
@@ -398,8 +430,8 @@ const CareerPage = () => {
               xs={12}
               className='top_collages_add_g top_collages_list_filter123'
             >
-              {topCollages?.collage_list?.length > 0 ? (
-                topCollages.collage_list.map(
+              {topCollages?.collage_list?.results?.length > 0 ? (
+                topCollages.collage_list?.results?.map(
                   (c, index) =>
                     c &&
                     c.name && (
@@ -482,7 +514,7 @@ const CareerPage = () => {
                                 <ul>
                                   <li>
                                     <span>
-                                    {t("careerTopColleges.other.13")}{"  "}
+                                      {t("careerTopColleges.other.13")}{"  "}
                                     </span>
                                     : {c && c.city} {c && c.state}
                                   </li>
@@ -540,14 +572,14 @@ const CareerPage = () => {
                                   href={collegeBoxAds[0]?.url_adds}
                                   target='_blank'
                                 >
-                                  {detect.isMobile ? 
-                                  ( collegeBoxAds[0]?.image_mobile && (
-                                    <img src={ collegeBoxAds[0]?.image_mobile } alt='Image' className='college_ads_box' />
-                                  ))
-                                 : 
-                                 ( collegeBoxAds[0]?.image && (
-                                  <img src={ collegeBoxAds[0]?.image} alt='Image' className='college_ads_box'/> 
-                                 ))}
+                                  {detect.isMobile ?
+                                    (collegeBoxAds[0]?.image_mobile && (
+                                      <img src={collegeBoxAds[0]?.image_mobile} alt='Image' className='college_ads_box' />
+                                    ))
+                                    :
+                                    (collegeBoxAds[0]?.image && (
+                                      <img src={collegeBoxAds[0]?.image} alt='Image' className='college_ads_box' />
+                                    ))}
                                 </a>{" "}
                               </>
                             ) : (
@@ -559,29 +591,36 @@ const CareerPage = () => {
                     ),
                 )
               ) : //  (
-              //   <div className='text-center'>{t("common.noDataFound")}</div>
-              // )
-              //  (
-              //   <div className="loader-container">
-              //     <div className="spinner"></div>
-              //   </div>
-              // )
+                //   <div className='text-center'>{t("common.noDataFound")}</div>
+                // )
+                //  (
+                //   <div className="loader-container">
+                //     <div className="spinner"></div>
+                //   </div>
+                // )
 
-              // (
-              //   <ContentLoader viewBox="0 0 380 70">
-              //     {/* Only SVG shapes */}
-              //     <rect x="0" y="0" rx="5" ry="5" width="70" height="70" />
-              //     <rect x="80" y="17" rx="4" ry="4" width="300" height="13" />
-              //     <rect x="80" y="40" rx="3" ry="3" width="250" height="10" />
-              //   </ContentLoader>
-              // )
-              isLoading ? (
-                <div>
-                  <h4>Loading...</h4>
-                  <ClipLoader className='loader' color='#ec498a' />
-                </div>
-              ) : (
-                <div className='text-center'>{t("common.noDataFound")}</div>
+                // (
+                //   <ContentLoader viewBox="0 0 380 70">
+                //     {/* Only SVG shapes */}
+                //     <rect x="0" y="0" rx="5" ry="5" width="70" height="70" />
+                //     <rect x="80" y="17" rx="4" ry="4" width="300" height="13" />
+                //     <rect x="80" y="40" rx="3" ry="3" width="250" height="10" />
+                //   </ContentLoader>
+                // )
+                isLoading ? (
+                  <div>
+                    <h4>Loading...</h4>
+                    <ClipLoader className='loader' color='#ec498a' />
+                  </div>
+                ) : (
+                  <div className='text-center'>{t("common.noDataFound")}</div>
+                )}
+              {topCollages?.collage_list?.count > pageLimit && (
+                <Pagination
+                  finalCount={topCollages?.collage_list?.count / pageLimit}
+                  nextPage={topCollages?.collage_list?.next ? paginationNext : null}
+                  backPage={topCollages?.collage_list?.previous ? paginationBack : null}
+                />
               )}
             </Col>
           </Row>

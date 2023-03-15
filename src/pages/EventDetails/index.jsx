@@ -250,7 +250,6 @@ const EventDetails = () => {
 // const whatsappUrl = `https://api.whatsapp.com/send?text=%20http%3A%2F%2F${events?.whatsapp_group_link?.whatsapp_link}`
 // const whatsappUrl = `https://api.whatsapp.com/send?text=%20${events?.whatsapp_group_link?.whatsapp_link}`
 const whatsappUrl = events?.whatsapp_group_link?.whatsapp_link
-console.log(whatsappUrl,events?.whatsapp_group_link)
   const whatsAppModal = () => {
     if (events && events?.whatsapp_group_link?.join_group ) {
       return (

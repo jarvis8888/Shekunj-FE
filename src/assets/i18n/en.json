@@ -726,7 +726,8 @@
     },
     "button": {
       "1": "Show",
-      "2": "Join the movement!"
+      "2": "Join the movement!",
+      "3":"Read Full Article"
     }
   },
   "privacyPolicyPage": {

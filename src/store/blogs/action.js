@@ -7,12 +7,13 @@ import { handleErrorMessage } from "../../utils/utils";
 
 const constants = apiConstants.ALL_BLOGS;
 
-export const getAllBlogs = () => async (dispatch) => {
+export const getAllBlogs = (limit,offset) => async (dispatch) => {
   try {
-    const url = constants.ALL_BLOGS;
+    const url = constants.ALL_BLOGS+`?limit=${limit}&offset=${offset}`;
 
     dispatch({ type: blogsTypes.FETCH_BLOGS_REQUEST });
-    const res = await ApiService.get(url);
+    const res1 = await ApiService.get(url);
+    const res={data:res1}
     dispatch({
       type: blogsTypes.FETCH_BLOGS_FINISH,
       payload: { ...res?.data, is_collapse: false },

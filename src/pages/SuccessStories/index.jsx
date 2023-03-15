@@ -19,6 +19,7 @@ import axios from "axios";
 import { adsList } from "../../store/ads";
 import { Helmet } from "react-helmet-async";
 import { routingConstants } from "../../utils/constants";
+import Pagination from "../../components/Pagination";
 function SuccessStory() {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -27,11 +28,13 @@ function SuccessStory() {
   });
   const { lan } = useSelector((state) => state.languageReducer);
   const { t } = useTranslation();
-
+  const [offset, setOffset] = useState(0);
+  const [page, setPage] = useState(1);
+  const pageLimit = 5
   React.useEffect(() => {
-    dispatch(fetchSuccessStories());
+    dispatch(fetchSuccessStories(pageLimit,offset,page));
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-  }, [dispatch, lan]);
+  }, [ lan]);
 
   const handleSetCollapse = (id, is_collapse) => {
     dispatch(setCollapseSuccessStory(id, is_collapse ? false : true));
@@ -186,6 +189,20 @@ function SuccessStory() {
     });
     return htmlNode.innerHTML
   }
+  const paginationBack = () => {
+    
+    dispatch(fetchSuccessStories(pageLimit,offset,page-1));
+    setOffset(offset - pageLimit)
+    setPage(page-1)
+    window.scrollTo(0, 1000);
+  };
+  const paginationNext = () => {
+
+    dispatch(fetchSuccessStories(pageLimit,offset,page+1));
+    setOffset(offset + pageLimit);
+    setPage(page+1)
+    window.scrollTo(0, 1000);
+  };
   return (
     <div>
       <Header loginPage={true} page='story' />
@@ -258,8 +275,8 @@ function SuccessStory() {
       </Container>
 
       <Container>
-        {successStories?.length > 0 &&
-          successStories
+        {successStories?.results?.length > 0 &&
+          successStories?.results
             ?.slice(0)
             .reverse()
             .map((s, idx) => (
@@ -309,10 +326,10 @@ function SuccessStory() {
                                 }
                                 }
                               >
-                                {t("successStoriesPage.button.1")}{" "}
+                                {/* {t("successStoriesPage.button.1")}{" "} */}
                                 {s?.is_collapse
-                                  ? t("common.less1")
-                                  : t("common.more1")}{" "}
+                                  ? t("successStoriesPage.button.1") +" "+t("common.less1")
+                                  : t("successStoriesPage.button.3")}{" "}
                                 <img src={s?.is_collapse ? up : down1} style={{ width: 10, height: 10 }} alt='' />
                               </button>
                               <hr />
@@ -375,10 +392,10 @@ function SuccessStory() {
                                 }
                                 }
                               >
-                                {t("successStoriesPage.button.1")}{" "}
+                                {/* {t("successStoriesPage.button.1")}{" "} */}
                                 {s?.is_collapse
-                                  ? t("common.less1")
-                                  : t("common.more1")}{" "}
+                                  ? t("successStoriesPage.button.1") +" "+t("common.less1")
+                                  : t("successStoriesPage.button.3")}{" "}
                                 <img src={s?.is_collapse ? up : down1} style={{ width: 10, height: 10 }} alt='' />
                               </button>
                               <hr />
@@ -414,9 +431,16 @@ function SuccessStory() {
                 </div>
               </>
             ))}
-        {successStories?.length === 0 && (
+        {successStories?.results?.length === 0 && (
           <div className='text-center mt-5'>{t("common.noDataFound")}</div>
         )}
+        {successStories?.count > pageLimit && (
+                <Pagination
+                  finalCount={successStories?.count / pageLimit}
+                  nextPage={successStories?.next ? paginationNext : null}
+                  backPage={successStories?.previous ? paginationBack : null}
+                />
+              )}
       </Container>
 
       <div className='want'>

@@ -31,22 +31,27 @@ import axios from "axios";
 import { adsList } from "../../store/ads";
 import { Helmet } from "react-helmet-async";
 import useDeviceDetect from "../../hooks/useDeviceDetect";
+import Pagination from "../../components/Pagination";
 function BlogPage() {
   const history = useHistory();
   const { blogs } = useSelector((state) => state.blogsReducer);
   const dispatch = useDispatch();
+   const [offset, setOffset] = useState(0);
+  const pageLimit = 10
 
   const { lan } = useSelector((state) => state.languageReducer);
   const { t } = useTranslation();
 
-  React.useEffect(() => {
-    dispatch(fetchBlogs());
-    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-  }, [dispatch, lan]);
+  // React.useEffect(() => {
+  //   dispatch(fetchBlogs(pageLimit,offset));
+  //   window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  // }, [dispatch, lan]);
+  
 
   useEffect(() => {
-    dispatch(getAllBlogs());
-  }, [dispatch, lan]);
+    dispatch(getAllBlogs(pageLimit,offset));
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  }, [ lan]);
 
   const handleSetCollapse = (id, is_collapse) => {
     dispatch(setCollapseBlogs(id, is_collapse ? false : true));
@@ -169,6 +174,17 @@ function BlogPage() {
         })
     });
   };
+  const paginationBack = () => {
+    dispatch(getAllBlogs(pageLimit,offset-pageLimit));
+    setOffset(offset - pageLimit)
+    window.scrollTo({top:0,behavior:'smooth'});
+  };
+  const paginationNext = () => {
+    dispatch(getAllBlogs(pageLimit,offset+pageLimit));
+    setOffset(offset +pageLimit)
+    window.scrollTo({top:0,behavior:'smooth'});
+  };
+
   return (
     <div>
       <Header loginPage={true} page='more' subPage='moreblog' />
@@ -224,8 +240,8 @@ function BlogPage() {
       </Container>
 
       <Container className="noselect">
-        {blogs?.blog_list?.length > 0 &&
-          blogs?.blog_list
+        {blogs?.blog_list?.results?.length > 0 &&
+          blogs?.blog_list?.results
             ?.slice(0)
             .reverse()
             .map((s, idx) => {
@@ -424,6 +440,13 @@ function BlogPage() {
         {blogs?.blog_list?.length === 0 && (
           <div className='text-center mt-5 noselect'>{t("common.noDataFound")}</div>
         )}
+        {blogs?.blog_list?.count > pageLimit && (
+                <Pagination
+                  finalCount={blogs?.blog_list?.count / pageLimit}
+                  nextPage={blogs?.blog_list?.next ? paginationNext : null}
+                  backPage={blogs?.blog_list?.previous ? paginationBack : null}
+                />
+              )}
       </Container>
 
       <div className='want'>

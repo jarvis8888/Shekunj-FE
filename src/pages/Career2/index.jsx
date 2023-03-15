@@ -20,6 +20,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { Helmet } from "react-helmet-async";
 import useDeviceDetect from "../../hooks/useDeviceDetect";
+import Pagination from "../../components/Pagination";
 const CareerPage2 = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
@@ -27,11 +28,12 @@ const CareerPage2 = () => {
     (state) => state.careerReducer,
   );
   const { lan } = useSelector((state) => state.languageReducer);
-
+  const [offset, setOffset] = useState(0);
+  const pageLimit = 10
   useEffect(() => {
     dispatch(reSetFilterValue());
-    dispatch(getGovernmentExams());
-  }, [dispatch, lan]);
+    dispatch(getGovernmentExams(false,pageLimit,offset));
+  }, [lan]);
 
   const transformPrice = (price) => {
     let nf = new Intl.NumberFormat("en-US");
@@ -250,6 +252,18 @@ const CareerPage2 = () => {
   }, []);
 
   // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  const paginationBack = () => {
+    dispatch(getGovernmentExams(true,pageLimit,offset));
+    setOffset(offset - 10)
+    window.scrollTo(0, 1000);
+  };
+  const paginationNext = () => {
+
+   
+    dispatch(getGovernmentExams(true,pageLimit,offset));
+    setOffset(offset + 10);
+    window.scrollTo(0, 1000);
+  };
 
   return (
     <div>
@@ -344,8 +358,8 @@ const CareerPage2 = () => {
             </Col>
 
             <Col md={8} xs={12}>
-              {governmentExams?.govt_list?.length > 0 ? (
-                governmentExams?.govt_list?.map(
+              {governmentExams?.govt_list?.results?.length > 0 ? (
+                governmentExams?.govt_list?.results?.map(
                   (c, index) =>
                     c?.name && (
                       <>
@@ -504,6 +518,13 @@ const CareerPage2 = () => {
                 // ):(
                 //   <div className='text-center'>{t("common.noDataFound")}</div>
                 // )
+              )}
+              {governmentExams?.govt_list?.count > pageLimit && (
+                <Pagination
+                  finalCount={governmentExams?.govt_list?.count / pageLimit}
+                  nextPage={governmentExams?.govt_list?.next ? paginationNext : null}
+                  backPage={governmentExams?.govt_list?.previous ? paginationBack : null}
+                />
               )}
             </Col>
           </Row>

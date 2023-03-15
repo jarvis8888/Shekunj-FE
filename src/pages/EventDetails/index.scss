@@ -72,8 +72,7 @@
 
   color: #323232;
 
-
-  font-size: .875rem;
+  font-size: 0.875rem;
   line-height: 1.3125rem;
   margin-top: 0;
   margin-bottom: 0;
@@ -84,7 +83,7 @@
 }
 
 .career_box h3 {
-  font-size: .875rem;
+  font-size: 0.875rem;
   line-height: 1.3125rem;
   margin-top: 0;
   margin-bottom: 5px;
@@ -92,7 +91,6 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-
 }
 
 .career_box p {
@@ -174,8 +172,6 @@
 }
 
 @media screen and (max-device-width: 667px) {
-
-
   button.book_event_btn {
     background: #ec498a;
     border: 1px solid #ec498a;
@@ -194,7 +190,7 @@
     transition-duration: 1s;
     margin-left: 15% !important;
   }
-  
+
   button.book_event_btn:hover {
     border: 1px solid #ec498a;
     color: #ec498a;
@@ -279,10 +275,9 @@
     color: #323232;
   }
   .ModalClose {
-    top: 15px !important
+    top: 15px !important;
   }
 }
-
 
 .filter_side {
   display: none;
@@ -340,7 +335,7 @@
 .deatil_box h5 {
   background: #fff;
   padding-bottom: 10px;
-  border-bottom: 1px solid #DFDFDF;
+  border-bottom: 1px solid #dfdfdf;
   margin: 0px;
   display: block;
 }
@@ -353,7 +348,7 @@
 .deatil_box_right h5 {
   background: #fff;
   padding-bottom: 18px;
-  border-bottom: 1px solid #DFDFDF;
+  border-bottom: 1px solid #dfdfdf;
   margin: 0px;
   display: block;
 }
@@ -420,7 +415,7 @@
 }
 
 .event_con h2 {
-  font-family: 'SegoeUI_medium';
+  font-family: "SegoeUI_medium";
   font-style: normal;
   font-weight: 800;
   font-size: 22px;
@@ -429,7 +424,7 @@
 }
 
 .event_con p {
-  font-family: 'SegoeUI_bold';
+  font-family: "SegoeUI_bold";
   text-transform: capitalize;
   font-style: normal;
   font-weight: normal;
@@ -570,7 +565,8 @@
   top: calc(50% - 0.15em) !important;
 }
 
-.Event_book_form svg.MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium.MuiSelect-icon.MuiSelect-iconOutlined.MuiSelect-iconOpen.css-1yhq19e {
+.Event_book_form
+  svg.MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium.MuiSelect-icon.MuiSelect-iconOutlined.MuiSelect-iconOpen.css-1yhq19e {
   right: 15px !important;
   top: calc(50% - 1em) !important;
 }
@@ -687,20 +683,40 @@ button.book_event_btn:hover {
 //   box-sizing: border-box;
 // }
 
-.ModalBodyBoxEvent{
+.ModalBodyBoxEvent {
   position: absolute;
-  width: 400;
   background-color: #efefef;
-  // boxShadow: theme.shadows[5],
   padding: 4px;
-  // outline: "none"
-  // margin-top: 50px;
-  // margin-bottom: 50px;
-  height: 60%;
-  width: 60%;
+  right: 0;
+  width: 35%;
+  margin-left: auto;
+  margin-right: auto;
   text-align: center;
+  left: 0;
+  .ModalHeadEvent {
+    // margin-top: 0px;
+    // margin-bottom: 0px;
+    background-color: #d62c79;
+    color: white;
+    height: 75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .ModalMiddleEvent {
+    h6{
+      margin: 10px 0;
+      color: #666;
+    }
+    h4{
+      margin: 10px 0;
+      font-size: 24px;
+    }
+  }
+
 }
-.ModalBodyBoxEvent2{
+
+.ModalBodyBoxEvent2 {
   position: absolute;
   width: 400;
   background-color: #efefef;
@@ -713,40 +729,36 @@ button.book_event_btn:hover {
   width: 60%;
   text-align: center;
 }
-.ModalBoxEvent{
-  top:25%;
-  left:30%;
-  right:10%;
+.ModalBoxEvent {
+  top: 25%;
+  left: 0%;
+  right: 0%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background-color: #ffffff;
+
+
 }
-.ModalHeadEvent{
+
+.ModalBottomEvent {
   margin-top: 0px;
   margin-bottom: 0px;
-  background-color:#d62c79;
-  color: white;
-  height: 100px;
-  padding-top: 10px;
-}
-.ModalBottomEvent{
-  margin-top: 0px;
-  margin-bottom: 0px;
-  background-color:#d62c79;
+  background-color: #d62c79;
   color: white;
   height: 85px;
   padding-top: 10px;
 }
-.ModalMiddleEvent{
-  // margin-top: 20px;
-  // margin-bottom: 20px;
-}
-.ModalButtonEvent{
+
+.ModalButtonEvent {
   color: white;
-  background-color:#d62c79;
+  background-color: #d62c79;
   // margin-top: 20px;
   // margin-bottom: 20px;
 }
-.ModalLinkEvent a{
-  color:#d62c79 !important;
+.ModalLinkEvent a {
+  color: #d62c79 !important;
   // text-decoration: none !important;
 }
 .ModalLinkEvent {

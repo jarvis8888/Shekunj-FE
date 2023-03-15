@@ -33,8 +33,8 @@ import Pagination from "../../components/Pagination";
 
 
 const CareerPage1 = () => {
-  const [offset, setOffset] = useState(10);
-  const [pageLimit, setPageLimit] = useState(10);
+  const [offset, setOffset] = useState(0);
+  const pageLimit = 10
 
   // useEffect(() => {
   //   setLoading(true);
@@ -67,7 +67,7 @@ const CareerPage1 = () => {
         dispatch(getTopSchools(false));
       }
     )
-  }, [dispatch, lan]);
+  }, [lan]);
 
   const transformImg = (image) => {
     return image ? image : TopSchool;
@@ -251,11 +251,6 @@ const CareerPage1 = () => {
   };
 
   const paginationBack = () => {
-    setOffset(offset-10)
-    window.scrollTo(0, 1000);
-  };
-  const paginationNext = () => {
-    
     navigator.geolocation.getCurrentPosition(async function (position, values) {
       const latitude = position.coords.latitude;
       const longitude = position.coords.longitude;
@@ -264,9 +259,24 @@ const CareerPage1 = () => {
         latitude: latitude.toString(),
         longitude: longitude.toString(),
       };
-      dispatch(getTopSchools(true, null, null, pageLimit, offset+10));
+      dispatch(getTopSchools(true, latitude, longitude, pageLimit, offset - 10));
     });
-    setOffset(offset+10);
+    setOffset(offset - 10)
+    window.scrollTo(0, 1000);
+  };
+  const paginationNext = () => {
+
+    navigator.geolocation.getCurrentPosition(async function (position, values) {
+      const latitude = position.coords.latitude;
+      const longitude = position.coords.longitude;
+
+      let params = {
+        latitude: latitude.toString(),
+        longitude: longitude.toString(),
+      };
+      dispatch(getTopSchools(true, latitude, longitude, pageLimit, offset + 10));
+    });
+    setOffset(offset + 10);
     window.scrollTo(0, 1000);
   };
 
@@ -442,8 +452,8 @@ const CareerPage1 = () => {
             </Col>
 
             <Col md={8} xs={12}>
-              {topSchools?.result?.length > 0 ? (
-                topSchools?.result?.map(
+              {topSchools?.result?.results?.length > 0 ? (
+                topSchools?.result?.results?.map(
                   (c, index) =>
                     c?.name && (
                       <>
@@ -615,14 +625,15 @@ const CareerPage1 = () => {
                 ) : (
                   <div className='text-center'>{t("common.noDataFound")}</div>
                 )}
+              {topSchools?.result?.count > pageLimit && (
+                <Pagination
+                  finalCount={topSchools?.result?.count / pageLimit}
+                  nextPage={topSchools?.result?.next ? paginationNext : null}
+                  backPage={topSchools?.result?.previous ? paginationBack : null}
+                />
+              )}
             </Col>
-            {/* {topSchools?.result?.count > pageLimit && (
-              <Pagination
-                finalCount={topSchools?.result?.count / pageLimit}
-                nextPage={paginationNext}
-                backPage={paginationBack}
-              />
-            )} */}
+
           </Row>
         </Container>
         {/* )} */}
