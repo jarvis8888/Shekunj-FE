@@ -11,10 +11,8 @@ export const getLanguage = () => {
   return currentLang ? currentLang?.split("-")[0] : "en";
 };
 
-// const apiBaseUrl = 'http://43.205.70.111:8000/';
-const apiBaseUrl='https://0c4f-106-214-13-112.ngrok.io/'
-// const apiBaseUrl = 'https://admin.shekunj.com/';
-//const apiBaseUrl = process.env.REACT_APP_URL_API;
+const apiBaseUrl = 'https://admin.shekunj.com/';
+// const apiBaseUrl = process.env.REACT_APP_URL_API;
 axios.defaults.baseURL = `${apiBaseUrl}${getLanguage()}/api/`;
 
 axios.defaults.withCredentials = true;
