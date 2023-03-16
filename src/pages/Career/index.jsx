@@ -56,15 +56,10 @@ const CareerPage = () => {
     dispatch(reSetFilterValue());
 
     navigator.geolocation.getCurrentPosition(async function (position, values) {
-      const latitude = position.coords.latitude;
-      const longitude = position.coords.longitude;
+      const latitude = position?.coords?.latitude;
+      const longitude = position?.coords?.longitude;
 
-
-      let params = {
-        latitude: latitude.toString(),
-        longitude: longitude.toString(),
-      };
-      dispatch(getTopCollages(false, latitude, longitude, pageLimit, offset));
+      dispatch(getTopCollages({ filter: false, latitude, longitude, pageLimit, offset }));
     },
       function (error) {
         console.error("Error Code = " + error.code + " - " + error.message);
@@ -141,13 +136,8 @@ const CareerPage = () => {
   useEffect(() => {
     dispatch(adsList())
     navigator.geolocation.getCurrentPosition(async function (position, values) {
-      const latitude = position.coords.latitude;
-      const longitude = position.coords.longitude;
-
-      let params = {
-        latitude: latitude.toString(),
-        longitude: longitude.toString(),
-      }
+      const latitude = position?.coords?.latitude;
+      const longitude = position?.coords?.longitude;
       axios
         .get(
           `/private_adds/private_add?latitude=${latitude}&longitude=${longitude}`,
@@ -265,22 +255,17 @@ const CareerPage = () => {
   const [searchInput, setSearchInput] = useState("");
   const SearchFilterHandle = (e) => {
     e.preventDefault();
-    dispatch(getTopCollages(`?search=${searchInput}`));
+    dispatch(getTopCollages({ search: searchInput !== "" ? `&search=${searchInput}` : "" }));
   };
   const handleResetSearch = () => {
-    dispatch(getTopCollages());
+    dispatch(getTopCollages({ filter: true, search: "" }));
     setSearchInput("");
   };
   const paginationBack = () => {
     navigator.geolocation.getCurrentPosition(async function (position, values) {
-      const latitude = position.coords.latitude;
-      const longitude = position.coords.longitude;
-
-      let params = {
-        latitude: latitude.toString(),
-        longitude: longitude.toString(),
-      };
-      dispatch(getTopCollages(true, latitude, longitude, pageLimit, offset - 10));
+      const latitude = position?.coords?.latitude;
+      const longitude = position?.coords?.longitude;
+      dispatch(getTopCollages({ filter: true, latitude, longitude, pageLimit, offset: offset - 10, search: searchInput !== "" ? `&search=${searchInput}` : "" }));
     });
     setOffset(offset - 10)
     window.scrollTo(0, 1000);
@@ -288,14 +273,10 @@ const CareerPage = () => {
   const paginationNext = () => {
 
     navigator.geolocation.getCurrentPosition(async function (position, values) {
-      const latitude = position.coords.latitude;
-      const longitude = position.coords.longitude;
+      const latitude = position?.coords?.latitude;
+      const longitude = position?.coords?.longitude;
 
-      let params = {
-        latitude: latitude.toString(),
-        longitude: longitude.toString(),
-      };
-      dispatch(getTopCollages(true, latitude, longitude, pageLimit, offset + 10));
+      dispatch(getTopCollages({ filter: true, latitude, longitude, pageLimit, offset: offset + 10, search: searchInput !== "" ? `&search=${searchInput}` : "" }));
     });
     setOffset(offset + 10);
     window.scrollTo(0, 1000);
@@ -390,6 +371,8 @@ const CareerPage = () => {
                 <AccordionComponent
                   type='colleges'
                   //stream={STREAM}
+                  offset={offset}
+                  limit={pageLimit}
                   stream={courseSector}
                   ownership={ownership}
                   state={STATE}
@@ -413,6 +396,8 @@ const CareerPage = () => {
                         <AccordionComponent
                           type='colleges'
                           //stream={STREAM}
+                          offset={offset}
+                          limit={pageLimit}
                           stream={courseSector}
                           ownership={ownership}
                           state={STATE}

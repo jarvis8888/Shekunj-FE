@@ -60,14 +60,14 @@ const CareerPage1 = () => {
         latitude: latitude.toString(),
         longitude: longitude.toString(),
       };
-      dispatch(getTopSchools(false, latitude, longitude, pageLimit, offset));
+      dispatch(getTopSchools({ filter: false, latitude, longitude, pageLimit, offset }));
     },
       function (error) {
         console.error("Error Code = " + error.code + " - " + error.message);
-        dispatch(getTopSchools(false));
+        dispatch(getTopSchools({ filter: false, pageLimit, offset }));
       }
     )
-  }, [lan]);
+  }, [, lan]);
 
   const transformImg = (image) => {
     return image ? image : TopSchool;
@@ -243,7 +243,7 @@ const CareerPage1 = () => {
   const [searchInput, setSearchInput] = useState("");
   const SearchFilterHandle = (e) => {
     e.preventDefault();
-    dispatch(getTopSchools(`?search=${searchInput}`));
+    dispatch(getTopSchools({ search: searchInput!==""?`&search=${searchInput}`:"" }));
   };
   const handleResetSearch = () => {
     dispatch(getTopSchools());
@@ -252,29 +252,19 @@ const CareerPage1 = () => {
 
   const paginationBack = () => {
     navigator.geolocation.getCurrentPosition(async function (position, values) {
-      const latitude = position.coords.latitude;
-      const longitude = position.coords.longitude;
-
-      let params = {
-        latitude: latitude.toString(),
-        longitude: longitude.toString(),
-      };
-      dispatch(getTopSchools(true, latitude, longitude, pageLimit, offset - 10));
+      const latitude = position?.coords?.latitude;
+      const longitude = position?.coords?.longitude;
+      dispatch(getTopSchools({ filter: true, latitude, longitude, pageLimit, offset: offset - 10,search :searchInput!==""?`&search=${searchInput}`:""}));
     });
-    setOffset(offset - 10)
+    setOffset(offset - 10);
     window.scrollTo(0, 1000);
   };
   const paginationNext = () => {
 
     navigator.geolocation.getCurrentPosition(async function (position, values) {
-      const latitude = position.coords.latitude;
-      const longitude = position.coords.longitude;
-
-      let params = {
-        latitude: latitude.toString(),
-        longitude: longitude.toString(),
-      };
-      dispatch(getTopSchools(true, latitude, longitude, pageLimit, offset + 10));
+      const latitude = position?.coords?.latitude;
+      const longitude = position?.coords?.longitude;
+      dispatch(getTopSchools({ filter: true, latitude, longitude, pageLimit, offset: offset + 10,search: searchInput!==""?`&search=${searchInput}`:""  }));
     });
     setOffset(offset + 10);
     window.scrollTo(0, 1000);
@@ -349,7 +339,7 @@ const CareerPage1 = () => {
               </Col>
               <Col md={6} xs={12}>
                 <div className='input-group searchSection'>
-                  <form onSubmit={SearchFilterHandle}>
+                  <form >
                     <div className='d-flex'>
                       <div className='wraper '>
                         <input
@@ -362,19 +352,21 @@ const CareerPage1 = () => {
                         />
                       </div>
                       <div className='d-flex'>
-                        <button type='submit' className='searchBtn1'>
+                        <button onClick={SearchFilterHandle} className='searchBtn1'>
                           <img
                             src={Search}
                             alt='Image'
                             className='searchIcon'
                           />
                         </button>
-                        <img
-                          src={Cross}
-                          alt='Image'
-                          className='searchclose'
-                          onClick={() => handleResetSearch()}
-                        />
+                        <button  className='closeBtn1' onClick={() => handleResetSearch()}>
+                          <img
+                            src={Cross}
+                            alt='Image'
+                            className='searchclose'
+                            
+                          />
+                        </button>
                       </div>
                     </div>
                   </form>
@@ -408,6 +400,8 @@ const CareerPage1 = () => {
                     name: t("careerTopSchools.listItems.4"),
                     rows: topSchools?.gender_intech,
                   }}
+                  offset={offset}
+                  limit={pageLimit}
                 />
               </div>
 
@@ -444,6 +438,8 @@ const CareerPage1 = () => {
                           name: t("careerTopSchools.listItems.4"),
                           rows: topSchools?.gender_intech,
                         }}
+                        offset={offset}
+                        limit={pageLimit}
                       />
                     </Typography>
                   </AccordionDetails>
@@ -481,7 +477,7 @@ const CareerPage1 = () => {
 
                             <Col md={9} xs={12}>
                               <div className='top_col_content'>
-                                <h2>
+                                <h3>
                                   <Link
                                     to={routingConstants.TOP_SCHOOL + c.id}
                                     className=''
@@ -489,7 +485,7 @@ const CareerPage1 = () => {
                                   >
                                     {c && c.name}
                                   </Link>
-                                </h2>
+                                </h3>
                                 <ul class='list-inline list-unstyled'>
                                   {c.board_type && (
                                     <li>
@@ -574,24 +570,24 @@ const CareerPage1 = () => {
                               {schoolBoxAds.length > 0 && (
                                 <div
                                   onClick={() =>
-                                    addEmail(schoolBoxAds[0]?.add_email)
+                                    addEmail(schoolBoxAds[1]?.add_email)
                                   }
                                 >
                                   <a
-                                    href={schoolBoxAds[0]?.url_adds}
+                                    href={schoolBoxAds[1]?.url_adds}
                                     target='_blank'
                                   >
                                     {detect.isMobile ? (
-                                      schoolBoxAds[0]?.image_mobile && (
+                                      schoolBoxAds[1]?.image_mobile && (
                                         <img
-                                          src={schoolBoxAds[0]?.image_mobile}
+                                          src={schoolBoxAds[1]?.image_mobile}
                                           alt='Image'
                                           className='ads_school_box'
                                         />)
                                     ) : (
-                                      schoolBoxAds[0]?.image && (
+                                      schoolBoxAds[1]?.image && (
                                         <img
-                                          src={schoolBoxAds[0]?.image}
+                                          src={schoolBoxAds[1]?.image}
                                           alt='Image'
                                           className='ads_school_box'
                                         />)

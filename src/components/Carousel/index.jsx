@@ -39,7 +39,7 @@ function Carousel(props) {
     } else if (props.type === carouselConstant.TEST) {
       totalItems = tests?.length || 0;
     } else if (props.type === carouselConstant.GOVERNMENT_SCHEMES) {
-      totalItems = governmentExams?.govt_list?.length || 0;
+      totalItems = governmentExams?.govt_list?.results?.length || 0;
     }
     if (props.page === carouselConstant.HOMEPAGE) {
       if (divRef.current) {
@@ -165,7 +165,7 @@ function Carousel(props) {
           )}
           {props.type === carouselConstant.GOVERNMENT_SCHEMES && (
             <>
-              {governmentExams?.govt_list?.map((obj) => (
+              {governmentExams?.govt_list?.results?.map((obj) => (
                 <Link
                   to={routingConstants.GOVERNMENT_SCHEMES + obj.id}
                   className='item'

@@ -34,14 +34,14 @@ const Pagination = (props) => {
       >
         <img src={nextImage} alt='Back Button' className="backImage"/>
       </IconButton>
-      <div
+      {/* <div
         className='numberDiv'
         style={{ backgroundColor: "#EC498A", color: "white" }}
       >
         {initialCount}
       </div>
       <div className='ofDiv'>of</div>
-      <div className='numberDiv'>{finalCount}</div>
+      <div className='numberDiv'>{finalCount}</div> */}
       <IconButton
         className='button'
         disabled={initialCount === finalCount}

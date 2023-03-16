@@ -32,7 +32,7 @@ function ContactUs() {
       initialValues: {
         name: "",
         email: "",
-        subject: "",
+        // subject: "",
         message: "",
         contact: ""
       },
@@ -46,7 +46,7 @@ function ContactUs() {
     const clearFields = () => {
       setFieldValue("name","")
       setFieldValue("email","")
-      setFieldValue("subject","")
+      // setFieldValue("subject","")
       setFieldValue("message","")
       setFieldValue("contact", "")
     }

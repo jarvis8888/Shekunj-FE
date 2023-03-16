@@ -76,10 +76,11 @@ export const getGovernmentExams =
       }
     };
 
-const handleTopSchoolsFilter = (topSchools, courseSector,ownership,limit,offset) => {
+const handleTopSchoolsFilter = (topSchools, courseSector,ownership,limit,offset,search) => {
   const url = constants.TOP_SCHOOL_LIST;
   const stateList = topSchools?.state_list?.filter((r) => r?.isChecked);
   let stateIdString = undefined;
+  let searchString=search!==""?search:''
   if (stateList?.length > 0) {
     stateIdString = `state__in=${stateList.map((r) => r?.name).join(",")}`;
   }
@@ -123,99 +124,99 @@ const handleTopSchoolsFilter = (topSchools, courseSector,ownership,limit,offset)
       // }
 
   if (stateIdString && !cityIdString && !categoryIdString && !boardIdString && !schoolIdString) {
-    return `${url}?${stateIdString}&limit=${limit}&offset=${offset}`;
+    return `${url}?${stateIdString}&limit=${limit}&offset=${offset}${searchString}`;
   }
   if (!stateIdString && cityIdString && !categoryIdString && !boardIdString && !schoolIdString) {
-    return `${url}?${cityIdString}&limit=${limit}&offset=${offset}`;
+    return `${url}?${cityIdString}&limit=${limit}&offset=${offset}${searchString}`;
   }
   if (!stateIdString && !cityIdString && categoryIdString && !boardIdString && !schoolIdString) {
-    return `${url}?${categoryIdString}&limit=${limit}&offset=${offset}`;
+    return `${url}?${categoryIdString}&limit=${limit}&offset=${offset}${searchString}`;
   }
   if (!stateIdString && !cityIdString && !categoryIdString && boardIdString && !schoolIdString) {
-    return `${url}?${boardIdString}&limit=${limit}&offset=${offset}`;
+    return `${url}?${boardIdString}&limit=${limit}&offset=${offset}${searchString}`;
   }
   if (!stateIdString && !cityIdString && !categoryIdString && !boardIdString && schoolIdString) {
-    return `${url}?${schoolIdString}&limit=${limit}&offset=${offset}`;
+    return `${url}?${schoolIdString}&limit=${limit}&offset=${offset}${searchString}`;
   }
   //222
   if (stateIdString && cityIdString && !categoryIdString && !boardIdString && !schoolIdString) {
-    return `${url}?${stateIdString}&${cityIdString}&limit=${limit}&offset=${offset}`;
+    return `${url}?${stateIdString}&${cityIdString}&limit=${limit}&offset=${offset}${searchString}`;
   }
   if (stateIdString && !cityIdString && categoryIdString && !boardIdString && !schoolIdString) {
-    return `${url}?${stateIdString}&${categoryIdString}&limit=${limit}&offset=${offset}`;
+    return `${url}?${stateIdString}&${categoryIdString}&limit=${limit}&offset=${offset}${searchString}`;
   }
   if (stateIdString && !cityIdString && !categoryIdString && boardIdString && !schoolIdString) {
-    return `${url}?${stateIdString}&${boardIdString}&limit=${limit}&offset=${offset}`;
+    return `${url}?${stateIdString}&${boardIdString}&limit=${limit}&offset=${offset}${searchString}`;
   }
   if (stateIdString && !cityIdString && !categoryIdString && !boardIdString && schoolIdString) {
-    return `${url}?${stateIdString}&${schoolIdString}&limit=${limit}&offset=${offset}`;
+    return `${url}?${stateIdString}&${schoolIdString}&limit=${limit}&offset=${offset}${searchString}`;
   }
   if (!stateIdString && cityIdString && categoryIdString && !boardIdString && !schoolIdString) {
-    return `${url}?${cityIdString}&${categoryIdString}&limit=${limit}&offset=${offset}`;
+    return `${url}?${cityIdString}&${categoryIdString}&limit=${limit}&offset=${offset}${searchString}`;
   }
   if (!stateIdString && cityIdString && !categoryIdString && boardIdString && !schoolIdString) {
-    return `${url}?${cityIdString}&${boardIdString}&limit=${limit}&offset=${offset}`;
+    return `${url}?${cityIdString}&${boardIdString}&limit=${limit}&offset=${offset}${searchString}`;
   }
   if (!stateIdString && cityIdString && !categoryIdString && !boardIdString && schoolIdString) {
-    return `${url}?${cityIdString}&${schoolIdString}&limit=${limit}&offset=${offset}`;
+    return `${url}?${cityIdString}&${schoolIdString}&limit=${limit}&offset=${offset}${searchString}`;
   }
   if (!stateIdString && !cityIdString && categoryIdString && boardIdString && !schoolIdString) {
-    return `${url}?${categoryIdString}&${boardIdString}&limit=${limit}&offset=${offset}`;
+    return `${url}?${categoryIdString}&${boardIdString}&limit=${limit}&offset=${offset}${searchString}`;
   }
   if (!stateIdString && !cityIdString && categoryIdString && !boardIdString && schoolIdString) {
-    return `${url}?${categoryIdString}&${schoolIdString}&limit=${limit}&offset=${offset}`;
+    return `${url}?${categoryIdString}&${schoolIdString}&limit=${limit}&offset=${offset}${searchString}`;
   }
   if (!stateIdString && !cityIdString && !categoryIdString && boardIdString && schoolIdString) {
-    return `${url}?${boardIdString}&${schoolIdString}&limit=${limit}&offset=${offset}`;
+    return `${url}?${boardIdString}&${schoolIdString}&limit=${limit}&offset=${offset}${searchString}`;
   }
   //333
   if (stateIdString && cityIdString && categoryIdString && !boardIdString && !schoolIdString) {
-    return `${url}?${stateIdString}&${cityIdString}&${categoryIdString}&limit=${limit}&offset=${offset}`;
+    return `${url}?${stateIdString}&${cityIdString}&${categoryIdString}&limit=${limit}&offset=${offset}${searchString}`;
   }
   if (stateIdString && !cityIdString && categoryIdString && boardIdString && !schoolIdString) {
-    return `${url}?${stateIdString}&${categoryIdString}&${boardIdString}&limit=${limit}&offset=${offset}`;
+    return `${url}?${stateIdString}&${categoryIdString}&${boardIdString}&limit=${limit}&offset=${offset}${searchString}`;
   }
   if (stateIdString && !cityIdString && !categoryIdString && boardIdString && schoolIdString) {
-    return `${url}?${stateIdString}&${boardIdString}&${schoolIdString}&limit=${limit}&offset=${offset}`;
+    return `${url}?${stateIdString}&${boardIdString}&${schoolIdString}&limit=${limit}&offset=${offset}${searchString}`;
   }
   if (!stateIdString && cityIdString && categoryIdString && boardIdString && !schoolIdString) {
-    return `${url}?${cityIdString}&${categoryIdString}&${boardIdString}&limit=${limit}&offset=${offset}`;
+    return `${url}?${cityIdString}&${categoryIdString}&${boardIdString}&limit=${limit}&offset=${offset}${searchString}`;
   }
   if (!stateIdString && cityIdString && !categoryIdString && boardIdString && schoolIdString) {
-    return `${url}?${cityIdString}&${boardIdString}&${schoolIdString}&limit=${limit}&offset=${offset}`;
+    return `${url}?${cityIdString}&${boardIdString}&${schoolIdString}&limit=${limit}&offset=${offset}${searchString}`;
   }
   if (!stateIdString && !cityIdString && categoryIdString && boardIdString && schoolIdString) {
-    return `${url}?${categoryIdString}&${boardIdString}&${schoolIdString}&limit=${limit}&offset=${offset}`;
+    return `${url}?${categoryIdString}&${boardIdString}&${schoolIdString}&limit=${limit}&offset=${offset}${searchString}`;
   }
   if (stateIdString && cityIdString && !categoryIdString && boardIdString && !schoolIdString) {
-    return `${url}?${stateIdString}&${cityIdString}&${boardIdString}&limit=${limit}&offset=${offset}`;
+    return `${url}?${stateIdString}&${cityIdString}&${boardIdString}&limit=${limit}&offset=${offset}${searchString}`;
   }
   //444
   if (stateIdString && cityIdString && categoryIdString && boardIdString && !schoolIdString) {
-    return `${url}?${stateIdString}&${cityIdString}&${categoryIdString}&${boardIdString}&limit=${limit}&offset=${offset}`;
+    return `${url}?${stateIdString}&${cityIdString}&${categoryIdString}&${boardIdString}&limit=${limit}&offset=${offset}${searchString}`;
   }
   if (!stateIdString && cityIdString && categoryIdString && boardIdString && schoolIdString) {
-    return `${url}?${cityIdString}&${categoryIdString}&${boardIdString}&${schoolIdString}&limit=${limit}&offset=${offset}`;
+    return `${url}?${cityIdString}&${categoryIdString}&${boardIdString}&${schoolIdString}&limit=${limit}&offset=${offset}${searchString}`;
   }
   if (stateIdString && !cityIdString && categoryIdString && boardIdString && schoolIdString) {
-    return `${url}?${stateIdString}&${categoryIdString}&${boardIdString}&${schoolIdString}&limit=${limit}&offset=${offset}`;
+    return `${url}?${stateIdString}&${categoryIdString}&${boardIdString}&${schoolIdString}&limit=${limit}&offset=${offset}${searchString}`;
   }
   if (stateIdString && cityIdString && !categoryIdString && boardIdString && schoolIdString) {
-    return `${url}?${stateIdString}&${cityIdString}&${boardIdString}&${schoolIdString}&limit=${limit}&offset=${offset}`;
+    return `${url}?${stateIdString}&${cityIdString}&${boardIdString}&${schoolIdString}&limit=${limit}&offset=${offset}${searchString}`;
   }
   if (stateIdString && cityIdString && categoryIdString && !boardIdString && schoolIdString) {
-    return `${url}?${stateIdString}&${cityIdString}&${categoryIdString}&${schoolIdString}&limit=${limit}&offset=${offset}`;
+    return `${url}?${stateIdString}&${cityIdString}&${categoryIdString}&${schoolIdString}&limit=${limit}&offset=${offset}${searchString}`;
   }
 
   //55
   if (stateIdString && cityIdString && categoryIdString && boardIdString && schoolIdString) {
-    return `${url}?${stateIdString}&${cityIdString}&${categoryIdString}&${boardIdString}&${schoolIdString}&limit=${limit}&offset=${offset}`;
+    return `${url}?${stateIdString}&${cityIdString}&${categoryIdString}&${boardIdString}&${schoolIdString}&limit=${limit}&offset=${offset}${searchString}`;
   }
-  return url+`&limit=${limit}&offset=${offset}`;
+  return url+`?limit=${limit}&offset=${offset}${searchString}`;
 };
 
 export const getTopSchools =
-  (filter = null,lat=null,long=null,limit=null,offset=null,) =>
+  ({search="",filter = false,lat=null,long=null,limit=10,offset=0}) =>
     async (dispatch, getState) => {
       try {
         // const ngrok='career/top-school-list/'
@@ -225,8 +226,8 @@ export const getTopSchools =
         dispatch({ type: coursesTypes.TOP_SCHOOL_REQUEST });
 
         const res = await httpServices.get(
-          filter === true ? handleTopSchoolsFilter(topSchools, courseSector, ownership,limit,offset)
-            : filter ? url + filter : url
+          filter === true ? handleTopSchoolsFilter(topSchools, courseSector, ownership,limit,offset,search)
+            : search!=="" ? url + search : url
             // , navigator.geolocation.getCurrentPosition(async function (
             //   position,
             //   values,
@@ -377,7 +378,7 @@ export const getTopSchools =
       }
     };
 
-const handleTopCollagesFilter = (topCollages, courseSector,ownership,limit,offset) => {
+const handleTopCollagesFilter = (topCollages, courseSector,ownership,limit,offset,search) => {
 
   const url = constants.TOP_COLLEGE_LIST;
   const stateList = topCollages?.state_list?.filter((r) => r?.isChecked);
@@ -476,7 +477,7 @@ const handleTopCollagesFilter = (topCollages, courseSector,ownership,limit,offse
 };
 
 export const getTopCollages =
-  (filter = false,lat=null,long=null, limit=null, offset=null) =>
+  ({search="",filter=false,lat="", long="", limit=10, offset=0}) =>
     async (dispatch, getState) => {
 
       try {
@@ -488,8 +489,8 @@ export const getTopCollages =
         dispatch({ type: coursesTypes.TOP_COLLAGE_REQUEST });
 
         let res1 = await httpServices.get(
-          filter === true ? handleTopCollagesFilter(topCollages, courseSector,ownership,limit,offset)
-            : filter ? url + filter : url
+          filter === true ? handleTopCollagesFilter(topCollages, courseSector,ownership,limit,offset,search)
+            : search!=="" ? url + search : url
             
           );
          const res={data:res1}
@@ -673,9 +674,8 @@ export const singleCareer2Details = (id) => async (dispatch) => {
 };
 
 
-
 export const setFilterValue =
-  (id, action, arrayType, subType) => async (dispatch, getState) => {
+  ({id, checked:action, type:arrayType, subType,limit,offset}) => async (dispatch, getState) => {
     const { courseSector, topCollages, topSchools, governmentExams, ownership } =
       getState().careerReducer;
     if (arrayType === "governmentExam") {
@@ -703,7 +703,7 @@ export const setFilterValue =
     //       type: "courseSector",
     //     },
     //   });
-    //   await dispatch(getTopCollages(true));
+    //   await dispatch(getTopCollages({search,filter,lat, long, limit, offset}));
     // } 
 
     else if (arrayType === "topSchools") {
@@ -723,7 +723,7 @@ export const setFilterValue =
           type: coursesTypes.TOP_SCHOOL_FINISH,
           payload: updatedPayload,
         });
-        await dispatch(getTopSchools(true));
+        await dispatch(getTopSchools({filter:true,lat:null,long:null,limit,offset}));
       }
       if (subType === "cities") {
         const updatedPayload = topSchools;
@@ -744,7 +744,7 @@ export const setFilterValue =
           type: coursesTypes.TOP_SCHOOL_FINISH,
           payload: updatedPayload,
         });
-        await dispatch(getTopSchools(true));
+        await dispatch(getTopSchools({filter:true,lat:null,long:null,limit,offset}));
       }
       
       // if (subType === "ownership") {
@@ -760,7 +760,7 @@ export const setFilterValue =
       //       type: "courseSector",
       //     },
       //   });
-      //   await dispatch(getTopSchools(true));
+      //   await dispatch(getTopSchools({filter:true,lat:null,long:null,limit,offset}));
       // }
       if (subType === "ownership") {
         const updatedPayload = ownership;
@@ -784,7 +784,7 @@ export const setFilterValue =
             type: "topSchools",
           },
         });
-        await dispatch(getTopSchools(true));
+        await dispatch(getTopSchools({filter:true,lat:null,long:null,limit,offset}));
       }
 
       if (subType === "educationBoard") {
@@ -797,7 +797,7 @@ export const setFilterValue =
           type: coursesTypes.TOP_SCHOOL_FINISH,
           payload: updatedPayload,
         });
-        await dispatch(getTopSchools(true));
+        await dispatch(getTopSchools({filter:true,lat:null,long:null,limit,offset}));
       }
       if (subType === "category") {
         const updatedPayload = topSchools;
@@ -815,7 +815,7 @@ export const setFilterValue =
           type: coursesTypes.TOP_SCHOOL_FINISH,
           payload: updatedPayload,
         });
-        await dispatch(getTopSchools(true));
+        await dispatch(getTopSchools({filter:true,lat:null,long:null,limit,offset}));
       }
     } else {
 
@@ -835,7 +835,7 @@ export const setFilterValue =
           type: coursesTypes.TOP_COLLAGE_FINISH,
           payload: updatedPayload,
         });
-        await dispatch(getTopCollages(true));
+        await dispatch(getTopCollages({filter:true,limit, offset}));
       }
       if (subType === "city") {
         const updatedPayload = topCollages;
@@ -852,7 +852,7 @@ export const setFilterValue =
           type: coursesTypes.TOP_COLLAGE_FINISH,
           payload: updatedPayload,
         });
-        await dispatch(getTopCollages(true));
+        await dispatch(getTopCollages({filter:true,limit, offset}));
       }
       if (subType === "ownership") {
         const updatedPayload = ownership;
@@ -875,7 +875,7 @@ export const setFilterValue =
             type: "ownership",
           },
         });
-        await dispatch(getTopCollages(true));
+        await dispatch(getTopCollages({filter:true, limit, offset}));
       }
       if (subType === "stream") {
         const updatedPayload = courseSector;
@@ -895,7 +895,7 @@ export const setFilterValue =
             type: "stream",
           },
         });
-        await dispatch(getTopCollages(true));
+        await dispatch(getTopCollages({filter:true, limit, offset}));
       }
       // const idx = updatedPayload?.collage_stream_list?.findIndex(
       //   (u) => u.id === id,
@@ -910,7 +910,7 @@ export const setFilterValue =
       //     type: "stream",
       //   },
       // });
-      await dispatch(getTopCollages(true));
+      await dispatch(getTopCollages({filter:true, limit, offset}));
     }
 
 
