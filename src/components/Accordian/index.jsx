@@ -10,7 +10,7 @@ import FormGroup from "@mui/material/FormGroup";
 import Checkbox from "@mui/material/Checkbox";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import { Radio, RadioGroup } from "@mui/material";
-import { setFilterValue } from "../../store/career";
+import { getTopSchools, setFilterValue } from "../../store/career";
 import "./index.scss";
 import { CheckBox } from "@mui/icons-material";
 
@@ -92,9 +92,14 @@ export default function AccordionComponent({
 
   };
 
-  const onChangeFilter = (id, { target: { checked } }, type, subType) => {
+  const onChangeFilter = (id, { target: { checked } }, type, subType,pageLimit) => {
+    navigator.geolocation.getCurrentPosition(async function (position, values) {
+      const latitude = position.coords.latitude;
+      const longitude = position.coords.longitude;
+      dispatch(setFilterValue({id, checked, type, subType,limit,offset,latitude, longitude}));
+    })
     
-    dispatch(setFilterValue({id, checked, type, subType,limit,offset}));
+    
   };
 
   const hasMoreCountShowFunction = (data, category, subCategory) => {

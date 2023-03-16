@@ -76,7 +76,7 @@ export const getGovernmentExams =
       }
     };
 
-const handleTopSchoolsFilter = (topSchools, courseSector,ownership,limit,offset,search) => {
+const handleTopSchoolsFilter = (topSchools, courseSector,ownership,limit,offset,search,latitude,longitude) => {
   const url = constants.TOP_SCHOOL_LIST;
   const stateList = topSchools?.state_list?.filter((r) => r?.isChecked);
   let stateIdString = undefined;
@@ -122,7 +122,6 @@ const handleTopSchoolsFilter = (topSchools, courseSector,ownership,limit,offset,
       //     .map((r) => r?.name)
       //     .join(",")}`;
       // }
-
   if (stateIdString && !cityIdString && !categoryIdString && !boardIdString && !schoolIdString) {
     return `${url}?${stateIdString}&limit=${limit}&offset=${offset}${searchString}`;
   }
@@ -130,13 +129,13 @@ const handleTopSchoolsFilter = (topSchools, courseSector,ownership,limit,offset,
     return `${url}?${cityIdString}&limit=${limit}&offset=${offset}${searchString}`;
   }
   if (!stateIdString && !cityIdString && categoryIdString && !boardIdString && !schoolIdString) {
-    return `${url}?${categoryIdString}&limit=${limit}&offset=${offset}${searchString}`;
+    return `${url}?${categoryIdString}&limit=${limit}&offset=${offset}${searchString}&latitude=${latitude}&longitude=${longitude}`;
   }
   if (!stateIdString && !cityIdString && !categoryIdString && boardIdString && !schoolIdString) {
-    return `${url}?${boardIdString}&limit=${limit}&offset=${offset}${searchString}`;
+    return `${url}?${boardIdString}&limit=${limit}&offset=${offset}${searchString}&latitude=${latitude}&longitude=${longitude}`;
   }
   if (!stateIdString && !cityIdString && !categoryIdString && !boardIdString && schoolIdString) {
-    return `${url}?${schoolIdString}&limit=${limit}&offset=${offset}${searchString}`;
+    return `${url}?${schoolIdString}&limit=${limit}&offset=${offset}${searchString}&latitude=${latitude}&longitude=${longitude}`;
   }
   //222
   if (stateIdString && cityIdString && !categoryIdString && !boardIdString && !schoolIdString) {
@@ -161,13 +160,13 @@ const handleTopSchoolsFilter = (topSchools, courseSector,ownership,limit,offset,
     return `${url}?${cityIdString}&${schoolIdString}&limit=${limit}&offset=${offset}${searchString}`;
   }
   if (!stateIdString && !cityIdString && categoryIdString && boardIdString && !schoolIdString) {
-    return `${url}?${categoryIdString}&${boardIdString}&limit=${limit}&offset=${offset}${searchString}`;
+    return `${url}?${categoryIdString}&${boardIdString}&limit=${limit}&offset=${offset}${searchString}&latitude=${latitude}&longitude=${longitude}`;
   }
   if (!stateIdString && !cityIdString && categoryIdString && !boardIdString && schoolIdString) {
-    return `${url}?${categoryIdString}&${schoolIdString}&limit=${limit}&offset=${offset}${searchString}`;
+    return `${url}?${categoryIdString}&${schoolIdString}&limit=${limit}&offset=${offset}${searchString}&latitude=${latitude}&longitude=${longitude}`;
   }
   if (!stateIdString && !cityIdString && !categoryIdString && boardIdString && schoolIdString) {
-    return `${url}?${boardIdString}&${schoolIdString}&limit=${limit}&offset=${offset}${searchString}`;
+    return `${url}?${boardIdString}&${schoolIdString}&limit=${limit}&offset=${offset}${searchString}&latitude=${latitude}&longitude=${longitude}`;
   }
   //333
   if (stateIdString && cityIdString && categoryIdString && !boardIdString && !schoolIdString) {
@@ -186,7 +185,7 @@ const handleTopSchoolsFilter = (topSchools, courseSector,ownership,limit,offset,
     return `${url}?${cityIdString}&${boardIdString}&${schoolIdString}&limit=${limit}&offset=${offset}${searchString}`;
   }
   if (!stateIdString && !cityIdString && categoryIdString && boardIdString && schoolIdString) {
-    return `${url}?${categoryIdString}&${boardIdString}&${schoolIdString}&limit=${limit}&offset=${offset}${searchString}`;
+    return `${url}?${categoryIdString}&${boardIdString}&${schoolIdString}&limit=${limit}&offset=${offset}${searchString}&latitude=${latitude}&longitude=${longitude}`;
   }
   if (stateIdString && cityIdString && !categoryIdString && boardIdString && !schoolIdString) {
     return `${url}?${stateIdString}&${cityIdString}&${boardIdString}&limit=${limit}&offset=${offset}${searchString}`;
@@ -212,21 +211,21 @@ const handleTopSchoolsFilter = (topSchools, courseSector,ownership,limit,offset,
   if (stateIdString && cityIdString && categoryIdString && boardIdString && schoolIdString) {
     return `${url}?${stateIdString}&${cityIdString}&${categoryIdString}&${boardIdString}&${schoolIdString}&limit=${limit}&offset=${offset}${searchString}`;
   }
-  return url+`?limit=${limit}&offset=${offset}${searchString}`;
+  return url+`?limit=${limit}&offset=${offset}${searchString}&latitude=${latitude}&longitude=${longitude}`;
 };
 
 export const getTopSchools =
-  ({search="",filter = false,lat=null,long=null,limit=10,offset=0}) =>
+  ({search="",filter = false,latitude=null,longitude=null,limit=10,offset=0}) =>
     async (dispatch, getState) => {
+      console.log(latitude,longitude)
       try {
         // const ngrok='career/top-school-list/'
-        const url = constants.TOP_SCHOOL_LIST+`?latitude=${lat}&longitude=${long}&limit=${limit}&offset=${offset}`;
+        const url = constants.TOP_SCHOOL_LIST+`?latitude=${latitude}&longitude=${longitude}&limit=${limit}&offset=${offset}`;
         // const url = ngrok+`?latitude=${lat}&longitude=${long}&limit=${limit}&offset=${offset}`;
         const { topSchools, courseSector,ownership } = getState().careerReducer;
         dispatch({ type: coursesTypes.TOP_SCHOOL_REQUEST });
-
         const res = await httpServices.get(
-          filter === true ? handleTopSchoolsFilter(topSchools, courseSector, ownership,limit,offset,search)
+          filter === true ? handleTopSchoolsFilter(topSchools, courseSector, ownership,limit,offset,search,latitude,longitude)
             : search!=="" ? url + search : url
             // , navigator.geolocation.getCurrentPosition(async function (
             //   position,
@@ -378,7 +377,7 @@ export const getTopSchools =
       }
     };
 
-const handleTopCollagesFilter = (topCollages, courseSector,ownership,limit,offset,search) => {
+const handleTopCollagesFilter = (topCollages, courseSector,ownership,limit,offset,search,latitude,longitude) => {
 
   const url = constants.TOP_COLLEGE_LIST;
   const stateList = topCollages?.state_list?.filter((r) => r?.isChecked);
@@ -424,7 +423,7 @@ const handleTopCollagesFilter = (topCollages, courseSector,ownership,limit,offse
 
 
   if (streamIdString && !collageIdString && !stateIdString && !cityIdString) {
-    return `${url}?${streamIdString}&limit=${limit}&offset=${offset}`;
+    return `${url}?${streamIdString}&limit=${limit}&offset=${offset}&latitude=${latitude}&longitude=${longitude}`;
   }
   if (!streamIdString && !collageIdString && !stateIdString && cityIdString) {
     return `${url}?${cityIdString}&limit=${limit}&offset=${offset}`;
@@ -433,12 +432,12 @@ const handleTopCollagesFilter = (topCollages, courseSector,ownership,limit,offse
     return `${url}?${stateIdString}&limit=${limit}&offset=${offset}`;
   }
   if (!streamIdString && collageIdString && !stateIdString && !cityIdString) {
-    return `${url}?${collageIdString}&limit=${limit}&offset=${offset}`;
+    return `${url}?${collageIdString}&limit=${limit}&offset=${offset}&latitude=${latitude}&longitude=${longitude}`;
   }
 
 
   if (streamIdString && collageIdString && !stateIdString && !cityIdString) {
-    return `${url}?${streamIdString}&${collageIdString}&limit=${limit}&offset=${offset}`;
+    return `${url}?${streamIdString}&${collageIdString}&limit=${limit}&offset=${offset}&latitude=${latitude}&longitude=${longitude}`;
   }
   if (!streamIdString && !collageIdString && stateIdString && cityIdString) {
     return `${url}?${stateIdString}&${cityIdString}&limit=${limit}&offset=${offset}`;
@@ -473,23 +472,23 @@ const handleTopCollagesFilter = (topCollages, courseSector,ownership,limit,offse
   if (streamIdString && collageIdString && stateIdString && cityIdString) {
     return `${url}?${streamIdString}&${collageIdString}&${stateIdString}&${cityIdString}&limit=${limit}&offset=${offset}`;
   }
-  return url;
+  return url+`?limit=${limit}&offset=${offset}&latitude=${latitude}&longitude=${longitude}`;
 };
 
 export const getTopCollages =
-  ({search="",filter=false,lat="", long="", limit=10, offset=0}) =>
+  ({search="",filter=false,latitude=null, longitude=null, limit=10, offset=0}) =>
     async (dispatch, getState) => {
 
       try {
 
-        const url = constants.TOP_COLLEGE_LIST+`?latitude=${lat}&longitude=${long}&limit=${limit}&offset=${offset}`;
+        const url = constants.TOP_COLLEGE_LIST+`?latitude=${latitude}&longitude=${longitude}&limit=${limit}&offset=${offset}`;
         // const url1 = constants.TOP_COLLEGE_LIST;
 
         const { courseSector, topCollages,ownership } = getState().careerReducer;
         dispatch({ type: coursesTypes.TOP_COLLAGE_REQUEST });
 
         let res1 = await httpServices.get(
-          filter === true ? handleTopCollagesFilter(topCollages, courseSector,ownership,limit,offset,search)
+          filter === true ? handleTopCollagesFilter(topCollages, courseSector,ownership,limit,offset,search,latitude,longitude)
             : search!=="" ? url + search : url
             
           );
@@ -675,7 +674,7 @@ export const singleCareer2Details = (id) => async (dispatch) => {
 
 
 export const setFilterValue =
-  ({id, checked:action, type:arrayType, subType,limit,offset}) => async (dispatch, getState) => {
+  ({id, checked:action, type:arrayType, subType,limit,offset,latitude,longitude}) => async (dispatch, getState) => {
     const { courseSector, topCollages, topSchools, governmentExams, ownership } =
       getState().careerReducer;
     if (arrayType === "governmentExam") {
@@ -723,7 +722,7 @@ export const setFilterValue =
           type: coursesTypes.TOP_SCHOOL_FINISH,
           payload: updatedPayload,
         });
-        await dispatch(getTopSchools({filter:true,lat:null,long:null,limit,offset}));
+        await dispatch(getTopSchools({filter:true,latitude,longitude,limit,offset}));
       }
       if (subType === "cities") {
         const updatedPayload = topSchools;
@@ -744,7 +743,7 @@ export const setFilterValue =
           type: coursesTypes.TOP_SCHOOL_FINISH,
           payload: updatedPayload,
         });
-        await dispatch(getTopSchools({filter:true,lat:null,long:null,limit,offset}));
+        await dispatch(getTopSchools({filter:true,latitude,longitude,limit,offset}));
       }
       
       // if (subType === "ownership") {
@@ -760,7 +759,7 @@ export const setFilterValue =
       //       type: "courseSector",
       //     },
       //   });
-      //   await dispatch(getTopSchools({filter:true,lat:null,long:null,limit,offset}));
+      //   await dispatch(getTopSchools({filter:true,latitude=null,longitude=null,limit,offset}));
       // }
       if (subType === "ownership") {
         const updatedPayload = ownership;
@@ -784,7 +783,7 @@ export const setFilterValue =
             type: "topSchools",
           },
         });
-        await dispatch(getTopSchools({filter:true,lat:null,long:null,limit,offset}));
+        await dispatch(getTopSchools({filter:true,latitude,longitude,limit,offset}));
       }
 
       if (subType === "educationBoard") {
@@ -797,7 +796,7 @@ export const setFilterValue =
           type: coursesTypes.TOP_SCHOOL_FINISH,
           payload: updatedPayload,
         });
-        await dispatch(getTopSchools({filter:true,lat:null,long:null,limit,offset}));
+        await dispatch(getTopSchools({filter:true,latitude,longitude,limit,offset}));
       }
       if (subType === "category") {
         const updatedPayload = topSchools;
@@ -815,7 +814,7 @@ export const setFilterValue =
           type: coursesTypes.TOP_SCHOOL_FINISH,
           payload: updatedPayload,
         });
-        await dispatch(getTopSchools({filter:true,lat:null,long:null,limit,offset}));
+        await dispatch(getTopSchools({filter:true,latitude,longitude,limit,offset}));
       }
     } else {
 
@@ -835,7 +834,7 @@ export const setFilterValue =
           type: coursesTypes.TOP_COLLAGE_FINISH,
           payload: updatedPayload,
         });
-        await dispatch(getTopCollages({filter:true,limit, offset}));
+        await dispatch(getTopCollages({filter:true,limit, offset,latitude,longitude}));
       }
       if (subType === "city") {
         const updatedPayload = topCollages;
@@ -852,7 +851,7 @@ export const setFilterValue =
           type: coursesTypes.TOP_COLLAGE_FINISH,
           payload: updatedPayload,
         });
-        await dispatch(getTopCollages({filter:true,limit, offset}));
+        await dispatch(getTopCollages({filter:true,limit, offset,latitude,longitude}));
       }
       if (subType === "ownership") {
         const updatedPayload = ownership;
@@ -875,7 +874,7 @@ export const setFilterValue =
             type: "ownership",
           },
         });
-        await dispatch(getTopCollages({filter:true, limit, offset}));
+        await dispatch(getTopCollages({filter:true, limit, offset,latitude,longitude}));
       }
       if (subType === "stream") {
         const updatedPayload = courseSector;
@@ -895,7 +894,7 @@ export const setFilterValue =
             type: "stream",
           },
         });
-        await dispatch(getTopCollages({filter:true, limit, offset}));
+        await dispatch(getTopCollages({filter:true, limit, offset,latitude,longitude}));
       }
       // const idx = updatedPayload?.collage_stream_list?.findIndex(
       //   (u) => u.id === id,
@@ -910,7 +909,7 @@ export const setFilterValue =
       //     type: "stream",
       //   },
       // });
-      await dispatch(getTopCollages({filter:true, limit, offset}));
+      await dispatch(getTopCollages({filter:true, limit, offset,latitude,longitude}));
     }
 
 
