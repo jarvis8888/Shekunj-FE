@@ -65,6 +65,8 @@ export default function AccordionComponent({
   courseLength,
   categories,
   city,
+  offset,
+  limit
 }) {
   const dispatch = useDispatch();
   const [remainingColleges, setRemainingColleges] = useState(false);
@@ -91,7 +93,8 @@ export default function AccordionComponent({
   };
 
   const onChangeFilter = (id, { target: { checked } }, type, subType) => {
-    dispatch(setFilterValue(id, checked, type, subType));
+    
+    dispatch(setFilterValue({id, checked, type, subType,limit,offset}));
   };
 
   const hasMoreCountShowFunction = (data, category, subCategory) => {
