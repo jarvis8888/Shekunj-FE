@@ -73,8 +73,11 @@ const CareerDetails = () => {
                                 <h4 className='mb-3'>{topCollages && topCollages.name}</h4>
                                 <Row>
                                     <Col md={12} xs={12}>
-                                        <h6>{t("careerTopColleges.other.13")}{" "}: </h6>
-                                    
+                                        <h6>
+                                        <span style={{fontWeight: "bold" }}>
+                                            {t("careerTopColleges.other.13")}{" "}
+                                            </span>{" "}
+                                                :{" "}
                                         {topCollages && topCollages.city}
                                         {topCollages.city && (",")}
                                         {" "}
@@ -84,6 +87,7 @@ const CareerDetails = () => {
                                         <span style={{ textTransform: "capitalize" }}>
                                             {topCollages && topCollages.collage_type}
                                         </span>
+                                        </h6>
                                     </Col>
                                 </Row>
                                 <Row className='mt-3'>
