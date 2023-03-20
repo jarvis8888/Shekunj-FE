@@ -187,7 +187,9 @@ const Career1Details = () => {
                                     </Col>
                                 </Row>
 
-                               {topSchools?.url && <hr />}
+                                {/* Photos videos section------------------------------------------------- */}
+                                
+                               {/* {topSchools?.url && <hr />}
                                 {topSchools?.url && <Row>
                                     <Col md={6} xs={12}>
                                         <img src={transformGalley(topSchools.image1)} alt='Image' className='right_gallery' />
@@ -201,7 +203,7 @@ const Career1Details = () => {
                                     <Col md={6} xs={12}>
                                         <img src={transformGalley(topSchools.image4)} alt='Image' className='right_gallery' />
                                     </Col>
-                                </Row>}
+                                </Row>} */}
                             </div>
                         </Col>
                     </Row>

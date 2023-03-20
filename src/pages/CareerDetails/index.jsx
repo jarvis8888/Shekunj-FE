@@ -225,8 +225,8 @@ const CareerDetails = () => {
                                         ></iframe>
                                     </Col>
                                 </Row>
-
-                                <hr />
+                                {/* Photos videos section------------------------------------------------- */}
+                                {/* <hr />
                                 <Row>
                                     <Col md={6} xs={12}>
                                         <img src={transformGalley(topCollages.image1)} alt='Image' className='right_gallery' />
@@ -240,7 +240,7 @@ const CareerDetails = () => {
                                     <Col md={6} xs={12}>
                                         <img src={transformGalley(topCollages.image4)} alt='Image' className='right_gallery' />
                                     </Col>
-                                </Row>
+                                </Row> */}
                             </div>
                         </Col>
                     </Row>
