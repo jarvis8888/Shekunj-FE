@@ -999,6 +999,12 @@ button.want_btn {
   color: #ffffff !important;
 }
 
+.eventButtonAction:hover {
+  background-color: white !important;
+  border: 1px solid #ec498a;
+  color: #ec498a !important;
+}
+
 .event-title-link {
   color: #d45d93 !important;
   text-decoration: none !important;
@@ -1014,7 +1020,7 @@ button.want_btn {
 
 .event-button-link:hover {
   text-decoration: none !important;
-  color: #ffffff !important;
+  color: #ec498a !important;
 }
 
 // .eventButtonAction {
@@ -1022,9 +1028,9 @@ button.want_btn {
 // }
 
 .eventButtonAction:hover {
-  background: #ec498a !important;
+  background: #ffffff !important;
   border: 1px solid #ec498a !important;
-  color: #ffffff !important;
+  color: #ec498a !important;
 }
 
 // .eventButtonAction a:hover {
