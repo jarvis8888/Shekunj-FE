@@ -55,7 +55,7 @@ function Carousel(props) {
         <p>{props.title1}</p>
         <h2>{props.title2}</h2>
       </div>
-      <div className='set'>
+      <div className={!props.set && 'set'}>
         {props.page === carouselConstant.HOMEPAGE && (
           <div className='abc_box'>
             <div className='abc' ref={divRef}></div>

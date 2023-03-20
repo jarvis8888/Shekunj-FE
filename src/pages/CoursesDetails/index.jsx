@@ -329,7 +329,7 @@ const CourseDetails = () => {
                   {t("coursesPage.coursesDetailsPage.other.2")}
                 </h3>
                 <div className='cou_set_similer'>
-                  <Carousel page='courseDetail' />
+                  <Carousel page='courseDetail' set />
                 </div>
                 <Link to='/courses' className='btn_view'>
                   {t("coursesPage.coursesDetailsPage.other.3")}

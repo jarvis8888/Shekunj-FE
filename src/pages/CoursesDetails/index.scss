@@ -147,6 +147,11 @@ section.CouDtl_ban .row {
   display: block;
   margin-bottom: 30px;
 }
+.sec2_right .btn.btn_str_Cor:hover{
+  color: #ec498a;
+  background: white;
+  border: 1px solid #ec498a;
+}
 .sec1_des {
   padding-top: 24px;
 }
@@ -213,6 +218,12 @@ section.CouDtl_ban .row {
   line-height: 148px;
   text-decoration: none;
   cursor: pointer !important;
+}
+
+.sec2_right a.btn_view:hover{
+  background: #ec498a;
+  border: 1px solid #ec498a;
+  color: white;
 }
 // .similar-coursesslider .owl-nav.disabled{
 //   display: none !important;
