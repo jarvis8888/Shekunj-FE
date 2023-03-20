@@ -15,12 +15,14 @@ const Pagination = (props) => {
   const backButton = () => {
     if(props.backPage){
       props.backPage();
+      window.scrollTo(0,0)
     }
     setInitialCount(initialCount - 1);
   };
   const nextButton = () => {
     if(props.nextPage){
       props.nextPage();
+      window.scrollTo(0,0)
     }
     setInitialCount(initialCount + 1);
   };
