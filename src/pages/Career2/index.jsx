@@ -29,6 +29,7 @@ const CareerPage2 = () => {
   );
   const { lan } = useSelector((state) => state.languageReducer);
   const [offset, setOffset] = useState(0);
+  const [flag, setFlag] = useState(true)
   const pageLimit = 10
   useEffect(() => {
     dispatch(reSetFilterValue());
@@ -81,6 +82,44 @@ const CareerPage2 = () => {
   // 		});
 
   // }, [])
+  const page_adds = JSON.parse(sessionStorage.getItem('current_adds'))
+  const findAdds=(addslen,len)=>{
+    let x = 0
+
+      let arr = []
+      for (let i = 0; i < len; i++) {
+        let y;
+        if (x + 1 >= addslen) {
+          y = 0
+        } else {
+          y = x + 1;
+        }
+        if (x >= addslen) {
+          x = 0
+          y = 1
+        }
+
+        arr.push([x, y]);
+        if (x + 1 >= addslen) {
+          x = 1
+        } else {
+          x += 2;
+        }
+
+      }
+      return arr
+  }
+  useEffect(() => {
+    if (governmentExams?.govt_list?.results?.length > 0 && govBoxAds?.length && flag) {
+      const addslen = govBoxAds?.length
+      let len = governmentExams?.govt_list?.count / pageLimit;
+      len = Math.trunc(len)
+      console.log(len,addslen)
+      const adds_arr=findAdds(addslen,len)
+      sessionStorage.setItem('current_adds', JSON.stringify({ addIndex: 0, addsData: adds_arr}));
+      setFlag(false)
+    }
+  }, [governmentExams, govBoxAds])
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(async function (position, values) {
       const latitude = position.coords.latitude;
@@ -254,16 +293,27 @@ const CareerPage2 = () => {
   // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
   const paginationBack = () => {
     dispatch(getGovernmentExams(true,pageLimit,offset));
+    
     setOffset(offset - 10)
+    if (page_adds) {
+      sessionStorage.setItem('current_adds', JSON.stringify({ ...page_adds, addIndex: page_adds?.addIndex - 1 }))
+
+    }
     window.scrollTo(0, 1000);
   };
   const paginationNext = () => {
 
    
     dispatch(getGovernmentExams(true,pageLimit,offset));
+    
     setOffset(offset + 10);
+    if (page_adds) {
+      sessionStorage.setItem('current_adds', JSON.stringify({ ...page_adds, addIndex: page_adds?.addIndex + 1 }))
+
+    }
     window.scrollTo(0, 1000);
   };
+  
 
   return (
     <div>
@@ -483,29 +533,44 @@ const CareerPage2 = () => {
                           </Row>
                         </div>
                         <Row>
-                          {index % 4 == 3 ? (
-                            <>
-                              <div
-                                className='career_box_add'
-                                onClick={() =>
-                                  addEmail(govBoxAds[0]?.add_email)
-                                }
-                              >
-                                {govBoxAds.length > 0 && (
-                                  <a href={govBoxAds[0]?.url_adds} target='_blank'>
-                                    { detect.isMobile ? (
-                                      govBoxAds[0]?.image_mobile && (
-                                        <img src={govBoxAds[0]?.image_mobile} alt='Image' className='ads_gov_box'/>)
-                                    ) : (
-                                      <img src={govBoxAds[0]?.image} alt='Image' className='ads_gov_box'/>
-                                    )}
-                                  </a>
-                                )}
-                              </div>
-                            </>
-                          ) : (
-                            ""
+                          {index===3 && govBoxAds?.length>0 && 
+                          <div
+                          className='career_box_add'
+                          onClick={() =>
+                            addEmail(govBoxAds[page_adds?.addsData[page_adds?.addIndex][0]]?.add_email)
+                          }
+                        >
+                          {govBoxAds.length > 0 && (
+                            <a href={govBoxAds[page_adds?.addsData[page_adds?.addIndex][0]]?.url_adds} target='_blank'>
+                              { detect.isMobile ? (
+                                govBoxAds[page_adds?.addsData[page_adds?.addIndex][0]]?.image_mobile && (
+                                  <img src={govBoxAds[page_adds?.addsData[page_adds?.addIndex][0]]?.image_mobile} alt='Image' className='ads_gov_box'/>)
+                              ) : (
+                                <img src={govBoxAds[page_adds?.addsData[page_adds?.addIndex][0]]?.image} alt='Image' className='ads_gov_box'/>
+                              )}
+                            </a>
                           )}
+                        </div>
+                          }
+                           {index===7 && govBoxAds?.length>0 && 
+                          <div
+                          className='career_box_add'
+                          onClick={() =>
+                            addEmail(govBoxAds[page_adds?.addsData[page_adds?.addIndex][1]]?.add_email)
+                          }
+                        >
+                          {govBoxAds.length > 0 && (
+                            <a href={govBoxAds[page_adds?.addsData[page_adds?.addIndex][1]]?.url_adds} target='_blank'>
+                              { detect.isMobile ? (
+                                govBoxAds[page_adds?.addsData[page_adds?.addIndex][1]]?.image_mobile && (
+                                  <img src={govBoxAds[page_adds?.addsData[page_adds?.addIndex][1]]?.image_mobile} alt='Image' className='ads_gov_box'/>)
+                              ) : (
+                                <img src={govBoxAds[page_adds?.addsData[page_adds?.addIndex][1]]?.image} alt='Image' className='ads_gov_box'/>
+                              )}
+                            </a>
+                          )}
+                        </div>
+                          }
                         </Row>
                       </>
                     ),

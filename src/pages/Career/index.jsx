@@ -50,6 +50,7 @@ const CareerPage = () => {
   const { lan } = useSelector((state) => state.languageReducer);
   const { t } = useTranslation();
   const [offset, setOffset] = useState(0);
+  const [flag, setFlag] = useState(true)
   const pageLimit = 10
 
   useEffect(() => {
@@ -67,6 +68,8 @@ const CareerPage = () => {
       }
     )
   }, []);
+
+
 
   // const transformPrice = (price) => {
   //   let nf = new Intl.NumberFormat("en-US");
@@ -131,8 +134,46 @@ const CareerPage = () => {
     });
   };
 
-  // >>>>>>>>>>>>>>>>>>latest code change>>>>>>>>>>>>>>>>>>
 
+  // >>>>>>>>>>>>>>>>>>latest code change>>>>>>>>>>>>>>>>>>
+  const findAdds = (addslen, len) => {
+    let x = 0
+
+    let arr = []
+    for (let i = 0; i < len; i++) {
+      let y;
+      if (x + 1 >= addslen) {
+        y = 0
+      } else {
+        y = x + 1;
+      }
+      if (x >= addslen) {
+        x = 0
+        y = 1
+      }
+
+      arr.push([x, y]);
+      if (x + 1 >= addslen) {
+        x = 1
+      } else {
+        x += 2;
+      }
+
+    }
+    return arr
+  }
+  useEffect(() => {
+    if (topCollages?.collage_list?.results.length > 0 && collegeBoxAds.length && flag) {
+      const addslen = collegeBoxAds.length
+      let len = topCollages?.collage_list?.count / pageLimit;
+      len = Math.trunc(len)
+
+
+      const adds_arr = findAdds(addslen, len)
+      sessionStorage.setItem('current_adds', JSON.stringify({ addIndex: 0, addsData: adds_arr }));
+      setFlag(false)
+    }
+  }, [topCollages, collegeBoxAds])
   useEffect(() => {
     dispatch(adsList())
     navigator.geolocation.getCurrentPosition(async function (position, values) {
@@ -150,6 +191,7 @@ const CareerPage = () => {
 
             });
             setCollegeBoxAds(filterArray1);
+
             // console.log("filterArray1top_college_box",filterArray1)
             let filterArray2 = response.data.results.filter((item, index) => {
 
@@ -172,7 +214,9 @@ const CareerPage = () => {
               let filterArray1 = response.data.results.filter((item, index) => {
                 return item.image_type == "top_college_box";
               });
-              setCollegeBoxAds(filterArray1);
+
+
+              // sessionStorage.setItem('current_adds', JSON.stringify([0, 1]));
               let filterArray2 = response.data.results.filter((item, index) => {
                 return item.image_type == "top_college_banner";
               });
@@ -252,6 +296,7 @@ const CareerPage = () => {
 
 
   // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  const page_adds = JSON.parse(sessionStorage.getItem('current_adds'))
   const [searchInput, setSearchInput] = useState("");
   const SearchFilterHandle = (e) => {
     e.preventDefault();
@@ -265,11 +310,23 @@ const CareerPage = () => {
     navigator.geolocation.getCurrentPosition(async function (position, values) {
       const latitude = position?.coords?.latitude;
       const longitude = position?.coords?.longitude;
+
       dispatch(getTopCollages({ filter: true, latitude, longitude, pageLimit, offset: offset - 10, search: searchInput !== "" ? `&search=${searchInput}` : "" }));
     });
+
+    if (page_adds) {
+      setTimeout(() => {
+        sessionStorage.setItem('current_adds', JSON.stringify({ ...page_adds, addIndex: page_adds?.addIndex - 1 }))
+      }, 500);
+
+    }
+
     setOffset(offset - 10)
     window.scrollTo(0, 1000);
+
   };
+
+
   const paginationNext = () => {
 
     navigator.geolocation.getCurrentPosition(async function (position, values) {
@@ -278,10 +335,20 @@ const CareerPage = () => {
 
       dispatch(getTopCollages({ filter: true, latitude, longitude, pageLimit, offset: offset + 10, search: searchInput !== "" ? `&search=${searchInput}` : "" }));
     });
+    if (page_adds) {
+
+      setTimeout(() => {
+        sessionStorage.setItem('current_adds', JSON.stringify({ ...page_adds, addIndex: page_adds?.addIndex + 1 }))
+      }, 500);
+
+    }
+
     setOffset(offset + 10);
     window.scrollTo(0, 1000);
+
   };
 
+  console.log(page_adds?.addsData[page_adds?.addIndex][0])
   return (
     <div>
       <SEO title={`List of Top Colleges in India & Apply - Shekunj.com`}
@@ -304,7 +371,7 @@ const CareerPage = () => {
                 className='add_college_cover'
                 onClick={() => addEmail(collegeBannerAds[0]?.add_email)}
               >
-                <a href={collegeBannerAds[0]?.url_adds} target='_blank'>
+                <a href={collegeBannerAds[0]?.url_adds} target='_blank' rel="noreferrer">
                   {detect.isMobile ? (collegeBannerAds[0]?.image_mobile && (
                     <img src={collegeBannerAds[0]?.image_mobile} alt='Image' className=' google_add_college' />)) :
                     (collegeBannerAds[0]?.image && (
@@ -545,32 +612,52 @@ const CareerPage = () => {
                         </div>
 
                         {collegeBoxAds.length > 0 && (
-                          <div
-                            className='top_clg_add_img'
-                            onClick={() =>
-                              addEmail(collegeBoxAds[0]?.add_email)
-                            }
-                          >
-                            {index % 4 == 3 ? (
-                              <>
+                          <>
+                            {index === 3 && page_adds?.length > 0 && (
+                              <div
+                                className='top_clg_add_img'
+                                onClick={() =>
+                                  addEmail(collegeBoxAds[page_adds?.addsData[page_adds?.addIndex][0]]?.add_email)
+                                }
+                              >
                                 <a
-                                  href={collegeBoxAds[0]?.url_adds}
-                                  target='_blank'
+                                  href={collegeBoxAds[page_adds?.addsData[page_adds?.addIndex][0]]?.url_adds}
+                                  target='_blank' rel="noreferrer"
                                 >
                                   {detect.isMobile ?
-                                    (collegeBoxAds[0]?.image_mobile && (
-                                      <img src={collegeBoxAds[0]?.image_mobile} alt='Image' className='college_ads_box' />
+                                    (collegeBoxAds[page_adds?.addsData[page_adds?.addIndex][0]]?.image_mobile && (
+                                      <img src={collegeBoxAds[page_adds?.addsData[page_adds?.addIndex][0]]?.image_mobile} alt='Image' className='college_ads_box' />
                                     ))
                                     :
-                                    (collegeBoxAds[0]?.image && (
-                                      <img src={collegeBoxAds[0]?.image} alt='Image' className='college_ads_box' />
+                                    (collegeBoxAds[page_adds?.addsData[page_adds?.addIndex][0]]?.image && (
+                                      <img src={collegeBoxAds[page_adds?.addsData[page_adds?.addIndex][0]]?.image} alt='Image' className='college_ads_box' />
                                     ))}
-                                </a>{" "}
-                              </>
-                            ) : (
-                              ""
+                                </a>
+                              </div>
                             )}
-                          </div>
+                            {index === 7 && page_adds?.length > 0 && (
+                              <div
+                                className='top_clg_add_img'
+                                onClick={() =>
+                                  addEmail(collegeBoxAds[page_adds?.addsData[page_adds?.addIndex][1]]?.add_email)
+                                }
+                              >
+                                <a
+                                  href={collegeBoxAds[page_adds?.addsData[page_adds?.addIndex][1]]?.url_adds}
+                                  target='_blank' rel="noreferrer"
+                                >
+                                  {detect.isMobile ?
+                                    (collegeBoxAds[page_adds?.addsData[page_adds?.addIndex][1]]?.image_mobile && (
+                                      <img src={collegeBoxAds[page_adds?.addsData[page_adds?.addIndex][1]]?.image_mobile} alt='Image' className='college_ads_box' />
+                                    ))
+                                    :
+                                    (collegeBoxAds[page_adds?.addsData[page_adds?.addIndex][1]]?.image && (
+                                      <img src={collegeBoxAds[page_adds?.addsData[page_adds?.addIndex][1]]?.image} alt='Image' className='college_ads_box' />
+                                    ))}
+                                </a>
+                              </div>
+                            )}
+                          </>
                         )}
                       </>
                     ),
@@ -603,8 +690,19 @@ const CareerPage = () => {
               {topCollages?.collage_list?.count > pageLimit && (
                 <Pagination
                   finalCount={topCollages?.collage_list?.count / pageLimit}
-                  nextPage={topCollages?.collage_list?.next ? paginationNext : null}
-                  backPage={topCollages?.collage_list?.previous ? paginationBack : null}
+                  nextPage={() => {
+                    if (topCollages?.collage_list?.next) {
+                      paginationNext()
+                    }
+
+                  }
+                  }
+                  backPage={() => {
+                    if (topCollages?.collage_list?.previous) {
+                      paginationBack()
+                    }
+
+                  }}
                 />
               )}
             </Col>
