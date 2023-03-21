@@ -34,6 +34,7 @@ import Pagination from "../../components/Pagination";
 
 const CareerPage1 = () => {
   const [offset, setOffset] = useState(0);
+  const [flag, setFlag] = useState(true)
   const pageLimit = 10
 
   // useEffect(() => {
@@ -72,7 +73,7 @@ const CareerPage1 = () => {
   const transformImg = (image) => {
     return image ? image : TopSchool;
   };
-
+  const page_adds = JSON.parse(sessionStorage.getItem('current_adds'))
   const handleCollapse = (id, checked) => {
     dispatch(toggleCollapseValue(id, checked ? false : true, "topSchools"));
   };
@@ -179,6 +180,43 @@ const CareerPage1 = () => {
   // }, [dispatch]);
 
   // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Latest code below >>>>>>>>>>>>>>>>>>>>>>>>
+  const findAdds=(addslen,len)=>{
+    let x = 0
+
+      let arr = []
+      for (let i = 0; i < len; i++) {
+        let y;
+        if (x + 1 >= addslen) {
+          y = 0
+        } else {
+          y = x + 1;
+        }
+        if (x >= addslen) {
+          x = 0
+          y = 1
+        }
+
+        arr.push([x, y]);
+        if (x + 1 >= addslen) {
+          x = 1
+        } else {
+          x += 2;
+        }
+
+      }
+      return arr
+  }
+  useEffect(() => {
+    if (topSchools?.result?.results?.length > 0 && schoolBoxAds.length && flag) {
+      const addslen = schoolBoxAds.length
+      let len = topSchools?.result?.count / pageLimit;
+      len = Math.trunc(len)
+      
+      const adds_arr=findAdds(addslen,len)
+      sessionStorage.setItem('current_adds', JSON.stringify({ addIndex: 0, addsData: adds_arr }));
+      setFlag(false)
+    }
+  }, [topSchools, schoolBoxAds])
 
   useEffect(() => {
     dispatch(adsList())
@@ -256,6 +294,13 @@ const CareerPage1 = () => {
       const longitude = position?.coords?.longitude;
       dispatch(getTopSchools({ filter: true, latitude, longitude, pageLimit, offset: offset - 10,search :searchInput!==""?`&search=${searchInput}`:""}));
     });
+    if (page_adds) {
+
+      setTimeout(() => {
+        sessionStorage.setItem('current_adds', JSON.stringify({ ...page_adds, addIndex: page_adds?.addIndex - 1 }))
+      }, 500);
+
+    }
     setOffset(offset - 10);
     window.scrollTo(0, 1000);
   };
@@ -266,9 +311,17 @@ const CareerPage1 = () => {
       const longitude = position?.coords?.longitude;
       dispatch(getTopSchools({ filter: true, latitude, longitude, pageLimit, offset: offset + 10,search: searchInput!==""?`&search=${searchInput}`:""  }));
     });
+    if (page_adds) {
+
+      setTimeout(() => {
+        sessionStorage.setItem('current_adds', JSON.stringify({ ...page_adds, addIndex: page_adds?.addIndex + 1 }))
+      }, 500);
+
+    }
     setOffset(offset + 10);
     window.scrollTo(0, 1000);
   };
+  console.log(page_adds)
 
   return (
     <div>
@@ -333,7 +386,7 @@ const CareerPage1 = () => {
                 <h2>{t("careerTopSchools.heading.1")}</h2>
                 <p>
                   {t("careerTopSchools.other.12")}{" "}
-                  {topSchools?.result?.length || 0}{" "}
+                  {topSchools?.result?.results?.length || 0}{" "}
                   {t("careerTopSchools.other.11")}
                 </p>
               </Col>
@@ -566,40 +619,63 @@ const CareerPage1 = () => {
                           </Row>
                         </div>
                         <Row>
-                          {index % 4 == 3 ? (
-                            <>
-                              {schoolBoxAds.length > 0 && (
-                                <div
-                                  onClick={() =>
-                                    addEmail(schoolBoxAds[1]?.add_email)
-                                  }
-                                >
-                                  <a
-                                    href={schoolBoxAds[1]?.url_adds}
-                                    target='_blank'
-                                  >
-                                    {detect.isMobile ? (
-                                      schoolBoxAds[1]?.image_mobile && (
-                                        <img
-                                          src={schoolBoxAds[1]?.image_mobile}
-                                          alt='Image'
-                                          className='ads_school_box'
-                                        />)
-                                    ) : (
-                                      schoolBoxAds[1]?.image && (
-                                        <img
-                                          src={schoolBoxAds[1]?.image}
-                                          alt='Image'
-                                          className='ads_school_box'
-                                        />)
-                                    )}
-
-                                  </a>
-                                </div>
+                          {index===3 && page_adds?.length>0 && (
+                            <div
+                            onClick={() =>
+                              addEmail(schoolBoxAds[page_adds?.addsData[page_adds?.addIndex][0]]?.add_email)
+                            }
+                          >
+                            <a
+                              href={schoolBoxAds[page_adds?.addsData[page_adds?.addIndex][0]]?.url_adds}
+                              target='_blank'
+                            >
+                              {detect.isMobile ? (
+                                schoolBoxAds[page_adds?.addsData[page_adds?.addIndex][0]]?.image_mobile && (
+                                  <img
+                                    src={schoolBoxAds[page_adds?.addsData[page_adds?.addIndex][0]]?.image_mobile}
+                                    alt='Image'
+                                    className='ads_school_box'
+                                  />)
+                              ) : (
+                                schoolBoxAds[page_adds?.addsData[page_adds?.addIndex][0]]?.image && (
+                                  <img
+                                    src={schoolBoxAds[page_adds?.addsData[page_adds?.addIndex][0]]?.image}
+                                    alt='Image'
+                                    className='ads_school_box'
+                                  />)
                               )}
-                            </>
-                          ) : (
-                            ""
+
+                            </a>
+                          </div>
+                          )}
+                          {index===7 &&page_adds?.length>0 && (
+                            <div
+                            onClick={() =>
+                              addEmail(schoolBoxAds[1]?.add_email)
+                            }
+                          >
+                            <a
+                              href={schoolBoxAds[page_adds?.addsData[page_adds?.addIndex][1]]?.url_adds}
+                              target='_blank'
+                            >
+                              {detect.isMobile ? (
+                                schoolBoxAds[page_adds?.addsData[page_adds?.addIndex][1]]?.image_mobile && (
+                                  <img
+                                    src={schoolBoxAds[page_adds?.addsData[page_adds?.addIndex][1]]?.image_mobile}
+                                    alt='Image'
+                                    className='ads_school_box'
+                                  />)
+                              ) : (
+                                schoolBoxAds[page_adds?.addsData[page_adds?.addIndex][1]]?.image && (
+                                  <img
+                                    src={schoolBoxAds[page_adds?.addsData[page_adds?.addIndex][1]]?.image}
+                                    alt='Image'
+                                    className='ads_school_box'
+                                  />)
+                              )}
+
+                            </a>
+                          </div>
                           )}
                         </Row>
                       </>
