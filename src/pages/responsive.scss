@@ -759,6 +759,11 @@ header.other_head ul li svg {
 .eventButtonAction {
   background-color: #ec498a !important;
 }
+.eventButtonAction:hover {
+  background-color: white !important;
+  border: 1px solid #ec498a;
+  color: #ec498a !important;
+}
 .footer_other .ads_home_cover img {
   width: 100%;
 }

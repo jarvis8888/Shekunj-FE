@@ -531,7 +531,7 @@ const CareerPage1 = () => {
 
                             <Col md={9} xs={12}>
                               <div className='top_col_content'>
-                                <h3>
+                                <p style={{ fontSize: 18 }}>
                                   <Link
                                     to={routingConstants.TOP_SCHOOL + c.id}
                                     className=''
@@ -539,7 +539,7 @@ const CareerPage1 = () => {
                                   >
                                     {c && c.name}
                                   </Link>
-                                </h3>
+                                </p>
                                 <ul class='list-inline list-unstyled'>
                                   {c.board_type && (
                                     <li>

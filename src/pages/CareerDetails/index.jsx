@@ -73,8 +73,11 @@ const CareerDetails = () => {
                                 <h4 className='mb-3'>{topCollages && topCollages.name}</h4>
                                 <Row>
                                     <Col md={12} xs={12}>
-                                        <h6>{t("careerTopColleges.other.13")}{" "}: </h6>
-                                    
+                                        <h6>
+                                        <span style={{fontWeight: "bold" }}>
+                                            {t("careerTopColleges.other.13")}{" "}
+                                            </span>{" "}
+                                                :{" "}
                                         {topCollages && topCollages.city}
                                         {topCollages.city && (",")}
                                         {" "}
@@ -84,6 +87,7 @@ const CareerDetails = () => {
                                         <span style={{ textTransform: "capitalize" }}>
                                             {topCollages && topCollages.collage_type}
                                         </span>
+                                        </h6>
                                     </Col>
                                 </Row>
                                 <Row className='mt-3'>
@@ -221,8 +225,8 @@ const CareerDetails = () => {
                                         ></iframe>
                                     </Col>
                                 </Row>
-
-                                <hr />
+                                {/* Photos videos section------------------------------------------------- */}
+                                {/* <hr />
                                 <Row>
                                     <Col md={6} xs={12}>
                                         <img src={transformGalley(topCollages.image1)} alt='Image' className='right_gallery' />
@@ -236,7 +240,7 @@ const CareerDetails = () => {
                                     <Col md={6} xs={12}>
                                         <img src={transformGalley(topCollages.image4)} alt='Image' className='right_gallery' />
                                     </Col>
-                                </Row>
+                                </Row> */}
                             </div>
                         </Col>
                     </Row>
