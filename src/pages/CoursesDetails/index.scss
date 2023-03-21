@@ -344,24 +344,6 @@ section.CouDtl_ban .row {
 }
 .sec2_right .owl-nav button.owl-prev::before {
   content: "";
-  background-image: url("../../assets/images/CoursesDetails/left_arrow.png");
-  border: none;
-  max-width: 100%;
-  background-size: auto;
-  position: absolute;
-  background-repeat: no-repeat;
-  background-position: center;
-  border-radius: 100px;
-  padding: 20px;
-  left: 27px;
-  top: 75px;
-  margin: auto;
-}
-.sec2_right .set {
-  margin-left: 30px;
-}
-.sec2_right .owl-nav button.owl-next::before {
-  content: "";
   background-image: url("../../assets/images/CoursesDetails/right_arrow.png");
   border: none;
   max-width: 100%;
@@ -371,9 +353,29 @@ section.CouDtl_ban .row {
   background-position: center;
   border-radius: 100px;
   padding: 20px;
+  left: 380px;
+
   top: 75px;
-  left: 411px;
   margin: auto;
+}
+.sec2_right .set {
+  margin-left: 30px;
+}
+.sec2_right .owl-nav button.owl-next::before {
+  content: "";
+  background-image: url("../../assets/images/CoursesDetails/left_arrow.png");
+  border: none;
+  max-width: 100%;
+  background-size: auto;
+  position: absolute;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 100px;
+  padding: 20px;
+  top: 75px;
+  margin: auto;
+  left: 27px;
+
 }
 
 .sec2_right .owl-carousel .owl-item img {
