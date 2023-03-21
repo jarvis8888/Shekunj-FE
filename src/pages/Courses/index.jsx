@@ -127,6 +127,7 @@ const Courses = () => {
                           src={coursesBoxAds[page_adds?.addsData[page_adds?.addIndex]]?.image}
                           alt='Image'
                           className='google_add_box_img'
+                          style={{ paddingTop: 0 }}
                         />
                       </a>
                       <div className='overlay'></div>
