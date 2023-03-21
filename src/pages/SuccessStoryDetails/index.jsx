@@ -146,11 +146,14 @@ const SuccessStoryDetails = () => {
           <Row>
             <Col md={9} xs={12}>
               <div className='deatil_box'>
+                <div style={{ textAlign: "center" }}>
                 <img
-                  src={successStoriesDetails && successStoriesDetails.image}
-                  class='card-img-top'
-                  alt='...'
-                />
+                    src={successStoriesDetails && successStoriesDetails.image}
+                    class='card-img-top '
+                    alt='...'
+                    style={{ width: 500, height: 500 }}
+                  />
+                </div>
                 <h4 className='mb-3'>{successStoriesDetails && successStoriesDetails.name}</h4>
 
                 <Row>
