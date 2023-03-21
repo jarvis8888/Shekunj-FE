@@ -321,7 +321,6 @@ const CareerPage1 = () => {
     setOffset(offset + 10);
     window.scrollTo(0, 1000);
   };
-  console.log(page_adds)
 
   return (
     <div>
@@ -619,7 +618,7 @@ const CareerPage1 = () => {
                           </Row>
                         </div>
                         <Row>
-                          {index===3 && page_adds?.length>0 && (
+                          {index===3 && schoolBoxAds?.length && (
                             <div
                             onClick={() =>
                               addEmail(schoolBoxAds[page_adds?.addsData[page_adds?.addIndex][0]]?.add_email)
@@ -648,7 +647,7 @@ const CareerPage1 = () => {
                             </a>
                           </div>
                           )}
-                          {index===7 &&page_adds?.length>0 && (
+                          {index===7 &&schoolBoxAds?.length && (
                             <div
                             onClick={() =>
                               addEmail(schoolBoxAds[1]?.add_email)

@@ -613,7 +613,7 @@ const CareerPage = () => {
 
                         {collegeBoxAds.length > 0 && (
                           <>
-                            {index === 3 && page_adds?.length > 0 && (
+                            {index === 3 && collegeBoxAds.length > 0 && (
                               <div
                                 className='top_clg_add_img'
                                 onClick={() =>
@@ -635,7 +635,7 @@ const CareerPage = () => {
                                 </a>
                               </div>
                             )}
-                            {index === 7 && page_adds?.length > 0 && (
+                            {index === 7 && collegeBoxAds.length > 0 && (
                               <div
                                 className='top_clg_add_img'
                                 onClick={() =>
