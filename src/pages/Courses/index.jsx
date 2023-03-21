@@ -51,6 +51,7 @@ const Courses = () => {
   const [suggestion, setSuggestion] = useState([]);
   const [disabled, setDisabled] = useState(false);
   const [hasSuggestion, setHasSuggestion] = useState([suggestion].length > 0);
+  const [flag, setFlag] = useState(true)
 
   const dispatch = useDispatch();
 
@@ -65,6 +66,32 @@ const Courses = () => {
     window.scrollTo(0, 0);
     Aos.init({ duration: 2000 });
   }, []);
+  const page_adds = JSON.parse(sessionStorage.getItem('current_adds'))
+
+  const findAdds=(addslen,len)=>{
+    let x=0;
+    let arr=[]
+    for(let i=0;i<len;i++){
+      if(x>=addslen){
+       x=0
+      }
+     arr.push(x)
+     x++
+    }
+      return arr
+  }
+  useEffect(() => {
+    if (state?.allCourses?.results?.length > 0 && coursesBoxAds.length && flag) {
+      const addslen = coursesBoxAds.length
+      let len = state?.allCourses?.count / pageLimit;
+      len = Math.trunc(len)
+      console.log(len,addslen)
+      
+      const adds_arr=findAdds(addslen,len)
+      sessionStorage.setItem('current_adds', JSON.stringify({ addIndex: 0, addsData: adds_arr }));
+      setFlag(false)
+    }
+  }, [state, coursesBoxAds])
 
   const handleResetFilter = () => {
     if (state?.selectedFilter) {
@@ -95,9 +122,9 @@ const Courses = () => {
                 <div className='google_add_box box_hov'>
                   {coursesBoxAds && coursesBoxAds.length > 0 && (
                     <div className='slide-img'>
-                      <a href={coursesBoxAds[0]?.url_adds} target='_blank'>
+                      <a href={coursesBoxAds[page_adds?.addsData[page_adds?.addIndex]]?.url_adds} target='_blank' rel="noreferrer">
                         <img
-                          src={coursesBoxAds[0]?.image}
+                          src={coursesBoxAds[page_adds?.addsData[page_adds?.addIndex]]?.image}
                           alt='Image'
                           className='google_add_box_img'
                         />
@@ -251,6 +278,10 @@ const Courses = () => {
         allCourses(`?limit=${pageLimit}&offset=${pageCount - pageLimit}`),
       );
     }
+    if (page_adds) {
+      sessionStorage.setItem('current_adds', JSON.stringify({ ...page_adds, addIndex: page_adds?.addIndex - 1 }))
+
+    }
     window.scrollTo(0, 1000);
   };
   const paginationNext = () => {
@@ -267,6 +298,10 @@ const Courses = () => {
       dispatch(
         allCourses(`?limit=${pageLimit}&offset=${pageCount + pageLimit}`),
       );
+    }
+    if (page_adds) {
+      sessionStorage.setItem('current_adds', JSON.stringify({ ...page_adds, addIndex: page_adds?.addIndex + 1 }))
+
     }
     window.scrollTo(0, 1000);
   };
@@ -605,7 +640,7 @@ const Courses = () => {
                     className='col-md-12'
                     onClick={() => addEmail(coursesSideAds[0]?.add_email)}
                   >
-                    <a href={coursesSideAds[0]?.url_adds} target='_blank'>
+                    <a href={coursesSideAds[0]?.url_adds} target='_blank' rel="noreferrer">
                       <img
                         src={coursesSideAds[0]?.image}
                         alt='Image'

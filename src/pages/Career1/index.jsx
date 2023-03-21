@@ -650,7 +650,7 @@ const CareerPage1 = () => {
                           {index===7 &&schoolBoxAds?.length && (
                             <div
                             onClick={() =>
-                              addEmail(schoolBoxAds[1]?.add_email)
+                              addEmail(schoolBoxAds[page_adds?.addsData[page_adds?.addIndex][1]]?.add_email)
                             }
                           >
                             <a
