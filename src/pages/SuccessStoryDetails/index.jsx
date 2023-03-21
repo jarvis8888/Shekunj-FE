@@ -237,7 +237,7 @@ const SuccessStoryDetails = () => {
                           <img src={ storyDetailsBoxAds[0]?.image_mobile } alt='Image' className='google_ads_home' />
                         )) : (
                           storyDetailsBoxAds[0]?.image && (
-                          <img src={storyDetailsBoxAds[0]?.image} alt='Image' className='google_ads_home' />
+                          <img src={storyDetailsBoxAds[0]?.image} alt='Image' className='google_ads_home' style={{ width: 180, marginTop: "0px !important"}} />
                         ))}
                       </a>
                     </div>
