@@ -654,10 +654,13 @@ const Courses = () => {
             </div>
             <div className='col-md-8 col-sm-8'>
               <div className='content_right'>
-                <h3 className='result_head'>
-                  {t("coursesPage.other.1.1")} {state?.allCourses?.count || 0}{" "}
-                  {t("coursesPage.other.1.2")}
-                </h3>
+                { state?.selectedFilter && (
+                  <h3 className='result_head'>
+                    {t("coursesPage.other.1.1")} {state?.allCourses?.count || 0}{" "}
+                    {t("coursesPage.other.1.2")}
+                  </h3> 
+                )}
+                
 
                 <Row>
                   <Col xl={9} lg={8} md={8} xs={12}>
