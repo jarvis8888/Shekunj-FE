@@ -127,7 +127,7 @@ function Carousel(props) {
                   >
                     <div key={course?.id} className='boxnew'>
                       <div className='slide-img1'>
-                        <img alt='...' src={course?.image} />
+                        <img alt='...' src={course?.image} style={{height:"190px"}}/>
                         <div className='overlay'></div>
                       </div>
                       <div className='tag_btn'>
