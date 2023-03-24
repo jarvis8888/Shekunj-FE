@@ -471,6 +471,7 @@ width: 100% !important;
 }
 .card-img-top {
   height: auto !important;
+  width: 100% !important;
 }
 .select_test button {
   margin-top: 20px;
@@ -713,7 +714,7 @@ header.other_head ul li svg {
   user-select: none;
   position: absolute;
   bottom: 1px;
-  right: 0;
+  right: 17px;
 }
 
 // Sep 22
@@ -802,6 +803,14 @@ img.google_ads_home {
 }
 
 
+
+}
+
+@media only screen and (min-width:768px) and (max-width:1400px){
+  .card-img-top {
+    height: auto !important;
+    width: 100% !important;
+  }
 }
 
 
