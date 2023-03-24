@@ -154,12 +154,7 @@ a.item {
   border-radius: 10px;
   width: 100%;
   padding: 10px;
-  height: 250px;
   overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-
 }
 
 .similar-coursesslider .boxnew .tag_btn p {
@@ -168,14 +163,14 @@ a.item {
   font-size: 16px;
   line-height: 20px;
   color: #000000;
-  padding:2px 0;
+  padding: 12px 0px 5px 0px;
   font-family: "SegoeUI_medium";
   margin: 0;
 }
 
 .similar-coursesslider .slide-img1 img {
-  width: 250px;
-  height: 300px;
+  width: 234px;
+  height: 130px;
   border-radius: 10px 10px 0px 0px;
 }
 
