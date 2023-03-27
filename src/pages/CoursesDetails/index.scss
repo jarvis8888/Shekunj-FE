@@ -147,7 +147,7 @@ section.CouDtl_ban .row {
   display: block;
   margin-bottom: 30px;
 }
-.sec2_right .btn.btn_str_Cor:hover{
+.sec2_right .btn.btn_str_Cor:hover {
   color: #ec498a;
   background: white;
   border: 1px solid #ec498a;
@@ -220,7 +220,7 @@ section.CouDtl_ban .row {
   cursor: pointer !important;
 }
 
-.sec2_right a.btn_view:hover{
+.sec2_right a.btn_view:hover {
   background: #ec498a;
   border: 1px solid #ec498a;
   color: white;
@@ -236,6 +236,9 @@ section.CouDtl_ban .row {
   width: 100%;
   padding: 10px;
   overflow: hidden;
+  margin-left: 75px;
+  min-width: 345px;
+  height: 250px;
 }
 .similar-coursesslider .boxnew .tag_btn p {
   font-style: normal;
@@ -249,7 +252,7 @@ section.CouDtl_ban .row {
 }
 .similar-coursesslider .slide-img1 img {
   width: 234px;
-  height: 130px;
+  height: 180px;
   border-radius: 10px 10px 0px 0px;
 }
 .sec1_con2 h2 {
@@ -375,7 +378,6 @@ section.CouDtl_ban .row {
   top: 75px;
   margin: auto;
   left: 27px;
-
 }
 
 .sec2_right .owl-carousel .owl-item img {
@@ -448,12 +450,11 @@ section.CouDtl_ban .row {
   }
 
   section.CouDtl_ban .row {
-    height: auto ;
+    height: auto;
   }
   .sec2_right .set {
     margin-left: 0px !important;
   }
- 
 }
 .sec1_con2.con_setSec1 .features_box {
   background-color: transparent;
@@ -464,20 +465,20 @@ section.CouDtl_ban .row {
 .ads_course_detail_cover {
   text-align: center;
 }
-.ads_course_detail{
+.ads_course_detail {
   margin: 40px 0px;
   height: 120px;
   width: 84%;
   object-fit: cover;
 }
 @media screen and (min-device-width: 50px) and (max-device-width: 767px) {
-
   .ads_course_detail {
     margin: 30px 0px !important;
     height: 39px !important;
     width: 80% !important;
   }
-
+  .similar-coursesslider .boxnew {
+    min-width: 285px;
+    margin-left: 30px;
+  }
 }
-
-

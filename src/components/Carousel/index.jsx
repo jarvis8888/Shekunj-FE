@@ -85,24 +85,24 @@ function Carousel(props) {
               nav: true,
             },
             768: {
-              items: 2,
+              items:  props.page === carouselConstant.COURSE_DETAIL?1:2,
               nav: true,
             },
             375: {
-              items: 1.5,
+              items:  props.page === carouselConstant.COURSE_DETAIL?1:1.5,
               nav: true,
               margin: 50,
             },
             1024: {
-              items: props.page === carouselConstant.COURSE_DETAIL ? 1.4 : 3,
+              items: props.page === carouselConstant.COURSE_DETAIL ? 1 : 3,
               nav: true,
             },
             1200: {
-              items: props.page === carouselConstant.COURSE_DETAIL ? 1.4 : 4,
+              items: props.page === carouselConstant.COURSE_DETAIL ? 1 : 4,
               nav: true,
             },
             1366: {
-              items: props.page === carouselConstant.COURSE_DETAIL ? 1.4 : 4,
+              items: props.page === carouselConstant.COURSE_DETAIL ? 1 : 4,
               nav: true,
               margin: 250,
             },
