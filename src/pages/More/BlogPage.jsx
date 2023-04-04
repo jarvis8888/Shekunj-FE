@@ -190,7 +190,7 @@ function BlogPage() {
       <Header loginPage={true} page='more' subPage='moreblog' />
       <Helmet>
 
-        <title>India's Leading Women Empowerment Organization - Shekunj. com</title>
+        <title>India's Leading Women Empowerment Organization - Shekunj.com</title>
         <link rel="canonical" href="https://www.shekunj.com/blogs/" />
         <meta name="description" 
         content="Shekunj.com works on women empowerment and skill development by providing free training, job-oriented courses, jobs & internships and career counseling." />
