@@ -727,7 +727,7 @@
     "button": {
       "1": "Show",
       "2": "Join the movement!",
-      "3":"Read Full Article"
+      "3": "Read Full Article"
     }
   },
   "privacyPolicyPage": {
@@ -815,6 +815,14 @@
       "career_test_time": "Career Test Time",
       "no_of_questions": "No Of Questions",
       "total_score": "Total Score"
+    }
+  },
+  "phase2": {
+    "SuccessStoryContent": {
+      "title1": "<div>Empowered <span>women</span>,</div>",
+      "title2": "<div>Empower the world.</div>",
+      "description": "Women around the world have achieved wonders. They not only run successful businesses but also take care of their families. There is nothing more powerful than a determined and confident woman.",
+      "buttonTitle": "View All Success Stories"
     }
   }
 }

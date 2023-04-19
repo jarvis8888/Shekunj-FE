@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins");
 .SuccStory_banner {
   background-image: url("../../assets/images/Success/sus_banner.jpg");
   background-repeat: no-repeat;
@@ -43,7 +44,7 @@ p.sucess_first_p {
   color: rgb(255 255 255);
   font-size: 27px;
   font-weight: 600;
-  font-family: 'SegoeUI_bold';
+  font-family: "SegoeUI_bold";
 }
 
 .suc_box {
@@ -176,13 +177,12 @@ button.want_btn {
 }
 
 @media screen and (min-device-width: 50px) and (max-device-width: 767px) {
-
-.blog_content1 {
-  max-height: 109px !important;
-}
-.blog_content {
-  max-height: 109px !important;
-}
+  .blog_content1 {
+    max-height: 109px !important;
+  }
+  .blog_content {
+    max-height: 109px !important;
+  }
   .SuccStory_banner {
     background-image: url("../../assets/images/Success/mob_suc_banner.png");
     height: 698px;
@@ -257,13 +257,10 @@ button.want_btn {
     height: 100px !important;
     width: 100% !important;
   }
-  .ads_succ_story{
+  .ads_succ_story {
     height: 100px !important;
   }
-
 }
-
-
 
 // @media screen and (max-width: 1280px) {
 //     .SuccStory_banner {
@@ -310,15 +307,111 @@ button.want_btn {
   width: 100%;
   //object-fit: cover;
 }
-.ads_succ_story{
+.ads_succ_story {
   margin: 30px 0px;
   height: 150px;
   width: 100%;
- // object-fit: cover;
+  // object-fit: cover;
 }
 
 .story_image {
   width: 100%;
   height: 410px;
   object-fit: cover;
-} 
+}
+
+//SuccessStory Section1 styles start
+.Section1 {
+  display: flex;
+  flex-wrap: wrap;
+  height: 60vh;
+
+  > .section1-item {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    padding: 10px;
+
+    @media (max-width: 1000px) {
+      width: 100%;
+    }
+    .title {
+      display: flex;
+      font-family: "Poppins";
+      font-style: normal;
+      font-weight: 500;
+      font-size: 2.7rem;
+      line-height: 120%;
+      justify-content: flex-start;
+      align-items: flex-start;
+      span {
+        color: #d3317d;
+        font-style: normal;
+        font-weight: 700;
+      }
+      @media (max-width: 768px) {
+        font-size: 2rem;
+      }
+    }
+    .center {
+      margin: 40px 0 0 30px;
+      @media (max-width: 768px) {
+        margin: 0;
+      }
+    }
+    p {
+      font-family: "Roboto";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 1rem;
+      line-height: 160%;
+      color: #555555;
+      width: 70%;
+      padding: 10px 0 10px 0;
+      @media (max-width: 768px) {
+        width: 95%;
+      }
+    }
+    button {
+      width: 50%;
+      padding: 10px 20px;
+      border-radius: 40px;
+      margin: 10px 0 10px 0;
+      transition: background-color 0.5s ease, border-color 0.5s ease,
+        color 0.5s ease;
+      &:hover {
+        background-color: #ffffff;
+        border: 1px solid #d3317d;
+        color: #d3317d;
+      }
+      @media (max-width: 768px) {
+        width: 80%;
+      }
+    }
+    .BackgroundImage {
+      background-image: url("../../assets/icons/svgs/worldmap.svg");
+      background-repeat: no-repeat;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      @media (max-width: 768px) {
+        width: 100%;
+        height: 100px;
+        background-size: cover;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
+}
+//SuccessStory Section1 styles end
+
+//featuredStories styles start
+
+//featuredStories styles end
