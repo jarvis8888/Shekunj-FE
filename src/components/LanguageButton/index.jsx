@@ -4,7 +4,7 @@ import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Fade from "@mui/material/Fade";
-import LanguageIcon from "@mui/icons-material/Language";
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import { makeStyles } from "@mui/styles";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -13,15 +13,15 @@ import { translation } from "../../store/language";
 const useStyles = makeStyles({
   language: {
     borderRadius: "0 !important",
-    width: "128px",
-    height: "40px",
+    width: "110px",
+    height: "30px",
     color: "#000000 !important",
     border: "1px solid #000000 !important",
     textTransform: "none !important",
     fontFamily: "Poppins !important",
     fontStyle: "normal",
     fontWeight: "300 !important",
-    fontSize: "16px !important",
+    fontSize: "14px !important",
   },
 });
 
@@ -68,7 +68,7 @@ function ChangeLanguageButton() {
         aria-haspopup='true'
         aria-expanded={open ? "true" : undefined}
         onClick={handleClick}
-        startIcon={<LanguageIcon />}
+        startIcon={<ArrowDropDownIcon />}
       >
         {language.startsWith("en") ? "English" : "हिन्दी"}
       </Button>

@@ -29,6 +29,9 @@ import { routingConstants } from "../../utils/constants";
 import { pink } from "@mui/material/colors";
 import { compareAsc, format } from "date-fns";
 import Cookies from "js-cookie";
+import Navbar from "./Navbar";
+import TopNavbar from "./TopNavbar";
+import { TopicRounded } from "@mui/icons-material";
 const Header = ({ page, subPage }) => {
   // const classes = useStyles();
   const { notifications } = useSelector((state) => state.notificationsReducer);
@@ -254,6 +257,8 @@ const Header = ({ page, subPage }) => {
 
   return (
     <>
+    <TopNavbar/>
+    <Navbar/>
       <div className='noselect'>
         <header className='other_head'>
           <div className='container'>
