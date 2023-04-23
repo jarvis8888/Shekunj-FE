@@ -148,7 +148,7 @@ const Navbar = (props) => {
           className='subMenu-items'
           aria-controls='basic-menu'
           aria-haspopup='true'
-          aria-expanded={open ? "true" : undefined}
+          aria-expanded={open1 ? "true" : undefined}
           onClick={(event) => setAnchorE2(event.currentTarget)}
           style={{ cursor: "pointer" }}
         >
