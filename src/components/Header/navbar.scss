@@ -23,8 +23,11 @@
   margin: 15px;
   position: relative;
   opacity: 0.9;
+  cursor: pointer;
 }
-
+.active {
+  color: #d3317d !important;
+}
 .Navbar > .nav-items > a:hover {
   opacity: 1;
 }
@@ -47,10 +50,12 @@
 .Navbar > .nav-toggle {
   display: none;
 }
-
+#subMenu-mobile {
+  display: none;
+}
 @media (max-width: 800px) {
   .Navbar > .nav-items {
-    position: absolute;
+    position: fixed;
     top: 60px;
     display: flex;
     flex-direction: column;
@@ -61,6 +66,9 @@
     transform: translateX(-100%);
     transition: all 0.45s;
   }
+  .search {
+    display: none;
+  }
 
   .Navbar > .nav-items > a::before {
     background: transparent;
@@ -68,6 +76,9 @@
 
   .Navbar > .nav-items.open {
     transform: translateX(0);
+    z-index: 9999;
+    height: 100vh;
+    overflow: scroll;
   }
 
   .Navbar > .nav-toggle {
@@ -131,6 +142,12 @@
   .nav-toggle.open > .bar::after {
     transform: rotate(-45deg) translate(26px, 26px);
   }
+  .subMenu-items {
+    display: none;
+  }
+  #subMenu-mobile {
+    display: flex;
+  }
 }
 
 .header-top {
@@ -165,11 +182,16 @@
       }
     }
   }
-  .button {
-    padding: 4px 10px;
-    border-radius: 5px;
-  }
+
   @media (max-width: 800px) {
     display: none;
+  }
+}
+
+.profile {
+  display: flex;
+  img {
+    width: 10px;
+    height: 10px;
   }
 }
