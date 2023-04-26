@@ -42,8 +42,6 @@ const SuccessStoryDetails = () => {
   const [succesStoriesRight1, setSuccesStoriesRight1] = useState([]);
   const [succesStoriesRight2, setSuccesStoriesRight2] = useState([]);
 
-  console.log(successStoriesDetails, "successStoriesDetails");
-
   const [storyDetailsBoxAds, setStoryDetailsBoxAds] = useState([]);
   const detect = useDeviceDetect();
 
@@ -286,6 +284,7 @@ const SuccessStoryDetails = () => {
                             makeHtml={makeHtml}
                             key={index}
                             created_at={items.created_at}
+                            id={items.id}
                           />
                         </>
                       );
