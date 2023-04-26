@@ -1,0 +1,83 @@
+/* Container for the carousel */
+.you-may-like-carousel {
+  margin: 2rem 0;
+  position: relative;
+
+  /* Title for the carousel */
+  &__title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+
+  /* Container for the carousel items */
+  &__items {
+    display: flex;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+
+    /* Styling for each carousel item */
+    &__item {
+      scroll-snap-align: center;
+      flex-shrink: 0;
+      width: 200px;
+      margin-right: 1rem;
+    }
+  }
+
+  /* Left and right arrows for the carousel */
+  &__arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+    width: 2rem;
+    height: 2rem;
+    background-color: #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &--left {
+      left: 0;
+    }
+
+    &--right {
+      right: 0;
+    }
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  /* Dash line at the bottom to indicate scroll */
+  &__scroll-line {
+    width: 100%;
+    height: 2px;
+    background-color: #ddd;
+    position: relative;
+
+    &::before {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 20px;
+      height: 2px;
+      background-color: #333;
+      transition: transform 0.3s ease;
+    }
+
+    &--scrolled::before {
+      transform: translateX(100%);
+    }
+  }
+}

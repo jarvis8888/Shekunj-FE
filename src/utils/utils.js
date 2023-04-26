@@ -239,3 +239,10 @@ export async function convertRelativeUriToFile(
   cb(new File([buffer], fileName, { type: mimeType }));
 }
 
+export function truncateString(str, len) {
+  if (str.length > len) {
+    return str.slice(0, len) + "...";
+  } else {
+    return str;
+  }
+}

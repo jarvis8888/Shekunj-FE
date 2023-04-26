@@ -41,7 +41,9 @@ export const allCourses =
     try {
       dispatch({ type: coursesTypes.COURSES_REQUEST });
       const res = await httpServices.get(
-        filter ? `${constants.COURSE_LIST + filter}` : `${constants.COURSE_LIST}?limit=5`,
+        filter
+          ? `${constants.COURSE_LIST + filter}`
+          : `${constants.COURSE_LIST}?limit=5`,
       );
       dispatch({
         type: coursesTypes.COURSES_FINISH,
@@ -225,20 +227,15 @@ export const testCountSummery = (id, history) => async (dispatch) => {
   }
 };
 
-export const successStories = (limit,offset,page) => async (dispatch) => {
+export const successStories = (limit, offset, page) => async (dispatch) => {
   try {
     dispatch({ type: coursesTypes.SUCCESS_STORY_REQUEST });
-    const url=constants.SUCCESS_STORY+`?limit=${limit}&offset=${offset}&p=${page}`
+    const url =
+      constants.SUCCESS_STORY + `?limit=${limit}&offset=${offset}&p=${page}`;
     const res = await httpServices.get(url);
     dispatch({
       type: coursesTypes.SUCCESS_STORY_FINISH,
-      payload:
-        {...res?.data,
-          results:res?.data?.results?.map((d) => ({
-          ...d,
-          image: d.image ? d?.image : httpServices.noImage,
-          is_collapse: false,
-        })) || [],}
+      payload: res,
     });
   } catch (err) {
     dispatch({ type: coursesTypes.SUCCESS_STORY_FAIL });
@@ -247,15 +244,15 @@ export const successStories = (limit,offset,page) => async (dispatch) => {
 export const successStoriesDetails = (id) => async (dispatch) => {
   try {
     dispatch({ type: coursesTypes.SUCCESS_STORY_DETAILS_REQUEST });
-    const res = await httpServices.get(constants.SUCCESS_STORY+id);
+    const res = await httpServices.get(constants.SUCCESS_STORY + id);
     dispatch({
       type: coursesTypes.SUCCESS_STORY_DETAILS_FINISH,
-      payload:res?.data
-        // res?.data?.map((d) => ({
-        //   ...d,
-        //   image: d.image ? d?.image : httpServices.noImage,
-        //   is_collapse: false,
-        // })) || [],
+      payload: res?.data,
+      // res?.data?.map((d) => ({
+      //   ...d,
+      //   image: d.image ? d?.image : httpServices.noImage,
+      //   is_collapse: false,
+      // })) || [],
     });
   } catch (err) {
     dispatch({ type: coursesTypes.SUCCESS_STORY_DETAILS_FAIL });
@@ -324,7 +321,6 @@ export const subModule = (id) => async (dispatch) => {
       type: coursesTypes.CURRENT_MODAL,
       payload: res?.data?.current_module,
     });
-    
   } catch (err) {
     dispatch({ type: coursesTypes.COURSE_FAIL });
   }

@@ -11,8 +11,8 @@ export const getLanguage = () => {
   return currentLang ? currentLang?.split("-")[0] : "en";
 };
 
-const apiBaseUrl = 'https://admin.shekunj.com/';
-// const apiBaseUrl = process.env.REACT_APP_URL_API;
+// const apiBaseUrl = 'https://admin.shekunj.com/';
+const apiBaseUrl = process.env.REACT_APP_URL_API;
 axios.defaults.baseURL = `${apiBaseUrl}${getLanguage()}/api/`;
 
 axios.defaults.withCredentials = true;

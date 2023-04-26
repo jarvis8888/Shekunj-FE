@@ -22,6 +22,15 @@ import { Helmet } from "react-helmet-async";
 import { routingConstants } from "../../utils/constants";
 import Pagination from "../../components/Pagination";
 import AddsBanner from "../../components/AddsBanner/AddsBanner";
+
+import fire from "../../assets/icons/svgs/fire.png";
+import FeaturedCards from "../../components/cards/FeaturedCards";
+import { TrendingStories } from "./TrendingStories";
+import YouMayLikeCarousel from "../../components/Carousel/YouMayLikeCarousel";
+import { HashtagAndCatagories } from "../../components/HastagAndCatagories/Index";
+import TrendingCards from "../../components/cards/TrendingCards";
+import hash from "../../assets/icons/svgs/hashtag.png";
+
 function SuccessStory() {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -33,6 +42,7 @@ function SuccessStory() {
   const [offset, setOffset] = useState(0);
   const [page, setPage] = useState(1);
   const pageLimit = 5;
+
   React.useEffect(() => {
     dispatch(fetchSuccessStories(pageLimit, offset, page));
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
@@ -43,10 +53,13 @@ function SuccessStory() {
   };
 
   const [storiesBannerAds, setStoriesBannerAds] = useState([]);
+  const [succesStoriesRight1, setSuccesStoriesRight1] = useState([]);
+  const [succesStoriesRight2, setSuccesStoriesRight2] = useState([]);
   const [storiesBoxAds, setStoriesBoxAds] = useState([]);
   const [image, setImage] = useState("NA");
   const detect = useDeviceDetect();
 
+  console.log(succesStoriesRight1);
   // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>code below>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
   // useEffect(() => {
@@ -103,7 +116,6 @@ function SuccessStory() {
                 return item.image_type == "success_stories_banner";
               });
               setStoriesBannerAds(filterArray1);
-              // console.log("filterArray1success_stories_banner",filterArray1)
             }
           });
       },
@@ -116,7 +128,6 @@ function SuccessStory() {
               return item.image_type == "success_stories_banner";
             });
             setStoriesBannerAds(filterArray1);
-            // console.log("filterArray1coursebox",filterArray1)
           }
         });
       },
@@ -167,6 +178,16 @@ function SuccessStory() {
               filterArray.length > 0 ? filterArray[0].image : "NA";
             setImage(findImage);
             setStoriesBoxAds(filterArray);
+            let filterArray2 = response.data.results.filter((item, index) => {
+              return item.image_type === "success_stories_right1";
+            });
+
+            setSuccesStoriesRight1(filterArray2);
+            let filterArray3 = response.data.results.filter((item, index) => {
+              return item.image_type === "success_stories_right2";
+            });
+
+            setSuccesStoriesRight2(filterArray3);
           }
         })
         .catch((error) => {
@@ -197,47 +218,12 @@ function SuccessStory() {
     setPage(page + 1);
     window.scrollTo(0, 1000);
   };
+
+  
+
   return (
     <div>
       <Header loginPage={true} page='story' />
-      {/* <div className='SuccStory_banner noselect'>
-        <Helmet>
-          <link
-            rel='canonical'
-            href='https://www.shekunj.com/success-stories/'
-          />
-          <title>
-            Inspiring Success Stories of #SheTheChampion - Shekunj.com
-          </title>
-          <meta
-            name='description'
-            content='Shekunj.com shares success stories of 
-        women across India who have made their dreams come true and achieved sky-high
-         success. Read our success stories.'
-          />
-          <meta
-            name='keywords'
-            content='women empowerment organizations, success stories, free online courses, free career guidance,'
-          />
-        </Helmet>
-
-        <Container>
-          <Row>
-            <Col md={1}>
-              <div className='global_img'>
-                <img src={global} alt='' className='vert-move' />
-              </div>
-            </Col>
-            <Col md={6} data-aos='slide-up'>
-              <h1> {t("successStoriesPage.heading.1")}</h1>
-              <p className='sucess_first_p'>
-                {t("successStoriesPage.content.1")}
-              </p>
-              <p>{t("successStoriesPage.content.4")}</p>
-            </Col>
-          </Row>
-        </Container>
-      </div> */}
       {/* success story section1 start */}
       <div className='Section1'>
         <div className='section1-item'>
@@ -265,27 +251,21 @@ function SuccessStory() {
         </div>
       </div>
       {/* success story section1 end */}
-
       {/* Adds Section start */}
-      {detect.isMobile ? null : <AddsBanner color='#F4F4F4' />}
-      {/* Adds Section end */}
-
-      {/* Featured Stories start */}
-     
-      {/* Featured Stories end  */}
-
-      {/* google add */}
-      {/* <Container>
-        <Row>
-          <div className='col-md-12'>
+      <AddsBanner
+        color='#F4F4F4'
+        children={
+          <>
             {storiesBannerAds.length > 0 && (
-              // <div className="ads_story_cover">
-
               <div
                 className='col-md-12 ads_home_cover'
                 onClick={() => addEmail(storiesBannerAds[0]?.add_email)}
               >
-                <a href={storiesBannerAds[0]?.url_adds} target='_blank'>
+                <a
+                  href={storiesBannerAds[0]?.url_adds}
+                  target='_blank'
+                  rel='noreferrer'
+                >
                   {detect.isMobile
                     ? storiesBannerAds[0]?.image_mobile && (
                         <img
@@ -303,39 +283,95 @@ function SuccessStory() {
                       )}
                 </a>
               </div>
-
-              // <div
-              //   className='ads_story_cover'
-              //   onClick={() => addEmail(storiesBannerAds[0]?.add_email)}
-              // >
-              //   <a href={storiesBannerAds[0]?.url_adds} target='_blank'>
-              //     <img
-              //     src={  detect.isMobile ? storiesBannerAds[0]?.image_mobile :  storiesBannerAds[0]?.image}
-              //       alt='Image'
-              //       className='ads_story_cover_img'
-              //     />
-              //   </a>
-              // </div>
             )}
+          </>
+        }
+      />
+      {/* Adds Section end */}
+      {/* Featured Stories start */}
+      <div className='grid-container'>
+        <div className='featured-stories'>
+          <div className='title'>
+            <img src={fire} alt='fire' width={25} height={25} />
+            <h4>Featured Stories </h4>
           </div>
-        </Row>
-      </Container> */}
-
-      
-
-      {/* <div className='want'>
-        <Container>
-          <h2>{t("successStoriesPage.content.2")}</h2>
-          <button
-            onClick={() => history.push("/contact-us")}
-            className='want_btn'
+          <div className='card-gird'>
+            {successStories?.featured_success_stories?.results.length
+              ? successStories?.featured_success_stories?.results.map(
+                  (items, index) => {
+                    return (
+                      <FeaturedCards
+                        image={items.image}
+                        hashtags={items.hash_tags}
+                        title={items.name}
+                        description={`${items.title}`}
+                        makeHtml={makeHtml}
+                        key={index}
+                        created_at={items.created_at}
+                        reading_time={items.reading_time}
+                        id={items.id}
+                      />
+                    );
+                  },
+                )
+              : null}
+          </div>
+          <div
+            style={{
+              width: "100%",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              padding: "20px 0",
+            }}
           >
-            {t("successStoriesPage.button.2")}
-          </button>
-        </Container>
-      </div> */}
-
-      {/* <Footer loginPage={false} /> */}
+            <button className='loadMore'>Load More</button>
+          </div>
+          <div>
+            <div>
+              <div className='title'>
+                <img src={fire} alt='fire' width={25} height={25} />
+                <h4>Trending Stories </h4>
+              </div>
+              <div className='treading-card-gird'>
+                {successStories?.trending_success_stories?.results.length
+                  ? successStories?.trending_success_stories?.results.map(
+                      (items, index) => {
+                        return (
+                          <>
+                            <TrendingCards
+                              image={items.image}
+                              hashtags={items.hash_tags}
+                              title={items.name}
+                              description={`${items.title}`}
+                              makeHtml={makeHtml}
+                              key={index}
+                              created_at={items.created_at}
+                            />
+                          </>
+                        );
+                      },
+                    )
+                  : null}
+              </div>
+            </div>
+          </div>
+          {/* <TrendingStories /> */}
+        </div>
+        <div className='ads'>
+          <HashtagAndCatagories
+            image={hash}
+            tittle={`Trending Hastag`}
+            firstAdd={succesStoriesRight1}
+            addEmail={addEmail}
+            hashtags={successStories?.all_hash_tags}
+            rightOne={succesStoriesRight1}
+            rightTwo={succesStoriesRight2}
+          />
+        </div>
+      </div>
+      {/* Featured Stories end  */}
+      <Footer />
     </div>
   );
 }

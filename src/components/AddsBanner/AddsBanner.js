@@ -2,11 +2,11 @@ import React, { memo } from "react";
 import "./index.scss";
 
 const AddsBanner = (props) => {
-  const { color } = props;
+  const { color, data, children } = props;
   return (
     <>
       <div className='add-banner' style={{ backgroundColor: color }}>
-        <div className='rectangle'>Add comes here </div>
+        <div className='rectangle'>{children}</div>
       </div>
     </>
   );

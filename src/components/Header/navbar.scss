@@ -195,3 +195,30 @@
     height: 10px;
   }
 }
+
+//RSUITE STYELS
+
+.custom-dropdown {
+  box-shadow: none;
+  border: none;
+  // background-color: transparent;
+  // color: inherit;
+  .rs-dropdown-menu {
+    background-color: #f4f4f4;
+  }
+
+  .rs-dropdown-item {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    &:hover {
+      color: #db5789;
+    }
+
+    &.active {
+      background-color: #fff;
+      color: #db5789;
+    }
+  }
+}
