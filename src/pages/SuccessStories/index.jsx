@@ -219,8 +219,6 @@ function SuccessStory() {
     window.scrollTo(0, 1000);
   };
 
-  
-
   return (
     <div>
       <Header loginPage={true} page='story' />
@@ -337,6 +335,7 @@ function SuccessStory() {
                 {successStories?.trending_success_stories?.results.length
                   ? successStories?.trending_success_stories?.results.map(
                       (items, index) => {
+                        console.log(items);
                         return (
                           <>
                             <TrendingCards
@@ -347,6 +346,7 @@ function SuccessStory() {
                               makeHtml={makeHtml}
                               key={index}
                               created_at={items.created_at}
+                              id={items.id}
                             />
                           </>
                         );

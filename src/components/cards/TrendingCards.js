@@ -2,6 +2,8 @@ import React from "react";
 import "./style.scss";
 import time from "../../assets/icons/svgs/time.png";
 import { truncateString } from "../../utils/utils";
+import { routingConstants } from "../../utils/constants";
+import { useHistory } from "react-router-dom";
 
 const TrendingCards = (data) => {
   const {
@@ -12,7 +14,9 @@ const TrendingCards = (data) => {
     makeHtml,
     key,
     reading_time,
+    id,
   } = data;
+  const history = useHistory();
   return (
     <div className='card'>
       <div className='card__image'>
@@ -34,7 +38,10 @@ const TrendingCards = (data) => {
         <span>
           <img src={time} alt='time' width={14} height={14} /> 5 mins to read
         </span>
-        <button className='card__button'>
+        <button
+          className='card__button'
+          onClick={() => history.push(routingConstants.SUCCESS_STORIES + id)}
+        >
           Read More
           <svg
             width='20'
