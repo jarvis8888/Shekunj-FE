@@ -42,6 +42,7 @@ function SuccessStory() {
   const [offset, setOffset] = useState(0);
   const [page, setPage] = useState(1);
   const pageLimit = 5;
+  const [searchValue, setSearchValue] = useState("");
 
   React.useEffect(() => {
     dispatch(fetchSuccessStories(pageLimit, offset, page));
@@ -59,7 +60,6 @@ function SuccessStory() {
   const [image, setImage] = useState("NA");
   const detect = useDeviceDetect();
 
-  console.log(succesStoriesRight1);
   // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>code below>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
   // useEffect(() => {
@@ -116,6 +116,16 @@ function SuccessStory() {
                 return item.image_type == "success_stories_banner";
               });
               setStoriesBannerAds(filterArray1);
+              let filterArray2 = response.data.results.filter((item, index) => {
+                return item.image_type === "success_stories_right1";
+              });
+
+              setSuccesStoriesRight1(filterArray2);
+              let filterArray3 = response.data.results.filter((item, index) => {
+                return item.image_type === "success_stories_right2";
+              });
+
+              setSuccesStoriesRight2(filterArray3);
             }
           });
       },
@@ -178,16 +188,16 @@ function SuccessStory() {
               filterArray.length > 0 ? filterArray[0].image : "NA";
             setImage(findImage);
             setStoriesBoxAds(filterArray);
-            let filterArray2 = response.data.results.filter((item, index) => {
-              return item.image_type === "success_stories_right1";
-            });
+            // let filterArray2 = response.data.results.filter((item, index) => {
+            //   return item.image_type === "success_stories_right1";
+            // });
 
-            setSuccesStoriesRight1(filterArray2);
-            let filterArray3 = response.data.results.filter((item, index) => {
-              return item.image_type === "success_stories_right2";
-            });
+            // setSuccesStoriesRight1(filterArray2);
+            // let filterArray3 = response.data.results.filter((item, index) => {
+            //   return item.image_type === "success_stories_right2";
+            // });
 
-            setSuccesStoriesRight2(filterArray3);
+            // setSuccesStoriesRight2(filterArray3);
           }
         })
         .catch((error) => {
@@ -290,7 +300,7 @@ function SuccessStory() {
       <div className='grid-container'>
         <div className='featured-stories'>
           <div className='title'>
-            <img src={fire} alt='fire' width={25} height={25} />
+            <img src={fire} alt='fire' width={30} height={30} />
             <h4>Featured Stories </h4>
           </div>
           <div className='card-gird'>
@@ -328,7 +338,7 @@ function SuccessStory() {
           <div>
             <div>
               <div className='title'>
-                <img src={fire} alt='fire' width={25} height={25} />
+                <img src={fire} alt='fire' width={30} height={30} />
                 <h4>Trending Stories </h4>
               </div>
               <div className='treading-card-gird'>
@@ -360,9 +370,9 @@ function SuccessStory() {
         </div>
         <div className='ads'>
           <HashtagAndCatagories
+            type='hashtag'
             image={hash}
-            tittle={`Trending Hastag`}
-            firstAdd={succesStoriesRight1}
+            title={`Trending Hastag`}
             addEmail={addEmail}
             hashtags={successStories?.all_hash_tags}
             rightOne={succesStoriesRight1}

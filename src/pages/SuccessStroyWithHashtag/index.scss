@@ -1,0 +1,36 @@
+.Hashtag_container {
+  width: 100%;
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 70% 30%;
+  padding: 20px 30px;
+}
+.Hashtag_container_cards {
+  border-right: 1px solid #d9d9d9;
+}
+.Hashtag_container_title {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 36px;
+  padding: 20px 0;
+}
+
+.Hashtag_container_card_gird {
+  width: 95%;
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: flex-start;
+  justify-content: center;
+  gap: 40px;
+  @media (max-width: 768px) {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  @media (max-width: 468px) {
+    width: 100%;
+    gap: 20px;
+  }
+}

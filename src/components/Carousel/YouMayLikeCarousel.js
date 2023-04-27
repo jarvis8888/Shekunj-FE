@@ -1,49 +1,65 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import photo from "../../assets/icons/svgs/exphoto.png";
+import httpServices from "../../utils/ApiServices";
 
 import "./YouMayLikeCarousel.scss";
 
-const YouMayLikeCarousel = ({ items }) => {
-  const [currentItem, setCurrentItem] = useState(0);
+const YouMayLikeCarousel = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [data, setData] = useState([]);
 
-  const handleLeftArrowClick = () => {
-    setCurrentItem((prevItem) =>
-      prevItem === 0 ? items.length - 1 : prevItem - 1,
-    );
+  const goToPrevSlide = () => {
+    const index = currentIndex === 0 ? 3 : currentIndex - 1;
+    setCurrentIndex(index);
   };
 
-  const handleRightArrowClick = () => {
-    setCurrentItem((prevItem) =>
-      prevItem === items.length - 1 ? 0 : prevItem + 1,
-    );
+  const goToNextSlide = () => {
+    const index = currentIndex === 3 ? 0 : currentIndex + 1;
+    setCurrentIndex(index);
   };
+  const YouMayLikeCarouselData = async () => {
+    try {
+      const url = "/private_adds/you_may_like";
+      const res = await httpServices.get(url);
+      setData(res?.data?.you_may_like_adds);
+    } catch {}
+  };
+  useEffect(() => {
+    YouMayLikeCarouselData();
+  }, []);
 
   return (
-    <div className='you-may-like-carousel'>
+    <div className='youMayLikeCarousel'>
+      <div className='YouMayLikeCarouselCarousel_header'>You May Like</div>
       <div
-        className='you-may-like-carousel__arrow'
-        onClick={handleLeftArrowClick}
+        className='YouMayLikeCarouselCarousel__slide'
+        style={{ backgroundImage: `url(${data[currentIndex]?.image})` }}
       >
-        sa
+        <button
+          className='YouMayLikeCarouselCarousel__button YouMayLikeCarouselCarousel--left'
+          onClick={goToPrevSlide}
+        >
+          &#8249;
+        </button>
+        <div className='YouMayLikeCarouselCarousel__nav'>
+          {data?.map((_, index) => (
+            <button
+              key={index}
+              className={`carousel__dot ${
+                index === currentIndex ? "active1" : ""
+              }`}
+              onClick={() => setCurrentIndex(index)}
+            />
+          ))}
+        </div>
+        <button
+          className='YouMayLikeCarouselCarousel__button YouMayLikeCarouselCarousel--right'
+          onClick={goToNextSlide}
+        >
+          &#8250;
+        </button>
       </div>
-      <div className='you-may-like-carousel__items'>
-        {items.map((item, index) => (
-          <div
-            key={index}
-            className={`you-may-like-carousel__item ${
-              index === currentItem ? "is-active" : ""
-            }`}
-          >
-            <div className='you-may-like-carousel__title'>{item.title}</div>
-          </div>
-        ))}
-      </div>
-      <div
-        className='you-may-like-carousel__arrow'
-        onClick={handleRightArrowClick}
-      >
-        me
-      </div>
-      <div className='you-may-like-carousel__line'></div>
+      <div className="YouMayLikeCarousel__bottom__title">{data[currentIndex]?.add_title}</div>
     </div>
   );
 };

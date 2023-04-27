@@ -1,4 +1,9 @@
 import React, { useState } from "react";
+import "./index.scss";
+import fackbook from "../../assets/icons/svgs/facebook.png";
+import twitter from "../../assets/icons/svgs/twitter.png";
+import instagram from "../../assets/icons/svgs/instagram.png";
+import linkedin from "../../assets/icons/svgs/linkedin.png";
 
 function SocialMediaIcons() {
   const [facebookLikes, setFacebookLikes] = useState(0);
@@ -6,77 +11,42 @@ function SocialMediaIcons() {
   const [instagramLikes, setInstagramLikes] = useState(0);
   const [youtubeLikes, setYoutubeLikes] = useState(0);
 
-  const handleFacebookLike = () => {
-    setFacebookLikes(facebookLikes + 1);
-  };
-
-  const handleTwitterLike = () => {
-    setTwitterLikes(twitterLikes + 1);
-  };
-
-  const handleInstagramLike = () => {
-    setInstagramLikes(instagramLikes + 1);
-  };
-
-  const handleYoutubeLike = () => {
-    setYoutubeLikes(youtubeLikes + 1);
-  };
-
-  const socialMediaStyles = {
-    textAlign: "center",
-    fontSize: "24px",
-    lineHeight: "150px",
-    cursor: "pointer",
-  };
-
-  const facebookStyles = {
-    ...socialMediaStyles,
-    backgroundColor: "#305B94",
-    color: "white",
-  };
-
-  const twitterStyles = {
-    ...socialMediaStyles,
-    backgroundColor: "#49ABEC",
-    color: "white",
-  };
-
-  const instagramStyles = {
-    ...socialMediaStyles,
-    backgroundColor: "#2867B2",
-    color: "white",
-  };
-
-  const youtubeStyles = {
-    ...socialMediaStyles,
-    backgroundColor: "#7024C4",
-    color: "white",
-  };
-
   return (
-    <div
-      style={{
-        display: "flex",
-        width: "100%",
-        borderRadius: "20px",
-        padding: "10px 0",
-      }}
-    >
-      <div style={facebookStyles} onClick={handleFacebookLike}>
-        <i className='fab fa-facebook-f'></i>
-        <div>{`${facebookLikes} Likes`}</div>
+    <div className='SocialMediaIconscontainer'>
+      <div
+        className='likes'
+        style={{ backgroundColor: "#305B94", borderRadius: "10px 0 0 10px" }}
+      >
+        <i className='fab fa-facebook-f'>
+          <img src={fackbook} alt='facebook' />
+        </i>
+        <div style={{ color: "#fff" }}>{`${facebookLikes}`}</div>
+        <div style={{ color: "#fff" }}> {`Likes`}</div>
       </div>
-      <div style={twitterStyles} onClick={handleTwitterLike}>
-        <i className='fab fa-twitter'></i>
-        <div>{`${twitterLikes} Likes`}</div>
+      <div className='likes' style={{ backgroundColor: "#49ABEC" }}>
+        <i className='fab fa-twitter'>
+          <img src={twitter} alt='facebook' />
+        </i>
+        <div style={{ color: "#fff" }}>{`${facebookLikes}`}</div>
+        <div style={{ color: "#fff" }}>{`Likes`}</div>
       </div>
-      <div style={instagramStyles} onClick={handleInstagramLike}>
-        <i className='fab fa-instagram'></i>
-        <div>{`${instagramLikes} Likes`}</div>
+      <div className='likes' style={{ backgroundColor: "#305B94" }}>
+        <i className='fab fa-instagram'>
+          <img src={instagram} alt='facebook' />
+        </i>
+        <div style={{ color: "#fff" }}>{`${facebookLikes}`}</div>
+        <div style={{ color: "#fff" }}>{`Likes`}</div>
       </div>
-      <div style={youtubeStyles} onClick={handleYoutubeLike}>
-        <i className='fab fa-youtube'></i>
-        <div>{`${youtubeLikes} Likes`}</div>
+      <div
+        className='likes'
+        style={{ backgroundColor: "#E09B3D", borderRadius: "0 10px 10px 0 " }}
+      >
+        <i className='fab fa-youtube'>
+          <img src={linkedin} alt='facebook' />
+        </i>
+
+        <div style={{ color: "#fff" }}>{`${facebookLikes}`}</div>
+        <div style={{ color: "#fff" }}>{`Likes`}</div>
       </div>
     </div>
   );

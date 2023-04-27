@@ -36,7 +36,9 @@ const CourseCertificate = React.lazy(() => import("./pages/CourseCertificate"));
 const FaqPage = React.lazy(() => import("./pages/More/FaqPage"));
 const MockTest = React.lazy(() => import("./pages/MockTest"));
 const MockTestDetail = React.lazy(() => import("./pages/MockTestDetail"));
-const SuccessStoryDetailPage = React.lazy(() => import("./pages/SuccessStoryDetails"));
+const SuccessStoryDetailPage = React.lazy(() =>
+  import("./pages/SuccessStoryDetails"),
+);
 // const Magzine = React.lazy(() => import("./pages/Magzine"));
 const CertificateFullView = React.lazy(() =>
   import("./pages/CertificateFullView"),
@@ -45,6 +47,9 @@ const SuccessStories = React.lazy(() => import("./pages/SuccessStories"));
 const SuccessCareerTest = React.lazy(() => import("./pages/SuccessCareerTest"));
 const SuccessCareerOption = React.lazy(() =>
   import("./pages/SuccessCareerOption"),
+);
+const SuccessStroyWithHashtag = React.lazy(() =>
+  import("./pages/SuccessStroyWithHashtag"),
 );
 const MyProgress = React.lazy(() => import("./pages/MyProgress"));
 const ContactUs = React.lazy(() => import("./pages/ContactUs"));
@@ -65,7 +70,7 @@ const DataNotFound = React.lazy(() => import("./pages/DataNotFound"));
 
 function App() {
   useEffect(() => {
-    window.history.scrollRestoration = 'manual'
+    window.history.scrollRestoration = "manual";
   }, []);
   return (
     <>
@@ -96,9 +101,17 @@ function App() {
         <Route exact path={routingConstants.TOP_SCHOOLS} component={Career1} />
         <Route exact path={routingConstants.MORE_BLOG} component={BlogPage} />
         <Route exact path={routingConstants.MORE_EVENT} component={EventPage} />
-        <Route exact path={routingConstants.MORE_MAGAZINE} component={MagazinePage} />
-        <Route exact path={routingConstants.ALL_NOTIFICATION} component={Notifications} />
-        <Route exact path={routingConstants.MOCKTEST} component={MockTest} /> 
+        <Route
+          exact
+          path={routingConstants.MORE_MAGAZINE}
+          component={MagazinePage}
+        />
+        <Route
+          exact
+          path={routingConstants.ALL_NOTIFICATION}
+          component={Notifications}
+        />
+        <Route exact path={routingConstants.MOCKTEST} component={MockTest} />
         <Route exact path={routingConstants.FAQ} component={FaqPage} />
         <Route
           exact
@@ -124,6 +137,11 @@ function App() {
         />
         <Route
           exact
+          path={`${routingConstants.SUCCESS_STORIES_HASHTAG}`}
+          component={SuccessStroyWithHashtag}
+        />
+        <Route
+          exact
           path={routingConstants.SUCCESS_CAREER_TEST}
           component={SuccessCareerTest}
         />
@@ -142,34 +160,34 @@ function App() {
           path={routingConstants.ALL_CERTIFICATE_PAGE}
           component={AllCertificatePage}
         />
-          <PrivateRoute
+        <PrivateRoute
           exact
           path={`${routingConstants.MORE_EVENT}:id`}
           component={EventDetails}
         />
-          <PrivateRoute
+        <PrivateRoute
           exact
           path={`${routingConstants.MORE_MAGAZINE}:id`}
           component={MagzineDetails}
         />
-          <PrivateRoute
+        <PrivateRoute
           exact
           path={`${routingConstants.MOCKTEST}:id`}
           component={MockTestDetail}
         />
-          <PrivateRoute
+        <PrivateRoute
           exact
           path={`${routingConstants.MORE_BLOG}:id`}
           // component={BlogPage}
           component={BlogDetails}
         />
-         <PrivateRoute
+        <PrivateRoute
           exact
           path={`${routingConstants.SUCCESS_STORIES}:id`}
           // component={BlogPage}
           component={SuccessStoryDetailPage}
         />
-          {/* <PrivateRoute
+        {/* <PrivateRoute
           exact
           path={`${routingConstants.ALL_NOTIFICATION}:id`}
           component={NotificationDetails}
@@ -245,7 +263,7 @@ function App() {
         />
         <Route
           exact
-          path= {routingConstants.FORGOT_PASSWORD}
+          path={routingConstants.FORGOT_PASSWORD}
           component={ForgetPassword}
         />
         <Route

@@ -24,6 +24,10 @@ import instagram from "../../assets/images/instagram.png";
 import time from "../../assets/icons/svgs/time.png";
 import book from "../../assets/icons/svgs/book.png";
 import { TrendingBlogsCard } from "../../components/cards/TrendingBlogsCard";
+import httpServices from "../../utils/ApiServices";
+import { HashtagAndCatagories } from "../../components/HastagAndCatagories/Index";
+import { apiConstants } from "../../utils/constants";
+import catagorie from "../../assets/icons/svgs/categories.png";
 
 const BlogDetails = () => {
   const history = useHistory();
@@ -41,6 +45,12 @@ const BlogDetails = () => {
   const [adds, setAdds] = useState([]);
   const [blogDetailsBoxAds, setBlogDetailsBoxAds] = useState([]);
   const detect = useDeviceDetect();
+  const [succesStoriesRight1, setSuccesStoriesRight1] = useState([]);
+  const [succesStoriesRight2, setSuccesStoriesRight2] = useState([]);
+  const [blogCategories, setBlogCategories] = useState([]);
+  const [trending, setTrending] = useState([]);
+  const [offset, setOffset] = useState(0);
+  const pageLimit = 10;
 
   useEffect(() => {
     dispatch(singleBlogDetails(id));
@@ -96,6 +106,17 @@ const BlogDetails = () => {
 
   // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Latest code >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
+  const fetchData = async () => {
+    try {
+      const url = `more/blogs`;
+      const res = await httpServices.get(url);
+      setBlogCategories(res?.blog_categories);
+      setTrending(res?.trending_blogs?.results);
+    } catch (error) {}
+  };
+  useEffect(() => {
+    fetchData();
+  }, []);
   useEffect(() => {
     dispatch(adsList());
     navigator.geolocation.getCurrentPosition(
@@ -113,10 +134,16 @@ const BlogDetails = () => {
           )
           .then((response) => {
             if (response && response.data.results.length > 0) {
-              let filterArray1 = response.data.results.filter((item, index) => {
-                return item.image_type == "blog_details";
+              let filterArray2 = response.data.results.filter((item, index) => {
+                return item.image_type === "success_stories_right1";
               });
-              setBlogDetailsBoxAds(filterArray1);
+
+              setSuccesStoriesRight1(filterArray2);
+              let filterArray3 = response.data.results.filter((item, index) => {
+                return item.image_type === "success_stories_right2";
+              });
+
+              setSuccesStoriesRight2(filterArray3);
               // ("filterArray1blog_details",filterArray1)
             }
           });
@@ -163,6 +190,15 @@ const BlogDetails = () => {
     });
   };
 
+  const makeHtml = (htmlString) => {
+    const htmlNode = document.createElement("div");
+    htmlNode.innerHTML = htmlString;
+    htmlNode.querySelectorAll("*").forEach(function (node) {
+      node.removeAttribute("style");
+    });
+    return htmlNode.innerHTML;
+  };
+
   return (
     <div>
       <SEO title='Sheकुंज - Career' />
@@ -170,17 +206,13 @@ const BlogDetails = () => {
 
       <div className='story-details-container'>
         <div className='story-image-container'>
-          <img src={photo} alt='Story' className='img' />
+          <img src={blogs?.image} alt='Story' className='img' />
           <div className='story-bottom'>
             <div className='hashtags-container'>
               <div>
-                <span>#travel</span>
-                <span>#adventure</span>
-                <span>#photography</span>
-              </div>
-              <div>
                 <span>
-                  <img src={time} alt='time' width={14} height={14} />1 week
+                  <img src={time} alt='time' width={14} height={14} />
+                  {blogs?.created_at}
                 </span>
                 <span>
                   <img src={book} alt='time' width={14} height={14} />5 mins to
@@ -226,38 +258,87 @@ const BlogDetails = () => {
               </a>
             </div>
           </div>
-          <h4>Dipti Sangare</h4>
-          <h5>HR Manager, Company Name</h5>
-          <h6>Meet Dipti Sangare, one of our potential members!</h6>
+          <h4>{blogs?.title}</h4>
+          <div
+            className='card__description'
+            dangerouslySetInnerHTML={{
+              __html: makeHtml(`${blogs?.about_blog}`),
+            }}
+          />
           <div>
-            Dipti is quite diligent and visionary, these qualities of hers make
-            her unique from others. Being a Fresh Postgraduate, she started her
-            career by doing multiple internships and working as a Freelancer.
-            Later on, she got the chance by Shekunj.com to work with R Dot
-            Ventures as Human Resources Executive. Dipti is very hard-working as
-            well as dedicated to her work, and this sincerity helped her get
-            promoted to an HR Manager! She was provided with profound erudition
-            in every possible way by us.
+            <div class='social-media'>
+              <h6>Share this article</h6>
+              <a href='#'>
+                <i class='fa fa-facebook'>
+                  <img src={facebook} alt='twitter1' width={34} height={34} />
+                </i>
+              </a>
+              <a href='#'>
+                <i class='fa fa-twitter'>
+                  {" "}
+                  <img
+                    src={linkedinlogo}
+                    alt='twitter1'
+                    width={34}
+                    height={34}
+                  />
+                </i>
+              </a>
+              <a href='#'>
+                <i class='fa fa-instagram'>
+                  {" "}
+                  <img src={twitter1} alt='twitter1' width={34} height={34} />
+                </i>
+              </a>
+              <a href='#'>
+                <i class='fa fa-instagram'>
+                  {" "}
+                  <img src={instagram} alt='twitter1' width={34} height={34} />
+                </i>
+              </a>
+              <a href='#'>
+                <i class='fa fa-instagram'>
+                  {" "}
+                  <img src={youTube} alt='twitter1' width={34} height={34} />
+                </i>
+              </a>
+            </div>
+          </div>
+          <div className='catagorie_search_container'>
+            {blogs?.tags?.length
+              ? blogs?.tags.map((items) => {
+                  return (
+                    <span key={items} className='catagorie_search'>
+                      {items}
+                    </span>
+                  );
+                })
+              : null}
           </div>
           <div>
-            The knowledge and experience she acquired, now delivering and
-            empowering other women in the field of Human Resources as she's now
-            the Official Trainer of Shekunj.com.
+            {trending.map((items, index) => {
+              return (
+                <TrendingBlogsCard
+                  image={items.image}
+                  id={items.id}
+                  title='Lorem ipsum dolor sit amet'
+                  description='Lorem ipsum dolor sInteger nec lobortis nisi.'
+                  time='5'
+                  date='1 week ago'
+                />
+              );
+            })}
           </div>
-          {[1, 2, 3, 4, 5, 6].map(() => {
-            return (
-              <TrendingBlogsCard
-                image='https://placeimg.com/640/480/tech'
-                title='Lorem ipsum dolor sit amet'
-                description='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed neque a arcu sagittis ultrices. Integer nec lobortis nisi.'
-                time='5'
-                date='1 week ago'
-              />
-            );
-          })}
         </div>
         <div className='add-section-container'>
-          <img src='path-to-add-image' alt='Advertisement' />
+          <HashtagAndCatagories
+            image={catagorie}
+            title={`Trending Hastag`}
+            addEmail={addEmail}
+            hashtags={blogCategories}
+            rightOne={succesStoriesRight1}
+            rightTwo={succesStoriesRight2}
+          />
         </div>
       </div>
 

@@ -50,6 +50,51 @@ const SuccessStoryDetails = () => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, [dispatch, id, lan]);
 
+  useEffect(() => {
+    dispatch(adsList());
+    navigator.geolocation.getCurrentPosition(
+      async function (position, values) {
+        const latitude = position.coords.latitude;
+        const longitude = position.coords.longitude;
+
+        let params = {
+          latitude: latitude.toString(),
+          longitude: longitude.toString(),
+        };
+        axios
+          .get(
+            `/private_adds/private_add?latitude=${latitude}&longitude=${longitude}`,
+          )
+          .then((response) => {
+            if (response && response.data.results.length > 0) {
+              let filterArray2 = response.data.results.filter((item, index) => {
+                return item.image_type === "success_stories_right1";
+              });
+
+              setSuccesStoriesRight1(filterArray2);
+              let filterArray3 = response.data.results.filter((item, index) => {
+                return item.image_type === "success_stories_right2";
+              });
+
+              setSuccesStoriesRight2(filterArray3);
+            }
+          });
+      },
+      function (error) {
+        console.error("Error Code = " + error.code + " - " + error.message);
+        // alert("Your location is blocked")
+        axios.get(`/private_adds/private_add`).then((response) => {
+          if (response && response.data.results.length > 0) {
+            // let filterArray1 = response.data.results.filter((item, index) => {
+            //   return item.image_type == "success_stories_banner";
+            // });
+            // setStoriesBannerAds(filterArray1);
+          }
+        });
+      },
+    );
+  }, [dispatch]);
+
   // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Latest code >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
   const addEmail = (email) => {
     navigator.geolocation.getCurrentPosition(async function (position, values) {
@@ -73,40 +118,6 @@ const SuccessStoryDetails = () => {
         });
     });
   };
-  useEffect(() => {
-    navigator.geolocation.getCurrentPosition(async function (position, values) {
-      const latitude = position.coords.latitude;
-      const longitude = position.coords.longitude;
-
-      let params = {
-        latitude: latitude.toString(),
-        longitude: longitude.toString(),
-      };
-      axios
-        .get(
-          `/private_adds/private_add?latitude=${latitude}&longitude=${longitude}`,
-        )
-        .then((response) => {
-          if (response.data.results.length > 0) {
-            let filterArray2 = response.data.results.filter((item, index) => {
-              return item.image_type === "success_stories_right1";
-            });
-
-            setSuccesStoriesRight1(filterArray2);
-            let filterArray3 = response.data.results.filter((item, index) => {
-              return item.image_type === "success_stories_right2";
-            });
-
-            setSuccesStoriesRight2(filterArray3);
-          }
-        })
-        .catch((error) => {
-          // setMessage("No data found");
-          console.log(error);
-        });
-    });
-    dispatch(adsList());
-  }, [dispatch]);
 
   useEffect(() => {
     dispatch(adsList());
@@ -259,12 +270,6 @@ const SuccessStoryDetails = () => {
               __html: makeHtml(`${successStoriesDetails?.description}`),
             }}
           />
-          {/* <div>{successStoriesDetails?.description}</div> */}
-          <div>
-            The knowledge and experience she acquired, now delivering and
-            empowering other women in the field of Human Resources as she's now
-            the Official Trainer of Shekunj.com.
-          </div>
           <div style={{ padding: "20px 0" }}>
             <div className='title'>
               <img src={fire} alt='fire' width={25} height={25} />
@@ -298,8 +303,9 @@ const SuccessStoryDetails = () => {
         </div>
         <div className='add-section-container'>
           <HashtagAndCatagories
+            type='hashtag'
             image={hash}
-            tittle={`Trending Hastag`}
+            title={`Trending Hastag`}
             firstAdd={succesStoriesRight1}
             addEmail={addEmail}
             hashtags={successStories?.all_hash_tags}

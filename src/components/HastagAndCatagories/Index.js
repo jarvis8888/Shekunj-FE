@@ -2,33 +2,46 @@ import React from "react";
 import "./index.scss";
 import SocialMediaIcons from "./SocialMediaIcons";
 import useDeviceDetect from "../../hooks/useDeviceDetect";
+import YouMayLikeCarousel from "../Carousel/YouMayLikeCarousel";
+import { useHistory } from "react-router-dom";
+import { routingConstants } from "../../utils/constants";
 
 export const HashtagAndCatagories = (props) => {
   const {
     title,
     image,
-    firstAdd,
     hashtags = [],
     rightOne = [],
     rightTwo = [],
     addEmail,
+    type = "",
   } = props;
   const detect = useDeviceDetect();
+  const history = useHistory();
+
   return (
     <div className='HashtagAndCatagories'>
-      <div className='title'>
+      <div className='HashtagAndCatagoriesTitle'>
         <img src={image} alt='#' />
-        <h4>Trending Hastag</h4>
+        <h4>{title}</h4>
       </div>
-      <div className='hashtags'>
+      <div className='HashtagAndCatagoriesTitle'>
         {hashtags.map((tag) => (
-          <span className='hashtage-item' key={tag.id}>
-            {tag.name}
+          <span
+            className='hashtage-item'
+            key={tag.id}
+            onClick={() =>
+              history.push(
+                `${routingConstants.SUCCESS_STORIES_HASHTAG}?search=${tag.name}`,
+                tag.name,
+              )
+            }
+          >
+            {type === "hashtag" ? `#${tag?.name}` : tag?.name}
           </span>
         ))}
       </div>
       <div className='fristAdd'>
-        {" "}
         {rightOne.length > 0 && (
           <div
             className='col-md-12 ads_home_cover'
@@ -54,7 +67,9 @@ export const HashtagAndCatagories = (props) => {
           </div>
         )}
       </div>
-      <div>{/* <SocialMediaIcons /> */}</div>
+      <div>
+        <SocialMediaIcons />
+      </div>
       <div className='secondAdd'>
         {" "}
         {rightTwo.length > 0 && (
@@ -81,6 +96,9 @@ export const HashtagAndCatagories = (props) => {
             </a>
           </div>
         )}
+      </div>
+      <div>
+        <YouMayLikeCarousel />
       </div>
     </div>
   );

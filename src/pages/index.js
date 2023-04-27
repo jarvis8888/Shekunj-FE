@@ -11,6 +11,7 @@ import CourseModule from "./CoursesModule";
 import GuidancePage from "./GuidancePage";
 import HomePage from "./HomePage";
 import CourseTest from "./CourseTest";
+import SuccessStroyWithHashtag from "./SuccessStroyWithHashtag";
 
 export {
   AboutusPage,
@@ -26,4 +27,5 @@ export {
   LoginPage,
   SignupPage,
   Dashboard,
+  SuccessStroyWithHashtag,
 };

@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "./blogCarousel.scss";
+import time from "../../assets/icons/svgs/time.png";
+import book from "../../assets/icons/svgs/book.png";
+import { routingConstants } from "../../utils/constants";
+import { useHistory } from "react-router-dom";
 
-const BlogCarousel = ({ images }) => {
+const BlogCarousel = ({ images = [] }) => {
+  const history = useHistory();
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
@@ -11,17 +16,34 @@ const BlogCarousel = ({ images }) => {
       );
     }, 4000);
     return () => clearInterval(interval);
-  }, [currentIndex, images.length]);
+  }, [currentIndex, images]);
 
   return (
-    <div className='carousel'>
+    <div
+      className='carousel'
+      onClick={() =>
+        history.push(routingConstants.MORE_BLOG + images[currentIndex]?.id)
+      }
+    >
       <div
         className='carousel__slide'
-        style={{ backgroundImage: `url(${images[currentIndex].url})` }}
+        style={{ backgroundImage: `url(${images[currentIndex]?.image})` }}
       >
         <div className='carousel__content'>
-          <h2>{images[currentIndex].title}</h2>
-          <p>{images[currentIndex].description}</p>
+          <h2 style={{ color: "#000", fontSize: "1.3rem" }}>
+            {images[currentIndex]?.title}
+          </h2>
+          <div className='has'>
+            <span style={{ color: "#000" }}>
+              <img src={time} alt='time' width={14} height={14} />
+              {images[currentIndex]?.created_at}
+            </span>
+            <span style={{ color: "#000" }}>
+              <img src={book} alt='time' width={14} height={14} />
+              {images[currentIndex]?.reading_time} to read
+            </span>
+          </div>
+
           <div className='carousel__nav'>
             {images.map((_, index) => (
               <button

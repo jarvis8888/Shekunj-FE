@@ -9,14 +9,14 @@ import { useHistory } from "react-router-dom";
 const FeaturedCards = (props) => {
   const {
     image,
-    hashtags,
+    hashtags = [],
     title,
     description,
     makeHtml,
     key,
     reading_time,
     created_at,
-    id
+    id,
   } = props;
   const history = useHistory();
   return (
