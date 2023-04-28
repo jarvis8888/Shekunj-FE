@@ -4,6 +4,7 @@
   flex-direction: column;
   background: #ffffff;
   box-shadow: 2px 4px 20px rgba(0, 0, 0, 0.15);
+  height: calc(100% - 0px);
 
   &__image {
     margin-bottom: 10px;
@@ -44,7 +45,19 @@
     font-size: 14px;
     color: #434242;
     line-height: 160%;
-    padding: 10px 0 10px 10px;
+    // padding: 15px;
+    -webkit-line-clamp: 2;
+    text-overflow: ellipsis;
+    white-space: pre-line;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    margin-bottom: 14px !important;
+    // width: 95%;
+    margin: auto;
+    margin-right:10px;
+    margin-left: 10px;
+  
   }
 
   &__bottom {
@@ -74,7 +87,7 @@
   }
   .card__bottom {
     display: flex;
-    justify-content: space-around;
+    // justify-content: space-around;
     align-items: center;
     border-top: 1px solid #d9d9d9;
     opacity: 0.8;
@@ -183,4 +196,15 @@
   &:hover {
     background-color: #fff;
   }
+}
+
+
+
+.card .card__bottom span img {
+  margin-right: 10px;
+  margin-left: 10px;
+}
+.card .card__bottom{
+  margin-right: 15px;
+  // border: 0;
 }
