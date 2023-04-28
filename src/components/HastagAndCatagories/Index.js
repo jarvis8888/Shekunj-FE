@@ -26,6 +26,26 @@ export const HashtagAndCatagories = (props) => {
         <h4>{title}</h4>
       </div>
       <div className='HashtagAndCatagoriesTitle'>
+        {type === "hashtag"
+          ? hashtags.map((tag) => (
+              <span
+                className='hashtage-item'
+                key={tag.id}
+                onClick={() =>
+                  history.push(
+                    `${routingConstants.SUCCESS_STORIES_HASHTAG}?search=${tag.name}`,
+                    tag.name,
+                  )
+                }
+              >
+                {type === "hashtag" ? `#${tag?.name}` : tag?.name}
+              </span>
+            ))
+          : hashtags.map((tag) => (
+              <span className='hashtage-item' key={tag.id}>
+                {type === "hashtag" ? `#${tag?.name}` : tag?.name}
+              </span>
+            ))}
         {hashtags.map((tag) => (
           <span
             className='hashtage-item'
