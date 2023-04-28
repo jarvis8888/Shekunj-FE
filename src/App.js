@@ -43,7 +43,14 @@ const SuccessStoryDetailPage = React.lazy(() =>
 const CertificateFullView = React.lazy(() =>
   import("./pages/CertificateFullView"),
 );
-const SuccessStories = React.lazy(() => import("./pages/SuccessStories"));
+//successStories
+const SuccessStories = React.lazy(() =>
+  import("./pages/successStories/pages/successStoriesPage"),
+);
+const SuccessStorieswithDetils = React.lazy(() =>
+  import("./pages/successStories/pages/successStoryDetails"),
+);
+// const SuccessStories = React.lazy(() => import("./pages/SuccessStories"));
 const SuccessCareerTest = React.lazy(() => import("./pages/SuccessCareerTest"));
 const SuccessCareerOption = React.lazy(() =>
   import("./pages/SuccessCareerOption"),
@@ -137,9 +144,16 @@ function App() {
         />
         <Route
           exact
+          path={"/sameer/:id"}
+          component={SuccessStorieswithDetils}
+        />
+
+        <Route
+          exact
           path={`${routingConstants.SUCCESS_STORIES_HASHTAG}`}
           component={SuccessStroyWithHashtag}
         />
+
         <Route
           exact
           path={routingConstants.SUCCESS_CAREER_TEST}

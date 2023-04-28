@@ -14,7 +14,6 @@ import up from "../../assets/icons/up.png";
 import double_quote from "../../assets/icons/double_quote.png";
 import global from "../../assets/images/Success/global.png";
 import "./index.scss";
-import "../../Styles/global.scss";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
 import { adsList } from "../../store/ads";
@@ -345,7 +344,6 @@ function SuccessStory() {
                 {successStories?.trending_success_stories?.results.length
                   ? successStories?.trending_success_stories?.results.map(
                       (items, index) => {
-                        console.log(items);
                         return (
                           <>
                             <TrendingCards

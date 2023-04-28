@@ -6,7 +6,6 @@ import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
 
 import "./navbar.scss";
-import "../../Styles/global.scss";
 import "./index.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserProfile, logOut, refreshPage } from "../../store/auth/action";

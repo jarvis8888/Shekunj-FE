@@ -12,6 +12,7 @@ import GuidancePage from "./GuidancePage";
 import HomePage from "./HomePage";
 import CourseTest from "./CourseTest";
 import SuccessStroyWithHashtag from "./SuccessStroyWithHashtag";
+import Success from './successStories/pages/successStoriesPage'
 
 export {
   AboutusPage,
@@ -28,4 +29,5 @@ export {
   SignupPage,
   Dashboard,
   SuccessStroyWithHashtag,
+  Success,
 };

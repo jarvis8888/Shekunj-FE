@@ -26,20 +26,27 @@ export const HashtagAndCatagories = (props) => {
         <h4>{title}</h4>
       </div>
       <div className='HashtagAndCatagoriesTitle'>
-        {hashtags.map((tag) => (
-          <span
-            className='hashtage-item'
-            key={tag.id}
-            onClick={() =>
-              history.push(
-                `${routingConstants.SUCCESS_STORIES_HASHTAG}?search=${tag.name}`,
-                tag.name,
-              )
-            }
-          >
-            {type === "hashtag" ? `#${tag?.name}` : tag?.name}
-          </span>
-        ))}
+        {type === "hashtag"
+          ? hashtags.map((tag) => (
+              <span
+                className='hashtage-item'
+                key={tag.id}
+                onClick={() =>
+                  history.push(
+                    `${routingConstants.SUCCESS_STORIES_HASHTAG}?search=${tag.name}`,
+                    tag.name,
+                  )
+                }
+              >
+                {`#${tag?.name}`}
+              </span>
+            ))
+          : hashtags.map((tag) => (
+              <span className='hashtage-item' key={tag.id}>
+                {`${tag?.name}`}
+              </span>
+            ))}
+        {}
       </div>
       <div className='fristAdd'>
         {rightOne.length > 0 && (
@@ -52,14 +59,14 @@ export const HashtagAndCatagories = (props) => {
                 ? rightOne[0]?.image_mobile && (
                     <img
                       src={rightOne[0]?.image_mobile}
-                      alt='Image'
+                      alt='adds'
                       className='ads_story_cover_img'
                     />
                   )
                 : rightOne[0]?.image && (
                     <img
                       src={rightOne[0]?.image}
-                      alt='Image'
+                      alt='adds'
                       className='ads_story_cover_img'
                     />
                   )}
@@ -82,14 +89,14 @@ export const HashtagAndCatagories = (props) => {
                 ? rightTwo[0]?.image_mobile && (
                     <img
                       src={rightTwo[0]?.image_mobile}
-                      alt='Image'
+                      alt='adds'
                       className='ads_story_cover_img'
                     />
                   )
                 : rightTwo[0]?.image && (
                     <img
                       src={rightTwo[0]?.image}
-                      alt='Image'
+                      alt='adds'
                       className='ads_story_cover_img'
                     />
                   )}

@@ -125,6 +125,7 @@ const apiConstants = {
   },
   ADD: {
     ADD: "/private_adds/click_add/",
+    PRIVATE_ADDS: "/private_adds/private_add",
   },
 };
 

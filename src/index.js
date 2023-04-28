@@ -5,7 +5,7 @@ import { Provider } from "react-redux";
 import { ToastContainer } from "react-toastify";
 import { ThemeProvider } from "@mui/styles";
 import { HelmetProvider } from "react-helmet-async";
-import "react-datepicker/dist/react-datepicker.css"
+import "react-datepicker/dist/react-datepicker.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import store from "./store";
@@ -17,7 +17,7 @@ import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "react-toastify/dist/ReactToastify.css";
 import "./assets/i18n/i18n";
 // import '@react-pdf-viewer/core/lib/styles/index.css';
-import 'rsuite/dist/rsuite-no-reset.min.css';
+import "rsuite/dist/rsuite-no-reset.min.css";
 
 ReactDOM.render(
   <React.StrictMode>
