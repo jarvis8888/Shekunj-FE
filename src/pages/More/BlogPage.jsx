@@ -138,7 +138,7 @@ function BlogPage() {
               });
               bolgRight1(filterArray2);
               let filterArray3 = response.data.results.filter((item, index) => {
-                return item.image_type == "blog_index_right1";
+                return item.image_type == "blog_index_right2";
               });
               bolgRight2(filterArray3);
             }
