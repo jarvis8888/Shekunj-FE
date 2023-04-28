@@ -46,20 +46,6 @@ export const HashtagAndCatagories = (props) => {
                 {type === "hashtag" ? `#${tag?.name}` : tag?.name}
               </span>
             ))}
-        {hashtags.map((tag) => (
-          <span
-            className='hashtage-item'
-            key={tag.id}
-            onClick={() =>
-              history.push(
-                `${routingConstants.SUCCESS_STORIES_HASHTAG}?search=${tag.name}`,
-                tag.name,
-              )
-            }
-          >
-            {type === "hashtag" ? `#${tag?.name}` : tag?.name}
-          </span>
-        ))}
       </div>
       <div className='fristAdd'>
         {rightOne.length > 0 && (
