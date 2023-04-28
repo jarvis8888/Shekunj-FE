@@ -43,7 +43,7 @@ export const HashtagAndCatagories = (props) => {
             ))
           : hashtags.map((tag) => (
               <span className='hashtage-item' key={tag.id}>
-                {type === "hashtag" ? `#${tag?.name}` : tag?.name}
+                {type === "hashtag" ? `${tag?.name}` : tag?.name}
               </span>
             ))}
       </div>
