@@ -28,6 +28,7 @@ import httpServices from "../../utils/ApiServices";
 import { HashtagAndCatagories } from "../../components/HastagAndCatagories/Index";
 import { apiConstants } from "../../utils/constants";
 import catagorie from "../../assets/icons/svgs/categories.png";
+import fire from "../../assets/icons/svgs/fire.png";
 
 const BlogDetails = () => {
   const history = useHistory();
@@ -314,6 +315,10 @@ const BlogDetails = () => {
                   );
                 })
               : null}
+          </div>
+          <div className='title'>
+            <img src={fire} alt='fire' height={35} />
+            <h4>Trending Blogs</h4>
           </div>
           <div>
             {trending.map((items, index) => {
