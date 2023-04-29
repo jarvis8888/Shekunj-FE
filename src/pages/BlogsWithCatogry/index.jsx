@@ -10,6 +10,7 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { adsList } from "../../store/ads";
 import { TrendingBlogsCard2 } from "../../components/cards/TrendingBlogsCard2";
+import catagorie from "../../assets/icons/svgs/categories.png";
 
 const SuccessStroyWithHashtag = () => {
   const location = useLocation();
@@ -121,7 +122,7 @@ const SuccessStroyWithHashtag = () => {
     <div>
       <Header />
       <div className='Hashtag_container'>
-        <div className='Hashtag_container_cards'>
+        <div className='Hashtag_container_cards sk-blog-detail-wa'>
           <div className='Hashtag_container_title'>
             {state ? `${currentSearch}` : "NA"}
           </div>
@@ -150,8 +151,8 @@ const SuccessStroyWithHashtag = () => {
         </div>
         <div>
           <HashtagAndCatagories
-            image={hash}
-            title={`Trending Hastag`}
+            image={catagorie}
+            title={`Categories`}
             addEmail={addEmail}
             hashtags={allHashTag}
             rightOne={succesStoriesRight1}

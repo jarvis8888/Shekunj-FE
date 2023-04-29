@@ -280,7 +280,7 @@ function BlogPage() {
             }
           />
         </div>
-        <div className='grid-Latest-Blog'>
+        <div className='grid-Latest-Blog 1223'>
           <div className='blog-stories'>
             <div className='title'>
               <img src={fire} alt='fire' width={25} height={25} />
