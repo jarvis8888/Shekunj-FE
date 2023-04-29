@@ -234,9 +234,9 @@ function BlogPage() {
                       <TrendingBlogsCard
                         image={items.image}
                         id={items.id}
-                        description='Lorem ipsum dnec lobortis nisi.'
+                        description={items.title}
                         time='5'
-                        date='1 week ago'
+                        date={items.created_at}
                       />
                     </>
                   );
@@ -332,9 +332,9 @@ function BlogPage() {
                         image={items.image}
                         title={items.title}
                         id={items.id}
-                        description='Lorem ipsum Integer nec lobortis nisi.'
+                        // description={items.about_blog}
                         time='5'
-                        date='1 week ago'
+                        date={items.created_at}
                       />
                     </>
                   );

@@ -30,7 +30,8 @@ const YouMayLikeCarousel = () => {
 
   return (
     <div className='youMayLikeCarousel'>
-      <div className='YouMayLikeCarouselCarousel_header'>You May Like</div>
+      <div className='YouMayLikeCarouselCarousel_header'>
+        <img src="like-story.png" alt='fire' width={25} height={25} /> You May Like</div>
       <div
         className='YouMayLikeCarouselCarousel__slide'
         style={{ backgroundImage: `url(${data[currentIndex]?.image})` }}
