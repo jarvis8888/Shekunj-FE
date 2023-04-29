@@ -7,6 +7,7 @@
   background-size: cover;
 }
 
+
 .SuccStory_banner h1 {
   font-family: SegoeUI_bold;
   font-style: normal;
@@ -254,8 +255,8 @@ button.want_btn {
   }
   .ads_story_cover_img {
     margin: 10px 0px !important;
-    height: 100px !important;
-    width: 100% !important;
+    // height: 100px !important;
+    // width: 100% !important;
   }
   .ads_succ_story {
     height: 100px !important;
@@ -320,6 +321,8 @@ button.want_btn {
   object-fit: cover;
 }
 
+
+
 //SuccessStory Section1 styles start
 .Section1 {
   display: flex;
@@ -373,10 +376,12 @@ button.want_btn {
       }
     }
     button {
-      width: 50%;
+      width: 40%;
       padding: 10px 20px;
-      border-radius: 40px;
+      border-radius:7px;
       margin: 10px 0 10px 0;
+      color: #ffffff;
+      font-weight: 600;
       transition: background-color 0.5s ease, border-color 0.5s ease,
         color 0.5s ease;
       &:hover {
@@ -440,6 +445,7 @@ button.want_btn {
   width: 100%;
   display: flex;
   flex-direction: row;
+  margin-bottom:20px;
 
   img {
     margin-right: 15px;
@@ -582,4 +588,11 @@ button.want_btn {
       color: #999;
     }
   }
+}
+
+
+
+
+.carousel__content h2{
+  color: #fff;
 }

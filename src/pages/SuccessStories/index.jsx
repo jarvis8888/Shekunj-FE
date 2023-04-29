@@ -61,7 +61,7 @@ function SuccessStory() {
   const detect = useDeviceDetect();
 
   // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>code below>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-
+ 
   // useEffect(() => {
   //   navigator.geolocation.getCurrentPosition(async function (position, values) {
   //     const latitude = position.coords.latitude;
@@ -230,7 +230,7 @@ function SuccessStory() {
   };
 
   return (
-    <div>
+    <div className="">
       <Header loginPage={true} page='story' />
       {/* success story section1 start */}
       <div className='Section1'>
@@ -266,7 +266,7 @@ function SuccessStory() {
           <>
             {storiesBannerAds.length > 0 && (
               <div
-                className='col-md-12 ads_home_cover'
+                className='col-md-12 ads_home_cover '
                 onClick={() => addEmail(storiesBannerAds[0]?.add_email)}
               >
                 <a
@@ -297,7 +297,7 @@ function SuccessStory() {
       />
       {/* Adds Section end */}
       {/* Featured Stories start */}
-      <div className='grid-container'>
+      <div className='grid-container '>
         <div className='featured-stories'>
           <div className='title'>
             <img src={fire} alt='fire' width={30} height={30} />

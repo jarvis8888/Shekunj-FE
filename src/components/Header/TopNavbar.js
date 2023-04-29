@@ -12,11 +12,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUserProfile, logOut, refreshPage } from "../../store/auth/action";
 import Cookies from "js-cookie";
 import { isAuthenticated } from "../../utils";
+import { Dropdown } from "rsuite";
+import { useLocation } from "react-router-dom";
 
 function TopNavbar() {
   const { t } = useTranslation();
   const history = useHistory();
   const dispatch = useDispatch();
+  const location = useLocation();
   const { isAuth, user } = useSelector((state) => state.authReducer);
   const { lan } = useSelector((state) => state.languageReducer);
 
@@ -24,11 +27,9 @@ function TopNavbar() {
   const [showSubMenu, setShowSubMenu] = useState(false);
   const open = Boolean(anchorEl);
 
-
   const handleSubmenuClick = () => {
     setShowSubMenu(!showSubMenu);
   };
-
 
   const handleLogout = () => {
     dispatch(logOut(history));
@@ -41,6 +42,10 @@ function TopNavbar() {
     }
   }, [dispatch, lan]);
 
+  const isActive = (href) => {
+    return location.pathname === href;
+  };
+
   React.useEffect(() => {
     if (Cookies.get("sheToken") == undefined || null) {
       localStorage.removeItem("login_data");
@@ -52,13 +57,13 @@ function TopNavbar() {
     <div className='header-top'>
       <nav>
         <ul>
-          <li>
+          <li className='mobile'>
             <a href='/event'>Events</a>
           </li>
-          <li>
+          <li className='mobile'>
             <a href='/blogs'>Blogs</a>
           </li>
-          <li>
+          <li className='mobile'>
             <a href='/more-faq'>FQA</a>
           </li>
           <li>
@@ -81,62 +86,41 @@ function TopNavbar() {
                       sx={{ width: 34, height: 34 }}
                     />
                   )}
-                  <span
-                    style={{
-                      lineHeight: "38px",
-                      marginLeft: "10px",
-                      cursor: "pointer",
-                    }}
-                    id='basic-button'
-                    aria-controls='basic-menu'
-                    aria-haspopup='true'
-                    aria-expanded={open ? "true" : undefined}
-                    onClick={(event) => setAnchorEl(event.currentTarget)}
+                  <Dropdown
+                    title={user?.name || t("common.n/a")}
+                    className='custom-dropdown'
                   >
-                    {user?.name || t("common.n/a")}&nbsp;
-                    {user && user?.last_name}
-                  </span>
-                  <Menu
-                    id='basic-menu'
-                    anchorEl={anchorEl}
-                    open={open}
-                    onClose={() => setAnchorEl(null)}
-                    MenuListProps={{
-                      "aria-labelledby": "basic-button",
-                    }}
-                  >
-                    <MenuItem
-                      onClick={() => {
-                        history.push(routingConstants.MY_PROFILE);
-                        setAnchorEl(null);
-                      }}
-                      // className={subPage === "myProfile" && "active"}
+                    <Dropdown.Item
+                      onClick={() => history.push(routingConstants.MY_PROFILE)}
+                      className={
+                        isActive(routingConstants.MY_PROFILE) && "active"
+                      }
                     >
                       {t("headerComponent.menuItem.1")}
-                    </MenuItem>
-                    <MenuItem
-                      onClick={() => {
-                        history.push(routingConstants.MY_PROGESS);
-                        setAnchorEl(null);
-                      }}
-                      // className={subPage === "myProgress" && "active"}
+                    </Dropdown.Item>
+                    <Dropdown.Item
+                      onClick={() => history.push(routingConstants.MY_PROGESS)}
+                      className={
+                        isActive(routingConstants.MY_PROGESS) && "active"
+                      }
                     >
                       {t("headerComponent.menuItem.2")}
-                    </MenuItem>
-                    <MenuItem
-                      onClick={() => {
-                        history.push(routingConstants.ALL_CERTIFICATE_PAGE);
-                        setAnchorEl(null);
-                      }}
-                      // className={subPage === "allCertificatePage" && "active"}
+                    </Dropdown.Item>
+                    <Dropdown.Item
+                      onClick={() =>
+                        history.push(routingConstants.ALL_CERTIFICATE_PAGE)
+                      }
+                      className={
+                        isActive(routingConstants.ALL_CERTIFICATE_PAGE) &&
+                        "active"
+                      }
                     >
                       {t("headerComponent.menuItem.3")}
-                    </MenuItem>
-                    <MenuItem onClick={handleLogout}>
+                    </Dropdown.Item>
+                    <Dropdown.Item onClick={handleLogout}>
                       {t("headerComponent.menuItem.4")}
-                    </MenuItem>
-                  </Menu>
-
+                    </Dropdown.Item>
+                  </Dropdown>
                 </div>
               </>
             ) : (
