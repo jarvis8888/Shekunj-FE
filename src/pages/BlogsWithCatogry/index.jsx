@@ -16,6 +16,7 @@ const SuccessStroyWithHashtag = () => {
   const dispatch = useDispatch();
 
   const { state } = location;
+  console.log(state);
   const searchParams = new URLSearchParams(location.search);
   const currentSearch = searchParams.get("category_id") || "";
 
@@ -28,12 +29,12 @@ const SuccessStroyWithHashtag = () => {
   const getBlogWithHashtagData = async (search) => {
     setLoading(true);
     try {
-      const url = `more/blogs?category_id={search}`;
+      const url = `more/blogs?category_id=${search}`;
       const res = await httpServices.get(url);
       setData(res?.filtered_blogs);
       setAllHashTag(res?.blog_categories);
-      setLoading(false);
-    } catch {
+    } catch (error) {
+    } finally {
       setLoading(false);
     }
   };
@@ -124,24 +125,28 @@ const SuccessStroyWithHashtag = () => {
           <div className='Hashtag_container_title'>
             {state ? `${currentSearch}` : "NA"}
           </div>
-          <div>
-            {data?.length
-              ? data?.map((items, index) => {
-                  return (
-                    <>
-                      <TrendingBlogsCard2
-                        image={items.image}
-                        title={items.title}
-                        id={items.id}
-                        // description={items.about_blog}
-                        time='5'
-                        date={items.created_at}
-                      />
-                    </>
-                  );
-                })
-              : "no data"}
-          </div>
+          {loading ? (
+            "Loading..."
+          ) : (
+            <div>
+              {data?.length
+                ? data?.map((items, index) => {
+                    return (
+                      <>
+                        <TrendingBlogsCard2
+                          image={items.image}
+                          title={items.title}
+                          id={items.id}
+                          // description={items.about_blog}
+                          time='5'
+                          date={items.created_at}
+                        />
+                      </>
+                    );
+                  })
+                : "no data"}
+            </div>
+          )}
         </div>
         <div>
           <HashtagAndCatagories

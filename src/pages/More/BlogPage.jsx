@@ -46,7 +46,6 @@ import catagorie from "../../assets/icons/svgs/categories.png";
 function BlogPage() {
   const history = useHistory();
   const { blogs } = useSelector((state) => state.blogsReducer);
-  console.log(blogs);
   const dispatch = useDispatch();
   const [offset, setOffset] = useState(0);
   const pageLimit = 10;
@@ -333,7 +332,7 @@ function BlogPage() {
                         title={items.title}
                         id={items.id}
                         // description={items.about_blog}
-                        time='5'
+                        time='5 min'
                         date={items.created_at}
                       />
                     </>

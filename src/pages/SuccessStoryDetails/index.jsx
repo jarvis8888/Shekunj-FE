@@ -206,7 +206,7 @@ const SuccessStoryDetails = () => {
               <div>
                 {successStoriesDetails?.hash_tags?.length
                   ? successStoriesDetails?.hash_tags.map((items) => {
-                      return <span key={items}>{items}</span>;
+                      return <span key={items}>{`#${items}`}</span>;
                     })
                   : null}
               </div>

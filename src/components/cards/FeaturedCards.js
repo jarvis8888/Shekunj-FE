@@ -26,7 +26,7 @@ const FeaturedCards = (props) => {
       </div>
       <div className='card__hashtags'>
         {hashtags.map((tag) => (
-          <span key={tag}>{tag}</span>
+          <span key={tag}>{`#${tag}`}</span>
         ))}
       </div>
       <h2 className='card__title'>{title}</h2>
