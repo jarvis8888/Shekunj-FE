@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import photo from "../../assets/icons/svgs/exphoto.png";
 import httpServices from "../../utils/ApiServices";
+import like_icon from "../../assets/icons/like-story.png";
 
 import "./YouMayLikeCarousel.scss";
 
@@ -30,7 +31,9 @@ const YouMayLikeCarousel = () => {
 
   return (
     <div className='youMayLikeCarousel'>
-      <div className='YouMayLikeCarouselCarousel_header'>You May Like</div>
+      <div className='YouMayLikeCarouselCarousel_header'>
+        <img src={like_icon} alt='fire' width={25} height={25} /> You May Like
+      </div>
       <div
         className='YouMayLikeCarouselCarousel__slide'
         style={{ backgroundImage: `url(${data[currentIndex]?.image})` }}
@@ -59,7 +62,9 @@ const YouMayLikeCarousel = () => {
           &#8250;
         </button>
       </div>
-      <div className="YouMayLikeCarousel__bottom__title">{data[currentIndex]?.add_title}</div>
+      <div className='YouMayLikeCarousel__bottom__title'>
+        {data[currentIndex]?.add_title}
+      </div>
     </div>
   );
 };
