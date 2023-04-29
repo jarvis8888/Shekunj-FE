@@ -18,8 +18,8 @@ export const TrendingBlogsCard = ({
       style={{ cursor: "pointer" }}
     >
       <div
-        className='blog-card__image'
-        style={{ backgroundImage: `url(${image})` }}
+        className='blog-card__image new-blog-card'
+        style={{marginLeft:"10px",marginRight:"10px", backgroundImage: `url(${image})` }}
       ></div>
       <div className='blog-card__content'>
         <div className='blog-card__title'>{title}</div>

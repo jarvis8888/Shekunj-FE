@@ -68,6 +68,8 @@ const SuccessCareerOption2 = React.lazy(() =>
 const PageNotFound = React.lazy(() => import("./pages/PageNotFound"));
 const DataNotFound = React.lazy(() => import("./pages/DataNotFound"));
 
+const BlogCategoryPage = React.lazy(()=> import('./pages/BlogsWithCatogry'))
+
 function App() {
   useEffect(() => {
     window.history.scrollRestoration = "manual";
@@ -139,6 +141,12 @@ function App() {
           exact
           path={`${routingConstants.SUCCESS_STORIES_HASHTAG}`}
           component={SuccessStroyWithHashtag}
+        />
+
+        <Route
+          exact
+          path={`${routingConstants.MORE_BLOG_CATEGORY}`}
+          component={BlogCategoryPage}
         />
         <Route
           exact

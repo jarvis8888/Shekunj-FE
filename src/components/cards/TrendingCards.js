@@ -15,6 +15,7 @@ const TrendingCards = (data) => {
     key,
     reading_time,
     id,
+    created_at,
   } = data;
   const history = useHistory();
   return (
@@ -36,7 +37,7 @@ const TrendingCards = (data) => {
       />
       <div className='card__bottom'>
         <span>
-          <img src={time} alt='time' width={14} height={14} /> 5 mins to read
+          <img src={time} alt='time' width={14} height={14} /> {created_at}
         </span>
         <button
           className='card__button'

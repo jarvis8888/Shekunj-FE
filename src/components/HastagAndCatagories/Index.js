@@ -42,7 +42,16 @@ export const HashtagAndCatagories = (props) => {
               </span>
             ))
           : hashtags.map((tag) => (
-              <span className='hashtage-item' key={tag.id}>
+              <span
+                className='hashtage-item'
+                key={tag.id}
+                onClick={() =>
+                  history.push(
+                    `${routingConstants.MORE_BLOG_CATEGORY}?category_id=${tag.name}`,
+                    tag.id,
+                  )
+                }
+              >
                 {type === "hashtag" ? `${tag?.name}` : tag?.name}
               </span>
             ))}
@@ -77,7 +86,6 @@ export const HashtagAndCatagories = (props) => {
         <SocialMediaIcons />
       </div>
       <div className='secondAdd'>
-        {" "}
         {rightTwo.length > 0 && (
           <div
             className='col-md-12 ads_home_cover'

@@ -4,6 +4,7 @@ import httpServices from "../../utils/ApiServices";
 
 import "./YouMayLikeCarousel.scss";
 
+
 const YouMayLikeCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [data, setData] = useState([]);

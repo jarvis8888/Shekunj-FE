@@ -2,6 +2,7 @@ import React from "react";
 import "./style.scss";
 import time from "../../assets/icons/svgs/time.png";
 import book from "../../assets/icons/svgs/book.png";
+import eye from "../../assets/icons/svgs/eye.png";
 import { truncateString } from "../../utils/utils";
 import { routingConstants } from "../../utils/constants";
 import { useHistory } from "react-router-dom";
@@ -41,7 +42,7 @@ const LatestBlogCard = (props) => {
           {reading_time} to read
         </span>
         <span>
-          <img src={book} alt='time' width={14} height={14} />
+          <img src={eye} alt='time' width={14} height={14} />
           {blog_count}
         </span>
       </div>

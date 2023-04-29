@@ -184,7 +184,16 @@
   }
 
   @media (max-width: 800px) {
-    display: none;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    li {
+      margin-left: 0;
+    }
+    .mobile {
+      display: none;
+    }
   }
 }
 
