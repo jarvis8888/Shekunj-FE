@@ -20,6 +20,9 @@ import OpenInFullIcon from "@mui/icons-material/OpenInFull";
 import downArrow_icon from "../../assets/icons/svgs/downArrow.png";
 import add_icon from "../../assets/icons/svgs/exAddPhoto.png";
 
+import httpServices from "../../utils/ApiServices";
+import { constants } from "../../utils";
+
 const tabs = [
   { id: 1, name: "About Us" },
   { id: 2, name: "Courses" },
@@ -107,73 +110,77 @@ function FaqPage() {
   const [image, setImage] = useState("NA");
   const [faqBoxAdds, setFaqBoxAdds] = useState([]);
   const [adds, setAdds] = useState([]);
-  const [activeTab, setActiveTab] = useState(tabs[0].id);
   const [expandedQuestions, setExpandedQuestions] = useState([]);
+  const [faqData, setFaqData] = useState([]);
+  const [faqQuestionsData, setFaqQuestionsData] = useState([]);
+  const [activeTab, setActiveTab] = useState(1);
+
+  const getFaqsData = async () => {
+    const url = `more/faqs`;
+    const { data } = await httpServices.get(url);
+    const { faq_categories, Faqs_list } = data;
+    setFaqData(faq_categories);
+    setFaqQuestionsData(Faqs_list);
+  };
+
+  useEffect(() => {
+    getFaqsData();
+  }, [lan]);
 
   useEffect(() => {
     dispatch(adsList());
-    navigator.geolocation.getCurrentPosition(
-      async function (position, values) {
-        const latitude = position.coords.latitude;
-        const longitude = position.coords.longitude;
-
-        let params = {
-          latitude: latitude.toString(),
-          longitude: longitude.toString(),
-        };
-        axios
-          .get(
-            `/private_adds/private_add?latitude=${latitude}&longitude=${longitude}`,
-          )
-          .then((response) => {
-            if (response && response.data.results.length > 0) {
-              let filterArray1 = response.data.results.filter((item, index) => {
-                return item.image_type == "Faq_index";
-              });
-              setFaqBoxAdds(filterArray1);
-              // console.log("filterArray1Faq_index",filterArray1)
-            }
-          });
-      },
-      function (error) {
-        console.error("Error Code = " + error.code + " - " + error.message);
-        // alert("Your location is blocked")
+    const successCallback = async (position) => {
+      const { latitude, longitude } = position.coords;
+      try {
+        const response = await axios.get(
+          `/private_adds/private_add?latitude=${latitude}&longitude=${longitude}`,
+        );
+        const filterArray1 = response.data.results.filter(
+          (item) => item.image_type === "Faq_index",
+        );
+        setFaqBoxAdds(filterArray1);
+      } catch (error) {
+        console.error(error);
         axios.get(`/private_adds/private_add`).then((response) => {
-          if (response && response.data.results.length > 0) {
-            let filterArray1 = response.data.results.filter((item, index) => {
-              return item.image_type == "Faq_index";
-            });
-            setFaqBoxAdds(filterArray1);
-            // console.log("filterArray1coursebox",filterArray1)
-          }
+          const filterArray1 = response.data.results.filter(
+            (item) => item.image_type === "Faq_index",
+          );
+          setFaqBoxAdds(filterArray1);
         });
-      },
-    );
+      }
+    };
+    const errorCallback = (error) => {
+      console.error("Error Code = " + error.code + " - " + error.message);
+      axios.get(`/private_adds/private_add`).then((response) => {
+        const filterArray1 = response.data.results.filter(
+          (item) => item.image_type === "Faq_index",
+        );
+        setFaqBoxAdds(filterArray1);
+      });
+    };
+    navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
   }, []);
 
-  const addEmail = (email) => {
-    navigator.geolocation.getCurrentPosition(async function (position, values) {
-      const latitude = position.coords.latitude;
-      const longitude = position.coords.longitude;
+  const addEmail = async (email) => {
+    try {
+      const position = await navigator.geolocation.getCurrentPosition();
+      const { latitude, longitude } = position.coords;
 
-      let params = {
+      const params = {
         latitude: latitude.toString(),
         longitude: longitude.toString(),
       };
-      axios
-        .post("/private_adds/click_add/", {
-          // add_email:`${adds[0]?.add_email}`
-          add_email: email,
-          latitude: params.latitude.toString(),
-          longitude: params.longitude.toString(),
-        })
-        .then((response) => {
-          console.log("addEmailresponse", response);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    });
+
+      const response = await axios.post("/private_adds/click_add/", {
+        add_email: email,
+        latitude: params.latitude,
+        longitude: params.longitude,
+      });
+
+      console.log("addEmailresponse", response);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleTabClick = (id) => {
@@ -187,6 +194,14 @@ function FaqPage() {
       setExpandedQuestions((prev) => [...prev, id]);
     }
   };
+  const makeHtml = (htmlString) => {
+    const htmlNode = document.createElement("div");
+    htmlNode.innerHTML = htmlString;
+    htmlNode.querySelectorAll("*").forEach(function (node) {
+      node.removeAttribute("style");
+    });
+    return htmlNode.innerHTML;
+  };
 
   return (
     <div>
@@ -198,7 +213,7 @@ function FaqPage() {
       </div>
       <div className='faqs-container'>
         <div className='tabs-container'>
-          {tabs.map((tab) => (
+          {faqData?.map((tab) => (
             <div
               key={tab.id}
               className={`tab ${activeTab === tab.id ? "active" : ""}`}
@@ -210,15 +225,21 @@ function FaqPage() {
         </div>
         <div className='questions-container-wrapper'>
           <div className='questions-container'>
-            {questions
-              .filter((q) => q.tabId === activeTab)
+            {faqQuestionsData
+              .filter((q) => q.id === activeTab)
               .map((q) => (
                 <div key={q.id} className='question'>
                   <div
                     className='question-header'
                     onClick={() => toggleQuestion(q.id)}
                   >
-                    <div className='question-text'>{q.question}</div>
+                    <div
+                      className='question-text'
+                      dangerouslySetInnerHTML={{
+                        __html: makeHtml(q.question),
+                      }}
+                    />
+
                     <div>
                       <img src={downArrow_icon} alt='arrow' />
                     </div>
