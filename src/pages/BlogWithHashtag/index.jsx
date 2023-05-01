@@ -11,15 +11,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { adsList } from "../../store/ads";
 import { TrendingBlogsCard2 } from "../../components/cards/TrendingBlogsCard2";
 import catagorie from "../../assets/icons/svgs/categories.png";
+import cross from "../../assets/icons/svgs/cross.png";
+import { routingConstants } from "../../utils/constants";
 
-const BlogWithCatogry = () => {
+const BlogWithHashtag = () => {
   const location = useLocation();
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const { state } = location;
 
   const searchParams = new URLSearchParams(location.search);
-  const currentSearch = searchParams.get("category_id") || "";
+  const currentSearch = searchParams.get("search") || "";
 
   const [data, setData] = useState([]);
   const [allHashTag, setAllHashTag] = useState([]);
@@ -30,7 +33,7 @@ const BlogWithCatogry = () => {
   const getBlogWithHashtagData = async (search) => {
     setLoading(true);
     try {
-      const url = `more/blogs?category_id=${search}`;
+      const url = `more/blogs?search=${search}`;
       const res = await httpServices.get(url);
       setData(res?.filtered_blogs);
       setAllHashTag(res?.blog_categories);
@@ -124,7 +127,14 @@ const BlogWithCatogry = () => {
       <div className='Hashtag_container'>
         <div className='Hashtag_container_cards sk-blog-detail-wa'>
           <div className='Hashtag_container_title'>
-            {state ? `${currentSearch}` : "NA"}
+            <span>
+              {state ? `${currentSearch}` : "NA"}{" "}
+              <img
+                src={cross}
+                alt='cross'
+                onClick={() => history.push(`${routingConstants.MORE_BLOG}`)}
+              />
+            </span>
           </div>
           {loading ? (
             "Loading..."
@@ -164,4 +174,4 @@ const BlogWithCatogry = () => {
     </div>
   );
 };
-export default BlogWithCatogry;
+export default BlogWithHashtag;

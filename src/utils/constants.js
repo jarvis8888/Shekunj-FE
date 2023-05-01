@@ -50,14 +50,15 @@ const routingConstants = {
   MORE_MAGAZINE: "/magazine/",
   FAQ: "/more-faq/",
   MORE_BLOG: "/blogs/",
-  MORE_BLOG_CATEGORY:'/blogs/category/',
+  MORE_BLOG_CATEGORY: "/blogs/category/",
+  MORE_BLOG_TAG: "/blogs/tags/",
   // DETAILS_BLOG: "/blog/",
   // DETAILS_MAGZINE: "/magzine/",
   ALL_NOTIFICATION: "/all-notifications/",
   MOCKTEST: "/mock-test/",
   DETAILS_MOCKTEST: "/mock-test-detail/",
   SUCCESS_STORIES_HASHTAG: "/success-stories/hastag",
-  SEARCH:'/search/'
+  SEARCH: "/search/",
 };
 
 const apiConstants = {
