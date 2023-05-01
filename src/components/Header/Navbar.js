@@ -103,7 +103,7 @@ const Navbar = (props) => {
         >
           {t("header.heading.8")}
         </a>
-        <span>
+        <span onClick={() => history.push(routingConstants.SEARCH)}>
           <img
             src={globalSreach}
             alt='close'

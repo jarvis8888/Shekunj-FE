@@ -114,49 +114,41 @@ function EventPage() {
   };
 
   useEffect(() => {
-    checkFunction()
-  }, [events?.event_list])
+    checkFunction();
+  }, [events?.event_list]);
 
   const shuffleFun = (c, index) => {
-    if (c?.id === 'advertistment') {
+    if (c?.id === "advertistment") {
       return (
         <>
-          {
-            eventBoxAds?.length > 0 ?
-              <Grid spacing={1} className='gridContainerEvent flex'>
-
-                <Col md={1} xl={12}>
-                  <Card className='EventOptionCard'>
-                    {eventBoxAds?.length > 0 && (
-                      <div
-                        className='EventOptionCard'
-                        onClick={() =>
-                          addEmail(eventBoxAds[0]?.add_email)
-                        }
-                      >
-                        <a
-                          href={eventBoxAds[0]?.url_adds}
-                          target='_blank'
-                        >
-                          <img
-                            src={eventBoxAds[0]?.image}
-                            alt='Image'
-                            className='EventOptionCardAddImage'
-                          />
-                        </a>
-                        <div className='overlay'></div>
-                      </div>
-                    )}
-                  </Card>
-                </Col>
-              </Grid>
-              :
-              ""
-          }
+          {eventBoxAds?.length > 0 ? (
+            <Grid spacing={1} className='gridContainerEvent flex'>
+              <Col md={1} xl={12}>
+                <Card className='EventOptionCard'>
+                  {eventBoxAds?.length > 0 && (
+                    <div
+                      className='EventOptionCard'
+                      onClick={() => addEmail(eventBoxAds[0]?.add_email)}
+                    >
+                      <a href={eventBoxAds[0]?.url_adds} target='_blank'>
+                        <img
+                          src={eventBoxAds[0]?.image}
+                          alt='Image'
+                          className='EventOptionCardAddImage'
+                        />
+                      </a>
+                      <div className='overlay'></div>
+                    </div>
+                  )}
+                </Card>
+              </Col>
+            </Grid>
+          ) : (
+            ""
+          )}
         </>
-      )
-    }
-    else {
+      );
+    } else {
       return (
         <Grid spacing={1} className='gridContainerEvent'>
           <Col md={1} xl={12}>
@@ -185,18 +177,10 @@ function EventPage() {
               </Typography>
 
               <CardContent class='d-flex flex-column'>
-                <Typography
-                  className='event_mode'
-                  sx={{ mb: 1.5 }}
-                  fullWidth
-                >
+                <Typography className='event_mode' sx={{ mb: 1.5 }} fullWidth>
                   <PublicIcon /> {c && c?.type_1}
                 </Typography>
-                <Typography
-                  className='event_mode'
-                  sx={{ mb: 1.5 }}
-                  fullWidth
-                >
+                <Typography className='event_mode' sx={{ mb: 1.5 }} fullWidth>
                   <GroupTwoToneIcon /> {c && c?.mode_of_event}
                 </Typography>
                 <Typography className='Date-Time'>
@@ -227,19 +211,19 @@ function EventPage() {
             </Card>
           </Col>
         </Grid>
-      )
+      );
     }
-  }
+  };
 
   const checkFunction = () => {
     let num = Math.floor(Math.random() * (4 - 0) + 0);
     let res = events?.event_list;
     let dummydata = {
-      "id": 'advertistment'
-    }
+      id: "advertistment",
+    };
     res && res.splice(num, 0, dummydata);
     if (res) {
-      setTempData(res)
+      setTempData(res);
     }
   };
 
@@ -248,61 +232,19 @@ function EventPage() {
       <Header loginPage={true} page='more' subPage='moreEvent' />
 
       <Helmet>
-
-        <title>India's Leading Women Empowerment Organization - Shekunj.com</title>
-        <link rel="canonical" href="https://www.shekunj.com/event/" />
-        <meta name="description" content="Shekunj.com works on women empowerment and skill development by providing free training, job-oriented courses, jobs & internships and career counseling" />
-        <meta name="keywords" content="women empowerment organizations women empowerment initiative free online courses free career guidance" />
+        <title>
+          India's Leading Women Empowerment Organization - Shekunj.com
+        </title>
+        <link rel='canonical' href='https://www.shekunj.com/event/' />
+        <meta
+          name='description'
+          content='Shekunj.com works on women empowerment and skill development by providing free training, job-oriented courses, jobs & internships and career counseling'
+        />
+        <meta
+          name='keywords'
+          content='women empowerment organizations women empowerment initiative free online courses free career guidance'
+        />
       </Helmet>
-      <div className='SuccStory_banner noselect'>
-        {" "}
-        <Container>
-          <Row>
-            <Col md={1}>
-              <div className='global_img'>
-                <img src={global} alt='' className='vert-move' />
-              </div>
-            </Col>
-            <Col md={6} data-aos='slide-up'>
-              <h2> {t("Shekunj Events..")}</h2>
-              <p>
-                Excel your Career with Shekunj Events Whether you’re a student,
-                fresher, professional, educator, or business owner, we have
-                plenty of Shekunj Events specifically created for your growth in
-                mind. Explore special events and learning opportunities created
-                to help you expand your expertise, learn new skills and getting
-                self-reliant.
-              </p>
-            </Col>
-          </Row>
-        </Container>
-      </div>
-      {/* <div className='Home'> */}
-      <Container className='eventContainer event_responsive12'>
-        {
-          // events?.event_list?.length > 0 ? (
-          //   events?.event_list?.map((c, index) => {
-          tempData?.length > 0 ? (
-            tempData?.map((c, index) => {
-              return (
-                <>
-                  {shuffleFun(c, index)}
-                </>
-              );
-            })
-          ) : (
-            <div className='text-center'>{t("common.noDataFound")}</div>
-          )}
-      </Container>
-      {/* </div> */}
-      {/* <div className='want'>
-        <Container>
-          <h2>{t("successStoriesPage.content.2")}</h2>
-          <button onClick={() => history.push("/courses")} className='want_btn'>
-            {t("successStoriesPage.button.2")}
-          </button>
-        </Container>
-      </div> */}
 
       <Footer loginPage={false} />
     </div>

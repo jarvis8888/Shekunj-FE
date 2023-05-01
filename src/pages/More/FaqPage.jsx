@@ -1,13 +1,4 @@
 import React, { useState, useEffect } from "react";
-import {
-  Container,
-  Row,
-  Col,
-  Accordion,
-  Navbar,
-  AccordionButton,
-  AccordionCollapse,
-} from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import {
@@ -20,71 +11,104 @@ import down1 from "../../assets/icons/down1.png";
 import up from "../../assets/icons/up.png";
 import double_quote from "../../assets/icons/double_quote.png";
 import global from "../../assets/images/Success/global.png";
-import "./index.scss";
+import "./faq.scss";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
 import { getFaq as fetchFaq } from "../../store/faq/action";
 import { adsList } from "../../store/ads";
 import OpenInFullIcon from "@mui/icons-material/OpenInFull";
+import downArrow_icon from "../../assets/icons/svgs/downArrow.png";
+import add_icon from "../../assets/icons/svgs/exAddPhoto.png";
+
+const tabs = [
+  { id: 1, name: "About Us" },
+  { id: 2, name: "Courses" },
+  { id: 3, name: "Mock Test" },
+  { id: 4, name: "Events" },
+  { id: 5, name: "Profile" },
+];
+const questions = [
+  {
+    id: 1,
+    tabId: 1,
+    question: "What is your company's mission?",
+    answer: "Our mission is to provide quality education to everyone.",
+  },
+  {
+    id: 2,
+    tabId: 1,
+    question: "What is your company's history?",
+    answer:
+      "We were founded in 2010 and have since grown to become one of the leading education providers in the country.",
+  },
+  {
+    id: 3,
+    tabId: 2,
+    question: "What courses do you offer?",
+    answer:
+      "We offer a wide range of courses in various fields such as computer science, business, and engineering.",
+  },
+  {
+    id: 4,
+    tabId: 2,
+    question: "What are the prerequisites for your courses?",
+    answer:
+      "The prerequisites vary depending on the course. Please refer to the course description for more information.",
+  },
+  {
+    id: 5,
+    tabId: 3,
+    question: "Do you offer mock tests for exams?",
+    answer:
+      "Yes, we offer mock tests for various exams such as GRE, GMAT, and TOEFL.",
+  },
+  {
+    id: 6,
+    tabId: 3,
+    question: "How can I access the mock tests?",
+    answer: "You can access the mock tests through our online platform.",
+  },
+  {
+    id: 7,
+    tabId: 4,
+    question: "What kind of events do you organize?",
+    answer:
+      "We organize various events such as workshops, seminars, and conferences.",
+  },
+  {
+    id: 8,
+    tabId: 4,
+    question: "How can I participate in your events?",
+    answer: "You can register for our events through our website.",
+  },
+  {
+    id: 9,
+    tabId: 5,
+    question: "How can I update my profile information?",
+    answer:
+      "You can update your profile information through your account settings.",
+  },
+  {
+    id: 10,
+    tabId: 5,
+    question: "How can I delete my account?",
+    answer: "You can delete your account through your account settings.",
+  },
+];
 
 function FaqPage() {
   const history = useHistory();
   const dispatch = useDispatch();
-  const { faq } = useSelector((state) => {
-    console.log("state", state);
-    return state.faqReducer;
-  });
-  console.log("faq", faq);
 
   const { lan } = useSelector((state) => state.languageReducer);
   const { t } = useTranslation();
-  useEffect(() => {
-    dispatch(fetchFaq());
-  }, [dispatch]);
-
-  const handleSetCollapse = (id, is_collapse) => {
-    dispatch(setCollapseSuccessStory(id, is_collapse ? false : true));
-  };
 
   const [storiesBannerAds, setStoriesBannerAds] = useState([]);
   const [image, setImage] = useState("NA");
   const [faqBoxAdds, setFaqBoxAdds] = useState([]);
   const [adds, setAdds] = useState([]);
-
-  // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>code bellow>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-
-  // useEffect(() => {
-  //   navigator.geolocation.getCurrentPosition(async function (position, values) {
-  //     const latitude = position.coords.latitude;
-  //     const longitude = position.coords.longitude;
-
-  //     let params = {
-  //       latitude: latitude.toString(),
-  //       longitude: longitude.toString(),
-  //     };
-  //     axios
-  //       .get(
-  //         `/private_adds/private_add?latitude=${latitude}&longitude=${longitude}`,
-  //       )
-  //       .then((response) => {
-  //         if (response.data.results.length > 0) {
-  //           let filterArray = response.data.results.filter((item, index) => {
-  //             return item.image_type == "Faq_index";
-  //           });
-  //           let findImage =
-  //             filterArray.length > 0 ? filterArray[0].image : "NA";
-  //           setImage(findImage);
-  //           setFaqBoxAdds(filterArray);
-  //         }
-  //       })
-  //       .catch((error) => {
-  //         console.log(error);
-  //     })
-  //   });
-  //   // dispatch(adsList());
-  // }, [dispatch]);
-
-  // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>latest code below>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  const [activeTab, setActiveTab] = useState(tabs[0].id);
+  const [expandedQuestions, setExpandedQuestions] = useState([]);
 
   useEffect(() => {
     dispatch(adsList());
@@ -152,149 +176,76 @@ function FaqPage() {
     });
   };
 
+  const handleTabClick = (id) => {
+    setActiveTab(id);
+  };
+
+  const toggleQuestion = (id) => {
+    if (expandedQuestions.includes(id)) {
+      setExpandedQuestions((prev) => prev.filter((q) => q !== id));
+    } else {
+      setExpandedQuestions((prev) => [...prev, id]);
+    }
+  };
+
   return (
     <div>
       <Header loginPage={true} page='more' subPage='moreFAQ' />
-      <div className='SuccStory_banner noselect'>
-        <Container>
-          <Row>
-            <Col md={1}>
-              <div className='global_img'>
-                <img src={global} alt='' className='vert-move' />
-              </div>
-            </Col>
-            <Col md={6} data-aos='slide-up'>
-              <h2> {t("successStoriesPage.heading.1")}</h2>
-              <p className='sucess_first_p'>
-                {t("successStoriesPage.content.1")}
-              </p>
-              <p>{t("successStoriesPage.content.4")}</p>
-            </Col>
-          </Row>
-        </Container>
+      <div className='help-container'>
+        <h1>
+          HOW CAN WE <span>HELP YOU</span>
+        </h1>
       </div>
-      {/* google add */}
-      <Container>
-        <Row>
-          <div className='col-md-12'>
-            {faqBoxAdds.length > 0 && (
-              <div
-                className='ads_story_cover'
-                onClick={() => addEmail(faqBoxAdds[0]?.add_email)}
-              >
-                <a href={faqBoxAdds[0]?.url_adds} target='_blank'>
-                  <img
-                    src={faqBoxAdds[0]?.image}
-                    alt='Image'
-                    className='ads_story_cover_img'
-                  />
-                </a>
-              </div>
-            )}
+      <div className='faqs-container'>
+        <div className='tabs-container'>
+          {tabs.map((tab) => (
+            <div
+              key={tab.id}
+              className={`tab ${activeTab === tab.id ? "active" : ""}`}
+              onClick={() => handleTabClick(tab.id)}
+            >
+              {tab.name}
+            </div>
+          ))}
+        </div>
+        <div className='questions-container-wrapper'>
+          <div className='questions-container'>
+            {questions
+              .filter((q) => q.tabId === activeTab)
+              .map((q) => (
+                <div key={q.id} className='question'>
+                  <div
+                    className='question-header'
+                    onClick={() => toggleQuestion(q.id)}
+                  >
+                    <div className='question-text'>{q.question}</div>
+                    <div>
+                      <img src={downArrow_icon} alt='arrow' />
+                    </div>
+                  </div>
+                  {expandedQuestions.includes(q.id) && (
+                    <div className='faqs-question-answer'>{q.answer}</div>
+                  )}
+                </div>
+              ))}
           </div>
-        </Row>
-      </Container>
+          <div className='technical-support'>
+            <div>
+              <div className='technical-title'>Technical Support</div>
+              <div className='technical-description'>
+                If you have some additional question, please contact our Help
+                Desk
+              </div>
+            </div>
+            <div class='input-container'>
+              <input type='email' placeholder='Email id' />
+              <button>Send</button>
+            </div>
+          </div>
+        </div>
 
-      <div className='FaqContainer noselect'>
-        <Container>
-          <Navbar expand='lg' variant='light' bg='light'>
-            <Container>
-              <Navbar.Brand className='NavHeading'>
-                Frequently Asked Question
-              </Navbar.Brand>
-              {/* <img
-                src='/static/media/logo.de3c6070.svg'
-                width='30'
-                height='30'
-                // className="d-inline-block align-top"
-                className='faq-shekunj-logo'
-                alt='logo'
-              /> */}
-            </Container>
-          </Navbar>
-          <Row>
-            <Col md={12}>
-              {faq?.Faqs_list?.length > 0 ? (
-                faq?.Faqs_list?.map(
-                  (c, index) =>
-                    c && (
-                      <>
-                        <div className='FaqAccordion'>
-                          <Accordion flush>
-                            <Accordion.Item eventKey='0'>
-                              <Accordion.Header>{c.question}</Accordion.Header>
-                              {/* <OpenInFullIcon /> */}
-                              <Accordion.Body className='Faq_Accordion_body'>
-                                <div
-                                  dangerouslySetInnerHTML={{
-                                    __html: `<div>${c.answer}</div>`,
-                                  }}
-                                />
-                              </Accordion.Body>
-                            </Accordion.Item>
-                          </Accordion>
-                        </div>
-                      </>
-                    ),
-                )
-              ) : (
-                <div className='text-center'>{t("common.noDataFound")}</div>
-              )}
-            </Col>
-          </Row>
-          {/* {idx % 2 == 1 ? (
-                    <a href={faqBoxAdds[0]?.url_adds} target='_blank'>
-                      <div className='ads_story_cover'>
-                        <img
-                          src={faqBoxAdds[1]?.image}
-                          alt='Image'
-                          className='ads_succ_story'
-                        />
-                      </div>
-                    </a>
-                  ) : (
-                    ""
-                  )} */}
-
-          {/* {index % 2 == 1 ? (
-                      <>
-                      
-                      {faqBoxAdds[0].length > 0 && (
-                        <div
-                          // className='slide-img-test'
-                          className='ads_story_cover'
-                          onClick={() =>
-                            addEmail(faqBoxAdds[0]?.add_email)
-                          }
-                        >
-                          <a
-                            href={faqBoxAdds[0]?.url_adds}
-                            target='_blank'
-                          >
-                            <img
-                              src={faqBoxAdds[0]?.image}
-                              alt='Image'
-                              className='ads_succ_story'
-                            />
-                          </a>
-                          <div className='overlay'></div>
-                        </div>
-                      )}
-                      </>
-                    ) : (
-                      ""
-                    )}  */}
-        </Container>
+        <div>adds</div>
       </div>
-      <div className='want'>
-        <Container>
-          <h2>{t("successStoriesPage.content.2")}</h2>
-          <button onClick={() => history.push("/courses")} className='want_btn'>
-            {t("successStoriesPage.button.2")}
-          </button>
-        </Container>
-      </div>
-
       <Footer loginPage={false} />
     </div>
   );

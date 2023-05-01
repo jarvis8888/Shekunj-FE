@@ -68,7 +68,8 @@ const SuccessCareerOption2 = React.lazy(() =>
 const PageNotFound = React.lazy(() => import("./pages/PageNotFound"));
 const DataNotFound = React.lazy(() => import("./pages/DataNotFound"));
 
-const BlogCategoryPage = React.lazy(()=> import('./pages/BlogsWithCatogry'))
+const BlogCategoryPage = React.lazy(() => import("./pages/BlogsWithCatogry"));
+const GlobalSearchPage = React.lazy(() => import("./pages/Search"));
 
 function App() {
   useEffect(() => {
@@ -167,6 +168,11 @@ function App() {
           exact
           path={routingConstants.ALL_CERTIFICATE_PAGE}
           component={AllCertificatePage}
+        />
+        <Route
+          exact
+          path={routingConstants.SEARCH}
+          component={GlobalSearchPage}
         />
         <PrivateRoute
           exact
