@@ -47,7 +47,7 @@ function SuccessStory() {
   React.useEffect(() => {
     dispatch(fetchSuccessStories(pageLimit, offset, page));
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-  }, [lan]);
+  }, [lan, offset]);
 
   const handleSetCollapse = (id, is_collapse) => {
     dispatch(setCollapseSuccessStory(id, is_collapse ? false : true));
@@ -59,41 +59,6 @@ function SuccessStory() {
   const [storiesBoxAds, setStoriesBoxAds] = useState([]);
   const [image, setImage] = useState("NA");
   const detect = useDeviceDetect();
-
-  // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>code below>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
- 
-  // useEffect(() => {
-  //   navigator.geolocation.getCurrentPosition(async function (position, values) {
-  //     const latitude = position.coords.latitude;
-  //     const longitude = position.coords.longitude;
-
-  //     let params = {
-  //       latitude: latitude.toString(),
-  //       longitude: longitude.toString(),
-  //     };
-  //     axios
-  //       .get(
-  //         `/private_adds/private_add?latitude=${latitude}&longitude=${longitude}`,
-  //       )
-  //       .then((response) => {
-  //         if (response.data.results.length > 0) {
-  //           let filterArray = response.data.results.filter((item, index) => {
-  //             return item.image_type == "success_stories_banner";
-  //           });
-  //           let findImage =
-  //             filterArray.length > 0 ? filterArray[0].image : "NA";
-  //           setImage(findImage);
-  //           setStoriesBannerAds(filterArray);
-  //         }
-  //       })   .catch((error) => {
-  //         // setMessage("No data found");
-  //         console.log(error);
-  //     })
-  //   });
-  //   dispatch(adsList());
-  // }, [dispatch]);
-
-  // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>latest code below>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
   useEffect(() => {
     dispatch(adsList());
@@ -230,7 +195,7 @@ function SuccessStory() {
   };
 
   return (
-    <div className="">
+    <div className=''>
       <Header loginPage={true} page='story' />
       {/* success story section1 start */}
       <div className='Section1'>
@@ -333,7 +298,9 @@ function SuccessStory() {
               padding: "20px 0",
             }}
           >
-            <button className='loadMore'>Load More</button>
+            <button className='loadMore' onClick={() => setOffset(offset + 5)}>
+              Load More
+            </button>
           </div>
           <div>
             <div>
