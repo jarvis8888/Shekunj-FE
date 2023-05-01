@@ -3,6 +3,7 @@ import { useHistory, useLocation } from "react-router-dom";
 import { withHeaderFooter } from "../../hocs/withHeaderFooter";
 import httpServices from "../../utils/ApiServices";
 import "./index.scss";
+import { GlobalSearchCard } from "../../components/cards/GlobalSearchCard";
 
 const GlobalSearch = () => {
   const location = useLocation();
@@ -24,7 +25,12 @@ const GlobalSearch = () => {
     }
   };
 
-  return <div></div>;
+  return (
+    <div>
+      <div>top section</div>
+      <GlobalSearchCard />
+    </div>
+  );
 };
 
 export default withHeaderFooter(GlobalSearch);
