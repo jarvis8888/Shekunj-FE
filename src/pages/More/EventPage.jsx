@@ -25,6 +25,7 @@ import { adsList } from "../../store/ads";
 import LocalLibraryTwoToneIcon from "@mui/icons-material/LocalLibraryTwoTone";
 import GroupTwoToneIcon from "@mui/icons-material/GroupTwoTone";
 import { Helmet } from "react-helmet-async";
+import { EventsCard } from "../../components/cards/EventsCard";
 // import AlarmOnOutlinedIcon from '@mui/icons-material/AlarmOnOutlined';
 // import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined';
 
@@ -245,7 +246,10 @@ function EventPage() {
           content='women empowerment organizations women empowerment initiative free online courses free career guidance'
         />
       </Helmet>
-
+      <div>top section</div>
+      <div>
+        <EventsCard />
+      </div>
       <Footer loginPage={false} />
     </div>
   );
