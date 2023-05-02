@@ -28,9 +28,12 @@ import { Helmet } from "react-helmet-async";
 import { EventsCard } from "../../components/cards/EventsCard";
 // import AlarmOnOutlinedIcon from '@mui/icons-material/AlarmOnOutlined';
 // import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined';
+import httpServices from "../../utils/ApiServices";
+import { constants } from "../../utils";
 
 function EventPage() {
   const [eventBoxAds, setEventBoxAds] = useState([]);
+  const [events, setEvents] = useState([]);
   const [image, setImage] = useState("NA");
   const [adds, setAdds] = useState([]);
   const [tempData, setTempData] = useState([]);
@@ -39,8 +42,17 @@ function EventPage() {
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
-  const { events } = useSelector((state) => state.eventsReducer);
+  // const { events } = useSelector((state) => state.eventsReducer);
   const { lan } = useSelector((state) => state.languageReducer);
+
+  const getEventsData = async (search) => {
+    try {
+      const url = "more/events";
+      const res = await httpServices.get(url);
+    } catch {
+    } finally {
+    }
+  };
 
   useEffect(() => {
     dispatch(getAllEvents());
@@ -216,16 +228,23 @@ function EventPage() {
     }
   };
 
+  // const checkFunction = () => {
+  //   let num = Math.floor(Math.random() * (4 - 0) + 0);
+  //   let res = events?.event_list;
+  //   let dummydata = {
+  //     id: "advertistment",
+  //   };
+  //   res && res.splice(num, 0, dummydata);
+  //   if (res) {
+  //     setTempData(res);
+  //   }
+  // };
   const checkFunction = () => {
-    let num = Math.floor(Math.random() * (4 - 0) + 0);
-    let res = events?.event_list;
-    let dummydata = {
-      id: "advertistment",
-    };
-    res && res.splice(num, 0, dummydata);
-    if (res) {
-      setTempData(res);
-    }
+    const num = Math.floor(Math.random() * 4);
+    const res = events?.event_list || [];
+    const dummydata = { id: "advertisement" };
+    const newData = [...res.slice(0, num), dummydata, ...res.slice(num)];
+    setTempData(newData);
   };
 
   return (
