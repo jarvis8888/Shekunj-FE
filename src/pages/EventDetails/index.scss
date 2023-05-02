@@ -1,6 +1,232 @@
+body {
+  font-family: "Poppins", sans-serif !important;
+}
 .career_tit {
   margin-bottom: 50px;
 }
+
+// 02/05/23
+img {
+  max-width: 100%;
+  height: auto;
+}
+section {
+  padding: 40px 0;
+}
+.sk-eventDetail-content {
+  margin: 30px 0 0;
+}
+
+.sk-eventSocial-chiptag {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.sk-edetail-chip span {
+  background: #1da1f2;
+  font-size: 14px;
+  color: #fff;
+  padding: 5px 10px;
+}
+
+.sk-social-icon ul {
+  list-style: none;
+  display: flex;
+  grid-gap: 10px;
+  padding: 0;
+}
+
+.sk-social-icon {
+  text-align: right;
+}
+
+.sk-social-icon h6 {
+  font-weight: 400;
+  font-size: 16px;
+  color: #020202;
+}
+
+.sk-details-datetime ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  grid-gap: 40px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.sk-details-datetime ul li {
+  font-size: 14px;
+}
+
+.sk-details-datetime ul li svg {
+  font-size: 20px;
+  vertical-align: text-top;
+  color: #020202;
+  margin-right: 2px;
+}
+
+.sk-details-datetime ul li span {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.sk-details-datetime ul li img {
+  margin-right: 2px;
+}
+
+.sk-eventDetail-content h2 {
+  font-size: 40px;
+  font-weight: 600;
+  padding-bottom: 10px;
+}
+
+.sk-eventDetail-content p {
+  color: #434242;
+  line-height: 26px;
+}
+.sk-work-detail ul {
+  padding: 0;
+  list-style: none;
+}
+
+.sk-work-detail ul li {
+  line-height: 26px;
+  font-size: 14px;
+}
+
+.sk-work-detail ul li span {
+  font-weight: 500;
+}
+
+.sk-work-detail {
+  padding: 15px 0;
+}
+.sk-eventImportant-info {
+  background: #f6dae7;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.sk-eventImportant-info h5 {
+  font-size: 18px;
+}
+.sk-eventImportant-info svg {
+  color: #d3317d80;
+  font-size: 21px;
+}
+
+.sk-eventImportant-info {
+  margin-bottom: 20px;
+}
+.sk-eventImportant-info ul {
+  list-style: none;
+  padding: 0;
+  padding-left: 28px;
+  margin-bottom: 0;
+}
+
+.sk-eventImportant-info li {
+  position: relative;
+  padding-left: 14px;
+  line-height: 26px;
+  font-size: 14px;
+}
+
+.sk-eventImportant-info ul li:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 10px;
+  width: 5px;
+  height: 5px;
+  background: #020202;
+  border-radius: 40px;
+}
+.sk-event-form .sk-eventForm-filed {
+  position: relative;
+  margin-bottom: 15px;
+}
+.sk-event-form h6 {
+  margin-bottom: 18px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #020202;
+}
+
+.sk-event-form ul {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  padding: 0;
+  grid-gap: 15px;
+  margin-bottom: 0;
+}
+.sk-event-form .sk-eventForm-filed input {
+  border: 1px solid #d9d9d9;
+  border-radius: 8px;
+  height: 48px;
+  font-size: 14px;
+  padding-left: 40px;
+}
+.sk-event-form .sk-eventForm-filed input:focus {
+  border-color: #fcbdda;
+}
+.sk-event-form {
+  border-bottom: 1px solid #d9d9d9;
+  padding-bottom: 10px;
+}
+.sk-eventForm-filed span {
+  position: absolute;
+  left: 10px;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  display: flex;
+  align-items: center;
+}
+
+.sk-eventForm-filed svg {
+  color: #888;
+  font-size: 21px;
+}
+.sk-eventForm-filed .sk-submit-btn {
+  width: 100%;
+  border-radius: 8px;
+  height: 50px;
+  color: #fff;
+  margin-top: 8px;
+}
+.sk-add-slidebar {
+  margin: 20px 0;
+  border-bottom: 1px solid #d9d9d9;
+  padding-bottom: 22px;
+}
+.sk-like-event h5 span svg {
+  background: #75b94a;
+  color: #fff;
+  font-size: 26px;
+  padding: 5px;
+  border-radius: 50pc;
+}
+.sk-like-event h5 {
+  font-style: italic;
+}
+
+.sk-slide-img {
+  padding: 10px 0 12px;
+}
+
+.sk-slide-img h6 {
+  font-size: 20px;
+}
+.sk-event-imgcontent {
+  border-right: 1px solid #d9d9d9;
+  padding-right: 15px;
+}
+// end
 
 .career_tit h2 {
   font-family: Poppins;
@@ -560,7 +786,8 @@
   color: #fff !important;
 }
 
-.Event_book_form svg.MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium.MuiSelect-icon.MuiSelect-iconOutlined.css-1636szt {
+.Event_book_form
+  svg.MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium.MuiSelect-icon.MuiSelect-iconOutlined.css-1636szt {
   right: 5px !important;
   top: calc(50% - 0.15em) !important;
 }
@@ -704,16 +931,15 @@ button.book_event_btn:hover {
     align-items: center;
   }
   .ModalMiddleEvent {
-    h6{
+    h6 {
       margin: 10px 0;
       color: #666;
     }
-    h4{
+    h4 {
       margin: 10px 0;
       font-size: 24px;
     }
   }
-
 }
 
 .ModalBodyBoxEvent2 {
@@ -738,8 +964,6 @@ button.book_event_btn:hover {
   flex-direction: column;
   align-items: center;
   background-color: #ffffff;
-
-
 }
 
 .ModalBottomEvent {
@@ -771,4 +995,12 @@ button.book_event_btn:hover {
   top: 10px;
   cursor: pointer;
   color: white;
+}
+
+.sk-error-message {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
 }

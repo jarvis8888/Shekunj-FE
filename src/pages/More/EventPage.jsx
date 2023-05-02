@@ -9,34 +9,48 @@ import PublicIcon from "@mui/icons-material/Public";
 import { Header, Footer } from "../../components";
 import global from "../../assets/images/Success/global.png";
 import "./index.scss";
+import "../Search/index.scss";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
 import { getAllEvents } from "../../store/events";
 // import Moment from "react-moment";
 import Card from "@mui/material/Card";
 import Grid from "@mui/material/Grid";
+import eventimg1 from "../../assets/images/eventslide1.jpg";
+import eventimg2 from "../../assets/images/eventslide2.jpg";
+import eventimg4 from "../../assets/images/eventimg4.jpg";
+// import eventimg5 from "../../assets/images/eventimg5.jpg";
+// import eventadd from "../../assets/images/eventadd.jpg";
+import offlineicon from "../../assets/images/offline-icon.svg";
+import onlineicon from "../../assets/images/onlineicon.svg";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import SchoolRoundedIcon from "@mui/icons-material/SchoolRounded";
+import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import { adsList } from "../../store/ads";
+import ArrowBackIosNewRoundedIcon from "@mui/icons-material/ArrowBackIosNewRounded";
+import ArrowForwardIosRoundedIcon from "@mui/icons-material/ArrowForwardIosRounded";
 // import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import LocalLibraryTwoToneIcon from "@mui/icons-material/LocalLibraryTwoTone";
 import GroupTwoToneIcon from "@mui/icons-material/GroupTwoTone";
 import { Helmet } from "react-helmet-async";
 import { EventsCard } from "../../components/cards/EventsCard";
-// import AlarmOnOutlinedIcon from '@mui/icons-material/AlarmOnOutlined';
-// import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined';
+import OwlCarousel from "react-owl-carousel";
+import "owl.carousel/dist/assets/owl.carousel.css";
+import "owl.carousel/dist/assets/owl.theme.default.css";
 import httpServices from "../../utils/ApiServices";
-import { constants } from "../../utils";
+import { time_left } from "../../utils/utils";
+import { CustomLoader } from "../../components/customLoader/CustomLoader";
 
 function EventPage() {
   const options = [
-    { label: "All Data", value: "all" },
-    { label: "Today's Data", value: "today" },
-    { label: "Tomorrow's Data", value: "tomorrow" },
-    { label: "This Week's Data", value: "thisWeek" },
+    { label: "All", value: "all" },
+    { label: "Today-Tomorrow", value: "todayTomorrow" },
+    { label: "This Week", value: "thisWeek" },
+    { label: "Next Week", value: "nextWeek" },
   ];
 
   const [eventBoxAds, setEventBoxAds] = useState([]);
@@ -44,13 +58,15 @@ function EventPage() {
   // const [image, setImage] = useState("NA");
   // const [adds, setAdds] = useState([]);
   const [tempData, setTempData] = useState([]);
+  const [currentData, setCurrentData] = useState([]);
   const [allEventData, setAllEventData] = useState([]);
   const [todayTomorrowData, setTodayTomorrowData] = useState([]);
   const [thisWeekData, setThisWeekData] = useState([]);
   const [nextWeekData, setNextWeekData] = useState([]);
-  const [genresListData, setgenresListData] = useState([]);
+  const [genresListData, setGenresListData] = useState([]);
   const [selectedOption, setSelectedOption] = useState(null);
-  console.log(allEventData);
+  const [selectedButton, setSelectedButton] = useState("all");
+  const [loading, setLoading] = useState(false);
 
   const history = useHistory();
   const dispatch = useDispatch();
@@ -64,21 +80,45 @@ function EventPage() {
   const { lan } = useSelector((state) => state.languageReducer);
 
   const fetchEventsData = async (search, selectedOption) => {
+    setLoading(true);
     try {
       const url = `more/events?genre_id=${search}`;
       const { data } = await httpServices.get(url);
-
       const { event_list, today_tomorrow, this_week, next_week, genres_list } =
         data;
       setAllEventData(event_list);
+      setGenresListData(genres_list);
+      setTodayTomorrowData(today_tomorrow);
+      setThisWeekData(this_week);
+      setNextWeekData(next_week);
+      setCurrentData(event_list);
     } catch (error) {
     } finally {
+      setLoading(false);
     }
   };
-  const handleOptionClick = (option) => {
+  const handleTimeOptionClick = (option) => {
+    setSelectedButton(option);
+    switch (option) {
+      case "todayTomorrow":
+        setCurrentData(todayTomorrowData);
+        break;
+      case "thisWeek":
+        setCurrentData(thisWeekData);
+        break;
+      case "nextWeek":
+        setCurrentData(nextWeekData);
+        break;
+      default:
+        setCurrentData(allEventData);
+        break;
+    }
+  };
+  const handleGenerOptionClick = (option) => {
+    setSelectedButton("all");
     setSelectedOption(option);
     const searchParams = new URLSearchParams();
-    searchParams.set("genre_id", currentSearch);
+    searchParams.set("genre_id", option);
     history.push({
       pathname: location.pathname,
       search: searchParams.toString(),
@@ -296,10 +336,171 @@ function EventPage() {
           content='women empowerment organizations women empowerment initiative free online courses free career guidance'
         />
       </Helmet>
-      <div>top section</div>
-      <div>
-        <EventsCard />
-      </div>
+      <section className='sk-event-sec'>
+        <div className='container-fluid'>
+          <div className='sk-event-slide'>
+            <OwlCarousel items={4} margin={15} {...options}>
+              <div>
+                <img src={eventimg1} />
+              </div>
+              <div>
+                <img src={eventimg2} />
+              </div>
+              <div>
+                <img src={eventimg1} />
+              </div>
+              <div>
+                <img src={eventimg2} />
+              </div>
+              <div>
+                <img src={eventimg1} />
+              </div>
+              <div>
+                <img src={eventimg2} />
+              </div>
+              <div>
+                <img src={eventimg1} />
+              </div>
+            </OwlCarousel>
+          </div>
+        </div>
+      </section>
+      <section className='sk-card-sec sk-eventcard-sec'>
+        <div className='container'>
+          <div className='sk-title-heading'>
+            <h2>All Events Today</h2>
+          </div>
+          <div className='sk-category mb-3'>
+            <ul>
+              <li>Time</li>
+              {options.map((items, index) => {
+                return (
+                  <>
+                    <li>
+                      <a
+                        onClick={() => handleTimeOptionClick(items.value)}
+                        className={
+                          selectedButton === items.value && "active-time"
+                        }
+                      >
+                        {items.label}
+                      </a>
+                    </li>
+                  </>
+                );
+              })}
+            </ul>
+          </div>
+          <div className='sk-category'>
+            <ul>
+              <li>Genre</li>
+              {genresListData.length &&
+                genresListData.map((items, index) => {
+                  return (
+                    <>
+                      <li key={items.id}>
+                        <a
+                          onClick={() => handleGenerOptionClick(items.id)}
+                          className={
+                            selectedOption === items.id && "active-time"
+                          }
+                        >
+                          {items.name}
+                        </a>
+                      </li>
+                    </>
+                  );
+                })}
+            </ul>
+          </div>
+          {loading ? (
+            <CustomLoader size='small' />
+          ) : (
+            <div className='row'>
+              {currentData.length
+                ? currentData?.map((items, index) => {
+                    return (
+                      <>
+                        <div className='col-md-3' key={index}>
+                          <div className='sk-card-box'>
+                            <div className='sk-card-img'>
+                              <img src={items.image} alt='' />
+                            </div>
+                            <div className='sk-content-card'>
+                              <div className='sk-time-education'>
+                                <ul>
+                                  <li className='sk-chip-tag'>
+                                    {" "}
+                                    <span>{items.genre_name}</span>{" "}
+                                  </li>
+                                  <li>
+                                    {items.mode_of_event === "offline" ? (
+                                      <>
+                                        {" "}
+                                        <img src={offlineicon} /> Offline{" "}
+                                      </>
+                                    ) : (
+                                      <>
+                                        {" "}
+                                        <img src={onlineicon} /> Online{" "}
+                                      </>
+                                    )}
+                                  </li>
+                                </ul>
+                              </div>
+                              <h6 className='sk-card-heading'>{items.title}</h6>
+                              <div className='sk-time-education'>
+                                <ul>
+                                  <li>
+                                    {" "}
+                                    <AccessTimeIcon />{" "}
+                                    <span>
+                                      {time_left(
+                                        items.start_date,
+                                        items.start_time,
+                                        items.end_date,
+                                        items.end_time,
+                                      )}
+                                    </span>{" "}
+                                  </li>
+                                  <li>
+                                    {" "}
+                                    <SchoolRoundedIcon />{" "}
+                                    {items.enrold_students} enrolled{" "}
+                                  </li>
+                                </ul>
+                              </div>
+                              <div className='sk-tags-event'>
+                                <button
+                                  type='button'
+                                  className='sk-btn-register'
+                                  onClick={() =>
+                                    history.push(
+                                      routingConstants.MORE_EVENT + items.id,
+                                    )
+                                  }
+                                >
+                                  Registration Now
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </>
+                    );
+                  })
+                : "no data"}
+              <div className='col-md-12'>
+                <div className='sk-explore-btn'>
+                  <button type='' className='sk-btn'>
+                    Explore More{" "}
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      </section>
       <Footer loginPage={false} />
     </div>
   );

@@ -64,7 +64,6 @@ export const checkIsSessionExpired = (tokenExpiry = 0) => {
   const currentTime = new Date().getTime();
   const tokenExpireTime = new Date((tokenExpiry - 10) * 1000).getTime();
   if (currentTime > tokenExpireTime) {
-
     return true;
   } else {
     return false;
@@ -166,9 +165,9 @@ export function formatDate(date = null, format = "DD-MM-YYYY") {
 export function formatTime(date = null) {
   return date
     ? {
-      hour: moment(date).format("HH") + i18njs.t("common.time.8"),
-      minute: moment(date).format("mm") + i18njs.t("common.time.2"),
-    }
+        hour: moment(date).format("HH") + i18njs.t("common.time.8"),
+        minute: moment(date).format("mm") + i18njs.t("common.time.2"),
+      }
     : { hour: null, minute: null };
 }
 
@@ -193,17 +192,17 @@ export function timeDifferenceFromDates(sDate, eDate) {
   const endDate = moment(eDate);
   return sDate && eDate
     ? {
-      hour: endDate.diff(startDate, "hour") + i18njs.t("common.time.8"),
-      minute: endDate.diff(startDate, "minute") + i18njs.t("common.time.2"),
-    }
+        hour: endDate.diff(startDate, "hour") + i18njs.t("common.time.8"),
+        minute: endDate.diff(startDate, "minute") + i18njs.t("common.time.2"),
+      }
     : { hour: null, minute: null };
 }
 
 export const removeUnauthorizedUser = () => {
   Cookies.remove("sheToken");
-  localStorage.removeItem('login_data');
-  localStorage.removeItem('event_data');
-  
+  localStorage.removeItem("login_data");
+  localStorage.removeItem("event_data");
+
   toast.error(i18njs.t("error.other.8"));
   window.location.href = routingConstants.LOGIN;
 };
@@ -216,10 +215,11 @@ export const sliceString = (str) => {
 };
 
 export const paragraph = (text) => {
-
-  let lines = text
+  let lines = text;
   // return lines?.length > 0 ? text.filter((o) => o !== `\r\n` || o !== "") : [];
-  return lines?.length > 0 && typeof (text === 'string') ? text : text.filter((o) => o !== `\r\n` || o !== "");
+  return lines?.length > 0 && typeof (text === "string")
+    ? text
+    : text.filter((o) => o !== `\r\n` || o !== "");
 };
 
 export async function convertRelativeUriToFile(
@@ -246,3 +246,31 @@ export function truncateString(str, len) {
     return str;
   }
 }
+
+export function time_left(start_date, start_time, end_date, end_time) {
+  const start = new Date(start_date + " " + start_time);
+  const end = new Date(end_date + " " + end_time);
+  const delta = end - new Date();
+  const days = Math.floor(delta / (24 * 60 * 60 * 1000));
+  const hours = Math.floor((delta % (24 * 60 * 60 * 1000)) / (60 * 60 * 1000));
+  const minutes = Math.floor((delta % (60 * 60 * 1000)) / (60 * 1000));
+  const seconds = Math.floor((delta % (60 * 1000)) / 1000);
+  const date_str = start.toLocaleString("en-US", {
+    day: "numeric",
+    month: "long",
+    year: "2-digit",
+    hour: "numeric",
+    minute: "numeric",
+    hour12: true,
+  });
+  return `${date_str.replace(" at", " |")}`;
+}
+
+export  const makeHtml = (htmlString) => {
+  const htmlNode = document.createElement("div");
+  htmlNode.innerHTML = htmlString;
+  htmlNode.querySelectorAll("*").forEach(function (node) {
+    node.removeAttribute("style");
+  });
+  return htmlNode.innerHTML;
+};
