@@ -22,20 +22,23 @@ export const TrendingBlogsCard = ({
     >
       <div
         className='blog-card__image new-blog-card'
-        style={{marginLeft:"10px",marginRight:"10px", backgroundImage: `url(${image})` }}
+        style={{
+          marginLeft: "10px",
+          marginRight: "10px",
+          backgroundImage: `url(${image})`,
+        }}
       ></div>
       <div className='blog-card__content sk-blog-side'>
-        <div>Working Women</div>
+        <div></div>
         <p className='blog-card__description'>{description}</p>
         <div className='blog-card__meta'>
           <span className='blog-card__time'>
             <img src={time_icon} alt='time' width={14} height={14} />
-            {date}min
+            {date}
           </span>
           <span className='blog-card__date sk-blog-icon2'>
             <img src={book} alt='time' width={14} height={14} />
-
-            {time}
+            {time} min
           </span>
         </div>
       </div>

@@ -22,6 +22,7 @@ const GlobalSearch = () => {
   });
   const [loading, setLoading] = useState(false);
   const [onSearch, setOnSearch] = useState("");
+  const [activeTab, setActiveTab] = useState();
 
   const getGlobalSearchData = async (search) => {
     setLoading(true);
@@ -81,7 +82,9 @@ const GlobalSearch = () => {
                         hide_label='true'
                         type='text'
                         name='search'
+                        value={onSearch}
                         onChange={(e) => setOnSearch(e.target.value)}
+                        onBlur={() => getGlobalSearchData(onSearch)}
                       />
                       <button
                         name='button'
@@ -105,6 +108,7 @@ const GlobalSearch = () => {
         CousesData={data?.courses}
         MockTestData={data?.mock_tests}
         loading={loading}
+        setActiveTab={setActiveTab}
       />
     </div>
   );

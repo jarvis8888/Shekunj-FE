@@ -30,6 +30,7 @@ import { apiConstants } from "../../utils/constants";
 import catagorie from "../../assets/icons/svgs/categories.png";
 import fire from "../../assets/icons/svgs/fire.png";
 
+
 const BlogDetails = () => {
   const history = useHistory();
   const { blogs } = useSelector((state) => state.blogsReducer);
@@ -309,8 +310,18 @@ const BlogDetails = () => {
             {blogs?.tags?.length
               ? blogs?.tags.map((items) => {
                   return (
-                    <span key={items} className='catagorie_search'>
+                    <span
+                      key={items}
+                      className='catagorie_search'
+                      onClick={() =>
+                        history.push(
+                          `${routingConstants.MORE_BLOG_TAGS}?search=${items}`,
+                          items,
+                        )
+                      }
+                    >
                       {items}
+                     
                     </span>
                   );
                 })
@@ -338,7 +349,7 @@ const BlogDetails = () => {
         <div className='add-section-container'>
           <HashtagAndCatagories
             image={catagorie}
-            title={`Trending Hastag`}
+            title={`Categories`}
             addEmail={addEmail}
             hashtags={blogCategories}
             rightOne={succesStoriesRight1}

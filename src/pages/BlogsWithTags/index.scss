@@ -1,0 +1,26 @@
+.Hashtag_container {
+  width: 100%;
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 70% 30%;
+  padding: 20px 30px;
+}
+.Hashtag_container_cards {
+  border-right: 1px solid #d9d9d9;
+}
+
+.Hashtag_container_title {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 36px;
+  padding: 20px 0;
+}
+.catagories-search {
+  padding: 5px 10px;
+  background-color: #d9d9d9;
+  border-radius: 28px;
+  margin-right: 5px;
+  cursor: pointer;
+}

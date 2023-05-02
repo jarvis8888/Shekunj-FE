@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { routingConstants } from "../../utils/constants";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -32,31 +32,62 @@ import httpServices from "../../utils/ApiServices";
 import { constants } from "../../utils";
 
 function EventPage() {
+  const options = [
+    { label: "All Data", value: "all" },
+    { label: "Today's Data", value: "today" },
+    { label: "Tomorrow's Data", value: "tomorrow" },
+    { label: "This Week's Data", value: "thisWeek" },
+  ];
+
   const [eventBoxAds, setEventBoxAds] = useState([]);
-  const [events, setEvents] = useState([]);
-  const [image, setImage] = useState("NA");
-  const [adds, setAdds] = useState([]);
+  // const [events, setEvents] = useState([]);
+  // const [image, setImage] = useState("NA");
+  // const [adds, setAdds] = useState([]);
   const [tempData, setTempData] = useState([]);
+  const [allEventData, setAllEventData] = useState([]);
+  const [todayTomorrowData, setTodayTomorrowData] = useState([]);
+  const [thisWeekData, setThisWeekData] = useState([]);
+  const [nextWeekData, setNextWeekData] = useState([]);
+  const [genresListData, setgenresListData] = useState([]);
+  const [selectedOption, setSelectedOption] = useState(null);
+  console.log(allEventData);
 
   const history = useHistory();
   const dispatch = useDispatch();
   const { t } = useTranslation();
+  const location = useLocation();
+
+  const searchParams = new URLSearchParams(location.search);
+  const currentSearch = searchParams.get("genre_id") || "";
 
   // const { events } = useSelector((state) => state.eventsReducer);
   const { lan } = useSelector((state) => state.languageReducer);
 
-  const getEventsData = async (search) => {
+  const fetchEventsData = async (search, selectedOption) => {
     try {
-      const url = "more/events";
-      const res = await httpServices.get(url);
-    } catch {
+      const url = `more/events?genre_id=${search}`;
+      const { data } = await httpServices.get(url);
+
+      const { event_list, today_tomorrow, this_week, next_week, genres_list } =
+        data;
+      setAllEventData(event_list);
+    } catch (error) {
     } finally {
     }
   };
+  const handleOptionClick = (option) => {
+    setSelectedOption(option);
+    const searchParams = new URLSearchParams();
+    searchParams.set("genre_id", currentSearch);
+    history.push({
+      pathname: location.pathname,
+      search: searchParams.toString(),
+    });
+  };
 
   useEffect(() => {
-    dispatch(getAllEvents());
-  }, [dispatch, lan]);
+    fetchEventsData(currentSearch, selectedOption);
+  }, [currentSearch, lan, selectedOption]);
 
   useEffect(() => {
     dispatch(adsList());
@@ -126,9 +157,9 @@ function EventPage() {
     });
   };
 
-  useEffect(() => {
-    checkFunction();
-  }, [events?.event_list]);
+  // useEffect(() => {
+  //   checkFunction();
+  // }, [events?.event_list]);
 
   const shuffleFun = (c, index) => {
     if (c?.id === "advertistment") {
@@ -239,13 +270,13 @@ function EventPage() {
   //     setTempData(res);
   //   }
   // };
-  const checkFunction = () => {
-    const num = Math.floor(Math.random() * 4);
-    const res = events?.event_list || [];
-    const dummydata = { id: "advertisement" };
-    const newData = [...res.slice(0, num), dummydata, ...res.slice(num)];
-    setTempData(newData);
-  };
+  // const checkFunction = () => {
+  //   const num = Math.floor(Math.random() * 4);
+  //   const res = events?.event_list || [];
+  //   const dummydata = { id: "advertisement" };
+  //   const newData = [...res.slice(0, num), dummydata, ...res.slice(num)];
+  //   setTempData(newData);
+  // };
 
   return (
     <div>

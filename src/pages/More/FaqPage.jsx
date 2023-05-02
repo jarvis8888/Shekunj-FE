@@ -225,30 +225,39 @@ function FaqPage() {
         </div>
         <div className='questions-container-wrapper'>
           <div className='questions-container'>
-            {faqQuestionsData
-              .filter((q) => q.id === activeTab)
-              .map((q) => (
-                <div key={q.id} className='question'>
-                  <div
-                    className='question-header'
-                    onClick={() => toggleQuestion(q.id)}
-                  >
+            {faqQuestionsData.filter((q) => q.id === activeTab).length ? (
+              faqQuestionsData
+                .filter((q) => q.id === activeTab)
+                .map((q) => (
+                  <div key={q.id} className='question'>
                     <div
-                      className='question-text'
-                      dangerouslySetInnerHTML={{
-                        __html: makeHtml(q.question),
-                      }}
-                    />
+                      className='question-header'
+                      onClick={() => toggleQuestion(q.id)}
+                    >
+                      <div
+                        className='question-text'
+                        dangerouslySetInnerHTML={{
+                          __html: makeHtml(q.question),
+                        }}
+                      />
 
-                    <div>
-                      <img src={downArrow_icon} alt='arrow' />
+                      <div>
+                        <img src={downArrow_icon} alt='arrow' />
+                      </div>
                     </div>
+                    {expandedQuestions.includes(q.id) && (
+                      <div
+                        className='faqs-question-answer'
+                        dangerouslySetInnerHTML={{
+                          __html: makeHtml(q.answer),
+                        }}
+                      />
+                    )}
                   </div>
-                  {expandedQuestions.includes(q.id) && (
-                    <div className='faqs-question-answer'>{q.answer}</div>
-                  )}
-                </div>
-              ))}
+                ))
+            ) : (
+              <p>No questions available.</p>
+            )}
           </div>
           <div className='technical-support'>
             <div>

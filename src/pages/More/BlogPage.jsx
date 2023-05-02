@@ -282,7 +282,7 @@ function BlogPage() {
                 padding: "20px 0",
               }}
             >
-              <button className='loadMore'>Explore More</button>
+              <button className='loadMore' >Explore More</button>
             </div>
             <div className='title'>
               <img src={fire} alt='fire' width={25} height={25} />
