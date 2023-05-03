@@ -21,8 +21,7 @@ const GlobalSearch = () => {
     success_stories: [],
   });
   const [loading, setLoading] = useState(false);
-  const [onSearch, setOnSearch] = useState("");
-  const [activeTab, setActiveTab] = useState();
+  const [onSearchInput, setOnSearchInput] = useState("");
 
   const getGlobalSearchData = async (search) => {
     setLoading(true);
@@ -53,10 +52,17 @@ const GlobalSearch = () => {
 
   const handleSearch = () => {
     const searchParams = new URLSearchParams();
-    searchParams.set("search", onSearch);
+    searchParams.set("search", onSearchInput);
     history.push({
       pathname: location.pathname,
       search: searchParams.toString(),
+    });
+  };
+
+  const handleCancel = () => {
+    setOnSearchInput("");
+    history.push({
+      pathname: location.pathname,
     });
   };
 
@@ -80,12 +86,12 @@ const GlobalSearch = () => {
                       <input
                         placeholder='Search By Name'
                         hide_label='true'
-                        type='text'
+                        type='search'
                         name='search'
-                        value={onSearch}
-                        onChange={(e) => setOnSearch(e.target.value)}
-                        onBlur={() => getGlobalSearchData(onSearch)}
+                        value={onSearchInput}
+                        onChange={(e) => setOnSearchInput(e.target.value)}
                       />
+
                       <button
                         name='button'
                         type='submit'
@@ -108,7 +114,6 @@ const GlobalSearch = () => {
         CousesData={data?.courses}
         MockTestData={data?.mock_tests}
         loading={loading}
-        setActiveTab={setActiveTab}
       />
     </div>
   );

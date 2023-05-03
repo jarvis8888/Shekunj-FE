@@ -58,6 +58,7 @@ import City from "../../assets/icons/city.png";
 import { Button, Typography, Modal, Box } from "@mui/material";
 import Cookies from "js-cookie";
 import useDeviceDetect from "../../hooks/useDeviceDetect";
+
 import { ClipLoader } from "react-spinners";
 import x from "../../assets/images/Career/x.png";
 import CloseIcon from "@mui/icons-material/Close";
@@ -449,6 +450,7 @@ const EventDetails = () => {
     setFieldValue,
     setValues,
     setFieldTouched,
+    isSubmitting
   } = onRegistrationFormSubmit;
 
   const getEventDetailById = async (id) => {
