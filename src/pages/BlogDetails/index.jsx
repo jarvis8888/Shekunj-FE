@@ -30,7 +30,6 @@ import { apiConstants } from "../../utils/constants";
 import catagorie from "../../assets/icons/svgs/categories.png";
 import fire from "../../assets/icons/svgs/fire.png";
 
-
 const BlogDetails = () => {
   const history = useHistory();
   const { blogs } = useSelector((state) => state.blogsReducer);
@@ -321,7 +320,6 @@ const BlogDetails = () => {
                       }
                     >
                       {items}
-                     
                     </span>
                   );
                 })

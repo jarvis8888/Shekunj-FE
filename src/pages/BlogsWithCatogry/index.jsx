@@ -12,7 +12,7 @@ import { adsList } from "../../store/ads";
 import { TrendingBlogsCard2 } from "../../components/cards/TrendingBlogsCard2";
 import catagorie from "../../assets/icons/svgs/categories.png";
 
-const SuccessStroyWithHashtag = () => {
+const BlogWithCatogry = () => {
   const location = useLocation();
   const dispatch = useDispatch();
 
@@ -164,4 +164,4 @@ const SuccessStroyWithHashtag = () => {
     </div>
   );
 };
-export default SuccessStroyWithHashtag;
+export default BlogWithCatogry;
