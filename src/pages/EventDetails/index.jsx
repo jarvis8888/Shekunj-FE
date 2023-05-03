@@ -89,6 +89,7 @@ const EventDetails = () => {
   //states
   const [eventsDetails, setEventsDetails] = useState();
   const [eventDetailsBoxAds, setEventDetailsBoxAds] = useState([]);
+  const [eventDetailsBannerAds, setEventDetailsBannerAds] = useState([]);
   const [loading, setLoading] = useState(false);
   //states
 
@@ -205,63 +206,64 @@ const EventDetails = () => {
 
   useEffect(() => {
     dispatch(adsList());
-    navigator.geolocation.getCurrentPosition(
-      async function (position, values) {
-        const latitude = position.coords.latitude;
-        const longitude = position.coords.longitude;
-
-        let params = {
-          latitude: latitude.toString(),
-          longitude: longitude.toString(),
-        };
-        axios
-          .get(
-            `/private_adds/private_add?latitude=${latitude}&longitude=${longitude}`,
-          )
-          .then((response) => {
-            if (response && response.data.results.length > 0) {
-              let filterArray1 = response.data.results.filter((item, index) => {
-                return item.image_type == "success_stories_right1";
-              });
-              setEventDetailsBoxAds(filterArray1);
-            }
-          });
-      },
-      function (error) {
-        console.error("Error Code = " + error.code + " - " + error.message);
-        // alert("Your location is blocked")
-        axios.get(`/private_adds/private_add`).then((response) => {
-          if (response && response.data.results.length > 0) {
-            let filterArray1 = response.data.results.filter((item, index) => {
-              return item.image_type == "event_detail";
-            });
-            setEventDetailsBoxAds(filterArray1);
-          }
-        });
-      },
-    );
+    const successCallback = async (position) => {
+      const { latitude, longitude } = position.coords;
+      const params = {
+        latitude: latitude.toString(),
+        longitude: longitude.toString(),
+      };
+      try {
+        const response = await axios.get(
+          `/private_adds/private_add?latitude=${latitude}&longitude=${longitude}`,
+        );
+        if (response && response.data.results.length > 0) {
+          const filterArray1 = response.data.results.filter(
+            (item) => item.image_type === "event_detail",
+          );
+          setEventDetailsBoxAds(filterArray1);
+          const filterArray2 = response.data.results.filter(
+            (item) => item.image_type === "event_detail_footer",
+          );
+          setEventDetailsBannerAds(filterArray2);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    // const errorCallback = (error) => {
+    //   console.error("Error Code = " + error.code + " - " + error.message);
+    //   axios.get(`/private_adds/private_add`).then((response) => {
+    //     // if (response && response.data.results.length > 0) {
+    //     //   const filterArray1 = response.data.results.filter((item) => item.image_type === "event_detail");
+    //     //   setEventDetailsBoxAds(filterArray1);
+    //     //   const filterArray2 = response.data.results.filter((item) => item.image_type === "success_stories_banner");
+    //     //   setEventDetailsBoxAds(filterArray1);
+    //     // }
+    //   });
+    // };
+    navigator.geolocation.getCurrentPosition(successCallback);
   }, []);
 
   // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-  const addEmail = (email) => {
-    navigator.geolocation.getCurrentPosition(async function (position, values) {
-      const latitude = position.coords.latitude;
-      const longitude = position.coords.longitude;
+  // const addEmail = (email) => {
+  //   navigator.geolocation.getCurrentPosition(async function (position, values) {
+  //     const latitude = position.coords.latitude;
+  //     const longitude = position.coords.longitude;
 
-      let params = {
-        latitude: latitude.toString(),
-        longitude: longitude.toString(),
-      };
-      axios
-        .post("/private_adds/click_add/", {
-          add_email: email,
-          latitude: params.latitude.toString(),
-          longitude: params.longitude.toString(),
-        })
-        .then((response) => {});
-    });
-  };
+  //     let params = {
+  //       latitude: latitude.toString(),
+  //       longitude: longitude.toString(),
+  //     };
+  //     axios
+  //       .post("/private_adds/click_add/", {
+  //         add_email: email,
+  //         latitude: params.latitude.toString(),
+  //         longitude: params.longitude.toString(),
+  //       })
+  //       .then((response) => {});
+  //   });
+  // };
 
   // useEffect(() => {
   //   dispatch(singleEventDetails(id));
@@ -450,7 +452,7 @@ const EventDetails = () => {
     setFieldValue,
     setValues,
     setFieldTouched,
-    isSubmitting
+    isSubmitting,
   } = onRegistrationFormSubmit;
 
   const getEventDetailById = async (id) => {
@@ -540,12 +542,12 @@ const EventDetails = () => {
                           {eventsDetails?.mode_of_event === "offline" ? (
                             <>
                               {" "}
-                              <img src={offlineicon} /> Offline{" "}
+                              <img src={offlineicon} alt='' /> Offline{" "}
                             </>
                           ) : (
                             <>
                               {" "}
-                              <img src={onlineicon} /> Online{" "}
+                              <img src={onlineicon} alt='' /> Online{" "}
                             </>
                           )}
                         </li>
@@ -565,7 +567,7 @@ const EventDetails = () => {
                         __html: makeHtml(eventsDetails?.about_event),
                       }}
                     />
-                    <div className='sk-work-detail'>
+                    {/* <div className='sk-work-detail'>
                       <h4>Workshop Details</h4>
                       <ul>
                         <li>
@@ -597,9 +599,29 @@ const EventDetails = () => {
                           Please carry your booking confirmation email/message
                         </li>
                       </ul>
-                    </div>
+                    </div> */}
                     <div className='sk-event-add'>
-                      <img src={eventadd01} />
+                      <a
+                        href={eventDetailsBannerAds[0]?.url_adds}
+                        target='_blank'
+                        rel='noreferrer'
+                      >
+                        {detect.isMobile
+                          ? eventDetailsBannerAds[0]?.image_mobile && (
+                              <img
+                                src={eventDetailsBannerAds[0]?.image_mobile}
+                                alt=''
+                                className='ads_story_cover_img'
+                              />
+                            )
+                          : eventDetailsBannerAds[0]?.image && (
+                              <img
+                                src={eventDetailsBannerAds[0]?.image}
+                                alt=''
+                                className='ads_story_cover_img'
+                              />
+                            )}
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -749,14 +771,14 @@ const EventDetails = () => {
                         ? eventDetailsBoxAds[0]?.image_mobile && (
                             <img
                               src={eventDetailsBoxAds[0]?.image_mobile}
-                              alt='Image'
+                              alt=''
                               className='ads_story_cover_img'
                             />
                           )
                         : eventDetailsBoxAds[0]?.image && (
                             <img
                               src={eventDetailsBoxAds[0]?.image}
-                              alt='Image'
+                              alt=''
                               className='ads_story_cover_img'
                             />
                           )}

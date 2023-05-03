@@ -5,7 +5,7 @@ import {
   setCollapseSuccessStory,
   successStories as fetchSuccessStories,
 } from "../../store/courses/action";
-
+import * as Yup from "yup";
 import { Header, Footer } from "../../components";
 import down1 from "../../assets/icons/down1.png";
 import up from "../../assets/icons/up.png";
@@ -22,6 +22,11 @@ import add_icon from "../../assets/icons/svgs/exAddPhoto.png";
 
 import httpServices from "../../utils/ApiServices";
 import { constants } from "../../utils";
+import useDeviceDetect from "../../hooks/useDeviceDetect";
+import { useFormik } from "formik";
+import { apiConstants } from "../../utils/constants";
+import { toast } from "react-toastify";
+import toasterConfig from "../../utils/toasterCongig";
 
 const tabs = [
   { id: 1, name: "About Us" },
@@ -102,6 +107,7 @@ const questions = [
 function FaqPage() {
   const history = useHistory();
   const dispatch = useDispatch();
+  const detect = useDeviceDetect();
 
   const { lan } = useSelector((state) => state.languageReducer);
   const { t } = useTranslation();
@@ -209,6 +215,49 @@ function FaqPage() {
     });
     return htmlNode.innerHTML;
   };
+  const initialValues = {
+    email: "",
+  };
+  const validationSchema = Yup.object({
+    email: Yup.string()
+      .email("Invalid email format")
+      .required("Email is required"),
+  });
+
+  const onSupportFormSubmit = useFormik({
+    initialValues: initialValues,
+    validationSchema: validationSchema,
+    onSubmit: async (values, { resetForm }) => {
+      const { email } = values;
+      const data = {
+        email_address: email,
+      };
+
+      try {
+        const res = await httpServices.post(
+          apiConstants.FAQ.FAQ_TECHNICAL_SUPPORT,
+          data,
+        );
+        toast.success(res.message, toasterConfig);
+        resetForm();
+      } catch (error) {
+      } finally {
+      }
+    },
+  });
+  const {
+    values,
+    errors,
+    touched,
+    handleChange,
+    validate,
+    handleBlur,
+    handleSubmit,
+    setFieldValue,
+    setValues,
+    setFieldTouched,
+    isSubmitting,
+  } = onSupportFormSubmit;
 
   return (
     <div>
@@ -277,14 +326,45 @@ function FaqPage() {
                   Desk
                 </div>
               </div>
-              <div class='input-container'>
-                <input type='email' placeholder='Email id' />
-                <button>Send</button>
-              </div>
+              <form onSubmit={handleSubmit}>
+                <div class='input-container'>
+                  <input
+                    type='email'
+                    name='email'
+                    placeholder='Email id'
+                    value={values.email}
+                    onChange={handleChange}
+                    touched={touched}
+                    onBlur={handleBlur}
+                  />
+                  <button type='submit'>Send</button>
+                </div>
+                {errors.email && (
+                  <div className='sk-error-message'>{errors.email}</div>
+                )}
+              </form>
             </div>
           </div>
 
-          <div>adds</div>
+          <div>
+            <a href={faqBoxAdds[0]?.url_adds} target='_blank' rel='noreferrer'>
+              {detect.isMobile
+                ? faqBoxAdds[0]?.image_mobile && (
+                    <img
+                      src={faqBoxAdds[0]?.image_mobile}
+                      alt=''
+                      className='ads_story_cover_img'
+                    />
+                  )
+                : faqBoxAdds[0]?.image && (
+                    <img
+                      src={faqBoxAdds[0]?.image}
+                      alt=''
+                      className='ads_story_cover_img'
+                    />
+                  )}
+            </a>
+          </div>
         </div>
       )}
       <Footer loginPage={false} />

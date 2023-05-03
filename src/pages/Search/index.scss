@@ -265,3 +265,18 @@ section {
   font-size: 13px;
   font-family: "Poppins", sans-serif;
 }
+
+.hint-key-words {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 160%;
+  color: #888888;
+  display: inline-block;
+  padding: 5px 5px;
+}
+.hint-key-words:hover {
+  color: #d3317d;
+  cursor: pointer;
+}

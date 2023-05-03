@@ -54,9 +54,6 @@ function EventPage() {
   ];
 
   const [eventBoxAds, setEventBoxAds] = useState([]);
-  // const [events, setEvents] = useState([]);
-  // const [image, setImage] = useState("NA");
-  // const [adds, setAdds] = useState([]);
   const [tempData, setTempData] = useState([]);
   const [currentData, setCurrentData] = useState([]);
   const [allEventData, setAllEventData] = useState([]);
@@ -68,6 +65,8 @@ function EventPage() {
   const [selectedButton, setSelectedButton] = useState("all");
   const [loading, setLoading] = useState(false);
 
+  const pageLimit = 5;
+
   const history = useHistory();
   const dispatch = useDispatch();
   const { t } = useTranslation();
@@ -76,22 +75,21 @@ function EventPage() {
   const searchParams = new URLSearchParams(location.search);
   const currentSearch = searchParams.get("genre_id") || "";
 
-  // const { events } = useSelector((state) => state.eventsReducer);
   const { lan } = useSelector((state) => state.languageReducer);
 
-  const fetchEventsData = async (search, selectedOption) => {
+  const fetchEventsData = async (search, selectedOption, limit, offset) => {
     setLoading(true);
     try {
       const url = `more/events?genre_id=${search}`;
       const { data } = await httpServices.get(url);
       const { event_list, today_tomorrow, this_week, next_week, genres_list } =
         data;
-      setAllEventData(event_list);
+      setAllEventData(event_list?.results);
       setGenresListData(genres_list);
       setTodayTomorrowData(today_tomorrow);
       setThisWeekData(this_week);
       setNextWeekData(next_week);
-      setCurrentData(event_list);
+      setCurrentData(event_list?.results);
     } catch (error) {
     } finally {
       setLoading(false);
@@ -110,6 +108,14 @@ function EventPage() {
         setCurrentData(nextWeekData);
         break;
       default:
+        fetchEventsData();
+        setSelectedOption(null);
+        const searchParams = new URLSearchParams();
+        searchParams.set("genre_id", "");
+        history.push({
+          pathname: location.pathname,
+          search: searchParams.toString(),
+        });
         setCurrentData(allEventData);
         break;
     }
@@ -124,51 +130,6 @@ function EventPage() {
       search: searchParams.toString(),
     });
   };
-
-  useEffect(() => {
-    fetchEventsData(currentSearch, selectedOption);
-  }, [currentSearch, lan, selectedOption]);
-
-  useEffect(() => {
-    dispatch(adsList());
-    navigator.geolocation.getCurrentPosition(
-      async function (position, values) {
-        const latitude = position.coords.latitude;
-        const longitude = position.coords.longitude;
-
-        let params = {
-          latitude: latitude.toString(),
-          longitude: longitude.toString(),
-        };
-        axios
-          .get(
-            `/private_adds/private_add?latitude=${latitude}&longitude=${longitude}`,
-          )
-          .then((response) => {
-            if (response && response.data.results.length > 0) {
-              let filterArray1 = response.data.results.filter((item, index) => {
-                return item.image_type == "event_index";
-              });
-              setEventBoxAds(filterArray1);
-              // console.log("filterArray1event_index",filterArray1)
-            }
-          });
-      },
-      function (error) {
-        console.error("Error Code = " + error.code + " - " + error.message);
-        // alert("Your location is blocked")
-        axios.get(`/private_adds/private_add`).then((response) => {
-          if (response && response.data.results.length > 0) {
-            let filterArray1 = response.data.results.filter((item, index) => {
-              return item.image_type == "event_index";
-            });
-            setEventBoxAds(filterArray1);
-            // console.log("filterArray1coursebox",filterArray1)
-          }
-        });
-      },
-    );
-  }, []);
 
   const addEmail = (email) => {
     navigator.geolocation.getCurrentPosition(async function (position, values) {
@@ -197,126 +158,52 @@ function EventPage() {
     });
   };
 
-  // useEffect(() => {
-  //   checkFunction();
-  // }, [events?.event_list]);
+  useEffect(() => {
+    dispatch(adsList());
+    navigator.geolocation.getCurrentPosition(
+      async function (position, values) {
+        const latitude = position.coords.latitude;
+        const longitude = position.coords.longitude;
 
-  const shuffleFun = (c, index) => {
-    if (c?.id === "advertistment") {
-      return (
-        <>
-          {eventBoxAds?.length > 0 ? (
-            <Grid spacing={1} className='gridContainerEvent flex'>
-              <Col md={1} xl={12}>
-                <Card className='EventOptionCard'>
-                  {eventBoxAds?.length > 0 && (
-                    <div
-                      className='EventOptionCard'
-                      onClick={() => addEmail(eventBoxAds[0]?.add_email)}
-                    >
-                      <a href={eventBoxAds[0]?.url_adds} target='_blank'>
-                        <img
-                          src={eventBoxAds[0]?.image}
-                          alt='Image'
-                          className='EventOptionCardAddImage'
-                        />
-                      </a>
-                      <div className='overlay'></div>
-                    </div>
-                  )}
-                </Card>
-              </Col>
-            </Grid>
-          ) : (
-            ""
-          )}
-        </>
-      );
-    } else {
-      return (
-        <Grid spacing={1} className='gridContainerEvent'>
-          <Col md={1} xl={12}>
-            <Card className='EventOptionCard noselect'>
-              <CardMedia
-                component='img'
-                alt='image'
-                // height='200'
-                image={c && c.image}
-                className='guidanceEventImage'
-              />
+        let params = {
+          latitude: latitude.toString(),
+          longitude: longitude.toString(),
+        };
+        axios
+          .get(
+            `/private_adds/private_add?latitude=${latitude}&longitude=${longitude}`,
+          )
+          .then((response) => {
+            if (response && response.data.results.length > 0) {
+              let filterArray1 = response.data.results.filter((item, index) => {
+                return item.image_type == "event_detail_footer";
+              });
+              setEventBoxAds(filterArray1);
 
-              <Typography
-                gutterBottom
-                variant='h6'
-                component='div'
-                className='limited-text-event'
-              >
-                <Link
-                  to={routingConstants.MORE_EVENT + c.id}
-                  className='event-title-link center'
-                  key={c?.id}
-                >
-                  {c && c.title}
-                </Link>
-              </Typography>
+              // console.log("filterArray1event_index",filterArray1)
+            }
+          });
+      },
+      function (error) {
+        console.error("Error Code = " + error.code + " - " + error.message);
+        // alert("Your location is blocked")
+        axios.get(`/private_adds/private_add`).then((response) => {
+          if (response && response.data.results.length > 0) {
+            let filterArray1 = response.data.results.filter((item, index) => {
+              return item.image_type == "event_index";
+            });
+            setEventBoxAds(filterArray1);
+            // console.log("filterArray1coursebox",filterArray1)
+          }
+        });
+      },
+    );
+  }, []);
 
-              <CardContent class='d-flex flex-column'>
-                <Typography className='event_mode' sx={{ mb: 1.5 }} fullWidth>
-                  <PublicIcon /> {c && c?.type_1}
-                </Typography>
-                <Typography className='event_mode' sx={{ mb: 1.5 }} fullWidth>
-                  <GroupTwoToneIcon /> {c && c?.mode_of_event}
-                </Typography>
-                <Typography className='Date-Time'>
-                  <Typography style={{ marginBottom: "10px" }}>
-                    Date : {c && c?.date}
-                  </Typography>
-                  <Typography style={{ marginBottom: "10px" }}>
-                    Time : {c && c?.time}
-                  </Typography>
-                </Typography>
-              </CardContent>
-              <CardActions>
-                <Button
-                  variant='outlined'
-                  size='medium'
-                  className='eventButtonAction'
-                  href={c && c.form_link}
-                >
-                  <Link
-                    to={routingConstants.MORE_EVENT + c.id}
-                    className='event-button-link'
-                    key={c?.id}
-                  >
-                    Registration and details
-                  </Link>
-                </Button>
-              </CardActions>
-            </Card>
-          </Col>
-        </Grid>
-      );
-    }
-  };
-
-  // const checkFunction = () => {
-  //   let num = Math.floor(Math.random() * (4 - 0) + 0);
-  //   let res = events?.event_list;
-  //   let dummydata = {
-  //     id: "advertistment",
-  //   };
-  //   res && res.splice(num, 0, dummydata);
-  //   if (res) {
-  //     setTempData(res);
-  //   }
-  // };
-  // const checkFunction = () => {
-  //   const num = Math.floor(Math.random() * 4);
-  //   const res = events?.event_list || [];
-  //   const dummydata = { id: "advertisement" };
-  //   const newData = [...res.slice(0, num), dummydata, ...res.slice(num)];
-  //   setTempData(newData);
-  // };
+  useEffect(() => {
+    fetchEventsData(currentSearch, selectedOption);
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  }, [currentSearch, lan, selectedOption]);
 
   return (
     <div>
@@ -340,27 +227,16 @@ function EventPage() {
         <div className='container-fluid'>
           <div className='sk-event-slide'>
             <OwlCarousel items={4} margin={15} {...options}>
-              <div>
-                <img src={eventimg1} />
-              </div>
-              <div>
-                <img src={eventimg2} />
-              </div>
-              <div>
-                <img src={eventimg1} />
-              </div>
-              <div>
-                <img src={eventimg2} />
-              </div>
-              <div>
-                <img src={eventimg1} />
-              </div>
-              <div>
-                <img src={eventimg2} />
-              </div>
-              <div>
-                <img src={eventimg1} />
-              </div>
+              {allEventData?.map((items, index) => {
+                return (
+                  <>
+                    {" "}
+                    <div>
+                      <img src={items.image} alt='' />
+                    </div>
+                  </>
+                );
+              })}
             </OwlCarousel>
           </div>
         </div>

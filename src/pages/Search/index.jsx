@@ -20,6 +20,7 @@ const GlobalSearch = () => {
     mock_tests: [],
     success_stories: [],
   });
+  const [hintData, setHintData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [onSearchInput, setOnSearchInput] = useState("");
 
@@ -34,6 +35,7 @@ const GlobalSearch = () => {
         mock_tests: res?.mock_tests,
         success_stories: res?.success_stories,
       });
+      setHintData(res?.search_keywords);
     } catch (error) {
       console.error(error);
     } finally {
@@ -63,6 +65,15 @@ const GlobalSearch = () => {
     setOnSearchInput("");
     history.push({
       pathname: location.pathname,
+    });
+  };
+
+  const searchByTags = (search) => {
+    const searchParams = new URLSearchParams();
+    searchParams.set("search", search);
+    history.push({
+      pathname: location.pathname,
+      search: searchParams.toString(),
     });
   };
 
@@ -104,6 +115,17 @@ const GlobalSearch = () => {
                   </div>
                 </div>
               </div>
+              {hintData?.map((items, index) => {
+                return (
+                  <>
+                    <span
+                      key={items.id}
+                      className='hint-key-words'
+                      onClick={() => searchByTags(items?.name)}
+                    >{`#${items?.name}`}</span>
+                  </>
+                );
+              })}
             </div>
           </div>
         </div>

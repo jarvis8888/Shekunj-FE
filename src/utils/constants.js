@@ -112,6 +112,7 @@ const apiConstants = {
   },
   FAQ: {
     FAQ: "/more/faqs/",
+    FAQ_TECHNICAL_SUPPORT: "/more/technical_support/",
   },
   ALL_MAGZINES: {
     ALL_MAGZINES: "/more/magazines",
