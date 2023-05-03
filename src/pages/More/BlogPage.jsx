@@ -186,26 +186,32 @@ function BlogPage() {
         />
       </Helmet>
       <div>
-        <div className='grid-container'>
-          <div className='carousel-blog'>
-            <BlogCarousel images={blogs?.latest_blogs?.results} />
-          </div>
-          <div>
-            {blogs?.latest_blogs?.results.length
-              ? blogs?.latest_blogs?.results.map((items, index) => {
-                  return (
-                    <>
-                      <TrendingBlogsCard
-                        image={items.image}
-                        id={items.id}
-                        description={items.title}
-                        time='5'
-                        date={items.created_at}
-                      />
-                    </>
-                  );
-                })
-              : "no data"}
+        <div className='container'>
+          <div className="row">
+            <div className="col-xl-9 col-md-8">
+              <div className='carousel-blog'>
+                <BlogCarousel images={blogs?.latest_blogs?.results} />
+              </div>
+            </div>
+            <div className="col-xl-3 col-md-4">
+              <div className="sk-blog-sidebar">
+                {blogs?.latest_blogs?.results.length
+                  ? blogs?.latest_blogs?.results.map((items, index) => {
+                    return (
+                      <>
+                        <TrendingBlogsCard
+                          image={items.image}
+                          id={items.id}
+                          description={items.title}
+                          time='5'
+                          date={items.created_at}
+                        />
+                      </>
+                    );
+                  })
+                  : "no data"}
+              </div>
+            </div>
           </div>
         </div>
         <div>
@@ -225,19 +231,19 @@ function BlogPage() {
                     >
                       {detect.isMobile
                         ? blogBoxAdds[0]?.image_mobile && (
-                            <img
-                              src={blogBoxAdds[0]?.image_mobile}
-                              alt='Image'
-                              className='ads_story_cover_img'
-                            />
-                          )
+                          <img
+                            src={blogBoxAdds[0]?.image_mobile}
+                            alt='Image'
+                            className='ads_story_cover_img'
+                          />
+                        )
                         : blogBoxAdds[0]?.image && (
-                            <img
-                              src={blogBoxAdds[0]?.image}
-                              alt='Image'
-                              className='ads_story_cover_img'
-                            />
-                          )}
+                          <img
+                            src={blogBoxAdds[0]?.image}
+                            alt='Image'
+                            className='ads_story_cover_img'
+                          />
+                        )}
                     </a>
                   </div>
                 )}
@@ -245,51 +251,51 @@ function BlogPage() {
             }
           />
         </div>
-        <div className='grid-Latest-Blog 1223'>
-          <div className='blog-stories'>
-            <div className='title'>
-              <img src={fire} alt='fire' width={25} height={25} />
-              <h4>Latest Blogs</h4>
+        <div className='container'>
+          <div className="row">
+            <div className="col-xl-9 col-md-4">
+              <div className='blog-stories'>
+                <div className='title'>
+                  <img src={fire} alt='fire' width={25} height={25} />
+                  <h4>Latest Blogs</h4>
+                </div>
+
+                <div className='row card-gird'>
+                  {blogs?.latest_blogs?.results.length
+                    ? blogs?.latest_blogs?.results.map((items, index) => {
+                      return (
+                        <>
+                          <div className="col-md-6">
+                            <LatestBlogCard
+                              image={items.image}
+                              hashtags={items.hash_tags}
+                              title={items.title}
+                              description={`${items.about_blog}`}
+                              makeHtml={makeHtml}
+                              key={index}
+                              created_at={items.created_at}
+                              reading_time={items.reading_time}
+                              id={items.id}
+                              blog_count={items.blog_count}
+                            />
+                          </div>
+                        </>
+                      );
+                    })
+                    : "no data"}
+                </div>
+                <div>
+                  <button className='loadMore' >Explore More</button>
+                </div>
+              </div>
             </div>
-            <div className='card-gird'>
-              {blogs?.latest_blogs?.results.length
-                ? blogs?.latest_blogs?.results.map((items, index) => {
-                    return (
-                      <>
-                        <LatestBlogCard
-                          image={items.image}
-                          hashtags={items.hash_tags}
-                          title={items.title}
-                          description={`${items.about_blog}`}
-                          makeHtml={makeHtml}
-                          key={index}
-                          created_at={items.created_at}
-                          reading_time={items.reading_time}
-                          id={items.id}
-                          blog_count={items.blog_count}
-                        />
-                      </>
-                    );
-                  })
-                : "no data"}
-            </div>
-            <div
-              style={{
-                width: "100%",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                padding: "20px 0",
-              }}
-            >
-              <button className='loadMore'>Explore More</button>
-            </div>
-            <div className='title'>
-              <img src={fire} alt='fire' width={25} height={25} />
-              <h4>Trending Blogs</h4>
-            </div>
-            {blogs?.trending_blogs?.results.length
-              ? blogs?.trending_blogs?.results.map((items, index) => {
+            <div className="col-xl-3 col-md-4">
+              <div className='title'>
+                <img src={fire} alt='fire' width={25} height={25} />
+                <h4>Trending Blogs</h4>
+              </div>
+              {blogs?.trending_blogs?.results.length
+                ? blogs?.trending_blogs?.results.map((items, index) => {
                   return (
                     <>
                       <TrendingBlogsCard2
@@ -303,20 +309,21 @@ function BlogPage() {
                     </>
                   );
                 })
-              : "no data"}
-          </div>
-          <div className='ads'>
-            <HashtagAndCatagories
-              image={catagorie}
-              title={"Categories"}
-              hashtags={blogs?.blog_categories}
-              rightOne={blogRight1}
-              rightTwo={blogRight2}
-            />
+                : "no data"}
+
+              <div className='ads'>
+                <HashtagAndCatagories
+                  image={catagorie}
+                  title={"Categories"}
+                  hashtags={blogs?.blog_categories}
+                  rightOne={blogRight1}
+                  rightTwo={blogRight2}
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>
-
       <Footer loginPage={false} />
     </div>
   );

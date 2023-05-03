@@ -31,7 +31,7 @@
   .sign_in p {
     display: block;
     margin: 0;
-    font-family: SegoeUI_medium;
+    font-family: "Poppins", sans-serif;
     font-style: normal;
     font-weight: 600;
     font-size: 14px;
@@ -878,7 +878,7 @@ ul#menu-40 {
   margin-right:10px;
 }
 .rs-dropdown-toggle, .rs-dropdown-toggle.rs-btn {
-  background: transparent;
+  background: transparent !important;
 }
 .blog-card__meta span img {
   margin-right: 7px;

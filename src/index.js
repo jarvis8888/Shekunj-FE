@@ -11,6 +11,7 @@ import reportWebVitals from "./reportWebVitals";
 import store from "./store";
 import theme from "./utils/Theme";
 import { Loader, ScrollToTop } from "./components";
+
 import "./index.css";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "react-toastify/dist/ReactToastify.css";

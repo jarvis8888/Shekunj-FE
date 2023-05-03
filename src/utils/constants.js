@@ -51,7 +51,7 @@ const routingConstants = {
   FAQ: "/more-faq/",
   MORE_BLOG: "/blogs/",
   MORE_BLOG_CATEGORY: "/blogs/category/",
-  MORE_BLOG_TAG: "/blogs/tags/",
+  MORE_BLOG_TAGS: "/blogs/tag/",
   // DETAILS_BLOG: "/blog/",
   // DETAILS_MAGZINE: "/magzine/",
   ALL_NOTIFICATION: "/all-notifications/",

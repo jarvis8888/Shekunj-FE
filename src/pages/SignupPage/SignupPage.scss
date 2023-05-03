@@ -2,9 +2,7 @@
   background: rgba(237, 248, 248, 0.4);
   border-radius: 20px 20px 0px 0px;
   display: block;
-  // height: 100%;
   padding: 15px 22px;
-  // height: 630px;
   overflow-y: scroll;
 }
 .login_form label {
@@ -12,7 +10,6 @@
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
-  line-height: 30px;
   color: #425466;
 }
 .login_form input::placeholder {
@@ -20,17 +17,13 @@
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
-  line-height: 30px;
   color: #425466;
 }
 .login_form h2 {
-  font-family: "SegoeUI_bold";
+  font-family: "Poppins", sans-serif;
   font-weight: 600;
   font-size: 24px;
-  line-height: 35px;
-  // text-transform: capitalize;
-  color: #152523;
-  font-style: normal;
+  color: #020202;
   display: flex;
   align-items: center;
 }
@@ -56,13 +49,9 @@
   );
 }
 .login_form p {
-  font-weight: normal;
   font-size: 14px;
-  line-height: 30px;
   color: #425466;
-  font-family: "SegoeUI_medium";
-  font-style: normal;
-  // margin: 0;
+  font-family: "Poppins", sans-serif;
 }
 .login_bg_main.login_main.mt-3 .login_form {
   overflow-y: hidden;
@@ -174,7 +163,7 @@ div.radio-with-Icon p.radioOption-Item input[type="radio"] + label:after {
   margin: 0 !important;
 }
 p.gender {
-  font-family: "SegoeUI_medium";
+  font-family: "Poppins", sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
@@ -187,7 +176,7 @@ p.gender span {
 }
 p.fel,
 p.male {
-  font-family: "SegoeUI_medium";
+  font-family: "Poppins", sans-serif;
   font-style: normal;
   font-weight: 300;
   font-size: 14px;

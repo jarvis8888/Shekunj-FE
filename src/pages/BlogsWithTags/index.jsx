@@ -14,7 +14,7 @@ import catagorie from "../../assets/icons/svgs/categories.png";
 import cross from "../../assets/icons/svgs/cross.png";
 import { routingConstants } from "../../utils/constants";
 
-const BlogWithHashtag = () => {
+const SuccessStroyWithHashtag = () => {
   const location = useLocation();
   const dispatch = useDispatch();
   const history = useHistory();
@@ -127,12 +127,12 @@ const BlogWithHashtag = () => {
       <div className='Hashtag_container'>
         <div className='Hashtag_container_cards sk-blog-detail-wa'>
           <div className='Hashtag_container_title'>
-            <span>
-              {state ? `${currentSearch}` : "NA"}{" "}
+            <span className='catagories-search'>
+              {state ? `${currentSearch}` : null}{" "}
               <img
                 src={cross}
-                alt='cross'
-                onClick={() => history.push(`${routingConstants.MORE_BLOG}`)}
+                alt='crros'
+                onClick={() => history.push(routingConstants.MORE_BLOG)}
               />
             </span>
           </div>
@@ -174,4 +174,4 @@ const BlogWithHashtag = () => {
     </div>
   );
 };
-export default BlogWithHashtag;
+export default SuccessStroyWithHashtag;

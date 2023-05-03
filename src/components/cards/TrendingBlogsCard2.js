@@ -20,10 +20,9 @@ export const TrendingBlogsCard2 = ({
       onClick={() => history.push(routingConstants.MORE_BLOG + id)}
       style={{ cursor: "pointer" }}
     >
-      <div
-        className='blog-card2__image'
-        style={{ backgroundImage: `url(${image})` }}
-      ></div>
+      <div className='blog-card2__image'>
+        <img src={image} />
+      </div>
       <div className='blog-card2__content'>
         <h2 className='blog-card2__title' style={{ fontSize: "1.5rem" }}>
           {title}
