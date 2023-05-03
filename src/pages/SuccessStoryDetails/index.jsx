@@ -7,7 +7,7 @@ import { adsList } from "../../store/ads";
 import axios from "axios";
 import useDeviceDetect from "../../hooks/useDeviceDetect";
 import { successStoriesDetails as fetchSuccessStoriesDetails } from "../../store/courses/action";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import { Footer, Header, SEO, SocialShare } from "../../components";
 import MenuBookRoundedIcon from "@mui/icons-material/MenuBookRounded";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
@@ -35,12 +35,14 @@ const SuccessStoryDetails = () => {
   const dispatch = useDispatch();
   const trendingSectionRef = useRef(null);
   const history = useHistory();
+  const location = useLocation()
 
   const { lan } = useSelector((state) => state.languageReducer);
 
   const { t } = useTranslation();
 
   const { id } = useParams();
+
 
   // const lastNumber = id.split("-").pop();
 
@@ -321,6 +323,16 @@ const SuccessStoryDetails = () => {
 
     return renderAd(ad);
   };
+
+  useEffect(() => {
+    const localLanguage = localStorage.getItem("i18nextLng");
+    const { pathname, search } = location;
+    const updatedSearch = new URLSearchParams(search);
+    updatedSearch.set("lang", localLanguage);
+    const newUrl = `${pathname}?${updatedSearch.toString()}`;
+    history.push(newUrl);
+  }, [lan]);
+
   return (
     <>
       <SEO
@@ -599,4 +611,4 @@ const SuccessStoryDetails = () => {
   );
 };
 
-export default withHeaderFooter(SuccessStoryDetails);
+export default withHeaderFooter(SuccessStoryDetails, true);

@@ -3,7 +3,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { AccordionComponent, Footer, Header, SEO } from "../../components";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useLocation, useHistory } from "react-router-dom";
 import {
   reSetFilterValue,
   toggleCollapseValue,
@@ -19,6 +19,8 @@ const Career2Details = () => {
   const dispatch = useDispatch();
   const { lan } = useSelector((state) => state.languageReducer);
   const { t } = useTranslation();
+  const location = useLocation()
+  const history = useHistory()
 
   useEffect(() => {
     dispatch(singleCareer2Details(id));
@@ -36,6 +38,15 @@ const Career2Details = () => {
     return image ? image : TopCollage;
   };
   const currentUrl = window.location.href;
+
+  useEffect(() => {
+    const localLanguage = localStorage.getItem("i18nextLng");
+    const { pathname, search } = location;
+    const updatedSearch = new URLSearchParams(search);
+    updatedSearch.set("lang", localLanguage);
+    const newUrl = `${pathname}?${updatedSearch.toString()}`;
+    history.push(newUrl);
+  }, [lan]);
 
   return (
     <>
@@ -57,7 +68,7 @@ const Career2Details = () => {
       />
       <div>
         <SEO title='Sheकुंज - Career' />
-        <Header loginPage={true} page='career' subPage='colleges' />
+        <Header loginPage={true} page='career' subPage='colleges' urlLangShow={true} />
 
         <Container className='coverMainSecGov'>
           <div className='gov_detail_cover'>
@@ -70,7 +81,7 @@ const Career2Details = () => {
         </Container>
 
         <Container>
-          <Row>
+          {/* <Row>
             <div md={12} xs={12}>
               <div className='gov_logo'>
                 <img
@@ -80,7 +91,7 @@ const Career2Details = () => {
                 />
               </div>
             </div>
-          </Row>
+          </Row> */}
         </Container>
 
         <div className='DetailMainDiv_gov'>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useLocation, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import {
@@ -30,6 +30,8 @@ const CourseDetails = () => {
   const { lan } = useSelector((state) => state.languageReducer);
 
   const { t } = useTranslation();
+  const location = useLocation();
+  const history = useHistory();
 
   useEffect(() => {
     dispatch(singleCourseDetails(id));
@@ -180,6 +182,15 @@ const CourseDetails = () => {
   };
 
   const currentUrl = window.location.href;
+
+  useEffect(() => {
+    const localLanguage = localStorage.getItem("i18nextLng");
+    const { pathname, search } = location;
+    const updatedSearch = new URLSearchParams(search);
+    updatedSearch.set("lang", localLanguage);
+    const newUrl = `${pathname}?${updatedSearch.toString()}`;
+    history.push(newUrl);
+  }, [lan]);
   return (
     <>
       <SEO
@@ -191,7 +202,7 @@ const CourseDetails = () => {
         link={course?.canonical_tags ? course?.canonical_tags : currentUrl}
       />
       <div>
-        <Header loginPage={true} page='courses' />
+        <Header loginPage={true} page='courses' urlLangShow={true} />
         <section className='CouDtl_ban noselect'>
           <div className='container'>
             <div className='row'>

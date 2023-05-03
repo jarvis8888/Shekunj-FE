@@ -17,6 +17,7 @@ import { useLocation } from "react-router-dom";
 import { NotificationComponent } from "../notification/NotificationComponent";
 
 function TopNavbar(props) {
+  const {urlLangShow} = props
   const { t } = useTranslation();
   const history = useHistory();
   const dispatch = useDispatch();
@@ -86,7 +87,7 @@ function TopNavbar(props) {
                 </a>
               </li>
               <li>
-                <ChangeLanguageButton />
+                <ChangeLanguageButton urlLangShow={urlLangShow} />
               </li>
               <li>
                 <NotificationComponent />

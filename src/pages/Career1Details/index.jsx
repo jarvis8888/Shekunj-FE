@@ -3,7 +3,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { AccordionComponent, Footer, Header, SEO } from "../../components";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useLocation, useHistory } from "react-router-dom";
 import {
   getTopCollages,
   reSetFilterValue,
@@ -26,6 +26,8 @@ const Career1Details = () => {
   const dispatch = useDispatch();
   const { lan } = useSelector((state) => state.languageReducer);
   const { t } = useTranslation();
+  const location = useLocation()
+  const history = useHistory()
 
   useEffect(() => {
     dispatch(singleCareer1Details(id));
@@ -48,6 +50,14 @@ const Career1Details = () => {
     return image;
   };
   const currentUrl = window.location.href;
+  useEffect(() => {
+    const localLanguage = localStorage.getItem("i18nextLng");
+    const { pathname, search } = location;
+    const updatedSearch = new URLSearchParams(search);
+    updatedSearch.set("lang", localLanguage);
+    const newUrl = `${pathname}?${updatedSearch.toString()}`;
+    history.push(newUrl);
+  }, [lan]);
 
   return (
     <>
@@ -64,7 +74,7 @@ const Career1Details = () => {
         }
       />
       <div>
-        <Header loginPage={true} page='career' subPage='colleges' />
+        <Header loginPage={true} page='career' subPage='colleges' urlLangShow={true} />
 
         <Container className='coverMainSecSchool'>
           <div className='school_detail_cover'>

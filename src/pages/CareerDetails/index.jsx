@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AccordionComponent, Footer, Header, SEO } from "../../components";
 // import { Link, useParams } from "react-router-dom";
 import ContentLoader, { Facebook } from "react-content-loader";
-import { Link, useParams, Route } from "react-router-dom";
+import { Link, useParams, Route, useLocation, useHistory } from "react-router-dom";
 import {
   getTopCollages,
   reSetFilterValue,
@@ -28,6 +28,8 @@ const CareerDetails = () => {
   const dispatch = useDispatch();
   const { lan } = useSelector((state) => state.languageReducer);
   const { t } = useTranslation();
+  const location = useLocation();
+  const history = useHistory()
 
   useEffect(() => {
     dispatch(singleCareerDetails(id));
@@ -51,6 +53,16 @@ const CareerDetails = () => {
   };
   const currentUrl = window.location.href;
 
+  useEffect(() => {
+    const localLanguage = localStorage.getItem("i18nextLng");
+    const { pathname, search } = location;
+    const updatedSearch = new URLSearchParams(search);
+    updatedSearch.set("lang", localLanguage);
+    const newUrl = `${pathname}?${updatedSearch.toString()}`;
+    history.push(newUrl);
+  }, [lan]);
+
+
   return (
     <>
       <SEO
@@ -66,7 +78,7 @@ const CareerDetails = () => {
         }
       />
       <div>
-        <Header loginPage={true} page='career' subPage='colleges' />
+        <Header loginPage={true} page='career' subPage='colleges' urlLangShow={true} />
 
         <Container className='coverMainSecCollege'>
           <div className='college_detail_cover'>
