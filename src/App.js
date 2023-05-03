@@ -69,7 +69,7 @@ const PageNotFound = React.lazy(() => import("./pages/PageNotFound"));
 const DataNotFound = React.lazy(() => import("./pages/DataNotFound"));
 
 const BlogCategoryPage = React.lazy(() => import("./pages/BlogsWithCatogry"));
-const BlogHashtagPage = React.lazy(() => import("./pages/BlogWithHashtag"));
+const BlogTagsPage = React.lazy(() => import("./pages/BlogsWithTags"));
 const GlobalSearchPage = React.lazy(() => import("./pages/Search"));
 
 function App() {
@@ -150,11 +150,10 @@ function App() {
           path={`${routingConstants.MORE_BLOG_CATEGORY}`}
           component={BlogCategoryPage}
         />
-
         <Route
           exact
-          path={`${routingConstants.MORE_BLOG_TAG}`}
-          component={BlogHashtagPage}
+          path={`${routingConstants.MORE_BLOG_TAGS}`}
+          component={BlogTagsPage}
         />
         <Route
           exact

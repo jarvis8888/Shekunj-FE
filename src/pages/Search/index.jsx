@@ -20,8 +20,9 @@ const GlobalSearch = () => {
     mock_tests: [],
     success_stories: [],
   });
+  const [hintData, setHintData] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [onSearch, setOnSearch] = useState("");
+  const [onSearchInput, setOnSearchInput] = useState("");
 
   const getGlobalSearchData = async (search) => {
     setLoading(true);
@@ -34,6 +35,7 @@ const GlobalSearch = () => {
         mock_tests: res?.mock_tests,
         success_stories: res?.success_stories,
       });
+      setHintData(res?.search_keywords);
     } catch (error) {
       console.error(error);
     } finally {
@@ -52,7 +54,23 @@ const GlobalSearch = () => {
 
   const handleSearch = () => {
     const searchParams = new URLSearchParams();
-    searchParams.set("search", onSearch);
+    searchParams.set("search", onSearchInput);
+    history.push({
+      pathname: location.pathname,
+      search: searchParams.toString(),
+    });
+  };
+
+  const handleCancel = () => {
+    setOnSearchInput("");
+    history.push({
+      pathname: location.pathname,
+    });
+  };
+
+  const searchByTags = (search) => {
+    const searchParams = new URLSearchParams();
+    searchParams.set("search", search);
     history.push({
       pathname: location.pathname,
       search: searchParams.toString(),
@@ -79,10 +97,12 @@ const GlobalSearch = () => {
                       <input
                         placeholder='Search By Name'
                         hide_label='true'
-                        type='text'
+                        type='search'
                         name='search'
-                        onChange={(e) => setOnSearch(e.target.value)}
+                        value={onSearchInput}
+                        onChange={(e) => setOnSearchInput(e.target.value)}
                       />
+
                       <button
                         name='button'
                         type='submit'
@@ -95,6 +115,17 @@ const GlobalSearch = () => {
                   </div>
                 </div>
               </div>
+              {hintData?.map((items, index) => {
+                return (
+                  <>
+                    <span
+                      key={items.id}
+                      className='hint-key-words'
+                      onClick={() => searchByTags(items?.name)}
+                    >{`#${items?.name}`}</span>
+                  </>
+                );
+              })}
             </div>
           </div>
         </div>

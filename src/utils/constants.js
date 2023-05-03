@@ -51,7 +51,7 @@ const routingConstants = {
   FAQ: "/more-faq/",
   MORE_BLOG: "/blogs/",
   MORE_BLOG_CATEGORY: "/blogs/category/",
-  MORE_BLOG_TAG: "/blogs/tags/",
+  MORE_BLOG_TAGS: "/blogs/tag/",
   // DETAILS_BLOG: "/blog/",
   // DETAILS_MAGZINE: "/magzine/",
   ALL_NOTIFICATION: "/all-notifications/",
@@ -112,6 +112,7 @@ const apiConstants = {
   },
   FAQ: {
     FAQ: "/more/faqs/",
+    FAQ_TECHNICAL_SUPPORT: "/more/technical_support/",
   },
   ALL_MAGZINES: {
     ALL_MAGZINES: "/more/magazines",

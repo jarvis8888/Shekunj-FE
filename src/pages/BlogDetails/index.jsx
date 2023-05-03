@@ -314,7 +314,7 @@ const BlogDetails = () => {
                       className='catagorie_search'
                       onClick={() =>
                         history.push(
-                          `${routingConstants.MORE_BLOG_TAG}?search=${items}`,
+                          `${routingConstants.MORE_BLOG_TAGS}?search=${items}`,
                           items,
                         )
                       }
