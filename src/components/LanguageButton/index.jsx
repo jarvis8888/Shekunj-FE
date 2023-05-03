@@ -12,16 +12,14 @@ import { translation } from "../../store/language";
 
 const useStyles = makeStyles({
   language: {
-    borderRadius: "0 !important",
-    width: "110px",
-    height: "30px",
-    color: "#000000 !important",
-    border: "1px solid #000000 !important",
+    borderRadius: "2px !important",
+    color: "#020202 !important",
+    border: "1px solid #020202 !important",
     textTransform: "none !important",
     fontFamily: "Poppins !important",
-    fontStyle: "normal",
     fontWeight: "300 !important",
     fontSize: "14px !important",
+    height: "38px",
   },
 });
 
@@ -68,7 +66,7 @@ function ChangeLanguageButton() {
         aria-haspopup='true'
         aria-expanded={open ? "true" : undefined}
         onClick={handleClick}
-        startIcon={<ArrowDropDownIcon />}
+        endIcon={<ArrowDropDownIcon />}
       >
         {language.startsWith("en") ? "English" : "हिन्दी"}
       </Button>

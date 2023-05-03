@@ -1,5 +1,7 @@
 body {
   overflow-x: hidden;
+  font-family: 'Poppins', sans-serif !important;
+
 }
 
 .same_padding {
@@ -24,7 +26,7 @@ body {
   position: relative;
   background-repeat: no-repeat;
   background-size: cover;
-  font-family: SegoeUI_bold;
+  font-family: "Poppins", sans-serif;
 }
 
 #myCarousel .carousel_item1 {
@@ -44,7 +46,6 @@ body {
 }
 
 #myCarousel .carousel-item h4 {
-  font-family: "SegoeUI_medium";
   font-style: normal;
   font-weight: normal;
   text-transform: capitalize;
@@ -55,7 +56,6 @@ body {
 }
 
 #myCarousel .carousel-item h5 {
-  font-family: "SegoeUI_medium";
   text-transform: capitalize;
   font-style: normal;
   font-weight: 600;
@@ -67,7 +67,7 @@ body {
 }
 
 #myCarousel .carousel-item h4 span {
-  font-family: SegoeUI_medium;
+  font-family: "Poppins", sans-serif;
   font-weight: 300;
   font-size: 18px;
   line-height: 27px;
@@ -76,7 +76,7 @@ body {
 }
 
 #myCarousel .carousel-item p {
-  font-family: SegoeUI_medium;
+  font-family: "Poppins", sans-serif;
   font-weight: 300;
   font-size: 18px;
   line-height: 27px;
@@ -85,19 +85,16 @@ body {
 
 .carousel-item.carousel_item1 h2 {
   font-size: 22px;
-  font-family: 'SegoeUI_bold';
   text-transform: capitalize;
 }
 
 #myCarousel .carousel-item .banner_btn {
-  font-family: SegoeUI_medium;
+  font-family: "Poppins", sans-serif;
   text-transform: capitalize;
   -webkit-animation-name: fadeInUp;
   animation-name: fadeInUp;
-  font-style: normal;
   font-weight: 600;
   font-size: 18px;
-  line-height: 18px;
   text-align: center;
   color: #ffffff;
   background: #ec498a;
@@ -234,7 +231,7 @@ body {
 }
 
 .resume .btn.btn-resume {
-  font-family: SegoeUI_bold;
+  font-family: "Poppins", sans-serif;
   font-size: 14px;
   line-height: 21px;
   text-align: center;
@@ -249,7 +246,7 @@ body {
 }
 
 .resume h4 {
-  font-family: SegoeUI_medium;
+  font-family: "Poppins", sans-serif;
   text-transform: capitalize;
   font-weight: 500;
   font-size: 36px;
@@ -287,7 +284,6 @@ body {
 }
 
 .job-opprtunity-bg h3 {
-  font-family: "SegoeUI_medium";
   font-weight: 600;
   font-style: normal;
   font-size: 35px;
@@ -306,7 +302,6 @@ body {
 }
 
 .job-opprtunity-bg .btn.btn-job {
-  font-family: "SegoeUI_bold";
   font-weight: 600;
   font-size: 16px;
   line-height: 24px;
@@ -342,27 +337,22 @@ body {
 }
 
 .career_community h1 {
-  font-family: SegoeUI_bold;
+  font-family: "Poppins", sans-serif;
   font-weight: bold;
-  font-style: normal;
   font-size: 40px;
-  line-height: 50px;
   text-align: center;
   color: #ffffff;
 }
 
 .career_community h2 {
-  font-family: SegoeUI_bold;
+  font-family: "Poppins", sans-serif;
   font-weight: bold;
-  font-style: normal;
-  font-size: 34px;
-  line-height: 48px;
+  font-size: 32px;
   text-align: center;
   color: #ffffff;
 }
 
 .career_community p {
-  font-family: "SegoeUI_medium";
   font-weight: normal;
   font-size: 20px;
   line-height: 30px;
@@ -377,7 +367,6 @@ body {
 .btn.btn-start-course {
   background: #ec498a;
   border-radius: 2px;
-  font-family: "SegoeUI_bold";
   font-weight: 600;
   font-size: 14px;
   line-height: 21px;
@@ -414,17 +403,12 @@ body {
 }
 
 .certificate h4 {
-  font-family: "SegoeUI_bold";
   font-weight: bold;
-  font-style: normal;
-  font-size: 33px;
-  line-height: 52px;
-  color: #000000;
+  font-size: 32px;
+  color: #020202
 }
 
 .certificate p {
-  font-family: "SegoeUI_medium";
-  font-weight: normal;
   font-size: 20px;
   line-height: 30px;
   color: #828282;
@@ -438,7 +422,7 @@ body {
 }
 
 .highlight_student h3 {
-  font-family: "SegoeUI_bold";
+  font-family: "Poppins", sans-serif;
   font-weight: bold;
   font-size: 35px;
   line-height: 50px;
@@ -456,7 +440,6 @@ body {
 }
 
 .highlight_student p {
-  font-family: "SegoeUI_medium";
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
@@ -467,7 +450,6 @@ body {
 .learn_more {
   background: #ec498a;
   border-radius: 2px;
-  font-family: "SegoeUI_bold";
   font-weight: 600;
   font-size: 14px;
   line-height: 42px;
@@ -544,7 +526,7 @@ body {
 }
 
 .tes_box p {
-  font-family: SegoeUI_bold;
+  font-family: "Poppins", sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 13px !important;
@@ -556,7 +538,7 @@ body {
 }
 
 .tes_box_ankita p {
-  font-family: SegoeUI_bold;
+  font-family: "Poppins", sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 13px;
@@ -568,7 +550,7 @@ body {
 }
 
 .tes_box h2 {
-  font-family: SegoeUI_bold;
+  font-family: "Poppins", sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 13px !important;
@@ -578,7 +560,7 @@ body {
 }
 
 .tes_box_ankita h2 {
-  font-family: SegoeUI_bold;
+  font-family: "Poppins", sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 13px;
@@ -588,7 +570,7 @@ body {
 }
 
 .tes_box h6 {
-  font-family: SegoeUI_bold;
+  font-family: "Poppins", sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 12px !important;
@@ -598,7 +580,7 @@ body {
 }
 
 .tes_box_ankita h6 {
-  font-family: SegoeUI_bold;
+  font-family: "Poppins", sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 12px;
@@ -616,7 +598,7 @@ body {
 }
 
 .tes_box2 h2 {
-  font-family: SegoeUI_bold;
+  font-family: "Poppins", sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 13px;
@@ -685,7 +667,7 @@ body {
 }
 
 .tes_box3 h2 {
-  font-family: SegoeUI_bold;
+  font-family: "Poppins", sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 13px;
@@ -696,7 +678,7 @@ body {
 }
 
 .tes_box3 h6 {
-  font-family: SegoeUI_bold;
+  font-family: "Poppins", sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 12px;
@@ -749,7 +731,6 @@ ul.star {
 }
 
 .container.Our_text p {
-  font-family: "SegoeUI_medium";
   font-style: normal;
   font-weight: 600;
   font-size: 20px;
@@ -765,7 +746,6 @@ ul.star {
 }
 
 .container.Our_text h2 {
-  font-family: "SegoeUI_medium";
   font-style: normal;
   font-weight: 600;
   font-size: 40px;
@@ -1068,7 +1048,6 @@ ul.star {
   }
 
   .bottom-footer p {
-    line-height: 60px;
     margin: 0;
   }
 
@@ -1082,7 +1061,7 @@ ul.star {
   }
 
   #myCarousel .carousel-item p {
-    font-family: SegoeUI_medium;
+    font-family: "Poppins", sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -1125,7 +1104,6 @@ ul.star {
 
   .career_community h1 {
     font-size: 24px;
-    line-height: 30px;
   }
 
   .certificate {
@@ -1140,7 +1118,6 @@ ul.star {
 
   .certificate h4 {
     font-size: 28px;
-    line-height: 40px;
   }
 
   .job-opprtunity-bg .jobimg {
@@ -1364,7 +1341,7 @@ ul.star {
 .goverment-schemes {
   text-decoration: none;
   color: white;
-  // font-family: SegoeUI_bold;
+  // font-family: "Poppins", sans-serif;
   // font-style: normal;
   // font-weight: bold;
   // font-size: 14px;
@@ -1589,7 +1566,6 @@ ul.star {
 }
 
 .mock_test_pop.MuiBox-root h2 {
-  font-family: 'SegoeUI_medium';
   font-style: normal;
   font-weight: normal;
   font-size: 18px;

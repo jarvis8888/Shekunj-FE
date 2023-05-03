@@ -168,7 +168,7 @@ a.item {
   line-height: 20px;
   color: #000000;
   padding: 12px 0px 5px 0px;
-  font-family: "SegoeUI_medium";
+  font-family: "Poppins", sans-serif;
   margin: 0;
 }
 
@@ -198,7 +198,6 @@ hr.line {
 }
 
 .names p {
-  font-family: SegoeUI_bold;
   font-style: normal;
   font-weight: 600;
   font-size: 14px;
@@ -214,7 +213,6 @@ hr.line {
 }
 
 .names span {
-  font-family: SegoeUI_bold;
   font-style: normal;
   font-weight: bold;
   font-size: 15px;
@@ -256,7 +254,6 @@ hr.line {
   font-weight: 700;
   letter-spacing: 0.5px;
   padding-right: 8px;
-  font-family: SegoeUI_bold;
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
@@ -266,7 +263,6 @@ hr.line {
 }
 
 .type .span2 span {
-  font-family: SegoeUI_bold;
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
@@ -281,7 +277,6 @@ hr.line {
 }
 
 .time p {
-  font-family: SegoeUI_bold;
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
@@ -290,7 +285,6 @@ hr.line {
 }
 
 .type span.std {
-  font-family: SegoeUI_bold;
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
@@ -306,12 +300,10 @@ hr.line {
   color: #333333;
   font-weight: 600;
   font-size: 1.1rem;
-  font-family: SegoeUI_bold;
   letter-spacing: 0.5px;
 }
 
 button.view_test_cate {
-  font-family: SegoeUI_bold;
   font-style: normal;
   font-weight: bold;
   font-size: 14px;
@@ -344,7 +336,6 @@ button.view_test_cate:hover {
 }
 
 .view_test_cate {
-  font-family: SegoeUI_bold;
   user-select: none;
   font-style: normal;
   font-weight: bold;
@@ -443,7 +434,6 @@ button.view_test_cate:hover {
   background: #fedeff;
   border-radius: 100px;
   border: none;
-  font-family: SegoeUI_bold;
   font-style: normal;
   font-weight: 600;
   font-size: 14px;
@@ -464,7 +454,7 @@ button.view_test_cate:hover {
 }
 
 .tag_btn h2 {
-  font-family: "SegoeUI_medium";
+  font-family: "Poppins", sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 16px;
@@ -479,7 +469,6 @@ button.btn.btn_Courses {
   height: 56px;
   background: #ec498a;
   border-radius: 20px;
-  font-family: SegoeUI_bold;
   font-style: normal;
   font-weight: 600;
   font-size: 14px;

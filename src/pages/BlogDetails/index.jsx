@@ -261,7 +261,7 @@ const BlogDetails = () => {
           </div>
           <h4>{blogs?.title}</h4>
           <div
-            className='card__description'
+            className=''
             dangerouslySetInnerHTML={{
               __html: makeHtml(`${blogs?.about_blog}`),
             }}
@@ -355,7 +355,6 @@ const BlogDetails = () => {
           />
         </div>
       </div>
-
       <Footer loginPage={false} />
     </div>
   );

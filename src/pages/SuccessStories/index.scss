@@ -9,7 +9,7 @@
 
 
 .SuccStory_banner h1 {
-  font-family: SegoeUI_bold;
+  font-family: "Poppins", sans-serif;
   font-style: normal;
   font-weight: bold;
   font-size: 31px;
@@ -20,10 +20,6 @@
   text-transform: capitalize;
 }
 
-// .SuccStory_banner h2::first-letter {
-//   color: #fff;
-//   font-size: 55px;
-// }
 .global_img {
   margin-top: 100px;
 }
@@ -33,7 +29,7 @@
 }
 
 .SuccStory_banner p {
-  font-family: SegoeUI_medium;
+  font-family: "Poppins", sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 24px;
@@ -45,7 +41,7 @@ p.sucess_first_p {
   color: rgb(255 255 255);
   font-size: 27px;
   font-weight: 600;
-  font-family: "SegoeUI_bold";
+  font-family: "Poppins", sans-serif;
 }
 
 .suc_box {
@@ -499,11 +495,8 @@ button.want_btn {
   margin-bottom: 1rem;
 
   &__image {
-    width: 30%;
-    height: auto;
-    background-size: cover;
-    background-position: center;
-    margin-right: 2rem;
+    flex: 100px 0 0;
+    margin-right: 10px;
 
     @media screen and (max-width: 768px) {
       display: flex;
@@ -516,7 +509,7 @@ button.want_btn {
   }
 
   &__content {
-    width: 70%;
+    flex: 1;
 
     @media screen and (max-width: 768px) {
       width: 100%;
@@ -547,11 +540,11 @@ button.want_btn {
   margin-bottom: 1rem;
 
   &__image {
-    width: 30%;
+    flex: 100px 0 0;
     height: auto;
     background-size: cover;
     background-position: center;
-    margin-right: 2rem;
+    margin-right: 10px;
 
     @media screen and (max-width: 768px) {
       display: flex;
@@ -564,8 +557,7 @@ button.want_btn {
   }
 
   &__content {
-    width: 70%;
-
+    flex: 1;
     @media screen and (max-width: 768px) {
       width: 100%;
     }

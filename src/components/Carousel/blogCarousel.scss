@@ -3,33 +3,31 @@
   height: 100%;
   width: 100%;
   overflow: hidden;
+  margin: 20px 0;
 
   &__slide {
-    height: 100%;
-    width: 100%;
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-end;
     transition: opacity 0.5s ease-in-out;
     opacity: 1;
     z-index: 1;
-  }
-
-  &__content {
-    // text-align: center;
-    color: #fff;
-    padding: 1rem;
+    position: relative;
+    img {
     width: 100%;
-    max-width: 600px;
+    }
+  }
+  
+  &__content {
+    color: #fff;
+    padding: 1.5rem;
+    width: 100%;
     z-index: 2;
+    position: absolute;
+    bottom: 0;
   }
 
   &__nav {
     position: absolute;
-    top: 1rem;
-    right: 1rem;
+    top: 1.5rem;
+    right: 1.5rem;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -47,12 +45,14 @@
     border: none;
     cursor: pointer;
     transition: transform 0.3s ease-in-out;
-
     &.active {
       transform: scale(1.2);
       background-color: #ff0080;
     }
   }
+}
+.sk-blog-sidebar {
+  margin: 20px 0;
 }
 .grid-container {
   margin-top: 30px;
@@ -63,26 +63,19 @@
 .has {
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: 10px;
-  padding: 0 0 0 10px;
-  padding-left: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  max-width: 500px;
 
   span {
-    margin-right: 5px;
-    font-size: 12px;
+    font-size: 14px;
     color: #fff !important;
     display: flex;
-    justify-content: center;
     margin-right: 10px;
-  }
-
-  img{
-    margin-right: 7px;
-    margin-top: 3px;
-  }
-}
-@media (max-width: 786px) {
-  .carousel {
-    height: 40vh;
+  svg{
+    margin-right: 10px;
+    font-size: 20px;
+    }
   }
 }

@@ -3,11 +3,12 @@ import "./navbar.scss";
 import closeIcon from "../../assets/icons/svgs/close.png";
 import memuIcon from "../../assets/icons/svgs/memu.png";
 import globalSreach from "../../assets/icons/svgs/globalSearch.png";
-import logo from "../../assets/icons/logo.png";
+import logo from "../../assets/images/shekunjlogo.svg";
+import SearchIcon from '@mui/icons-material/Search';
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
 import "./index.scss";
-import { useLocation } from "react-router-dom";
+import { useLocation} from "react-router-dom";
 import { Menu, MenuItem } from "@mui/material";
 import { routingConstants } from "../../utils/constants";
 import { Dropdown, ButtonToolbar } from "rsuite";
@@ -23,11 +24,11 @@ const Navbar = (props) => {
   const isActive = (href) => {
     return location.pathname === href;
   };
-
+  
   return (
     <div className='Navbar'>
       <span className='nav-logo'>
-        <img src={logo} alt='close' width={100} height={30} />
+        <img src={logo} alt='logo shekunj' onClick={()=>{history.push('')}} />
       </span>
       <div className={`nav-items ${isOpen && "open"}`}>
         <a href='/about-us' className={isActive("/about-us") && "active"}>
@@ -104,13 +105,7 @@ const Navbar = (props) => {
           {t("header.heading.8")}
         </a>
         <span onClick={() => history.push(routingConstants.SEARCH)}>
-          <img
-            src={globalSreach}
-            alt='close'
-            className='search'
-            width={18}
-            height={18}
-          />
+         <SearchIcon />
         </span>
       </div>
       <div

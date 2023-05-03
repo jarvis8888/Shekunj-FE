@@ -778,7 +778,7 @@ const EventDetails = () => {
                         : eventDetailsBoxAds[0]?.image && (
                             <img
                               src={eventDetailsBoxAds[0]?.image}
-                              alt=''
+                              alt=""
                               className='ads_story_cover_img'
                             />
                           )}
