@@ -255,7 +255,7 @@ section {
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
 }
-.sk-content-card .sk-card-description{
+.sk-content-card .sk-card-description {
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -277,4 +277,19 @@ section {
   border-radius: 3px;
   font-size: 13px;
   font-family: "Poppins", sans-serif;
+}
+
+.hint-key-words {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 160%;
+  color: #888888;
+  display: inline-block;
+  padding: 5px 5px;
+}
+.hint-key-words:hover {
+  color: #d3317d;
+  cursor: pointer;
 }
