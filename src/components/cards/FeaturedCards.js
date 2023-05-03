@@ -25,7 +25,7 @@ const FeaturedCards = (props) => {
         <img src={image} alt={title} />
       </div>
       <div className="sk-Blogcard-content">
-        <div className='card__hashtags'>
+        <div className="card__hashtags">
           {hashtags.map((tag) => (
             <span key={tag}>{`#${tag}`}</span>
           ))}
