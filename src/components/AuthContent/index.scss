@@ -1,6 +1,6 @@
 @import "../../Styles/variable";
 body {
-  font-family: "SegoeUI_medium" !important;
+  font-family: "Poppins", sans-serif;
 }
 
 .login_main .logincontentbg {
@@ -28,13 +28,12 @@ input:-internal-autofill-selected {
   padding: 8px;
 }
 input:autofill {
-  border: 3px solid blue;
+  border: 0px solid blue !important;
 }
 .login_main .login_content h1 {
-  font-family: "SegoeUI_medium";
+  font-family: "Poppins", sans-serif;
   font-weight: 600;
-  font-size: 28px;
-  line-height: 40px;
+  font-size: 24px;
   color: rgb(214 44 121);
 }
 .login_content {
@@ -43,18 +42,16 @@ input:autofill {
   padding: 0px 0px 0px 0px;
 }
 .login_content .login-content-right h5 {
-  font-family: "SegoeUI_bold";
+  font-family: "Poppins", sans-serif;
   font-weight: 600;
   font-size: 20px;
-  line-height: 27px;
-  color: #000000;
+  color: #020202;
   text-transform: capitalize;
 }
 .login_content .login-content-right p {
-  font-family: "SegoeUI_medium";
+  font-family: "Poppins", sans-serif;
   font-weight: 300;
   font-size: 14px;
-  line-height: 21px;
   color: #535353;
 }
 .btn.btn-google {
@@ -64,12 +61,11 @@ input:autofill {
   box-shadow: 0px 2px 15px rgb(0 0 0 / 10%);
   border-radius: 5px;
   width: 100%;
-  padding: 9px 0px;
+  padding: 10px 0px;
   margin: auto;
-  font-family: "SegoeUI_medium";
-  font-weight: 600;
-  font-size: 11px;
-  line-height: 19px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-size: 13px;
   color: #4f4f4f;
   height: 40px;
   margin-top: 10px;
@@ -81,16 +77,14 @@ input:autofill {
 .login_form label {
   font-weight: normal;
   font-size: 14px;
-  line-height: 30px;
   color: #425466;
   margin-bottom: 0px;
 }
 .login_form label span {
-  font-family: SegoeUI_medium;
+  font-family: "Poppins", sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
-  line-height: 30px;
   color: #c42020;
   vertical-align: middle;
 }
@@ -109,7 +103,7 @@ input:autofill {
 .btn.btn_login {
   background: #ec498a;
   font-weight: 600;
-  font-family: "SegoeUI_medium";
+  font-family: "Poppins", sans-serif;
   font-size: 16px;
   line-height: 30px;
   text-align: center;
@@ -128,12 +122,11 @@ input:autofill {
 
 }
 .login_form .policy_para {
-  font-family: "SegoeUI_medium";
+  font-family: "Poppins", sans-serif;
   text-transform: capitalize;
   font-weight: 300;
-  font-size: 10px;
-  line-height: 13px;
-  color: #000;
+  font-size: 12px;
+  color: #020202;
 }
 .login_form .policy_para a {
   color: #d62c79;

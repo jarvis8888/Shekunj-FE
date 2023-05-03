@@ -265,7 +265,7 @@ const SuccessStoryDetails = () => {
           </h5>
           <h6 className='description'>{successStoriesDetails?.title}</h6>
           <div
-            className='card__description'
+            className=''
             dangerouslySetInnerHTML={{
               __html: makeHtml(`${successStoriesDetails?.description}`),
             }}

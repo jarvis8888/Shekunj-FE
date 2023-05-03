@@ -1,21 +1,19 @@
+body {
+  font-family: 'Poppins', sans-serif !important;
+}
 .Navbar {
-  height: 60px;
+  height: 80px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   background: #ffffff;
-  padding: 10px 0;
+  padding: 10px 80px;
+  box-shadow: 8px 8px 20px 0px #FBF6F8;
 }
-
-.Navbar > .nav-logo {
-  img {
-    margin: 0 0 0 20px;
-  }
+.Navbar .custom-dropdown button {
+  font-size: 16px;
+  color: #020202;
 }
-.Navbar > .nav-items {
-  margin: 0 20px 0 0;
-}
-
 .Navbar > .nav-items > a {
   color: #000000;
   font-size: 16px;
@@ -155,25 +153,27 @@
   justify-content: flex-end;
   background-color: #f0f0f0;
   padding: 10px 0;
+  align-items: center;
 
   nav {
-    margin-right: 100px;
+    padding: 0 80px;
     ul {
       display: flex;
       list-style: none;
       margin: 0;
       padding: 0;
-
+      align-items: center;
       li {
-        margin-left: 20px;
+        margin-left: 25px;
 
         &:first-child {
           margin-left: 0;
         }
 
         a {
-          color: #000;
+          color: #020202;
           text-decoration: none;
+          font-size: 14px;
 
           &:hover {
             text-decoration: underline;
@@ -181,6 +181,37 @@
         }
       }
     }
+  }
+  .sk-header-btn{
+    background: #d3317d;
+    color: #fff;
+    padding: 8.5px 15px;
+    border-radius: 2px;
+    transition: 0.3s;
+  }
+  .header-top nav .custom-dropdownl li{
+    margin-left: 0;
+  }
+  .header-top .custom-dropdown .rs-dropdown-item{
+    margin-left: 0;
+  }
+  .sk-header-btn:hover{
+    background: #020202;
+  }
+  .header-top .rs-btn:focus,  .header-top .rs-btn:hover {
+    background: transparent;  
+    color: #020202;
+  } 
+  .header-top .rs-dropdown-toggle,  .header-top .rs-dropdown-toggle.rs-btn {
+    background: transparent !important;
+    color: #020202; 
+}
+ .custom-dropdown button{
+      color: #020202;
+  }
+  .Navbar .nav-items .custom-dropdown button.rs-btn {
+    font-size: 16px !important;
+    color: #020202 !important;
   }
 
   @media (max-width: 800px) {
@@ -214,9 +245,7 @@
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
-  color: #000;
-  // background-color: transparent;
-  // color: inherit;
+  color: #020202;
   .rs-dropdown-menu {
     background-color: #f4f4f4;
   }
@@ -226,6 +255,7 @@
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
+    margin-left: 0;
     &:hover {
       color: #db5789;
     }

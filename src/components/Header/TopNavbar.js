@@ -61,10 +61,10 @@ function TopNavbar() {
             <a href='/event'>Events</a>
           </li>
           <li className='mobile'>
-            <a href='/blogs'>Blogs</a>
+            <a href='/blogs'>Blog</a>
           </li>
           <li className='mobile'>
-            <a href='/more-faq'>FQA</a>
+            <a href='/more-faq'>FAQ</a>
           </li>
           <li>
             <ChangeLanguageButton />
@@ -81,7 +81,7 @@ function TopNavbar() {
                     />
                   ) : (
                     <Avatar
-                      className='ml-xl-3 ml-md-2'
+                      className=''
                       style={{ cursor: "pointer" }}
                       sx={{ width: 34, height: 34 }}
                     />
@@ -126,7 +126,7 @@ function TopNavbar() {
             ) : (
               <>
                 <a href='/login'>
-                  <button style={{ padding: "4px 10px", borderRadius: "6px" }}>
+                  <button type="button" className="sk-header-btn">
                     {t("header.authButton")}
                   </button>
                 </a>
