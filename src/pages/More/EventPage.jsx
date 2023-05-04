@@ -60,7 +60,7 @@ function EventPage() {
   const [currentData, setCurrentData] = useState([]);
   const [allEventData, setAllEventData] = useState([]);
   const [todayTomorrowData, setTodayTomorrowData] = useState([]);
-  const [thisWeekData, setThisWeekData] = useState([]);
+  const [thisWeekData, setThisWeekData] = useState([]); 
   const [nextWeekData, setNextWeekData] = useState([]);
   const [genresListData, setGenresListData] = useState([]);
   const [selectedOption, setSelectedOption] = useState(null);
