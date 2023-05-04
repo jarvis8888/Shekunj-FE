@@ -78,7 +78,7 @@ export const GlobalSearchCard = ({
       <div className='col-md-3' key={index}>
         <div
           className='sk-card-box'
-          onClick={() => history.push(`${getRoute(item.type)}`)}
+          onClick={() => history.push(`${getRoute(item.type, item.id)}`)}
         >
           <div className='sk-card-img'>
             <img src={item.image} alt={item?.type} />
