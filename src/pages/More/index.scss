@@ -105,14 +105,11 @@ p.sucess_first_p {
   gap: 1rem;
 }
 
-
 .suc_box img.quote_img {
   // max-width: 100%;
   vertical-align: bottom;
   margin-right: 10px;
 }
-
-
 
 .suc_box ul {
   padding: 0;
@@ -167,7 +164,6 @@ button.want_btn {
 }
 
 @media screen and (min-device-width: 50px) and (max-device-width: 904px) {
-
   body {
     overflow-x: hidden !important;
   }
@@ -262,7 +258,6 @@ button.want_btn {
     // width: 0 !important;
     // object-fit: cover;
   }
-
 }
 
 // @media screen and (max-width: 1280px) {
@@ -317,7 +312,6 @@ button.want_btn {
     width: 100%;
     //object-fit: cover;
   }
-
 }
 
 .ads_story_cover {
@@ -352,7 +346,7 @@ button.want_btn {
   display: inline-block;
   width: calc(100% - 176px);
   background-color: #fad0c4;
-  color: white
+  color: white;
 }
 
 .containerBlog p {
@@ -373,7 +367,6 @@ button.want_btn {
   margin: 30px 0;
   padding: 5px 0;
   text-align: end;
-
 }
 
 .Card {
@@ -381,9 +374,7 @@ button.want_btn {
   margin: 16px 32px;
   background-color: #d45d93;
   box-shadow: 0 7px 30px -10px rgba(150, 170, 180, 0.5);
-
 }
-
 
 .card-title {
   font-style: normal;
@@ -517,7 +508,7 @@ button.want_btn {
 
 .eventCards {
   padding-bottom: 20px;
-  background-color: radial-gradient(#fad0c4, #fff, #fad0c4) !important
+  background-color: radial-gradient(#fad0c4, #fff, #fad0c4) !important;
 }
 
 .eventCards :hover {
@@ -583,7 +574,6 @@ button.want_btn {
   background-image: linear-gradient(rgb(251, 224, 228), white);
   transition: ease-in-out;
   margin-bottom: 50px;
-
 }
 
 .createdText {
@@ -608,18 +598,15 @@ button.want_btn {
   width: 100%;
   align-items: center;
   //  border:  solid rgb(223, 225, 229);
-font-family: "Poppins", sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 24px;
   padding: 10px;
   border: none;
   text-align: left;
   padding-left: 30px;
-
-
 }
 
 .FaqAccordion {
-
   border-top: 0px solid rgb(223, 225, 229);
 }
 
@@ -711,7 +698,7 @@ font-family: "Poppins", sans-serif;
 //   user-select: none;
 //   //  overflow-y: scroll;
 //   height: 700px;
-//   //  pointer-events: none; 
+//   //  pointer-events: none;
 //   touch-action: pan-y;
 // }
 
@@ -725,7 +712,7 @@ font-family: "Poppins", sans-serif;
 // }
 
 // iframe {
-//   // pointer-events: none; 
+//   // pointer-events: none;
 //   max-width: calc(200vh - 180px);
 //   -webkit-touch-callout: none;
 //   -webkit-user-select: none;
@@ -847,10 +834,10 @@ font-family: "Poppins", sans-serif;
   // margin-right: 10px;
 }
 .suc_box_blog img.quote_img_blog {
-    width: 100px !important;
-    vertical-align: bottom;
-    margin-right: 10px;
-    height: 33px !important;
+  width: 100px !important;
+  vertical-align: bottom;
+  margin-right: 10px;
+  height: 33px !important;
 }
 
 .suc_box_blog img {
@@ -928,7 +915,6 @@ font-family: "Poppins", sans-serif;
   background-image: url("../../assets/images/fita-png-rosa.png");
   background-repeat: no-repeat !important;
   left: -24px !important;
-
 }
 
 .flex-column {
@@ -1040,7 +1026,6 @@ font-family: "Poppins", sans-serif;
 
 .slide-imgAdd {
   position: relative;
-
 }
 
 .slide-imgAdd img {
@@ -1097,9 +1082,7 @@ font-family: "Poppins", sans-serif;
   display: block;
 }
 
-
 @media screen and (max-device-width: 767px) {
-
   .gridContainerEvent {
     display: inline-block;
     align-items: center;
@@ -1225,18 +1208,17 @@ font-family: "Poppins", sans-serif;
   .hideBlog {
     display: none !important;
   }
-
 }
 
-@media (max-width:991.98px) {
+@media (max-width: 991.98px) {
   .padding {
-    padding: 1.5rem
+    padding: 1.5rem;
   }
 }
 
-@media (max-width:767.98px) {
+@media (max-width: 767.98px) {
   .padding {
-    padding: 1rem
+    padding: 1rem;
   }
 }
 
@@ -1272,37 +1254,36 @@ font-family: "Poppins", sans-serif;
   height: 15px;
   border-radius: 100%;
   background-color: rgba(241, 83, 110, 0.8);
-  margin: 35px 5px
+  margin: 35px 5px;
 }
 
 .jumping-dots-loader span:nth-child(1) {
-  animation: bounce 1s ease-in-out infinite
+  animation: bounce 1s ease-in-out infinite;
 }
 
 .jumping-dots-loader span:nth-child(2) {
-  animation: bounce 1s ease-in-out 0.33s infinite
+  animation: bounce 1s ease-in-out 0.33s infinite;
 }
 
 .jumping-dots-loader span:nth-child(3) {
-  animation: bounce 1s ease-in-out 0.66s infinite
+  animation: bounce 1s ease-in-out 0.66s infinite;
 }
 
 @keyframes bounce {
-
   0%,
   75%,
   100% {
     -webkit-transform: translateY(0);
     -ms-transform: translateY(0);
     -o-transform: translateY(0);
-    transform: translateY(0)
+    transform: translateY(0);
   }
 
   25% {
     -webkit-transform: translateY(-20px);
     -ms-transform: translateY(-20px);
     -o-transform: translateY(-20px);
-    transform: translateY(-20px)
+    transform: translateY(-20px);
   }
 }
 
@@ -1317,5 +1298,41 @@ font-family: "Poppins", sans-serif;
 
   .jumping-dots-loader span {
     margin: 10px 5px !important;
+  }
+}
+.event-Carousel {
+  position: relative;
+  .owl-nav {
+    top: 60px;
+    width: 100%;
+    .owl-prev {
+      position: absolute;
+      left: 15%;
+    }
+    .owl-next {
+      position: absolute;
+      right: 1%;
+    }
+    button {
+      span {
+        font-size: 36px;
+        font-weight: 200;
+        margin: 0;
+        border: 1px solid #fff;
+        border-radius: 50%;
+        width: 44px;
+        height: 44px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+    button.owl-prev::before {
+      content: none;
+    }
+
+    button.owl-next::before {
+      content: none;
+    }
   }
 }

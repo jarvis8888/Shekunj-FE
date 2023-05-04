@@ -46,6 +46,11 @@ import { time_left } from "../../utils/utils";
 import { CustomLoader } from "../../components/customLoader/CustomLoader";
 import AddsBanner from "../../components/AddsBanner/AddsBanner";
 import useDeviceDetect from "../../hooks/useDeviceDetect";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+const useQuery = () => {
+  return new URLSearchParams(useLocation().search);
+};
 
 function EventPage() {
   const options = [
@@ -56,18 +61,17 @@ function EventPage() {
   ];
 
   const [eventBoxAds, setEventBoxAds] = useState([]);
-  const [tempData, setTempData] = useState([]);
   const [currentData, setCurrentData] = useState([]);
   const [allEventData, setAllEventData] = useState([]);
   const [todayTomorrowData, setTodayTomorrowData] = useState([]);
-  const [thisWeekData, setThisWeekData] = useState([]); 
+  const [thisWeekData, setThisWeekData] = useState([]);
   const [nextWeekData, setNextWeekData] = useState([]);
   const [genresListData, setGenresListData] = useState([]);
-  const [selectedOption, setSelectedOption] = useState(null);
   const [selectedButton, setSelectedButton] = useState("all");
+  const [currentOffset, setCurrentOffset] = useState(0);
   const [loading, setLoading] = useState(false);
-
-  const pageLimit = 5;
+  const params = useQuery();
+  const [selectedOption, setSelectedOption] = useState(params.get("genre_id"));
 
   const history = useHistory();
   const dispatch = useDispatch();
@@ -75,23 +79,29 @@ function EventPage() {
   const location = useLocation();
   const detect = useDeviceDetect();
 
-  const searchParams = new URLSearchParams(location.search);
-  const currentSearch = searchParams.get("genre_id") || "";
-
-  const { lan } = useSelector((state) => state.languageReducer);
-
-  const fetchEventsData = async (search, selectedOption, limit, offset) => {
+  const fetchEventsData = async (genre, isAllItem) => {
     setLoading(true);
     try {
-      const url = `more/events?genre_id=${search}`;
+      let url = `more/events`;
+      if (selectedButton == "all") {
+        url += `?limit=${8}&offset=${(currentOffset)*8}`;
+      }
+      if (genre || selectedOption) {
+        const a = genre || selectedOption;
+        url += `&genre_id=${a}`;
+      }
       const { data } = await httpServices.get(url);
       const { event_list, today_tomorrow, this_week, next_week, genres_list } =
         data;
-      setAllEventData(event_list?.results);
       setGenresListData(genres_list);
       setTodayTomorrowData(today_tomorrow);
       setThisWeekData(this_week);
       setNextWeekData(next_week);
+      if (isAllItem) {
+        setAllEventData([
+          ...event_list?.results,
+        ]);
+      }
       setCurrentData(event_list?.results);
     } catch (error) {
     } finally {
@@ -100,6 +110,13 @@ function EventPage() {
   };
   const handleTimeOptionClick = (option) => {
     setSelectedButton(option);
+    setSelectedOption(null);
+    const searchParams = new URLSearchParams();
+    searchParams.set("genre_id", "");
+    history.push({
+      pathname: location.pathname,
+      search: searchParams.toString(),
+    });
     switch (option) {
       case "todayTomorrow":
         setCurrentData(todayTomorrowData);
@@ -111,21 +128,17 @@ function EventPage() {
         setCurrentData(nextWeekData);
         break;
       default:
-        fetchEventsData();
         setSelectedOption(null);
-        const searchParams = new URLSearchParams();
-        searchParams.set("genre_id", "");
-        history.push({
-          pathname: location.pathname,
-          search: searchParams.toString(),
-        });
-        setCurrentData(allEventData);
+        setCurrentOffset(0);
+        fetchEventsData();
         break;
     }
   };
   const handleGenerOptionClick = (option) => {
     setSelectedButton("all");
     setSelectedOption(option);
+    setCurrentOffset(0);
+    fetchEventsData(option);
     const searchParams = new URLSearchParams();
     searchParams.set("genre_id", option);
     history.push({
@@ -135,9 +148,8 @@ function EventPage() {
   };
 
   useEffect(() => {
-    fetchEventsData(currentSearch, selectedOption);
-    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-  }, [currentSearch, lan, selectedOption]);
+    fetchEventsData(null, true);
+  }, [currentOffset]);
 
   const addEmail = async (email) => {
     try {
@@ -215,12 +227,12 @@ function EventPage() {
       <section className='sk-event-sec'>
         <div className='container-fluid'>
           <div className='sk-event-slide'>
-            <OwlCarousel items={4} margin={15} {...options}>
+            <OwlCarousel className="event-Carousel" items={4} margin={20} autoPlay nav={true}>
               {allEventData?.map((items, index) => {
                 return (
                   <>
                     {" "}
-                    <div>
+                    <div key={index}>
                       <img src={items.image} alt='' />
                     </div>
                   </>
@@ -267,7 +279,7 @@ function EventPage() {
                         <a
                           onClick={() => handleGenerOptionClick(items.id)}
                           className={
-                            selectedOption === items.id && "active-time"
+                            selectedOption == items.id && "active-time"
                           }
                         >
                           {items.name}
@@ -357,7 +369,13 @@ function EventPage() {
                 : "no data"}
               <div className='col-md-12'>
                 <div className='sk-explore-btn'>
-                  <button type='' className='sk-btn'>
+                  <button
+                    type=''
+                    onClick={() => {
+                      setCurrentOffset(currentOffset + 1);
+                    }}
+                    className='sk-btn'
+                  >
                     Explore More{" "}
                   </button>
                 </div>
