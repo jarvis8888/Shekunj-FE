@@ -53,9 +53,11 @@ function SuccessStory() {
     dispatch(setCollapseSuccessStory(id, is_collapse ? false : true));
   };
 
+  const [featuredData, setFeaturedData] = useState([]);
   const [storiesBannerAds, setStoriesBannerAds] = useState([]);
   const [succesStoriesRight1, setSuccesStoriesRight1] = useState([]);
   const [succesStoriesRight2, setSuccesStoriesRight2] = useState([]);
+  const [succesStoriesLeft, setSuccesStoriesLeft] = useState([]);
   const [storiesBoxAds, setStoriesBoxAds] = useState([]);
   const [image, setImage] = useState("NA");
   const detect = useDeviceDetect();
@@ -149,15 +151,12 @@ function SuccessStory() {
             let filterArray = response.data.results.filter((item, index) => {
               return item.image_type == "success_stories_box";
             });
-            let findImage =
-              filterArray.length > 0 ? filterArray[0].image : "NA";
-            setImage(findImage);
             setStoriesBoxAds(filterArray);
-            // let filterArray2 = response.data.results.filter((item, index) => {
-            //   return item.image_type === "success_stories_right1";
-            // });
+            let filterArray2 = response.data.results.filter((item, index) => {
+              return item.image_type === "success_stories_left";
+            });
 
-            // setSuccesStoriesRight1(filterArray2);
+            setSuccesStoriesLeft(filterArray2);
             // let filterArray3 = response.data.results.filter((item, index) => {
             //   return item.image_type === "success_stories_right2";
             // });
@@ -194,6 +193,17 @@ function SuccessStory() {
     window.scrollTo(0, 1000);
   };
 
+  const addAddsFunction = () => {
+    const num = Math.floor(Math.random() * 4);
+    const res = successStories?.featured_success_stories?.results ?? [];
+    const addObjectdata = { id: "advertisement" };
+    const newData = [...res.slice(0, num), addObjectdata, ...res.slice(num)];
+    setFeaturedData(newData);
+  };
+
+  useEffect(() => {
+    addAddsFunction();
+  }, [successStories]);
   return (
     <div className=''>
       <Header loginPage={true} page='story' />
@@ -243,14 +253,14 @@ function SuccessStory() {
                     ? storiesBannerAds[0]?.image_mobile && (
                         <img
                           src={storiesBannerAds[0]?.image_mobile}
-                          alt='Image'
+                          alt=''
                           className='ads_story_cover_img'
                         />
                       )
                     : storiesBannerAds[0]?.image && (
                         <img
                           src={storiesBannerAds[0]?.image}
-                          alt='Image'
+                          alt=''
                           className='ads_story_cover_img'
                         />
                       )}
@@ -269,7 +279,59 @@ function SuccessStory() {
             <h4>Featured Stories </h4>
           </div>
           <div className='card-gird'>
-            {successStories?.featured_success_stories?.results.length
+            {featuredData?.map((items, index) => {
+              if (items.id === "advertisement") {
+                return (
+                  <>
+                    {succesStoriesLeft.length > 0 && (
+                      <div
+                        className='col-md-12 ads_home_cover '
+                        // onClick={() => addEmail(succesStoriesLeft[0]?.add_email)}
+                      >
+                        <a
+                          href={succesStoriesLeft[0]?.url_adds}
+                          target='_blank'
+                          rel='noreferrer'
+                        >
+                          {detect.isMobile
+                            ? succesStoriesLeft[0]?.image_mobile && (
+                                <img
+                                  src={succesStoriesLeft[0]?.image_mobile}
+                                  alt=''
+                                  // className='ads_story_cover_img'
+                                />
+                              )
+                            : succesStoriesLeft[0]?.image && (
+                                <img
+                                  src={succesStoriesLeft[0]?.image}
+                                  alt=''
+                                  // className='ads_story_cover_img'
+                                />
+                              )}
+                        </a>
+                      </div>
+                    )}
+                  </>
+                );
+              } else {
+                return (
+                  <>
+                    <FeaturedCards
+                      image={items.image}
+                      hashtags={items.hash_tags}
+                      title={items.name}
+                      description={`${items.title}`}
+                      makeHtml={makeHtml}
+                      key={index}
+                      created_at={items.created_at}
+                      reading_time={items.reading_time}
+                      id={items.id}
+                    />
+                  </>
+                );
+              }
+            })}
+            {/* {successStories?.featured_success_stories?.results.length
               ? successStories?.featured_success_stories?.results.map(
                   (items, index) => {
                     return (
@@ -287,7 +349,7 @@ function SuccessStory() {
                     );
                   },
                 )
-              : null}
+              : null} */}
           </div>
           <div
             style={{
