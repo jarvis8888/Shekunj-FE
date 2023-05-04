@@ -60,21 +60,21 @@ export const HashtagAndCatagories = (props) => {
         {rightOne.length > 0 && (
           <div
             className='col-md-12 ads_home_cover'
-            onClick={() => addEmail(rightOne[0]?.add_email)}
+            // onClick={() => addEmail(rightOne[0]?.add_email)}
           >
             <a href={rightOne[0]?.url_adds} target='_blank' rel='noreferrer'>
               {detect.isMobile
                 ? rightOne[0]?.image_mobile && (
                     <img
                       src={rightOne[0]?.image_mobile}
-                      alt='Image'
+                      alt=''
                       className='ads_story_cover_img'
                     />
                   )
                 : rightOne[0]?.image && (
                     <img
                       src={rightOne[0]?.image}
-                      alt='Image'
+                      alt=''
                       className='ads_story_cover_img'
                     />
                   )}
@@ -89,7 +89,7 @@ export const HashtagAndCatagories = (props) => {
         {rightTwo.length > 0 && (
           <div
             className='col-md-12 ads_home_cover'
-            onClick={() => addEmail(rightTwo[0]?.add_email)}
+            // onClick={() => addEmail(rightTwo[0]?.add_email)}
           >
             <a href={rightTwo[0]?.url_adds} target='_blank' rel='noreferrer'>
               {detect.isMobile

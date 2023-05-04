@@ -44,6 +44,8 @@ import "owl.carousel/dist/assets/owl.theme.default.css";
 import httpServices from "../../utils/ApiServices";
 import { time_left } from "../../utils/utils";
 import { CustomLoader } from "../../components/customLoader/CustomLoader";
+import AddsBanner from "../../components/AddsBanner/AddsBanner";
+import useDeviceDetect from "../../hooks/useDeviceDetect";
 
 function EventPage() {
   const options = [
@@ -71,6 +73,7 @@ function EventPage() {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const location = useLocation();
+  const detect = useDeviceDetect();
 
   const searchParams = new URLSearchParams(location.search);
   const currentSearch = searchParams.get("genre_id") || "";
@@ -131,79 +134,65 @@ function EventPage() {
     });
   };
 
-  const addEmail = (email) => {
-    navigator.geolocation.getCurrentPosition(async function (position, values) {
-      const latitude = position.coords.latitude;
-      const longitude = position.coords.longitude;
-
-      let params = {
-        latitude: latitude.toString(),
-        longitude: longitude.toString(),
-      };
-      axios
-        .post("/private_adds/click_add/", {
-          // add_email:`${adds[0]?.add_email}`
-          add_email: email,
-          latitude: params.latitude.toString(),
-          longitude: params.longitude.toString(),
-        })
-        .then((response) => {
-          // setAdds(response.data.results);
-          console.log("addEmailresponse", response);
-        })
-        .catch((error) => {
-          // setMessage("No data found");
-          console.log(error);
-        });
-    });
-  };
-
-  useEffect(() => {
-    dispatch(adsList());
-    navigator.geolocation.getCurrentPosition(
-      async function (position, values) {
-        const latitude = position.coords.latitude;
-        const longitude = position.coords.longitude;
-
-        let params = {
-          latitude: latitude.toString(),
-          longitude: longitude.toString(),
-        };
-        axios
-          .get(
-            `/private_adds/private_add?latitude=${latitude}&longitude=${longitude}`,
-          )
-          .then((response) => {
-            if (response && response.data.results.length > 0) {
-              let filterArray1 = response.data.results.filter((item, index) => {
-                return item.image_type == "event_detail_footer";
-              });
-              setEventBoxAds(filterArray1);
-
-              // console.log("filterArray1event_index",filterArray1)
-            }
-          });
-      },
-      function (error) {
-        console.error("Error Code = " + error.code + " - " + error.message);
-        // alert("Your location is blocked")
-        axios.get(`/private_adds/private_add`).then((response) => {
-          if (response && response.data.results.length > 0) {
-            let filterArray1 = response.data.results.filter((item, index) => {
-              return item.image_type == "event_index";
-            });
-            setEventBoxAds(filterArray1);
-            // console.log("filterArray1coursebox",filterArray1)
-          }
-        });
-      },
-    );
-  }, []);
-
   useEffect(() => {
     fetchEventsData(currentSearch, selectedOption);
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, [currentSearch, lan, selectedOption]);
+
+  const addEmail = async (email) => {
+    try {
+      const position = await navigator.geolocation.getCurrentPosition();
+      const { latitude, longitude } = position.coords;
+
+      const params = {
+        latitude: latitude.toString(),
+        longitude: longitude.toString(),
+      };
+
+      const response = await axios.post("/private_adds/click_add/", {
+        add_email: email,
+        latitude: params.latitude,
+        longitude: params.longitude,
+      });
+
+      console.log("addEmailresponse", response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    dispatch(adsList());
+    const successCallback = async (position) => {
+      const { latitude, longitude } = position.coords;
+      try {
+        const response = await axios.get(
+          `/private_adds/private_add?latitude=${latitude}&longitude=${longitude}`,
+        );
+        let filterArray1 = response.data.results.filter((item, index) => {
+          return item.image_type == "event_detail_footer";
+        });
+        setEventBoxAds(filterArray1);
+      } catch (error) {
+        console.error(error);
+        axios.get(`/private_adds/private_add`).then((response) => {
+          let filterArray1 = response.data.results.filter((item, index) => {
+            return item.image_type == "event_detail_footer";
+          });
+          setEventBoxAds(filterArray1);
+        });
+      }
+    };
+    const errorCallback = (error) => {
+      console.error("Error Code = " + error.code + " - " + error.message);
+      axios.get(`/private_adds/private_add`).then((response) => {
+        let filterArray1 = response.data.results.filter((item, index) => {
+          return item.image_type == "event_detail_footer";
+        });
+        setEventBoxAds(filterArray1);
+      });
+    };
+    navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+  }, []);
 
   return (
     <div>
@@ -377,6 +366,38 @@ function EventPage() {
           )}
         </div>
       </section>
+      <AddsBanner
+        color='#F4F4F4'
+        children={
+          <>
+            {eventBoxAds.length > 0 && (
+              <div className='col-md-12 ads_home_cover '>
+                <a
+                  href={eventBoxAds[0]?.url_adds}
+                  target='_blank'
+                  rel='noreferrer'
+                >
+                  {detect.isMobile
+                    ? eventBoxAds[0]?.image_mobile && (
+                        <img
+                          src={eventBoxAds[0]?.image_mobile}
+                          alt=''
+                          className='ads_story_cover_img'
+                        />
+                      )
+                    : eventBoxAds[0]?.image && (
+                        <img
+                          src={eventBoxAds[0]?.image}
+                          alt=''
+                          className='ads_story_cover_img'
+                        />
+                      )}
+                </a>
+              </div>
+            )}
+          </>
+        }
+      />
       <Footer loginPage={false} />
     </div>
   );
