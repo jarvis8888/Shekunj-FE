@@ -1,9 +1,11 @@
+section{
+  padding: 50px 0;
+}
 .carousel {
   position: relative;
   height: 100%;
   width: 100%;
   overflow: hidden;
-  margin: 20px 0;
 
   &__slide {
     transition: opacity 0.5s ease-in-out;
@@ -22,6 +24,7 @@
     z-index: 2;
     position: absolute;
     bottom: 0;
+    background: linear-gradient(180deg, rgba(32, 32, 32, 0) 0%, #202020d1 100%);
   }
 
   &__nav {
@@ -51,9 +54,7 @@
     }
   }
 }
-.sk-blog-sidebar {
-  margin: 20px 0;
-}
+
 .grid-container {
   margin-top: 30px;
 }
@@ -74,7 +75,7 @@
     display: flex;
     margin-right: 10px;
   svg{
-    margin-right: 10px;
+    margin-right: 8px;
     font-size: 20px;
     }
   }

@@ -208,207 +208,202 @@ function SuccessStory() {
     <div className=''>
       <Header loginPage={true} page='story' />
       {/* success story section1 start */}
-      <div className='Section1'>
-        <div className='section1-item'>
-          <div className='center'>
-            <div
-              className='title'
-              dangerouslySetInnerHTML={{
-                __html: makeHtml(t("phase2.SuccessStoryContent.title1")),
-              }}
-            />
-            <div
-              className='title'
-              dangerouslySetInnerHTML={{
-                __html: makeHtml(t("phase2.SuccessStoryContent.title2")),
-              }}
-            />
-            <p>{t("phase2.SuccessStoryContent.description")}</p>
-            <button className='.button'>
-              {t("phase2.SuccessStoryContent.buttonTitle")}
-            </button>
+      <section className='sk-storyMain-sec'>
+        <div className='container'>
+          <div className='row'>
+            <div className='col-xl-6 col-md-12'>
+              <div className='sk-story-content'>
+                <h1
+                  className='sk-storyHeading-top'
+                  dangerouslySetInnerHTML={{
+                    __html: makeHtml(t("phase2.SuccessStoryContent.title1")),
+                  }}
+                />
+                <h1
+                  className='sk-storyHeading-top'
+                  dangerouslySetInnerHTML={{
+                    __html: makeHtml(t("phase2.SuccessStoryContent.title2")),
+                  }}
+                />
+                <p>{t("phase2.SuccessStoryContent.description")}</p>
+              </div>
+
+              <button className='sk-allStory-btn'>
+                {t("phase2.SuccessStoryContent.buttonTitle")}
+              </button>
+            </div>
+
+            <div className='col-xl-6 col-md-12'>
+              <div className='BackgroundImage'></div>
+            </div>
           </div>
         </div>
-        <div className='section1-item'>
-          <div className='BackgroundImage'></div>
-        </div>
-      </div>
+      </section>
+
       {/* success story section1 end */}
       {/* Adds Section start */}
-      <AddsBanner
-        color='#F4F4F4'
-        children={
-          <>
-            {storiesBannerAds.length > 0 && (
-              <div
-                className='col-md-12 ads_home_cover '
-                // onClick={() => addEmail(storiesBannerAds[0]?.add_email)}
-              >
-                <a
-                  href={storiesBannerAds[0]?.url_adds}
-                  target='_blank'
-                  rel='noreferrer'
-                >
-                  {detect.isMobile
-                    ? storiesBannerAds[0]?.image_mobile && (
-                        <img
-                          src={storiesBannerAds[0]?.image_mobile}
-                          alt=''
-                          className='ads_story_cover_img'
-                        />
-                      )
-                    : storiesBannerAds[0]?.image && (
-                        <img
-                          src={storiesBannerAds[0]?.image}
-                          alt=''
-                          className='ads_story_cover_img'
-                        />
-                      )}
-                </a>
-              </div>
-            )}
-          </>
-        }
-      />
-      {/* Adds Section end */}
-      {/* Featured Stories start */}
-      <div className='grid-container '>
-        <div className='featured-stories'>
-          <div className='title'>
-            <img src={fire} alt='fire' width={30} height={30} />
-            <h4>Featured Stories </h4>
-          </div>
-          <div className='card-gird'>
-            {featuredData?.map((items, index) => {
-              if (items.id === "advertisement") {
-                return (
+      <section className='sk-successStories-sec'>
+        <div className='container'>
+          <div className='row'>
+            <div className='col-md-12'>
+              <AddsBanner
+                color='#F4F4F4'
+                children={
                   <>
-                    {succesStoriesLeft.length > 0 && (
+                    {storiesBannerAds.length > 0 && (
                       <div
-                        className='col-md-12 ads_home_cover '
-                        // onClick={() => addEmail(succesStoriesLeft[0]?.add_email)}
+                        className='ads_home_cover '
+                        // onClick={() => addEmail(storiesBannerAds[0]?.add_email)}
                       >
                         <a
-                          href={succesStoriesLeft[0]?.url_adds}
+                          href={storiesBannerAds[0]?.url_adds}
                           target='_blank'
                           rel='noreferrer'
                         >
                           {detect.isMobile
-                            ? succesStoriesLeft[0]?.image_mobile && (
+                            ? storiesBannerAds[0]?.image_mobile && (
                                 <img
-                                  src={succesStoriesLeft[0]?.image_mobile}
+                                  src={storiesBannerAds[0]?.image_mobile}
                                   alt=''
-                                  // className='ads_story_cover_img'
+                                  className='ads_story_cover_img'
                                 />
                               )
-                            : succesStoriesLeft[0]?.image && (
+                            : storiesBannerAds[0]?.image && (
                                 <img
-                                  src={succesStoriesLeft[0]?.image}
+                                  src={storiesBannerAds[0]?.image}
                                   alt=''
-                                  // className='ads_story_cover_img'
+                                  className='ads_story_cover_img'
                                 />
                               )}
                         </a>
                       </div>
                     )}
                   </>
-                );
-              } else {
-                return (
-                  <>
-                    <FeaturedCards
-                      image={items.image}
-                      hashtags={items.hash_tags}
-                      title={items.name}
-                      description={`${items.title}`}
-                      makeHtml={makeHtml}
-                      key={index}
-                      created_at={items.created_at}
-                      reading_time={items.reading_time}
-                      id={items.id}
-                    />
-                  </>
-                );
-              }
-            })}
-            {/* {successStories?.featured_success_stories?.results.length
-              ? successStories?.featured_success_stories?.results.map(
-                  (items, index) => {
-                    return (
-                      <FeaturedCards
-                        image={items.image}
-                        hashtags={items.hash_tags}
-                        title={items.name}
-                        description={`${items.title}`}
-                        makeHtml={makeHtml}
-                        key={index}
-                        created_at={items.created_at}
-                        reading_time={items.reading_time}
-                        id={items.id}
-                      />
-                    );
-                  },
-                )
-              : null} */}
-          </div>
-          <div
-            style={{
-              width: "100%",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              padding: "20px 0",
-            }}
-          >
-            <button className='loadMore' onClick={() => setOffset(offset + 5)}>
-              Load More
-            </button>
-          </div>
-          <div>
-            <div>
-              <div className='title'>
-                <img src={fire} alt='fire' width={30} height={30} />
-                <h4>Trending Stories </h4>
-              </div>
-              <div className='treading-card-gird'>
-                {successStories?.trending_success_stories?.results.length
-                  ? successStories?.trending_success_stories?.results.map(
-                      (items, index) => {
-                        console.log(items);
-                        return (
-                          <>
-                            <TrendingCards
-                              image={items.image}
-                              hashtags={items.hash_tags}
-                              title={items.name}
-                              description={`${items.title}`}
-                              makeHtml={makeHtml}
-                              key={index}
-                              created_at={items.created_at}
-                              id={items.id}
-                            />
-                          </>
-                        );
-                      },
-                    )
-                  : null}
-              </div>
+                }
+              />
             </div>
           </div>
-          {/* <TrendingStories /> */}
         </div>
-        <div className='ads'>
-          <HashtagAndCatagories
-            type='hashtag'
-            image={hash}
-            title={`Trending Hastag`}
-            addEmail={addEmail}
-            hashtags={successStories?.all_hash_tags}
-            rightOne={succesStoriesRight1}
-            rightTwo={succesStoriesRight2}
-          />
+      </section>
+      {/* Adds Section end */}
+      {/* Featured Stories start */}
+      <section>
+        <div className='container'>
+          <div className='row'>
+            <div className='col-xl-9 col-md-8 featured-stories'>
+              <div className='title'>
+                <img src={fire} alt='fire' width={30} height={30} />
+                <h4>Featured Stories </h4>
+              </div>
+              <div className='row'>
+                {featuredData?.map((items, index) => {
+                  if (items.id === "advertisement") {
+                    return (
+                      <>
+                        {succesStoriesLeft.length > 0 && (
+                          <div
+                          // className='col-md-12 ads_home_cover '
+                          // onClick={() => addEmail(succesStoriesLeft[0]?.add_email)}
+                          >
+                            <a
+                              href={succesStoriesLeft[0]?.url_adds}
+                              target='_blank'
+                              rel='noreferrer'
+                            >
+                              {detect.isMobile
+                                ? succesStoriesLeft[0]?.image_mobile && (
+                                    <img
+                                      src={succesStoriesLeft[0]?.image_mobile}
+                                      alt=''
+                                      // className='ads_story_cover_img'
+                                    />
+                                  )
+                                : succesStoriesLeft[0]?.image && (
+                                    <img
+                                      src={succesStoriesLeft[0]?.image}
+                                      alt=''
+                                      // className='ads_story_cover_img'
+                                    />
+                                  )}
+                            </a>
+                          </div>
+                        )}
+                      </>
+                    );
+                  } else {
+                    return (
+                      <>
+                        <FeaturedCards
+                          image={items.image}
+                          hashtags={items.hash_tags}
+                          title={items.name}
+                          description={`${items.title}`}
+                          makeHtml={makeHtml}
+                          key={index}
+                          created_at={items.created_at}
+                          reading_time={items.reading_time}
+                          id={items.id}
+                        />
+                      </>
+                    );
+                  }
+                })}
+              </div>
+              <div className='d-flex justify-content-center align-items-center py-5'>
+                <button
+                  className='loadMore'
+                  onClick={() => setOffset(offset + 5)}
+                >
+                  Load More
+                </button>
+              </div>
+
+              <div>
+                <div className='title'>
+                  <img src={fire} alt='fire' width={30} height={30} />
+                  <h4>Trending Stories </h4>
+                </div>
+                <div className='row'>
+                  {successStories?.trending_success_stories?.results.length
+                    ? successStories?.trending_success_stories?.results.map(
+                        (items, index) => {
+                          
+                          return (
+                            <>
+                              <TrendingCards
+                                image={items.image}
+                                hashtags={items.hash_tags}
+                                title={items.name}
+                                description={`${items.title}`}
+                                makeHtml={makeHtml}
+                                key={index}
+                                created_at={items.created_at}
+                                id={items.id}
+                              />
+                            </>
+                          );
+                        },
+                      )
+                    : null}
+                </div>
+              </div>
+
+              {/* <TrendingStories /> */}
+            </div>
+            <div className='col-xl-3 col-md-4 ads'>
+              <HashtagAndCatagories
+                type='hashtag'
+                image={hash}
+                title={`Trending Hastag`}
+                addEmail={addEmail}
+                hashtags={successStories?.all_hash_tags}
+                rightOne={succesStoriesRight1}
+                rightTwo={succesStoriesRight2}
+              />
+            </div>
+          </div>
         </div>
-      </div>
+      </section>
       {/* Featured Stories end  */}
       <Footer />
     </div>

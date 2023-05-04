@@ -3,6 +3,9 @@ import "./style.scss";
 import time from "../../assets/icons/svgs/time.png";
 import book from "../../assets/icons/svgs/book.png";
 import eye from "../../assets/icons/svgs/eye.png";
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import MenuBookRoundedIcon from '@mui/icons-material/MenuBookRounded';
+import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import { truncateString } from "../../utils/utils";
 import { routingConstants } from "../../utils/constants";
 import { useHistory } from "react-router-dom";
@@ -32,23 +35,23 @@ const LatestBlogCard = (props) => {
         ))}
       </div> */}
       <div className="sk-Blogcard-content">
-        <div className='card__bottom' style={{ padding: "5px 0" }}>
+        <div className='card__bottom'>
           <span>
-            <img src={time} alt='time' width={14} height={14} />
+            <AccessTimeIcon />
             {created_at}
           </span>
           <span>
-            <img src={book} alt='time' width={14} height={14} />
+          <MenuBookRoundedIcon />
             {reading_time} to read
           </span>
           <span>
-            <img src={eye} alt='time' width={14} height={14} />
+          <VisibilityOutlinedIcon />
             {blog_count}
           </span>
         </div>
         <h5 className=''>{title}</h5>
         <div
-          className=''
+          className='sk-blog-describe'
           dangerouslySetInnerHTML={{
             __html: makeHtml(`${truncateString(description, 100)}`),
           }}
