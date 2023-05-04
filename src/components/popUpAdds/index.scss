@@ -1,0 +1,91 @@
+.pop-up-ads-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+}
+
+.pop-up-ads {
+  position: absolute;
+  width: auto;
+  height: auto;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  padding: 5px;
+  display: inline-flex;
+}
+
+.close-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 5px;
+  background-color: #f2f2f2;
+  border: none;
+  cursor: pointer;
+  color: #888;
+  font-size: 24px;
+  line-height: 1;
+}
+
+.close-button:hover {
+  background-color: #ddd;
+}
+
+.close-button:focus {
+  outline: none;
+}
+
+.left-bottom {
+  bottom: 10px;
+  left: 10px;
+}
+
+.right-bottom {
+  bottom: 10px;
+  right: 10px;
+}
+.pop-up-ads.left-bottom {
+  display: flex;
+  align-items: center;
+}
+.pop-up-ads.right-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pop-up-ads.left-bottom img {
+  max-height: 100%;
+  max-width: 100%;
+}
+
+.pop-up-ads.right-bottom video {
+  max-height: 100%;
+  max-width: 100%;
+}
+
+@media (max-width: 767px) {
+  .pop-up-ads {
+    width: 200px;
+    height: 200px;
+    padding: 10px;
+  }
+
+  .close-button {
+    padding: 5px;
+    font-size: 20px;
+  }
+
+  .pop-up-ads.left-bottom {
+    bottom: 5px;
+    left: 5px;
+  }
+
+  .pop-up-ads.right-bottom {
+    bottom: 5px;
+    right: 5px;
+  }
+}
