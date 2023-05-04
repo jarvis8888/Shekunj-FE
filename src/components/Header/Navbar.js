@@ -4,11 +4,11 @@ import closeIcon from "../../assets/icons/svgs/close.png";
 import memuIcon from "../../assets/icons/svgs/memu.png";
 import globalSreach from "../../assets/icons/svgs/globalSearch.png";
 import logo from "../../assets/images/shekunjlogo.svg";
-import SearchIcon from '@mui/icons-material/Search';
+import SearchIcon from "@mui/icons-material/Search";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
 import "./index.scss";
-import { useLocation} from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { Menu, MenuItem } from "@mui/material";
 import { routingConstants } from "../../utils/constants";
 import { Dropdown, ButtonToolbar } from "rsuite";
@@ -24,11 +24,17 @@ const Navbar = (props) => {
   const isActive = (href) => {
     return location.pathname === href;
   };
-  
+
   return (
     <div className='Navbar'>
       <span className='nav-logo'>
-        <img src={logo} alt='logo shekunj' onClick={()=>{history.push('')}} />
+        <img
+          src={logo}
+          alt='logo shekunj'
+          onClick={() => {
+            history.push("");
+          }}
+        />
       </span>
       <div className={`nav-items ${isOpen && "open"}`}>
         <a href='/about-us' className={isActive("/about-us") && "active"}>
@@ -76,7 +82,14 @@ const Navbar = (props) => {
         >
           {t("header.heading.4")}
         </a>
-        <Dropdown title={t("header.heading.6")} className='custom-dropdown'>
+        <a
+          href='https://octahire.com/Home/candidate_register'
+          target='_blank'
+          rel='noreferrer'
+        >
+          {t("header.heading.6")}
+        </a>
+        <Dropdown title={t("header.heading.5")} className='custom-dropdown'>
           <Dropdown.Item
             onClick={() => history.push(routingConstants.TOP_COLLEGES)}
             className={isActive(routingConstants.TOP_COLLEGES) && "active"}
@@ -105,7 +118,7 @@ const Navbar = (props) => {
           {t("header.heading.8")}
         </a>
         <span onClick={() => history.push(routingConstants.SEARCH)}>
-         <SearchIcon />
+          <SearchIcon />
         </span>
       </div>
       <div
