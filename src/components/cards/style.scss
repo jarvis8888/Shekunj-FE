@@ -1,21 +1,23 @@
-img{
+img {
   max-width: 100%;
   height: auto;
 }
 .sk-Blogcard-content {
   padding: 12px 15px;
 }
+.card .card__bottom:last-child {
+  margin-right: 0;
+}
 .card {
-  border-radius: 8px;
+  border-radius: 4px;
   display: flex;
   flex-direction: column;
   background: #ffffff;
-  box-shadow: 0px 4px 12px 0px #8F9BB233;
+  box-shadow: 0px 4px 12px 0px #8f9bb233;
   border: 0;
+  margin:20px 0 15px;
 
   &__image {
-    
-
     img {
       width: 100%;
       height: auto;
@@ -27,7 +29,6 @@ img{
     display: flex;
     flex-wrap: wrap;
     margin-bottom: 10px;
-    padding: 0 0 0 10px;
 
     span {
       margin-right: 5px;
@@ -40,7 +41,7 @@ img{
 
   &__title {
     margin-bottom: 10px;
-    font-size: 20px;
+    font-size: 22px;
     font-weight: bold;
     padding: 0 0 0 10px;
   }
@@ -49,8 +50,6 @@ img{
     font-weight: 400;
     font-size: 14px;
     color: #434242;
-    line-height: 160%;
-    // padding: 15px;
     -webkit-line-clamp: 2;
     text-overflow: ellipsis;
     white-space: pre-line;
@@ -58,10 +57,6 @@ img{
     display: -webkit-box;
     -webkit-box-orient: vertical;
     margin-bottom: 14px !important;
-    margin: auto;
-    margin-right:10px;
-    margin-left: 10px;
-  
   }
 
   &__bottom {
@@ -69,20 +64,27 @@ img{
     justify-content: space-between;
     align-items: center;
     color: #999;
-    font-size: 12px;
+    font-size: 13px;
+    span {
+      svg {
+        font-size: 18px;
+        margin-right: 5px;
+        vertical-align: top;
+      }
+    }
   }
 
   &__button {
     border: none;
     background-color: #fff;
-    color: #d3317d;
+    color: #D3317D;
     cursor: pointer;
     display: flex;
     align-items: center;
     font-family: "Poppins";
     font-style: normal;
-    font-weight: 500;
-    font-size: 16px;
+    font-weight: 400;
+    font-size: 14px;
     padding: 0;
 
     svg {
@@ -93,7 +95,6 @@ img{
   .card__bottom {
     display: flex;
     align-items: center;
-    opacity: 0.8;
     :hover {
       background-color: #fff;
     }
@@ -101,13 +102,22 @@ img{
 }
 
 //trending blog style
-
+.title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.title h4 {
+  font-style: italic;
+  margin-bottom: 0;
+  font-size: 22px;
+}
 .blog-card {
   display: flex;
   margin-bottom: 1rem;
 
   &__image {
-    flex: 100px 0 0;
+    flex: 80px 0 0;
     height: auto;
     background-size: cover;
     background-position: center;
@@ -125,9 +135,8 @@ img{
   &__content {
     flex: 1;
 
-   
     &__title {
-      font-size: 1.5rem;
+      font-size: 22px;
     }
 
     &__description {
@@ -140,48 +149,69 @@ img{
       align-items: center;
       font-size: 0.9rem;
       color: #999;
+      
     }
   }
 }
 
+.blog-card__meta
+  span{
+    font-size: 12px;
+    color: #888;
+    margin-right: 10px;
+ 
+    svg{
+      font-size: 18px;
+      margin-right: 5px;
+      vertical-align: text-bottom;
+    }
+  }
+  .blog-card2:last-child {
+    border-bottom: 0;
+  } 
 .blog-card2 {
   display: flex;
-  margin-bottom: 1rem;
   border-bottom: 1px solid #d9d9d9;
-  padding: 15px 0;
-  &__image {
-    flex: 100px 0 0;
-    height: auto;
-    background-size: cover;
-    background-position: center;
-    margin-right: 10px;
-  }
-
-  &__content {
-    flex: 1;
-  }
-  @media screen and (max-width: 768px) {
-    .blog-card2 {
-      padding: 10px;
-      &__title {
-        font-size: 0.7rem;
-      }
-      &__image {
-        flex: 100px 0 0;
-      }
-      &__description {
-        font-size: 0.7rem;
-      }
+  padding: 20px 0;
+  
+    &__image {
+      flex: 300px 0 0;
+      height: auto;
+      margin-right: 15px;
+    }
       &__content {
         flex: 1;
       }
     }
+      @media screen and (max-width: 768px) {
+        .blog-card2 {
+          padding: 10px;
+          &__title {
+            font-size: 0.7rem;
+          }
+          &__image {
+            flex: 100px 0 0;
+          }
+          &__description {
+            font-size: 0.7rem;
+          }
+          &__content {
+            flex: 1;
+    }
   }
+}
+.blog-card2__meta span{ 
+  font-size: 12px;
+  color: #888;
+}
+.blog-card2__meta svg{ 
+  font-size: 18px;
+  margin-right: 5px;
+  vertical-align: text-bottom;
 }
 
 .card__button {
   display: flex;
-  opacity: 0.8;
   &:hover {
     background-color: #fff;
   }
@@ -189,6 +219,6 @@ img{
 .card .card__bottom span img {
   margin-right: 5px;
 }
-.card .card__bottom{
+.card .card__bottom {
   margin-right: 15px;
 }

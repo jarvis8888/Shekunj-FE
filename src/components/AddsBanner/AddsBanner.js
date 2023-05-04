@@ -5,7 +5,7 @@ const AddsBanner = (props) => {
   const { color, data, children } = props;
   return (
     <>
-      <div className='add-banner' style={{ backgroundColor: color }}>
+      <div className='add-banner'>
         <div className='rectangle'>{children}</div>
       </div>
     </>

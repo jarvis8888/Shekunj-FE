@@ -75,7 +75,6 @@ function BlogPage() {
   const [adds, setAdds] = useState([]);
   const detect = useDeviceDetect();
 
-
   useEffect(() => {
     dispatch(adsList());
     navigator.geolocation.getCurrentPosition(
@@ -185,132 +184,177 @@ function BlogPage() {
           content='women empowerment organizations women empowerment initiative free online courses free career guidance'
         />
       </Helmet>
-      <div>
+      <section>
         <div className='container'>
-          <div className="row">
-            <div className="col-xl-9 col-md-8">
+          <div className='row'>
+            <div className='col-xl-9 col-md-8'>
               <div className='carousel-blog'>
                 <BlogCarousel images={blogs?.latest_blogs?.results} />
               </div>
             </div>
-            <div className="col-xl-3 col-md-4">
-              <div className="sk-blog-sidebar">
+            <div className='col-xl-3 col-md-4'>
+              <div className='sk-blog-sidebar'>
                 {blogs?.latest_blogs?.results.length
                   ? blogs?.latest_blogs?.results.map((items, index) => {
-                    return (
-                      <>
-                        <TrendingBlogsCard
-                          image={items.image}
-                          id={items.id}
-                          description={items.title}
-                          time='5'
-                          date={items.created_at}
-                        />
-                      </>
-                    );
-                  })
+                      return (
+                        <>
+                          <TrendingBlogsCard
+                            image={items.image}
+                            id={items.id}
+                            description={items.title}
+                            time='5'
+                            date={items.created_at}
+                          />
+                        </>
+                      );
+                    })
                   : "no data"}
               </div>
             </div>
           </div>
         </div>
-        <div>
-          <AddsBanner
-            color='#F4F4F4'
-            children={
-              <>
-                {blogBoxAdds.length > 0 && (
-                  <div
-                    className='banner-adds'
-                    onClick={() => addEmail(blogBoxAdds[0]?.add_email)}
-                  >
-                    <a
-                      href={blogBoxAdds[0]?.url_adds}
-                      target='_blank'
-                      rel='noreferrer'
-                    >
-                      {detect.isMobile
-                        ? blogBoxAdds[0]?.image_mobile && (
-                          <img
-                            src={blogBoxAdds[0]?.image_mobile}
-                            alt='Image'
-                            className='ads_story_cover_img'
-                          />
-                        )
-                        : blogBoxAdds[0]?.image && (
-                          <img
-                            src={blogBoxAdds[0]?.image}
-                            alt='Image'
-                            className='ads_story_cover_img'
-                          />
-                        )}
-                    </a>
-                  </div>
-                )}
-              </>
-            }
-          />
-        </div>
+      </section>
+      <section className='sk-addBg-color'>
         <div className='container'>
-          <div className="row">
-            <div className="col-xl-9 col-md-4">
+          <div className='row'>
+            <div className='col-md-12'>
+              <AddsBanner
+                color='#F4F4F4'
+                children={
+                  <>
+                    {blogBoxAdds.length > 0 && (
+                      <div
+                        className='banner-adds'
+                        onClick={() => addEmail(blogBoxAdds[0]?.add_email)}
+                      >
+                        <a
+                          href={blogBoxAdds[0]?.url_adds}
+                          target='_blank'
+                          rel='noreferrer'
+                        >
+                          {detect.isMobile
+                            ? blogBoxAdds[0]?.image_mobile && (
+                                <img
+                                  src={blogBoxAdds[0]?.image_mobile}
+                                  alt='Image'
+                                  className='ads_story_cover_img'
+                                />
+                              )
+                            : blogBoxAdds[0]?.image && (
+                                <img
+                                  src={blogBoxAdds[0]?.image}
+                                  alt='Image'
+                                  className='ads_story_cover_img'
+                                />
+                              )}
+                        </a>
+                      </div>
+                    )}
+                  </>
+                }
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+      <section>
+        <div className='container'>
+          <div className='row'>
+            <div className='col-xl-9 col-md-8'>
               <div className='blog-stories'>
                 <div className='title'>
                   <img src={fire} alt='fire' width={25} height={25} />
                   <h4>Latest Blogs</h4>
                 </div>
-
-                <div className='row card-gird'>
+                <div className='row'>
                   {blogs?.latest_blogs?.results.length
                     ? blogs?.latest_blogs?.results.map((items, index) => {
-                      return (
-                        <>
-                          <div className="col-md-6">
-                            <LatestBlogCard
-                              image={items.image}
-                              hashtags={items.hash_tags}
-                              title={items.title}
-                              description={`${items.about_blog}`}
-                              makeHtml={makeHtml}
-                              key={index}
-                              created_at={items.created_at}
-                              reading_time={items.reading_time}
-                              id={items.id}
-                              blog_count={items.blog_count}
-                            />
-                          </div>
-                        </>
-                      );
-                    })
+                        return (
+                          <>
+                            <div className='col-md-6'>
+                              <LatestBlogCard
+                                image={items.image}
+                                hashtags={items.hash_tags}
+                                title={items.title}
+                                description={`${items.about_blog}`}
+                                makeHtml={makeHtml}
+                                key={index}
+                                created_at={items.created_at}
+                                reading_time={items.reading_time}
+                                id={items.id}
+                                blog_count={items.blog_count}
+                              />
+                            </div>
+                          </>
+                        );
+                      })
                     : "no data"}
                 </div>
-                <div>
-                  <button className='loadMore' >Explore More</button>
+                <div className='d-flex justify-content-center align-items-center py-4'>
+                  <button className='loadMore'>Explore More</button>
                 </div>
               </div>
-            </div>
-            <div className="col-xl-3 col-md-4">
+              <div className='pb-5'>
+                <AddsBanner
+                  color='#F4F4F4'
+                  children={
+                    <>
+                      {blogBoxAdds.length > 0 && (
+                        <div
+                          className='banner-adds'
+                          onClick={() => addEmail(blogBoxAdds[0]?.add_email)}
+                        >
+                          <a
+                            href={blogBoxAdds[0]?.url_adds}
+                            target='_blank'
+                            rel='noreferrer'
+                          >
+                            {detect.isMobile
+                              ? blogBoxAdds[0]?.image_mobile && (
+                                  <img
+                                    src={blogBoxAdds[0]?.image_mobile}
+                                    alt=''
+                                    className='ads_story_cover_img'
+                                  />
+                                )
+                              : blogBoxAdds[0]?.image && (
+                                  <img
+                                    src={blogBoxAdds[0]?.image}
+                                    alt=''
+                                    className='ads_story_cover_img'
+                                  />
+                                )}
+                          </a>
+                        </div>
+                      )}
+                    </>
+                  }
+                />
+              </div>
+
               <div className='title'>
                 <img src={fire} alt='fire' width={25} height={25} />
                 <h4>Trending Blogs</h4>
               </div>
               {blogs?.trending_blogs?.results.length
                 ? blogs?.trending_blogs?.results.map((items, index) => {
-                  return (
-                    <>
-                      <TrendingBlogsCard2
-                        image={items.image}
-                        title={items.title}
-                        id={items.id}
-                        // description={items.about_blog}
-                        time='5 min'
-                        date={items.created_at}
-                      />
-                    </>
-                  );
-                })
+                    return (
+                      <>
+                        <TrendingBlogsCard2
+                          image={items.image}
+                          title={items.title}
+                          id={items.id}
+                          // description={items.about_blog}
+                          time='5 min'
+                          date={items.created_at}
+                        />
+                      </>
+                    );
+                  })
                 : "no data"}
+            </div>
 
+            <div className='col-xl-3 col-md-4'>
               <div className='ads'>
                 <HashtagAndCatagories
                   image={catagorie}
@@ -323,7 +367,8 @@ function BlogPage() {
             </div>
           </div>
         </div>
-      </div>
+      </section>
+
       <Footer loginPage={false} />
     </div>
   );
