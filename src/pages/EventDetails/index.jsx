@@ -214,14 +214,14 @@ const EventDetails = () => {
       };
       try {
         const response = await axios.get(
-          `/private_adds/private_add?latitude=${latitude}&longitude=${longitude}`,
+          `/private_adds/private_add?latitude=${params.latitude}&longitude=${params.longitude}`,
         );
         if (response && response.data.results.length > 0) {
           const filterArray1 = response.data.results.filter(
             (item) => item.image_type === "event_detail",
           );
           setEventDetailsBoxAds(filterArray1);
-          const filterArray2 = response.data.results.filter(
+          const filterArray2 = response?.data?.results?.filter(
             (item) => item.image_type === "event_detail_footer",
           );
           setEventDetailsBannerAds(filterArray2);
@@ -233,16 +233,20 @@ const EventDetails = () => {
     // const errorCallback = (error) => {
     //   console.error("Error Code = " + error.code + " - " + error.message);
     //   axios.get(`/private_adds/private_add`).then((response) => {
-    //     // if (response && response.data.results.length > 0) {
-    //     //   const filterArray1 = response.data.results.filter((item) => item.image_type === "event_detail");
-    //     //   setEventDetailsBoxAds(filterArray1);
-    //     //   const filterArray2 = response.data.results.filter((item) => item.image_type === "success_stories_banner");
-    //     //   setEventDetailsBoxAds(filterArray1);
-    //     // }
+    //     if (response && response.data.results.length > 0) {
+    //       const filterArray1 = response.data.results.filter(
+    //         (item) => item.image_type === "event_detail",
+    //       );
+    //       setEventDetailsBoxAds(filterArray1);
+    //       const filterArray2 = response.data.results.filter(
+    //         (item) => item.image_type === "event_detail_footer",
+    //       );
+    //       setEventDetailsBannerAds(filterArray2);
+    //     }
     //   });
     // };
     navigator.geolocation.getCurrentPosition(successCallback);
-  }, []);
+  }, [dispatch]);
 
   // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
@@ -778,7 +782,7 @@ const EventDetails = () => {
                         : eventDetailsBoxAds[0]?.image && (
                             <img
                               src={eventDetailsBoxAds[0]?.image}
-                              alt=""
+                              alt=''
                               className='ads_story_cover_img'
                             />
                           )}

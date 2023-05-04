@@ -232,7 +232,7 @@ function SuccessStory() {
             {storiesBannerAds.length > 0 && (
               <div
                 className='col-md-12 ads_home_cover '
-                onClick={() => addEmail(storiesBannerAds[0]?.add_email)}
+                // onClick={() => addEmail(storiesBannerAds[0]?.add_email)}
               >
                 <a
                   href={storiesBannerAds[0]?.url_adds}

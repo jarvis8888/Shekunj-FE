@@ -53,6 +53,7 @@ const GlobalSearch = () => {
   };
 
   const handleSearch = () => {
+    setOnSearchInput();
     const searchParams = new URLSearchParams();
     searchParams.set("search", onSearchInput);
     history.push({
@@ -69,6 +70,7 @@ const GlobalSearch = () => {
   };
 
   const searchByTags = (search) => {
+    setOnSearchInput(search);
     const searchParams = new URLSearchParams();
     searchParams.set("search", search);
     history.push({

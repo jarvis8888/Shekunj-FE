@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import SchoolRoundedIcon from "@mui/icons-material/SchoolRounded";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import { truncateString } from "../../utils/utils";
+import { useHistory, useLocation } from "react-router-dom";
+import { routingConstants } from "../../utils/constants";
 
 export const GlobalSearchCard = ({
   SuccessStoriesData = [],
@@ -22,6 +24,9 @@ export const GlobalSearchCard = ({
     });
     return htmlNode.innerHTML;
   };
+
+  const location = useLocation();
+  const history = useHistory();
 
   const filterData = (type) => {
     switch (type) {
@@ -55,9 +60,26 @@ export const GlobalSearchCard = ({
   };
 
   const renderCards = (data, type) => {
+    const getRoute = (type, id) => {
+      switch (type) {
+        case "Success Story":
+          return `/success-stories/${id}`;
+        case "Blog":
+          return `/blogs/${id}`;
+        case "Courses":
+          return `/courses-details/${id}`;
+        case "Mock Test":
+          return "/success-career-test";
+        default:
+          return "";
+      }
+    };
     return data.map((item, index) => (
       <div className='col-md-3' key={index}>
-        <div className='sk-card-box'>
+        <div
+          className='sk-card-box'
+          onClick={() => history.push(`${getRoute(item.type)}`)}
+        >
           <div className='sk-card-img'>
             <img src={item.image} alt={item?.type} />
           </div>
