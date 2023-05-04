@@ -4,6 +4,7 @@ import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import { truncateString } from "../../utils/utils";
 import { useHistory, useLocation } from "react-router-dom";
 import { routingConstants } from "../../utils/constants";
+import { CustomLoader } from "../customLoader/CustomLoader";
 
 export const GlobalSearchCard = ({
   SuccessStoriesData = [],
@@ -144,7 +145,7 @@ export const GlobalSearchCard = ({
           </ul>
         </div>
         {loading ? (
-          "Loading...."
+          <CustomLoader />
         ) : (
           <div className='row'>
             {filterData(activeTab).length
