@@ -46,6 +46,11 @@ import { time_left } from "../../utils/utils";
 import { CustomLoader } from "../../components/customLoader/CustomLoader";
 import AddsBanner from "../../components/AddsBanner/AddsBanner";
 import useDeviceDetect from "../../hooks/useDeviceDetect";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+const useQuery = () => {
+  return new URLSearchParams(useLocation().search);
+};
 
 function EventPage() {
   const options = [
@@ -56,18 +61,17 @@ function EventPage() {
   ];
 
   const [eventBoxAds, setEventBoxAds] = useState([]);
-  const [tempData, setTempData] = useState([]);
   const [currentData, setCurrentData] = useState([]);
   const [allEventData, setAllEventData] = useState([]);
   const [todayTomorrowData, setTodayTomorrowData] = useState([]);
   const [thisWeekData, setThisWeekData] = useState([]);
   const [nextWeekData, setNextWeekData] = useState([]);
   const [genresListData, setGenresListData] = useState([]);
-  const [selectedOption, setSelectedOption] = useState(null);
   const [selectedButton, setSelectedButton] = useState("all");
+  const [currentOffset, setCurrentOffset] = useState(0);
   const [loading, setLoading] = useState(false);
-
-  const pageLimit = 5;
+  const params = useQuery();
+  const [selectedOption, setSelectedOption] = useState(params.get("genre_id"));
 
   const history = useHistory();
   const dispatch = useDispatch();
@@ -75,23 +79,27 @@ function EventPage() {
   const location = useLocation();
   const detect = useDeviceDetect();
 
-  const searchParams = new URLSearchParams(location.search);
-  const currentSearch = searchParams.get("genre_id") || "";
-
-  const { lan } = useSelector((state) => state.languageReducer);
-
-  const fetchEventsData = async (search, selectedOption, limit, offset) => {
+  const fetchEventsData = async (genre, isAllItem) => {
     setLoading(true);
     try {
-      const url = `more/events?genre_id=${search}`;
+      let url = `more/events`;
+      if (selectedButton == "all") {
+        url += `?limit=${8}&offset=${currentOffset * 8}`;
+      }
+      if (genre || selectedOption) {
+        const a = genre || selectedOption;
+        url += `&genre_id=${a}`;
+      }
       const { data } = await httpServices.get(url);
       const { event_list, today_tomorrow, this_week, next_week, genres_list } =
         data;
-      setAllEventData(event_list?.results);
       setGenresListData(genres_list);
       setTodayTomorrowData(today_tomorrow);
       setThisWeekData(this_week);
       setNextWeekData(next_week);
+      if (isAllItem) {
+        setAllEventData([...event_list?.results]);
+      }
       setCurrentData(event_list?.results);
     } catch (error) {
     } finally {
@@ -100,6 +108,13 @@ function EventPage() {
   };
   const handleTimeOptionClick = (option) => {
     setSelectedButton(option);
+    setSelectedOption(null);
+    const searchParams = new URLSearchParams();
+    searchParams.set("genre_id", "");
+    history.push({
+      pathname: location.pathname,
+      search: searchParams.toString(),
+    });
     switch (option) {
       case "todayTomorrow":
         setCurrentData(todayTomorrowData);
@@ -111,21 +126,17 @@ function EventPage() {
         setCurrentData(nextWeekData);
         break;
       default:
-        fetchEventsData();
         setSelectedOption(null);
-        const searchParams = new URLSearchParams();
-        searchParams.set("genre_id", "");
-        history.push({
-          pathname: location.pathname,
-          search: searchParams.toString(),
-        });
-        setCurrentData(allEventData);
+        setCurrentOffset(0);
+        fetchEventsData();
         break;
     }
   };
   const handleGenerOptionClick = (option) => {
     setSelectedButton("all");
     setSelectedOption(option);
+    setCurrentOffset(0);
+    fetchEventsData(option);
     const searchParams = new URLSearchParams();
     searchParams.set("genre_id", option);
     history.push({
@@ -135,9 +146,8 @@ function EventPage() {
   };
 
   useEffect(() => {
-    fetchEventsData(currentSearch, selectedOption);
-    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-  }, [currentSearch, lan, selectedOption]);
+    fetchEventsData(null, true);
+  }, [currentOffset]);
 
   const addEmail = async (email) => {
     try {
@@ -215,12 +225,18 @@ function EventPage() {
       <section className='sk-event-sec'>
         <div className='container-fluid'>
           <div className='sk-event-slide'>
-            <OwlCarousel items={4} margin={15} {...options}>
+            <OwlCarousel
+              className='event-Carousel'
+              items={4}
+              margin={20}
+              autoPlay
+              nav={true}
+            >
               {allEventData?.map((items, index) => {
                 return (
                   <>
                     {" "}
-                    <div>
+                    <div key={index}>
                       <img src={items.image} alt='' />
                     </div>
                   </>
@@ -267,7 +283,7 @@ function EventPage() {
                         <a
                           onClick={() => handleGenerOptionClick(items.id)}
                           className={
-                            selectedOption === items.id && "active-time"
+                            selectedOption == items.id && "active-time"
                           }
                         >
                           {items.name}
@@ -282,86 +298,101 @@ function EventPage() {
             <CustomLoader size='small' />
           ) : (
             <div className='row'>
-              {currentData.length
-                ? currentData?.map((items, index) => {
-                    return (
-                      <>
-                        <div className='col-md-3' key={index}>
-                          <div className='sk-card-box'>
-                            <div className='sk-card-img'>
-                              <img src={items.image} alt='' />
+              {currentData.length ? (
+                currentData?.map((items, index) => {
+                  return (
+                    <>
+                      <div className='col-md-3' key={index}>
+                        <div className='sk-card-box'>
+                          <div className='sk-card-img'>
+                            <img src={items.image} alt='' />
+                          </div>
+                          <div className='sk-content-card'>
+                            <div className='sk-time-education'>
+                              <ul>
+                                <li className='sk-chip-tag'>
+                                  {" "}
+                                  <span>{items.genre_name}</span>{" "}
+                                </li>
+                                <li>
+                                  {items.mode_of_event === "offline" ? (
+                                    <>
+                                      {" "}
+                                      <img src={offlineicon} /> Offline{" "}
+                                    </>
+                                  ) : (
+                                    <>
+                                      {" "}
+                                      <img src={onlineicon} /> Online{" "}
+                                    </>
+                                  )}
+                                </li>
+                              </ul>
                             </div>
-                            <div className='sk-content-card'>
-                              <div className='sk-time-education'>
-                                <ul>
-                                  <li className='sk-chip-tag'>
-                                    {" "}
-                                    <span>{items.genre_name}</span>{" "}
-                                  </li>
-                                  <li>
-                                    {items.mode_of_event === "offline" ? (
-                                      <>
-                                        {" "}
-                                        <img src={offlineicon} /> Offline{" "}
-                                      </>
-                                    ) : (
-                                      <>
-                                        {" "}
-                                        <img src={onlineicon} /> Online{" "}
-                                      </>
+                            <h6 className='sk-card-heading'>{items.title}</h6>
+                            <div className='sk-time-education'>
+                              <ul>
+                                <li>
+                                  {" "}
+                                  <AccessTimeIcon />{" "}
+                                  <span>
+                                    {time_left(
+                                      items.start_date,
+                                      items.start_time,
+                                      items.end_date,
+                                      items.end_time,
                                     )}
-                                  </li>
-                                </ul>
-                              </div>
-                              <h6 className='sk-card-heading'>{items.title}</h6>
-                              <div className='sk-time-education'>
-                                <ul>
-                                  <li>
-                                    {" "}
-                                    <AccessTimeIcon />{" "}
-                                    <span>
-                                      {time_left(
-                                        items.start_date,
-                                        items.start_time,
-                                        items.end_date,
-                                        items.end_time,
-                                      )}
-                                    </span>{" "}
-                                  </li>
-                                  <li>
-                                    {" "}
-                                    <SchoolRoundedIcon />{" "}
-                                    {items.enrold_students} enrolled{" "}
-                                  </li>
-                                </ul>
-                              </div>
-                              <div className='sk-tags-event'>
-                                <button
-                                  type='button'
-                                  className='sk-btn-register'
-                                  onClick={() =>
-                                    history.push(
-                                      routingConstants.MORE_EVENT + items.id,
-                                    )
-                                  }
-                                >
-                                  Registration Now
-                                </button>
-                              </div>
+                                  </span>{" "}
+                                </li>
+                                <li>
+                                  {" "}
+                                  <SchoolRoundedIcon /> {
+                                    items.enrold_students
+                                  }{" "}
+                                  enrolled{" "}
+                                </li>
+                              </ul>
+                            </div>
+                            <div className='sk-tags-event'>
+                              <button
+                                type='button'
+                                className='sk-btn-register'
+                                onClick={() =>
+                                  history.push(
+                                    routingConstants.MORE_EVENT + items.id,
+                                  )
+                                }
+                              >
+                                Registration Now
+                              </button>
                             </div>
                           </div>
                         </div>
-                      </>
-                    );
-                  })
-                : "no data"}
-              <div className='col-md-12'>
-                <div className='sk-explore-btn'>
-                  <button type='' className='sk-btn'>
-                    Explore More{" "}
-                  </button>
+                      </div>
+                    </>
+                  );
+                })
+              ) : (
+                <div className='noData'>
+                  <p>{"No more events available"}</p>
                 </div>
-              </div>
+              )}
+              {selectedButton == "all" && (
+                <div className='col-md-12'>
+                  <div className='sk-explore-btn'>
+                    <button
+                      disabled={currentData.length == 0}
+                      type=''
+                      onClick={() => {
+                        setCurrentOffset(currentOffset + 1);
+                      }}
+                      className='sk-btn'
+                    >
+                      Explore More{" "}
+                    </button>
+                  </div>
+                </div>
+              )}
             </div>
           )}
         </div>
