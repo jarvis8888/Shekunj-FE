@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding: 20px 10px;
+  padding: 0px 0px 20px;
 }
 .HashtagAndCatagoriesTitle {
   width: 100%;
@@ -11,14 +11,28 @@
   padding: 0 0 10px 0;
 
   img {
-    // margin-right: 15px;
-    height: 35px;
+    height: 28px;
+    h4{
+      margin-bottom: 0;
+      font-size: 22px;
+      font-style: italic;
+    }
   }
+}
+.sk-instagram{
+  background: linear-gradient(0deg, #E09B3D 0.29%, #C74C4D 29.97%, #C21975 59.65%, #7024C4 99.22%);
+}
+.SocialMediaIconscontainer .likes {
+  padding: 10px 5px;
+  gap: 5px;
+}
+.youMayLikeCarousel{
+  padding: 10px 0 !important;
 }
 .fristAdd {
   width: 100%;
   height: auto;
-  padding: 10px 0;
+  padding: 15px 0;
   border-top: 1px solid #d9d9d9;
   img {
     width: 100%;
@@ -28,7 +42,7 @@
 .secondAdd {
   width: 100%;
   height: auto;
-  padding: 10px 0;
+  padding: 15px 0 20px;
   border-bottom: 1px solid #d9d9d9;
   img {
     width: 100%;
@@ -40,24 +54,29 @@
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  padding: 10px 0;
+  padding: 0px 0 18px;
 }
-
+.sk-blogDetails-content {
+ 
+}
+.sk-blogS-category{
+  padding: 30px 0;
+}
 .hashtage-item {
   font-family: "Poppins";
   font-style: normal;
   font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
-  border: 0.5px solid #cac9c9;
-  border-radius: 5px;
-  padding: 0 10px;
+  font-size: 14px;
+  border: 0.5px solid #d9d9d9;
+  border-radius: 8px;
+  padding: 6px 10px;
   cursor: pointer;
 }
 
 .SocialMediaIconscontainer {
   width: 100%;
   display: flex;
+  padding: 10px 0;
 }
 .likes {
   display: flex;
@@ -65,7 +84,6 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 15vh;
 }
 #text {
   font-family: "Poppins";

@@ -12,7 +12,6 @@ const PrivacyPolicy = () => {
   return (
     <div>
       <Header loginPage={false} page='home' />
-
       <div className='priva_policy noselect'>
         <Container>
           <h2>{t("privacyPolicyPage.heading.1")}</h2>

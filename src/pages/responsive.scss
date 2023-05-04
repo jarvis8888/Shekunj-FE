@@ -454,7 +454,6 @@ width: 100% !important;
 // jan 17
 
 .ads_story_cover_img_blog {
-  margin: 40px 0px;
   width: 100%;
 }
 
@@ -669,11 +668,7 @@ section.Coutl_sec1.noselect {
 // Jan
 
 
-.ads_story_cover_img_blog {
-  // margin: 40px 0px;
-  // height: 150px;
-  // width: 700px;
-}
+
 // Sep 27
 
 .mobile_view_city_selct {
@@ -743,7 +738,6 @@ header.other_head ul li svg {
 
 
 .ads_story_cover_img_blog {
-  margin: 40px 0 !important;
   text-align: center;
   margin: 0 auto;
   display: block;
@@ -896,6 +890,9 @@ ul#menu-40 {
   overflow: hidden;
   display: -webkit-box;
   -webkit-box-orient: vertical;
+  margin-bottom: 0px;
+  font-size: 15px;
+  font-weight: 500;
 }
 .sk-blog-detail-wa .blog-card2__meta span img {
   margin-right: 10px;

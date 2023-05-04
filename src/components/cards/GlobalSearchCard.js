@@ -4,6 +4,7 @@ import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import { truncateString } from "../../utils/utils";
 import { useHistory, useLocation } from "react-router-dom";
 import { routingConstants } from "../../utils/constants";
+import { CustomLoader } from "../customLoader/CustomLoader";
 
 export const GlobalSearchCard = ({
   SuccessStoriesData = [],
@@ -78,7 +79,7 @@ export const GlobalSearchCard = ({
       <div className='col-md-3' key={index}>
         <div
           className='sk-card-box'
-          onClick={() => history.push(`${getRoute(item.type)}`)}
+          onClick={() => history.push(`${getRoute(item.type, item.id)}`)}
         >
           <div className='sk-card-img'>
             <img src={item.image} alt={item?.type} />
@@ -144,7 +145,7 @@ export const GlobalSearchCard = ({
           </ul>
         </div>
         {loading ? (
-          "Loading...."
+          <CustomLoader />
         ) : (
           <div className='row'>
             {filterData(activeTab).length

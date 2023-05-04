@@ -21,9 +21,18 @@ import facebook from "../../assets/images/facebook.png";
 import youTube from "../../assets/images/youTube.png";
 import linkedinlogo from "../../assets/images/linkedinlogo.png";
 import instagram from "../../assets/images/instagram.png";
+import MenuBookRoundedIcon from '@mui/icons-material/MenuBookRounded';
+import facebookicon from "../../assets/images/facebook.svg";
+import linkedinicon from "../../assets/images/linkedin.svg";
+import twittericon from "../../assets/images/twitter.svg";
+import pintresticon from "../../assets/images/pintrest.svg";
+import instagramicon from "../../assets/images/instagram.svg";
+import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
+import SchoolRoundedIcon from "@mui/icons-material/SchoolRounded";
+import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import time from "../../assets/icons/svgs/time.png";
 import book from "../../assets/icons/svgs/book.png";
-import { TrendingBlogsCard } from "../../components/cards/TrendingBlogsCard";
+import { TrendingBlogsCard2 } from "../../components/cards/TrendingBlogsCard2";
 import httpServices from "../../utils/ApiServices";
 import { HashtagAndCatagories } from "../../components/HastagAndCatagories/Index";
 import { apiConstants } from "../../utils/constants";
@@ -113,7 +122,7 @@ const BlogDetails = () => {
       const res = await httpServices.get(url);
       setBlogCategories(res?.blog_categories);
       setTrending(res?.trending_blogs?.results);
-    } catch (error) {}
+    } catch (error) { }
   };
   useEffect(() => {
     fetchData();
@@ -204,157 +213,149 @@ const BlogDetails = () => {
     <div>
       <SEO title='Sheकुंज - Career' />
       <Header loginPage={true} page='more' subPage='moreblog' />
-
-      <div className='story-details-container'>
-        <div className='story-image-container'>
-          <img src={blogs?.image} alt='Story' className='img' />
-          <div className='story-bottom'>
-            <div className='hashtags-container'>
-              <div>
-                <span>
-                  <img src={time} alt='time' width={14} height={14} />
-                  {blogs?.created_at}
-                </span>
-                <span>
-                  <img src={book} alt='time' width={14} height={14} />5 mins to
-                  read
-                </span>
+      <section className="sk-block-details">
+        <div className='container'>
+          <div className="row">
+          <div className='col-xl-9 col-md-8'>
+            <img src={blogs?.image} alt='Story' className='img' />
+            <div className='story-bottom'>
+              <div className='hashtags-container'>
+                <div className='sk-bdetail-chip'>
+                  <span>Parenting Tips</span>
+                </div>
+                <div class="sk-blokTVE-icon">
+                  <span>
+                  <AccessTimeIcon />
+                    {blogs?.created_at}
+                  </span>
+                  <span>
+                    <MenuBookRoundedIcon /> 5 mins to read
+                  </span>
+                  <span>
+                    <VisibilityOutlinedIcon /> 828
+                  </span>
+                </div>
+              </div>
+             
+              <div className='sk-social-icon'>
+                <h6>Share this article</h6>
+                <ul>
+                  <li>
+                    <a href='javascript:;'>
+                      <img src={facebookicon} />
+                    </a>
+                  </li>
+                  <li>
+                    <a href='javascript:;'>
+                      <img src={linkedinicon} />
+                    </a>
+                  </li>
+                  <li>
+                    <a href='javascript:;'>
+                      <img src={twittericon} />
+                    </a>
+                  </li>
+                  <li>
+                    <a href='javascript:;'>
+                      <img src={pintresticon} />
+                    </a>
+                  </li>
+                  <li>
+                    <a href='javascript:;'>
+                      <img src={instagramicon} />
+                    </a>
+                  </li>
+                </ul>
               </div>
             </div>
-            <div class='social-media'>
-              <h6>Share this article</h6>
-              <a href='#'>
-                <i class='fa fa-facebook'>
-                  <img src={facebook} alt='twitter1' width={34} height={34} />
-                </i>
-              </a>
-              <a href='#'>
-                <i class='fa fa-twitter'>
-                  {" "}
-                  <img
-                    src={linkedinlogo}
-                    alt='twitter1'
-                    width={34}
-                    height={34}
+            <h2>{blogs?.title}</h2>
+            <div className='sk-blogDetails-content' dangerouslySetInnerHTML={{__html: makeHtml(`${blogs?.about_blog}`),
+              }}
+            />
+            <div className="sk-blogS-category">
+              <div className='sk-social-icon'>
+                <h6 className="text-left">Share this article</h6>
+                <ul>
+                  <li>
+                    <a href='javascript:;'>
+                      <img src={facebookicon} />
+                    </a>
+                  </li>
+                  <li>
+                    <a href='javascript:;'>
+                      <img src={linkedinicon} />
+                    </a>
+                  </li>
+                  <li>
+                    <a href='javascript:;'>
+                      <img src={twittericon} />
+                    </a>
+                  </li>
+                  <li>
+                    <a href='javascript:;'>
+                      <img src={pintresticon} />
+                    </a>
+                  </li>
+                  <li>
+                    <a href='javascript:;'>
+                      <img src={instagramicon} />
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div className='catagorie_search_container'>
+                {blogs?.tags?.length
+                  ? blogs?.tags.map((items) => {
+                    return (
+                      <span
+                        key={items}
+                        className='catagorie_search'
+                        onClick={() =>
+                          history.push(
+                            `${routingConstants.MORE_BLOG_TAGS}?search=${items}`,
+                            items,
+                          )
+                        }
+                      >
+                        {items}
+                      </span>
+                    );
+                  })
+                  : null}
+              </div>
+            </div>
+            <div className='title'>
+              <img src={fire} alt='fire' height={35} />
+              <h4>Trending Blogs</h4>
+            </div>
+            <div>
+              {trending.map((items, index) => {
+                return (
+                  <TrendingBlogsCard2
+                    image={items.image}
+                    id={items.id}
+                    title='Lorem ipsum dolor sit amet'
+                    description='Lorem ipsum dolor sInteger nec lobortis nisi.'
+                    time='5'
+                    date='1 week ago'
                   />
-                </i>
-              </a>
-              <a href='#'>
-                <i class='fa fa-instagram'>
-                  {" "}
-                  <img src={twitter1} alt='twitter1' width={34} height={34} />
-                </i>
-              </a>
-              <a href='#'>
-                <i class='fa fa-instagram'>
-                  {" "}
-                  <img src={instagram} alt='twitter1' width={34} height={34} />
-                </i>
-              </a>
-              <a href='#'>
-                <i class='fa fa-instagram'>
-                  {" "}
-                  <img src={youTube} alt='twitter1' width={34} height={34} />
-                </i>
-              </a>
+                );
+              })}
             </div>
           </div>
-          <h4>{blogs?.title}</h4>
-          <div
-            className=''
-            dangerouslySetInnerHTML={{
-              __html: makeHtml(`${blogs?.about_blog}`),
-            }}
-          />
-          <div>
-            <div class='social-media'>
-              <h6>Share this article</h6>
-              <a href='#'>
-                <i class='fa fa-facebook'>
-                  <img src={facebook} alt='twitter1' width={34} height={34} />
-                </i>
-              </a>
-              <a href='#'>
-                <i class='fa fa-twitter'>
-                  {" "}
-                  <img
-                    src={linkedinlogo}
-                    alt='twitter1'
-                    width={34}
-                    height={34}
-                  />
-                </i>
-              </a>
-              <a href='#'>
-                <i class='fa fa-instagram'>
-                  {" "}
-                  <img src={twitter1} alt='twitter1' width={34} height={34} />
-                </i>
-              </a>
-              <a href='#'>
-                <i class='fa fa-instagram'>
-                  {" "}
-                  <img src={instagram} alt='twitter1' width={34} height={34} />
-                </i>
-              </a>
-              <a href='#'>
-                <i class='fa fa-instagram'>
-                  {" "}
-                  <img src={youTube} alt='twitter1' width={34} height={34} />
-                </i>
-              </a>
-            </div>
+          <div className='col-xl-3 col-md-4'>
+            <HashtagAndCatagories
+              image={catagorie}
+              title={`Categories`}
+              addEmail={addEmail}
+              hashtags={blogCategories}
+              rightOne={succesStoriesRight1}
+              rightTwo={succesStoriesRight2}
+            />
           </div>
-          <div className='catagorie_search_container'>
-            {blogs?.tags?.length
-              ? blogs?.tags.map((items) => {
-                  return (
-                    <span
-                      key={items}
-                      className='catagorie_search'
-                      onClick={() =>
-                        history.push(
-                          `${routingConstants.MORE_BLOG_TAGS}?search=${items}`,
-                          items,
-                        )
-                      }
-                    >
-                      {items}
-                    </span>
-                  );
-                })
-              : null}
-          </div>
-          <div className='title'>
-            <img src={fire} alt='fire' height={35} />
-            <h4>Trending Blogs</h4>
-          </div>
-          <div>
-            {trending.map((items, index) => {
-              return (
-                <TrendingBlogsCard
-                  image={items.image}
-                  id={items.id}
-                  title='Lorem ipsum dolor sit amet'
-                  description='Lorem ipsum dolor sInteger nec lobortis nisi.'
-                  time='5'
-                  date='1 week ago'
-                />
-              );
-            })}
           </div>
         </div>
-        <div className='add-section-container'>
-          <HashtagAndCatagories
-            image={catagorie}
-            title={`Categories`}
-            addEmail={addEmail}
-            hashtags={blogCategories}
-            rightOne={succesStoriesRight1}
-            rightTwo={succesStoriesRight2}
-          />
-        </div>
-      </div>
+      </section>
       <Footer loginPage={false} />
     </div>
   );
