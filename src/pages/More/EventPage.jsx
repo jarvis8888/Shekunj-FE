@@ -84,7 +84,7 @@ function EventPage() {
     try {
       let url = `more/events`;
       if (selectedButton == "all") {
-        url += `?limit=${8}&offset=${(currentOffset)*8}`;
+        url += `?limit=${8}&offset=${currentOffset * 8}`;
       }
       if (genre || selectedOption) {
         const a = genre || selectedOption;
@@ -98,9 +98,7 @@ function EventPage() {
       setThisWeekData(this_week);
       setNextWeekData(next_week);
       if (isAllItem) {
-        setAllEventData([
-          ...event_list?.results,
-        ]);
+        setAllEventData([...event_list?.results]);
       }
       setCurrentData(event_list?.results);
     } catch (error) {
@@ -227,7 +225,13 @@ function EventPage() {
       <section className='sk-event-sec'>
         <div className='container-fluid'>
           <div className='sk-event-slide'>
-            <OwlCarousel className="event-Carousel" items={4} margin={20} autoPlay nav={true}>
+            <OwlCarousel
+              className='event-Carousel'
+              items={4}
+              margin={20}
+              autoPlay
+              nav={true}
+            >
               {allEventData?.map((items, index) => {
                 return (
                   <>
@@ -294,92 +298,101 @@ function EventPage() {
             <CustomLoader size='small' />
           ) : (
             <div className='row'>
-              {currentData.length
-                ? currentData?.map((items, index) => {
-                    return (
-                      <>
-                        <div className='col-md-3' key={index}>
-                          <div className='sk-card-box'>
-                            <div className='sk-card-img'>
-                              <img src={items.image} alt='' />
+              {currentData.length ? (
+                currentData?.map((items, index) => {
+                  return (
+                    <>
+                      <div className='col-md-3' key={index}>
+                        <div className='sk-card-box'>
+                          <div className='sk-card-img'>
+                            <img src={items.image} alt='' />
+                          </div>
+                          <div className='sk-content-card'>
+                            <div className='sk-time-education'>
+                              <ul>
+                                <li className='sk-chip-tag'>
+                                  {" "}
+                                  <span>{items.genre_name}</span>{" "}
+                                </li>
+                                <li>
+                                  {items.mode_of_event === "offline" ? (
+                                    <>
+                                      {" "}
+                                      <img src={offlineicon} /> Offline{" "}
+                                    </>
+                                  ) : (
+                                    <>
+                                      {" "}
+                                      <img src={onlineicon} /> Online{" "}
+                                    </>
+                                  )}
+                                </li>
+                              </ul>
                             </div>
-                            <div className='sk-content-card'>
-                              <div className='sk-time-education'>
-                                <ul>
-                                  <li className='sk-chip-tag'>
-                                    {" "}
-                                    <span>{items.genre_name}</span>{" "}
-                                  </li>
-                                  <li>
-                                    {items.mode_of_event === "offline" ? (
-                                      <>
-                                        {" "}
-                                        <img src={offlineicon} /> Offline{" "}
-                                      </>
-                                    ) : (
-                                      <>
-                                        {" "}
-                                        <img src={onlineicon} /> Online{" "}
-                                      </>
+                            <h6 className='sk-card-heading'>{items.title}</h6>
+                            <div className='sk-time-education'>
+                              <ul>
+                                <li>
+                                  {" "}
+                                  <AccessTimeIcon />{" "}
+                                  <span>
+                                    {time_left(
+                                      items.start_date,
+                                      items.start_time,
+                                      items.end_date,
+                                      items.end_time,
                                     )}
-                                  </li>
-                                </ul>
-                              </div>
-                              <h6 className='sk-card-heading'>{items.title}</h6>
-                              <div className='sk-time-education'>
-                                <ul>
-                                  <li>
-                                    {" "}
-                                    <AccessTimeIcon />{" "}
-                                    <span>
-                                      {time_left(
-                                        items.start_date,
-                                        items.start_time,
-                                        items.end_date,
-                                        items.end_time,
-                                      )}
-                                    </span>{" "}
-                                  </li>
-                                  <li>
-                                    {" "}
-                                    <SchoolRoundedIcon />{" "}
-                                    {items.enrold_students} enrolled{" "}
-                                  </li>
-                                </ul>
-                              </div>
-                              <div className='sk-tags-event'>
-                                <button
-                                  type='button'
-                                  className='sk-btn-register'
-                                  onClick={() =>
-                                    history.push(
-                                      routingConstants.MORE_EVENT + items.id,
-                                    )
-                                  }
-                                >
-                                  Registration Now
-                                </button>
-                              </div>
+                                  </span>{" "}
+                                </li>
+                                <li>
+                                  {" "}
+                                  <SchoolRoundedIcon /> {
+                                    items.enrold_students
+                                  }{" "}
+                                  enrolled{" "}
+                                </li>
+                              </ul>
+                            </div>
+                            <div className='sk-tags-event'>
+                              <button
+                                type='button'
+                                className='sk-btn-register'
+                                onClick={() =>
+                                  history.push(
+                                    routingConstants.MORE_EVENT + items.id,
+                                  )
+                                }
+                              >
+                                Registration Now
+                              </button>
                             </div>
                           </div>
                         </div>
-                      </>
-                    );
-                  })
-                : "no data"}
-              <div className='col-md-12'>
-                <div className='sk-explore-btn'>
-                  <button
-                    type=''
-                    onClick={() => {
-                      setCurrentOffset(currentOffset + 1);
-                    }}
-                    className='sk-btn'
-                  >
-                    Explore More{" "}
-                  </button>
+                      </div>
+                    </>
+                  );
+                })
+              ) : (
+                <div className='noData'>
+                  <p>{"No more events available"}</p>
                 </div>
-              </div>
+              )}
+              {selectedButton == "all" && (
+                <div className='col-md-12'>
+                  <div className='sk-explore-btn'>
+                    <button
+                      disabled={currentData.length == 0}
+                      type=''
+                      onClick={() => {
+                        setCurrentOffset(currentOffset + 1);
+                      }}
+                      className='sk-btn'
+                    >
+                      Explore More{" "}
+                    </button>
+                  </div>
+                </div>
+              )}
             </div>
           )}
         </div>
