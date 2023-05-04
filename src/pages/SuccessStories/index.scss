@@ -7,7 +7,12 @@
   background-size: cover;
 }
 
-
+section{
+  padding: 50px 0;
+}
+.sk-successStories-sec{
+background: #f4f4f4;
+}
 .SuccStory_banner h1 {
   font-family: "Poppins", sans-serif;
   font-style: normal;
@@ -299,10 +304,7 @@ button.want_btn {
 }
 
 .ads_story_cover_img {
-  margin: 40px 0px;
-  height: 150px;
   width: 100%;
-  //object-fit: cover;
 }
 .ads_succ_story {
   margin: 30px 0px;
@@ -316,14 +318,41 @@ button.want_btn {
   height: 410px;
   object-fit: cover;
 }
-
+.sk-storyMain-sec{
+  padding: 80px 0;
+}
+.sk-story-content p {
+  padding: 20px 0 10px;
+  color: #555;
+  font-size: 16px;
+  line-height: 32px;
+}
+.sk-allStory-btn{
+  color: #fff;
+  border-radius: 5px;
+  font-weight: 500;
+}
+.sk-Blogcard-content h5{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+.sk-Blogcard-content p{
+  font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
 
 
 //SuccessStory Section1 styles start
 .Section1 {
   display: flex;
   flex-wrap: wrap;
-  height: 60vh;
 
   > .section1-item {
     display: flex;
@@ -359,8 +388,6 @@ button.want_btn {
       }
     }
     p {
-      font-family: "Roboto";
-      font-style: normal;
       font-weight: 400;
       font-size: 1rem;
       line-height: 160%;
@@ -372,7 +399,7 @@ button.want_btn {
       }
     }
     button {
-      width: 40%;
+      
       padding: 10px 20px;
       border-radius:7px;
       margin: 10px 0 10px 0;
@@ -437,14 +464,21 @@ button.want_btn {
     }
   }
 }
+.sk-storyHeading-top{
+  font-size: 50px;
+  font-weight: 500;
+}
+.sk-storyHeading-top span{
+  color: #d62c79;
+  font-weight: 700;
+}
 .title {
   width: 100%;
   display: flex;
   flex-direction: row;
-  margin-bottom:20px;
 
   img {
-    margin-right: 15px;
+    // margin-right: 15px;
   }
 }
 

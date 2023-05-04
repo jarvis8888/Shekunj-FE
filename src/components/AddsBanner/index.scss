@@ -1,15 +1,15 @@
+.sk-addBg-color {
+  background: #F4F4F4;
+
 .add-banner {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 50px 0;
-  background-color: "#ffffff";
+  }
 }
-
 .rectangle {
   img {
     max-width: 100%;
     height: auto;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
   }
 }

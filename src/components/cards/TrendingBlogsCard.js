@@ -2,6 +2,9 @@ import React from "react";
 import "./style.scss";
 import { routingConstants } from "../../utils/constants";
 import { useHistory } from "react-router-dom";
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import MenuBookRoundedIcon from '@mui/icons-material/MenuBookRounded';
+import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import time_icon from "../../assets/icons/svgs/time.png";
 import book from "../../assets/icons/svgs/book.png";
 
@@ -28,11 +31,11 @@ export const TrendingBlogsCard = ({
         <p className='blog-card__description'>{description}</p>
         <div className='blog-card__meta'>
           <span className='blog-card__time'>
-            <img src={time_icon} alt='time' width={14} height={14} />
+          <AccessTimeIcon />
             {date}
           </span>
           <span className='blog-card__date sk-blog-icon2'>
-            <img src={book} alt='time' width={14} height={14} />
+          <MenuBookRoundedIcon />
             {time} min
           </span>
         </div>
