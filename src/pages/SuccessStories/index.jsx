@@ -367,7 +367,6 @@ function SuccessStory() {
                   {successStories?.trending_success_stories?.results.length
                     ? successStories?.trending_success_stories?.results.map(
                         (items, index) => {
-                          
                           return (
                             <>
                               <TrendingCards

@@ -1,5 +1,5 @@
 body {
-  font-family: 'Poppins', sans-serif !important;
+  font-family: "Poppins", sans-serif !important;
 }
 .Navbar {
   height: 80px;
@@ -8,7 +8,7 @@ body {
   align-items: center;
   background: #ffffff;
   padding: 10px 80px;
-  box-shadow: 8px 8px 20px 0px #FBF6F8;
+  box-shadow: 8px 8px 20px 0px #fbf6f8;
 }
 .Navbar .custom-dropdown button {
   font-size: 16px;
@@ -182,32 +182,34 @@ body {
       }
     }
   }
-  .sk-header-btn{
+  .sk-header-btn {
     background: #d3317d;
     color: #fff;
     padding: 8.5px 15px;
     border-radius: 2px;
     transition: 0.3s;
   }
-  .header-top nav .custom-dropdownl li{
+  .header-top nav .custom-dropdownl li {
     margin-left: 0;
   }
-  .header-top .custom-dropdown .rs-dropdown-item{
+  .header-top .custom-dropdown .rs-dropdown-item {
     margin-left: 0;
   }
-  .sk-header-btn:hover{
+  .sk-header-btn:hover {
     background: #020202;
   }
-  .header-top .rs-btn:focus,  .header-top .rs-btn:hover {
-    background: transparent;  
+  .header-top .rs-btn:focus,
+  .header-top .rs-btn:hover {
+    background: transparent;
     color: #020202;
-  } 
-  .header-top .rs-dropdown-toggle,  .header-top .rs-dropdown-toggle.rs-btn {
+  }
+  .header-top .rs-dropdown-toggle,
+  .header-top .rs-dropdown-toggle.rs-btn {
     background: transparent !important;
-    color: #020202; 
-}
- .custom-dropdown button{
-      color: #020202;
+    color: #020202;
+  }
+  .custom-dropdown button {
+    color: #020202;
   }
   .Navbar .nav-items .custom-dropdown button.rs-btn {
     font-size: 16px !important;
@@ -264,5 +266,12 @@ body {
       background-color: #fff;
       color: #db5789;
     }
+  }
+}
+
+.mobile-show {
+  display: none;
+  @media (max-width: 800px) {
+    display: flex;
   }
 }
