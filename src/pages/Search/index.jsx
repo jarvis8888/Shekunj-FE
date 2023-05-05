@@ -6,10 +6,12 @@ import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import "./index.scss";
 import { GlobalSearchCard } from "../../components/cards/GlobalSearchCard";
 import { Grid } from "rsuite";
+import { useDispatch, useSelector } from "react-redux";
 
 const GlobalSearch = () => {
   const location = useLocation();
   const history = useHistory();
+  const { lan } = useSelector((state) => state.languageReducer);
 
   const searchParams = new URLSearchParams(location.search);
   const currentSearch = searchParams.get("search") || "";
@@ -81,7 +83,7 @@ const GlobalSearch = () => {
 
   useEffect(() => {
     getGlobalSearchData(currentSearch);
-  }, [currentSearch]);
+  }, [currentSearch, lan]);
 
   return (
     <div>

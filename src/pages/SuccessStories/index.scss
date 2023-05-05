@@ -628,10 +628,11 @@ button.want_btn {
     }
   }
 }
-
-
-
-
+@media screen and (max-width: 800px) {
+  .sk-storyHeading-top{
+    font-size: 32px;
+  }
+}
 .carousel__content h2{
   color: #fff;
 }

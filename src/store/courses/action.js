@@ -230,8 +230,7 @@ export const testCountSummery = (id, history) => async (dispatch) => {
 export const successStories = (limit, offset, page) => async (dispatch) => {
   try {
     dispatch({ type: coursesTypes.SUCCESS_STORY_REQUEST });
-    const url =
-      constants.SUCCESS_STORY + `?limit=${limit}&offset=${offset}&p=${page}`;
+    const url = constants.SUCCESS_STORY + `?limit=${limit}&offset=${offset}`;
     const res = await httpServices.get(url);
     dispatch({
       type: coursesTypes.SUCCESS_STORY_FINISH,

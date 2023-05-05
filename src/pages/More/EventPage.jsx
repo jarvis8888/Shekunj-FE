@@ -60,6 +60,8 @@ function EventPage() {
     { label: "Next Week", value: "nextWeek" },
   ];
 
+  const { lan } = useSelector((state) => state.languageReducer);
+
   const [eventBoxAds, setEventBoxAds] = useState([]);
   const [currentData, setCurrentData] = useState([]);
   const [allEventData, setAllEventData] = useState([]);
@@ -147,7 +149,7 @@ function EventPage() {
 
   useEffect(() => {
     fetchEventsData(null, true);
-  }, [currentOffset]);
+  }, [currentOffset , lan]);
 
   const addEmail = async (email) => {
     try {

@@ -48,7 +48,7 @@ function BlogPage() {
   const { blogs } = useSelector((state) => state.blogsReducer);
   const dispatch = useDispatch();
   const [offset, setOffset] = useState(0);
-  const pageLimit = 10;
+  const pageLimit = 5;
 
   const { lan } = useSelector((state) => state.languageReducer);
   const { t } = useTranslation();
@@ -61,7 +61,7 @@ function BlogPage() {
   useEffect(() => {
     dispatch(getAllBlogs(pageLimit, offset));
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-  }, [lan]);
+  }, [lan, offset]);
 
   const handleSetCollapse = (id, is_collapse) => {
     dispatch(setCollapseBlogs(id, is_collapse ? false : true));
@@ -116,39 +116,46 @@ function BlogPage() {
               return item.image_type == "blog_index";
             });
             setBlogBoxAdds(filterArray1);
-            // console.log("filterArray1coursebox",filterArray1)
+            let filterArray2 = response.data.results.filter((item, index) => {
+              return item.image_type == "blog_index_right1";
+            });
+            bolgRight1(filterArray2);
+            let filterArray3 = response.data.results.filter((item, index) => {
+              return item.image_type == "blog_index_right2";
+            });
+            bolgRight2(filterArray3);
           }
         });
       },
     );
-  }, [dispatch]);
+  }, []);
 
-  const addEmail = (email) => {
-    navigator.geolocation.getCurrentPosition(async function (position, values) {
-      const latitude = position.coords.latitude;
-      const longitude = position.coords.longitude;
+  // const addEmail = (email) => {
+  //   navigator.geolocation.getCurrentPosition(async function (position, values) {
+  //     const latitude = position.coords.latitude;
+  //     const longitude = position.coords.longitude;
 
-      let params = {
-        latitude: latitude.toString(),
-        longitude: longitude.toString(),
-      };
-      axios
-        .post("/private_adds/click_add/", {
-          // add_email:`${adds[0]?.add_email}`
-          add_email: email,
-          latitude: params.latitude.toString(),
-          longitude: params.longitude.toString(),
-        })
-        .then((response) => {
-          // setAdds(response.data.results);
-          console.log("addEmailresponse", response);
-        })
-        .catch((error) => {
-          // setMessage("No data found");
-          console.log(error);
-        });
-    });
-  };
+  //     let params = {
+  //       latitude: latitude.toString(),
+  //       longitude: longitude.toString(),
+  //     };
+  //     axios
+  //       .post("/private_adds/click_add/", {
+  //         // add_email:`${adds[0]?.add_email}`
+  //         add_email: email,
+  //         latitude: params.latitude.toString(),
+  //         longitude: params.longitude.toString(),
+  //       })
+  //       .then((response) => {
+  //         // setAdds(response.data.results);
+  //         console.log("addEmailresponse", response);
+  //       })
+  //       .catch((error) => {
+  //         // setMessage("No data found");
+  //         console.log(error);
+  //       });
+  //   });
+  // };
   const paginationBack = () => {
     dispatch(getAllBlogs(pageLimit, offset - pageLimit));
     setOffset(offset - pageLimit);
@@ -225,7 +232,7 @@ function BlogPage() {
                     {blogBoxAdds.length > 0 && (
                       <div
                         className='banner-adds'
-                        onClick={() => addEmail(blogBoxAdds[0]?.add_email)}
+                        // onClick={() => addEmail(blogBoxAdds[0]?.add_email)}
                       >
                         <a
                           href={blogBoxAdds[0]?.url_adds}
@@ -236,14 +243,14 @@ function BlogPage() {
                             ? blogBoxAdds[0]?.image_mobile && (
                                 <img
                                   src={blogBoxAdds[0]?.image_mobile}
-                                  alt='Image'
+                                  alt=''
                                   className='ads_story_cover_img'
                                 />
                               )
                             : blogBoxAdds[0]?.image && (
                                 <img
                                   src={blogBoxAdds[0]?.image}
-                                  alt='Image'
+                                  alt=''
                                   className='ads_story_cover_img'
                                 />
                               )}
@@ -291,7 +298,13 @@ function BlogPage() {
                     : "no data"}
                 </div>
                 <div className='d-flex justify-content-center align-items-center py-4'>
-                  <button className='loadMore'>Explore More</button>
+                  <button
+                    className='loadMore'
+                    onClick={() => setOffset(offset + 5)}
+                    disabled={blogs?.latest_blogs?.results.length === 0}
+                  >
+                    Explore More
+                  </button>
                 </div>
               </div>
               <div className='pb-5'>
@@ -302,7 +315,7 @@ function BlogPage() {
                       {blogBoxAdds.length > 0 && (
                         <div
                           className='banner-adds'
-                          onClick={() => addEmail(blogBoxAdds[0]?.add_email)}
+                          // onClick={() => addEmail(blogBoxAdds[0]?.add_email)}
                         >
                           <a
                             href={blogBoxAdds[0]?.url_adds}
