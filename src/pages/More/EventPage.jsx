@@ -149,7 +149,7 @@ function EventPage() {
 
   useEffect(() => {
     fetchEventsData(null, true);
-  }, [currentOffset , lan]);
+  }, [currentOffset, lan]);
 
   const addEmail = async (email) => {
     try {
@@ -399,38 +399,29 @@ function EventPage() {
           )}
         </div>
       </section>
-      <AddsBanner
-        color='#F4F4F4'
-        children={
-          <>
-            {eventBoxAds.length > 0 && (
-              <div className='col-md-12 ads_home_cover '>
-                <a
-                  href={eventBoxAds[0]?.url_adds}
-                  target='_blank'
-                  rel='noreferrer'
-                >
-                  {detect.isMobile
-                    ? eventBoxAds[0]?.image_mobile && (
-                        <img
-                          src={eventBoxAds[0]?.image_mobile}
-                          alt=''
-                          className='ads_story_cover_img'
-                        />
-                      )
-                    : eventBoxAds[0]?.image && (
-                        <img
-                          src={eventBoxAds[0]?.image}
-                          alt=''
-                          className='ads_story_cover_img'
-                        />
-                      )}
-                </a>
-              </div>
-            )}
-          </>
-        }
-      />
+      <div className="bottom-add">
+        <>
+          {eventBoxAds.length > 0 && (
+            <a href={eventBoxAds[0]?.url_adds} target='_blank' rel='noreferrer'>
+              {detect.isMobile
+                ? eventBoxAds[0]?.image_mobile && (
+                    <img
+                      src={eventBoxAds[0]?.image_mobile}
+                      alt=''
+                      // className='ads_story_cover_img'
+                    />
+                  )
+                : eventBoxAds[0]?.image && (
+                    <img
+                      src={eventBoxAds[0]?.image}
+                      alt=''
+                      // className='ads_story_cover_img'
+                    />
+                  )}
+            </a>
+          )}
+        </>
+      </div>
       <Footer loginPage={false} />
     </div>
   );

@@ -23,7 +23,7 @@ export const HashtagAndCatagories = (props) => {
     <div className='HashtagAndCatagories'>
       <div className='HashtagAndCatagoriesTitle'>
         <img src={image} alt='#' />
-        <h4>{title}</h4>
+        <h5>{title}</h5>
       </div>
       <div className='HashtagAndCatagoriesTitle'>
         {type === "hashtag"

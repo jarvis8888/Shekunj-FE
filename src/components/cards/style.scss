@@ -3,7 +3,7 @@ img {
   height: auto;
 }
 .sk-Blogcard-content {
-  padding: 12px 15px;
+  padding: 12px 15px 4px;
 }
 .card .card__bottom:last-child {
   margin-right: 0;
@@ -76,17 +76,20 @@ img {
 
   &__button {
     border: none;
-    background-color: #fff;
+    background: #fff;
     color: #D3317D;
     cursor: pointer;
     display: flex;
     align-items: center;
     font-family: "Poppins";
-    font-style: normal;
     font-weight: 400;
     font-size: 14px;
-    padding: 0;
     transition: all 0.3s;
+    padding: 5px 8px;
+    &:hover{
+      background: #D3317D;
+      color: #fff;
+    }
     
 
     svg {
@@ -94,11 +97,11 @@ img {
       margin-left: 5px;
     }
   }
+  .featured-stories{
   .card__bottom {
     display: flex;
     align-items: center;
-    :hover {
-      background-color: #fff;
+    
     }
   }
 }
@@ -168,13 +171,12 @@ img {
       vertical-align: text-bottom;
     }
   }
-  .blog-card2:last-child {
-    border-bottom: 0;
-  } 
+  
 .blog-card2 {
   display: flex;
   border-bottom: 1px solid #d9d9d9;
   padding: 20px 0;
+  // border-top: 1px solid #d9d9d9;
   
     &__image {
       flex: 300px 0 0;
@@ -214,8 +216,15 @@ img {
 
 .card__button {
   display: flex;
+  padding: 5px 8px;
+  background: #fff;
+  color: #D3317D;
+  transition: all 0.3s;
+  
   &:hover {
-    background-color: #fff;
+    background: #D3317D;
+    color: #fff;
+   
   }
 }
 .card .card__bottom span img {
