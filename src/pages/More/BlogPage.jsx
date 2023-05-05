@@ -116,39 +116,46 @@ function BlogPage() {
               return item.image_type == "blog_index";
             });
             setBlogBoxAdds(filterArray1);
-            // console.log("filterArray1coursebox",filterArray1)
+            let filterArray2 = response.data.results.filter((item, index) => {
+              return item.image_type == "blog_index_right1";
+            });
+            bolgRight1(filterArray2);
+            let filterArray3 = response.data.results.filter((item, index) => {
+              return item.image_type == "blog_index_right2";
+            });
+            bolgRight2(filterArray3);
           }
         });
       },
     );
-  }, [dispatch]);
+  }, []);
 
-  const addEmail = (email) => {
-    navigator.geolocation.getCurrentPosition(async function (position, values) {
-      const latitude = position.coords.latitude;
-      const longitude = position.coords.longitude;
+  // const addEmail = (email) => {
+  //   navigator.geolocation.getCurrentPosition(async function (position, values) {
+  //     const latitude = position.coords.latitude;
+  //     const longitude = position.coords.longitude;
 
-      let params = {
-        latitude: latitude.toString(),
-        longitude: longitude.toString(),
-      };
-      axios
-        .post("/private_adds/click_add/", {
-          // add_email:`${adds[0]?.add_email}`
-          add_email: email,
-          latitude: params.latitude.toString(),
-          longitude: params.longitude.toString(),
-        })
-        .then((response) => {
-          // setAdds(response.data.results);
-          console.log("addEmailresponse", response);
-        })
-        .catch((error) => {
-          // setMessage("No data found");
-          console.log(error);
-        });
-    });
-  };
+  //     let params = {
+  //       latitude: latitude.toString(),
+  //       longitude: longitude.toString(),
+  //     };
+  //     axios
+  //       .post("/private_adds/click_add/", {
+  //         // add_email:`${adds[0]?.add_email}`
+  //         add_email: email,
+  //         latitude: params.latitude.toString(),
+  //         longitude: params.longitude.toString(),
+  //       })
+  //       .then((response) => {
+  //         // setAdds(response.data.results);
+  //         console.log("addEmailresponse", response);
+  //       })
+  //       .catch((error) => {
+  //         // setMessage("No data found");
+  //         console.log(error);
+  //       });
+  //   });
+  // };
   const paginationBack = () => {
     dispatch(getAllBlogs(pageLimit, offset - pageLimit));
     setOffset(offset - pageLimit);
@@ -225,7 +232,7 @@ function BlogPage() {
                     {blogBoxAdds.length > 0 && (
                       <div
                         className='banner-adds'
-                        onClick={() => addEmail(blogBoxAdds[0]?.add_email)}
+                        // onClick={() => addEmail(blogBoxAdds[0]?.add_email)}
                       >
                         <a
                           href={blogBoxAdds[0]?.url_adds}
@@ -308,7 +315,7 @@ function BlogPage() {
                       {blogBoxAdds.length > 0 && (
                         <div
                           className='banner-adds'
-                          onClick={() => addEmail(blogBoxAdds[0]?.add_email)}
+                          // onClick={() => addEmail(blogBoxAdds[0]?.add_email)}
                         >
                           <a
                             href={blogBoxAdds[0]?.url_adds}

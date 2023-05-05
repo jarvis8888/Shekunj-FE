@@ -196,8 +196,18 @@ function SuccessStory() {
           <div className='row'>
             <div className='col-xl-6 col-md-12'>
               <div className='sk-story-content'>
-                <h1 className='sk-storyHeading-top' dangerouslySetInnerHTML={{__html: makeHtml(t("phase2.SuccessStoryContent.title1")), }} />
-                <h1 className='sk-storyHeading-top' dangerouslySetInnerHTML={{__html: makeHtml(t("phase2.SuccessStoryContent.title2")), }} />
+                <h1
+                  className='sk-storyHeading-top'
+                  dangerouslySetInnerHTML={{
+                    __html: makeHtml(t("phase2.SuccessStoryContent.title1")),
+                  }}
+                />
+                <h1
+                  className='sk-storyHeading-top'
+                  dangerouslySetInnerHTML={{
+                    __html: makeHtml(t("phase2.SuccessStoryContent.title2")),
+                  }}
+                />
                 <p>{t("phase2.SuccessStoryContent.description")}</p>
               </div>
               <button className='sk-allStory-btn'>
@@ -269,11 +279,12 @@ function SuccessStory() {
                     return (
                       <>
                         {succesStoriesLeft.length > 0 && (
-                          <div className="col-md-6"
-                          // className='col-md-12 ads_home_cover '
-                          // onClick={() => addEmail(succesStoriesLeft[0]?.add_email)}
+                          <div
+                            className='col-md-6'
+                            // className='col-md-12 ads_home_cover '
+                            // onClick={() => addEmail(succesStoriesLeft[0]?.add_email)}
                           >
-                            <div className="card">
+                            <div className='card'>
                               <a
                                 href={succesStoriesLeft[0]?.url_adds}
                                 target='_blank'
@@ -322,7 +333,14 @@ function SuccessStory() {
                 })}
               </div>
               <div className='d-flex justify-content-center align-items-center py-4'>
-                <button className='loadMore' onClick={() => setOffset(offset + 5)}>
+                <button
+                  disabled={
+                    successStories?.featured_success_stories?.results.length ===
+                    0
+                  }
+                  className='loadMore'
+                  onClick={() => setOffset(offset + 5)}
+                >
                   Load More
                 </button>
               </div>
