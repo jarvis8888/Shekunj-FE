@@ -236,7 +236,6 @@ const BlogDetails = () => {
                   </span>
                 </div>
               </div>
-             
               <div className='sk-social-icon'>
                 <h6>Share this article</h6>
                 <ul>

@@ -81,8 +81,6 @@ body {
 
   .Navbar > .nav-toggle {
     display: flex;
-    width: 50px;
-    height: 50px;
     align-items: center;
     justify-content: center;
     cursor: pointer;
@@ -151,12 +149,12 @@ body {
 .header-top {
   display: flex;
   justify-content: flex-end;
-  background-color: #f0f0f0;
-  padding: 10px 0;
+  background-color: #f0f0f0;  
   align-items: center;
+  padding: 10px 80px;
 
   nav {
-    padding: 0 80px;
+   
     ul {
       display: flex;
       list-style: none;
@@ -198,11 +196,11 @@ body {
   .sk-header-btn:hover{
     background: #020202;
   }
-  .header-top .rs-btn:focus,  .header-top .rs-btn:hover {
+  .header-top .rs-btn:focus, .header-top .rs-btn:hover {
     background: transparent;  
     color: #020202;
   } 
-  .header-top .rs-dropdown-toggle,  .header-top .rs-dropdown-toggle.rs-btn {
+  .header-top .rs-dropdown-toggle, .header-top .rs-dropdown-toggle.rs-btn {
     background: transparent !important;
     color: #020202; 
 }
@@ -264,5 +262,22 @@ body {
       background-color: #fff;
       color: #db5789;
     }
+  }
+}
+@media screen and (max-width: 1199px) {
+  .Navbar{
+    height: 60px;
+  }
+  .Navbar > .nav-items > a{
+    font-size: 14px;
+  }
+  .Navbar .custom-dropdown button{
+    font-size: 14px;
+  }
+  .Navbar, .header-top{
+    padding: 10px 15px;
+  }
+  .nav-logo img {
+    max-width: 120px;
   }
 }

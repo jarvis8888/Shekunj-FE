@@ -195,7 +195,7 @@ function SuccessStory() {
   };
 
   return (
-    <div className=''>
+    <div>
       <Header loginPage={true} page='story' />
       {/* success story section1 start */}
       <section className="sk-storyMain-sec">
@@ -215,12 +215,10 @@ function SuccessStory() {
                 />
                 <p>{t("phase2.SuccessStoryContent.description")}</p>
               </div>
-
-                <button className='sk-allStory-btn'>
-                  {t("phase2.SuccessStoryContent.buttonTitle")}
-                </button>
+              <button className='sk-allStory-btn'>
+                {t("phase2.SuccessStoryContent.buttonTitle")}
+              </button>
             </div>
-          
             <div className='col-xl-6 col-md-12'>
               <div className='BackgroundImage'></div>
             </div>
@@ -304,13 +302,11 @@ function SuccessStory() {
                     )
                   : null}
               </div>
-              <div className="d-flex justify-content-center align-items-center py-5">
+              <div className="sk-divider-bottom">
                 <button className='loadMore' onClick={() => setOffset(offset + 5)}>
                   Load More
                 </button>
               </div>
-
-             
                 <div>
                   <div className='title'>
                     <img src={fire} alt='fire' width={30} height={30} />
