@@ -13,11 +13,15 @@ import { useParams } from "react-router-dom";
 import { Footer, Header, SEO } from "../../components";
 import photo from "../../assets/icons/svgs/exphoto.png";
 import { TrendingStories } from "../SuccessStories/TrendingStories";
-import twitter1 from "../../assets/images/twitter1.png";
-import facebook from "../../assets/images/facebook.png";
-import youTube from "../../assets/images/youTube.png";
-import linkedinlogo from "../../assets/images/linkedinlogo.png";
-import instagram from "../../assets/images/instagram.png";
+import MenuBookRoundedIcon from '@mui/icons-material/MenuBookRounded';
+import facebookicon from "../../assets/images/facebook.svg";
+import linkedinicon from "../../assets/images/linkedin.svg";
+import twittericon from "../../assets/images/twitter.svg";
+import pintresticon from "../../assets/images/pintrest.svg";
+import instagramicon from "../../assets/images/instagram.svg";
+import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
+import SchoolRoundedIcon from "@mui/icons-material/SchoolRounded";
+import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import time from "../../assets/icons/svgs/time.png";
 import book from "../../assets/icons/svgs/book.png";
 import TrendingCards from "../../components/cards/TrendingCards";
@@ -197,123 +201,120 @@ const SuccessStoryDetails = () => {
   return (
     <div>
       <SEO title='Sheकुंज - Career' />
-      <Header loginPage={true} page='story' subPage='moreStory  ' />
-      <div className='story-details-container'>
-        <div className='story-image-container'>
-          <img src={successStoriesDetails?.image} alt='Story' className='img' />
-          <div className='story-bottom'>
-            <div className='hashtags-container'>
-              <div>
-                {successStoriesDetails?.hash_tags?.length
-                  ? successStoriesDetails?.hash_tags.map((items) => {
-                      return <span key={items}>{`#${items}`}</span>;
-                    })
-                  : null}
+      <Header loginPage={true} page='story' subPage='moreStory' />
+      <section className="sk-storyDetail-sec">
+        <div className='container'>
+          <div className="row">
+            <div className='col-xl-9 col-md-8'>
+              <img src={successStoriesDetails?.image} alt='Story' className='sk-storyBanner-img' />
+              <div className='story-bottom'>
+                <div className='hashtags-container'>
+                  <div className="sk-storyD-tag">
+                    {successStoriesDetails?.hash_tags?.length
+                      ? successStoriesDetails?.hash_tags.map((items) => {
+                          return <span key={items}>{`#${items}`}</span>;
+                        })
+                      : null}
+                  </div>
+                  <div className="sk-blokTVE-icon">
+                    <span>
+                      <AccessTimeIcon />
+                      {successStoriesDetails?.created_at}
+                    </span>
+                    <span>
+                      <MenuBookRoundedIcon />
+                      {successStoriesDetails?.reading_time} to read
+                    </span>
+                  </div>
+                </div>
+                <div className='sk-social-icon'>
+                  <h6>Share this article</h6>
+                  <ul>
+                    <li>
+                      <a href='javascript:;'>
+                        <img src={facebookicon} />
+                      </a>
+                    </li>
+                    <li>
+                      <a href='javascript:;'>
+                        <img src={linkedinicon} />
+                      </a>
+                    </li>
+                    <li>
+                      <a href='javascript:;'>
+                        <img src={twittericon} />
+                      </a>
+                    </li>
+                    <li>
+                      <a href='javascript:;'>
+                        <img src={pintresticon} />
+                      </a>
+                    </li>
+                    <li>
+                      <a href='javascript:;'>
+                        <img src={instagramicon} />
+                      </a>
+                    </li>
+                  </ul>
+                </div>
               </div>
-              <div>
-                <span>
-                  <img src={time} alt='time' width={14} height={14} />
-                  {successStoriesDetails?.created_at}
-                </span>
-                <span>
-                  <img src={book} alt='time' width={14} height={14} />
-                  {successStoriesDetails?.reading_time} to read
-                </span>
+              <div className="sk-middleContent-story">
+                <h4 className='story-tittle'>{successStoriesDetails?.name}</h4>
+                <h5 className='story-sub-tittle'>
+                  {successStoriesDetails?.designation}
+                </h5>
+                <h6 className='description'>{successStoriesDetails?.title}</h6>
+                <div
+                  className=''
+                  dangerouslySetInnerHTML={{
+                    __html: makeHtml(`${successStoriesDetails?.description}`),
+                  }}
+                />
               </div>
+              
+                <div className='title'>
+                  <img src={fire} alt='fire' width={25} height={25} />
+                  <h4>Trending Stories </h4>
+                </div>
+                <div className='row'>
+                  {successStories?.trending_success_stories?.results.length
+                    ? successStories?.trending_success_stories?.results.map(
+                        (items, index) => {
+                          return (
+                            <>
+                              <TrendingCards
+                                image={items.image}
+                                hashtags={items.hash_tags}
+                                title={items.name}
+                                description={`${items.title}`}
+                                makeHtml={makeHtml}
+                                key={index}
+                                created_at={items.created_at}
+                                id={items.id}
+                              />
+                            </>
+                          );
+                        },
+                      )
+                    : null}
+                </div>
+              {/* <TrendingStories /> */}
             </div>
-            <div class='social-media'>
-              <h6>Share this article</h6>
-              <a href='#'>
-                <i class='fa fa-facebook'>
-                  <img src={facebook} alt='twitter1' width={34} height={34} />
-                </i>
-              </a>
-              <a href='#'>
-                <i class='fa fa-twitter'>
-                  {" "}
-                  <img
-                    src={linkedinlogo}
-                    alt='twitter1'
-                    width={34}
-                    height={34}
-                  />
-                </i>
-              </a>
-              <a href='#'>
-                <i class='fa fa-instagram'>
-                  {" "}
-                  <img src={twitter1} alt='twitter1' width={34} height={34} />
-                </i>
-              </a>
-              <a href='#'>
-                <i class='fa fa-instagram'>
-                  {" "}
-                  <img src={instagram} alt='twitter1' width={34} height={34} />
-                </i>
-              </a>
-              <a href='#'>
-                <i class='fa fa-instagram'>
-                  {" "}
-                  <img src={youTube} alt='twitter1' width={34} height={34} />
-                </i>
-              </a>
+            <div className='col-xl-3 col-md-4'>
+              <HashtagAndCatagories
+                type='hashtag'
+                image={hash}
+                title={`Trending Hastag`}
+                firstAdd={succesStoriesRight1}
+                addEmail={addEmail}
+                hashtags={successStories?.all_hash_tags}
+                rightOne={succesStoriesRight1}
+                rightTwo={succesStoriesRight2}
+              />
             </div>
           </div>
-          <h4 className='story-tittle'>{successStoriesDetails?.name}</h4>
-          <h5 className='story-sub-tittle'>
-            {successStoriesDetails?.designation}
-          </h5>
-          <h6 className='description'>{successStoriesDetails?.title}</h6>
-          <div
-            className=''
-            dangerouslySetInnerHTML={{
-              __html: makeHtml(`${successStoriesDetails?.description}`),
-            }}
-          />
-          <div style={{ padding: "20px 0" }}>
-            <div className='title'>
-              <img src={fire} alt='fire' width={25} height={25} />
-              <h4>Trending Stories </h4>
-            </div>
-            <div className='treading-card-gird'>
-              {successStories?.trending_success_stories?.results.length
-                ? successStories?.trending_success_stories?.results.map(
-                    (items, index) => {
-                      return (
-                        <>
-                          <TrendingCards
-                            image={items.image}
-                            hashtags={items.hash_tags}
-                            title={items.name}
-                            description={`${items.title}`}
-                            makeHtml={makeHtml}
-                            key={index}
-                            created_at={items.created_at}
-                            id={items.id}
-                          />
-                        </>
-                      );
-                    },
-                  )
-                : null}
-            </div>
-          </div>
-
-          {/* <TrendingStories /> */}
         </div>
-        <div className='add-section-container'>
-          <HashtagAndCatagories
-            type='hashtag'
-            image={hash}
-            title={`Trending Hastag`}
-            firstAdd={succesStoriesRight1}
-            addEmail={addEmail}
-            hashtags={successStories?.all_hash_tags}
-            rightOne={succesStoriesRight1}
-            rightTwo={succesStoriesRight2}
-          />
-        </div>
-      </div>
+      </section>
       <Footer loginPage={false} />
     </div>
   );

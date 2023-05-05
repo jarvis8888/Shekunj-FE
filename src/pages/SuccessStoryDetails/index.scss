@@ -1,3 +1,62 @@
+
+
+.sk-social-icon ul {
+  list-style: none;
+  display: flex;
+  grid-gap: 10px;
+  padding: 0;
+  margin-bottom: 0;
+}
+.sk-storyDetail-sec .sk-storyBanner-img{
+  width: 100%;
+}
+.sk-storyD-tag{
+  padding-bottom: 15px;
+}
+.sk-middleContent-story {
+  border-bottom: 1px solid #d9d9d9;
+  padding: 0px 0 20px;
+  margin-bottom: 40px;
+}
+.sk-middleContent-story h5{
+  font-size: 20px;
+  font-weight: 400;
+}
+.sk-middleContent-story h6{
+  padding: 10px  0;
+}
+.sk-storyD-tag span{
+  font-size: 14px;
+  color: #434242;
+}
+.sk-storyDetail-sec .story-bottom {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 20px 0 30px;
+}
+.sk-blokTVE-icon span{
+  font-size: 14px;
+  color: #888;
+  margin-right: 20px;
+}
+.sk-blokTVE-icon span:last-child{
+  margin-right: 0 !important;
+}
+.sk-blokTVE-icon svg{
+  font-size: 20px;
+  vertical-align: text-bottom;
+  margin-right: 5px;
+}
+.sk-social-icon {
+  text-align: right;
+}
+
+.sk-social-icon h6 {
+  font-weight: 400;
+  font-size: 16px;
+  color: #020202;
+} 
 .career_tit {
   margin-bottom: 50px;
 }

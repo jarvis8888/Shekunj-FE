@@ -2,6 +2,8 @@ import React, { useState, memo } from "react";
 import "./navbar.scss";
 import closeIcon from "../../assets/icons/svgs/close.png";
 import memuIcon from "../../assets/icons/svgs/memu.png";
+import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
+import CloseIcon from '@mui/icons-material/Close';
 import globalSreach from "../../assets/icons/svgs/globalSearch.png";
 import logo from "../../assets/images/shekunjlogo.svg";
 import SearchIcon from "@mui/icons-material/Search";
@@ -135,11 +137,14 @@ const Navbar = (props) => {
         onClick={() => setIsOpen(!isOpen)}
       >
         {isOpen ? (
-          <img src={closeIcon} alt='close' />
+          <CloseIcon />
         ) : (
-          <img src={memuIcon} alt='close' />
+          <MenuOutlinedIcon />
         )}
       </div>
+      <span onClick={() => history.push(routingConstants.SEARCH)}>
+          <SearchIcon />
+        </span>
     </div>
   );
 };

@@ -3,25 +3,21 @@ $breakpoint-medium: 1024px;
 
 .wrapper {
   width: 100%;
-  background-color: #333;
+  background-color: #222;
 }
 
 .footer {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
   color: #fff;
-  padding: 50px 100px;
-  background-color: #333;
+  background: #222;
+  padding: 50px 0;
+  border-bottom: 1px solid #343434;
 
   @media (max-width: $breakpoint-medium) {
-    padding: 50px;
     text-align: center;
   }
 
   @media (max-width: $breakpoint-small) {
     flex-direction: column;
-    padding: 30px;
 
     &-section {
       margin-bottom: 30px;
@@ -81,13 +77,51 @@ $breakpoint-medium: 1024px;
 .copyRight {
   width: 100%;
   display: flex;
-  background-color: #333;
+  background: #222;
   justify-content: center;
   align-items: center;
   color: #fff;
   padding: 10px 0;
 }
+.footer .sk-footer-menu ul {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 0;
+}
 
+ .sk-footer-menu h5 {
+  font-weight: 600;
+  font-size: 18px;
+  padding-bottom: 5px;
+  color: #fff;
+}
+
+.footer .sk-footer-menu ul li a {
+  font-size: 15px;
+  line-height: 30px;
+  color: #cdcdcd;
+}
+.sk-footer-menu p {
+  margin-bottom: 0;
+}
+.sk-footer-menu p a{
+  color: #d3317d;
+  font-size: 14px;
+}
+.sk-footer-menu p a svg{
+  margin-right: 5px;
+}
+.sk-social-icon ul {
+  list-style: none;
+  display: flex;
+  grid-gap: 10px;
+  padding: 0;
+  margin-bottom: 0;
+}
+
+.footer .sk-footer-menu ul li {
+  padding: 4px 0;
+}
 .socialMedia {
   width: 100%;
   display: flex;

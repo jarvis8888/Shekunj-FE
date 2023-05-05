@@ -205,7 +205,7 @@ function SuccessStory() {
     addAddsFunction();
   }, [successStories]);
   return (
-    <div className=''>
+    <div>
       <Header loginPage={true} page='story' />
       {/* success story section1 start */}
       <section className='sk-storyMain-sec'>
@@ -227,16 +227,11 @@ function SuccessStory() {
                 />
                 <p>{t("phase2.SuccessStoryContent.description")}</p>
               </div>
-
               <button className='sk-allStory-btn'>
                 {t("phase2.SuccessStoryContent.buttonTitle")}
               </button>
             </div>
-
-            <div className='col-xl-6 col-md-12'>
-              <div className='BackgroundImage'></div>
-            </div>
-          </div>
+        </div>
         </div>
       </section>
 
