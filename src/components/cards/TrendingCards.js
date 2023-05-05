@@ -6,7 +6,7 @@ import { routingConstants } from "../../utils/constants";
 import { useHistory } from "react-router-dom";
 
 const TrendingCards = (data) => {
-  const {
+  let {
     image,
     hashtags = [],
     title,
@@ -17,6 +17,7 @@ const TrendingCards = (data) => {
     id,
     created_at,
   } = data;
+  hashtags = hashtags ? hashtags : []
   const history = useHistory();
   return (
     <div className='card'>

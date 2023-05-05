@@ -7,7 +7,7 @@ import { routingConstants } from "../../utils/constants";
 import { useHistory } from "react-router-dom";
 
 const FeaturedCards = (props) => {
-  const {
+  let {
     image,
     hashtags = [],
     title,
@@ -18,6 +18,7 @@ const FeaturedCards = (props) => {
     created_at,
     id,
   } = props;
+  hashtags = hashtags ? hashtags : []
   const history = useHistory();
   return (
     <div className='card' key={key}>
