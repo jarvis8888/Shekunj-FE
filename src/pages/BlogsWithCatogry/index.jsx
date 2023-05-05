@@ -121,45 +121,49 @@ const BlogWithCatogry = () => {
   return (
     <div>
       <Header />
-      <div className='Hashtag_container'>
-        <div className='Hashtag_container_cards sk-blog-detail-wa'>
-          <div className='Hashtag_container_title'>
-            {state ? `${currentSearch}` : "NA"}
-          </div>
-          {loading ? (
-            "Loading..."
-          ) : (
-            <div>
-              {data?.length
-                ? data?.map((items, index) => {
-                    return (
-                      <>
-                        <TrendingBlogsCard2
-                          image={items.image}
-                          title={items.title}
-                          id={items.id}
-                          // description={items.about_blog}
-                          time='5'
-                          date={items.created_at}
-                        />
-                      </>
-                    );
-                  })
-                : "no data"}
+      <section>
+        <div className='container Hashtag_container'>
+          <div className="row">
+            <div className='col-xl-9 col-md-8 Hashtag_container_cards sk-blog-detail-wa'>
+              <h6 className='Hashtag_container_title'>
+                {state ? `${currentSearch}` : "NA"}
+              </h6>
+              {loading ? (
+                "Loading..."
+              ) : (
+                <div>
+                  {data?.length
+                    ? data?.map((items, index) => {
+                        return (
+                          <>
+                            <TrendingBlogsCard2
+                              image={items.image}
+                              title={items.title}
+                              id={items.id}
+                              // description={items.about_blog}
+                              time='5'
+                              date={items.created_at}
+                            />
+                          </>
+                        );
+                      })
+                    : "no data"}
+                </div>
+              )}
             </div>
-          )}
+            <div div className="col-xl-3 col-md-4">
+              <HashtagAndCatagories
+                image={catagorie}
+                title={`Categories`}
+                addEmail={addEmail}
+                hashtags={allHashTag}
+                rightOne={succesStoriesRight1}
+                rightTwo={succesStoriesRight2}
+              />
+            </div>
+          </div>
         </div>
-        <div>
-          <HashtagAndCatagories
-            image={catagorie}
-            title={`Categories`}
-            addEmail={addEmail}
-            hashtags={allHashTag}
-            rightOne={succesStoriesRight1}
-            rightTwo={succesStoriesRight2}
-          />
-        </div>
-      </div>
+      </section>
       <Footer />
     </div>
   );

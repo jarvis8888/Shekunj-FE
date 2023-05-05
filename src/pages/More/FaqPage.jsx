@@ -12,6 +12,8 @@ import up from "../../assets/icons/up.png";
 import double_quote from "../../assets/icons/double_quote.png";
 import global from "../../assets/images/Success/global.png";
 import "./faq.scss";
+import ExpandMoreRoundedIcon from '@mui/icons-material/ExpandMoreRounded';
+import SendRoundedIcon from '@mui/icons-material/SendRounded';
 import { useTranslation } from "react-i18next";
 import axios from "axios";
 import { getFaq as fetchFaq } from "../../store/faq/action";
@@ -262,110 +264,120 @@ function FaqPage() {
   return (
     <div>
       <Header loginPage={true} page='more' subPage='moreFAQ' />
-      <div className='help-container'>
-        <h1>
-          HOW CAN WE <span>HELP YOU</span>
-        </h1>
-      </div>
+      <section className='help-container'>
+        <div className="container">
+          <div className="row">
+          <div className="col-md-12">
+            <h1>
+              HOW CAN WE <span>HELP YOU</span>
+            </h1>
+          </div>
+          </div>
+        </div>
+      </section>
+
       {loading ? (
         "loading..."
       ) : (
-        <div className='faqs-container'>
-          <div className='tabs-container'>
-            {faqData?.map((tab) => (
-              <div
-                key={tab.id}
-                className={`tab ${activeTab === tab.id ? "active" : ""}`}
-                onClick={() => handleTabClick(tab.id)}
-              >
-                {tab.name}
-              </div>
-            ))}
-          </div>
-          <div className='questions-container-wrapper'>
-            <div className='questions-container'>
-              {faqQuestionsData.filter((q) => q.id === activeTab).length ? (
-                faqQuestionsData
-                  .filter((q) => q.id === activeTab)
-                  .map((q) => (
-                    <div key={q.id} className='question'>
-                      <div
-                        className='question-header'
-                        onClick={() => toggleQuestion(q.id)}
-                      >
+        <section className="faqs-container">
+        <div className='container'>
+          <div className="row">
+            <div className='col-xl-2 col-md-3 tabs-container'>
+              {faqData?.map((tab) => (
+                <div
+                  key={tab.id}
+                  className={`tab ${activeTab === tab.id ? "active" : ""}`}
+                  onClick={() => handleTabClick(tab.id)}
+                >
+                  {tab.name}
+                </div>
+              ))}
+            </div>
+            <div className='col-xl-7 col-md-5 questions-container-wrapper'>
+              <div className='questions-container'>
+                {faqQuestionsData.filter((q) => q.id === activeTab).length ? (
+                  faqQuestionsData
+                    .filter((q) => q.id === activeTab)
+                    .map((q) => (
+                      <div key={q.id} className='question'>
                         <div
-                          className='question-text'
-                          dangerouslySetInnerHTML={{
-                            __html: makeHtml(q.question),
-                          }}
-                        />
+                          className='question-header'
+                          onClick={() => toggleQuestion(q.id)}
+                        >
+                          <div
+                            className='question-text'
+                            dangerouslySetInnerHTML={{
+                              __html: makeHtml(q.question),
+                            }}
+                          />
 
-                        <div>
-                          <img src={downArrow_icon} alt='arrow' />
+                          <div>
+                             <ExpandMoreRoundedIcon />
+                          </div>
                         </div>
+                        {expandedQuestions.includes(q.id) && (
+                          <div
+                            className='faqs-question-answer'
+                            dangerouslySetInnerHTML={{
+                              __html: makeHtml(q.answer),
+                            }}
+                          />
+                        )}
                       </div>
-                      {expandedQuestions.includes(q.id) && (
-                        <div
-                          className='faqs-question-answer'
-                          dangerouslySetInnerHTML={{
-                            __html: makeHtml(q.answer),
-                          }}
-                        />
-                      )}
-                    </div>
-                  ))
-              ) : (
-                <p>No questions available.</p>
-              )}
-            </div>
-            <div className='technical-support'>
-              <div>
-                <div className='technical-title'>Technical Support</div>
-                <div className='technical-description'>
-                  If you have some additional question, please contact our Help
-                  Desk
-                </div>
-              </div>
-              <form onSubmit={handleSubmit}>
-                <div class='input-container'>
-                  <input
-                    type='email'
-                    name='email'
-                    placeholder='Email id'
-                    value={values.email}
-                    onChange={handleChange}
-                    touched={touched}
-                    onBlur={handleBlur}
-                  />
-                  <button type='submit'>Send</button>
-                </div>
-                {errors.email && (
-                  <div className='sk-error-message'>{errors.email}</div>
+                    ))
+                ) : (
+                  <p>No questions available.</p>
                 )}
-              </form>
-            </div>
-          </div>
-
-          <div>
-            <a href={faqBoxAdds[0]?.url_adds} target='_blank' rel='noreferrer'>
-              {detect.isMobile
-                ? faqBoxAdds[0]?.image_mobile && (
-                    <img
-                      src={faqBoxAdds[0]?.image_mobile}
-                      alt=''
-                      className='ads_story_cover_img'
+              </div>
+              <div className='technical-support'>
+                <div>
+                  <div className='technical-title'>Technical Support</div>
+                  <div className='technical-description'>
+                    If you have some additional question, please contact our Help
+                    Desk
+                  </div>
+                </div>
+                <form onSubmit={handleSubmit}>
+                  <div class='input-container'>
+                    <input
+                      type='email'
+                      name='email'
+                      placeholder='Email id'
+                      value={values.email}
+                      onChange={handleChange}
+                      touched={touched}
+                      onBlur={handleBlur}
                     />
-                  )
-                : faqBoxAdds[0]?.image && (
-                    <img
-                      src={faqBoxAdds[0]?.image}
-                      alt=''
-                      className='ads_story_cover_img'
-                    />
+                    <button type='submit'> <SendRoundedIcon /> Send </button>
+                  </div>
+                  {errors.email && (
+                    <div className='sk-error-message'>{errors.email}</div>
                   )}
-            </a>
+                </form>
+              </div>
+            </div>
+            <div className="col-xl-3 col-md-4">
+              <a href={faqBoxAdds[0]?.url_adds} target='_blank' rel='noreferrer'>
+                {detect.isMobile
+                  ? faqBoxAdds[0]?.image_mobile && (
+                      <img
+                        src={faqBoxAdds[0]?.image_mobile}
+                        alt=''
+                        className='ads_story_cover_img'
+                      />
+                    )
+                  : faqBoxAdds[0]?.image && (
+                      <img
+                        src={faqBoxAdds[0]?.image}
+                        alt=''
+                        className='ads_story_cover_img'
+                      />
+                    )}
+              </a>
+            </div>
           </div>
         </div>
+        </section>
       )}
       <Footer loginPage={false} />
     </div>

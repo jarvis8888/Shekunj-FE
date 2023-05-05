@@ -12,6 +12,7 @@ import { adsList } from "../../store/ads";
 import { TrendingBlogsCard2 } from "../../components/cards/TrendingBlogsCard2";
 import catagorie from "../../assets/icons/svgs/categories.png";
 import cross from "../../assets/icons/svgs/cross.png";
+import CancelRoundedIcon from '@mui/icons-material/CancelRounded';
 import { routingConstants } from "../../utils/constants";
 
 const SuccessStroyWithHashtag = () => {
@@ -124,14 +125,14 @@ const SuccessStroyWithHashtag = () => {
   return (
     <div>
       <Header />
-      <div className='Hashtag_container'>
-        <div className='Hashtag_container_cards sk-blog-detail-wa'>
+     <section>
+      <div className='container'>
+        <div className="row">
+        <div className='col-xl-9 col-md-8 sk-blog-detail-wa'>
           <div className='Hashtag_container_title'>
             <span className='catagories-search'>
               {state ? `${currentSearch}` : null}{" "}
-              <img
-                src={cross}
-                alt='crros'
+              <CancelRoundedIcon 
                 onClick={() => history.push(routingConstants.MORE_BLOG)}
               />
             </span>
@@ -159,7 +160,7 @@ const SuccessStroyWithHashtag = () => {
             </div>
           )}
         </div>
-        <div>
+        <div className="col-xl-3 col-md-4">
           <HashtagAndCatagories
             image={catagorie}
             title={`Categories`}
@@ -169,7 +170,9 @@ const SuccessStroyWithHashtag = () => {
             rightTwo={succesStoriesRight2}
           />
         </div>
+        </div>
       </div>
+    </section>
       <Footer />
     </div>
   );
