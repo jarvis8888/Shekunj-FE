@@ -104,7 +104,7 @@ export const GlobalSearchCard = ({
                 ),
               }}
             />
-            <div className='sk-time-education'>
+            {/* <div className='sk-time-education'>
               {item?.type === "Courses" && (
                 <ul>
                   <li>
@@ -117,7 +117,7 @@ export const GlobalSearchCard = ({
                   </li>
                 </ul>
               )}
-            </div>
+            </div> */}
             <div className='sk-tags'>
               <span>{item?.type}</span>
             </div>

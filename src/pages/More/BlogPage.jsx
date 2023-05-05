@@ -48,7 +48,7 @@ function BlogPage() {
   const { blogs } = useSelector((state) => state.blogsReducer);
   const dispatch = useDispatch();
   const [offset, setOffset] = useState(0);
-  const pageLimit = 10;
+  const pageLimit = 5;
 
   const { lan } = useSelector((state) => state.languageReducer);
   const { t } = useTranslation();
@@ -61,7 +61,7 @@ function BlogPage() {
   useEffect(() => {
     dispatch(getAllBlogs(pageLimit, offset));
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-  }, [lan]);
+  }, [lan, offset]);
 
   const handleSetCollapse = (id, is_collapse) => {
     dispatch(setCollapseBlogs(id, is_collapse ? false : true));
@@ -236,14 +236,14 @@ function BlogPage() {
                             ? blogBoxAdds[0]?.image_mobile && (
                                 <img
                                   src={blogBoxAdds[0]?.image_mobile}
-                                  alt='Image'
+                                  alt=''
                                   className='ads_story_cover_img'
                                 />
                               )
                             : blogBoxAdds[0]?.image && (
                                 <img
                                   src={blogBoxAdds[0]?.image}
-                                  alt='Image'
+                                  alt=''
                                   className='ads_story_cover_img'
                                 />
                               )}
@@ -291,7 +291,13 @@ function BlogPage() {
                     : "no data"}
                 </div>
                 <div className='d-flex justify-content-center align-items-center py-4'>
-                  <button className='loadMore'>Explore More</button>
+                  <button
+                    className='loadMore'
+                    onClick={() => setOffset(offset + 5)}
+                    disabled={blogs?.latest_blogs?.results.length === 0}
+                  >
+                    Explore More
+                  </button>
                 </div>
               </div>
               <div className='pb-5'>

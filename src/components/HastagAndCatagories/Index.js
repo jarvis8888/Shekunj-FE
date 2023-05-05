@@ -82,25 +82,23 @@ export const HashtagAndCatagories = (props) => {
       </div>
       <div className='secondAdd'>
         {rightTwo.length > 0 && (
-          
-            <a href={rightTwo[0]?.url_adds} target='_blank' rel='noreferrer'>
-              {detect.isMobile
-                ? rightTwo[0]?.image_mobile && (
-                    <img
-                      src={rightTwo[0]?.image_mobile}
-                      alt='Image'
-                      className='ads_story_cover_img'
-                    />
-                  )
-                : rightTwo[0]?.image && (
-                    <img
-                      src={rightTwo[0]?.image}
-                      alt='Image'
-                      className='ads_story_cover_img'
-                    />
-                  )}
-            </a>
-          
+          <a href={rightTwo[0]?.url_adds} target='_blank' rel='noreferrer'>
+            {detect.isMobile
+              ? rightTwo[0]?.image_mobile && (
+                  <img
+                    src={rightTwo[0]?.image_mobile}
+                    alt=''
+                    className='ads_story_cover_img'
+                  />
+                )
+              : rightTwo[0]?.image && (
+                  <img
+                    src={rightTwo[0]?.image}
+                    alt=''
+                    className='ads_story_cover_img'
+                  />
+                )}
+          </a>
         )}
       </div>
       <div>

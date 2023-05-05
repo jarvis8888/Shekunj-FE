@@ -45,7 +45,7 @@ function SuccessStory() {
   const [searchValue, setSearchValue] = useState("");
 
   React.useEffect(() => {
-    dispatch(fetchSuccessStories(pageLimit, offset, page));
+    dispatch(fetchSuccessStories(pageLimit, offset));
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, [lan, offset]);
 
@@ -54,6 +54,7 @@ function SuccessStory() {
   };
 
   const [featuredData, setFeaturedData] = useState([]);
+  const [trendingData, setTrendingDataData] = useState([]);
   const [storiesBannerAds, setStoriesBannerAds] = useState([]);
   const [succesStoriesRight1, setSuccesStoriesRight1] = useState([]);
   const [succesStoriesRight2, setSuccesStoriesRight2] = useState([]);
@@ -93,6 +94,11 @@ function SuccessStory() {
               });
 
               setSuccesStoriesRight2(filterArray3);
+              let filterArray4 = response.data.results.filter((item, index) => {
+                return item.image_type === "success_stories_box";
+              });
+
+              setSuccesStoriesLeft(filterArray4);
             }
           });
       },
@@ -105,72 +111,49 @@ function SuccessStory() {
               return item.image_type == "success_stories_banner";
             });
             setStoriesBannerAds(filterArray1);
+            let filterArray2 = response.data.results.filter((item, index) => {
+              return item.image_type === "success_stories_right1";
+            });
+
+            setSuccesStoriesRight1(filterArray2);
+            let filterArray3 = response.data.results.filter((item, index) => {
+              return item.image_type === "success_stories_right2";
+            });
+
+            setSuccesStoriesRight2(filterArray3);
+            let filterArray4 = response.data.results.filter((item, index) => {
+              return item.image_type === "success_stories_box";
+            });
+
+            setSuccesStoriesLeft(filterArray4);
           }
         });
       },
     );
   }, []);
 
-  const addEmail = (email) => {
-    navigator.geolocation.getCurrentPosition(async function (position, values) {
-      const latitude = position.coords.latitude;
-      const longitude = position.coords.longitude;
+  // const addEmail = (email) => {
+  //   navigator.geolocation.getCurrentPosition(async function (position, values) {
+  //     const latitude = position.coords.latitude;
+  //     const longitude = position.coords.longitude;
 
-      let params = {
-        latitude: latitude.toString(),
-        longitude: longitude.toString(),
-      };
-      axios
-        .post("/private_adds/click_add/", {
-          // add_email:`${adds[0]?.add_email}`
-          add_email: email,
-          latitude: params.latitude.toString(),
-          longitude: params.longitude.toString(),
-        })
-        .then((response) => {
-          // setAdds(response.data.results);
-          console.log("addEmailresponse", response);
-        });
-    });
-  };
-  useEffect(() => {
-    navigator.geolocation.getCurrentPosition(async function (position, values) {
-      const latitude = position.coords.latitude;
-      const longitude = position.coords.longitude;
-
-      let params = {
-        latitude: latitude.toString(),
-        longitude: longitude.toString(),
-      };
-      axios
-        .get(
-          `/private_adds/private_add?latitude=${latitude}&longitude=${longitude}`,
-        )
-        .then((response) => {
-          if (response.data.results.length > 0) {
-            let filterArray = response.data.results.filter((item, index) => {
-              return item.image_type == "success_stories_box";
-            });
-            setStoriesBoxAds(filterArray);
-            let filterArray2 = response.data.results.filter((item, index) => {
-              return item.image_type === "success_stories_left";
-            });
-
-            setSuccesStoriesLeft(filterArray2);
-            // let filterArray3 = response.data.results.filter((item, index) => {
-            //   return item.image_type === "success_stories_right2";
-            // });
-
-            // setSuccesStoriesRight2(filterArray3);
-          }
-        })
-        .catch((error) => {
-          // setMessage("No data found");
-          console.log(error);
-        });
-    });
-    dispatch(adsList());
-  }, [dispatch]);
+  //     let params = {
+  //       latitude: latitude.toString(),
+  //       longitude: longitude.toString(),
+  //     };
+  //     axios
+  //       .post("/private_adds/click_add/", {
+  //         // add_email:`${adds[0]?.add_email}`
+  //         add_email: email,
+  //         latitude: params.latitude.toString(),
+  //         longitude: params.longitude.toString(),
+  //       })
+  //       .then((response) => {
+  //         // setAdds(response.data.results);
+  //         console.log("addEmailresponse", response);
+  //       });
+  //   });
+  // };
 
   const makeHtml = (htmlString) => {
     const htmlNode = document.createElement("div");
@@ -231,7 +214,7 @@ function SuccessStory() {
                 {t("phase2.SuccessStoryContent.buttonTitle")}
               </button>
             </div>
-        </div>
+          </div>
         </div>
       </section>
 
@@ -330,7 +313,9 @@ function SuccessStory() {
                       <>
                         <FeaturedCards
                           image={items.image}
-                          hashtags={items.hash_tags}
+                          hashtags={
+                            items.hash_tags === null ? [] : items.hash_tags
+                          }
                           title={items.name}
                           description={`${items.title}`}
                           makeHtml={makeHtml}
@@ -366,7 +351,11 @@ function SuccessStory() {
                             <>
                               <TrendingCards
                                 image={items.image}
-                                hashtags={items.hash_tags}
+                                hashtags={
+                                  items.hash_tags === null
+                                    ? []
+                                    : items.hash_tags
+                                }
                                 title={items.name}
                                 description={`${items.title}`}
                                 makeHtml={makeHtml}
@@ -389,7 +378,7 @@ function SuccessStory() {
                 type='hashtag'
                 image={hash}
                 title={`Trending Hastag`}
-                addEmail={addEmail}
+                // addEmail={addEmail}
                 hashtags={successStories?.all_hash_tags}
                 rightOne={succesStoriesRight1}
                 rightTwo={succesStoriesRight2}

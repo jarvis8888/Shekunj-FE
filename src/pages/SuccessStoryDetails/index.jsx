@@ -13,13 +13,13 @@ import { useParams } from "react-router-dom";
 import { Footer, Header, SEO } from "../../components";
 import photo from "../../assets/icons/svgs/exphoto.png";
 import { TrendingStories } from "../SuccessStories/TrendingStories";
-import MenuBookRoundedIcon from '@mui/icons-material/MenuBookRounded';
+import MenuBookRoundedIcon from "@mui/icons-material/MenuBookRounded";
 import facebookicon from "../../assets/images/facebook.svg";
 import linkedinicon from "../../assets/images/linkedin.svg";
 import twittericon from "../../assets/images/twitter.svg";
 import pintresticon from "../../assets/images/pintrest.svg";
 import instagramicon from "../../assets/images/instagram.svg";
-import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
+import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import SchoolRoundedIcon from "@mui/icons-material/SchoolRounded";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import time from "../../assets/icons/svgs/time.png";
@@ -100,28 +100,28 @@ const SuccessStoryDetails = () => {
   }, [dispatch]);
 
   // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Latest code >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-  const addEmail = (email) => {
-    navigator.geolocation.getCurrentPosition(async function (position, values) {
-      const latitude = position.coords.latitude;
-      const longitude = position.coords.longitude;
+  // const addEmail = (email) => {
+  //   navigator.geolocation.getCurrentPosition(async function (position, values) {
+  //     const latitude = position.coords.latitude;
+  //     const longitude = position.coords.longitude;
 
-      let params = {
-        latitude: latitude.toString(),
-        longitude: longitude.toString(),
-      };
-      axios
-        .post("/private_adds/click_add/", {
-          // add_email:`${adds[0]?.add_email}`
-          add_email: email,
-          latitude: params.latitude.toString(),
-          longitude: params.longitude.toString(),
-        })
-        .then((response) => {
-          // setAdds(response.data.results);
-          console.log("addEmailresponse", response);
-        });
-    });
-  };
+  //     let params = {
+  //       latitude: latitude.toString(),
+  //       longitude: longitude.toString(),
+  //     };
+  //     axios
+  //       .post("/private_adds/click_add/", {
+  //         // add_email:`${adds[0]?.add_email}`
+  //         add_email: email,
+  //         latitude: params.latitude.toString(),
+  //         longitude: params.longitude.toString(),
+  //       })
+  //       .then((response) => {
+  //         // setAdds(response.data.results);
+  //         console.log("addEmailresponse", response);
+  //       });
+  //   });
+  // };
 
   useEffect(() => {
     dispatch(adsList());
@@ -140,11 +140,16 @@ const SuccessStoryDetails = () => {
           )
           .then((response) => {
             if (response && response.data.results.length > 0) {
-              let filterArray1 = response.data.results.filter((item, index) => {
-                return item.image_type == "success_stories_details";
+              let filterArray2 = response.data.results.filter((item, index) => {
+                return item.image_type === "success_stories_right1";
               });
-              setStoryDetailsBoxAds(filterArray1);
-              // ("filterArray1blog_details",filterArray1)
+
+              setSuccesStoriesRight1(filterArray2);
+              let filterArray3 = response.data.results.filter((item, index) => {
+                return item.image_type === "success_stories_right2";
+              });
+
+              setSuccesStoriesRight2(filterArray3);
             }
           });
       },
@@ -153,11 +158,16 @@ const SuccessStoryDetails = () => {
         // alert("Your location is blocked")
         axios.get(`/private_adds/private_add`).then((response) => {
           if (response && response.data.results.length > 0) {
-            let filterArray1 = response.data.results.filter((item, index) => {
-              return item.image_type == "blog_details";
+            let filterArray2 = response.data.results.filter((item, index) => {
+              return item.image_type === "success_stories_right1";
             });
-            setStoryDetailsBoxAds(filterArray1);
-            // ("filterArray1coursebox",filterArray1)
+
+            setSuccesStoriesRight1(filterArray2);
+            let filterArray3 = response.data.results.filter((item, index) => {
+              return item.image_type === "success_stories_right2";
+            });
+
+            setSuccesStoriesRight2(filterArray3);
           }
         });
       },
@@ -202,21 +212,25 @@ const SuccessStoryDetails = () => {
     <div>
       <SEO title='Sheकुंज - Career' />
       <Header loginPage={true} page='story' subPage='moreStory' />
-      <section className="sk-storyDetail-sec">
+      <section className='sk-storyDetail-sec'>
         <div className='container'>
-          <div className="row">
+          <div className='row'>
             <div className='col-xl-9 col-md-8'>
-              <img src={successStoriesDetails?.image} alt='Story' className='sk-storyBanner-img' />
+              <img
+                src={successStoriesDetails?.image}
+                alt='Story'
+                className='sk-storyBanner-img'
+              />
               <div className='story-bottom'>
                 <div className='hashtags-container'>
-                  <div className="sk-storyD-tag">
+                  <div className='sk-storyD-tag'>
                     {successStoriesDetails?.hash_tags?.length
                       ? successStoriesDetails?.hash_tags.map((items) => {
                           return <span key={items}>{`#${items}`}</span>;
                         })
                       : null}
                   </div>
-                  <div className="sk-blokTVE-icon">
+                  <div className='sk-blokTVE-icon'>
                     <span>
                       <AccessTimeIcon />
                       {successStoriesDetails?.created_at}
@@ -258,7 +272,7 @@ const SuccessStoryDetails = () => {
                   </ul>
                 </div>
               </div>
-              <div className="sk-middleContent-story">
+              <div className='sk-middleContent-story'>
                 <h4 className='story-tittle'>{successStoriesDetails?.name}</h4>
                 <h5 className='story-sub-tittle'>
                   {successStoriesDetails?.designation}
@@ -271,33 +285,33 @@ const SuccessStoryDetails = () => {
                   }}
                 />
               </div>
-              
-                <div className='title'>
-                  <img src={fire} alt='fire' width={25} height={25} />
-                  <h4>Trending Stories </h4>
-                </div>
-                <div className='row'>
-                  {successStories?.trending_success_stories?.results.length
-                    ? successStories?.trending_success_stories?.results.map(
-                        (items, index) => {
-                          return (
-                            <>
-                              <TrendingCards
-                                image={items.image}
-                                hashtags={items.hash_tags}
-                                title={items.name}
-                                description={`${items.title}`}
-                                makeHtml={makeHtml}
-                                key={index}
-                                created_at={items.created_at}
-                                id={items.id}
-                              />
-                            </>
-                          );
-                        },
-                      )
-                    : null}
-                </div>
+
+              <div className='title'>
+                <img src={fire} alt='fire' width={25} height={25} />
+                <h4>Trending Stories </h4>
+              </div>
+              <div className='row'>
+                {successStories?.trending_success_stories?.results.length
+                  ? successStories?.trending_success_stories?.results.map(
+                      (items, index) => {
+                        return (
+                          <>
+                            <TrendingCards
+                              image={items.image}
+                              hashtags={items.hash_tags}
+                              title={items.name}
+                              description={`${items.title}`}
+                              makeHtml={makeHtml}
+                              key={index}
+                              created_at={items.created_at}
+                              id={items.id}
+                            />
+                          </>
+                        );
+                      },
+                    )
+                  : null}
+              </div>
               {/* <TrendingStories /> */}
             </div>
             <div className='col-xl-3 col-md-4'>
@@ -306,7 +320,7 @@ const SuccessStoryDetails = () => {
                 image={hash}
                 title={`Trending Hastag`}
                 firstAdd={succesStoriesRight1}
-                addEmail={addEmail}
+                // addEmail={addEmail}
                 hashtags={successStories?.all_hash_tags}
                 rightOne={succesStoriesRight1}
                 rightTwo={succesStoriesRight2}

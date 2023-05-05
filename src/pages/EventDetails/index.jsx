@@ -436,10 +436,15 @@ const EventDetails = () => {
           apiConstants.ALL_EVENTS.BOOK_EVENT,
           data,
         );
-
-        localStorage.setItem("event_data", JSON.stringify(data));
-        toast.success(res.message, toasterConfig);
-        resetForm();
+        if (res?.message === "You are already registered for this event") {
+          toast.warn(res.message, toasterConfig);
+          resetForm();
+          history.push(routingConstants.MORE_EVENT);
+        } else {
+          localStorage.setItem("event_data", JSON.stringify(data));
+          toast.success(res.message, toasterConfig);
+          resetForm();
+        }
       } catch (error) {
       } finally {
       }
@@ -527,10 +532,8 @@ const EventDetails = () => {
                             </li>
                             <li>
                               {" "}
-                              <SchoolRoundedIcon /> {
-                                eventsDetails?.enrold_students
-                              }{" "}
-                              enrolled{" "}
+                              <SchoolRoundedIcon />{" "}
+                              {eventsDetails?.enrold_students} enrolled{" "}
                             </li>
                           </ul>
                         </div>
@@ -566,9 +569,10 @@ const EventDetails = () => {
                         </ul>
                       </div>
                     </div>
-                   
+
                     <h2>{eventsDetails?.title}</h2>
-                    <div className='sk-card-description'
+                    <div
+                      className='sk-card-description'
                       dangerouslySetInnerHTML={{
                         __html: makeHtml(eventsDetails?.about_event),
                       }}

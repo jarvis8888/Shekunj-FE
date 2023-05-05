@@ -29,8 +29,8 @@ const TrendingCards = (data) => {
         </div>
         <div className='sk-Blogcard-content'>
           <div className='card__hashtags'>
-            {hashtags.map((tag) => (
-              <span key={tag}>{`#${tag}`}</span>
+            {hashtags.map((tag, index) => (
+              <span key={index}>{`#${tag}`}</span>
             ))}
           </div>
           <h5 className=''>{title}</h5>
