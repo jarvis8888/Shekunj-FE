@@ -213,18 +213,8 @@ function SuccessStory() {
           <div className='row'>
             <div className='col-xl-6 col-md-12'>
               <div className='sk-story-content'>
-                <h1
-                  className='sk-storyHeading-top'
-                  dangerouslySetInnerHTML={{
-                    __html: makeHtml(t("phase2.SuccessStoryContent.title1")),
-                  }}
-                />
-                <h1
-                  className='sk-storyHeading-top'
-                  dangerouslySetInnerHTML={{
-                    __html: makeHtml(t("phase2.SuccessStoryContent.title2")),
-                  }}
-                />
+                <h1 className='sk-storyHeading-top' dangerouslySetInnerHTML={{__html: makeHtml(t("phase2.SuccessStoryContent.title1")), }} />
+                <h1 className='sk-storyHeading-top' dangerouslySetInnerHTML={{__html: makeHtml(t("phase2.SuccessStoryContent.title2")), }} />
                 <p>{t("phase2.SuccessStoryContent.description")}</p>
               </div>
               <button className='sk-allStory-btn'>
@@ -296,31 +286,33 @@ function SuccessStory() {
                     return (
                       <>
                         {succesStoriesLeft.length > 0 && (
-                          <div
+                          <div className="col-md-6"
                           // className='col-md-12 ads_home_cover '
                           // onClick={() => addEmail(succesStoriesLeft[0]?.add_email)}
                           >
-                            <a
-                              href={succesStoriesLeft[0]?.url_adds}
-                              target='_blank'
-                              rel='noreferrer'
-                            >
-                              {detect.isMobile
-                                ? succesStoriesLeft[0]?.image_mobile && (
-                                    <img
-                                      src={succesStoriesLeft[0]?.image_mobile}
-                                      alt=''
-                                      // className='ads_story_cover_img'
-                                    />
-                                  )
-                                : succesStoriesLeft[0]?.image && (
-                                    <img
-                                      src={succesStoriesLeft[0]?.image}
-                                      alt=''
-                                      // className='ads_story_cover_img'
-                                    />
-                                  )}
-                            </a>
+                            <div className="card">
+                              <a
+                                href={succesStoriesLeft[0]?.url_adds}
+                                target='_blank'
+                                rel='noreferrer'
+                              >
+                                {detect.isMobile
+                                  ? succesStoriesLeft[0]?.image_mobile && (
+                                      <img
+                                        src={succesStoriesLeft[0]?.image_mobile}
+                                        alt=''
+                                        // className='ads_story_cover_img'
+                                      />
+                                    )
+                                  : succesStoriesLeft[0]?.image && (
+                                      <img
+                                        src={succesStoriesLeft[0]?.image}
+                                        alt=''
+                                        // className='ads_story_cover_img'
+                                      />
+                                    )}
+                              </a>
+                            </div>
                           </div>
                         )}
                       </>
@@ -344,11 +336,8 @@ function SuccessStory() {
                   }
                 })}
               </div>
-              <div className='d-flex justify-content-center align-items-center py-5'>
-                <button
-                  className='loadMore'
-                  onClick={() => setOffset(offset + 5)}
-                >
+              <div className='d-flex justify-content-center align-items-center py-4'>
+                <button className='loadMore' onClick={() => setOffset(offset + 5)}>
                   Load More
                 </button>
               </div>

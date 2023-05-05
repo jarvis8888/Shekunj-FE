@@ -38,6 +38,8 @@ const Navbar = (props) => {
           }}
         />
       </span>
+     
+     
       <div className={`nav-items ${isOpen && "open"}`}>
         <a href='/about-us' className={isActive("/about-us") && "active"}>
           {t("header.heading.1")}
@@ -128,23 +130,25 @@ const Navbar = (props) => {
         <a href='/more-faq' className='mobile-show'>
           FAQ
         </a>
-        <span onClick={() => history.push(routingConstants.SEARCH)}>
+        <span className="sk-mobile-hide" onClick={() => history.push(routingConstants.SEARCH)}>
           <SearchIcon />
         </span>
       </div>
-      <div
-        className={`nav-toggle ${isOpen && "open"}`}
-        onClick={() => setIsOpen(!isOpen)}
-      >
-        {isOpen ? (
-          <CloseIcon />
-        ) : (
-          <MenuOutlinedIcon />
-        )}
-      </div>
-      <span onClick={() => history.push(routingConstants.SEARCH)}>
+      <div className="mobile-show">
+        <span className="mr-2" onClick={() => history.push(routingConstants.SEARCH)}>
           <SearchIcon />
         </span>
+        <span
+          className={`nav-toggle ${isOpen && "open"}`}
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          {isOpen ? (
+            <CloseIcon />
+          ) : (
+            <MenuOutlinedIcon />
+          )}
+        </span>
+      </div>
     </div>
   );
 };

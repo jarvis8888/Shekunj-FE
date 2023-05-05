@@ -33,7 +33,7 @@ const YouMayLikeCarousel = () => {
   return (
     <div className='youMayLikeCarousel'>
       <div className='YouMayLikeCarouselCarousel_header'>
-        <img src={like_icon} alt='fire' height={35} /> You May Like
+        <img src={like_icon} alt='fire' width={28} /> You May Like
       </div>
       <div
         className='YouMayLikeCarouselCarousel__slide'

@@ -116,50 +116,54 @@ const SuccessStroyWithHashtag = () => {
   return (
     <div>
       <Header />
-      <div className='Hashtag_container'>
-        <div className='Hashtag_container_cards'>
-          <div className='Hashtag_container_title'>
-            {state ? `#${state}` : "NA"}
-          </div>
+      <section className="sk-hashtag-sec">
+        <div className="container">
+          <div className='row'>
+            <div className='col-xl-9 col-md-8'>
+              <h4 className='Hashtag_container_title'>
+                {state ? `#${state}` : "NA"}
+              </h4>
 
-          {loading ? (
-            "loading....."
-          ) : (
-            <div className='Hashtag_container_card_gird'>
-              {data.length
-                ? data.map((items, index) => {
-                    return (
-                      <>
-                        <FeaturedCards
-                          image={items.image}
-                          hashtags={items.hash_tags}
-                          title={items.name}
-                          description={`${items.title}`}
-                          makeHtml={makeHtml}
-                          key={index}
-                          created_at={items.created_at}
-                          reading_time={items.reading_time}
-                          id={items.id}
-                        />
-                      </>
-                    );
-                  })
-                : "no data"}
+              {loading ? (
+                "loading....."
+              ) : (
+                <div className='row'>
+                  {data.length
+                    ? data.map((items, index) => {
+                        return (
+                          <>
+                            <FeaturedCards
+                              image={items.image}
+                              hashtags={items.hash_tags}
+                              title={items.name}
+                              description={`${items.title}`}
+                              makeHtml={makeHtml}
+                              key={index}
+                              created_at={items.created_at}
+                              reading_time={items.reading_time}
+                              id={items.id}
+                            />
+                          </>
+                        );
+                      })
+                    : "no data"}
+                </div>
+              )}
             </div>
-          )}
+            <div className='col-xl-3 col-md-4'>
+              <HashtagAndCatagories
+                type='hashtag'
+                image={hash}
+                title={`Trending Hastag`}
+                addEmail={addEmail}
+                hashtags={allHashTag}
+                rightOne={succesStoriesRight1}
+                rightTwo={succesStoriesRight2}
+              />
+            </div>
+          </div>
         </div>
-        <div>
-          <HashtagAndCatagories
-            type='hashtag'
-            image={hash}
-            title={`Trending Hastag`}
-            addEmail={addEmail}
-            hashtags={allHashTag}
-            rightOne={succesStoriesRight1}
-            rightTwo={succesStoriesRight2}
-          />
-        </div>
-      </div>
+      </section>
       <Footer />
     </div>
   );

@@ -11,12 +11,12 @@ import MailOutlineRoundedIcon from '@mui/icons-material/MailOutlineRounded';
 
 export const SocialMedia = () => {
   return (
-    <section className='socialMedia'>
+    <section className='sk-socialMedia-sec'>
       <div className="container">
         <div className="row align-items-center">
-          <div class='col-xl-6 col-md-4 com-sm-6'>
-          <div className='sk-social-icon'>
-            <div className="mb-2"><img src={logo} alt='Company Logo' /></div>
+          <div class='col-xl-6 col-md-4 com-sm-12'>
+          <div className='sk-social-icon text-left'>
+            <div className="mb-3"><img src={logo} alt='Company Logo' /></div>
             <ul>
               <li>
                 <a href='javascript:;'>
@@ -46,13 +46,13 @@ export const SocialMedia = () => {
             </ul>
             </div>
           </div>
-          <div className="col-xl-3 col-md-4 col-sm-6">
+          <div className="col-xl-3 col-md-4 col-sm-12">
             <div className="sk-footer-menu">
               <h5>For Information</h5>
               <p><a href="mailto:info@shekunj.com"><MailOutlineRoundedIcon /> info@shekunj.com</a> </p>
             </div>
           </div>
-          <div className="col-xl-3 col-md-4 col-sm-6">
+          <div className="col-xl-3 col-md-4 col-sm-12">
             <div className="sk-footer-menu">
               <h5>For Support</h5>
               <p><a href="mailto:support@shekunj.com"><MailOutlineRoundedIcon /> support@shekunj.com</a> </p>

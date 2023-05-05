@@ -80,8 +80,9 @@ $breakpoint-medium: 1024px;
   background: #222;
   justify-content: center;
   align-items: center;
-  color: #fff;
-  padding: 10px 0;
+  color: #cdcdcd;
+  ;
+  padding: 15px 0;
 }
 .footer .sk-footer-menu ul {
   list-style: none;
@@ -100,6 +101,15 @@ $breakpoint-medium: 1024px;
   font-size: 15px;
   line-height: 30px;
   color: #cdcdcd;
+  transition: all 0.3s;
+}
+.sk-socialMedia-sec{
+  border-bottom: 1px solid #343434;
+  padding: 50px 0;
+}
+.footer .sk-footer-menu ul li a:hover{
+  color: #d3317d;
+  text-decoration: none;
 }
 .sk-footer-menu p {
   margin-bottom: 0;
@@ -123,13 +133,9 @@ $breakpoint-medium: 1024px;
   padding: 4px 0;
 }
 .socialMedia {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
+ 
   .img {
-    border-radius: 10px;
+   
     &:hover {
       box-shadow: 0px 4px 20px #d3317d;
     }
@@ -147,4 +153,24 @@ $breakpoint-medium: 1024px;
     justify-content: space-around;
     align-items: center;
   }
+  .sk-socialMedia-sec{
+    text-align: center;
+  }
+  .sk-socialMedia-sec .sk-social-icon {
+    margin-bottom: 20px;
+  }
+.sk-socialMedia-sec .sk-social-icon {
+    margin-bottom: 20px;
+    text-align: center;
+    justify-content: center;
+}
+.sk-socialMedia-sec .sk-social-icon img{
+  text-align: center;
+  display: block;
+  margin: auto;
+}
+.sk-socialMedia-sec .sk-social-icon ul {
+    justify-content: center;
+  }
+
 }

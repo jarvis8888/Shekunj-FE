@@ -55,7 +55,7 @@ function TopNavbar() {
 
   return (
     <div className='header-top'>
-      <nav>
+      <nav className="">
         <ul>
           <li className='mobile'>
             <a href='/event'>Events</a>
