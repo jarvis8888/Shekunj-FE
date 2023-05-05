@@ -117,6 +117,15 @@ const Navbar = (props) => {
         >
           {t("header.heading.8")}
         </a>
+        <a href='/event' className='mobile-show'>
+          Events
+        </a>
+        <a href='/blogs' className='mobile-show'>
+          Blog
+        </a>
+        <a href='/more-faq' className='mobile-show'>
+          FAQ
+        </a>
         <span onClick={() => history.push(routingConstants.SEARCH)}>
           <SearchIcon />
         </span>
