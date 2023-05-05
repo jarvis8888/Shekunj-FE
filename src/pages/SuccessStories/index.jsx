@@ -318,7 +318,7 @@ function SuccessStory() {
                   <>
                     <FeaturedCards
                       image={items.image}
-                      hashtags={items.hash_tags}
+                      hashtags={items.hash_tags || []}
                       title={items.name}
                       description={`${items.title}`}
                       makeHtml={makeHtml}
@@ -379,7 +379,7 @@ function SuccessStory() {
                           <>
                             <TrendingCards
                               image={items.image}
-                              hashtags={items.hash_tags}
+                              hashtags={items.hash_tags || []}
                               title={items.name}
                               description={`${items.title}`}
                               makeHtml={makeHtml}
@@ -403,7 +403,7 @@ function SuccessStory() {
             image={hash}
             title={`Trending Hastag`}
             addEmail={addEmail}
-            hashtags={successStories?.all_hash_tags}
+            hashtags={successStories?.all_hash_tags || []}
             rightOne={succesStoriesRight1}
             rightTwo={succesStoriesRight2}
           />
