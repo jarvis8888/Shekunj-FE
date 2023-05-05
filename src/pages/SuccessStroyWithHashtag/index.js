@@ -44,29 +44,28 @@ const SuccessStroyWithHashtag = () => {
     return htmlNode.innerHTML;
   };
 
-  const addEmail = (email) => {
-    navigator.geolocation.getCurrentPosition(async function (position, values) {
-      const latitude = position.coords.latitude;
-      const longitude = position.coords.longitude;
+  // const addEmail = (email) => {
+  //   navigator.geolocation.getCurrentPosition(async function (position, values) {
+  //     const latitude = position.coords.latitude;
+  //     const longitude = position.coords.longitude;
 
-      let params = {
-        latitude: latitude.toString(),
-        longitude: longitude.toString(),
-      };
-      axios
-        .post("/private_adds/click_add/", {
-          // add_email:`${adds[0]?.add_email}`
-          add_email: email,
-          latitude: params.latitude.toString(),
-          longitude: params.longitude.toString(),
-        })
-        .then((response) => {
-          // setAdds(response.data.results);
-          console.log("addEmailresponse", response);
-        });
-    });
-  };
-
+  //     let params = {
+  //       latitude: latitude.toString(),
+  //       longitude: longitude.toString(),
+  //     };
+  //     axios
+  //       .post("/private_adds/click_add/", {
+  //         // add_email:`${adds[0]?.add_email}`
+  //         add_email: email,
+  //         latitude: params.latitude.toString(),
+  //         longitude: params.longitude.toString(),
+  //       })
+  //       .then((response) => {
+  //         // setAdds(response.data.results);
+  //         console.log("addEmailresponse", response);
+  //       });
+  //   });
+  // };
   useEffect(() => {
     dispatch(adsList());
     navigator.geolocation.getCurrentPosition(
@@ -102,11 +101,22 @@ const SuccessStroyWithHashtag = () => {
         // alert("Your location is blocked")
         axios.get(`/private_adds/private_add`).then((response) => {
           if (response && response.data.results.length > 0) {
+            let filterArray2 = response.data.results.filter((item, index) => {
+              return item.image_type === "success_stories_right1";
+            });
+
+            setSuccesStoriesRight1(filterArray2);
+            let filterArray3 = response.data.results.filter((item, index) => {
+              return item.image_type === "success_stories_right2";
+            });
+
+            setSuccesStoriesRight2(filterArray3);
           }
         });
       },
     );
   }, []);
+
   useEffect(() => {
     if (state) {
       getSuccessStroyWithHashtagData(state);
@@ -116,8 +126,8 @@ const SuccessStroyWithHashtag = () => {
   return (
     <div>
       <Header />
-      <section className="sk-hashtag-sec">
-        <div className="container">
+      <section className='sk-hashtag-sec'>
+        <div className='container'>
           <div className='row'>
             <div className='col-xl-9 col-md-8'>
               <h4 className='Hashtag_container_title'>
@@ -155,7 +165,7 @@ const SuccessStroyWithHashtag = () => {
                 type='hashtag'
                 image={hash}
                 title={`Trending Hastag`}
-                addEmail={addEmail}
+                // addEmail={addEmail}
                 hashtags={allHashTag}
                 rightOne={succesStoriesRight1}
                 rightTwo={succesStoriesRight2}

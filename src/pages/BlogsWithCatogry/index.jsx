@@ -107,6 +107,16 @@ const BlogWithCatogry = () => {
         // alert("Your location is blocked")
         axios.get(`/private_adds/private_add`).then((response) => {
           if (response && response.data.results.length > 0) {
+            let filterArray2 = response.data.results.filter((item, index) => {
+              return item.image_type === "blog_index_right1";
+            });
+
+            setSuccesStoriesRight1(filterArray2);
+            let filterArray3 = response.data.results.filter((item, index) => {
+              return item.image_type === "blog_index_right2";
+            });
+
+            setSuccesStoriesRight2(filterArray3);
           }
         });
       },
@@ -153,7 +163,7 @@ const BlogWithCatogry = () => {
           <HashtagAndCatagories
             image={catagorie}
             title={`Categories`}
-            addEmail={addEmail}
+            // addEmail={addEmail}
             hashtags={allHashTag}
             rightOne={succesStoriesRight1}
             rightTwo={succesStoriesRight2}
