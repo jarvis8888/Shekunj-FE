@@ -6,8 +6,10 @@ import TopNavbar from "./TopNavbar";
 const Header = ({ page, subPage }) => {
   return (
     <>
-      <TopNavbar />
-      <Navbar />
+      <header className="">
+        <TopNavbar />
+        <Navbar />
+      </header>
     </>
   );
 };

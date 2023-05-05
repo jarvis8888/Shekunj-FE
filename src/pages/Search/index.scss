@@ -11,6 +11,7 @@ section {
   padding: 80px 0;
   position: relative;
   border-bottom: 1px solid #d9d9d98d;
+  z-index: -1;
 }
 .sk-search-sec .sk-item-box .sk-icon {
   margin-bottom: 15px;
@@ -200,7 +201,7 @@ section {
 }
 .sk-card-box {
   box-shadow: 0px 6px 16px 0px rgba(143, 155, 178, 0.2);
-  border-radius: 5px;
+  border-radius: 4px;
   transition: all 0.3s;
   margin-bottom: 56px;
   height: calc(100% - 30px);
