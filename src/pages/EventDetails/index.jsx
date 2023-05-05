@@ -493,8 +493,47 @@ const EventDetails = () => {
                   </div>
                   <div className='sk-eventDetail-content'>
                     <div className='sk-eventSocial-chiptag'>
-                      <div className='sk-edetail-chip'>
-                        <span>{eventsDetails?.genre_name}</span>
+                      <div>
+                        <div className='sk-edetail-chip'>
+                          <span>{eventsDetails?.genre_name}</span>
+                        </div>
+                        <div className='sk-details-datetime'>
+                          <ul>
+                            <li>
+                              {" "}
+                              <AccessTimeIcon />{" "}
+                              <span>
+                                {" "}
+                                {time_left(
+                                  eventsDetails?.start_date,
+                                  eventsDetails?.start_time,
+                                  eventsDetails?.end_date,
+                                  eventsDetails?.end_time,
+                                )}
+                              </span>{" "}
+                            </li>
+                            <li>
+                              {eventsDetails?.mode_of_event === "offline" ? (
+                                <>
+                                  {" "}
+                                  <img src={offlineicon} alt='' /> Offline{" "}
+                                </>
+                              ) : (
+                                <>
+                                  {" "}
+                                  <img src={onlineicon} alt='' /> Online{" "}
+                                </>
+                              )}
+                            </li>
+                            <li>
+                              {" "}
+                              <SchoolRoundedIcon /> {
+                                eventsDetails?.enrold_students
+                              }{" "}
+                              enrolled{" "}
+                            </li>
+                          </ul>
+                        </div>
                       </div>
                       <div className='sk-social-icon'>
                         <h6>Share this article</h6>
@@ -527,46 +566,9 @@ const EventDetails = () => {
                         </ul>
                       </div>
                     </div>
-                    <div className='sk-details-datetime'>
-                      <ul>
-                        <li>
-                          {" "}
-                          <AccessTimeIcon />{" "}
-                          <span>
-                            {" "}
-                            {time_left(
-                              eventsDetails?.start_date,
-                              eventsDetails?.start_time,
-                              eventsDetails?.end_date,
-                              eventsDetails?.end_time,
-                            )}
-                          </span>{" "}
-                        </li>
-                        <li>
-                          {eventsDetails?.mode_of_event === "offline" ? (
-                            <>
-                              {" "}
-                              <img src={offlineicon} alt='' /> Offline{" "}
-                            </>
-                          ) : (
-                            <>
-                              {" "}
-                              <img src={onlineicon} alt='' /> Online{" "}
-                            </>
-                          )}
-                        </li>
-                        <li>
-                          {" "}
-                          <SchoolRoundedIcon /> {
-                            eventsDetails?.enrold_students
-                          }{" "}
-                          enrolled{" "}
-                        </li>
-                      </ul>
-                    </div>
+                   
                     <h2>{eventsDetails?.title}</h2>
-                    <div
-                      className='sk-card-description'
+                    <div className='sk-card-description'
                       dangerouslySetInnerHTML={{
                         __html: makeHtml(eventsDetails?.about_event),
                       }}
@@ -652,9 +654,9 @@ const EventDetails = () => {
                         </span>
                       </div>
                       {errors.fullName && (
-                        <div className='sk-error-message'>
+                        <span className='sk-error-message'>
                           {errors.fullName}
-                        </div>
+                        </span>
                       )}
                       <div className='sk-eventForm-filed'>
                         <input
@@ -672,7 +674,7 @@ const EventDetails = () => {
                         </span>
                       </div>
                       {errors.email && (
-                        <div className='sk-error-message'>{errors.email}</div>
+                        <span className='sk-error-message'>{errors.email}</span>
                       )}
                       <div className='sk-eventForm-filed'>
                         <input
@@ -690,9 +692,9 @@ const EventDetails = () => {
                         </span>
                       </div>
                       {errors.whatsappNumber && (
-                        <div className='sk-error-message'>
+                        <span className='sk-error-message'>
                           {errors.whatsappNumber}
-                        </div>
+                        </span>
                       )}
                       <ul>
                         <div className='sk-eventForm-filed'>
@@ -727,14 +729,14 @@ const EventDetails = () => {
                           </span>
                         </div>
                         {errors.gender && (
-                          <div className='sk-error-message'>
+                          <span className='sk-error-message'>
                             {errors.gender}
-                          </div>
+                          </span>
                         )}
                         {errors.location && (
-                          <div className='sk-error-message'>
+                          <span className='sk-error-message'>
                             {errors.location}
-                          </div>
+                          </span>
                         )}
                       </ul>
                       <div className='sk-eventForm-filed'>

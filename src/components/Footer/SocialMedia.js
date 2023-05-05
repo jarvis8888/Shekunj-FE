@@ -1,89 +1,65 @@
 import React from "react";
 import "./footer.scss";
 import logo from "../../assets/images/whitelogo.svg";
-import twitter1 from "../../assets/images/twitter1.png";
-import facebook from "../../assets/images/facebook.png";
-import youTube from "../../assets/images/youTube.png";
-import linkedinlogo from "../../assets/images/linkedinlogo.png";
+import facebookicon from "../../assets/images/facebook.svg";
+import linkedinicon from "../../assets/images/linkedin.svg";
+import twittericon from "../../assets/images/twitter.svg";
+import pintresticon from "../../assets/images/pintrest.svg";
+import instagramicon from "../../assets/images/instagram.svg";
 import instagram from "../../assets/images/instagram.png";
+import MailOutlineRoundedIcon from '@mui/icons-material/MailOutlineRounded';
 
 export const SocialMedia = () => {
   return (
-    <div className='socialMedia'>
-      <div>
-        <div class='logo'>
-          <img src={logo} alt='Company Logo' />
-        </div>
-        <div class='social-media'>
-          <a href='#'>
-            <i class='fa fa-facebook'>
-              <img
-                className='img'
-                src={facebook}
-                alt='twitter1'
-                width={34}
-                height={34}
-              />
-            </i>
-          </a>
-          <a href='#'>
-            <i class='fa fa-twitter'>
-              {" "}
-              <img
-                className='img'
-                src={linkedinlogo}
-                alt='twitter1'
-                width={34}
-                height={34}
-              />
-            </i>
-          </a>
-          <a href='#'>
-            <i class='fa fa-instagram'>
-              {" "}
-              <img
-                className='img'
-                src={twitter1}
-                alt='twitter1'
-                width={34}
-                height={34}
-              />
-            </i>
-          </a>
-          <a href='#'>
-            <i class='fa fa-instagram'>
-              {" "}
-              <img
-                className='img'
-                src={instagram}
-                alt='twitter1'
-                width={34}
-                height={34}
-              />
-            </i>
-          </a>
-          <a href='#'>
-            <i class='fa fa-instagram'>
-              {" "}
-              <img
-                className='img'
-                src={youTube}
-                alt='twitter1'
-                width={34}
-                height={34}
-              />
-            </i>
-          </a>
+    <section className='socialMedia'>
+      <div className="container">
+        <div className="row align-items-center">
+          <div class='col-xl-6 col-md-4 com-sm-6'>
+          <div className='sk-social-icon'>
+            <div className="mb-2"><img src={logo} alt='Company Logo' /></div>
+            <ul>
+              <li>
+                <a href='javascript:;'>
+                  <img src={facebookicon} />
+                </a>
+              </li>
+              <li>
+                <a href='javascript:;'>
+                  <img src={linkedinicon} />
+                </a>
+              </li>
+              <li>
+                <a href='javascript:;'>
+                  <img src={twittericon} />
+                </a>
+              </li>
+              <li>
+                <a href='javascript:;'>
+                  <img src={pintresticon} />
+                </a>
+              </li>
+              <li>
+                <a href='javascript:;'>
+                  <img src={instagramicon} />
+                </a>
+              </li>
+            </ul>
+            </div>
+          </div>
+          <div className="col-xl-3 col-md-4 col-sm-6">
+            <div className="sk-footer-menu">
+              <h5>For Information</h5>
+              <p><a href="mailto:info@shekunj.com"><MailOutlineRoundedIcon /> info@shekunj.com</a> </p>
+            </div>
+          </div>
+          <div className="col-xl-3 col-md-4 col-sm-6">
+            <div className="sk-footer-menu">
+              <h5>For Support</h5>
+              <p><a href="mailto:support@shekunj.com"><MailOutlineRoundedIcon /> support@shekunj.com</a> </p>
+            </div>
+          </div>
         </div>
       </div>
-      <div>
-        <div style={{ color: "#fff" }}>For Information</div>
-        <div style={{ color: "#d3317d" }}>info@shekunj.com</div>
-      </div>
-      <div>
-        <div style={{ color: "#fff" }}>For Information</div>
-        <div style={{ color: "#d3317d" }}>info@shekunj.com</div>
-      </div>
-    </div>
+    </section>
   );
 };

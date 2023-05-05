@@ -286,11 +286,11 @@ button.want_btn {
   }
 
   .SuccStory_banner h2 {
-    font-size: 33px;
+    font-size: 32px;
   }
 
   .SuccStory_banner p {
-    font-size: 19px;
+    font-size: 18px;
   }
   .ads_story_cover_img {
     margin: 10px 0px !important;
@@ -464,6 +464,18 @@ button.want_btn {
     }
   }
 }
+.sk-storyMain-sec{
+  background: url(../../assets/images/storybanner.svg) no-repeat right center;
+  position: relative;
+}
+.sk-divider-bottom{
+  border-bottom: 1px solid #d9d9d9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0 30px;
+  margin-bottom: 50px;
+}
 .sk-storyHeading-top{
   font-size: 50px;
   font-weight: 500;
@@ -500,10 +512,11 @@ button.want_btn {
   }
 }
 .loadMore {
-  background-color: #000;
+  background-color: #020202;
   padding: 10px 30px;
   border-radius: 8px;
   color: #fff;
+  transition: all 0.3s;
 }
 .treading-card-gird {
   width: 90%;
