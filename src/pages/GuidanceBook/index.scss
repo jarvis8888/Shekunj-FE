@@ -1,7 +1,7 @@
-.guidance_book {
-  background: #ffe2ec;
-  padding: 80px 0;
-}
+// .guidance_book {
+//   background: #ffe2ec;
+//   padding: 80px 0;
+// }
 
 .guidance_book_form {
   background-color: #fff;
@@ -370,10 +370,82 @@ img.edit_icon_guidance {
 
 .css-1yq5fb3-MuiButtonBase-root-MuiIconButton-root {
   background-color: rgb(0 0 0 / 54%);
-  ;
 }
 
 .css-1yq5fb3-MuiButtonBase-root-MuiIconButton-root:hover {
   background-color: rgba(255, 142, 208, 0.54);
-  ;
+}
+
+.sk-bookc-sec{
+  background: linear-gradient(90.75deg, #F2D1C7 17.41%, #E7BED4 88.78%);
+  // padding: 60px 0;
+}
+.sk-bookTab-sec .sk-inline-field {
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+.sk-bookTab-sec .sk-inline-field label {
+  font-size: 18px;
+  font-weight: 400;
+  padding-right: 4px;
+  padding-left: 4px;
+}
+
+.sk-bookTab-sec .sk-inline-field input, .form-inline.sk-inline-field select  {
+    background: transparent;
+    border-bottom: 1px dashed rgba(32, 32, 32, 0.2);
+    font-size: 18px;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+}
+.sk-bookTab-sec .sk-inline-field input:focus{
+  background: transparent;
+}
+.form-inline.sk-inline-field select {
+  color: #777;
+}
+.form-inline.sk-inline-field select:focus{
+  background: transparent;
+}
+.sk-bookTab-sec .sk-btn-submit {
+  color: #fff;
+  border-radius: 5px;
+  font-weight: 600;
+  width: fit-content;
+}
+.sk-bookC-content h6 {
+  font-size: 18px;
+  font-weight: 400;
+  color: #3c3c3c;
+  position: relative;
+  padding-left: 40px;
+}
+
+.sk-bookC-content h2 {
+  font-size: 36px;
+  font-weight: 500;
+  color: #020202;
+}
+
+.sk-bookC-content h6:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: auto;
+  bottom: 0;
+  margin: auto;
+  height: 2px;
+  width: 30px;
+  background: #ec4a8a;
+}
+.sk-sendMain-btn{
+  margin-top: 30px;
+}
+.sk-bookC-content{
+  padding: 30px 0;
+}
+.sk-sendMain-btn button svg {
+  margin-left: 20px;
 }
