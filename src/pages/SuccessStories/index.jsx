@@ -28,6 +28,7 @@ import TrendingCards from "../../components/cards/TrendingCards";
 import hash from "../../assets/icons/svgs/hashtag.png";
 
 import httpServices from "../../utils/ApiServices";
+import { CustomLoader } from "../../components/customLoader/CustomLoader";
 
 function SuccessStory() {
   const history = useHistory();
@@ -35,20 +36,23 @@ function SuccessStory() {
 
   const { lan } = useSelector((state) => state.languageReducer);
   const { t } = useTranslation();
-  const [offset, setOffset] = useState(1);
-  const [page, setPage] = useState(1);
-  const pageLimit = 1;
+  const [offset, setOffset] = useState(0);
+  const [page, setPage] = useState(0);
+  const pageLimit = 5;
 
   const [featuredData, setFeaturedData] = useState([]);
+  const [currentFeaturedData, setCurrentFeaturedData] = useState([]);
   const [trendingData, setTrendingData] = useState([]);
   const [allHashTag, setAllHashTag] = useState([]);
   const [storiesBannerAds, setStoriesBannerAds] = useState([]);
   const [succesStoriesRight1, setSuccesStoriesRight1] = useState([]);
   const [succesStoriesRight2, setSuccesStoriesRight2] = useState([]);
   const [succesStoriesLeft, setSuccesStoriesLeft] = useState([]);
+  const [loading, setLoading] = useState(false);
   const detect = useDeviceDetect();
 
   const getAllSuccessStoryData = async (limit, offset) => {
+    setLoading(true);
     try {
       const url = `${apiConstants.COURSES.SUCCESS_STORY}?limit=${limit}&offset=${offset}`;
       const data = await httpServices.get(url);
@@ -57,24 +61,43 @@ function SuccessStory() {
         trending_success_stories,
         all_hash_tags,
       } = data;
-      const num = Math.floor(Math.random() * 4);
-      const res = featured_success_stories?.results ?? [];
-      const addObjectData = { id: "advertisement" };
-      const newFeaturedData = [
-        ...res.slice(0, num),
-        addObjectData,
-        ...res.slice(num),
-      ];
-      setFeaturedData((prevFeaturedData) => [
-        ...prevFeaturedData,
-        ...newFeaturedData,
-      ]);
-      setTrendingData(trending_success_stories);
+      if (featured_success_stories?.results?.length > 0) {
+        const num = Math.floor(Math.random() * 4);
+        const res = featured_success_stories?.results ?? [];
+        const addObjectData = { id: "advertisement" };
+        const newFeaturedData = [
+          ...res.slice(0, num),
+          addObjectData,
+          ...res.slice(num),
+        ];
+        setFeaturedData((prevFeaturedData) => [
+          ...prevFeaturedData,
+          ...newFeaturedData,
+        ]);
+      } else {
+        setCurrentFeaturedData(featured_success_stories);
+      }
+      if (trending_success_stories?.results?.length > 0) {
+        const res = trending_success_stories?.results ?? [];
+        const addObjectData = { id: "advertisement" };
+        const newFeaturedData = [];
+
+        for (let i = 0; i < res.length; i++) {
+          if (i % 3 === 0 && i !== 0) {
+            newFeaturedData.push(addObjectData);
+          }
+          newFeaturedData.push(res[i]);
+        }
+        setTrendingData(newFeaturedData);
+      }
+
       setAllHashTag(all_hash_tags);
     } catch (error) {
     } finally {
+      setLoading(false);
     }
   };
+
   useEffect(() => {
     getAllSuccessStoryData(pageLimit, offset);
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
@@ -115,7 +138,7 @@ function SuccessStory() {
                 return item.image_type === "success_stories_box";
               });
 
-              setSuccesStoriesLeft(filterArray4); 
+              setSuccesStoriesLeft(filterArray4);
             }
           });
       },
@@ -200,169 +223,139 @@ function SuccessStory() {
   return (
     <div>
       <Header loginPage={true} page='story' />
-      {/* success story section1 start */}
-      <section className='sk-storyMain-sec'>
-        <div className='container'>
-          <div className='row'>
-            <div className='col-xl-6 col-md-12'>
-              <div className='sk-story-content'>
-                <h1
-                  className='sk-storyHeading-top'
-                  dangerouslySetInnerHTML={{
-                    __html: makeHtml(t("phase2.SuccessStoryContent.title1")),
-                  }}
-                />
-                <h1
-                  className='sk-storyHeading-top'
-                  dangerouslySetInnerHTML={{
-                    __html: makeHtml(t("phase2.SuccessStoryContent.title2")),
-                  }}
-                />
-                <p>{t("phase2.SuccessStoryContent.description")}</p>
-              </div>
-              <button className='sk-allStory-btn'>
-                {t("phase2.SuccessStoryContent.buttonTitle")}
-              </button>
-            </div>
-          </div>
+      {loading ? (
+        <div>
+          <CustomLoader />
         </div>
-      </section>
-
-      {/* success story section1 end */}
-      {/* Adds Section start */}
-      <section className='sk-successStories-sec'>
-        <div className='container'>
-          <div className='row'>
-            <div className='col-md-12'>
-              <AddsBanner
-                color='#F4F4F4'
-                children={
-                  <>
-                    {storiesBannerAds.length > 0 && (
-                      <div
-                        className='ads_home_cover '
-                        // onClick={() => addEmail(storiesBannerAds[0]?.add_email)}
-                      >
-                        <a
-                          href={storiesBannerAds[0]?.url_adds}
-                          target='_blank'
-                          rel='noreferrer'
-                        >
-                          {detect.isMobile
-                            ? storiesBannerAds[0]?.image_mobile && (
-                                <img
-                                  src={storiesBannerAds[0]?.image_mobile}
-                                  alt=''
-                                  className='ads_story_cover_img'
-                                />
-                              )
-                            : storiesBannerAds[0]?.image && (
-                                <img
-                                  src={storiesBannerAds[0]?.image}
-                                  alt=''
-                                  className='ads_story_cover_img'
-                                />
-                              )}
-                        </a>
-                      </div>
-                    )}
-                  </>
-                }
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* Adds Section end */}
-      {/* Featured Stories start */}
-      <section>
-        <div className='container'>
-          <div className='row'>
-            <div className='col-xl-9 col-md-8 featured-stories'>
-              <div className='title'>
-                <img src={fire} alt='fire' width={30} height={30} />
-                <h4>Featured Stories </h4>
-              </div>
+      ) : (
+        <>
+          <section className='sk-storyMain-sec'>
+            <div className='container'>
               <div className='row'>
-                {featuredData?.map((items, index) => {
-                  if (items.id === "advertisement") {
-                    return (
+                <div className='col-xl-6 col-md-12'>
+                  <div className='sk-story-content'>
+                    <h1
+                      className='sk-storyHeading-top'
+                      dangerouslySetInnerHTML={{
+                        __html: makeHtml(
+                          t("phase2.SuccessStoryContent.title1"),
+                        ),
+                      }}
+                    />
+                    <h1
+                      className='sk-storyHeading-top'
+                      dangerouslySetInnerHTML={{
+                        __html: makeHtml(
+                          t("phase2.SuccessStoryContent.title2"),
+                        ),
+                      }}
+                    />
+                    <p>{t("phase2.SuccessStoryContent.description")}</p>
+                  </div>
+                  <button className='sk-allStory-btn'>
+                    {t("phase2.SuccessStoryContent.buttonTitle")}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section className='sk-successStories-sec'>
+            <div className='container'>
+              <div className='row'>
+                <div className='col-md-12'>
+                  <AddsBanner
+                    color='#F4F4F4'
+                    children={
                       <>
-                        {succesStoriesLeft.length > 0 && (
+                        {storiesBannerAds.length > 0 && (
                           <div
-                            className='col-md-6'
-                            // className='col-md-12 ads_home_cover '
-                            // onClick={() => addEmail(succesStoriesLeft[0]?.add_email)}
+                            className='ads_home_cover '
+                            // onClick={() => addEmail(storiesBannerAds[0]?.add_email)}
                           >
-                            <div className='card'>
-                              <a
-                                href={succesStoriesLeft[0]?.url_adds}
-                                target='_blank'
-                                rel='noreferrer'
-                              >
-                                {detect.isMobile
-                                  ? succesStoriesLeft[0]?.image_mobile && (
-                                      <img
-                                        src={succesStoriesLeft[0]?.image_mobile}
-                                        alt=''
-                                        // className='ads_story_cover_img'
-                                      />
-                                    )
-                                  : succesStoriesLeft[0]?.image && (
-                                      <img
-                                        src={succesStoriesLeft[0]?.image}
-                                        alt=''
-                                        // className='ads_story_cover_img'
-                                      />
-                                    )}
-                              </a>
-                            </div>
+                            <a
+                              href={storiesBannerAds[0]?.url_adds}
+                              target='_blank'
+                              rel='noreferrer'
+                            >
+                              {detect.isMobile
+                                ? storiesBannerAds[0]?.image_mobile && (
+                                    <img
+                                      src={storiesBannerAds[0]?.image_mobile}
+                                      alt=''
+                                      className='ads_story_cover_img'
+                                    />
+                                  )
+                                : storiesBannerAds[0]?.image && (
+                                    <img
+                                      src={storiesBannerAds[0]?.image}
+                                      alt=''
+                                      className='ads_story_cover_img'
+                                    />
+                                  )}
+                            </a>
                           </div>
                         )}
                       </>
-                    );
-                  } else {
-                    return (
-                      <>
-                        <FeaturedCards
-                          image={items.image}
-                          hashtags={
-                            items.hash_tags === null ? [] : items.hash_tags
-                          }
-                          title={items.name}
-                          description={`${items.title}`}
-                          makeHtml={makeHtml}
-                          key={index}
-                          created_at={items.created_at}
-                          reading_time={items.reading_time}
-                          id={items.id}
-                        />
-                      </>
-                    );
-                  }
-                })}
-              </div>
-              <div className='d-flex justify-content-center align-items-center py-4'>
-                <button
-                  disabled={true}
-                  className='loadMore'
-                  onClick={() => setOffset(offset + 5)}
-                >
-                  Load More
-                </button>
-              </div>
-
-              <div>
-                <div className='title'>
-                  <img src={fire} alt='fire' width={30} height={30} />
-                  <h4>Trending Stories </h4>
+                    }
+                  />
                 </div>
-                <div className='row'>
-                  {trendingData?.results?.length
-                    ? trendingData?.results.map((items, index) => {
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <div className='container'>
+              <div className='row'>
+                <div className='col-xl-9 col-md-8 featured-stories'>
+                  <div className='title'>
+                    <img src={fire} alt='fire' width={30} height={30} />
+                    <h4>Featured Stories </h4>
+                  </div>
+                  <div className='row'>
+                    {featuredData?.map((items, index) => {
+                      if (items.id === "advertisement") {
                         return (
                           <>
-                            <TrendingCards
+                            {succesStoriesLeft.length > 0 && (
+                              <div
+                                className='col-md-6'
+                                // className='col-md-12 ads_home_cover '
+                                // onClick={() => addEmail(succesStoriesLeft[0]?.add_email)}
+                              >
+                                <div className='card'>
+                                  <a
+                                    href={succesStoriesLeft[0]?.url_adds}
+                                    target='_blank'
+                                    rel='noreferrer'
+                                  >
+                                    {detect.isMobile
+                                      ? succesStoriesLeft[0]?.image_mobile && (
+                                          <img
+                                            src={
+                                              succesStoriesLeft[0]?.image_mobile
+                                            }
+                                            alt=''
+                                            // className='ads_story_cover_img'
+                                          />
+                                        )
+                                      : succesStoriesLeft[0]?.image && (
+                                          <img
+                                            src={succesStoriesLeft[0]?.image}
+                                            alt=''
+                                            // className='ads_story_cover_img'
+                                          />
+                                        )}
+                                  </a>
+                                </div>
+                              </div>
+                            )}
+                          </>
+                        );
+                      } else {
+                        return (
+                          <>
+                            <FeaturedCards
                               image={items.image}
                               hashtags={
                                 items.hash_tags === null ? [] : items.hash_tags
@@ -372,30 +365,111 @@ function SuccessStory() {
                               makeHtml={makeHtml}
                               key={index}
                               created_at={items.created_at}
+                              reading_time={items.reading_time}
                               id={items.id}
                             />
                           </>
                         );
-                      })
-                    : null}
+                      }
+                    })}
+                  </div>
+                  <div className='d-flex justify-content-center align-items-center py-4'>
+                    <button
+                      disabled={currentFeaturedData?.results?.length === 0}
+                      className='loadMore'
+                      onClick={() => setOffset(offset + 5)}
+                    >
+                      Load More
+                    </button>
+                  </div>
+
+                  <div>
+                    <div className='title'>
+                      <img src={fire} alt='fire' width={30} height={30} />
+                      <h4>Trending Stories </h4>
+                    </div>
+                    <div className='row'>
+                      {trendingData?.map((items, index) => {
+                        if (items.id === "advertisement") {
+                          return (
+                            <>
+                              {storiesBannerAds.length > 0 && (
+                                <div
+                                  className='col-md-6'
+                                  // className='col-md-12 ads_home_cover '
+                                  // onClick={() => addEmail(storiesBannerAds[0]?.add_email)}
+                                >
+                                  <div className='card'>
+                                    <a
+                                      href={storiesBannerAds[0]?.url_adds}
+                                      target='_blank'
+                                      rel='noreferrer'
+                                    >
+                                      {detect.isMobile
+                                        ? storiesBannerAds[0]?.image_mobile && (
+                                            <img
+                                              src={
+                                                storiesBannerAds[0]
+                                                  ?.image_mobile
+                                              }
+                                              alt=''
+                                              // className='ads_story_cover_img'
+                                            />
+                                          )
+                                        : storiesBannerAds[0]?.image && (
+                                            <img
+                                              src={storiesBannerAds[0]?.image}
+                                              alt=''
+                                              // className='ads_story_cover_img'
+                                            />
+                                          )}
+                                    </a>
+                                  </div>
+                                </div>
+                              )}
+                            </>
+                          );
+                        } else {
+                          return (
+                            <>
+                              <TrendingCards
+                                image={items.image}
+                                hashtags={
+                                  items.hash_tags === null
+                                    ? []
+                                    : items.hash_tags
+                                }
+                                title={items.name}
+                                description={`${items.title}`}
+                                makeHtml={makeHtml}
+                                key={index}
+                                created_at={items.created_at}
+                                id={items.id}
+                              />
+                            </>
+                          );
+                        }
+                      })}
+                    </div>
+                  </div>
+                </div>
+                <div className='col-xl-3 col-md-4 ads'>
+                  <HashtagAndCatagories
+                    type='hashtag'
+                    image={hash}
+                    title={`Trending Hastag`}
+                    // addEmail={addEmail}
+                    hashtags={allHashTag}
+                    rightOne={succesStoriesRight1}
+                    rightTwo={succesStoriesRight2}
+                  />
                 </div>
               </div>
             </div>
-            <div className='col-xl-3 col-md-4 ads'>
-              <HashtagAndCatagories
-                type='hashtag'
-                image={hash}
-                title={`Trending Hastag`}
-                // addEmail={addEmail}
-                hashtags={allHashTag}
-                rightOne={succesStoriesRight1}
-                rightTwo={succesStoriesRight2}
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* Featured Stories end  */}
+          </section>
+        </>
+      )}
+
       <Footer />
     </div>
   );
