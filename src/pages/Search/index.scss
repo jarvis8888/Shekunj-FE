@@ -7,7 +7,7 @@ section {
 }
 .sk-search-sec {
   background: url(../../assets/images/search-bg.png) no-repeat center center;
-  background-size: 100%;
+  background-size: cover;
   padding: 50px 0;
   position: relative;
   border-bottom: 1px solid #d9d9d98d;
@@ -181,9 +181,28 @@ section {
   text-decoration: none;
   text-align: center;
 }
+.sk-bottomAdd-sec{
+  background: #f4f4f4;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.sk-bottomAdd-sec img{
+  display: block;
+  margin: auto;
+  text-align: center;
+}
 
 .sk-btn-register:hover {
   text-decoration: none;
+}
+.sk-tags-event {
+  position: absolute;
+  bottom: 15px;
+  left: 0;
+  right: 0;
+  margin: auto 15px;
 }
 .sk-time-education ul li:last-child {
   text-align: right;
@@ -194,15 +213,12 @@ section {
   padding: 4px 8px;
   border-radius: 2px;
 }
-.sk-eventcard-sec .sk-card-box {
-  height: fit-content;
-  margin-bottom: 30px;
-}
+
 .sk-card-box {
   box-shadow: 0px 6px 16px 0px rgba(143, 155, 178, 0.2);
   border-radius: 4px;
   transition: all 0.3s;
-  margin-bottom: 56px;
+  margin-bottom: 60px;
   height: calc(100% - 30px);
   position: relative;
 }

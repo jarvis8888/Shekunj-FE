@@ -2,7 +2,7 @@ body {
   font-family: "Poppins", sans-serif !important;
 }
 .Navbar {
-  height: 80px;
+  height: 70px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -149,6 +149,9 @@ body {
   #subMenu-mobile {
     display: flex;
   }
+}
+.nav-logo img {
+  max-width: 154px;
 }
 
 .header-top {

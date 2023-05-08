@@ -64,10 +64,15 @@ img {
     justify-content: space-between;
     align-items: center;
     color: #999;
-    font-size: 13px;
+    font-size: 12px;
     span {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
       svg {
-        font-size: 18px;
+        font-size: 16px;
         margin-right: 5px;
         vertical-align: top;
       }
@@ -86,6 +91,10 @@ img {
     font-size: 14px;
     transition: all 0.3s;
     padding: 5px 8px;
+    max-width: fit-content;
+    width: min-content;
+    min-width: -moz-fit-content;
+    min-width: fit-content;
     &:hover{
       background: #D3317D;
       color: #fff;
@@ -101,7 +110,6 @@ img {
   .card__bottom {
     display: flex;
     align-items: center;
-    
     }
   }
 }
@@ -118,15 +126,17 @@ img {
   font-size: 22px;
 }
 .blog-card {
-  display: flex;
+  // display: flex;
   margin-bottom: 1rem;
+  border-bottom: 1px solid #d9d9d9;
+  padding-bottom: 1rem;
 
   &__image {
     flex: 80px 0 0;
     height: auto;
     background-size: cover;
     background-position: center;
-    margin-right: 10px;
+    margin-bottom: 10px;
     @media screen and (max-width: 768px) {
       display: flex;
       flex-direction: column;
@@ -220,6 +230,9 @@ img {
   background: #fff;
   color: #D3317D;
   transition: all 0.3s;
+  max-width: fit-content;
+  width: min-content;
+  min-width: fit-content;
   
   &:hover {
     background: #D3317D;

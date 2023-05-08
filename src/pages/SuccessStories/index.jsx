@@ -115,7 +115,7 @@ function SuccessStory() {
                 return item.image_type === "success_stories_box";
               });
 
-              setSuccesStoriesLeft(filterArray4);
+              setSuccesStoriesLeft(filterArray4); 
             }
           });
       },

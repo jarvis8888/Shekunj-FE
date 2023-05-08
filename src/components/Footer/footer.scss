@@ -116,10 +116,22 @@ $breakpoint-medium: 1024px;
 }
 .sk-footer-menu p a{
   color: #d3317d;
-  font-size: 14px;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+}
+.sk-social-icon ul li a img {
+    max-width: 30px;
+}
+.sk-footer-menu img{
+  max-width: 120px;
+}
+.sk-social-icon img{
+  max-width: 130px;
 }
 .sk-footer-menu p a svg{
   margin-right: 5px;
+  font-size: 20px;
 }
 .sk-social-icon ul {
   list-style: none;
