@@ -394,8 +394,7 @@ function SuccessStory() {
                           return (
                             <>
                               {storiesBannerAds.length > 0 && (
-                                <div
-                                  className='col-md-6'
+                                <div className='col-xl-12'
                                   // className='col-md-12 ads_home_cover '
                                   // onClick={() => addEmail(storiesBannerAds[0]?.add_email)}
                                 >
