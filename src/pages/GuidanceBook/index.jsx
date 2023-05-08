@@ -217,9 +217,9 @@ const GuidancePage = () => {
                             <label>Hey, My name is </label>
                             <input
                               type='text'
-                              id='email2'
-                              placeholder='Enter email'
-                              name='email'
+                              id=''
+                              placeholder='Full Name'
+                              name=''
                             />
                             <label>, I am</label>
                             <select>
