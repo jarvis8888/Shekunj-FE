@@ -45,6 +45,7 @@ const YouMayLikeCarousel = () => {
         >
           &#8249;
         </button>
+
         <div className='YouMayLikeCarouselCarousel__nav'>
           {data?.map((_, index) => (
             <button
@@ -56,6 +57,7 @@ const YouMayLikeCarousel = () => {
             />
           ))}
         </div>
+
         <button
           className='YouMayLikeCarouselCarousel__button YouMayLikeCarouselCarousel--right'
           onClick={goToNextSlide}

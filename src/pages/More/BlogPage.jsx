@@ -416,33 +416,35 @@ function BlogPage() {
                   return (
                     <>
                       {blogBoxAdds.length > 0 && (
-                        <div
-                          className='col-md-6'
-                          // className='col-md-12 ads_home_cover '
-                          // onClick={() => addEmail(blogBoxAdds[0]?.add_email)}
-                        >
-                          <div className='card'>
-                            <a
-                              href={blogBoxAdds[0]?.url_adds}
-                              target='_blank'
-                              rel='noreferrer'
-                            >
-                              {detect.isMobile
-                                ? blogBoxAdds[0]?.image_mobile && (
-                                    <img
-                                      src={blogBoxAdds[0]?.image_mobile}
-                                      alt=''
-                                      // className='ads_story_cover_img'
-                                    />
-                                  )
-                                : blogBoxAdds[0]?.image && (
-                                    <img
-                                      src={blogBoxAdds[0]?.image}
-                                      alt=''
-                                      // className='ads_story_cover_img'
-                                    />
-                                  )}
-                            </a>
+                        <div className="row">
+                          <div
+                            className='col-md-12'
+                            // className='col-md-12 ads_home_cover '
+                            // onClick={() => addEmail(blogBoxAdds[0]?.add_email)}
+                          >
+                            <div className='card'>
+                              <a
+                                href={blogBoxAdds[0]?.url_adds}
+                                target='_blank'
+                                rel='noreferrer'
+                              >
+                                {detect.isMobile
+                                  ? blogBoxAdds[0]?.image_mobile && (
+                                      <img
+                                        src={blogBoxAdds[0]?.image_mobile}
+                                        alt=''
+                                        // className='ads_story_cover_img'
+                                      />
+                                    )
+                                  : blogBoxAdds[0]?.image && (
+                                      <img
+                                        src={blogBoxAdds[0]?.image}
+                                        alt=''
+                                        // className='ads_story_cover_img'
+                                      />
+                                    )}
+                              </a>
+                            </div>
                           </div>
                         </div>
                       )}

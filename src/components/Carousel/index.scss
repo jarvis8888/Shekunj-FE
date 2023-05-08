@@ -146,6 +146,23 @@ a.item {
   width: auto;
   // padding: 10px 0;
 }
+.YouMayLikeCarouselCarousel--left {
+  bottom: 0 !important;
+  top: 0;
+  margin: auto;
+  padding: 0;
+  width: auto !important;
+  height: auto !important;
+}
+.YouMayLikeCarouselCarousel--right {
+  bottom: 0 !important;
+  top: 0;
+  right: 20px !important;
+  margin: auto !important;
+  height: auto !important;
+  padding: 0 !important;
+  width: 0 !important;
+}
 
 // .similar-coursesslider .boxnew {
 //   background: #ffffff;

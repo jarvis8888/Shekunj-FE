@@ -309,7 +309,7 @@ const GuidancePage = () => {
                   <form>
                     <div className="form-inline sk-inline-field">
                       <label>Hey, My name is </label>
-                      <input type="text" id="email2" placeholder="Enter email" name="email" />
+                      <input type="text" placeholder="Full Name" />
                       <label>, I am</label>
                         <select>
                           <option>Year</option>
