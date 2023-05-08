@@ -48,29 +48,60 @@ function BlogPage() {
   const history = useHistory();
   const dispatch = useDispatch();
   const [offset, setOffset] = useState(0);
-  const pageLimit = 20;
+  const pageLimit = 5;
 
   const { lan } = useSelector((state) => state.languageReducer);
   const { t } = useTranslation();
   const [blogBoxAdds, setBlogBoxAdds] = useState([]);
   const [blogRight1, bolgRight1] = useState([]);
   const [blogRight2, bolgRight2] = useState([]);
+  const [blogLeft, bolgLeft] = useState([]);
   const detect = useDeviceDetect();
 
   const [topTrendingBlogs, setTopTrendingBlogs] = useState([]);
   const [latestBlogs, setLatestBlogs] = useState([]);
   const [trendingBlogs, setTrendingBlogs] = useState([]);
   const [blogsCategories, setBlogsCategories] = useState([]);
+  const [currentBlogData, setCurrentBlogData] = useState([]);
 
   const getAllBlogsData = async (limit, offset) => {
     try {
       const url = `${apiConstants.ALL_BLOGS.ALL_BLOGS}?limit=${limit}&offset=${offset}`;
       const data = await httpServices.get(url);
       const { latest_blogs, trending_blogs, blog_categories } = data;
-      setTopTrendingBlogs(trending_blogs);
-      setLatestBlogs(latest_blogs);
+
+      if (latest_blogs?.results?.length > 0) {
+        const num = Math.floor(Math.random() * 4);
+        const res = latest_blogs?.results ?? [];
+        const addObjectData = { id: "advertisement" };
+        const newFeaturedData = [
+          ...res.slice(0, num),
+          addObjectData,
+          ...res.slice(num),
+        ];
+        setLatestBlogs((prevFeaturedData) => [
+          ...prevFeaturedData,
+          ...newFeaturedData,
+        ]);
+      } else {
+        setCurrentBlogData(latest_blogs);
+      }
+      if (trending_blogs?.results?.length > 0) {
+        setTopTrendingBlogs(trending_blogs);
+
+        const res = trending_blogs?.results ?? [];
+        const addObjectData = { id: "advertisement" };
+        const newFeaturedData = [];
+
+        for (let i = 0; i < res.length; i++) {
+          newFeaturedData.push(res[i]);
+          if ((i + 1) % 2 === 0) {
+            newFeaturedData.push(addObjectData);
+          }
+        }
+        setTrendingBlogs(newFeaturedData);
+      }
       setBlogsCategories(blog_categories);
-      setTrendingBlogs(trending_blogs);
     } catch (error) {
     } finally {
     }
@@ -110,6 +141,10 @@ function BlogPage() {
                 return item.image_type == "blog_index_right2";
               });
               bolgRight2(filterArray3);
+              let filterArray4 = response.data.results.filter((item, index) => {
+                return item.image_type == "blog_index_left";
+              });
+              bolgLeft(filterArray4);
             }
           });
       },
@@ -130,6 +165,10 @@ function BlogPage() {
               return item.image_type == "blog_index_right2";
             });
             bolgRight2(filterArray3);
+            let filterArray4 = response.data.results.filter((item, index) => {
+              return item.image_type == "blog_index_left";
+            });
+            bolgLeft(filterArray4);
           }
         });
       },
@@ -261,34 +300,70 @@ function BlogPage() {
                   <h4>Latest Blogs</h4>
                 </div>
                 <div className='row'>
-                  {latestBlogs?.results?.length
-                    ? latestBlogs?.results.map((items, index) => {
-                        return (
-                          <>
-                            <div className='col-md-6'>
-                              <LatestBlogCard
-                                image={items.image}
-                                hashtags={items.hash_tags}
-                                title={items.title}
-                                description={`${items.about_blog}`}
-                                makeHtml={makeHtml}
-                                key={index}
-                                created_at={items.created_at}
-                                reading_time={items.reading_time}
-                                id={items.id}
-                                blog_count={items.blog_count}
-                              />
+                  {latestBlogs?.map((items, index) => {
+                    if (items.id === "advertisement") {
+                      return (
+                        <>
+                          {blogLeft.length > 0 && (
+                            <div
+                              className='col-md-6'
+                              // className='col-md-12 ads_home_cover '
+                              // onClick={() => addEmail(blogLeft[0]?.add_email)}
+                            >
+                              <div className='card'>
+                                <a
+                                  href={blogLeft[0]?.url_adds}
+                                  target='_blank'
+                                  rel='noreferrer'
+                                >
+                                  {detect.isMobile
+                                    ? blogLeft[0]?.image_mobile && (
+                                        <img
+                                          src={blogLeft[0]?.image_mobile}
+                                          alt=''
+                                          // className='ads_story_cover_img'
+                                        />
+                                      )
+                                    : blogLeft[0]?.image && (
+                                        <img
+                                          src={blogLeft[0]?.image}
+                                          alt=''
+                                          // className='ads_story_cover_img'
+                                        />
+                                      )}
+                                </a>
+                              </div>
                             </div>
-                          </>
-                        );
-                      })
-                    : "no data"}
+                          )}
+                        </>
+                      );
+                    } else {
+                      return (
+                        <>
+                          <div className='col-md-6'>
+                            <LatestBlogCard
+                              image={items.image}
+                              hashtags={items.hash_tags}
+                              title={items.title}
+                              description={`${items.about_blog}`}
+                              makeHtml={makeHtml}
+                              key={index}
+                              created_at={items.created_at}
+                              reading_time={items.reading_time}
+                              id={items.id}
+                              blog_count={items.blog_count}
+                            />
+                          </div>
+                        </>
+                      );
+                    }
+                  })}
                 </div>
                 <div className='d-flex justify-content-center align-items-center py-4'>
                   <button
                     className='loadMore'
                     onClick={() => setOffset(offset + 5)}
-                    disabled={true}
+                    disabled={currentBlogData?.results?.length === 0}
                   >
                     Explore More
                   </button>
@@ -336,22 +411,58 @@ function BlogPage() {
                 <img src={fire} alt='fire' width={25} height={25} />
                 <h4>Trending Blogs</h4>
               </div>
-              {trendingBlogs?.results?.length
-                ? trendingBlogs?.results.map((items, index) => {
-                    return (
-                      <>
-                        <TrendingBlogsCard2
-                          image={items.image}
-                          title={items.title}
-                          id={items.id}
-                          // description={items.about_blog}
-                          time='5 min'
-                          date={items.created_at}
-                        />
-                      </>
-                    );
-                  })
-                : "no data"}
+              {trendingBlogs?.map((items, index) => {
+                if (items.id === "advertisement") {
+                  return (
+                    <>
+                      {blogBoxAdds.length > 0 && (
+                        <div
+                          className='col-md-6'
+                          // className='col-md-12 ads_home_cover '
+                          // onClick={() => addEmail(blogBoxAdds[0]?.add_email)}
+                        >
+                          <div className='card'>
+                            <a
+                              href={blogBoxAdds[0]?.url_adds}
+                              target='_blank'
+                              rel='noreferrer'
+                            >
+                              {detect.isMobile
+                                ? blogBoxAdds[0]?.image_mobile && (
+                                    <img
+                                      src={blogBoxAdds[0]?.image_mobile}
+                                      alt=''
+                                      // className='ads_story_cover_img'
+                                    />
+                                  )
+                                : blogBoxAdds[0]?.image && (
+                                    <img
+                                      src={blogBoxAdds[0]?.image}
+                                      alt=''
+                                      // className='ads_story_cover_img'
+                                    />
+                                  )}
+                            </a>
+                          </div>
+                        </div>
+                      )}
+                    </>
+                  );
+                } else {
+                  return (
+                    <>
+                      <TrendingBlogsCard2
+                        image={items.image}
+                        title={items.title}
+                        id={items.id}
+                        // description={items.about_blog}
+                        time='5 min'
+                        date={items.created_at}
+                      />
+                    </>
+                  );
+                }
+              })}
             </div>
 
             <div className='col-xl-3 col-md-4'>
