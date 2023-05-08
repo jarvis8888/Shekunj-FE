@@ -13,8 +13,10 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import Calendar from "../../assets/images/MyProfile/calendar.png";
 // import Gender from "../../assets/icons/gender.png";
 // import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-
+import EastSharpIcon from '@mui/icons-material/EastSharp';
 import Book_img from "../../assets/images/Guidance/Book_img.png";
+import bookcounsellor from "../../assets/images/Bookcoun.png";
+
 import Polygon1 from "../../assets/images/Guidance/Polygon1.png";
 import Polygon2 from "../../assets/images/Guidance/Polygon2.png";
 import TextField from "@mui/material/TextField";
@@ -293,397 +295,74 @@ const GuidancePage = () => {
  free business counselling, mental health counselling, medical counselling, best counsellors in Indore"/>
       </Helmet>
 
-        <Container>
-          <Row>
-            <Col md={4} xs={12}>
-              <div className='guidance_con'>
-                <div className='book_sec_content mob_hide'>
-                  <h2 data-aos='slide-up'>{t("guidanceBookPage.heading.1")}</h2>
-                  <p data-aos='slide-up'>{t("guidanceBookPage.heading.2")}</p>
-                </div>
+       <section className="sk-bookc-sec">
+        <div className="container">
+          <div className="row align-items-center">
+              <div className="col-md-8">
+                <div className="sk-bookC-content">
+                  <h6>Get Free Online Counselling Session</h6>
+                  <h2>From Finest Counsellors.</h2>
+                  <div className="sk-toggle-btn">
 
-                <div className='book_sec_imgs'>
-                  <img src={Book_img} alt='' />
-
-                  <div className='g_book_img'>
-                    <img src={Polygon1} alt='' className='vert-move' />
-                    <img src={Polygon2} alt='' className='vert-move' />
                   </div>
-                </div>
-              </div>
-            </Col>
-
-            <Col md={6} xs={12}>
-              <div className='book_sec_content mob_show'>
-                <h1>{t("guidanceBookPage.heading.1")}</h1>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur <br /> adipiscing
-                  elit.
-                </p>
-              </div>
-              <div className='guidance_book_form'>
-                <form onSubmit={handleSubmit}>
-                  <Row>
-                    <Col md={6} xs={12}>
-                      <div className='form-group'>
-                        <TextField
-                          name='first_name'
-                          type='text'
-                          placeholder={t("common.placeHolders.fname")}
-                          autoComplete='off'
-                          onChange={handleChange}
-                          value={values.first_name}
-                          onBlur={handleBlur}
-                          InputProps={{
-                            startAdornment: (
-                              <InputAdornment position='start'>
-                                <img src={User2} alt='...' />
-                              </InputAdornment>
-                            ),
-                          }}
-                        />
-                        <Error
-                          error={errors.first_name}
-                          touched={touched.first_name}
-                        />
-                      </div>
-                    </Col>
-
-                    <Col md={6} xs={12}>
-                      <div className='form-group'>
-                        <TextField
-                          name='last_name'
-                          type='text'
-                          placeholder={t("common.placeHolders.lname")}
-                          autoComplete='off'
-                          onChange={handleChange}
-                          value={values.last_name}
-                          onBlur={handleBlur}
-                          InputProps={{
-                            startAdornment: (
-                              <InputAdornment position='start'>
-                                <img src={User3} alt='...' />
-                              </InputAdornment>
-                            ),
-                          }}
-                        />
-                        <Error
-                          error={errors.last_name}
-                          touched={touched.last_name}
-                        />
-                      </div>
-                    </Col>
-                  </Row>
-
-                  <div className='form-group'>
-                    <TextField
-                      name='email_address'
-                      type='email'
-                      placeholder={t("common.placeHolders.email")}
-                      autoComplete='off'
-                      onChange={handleChange}
-                      value={values.email_address}
-                      onBlur={handleBlur}
-                      InputProps={{
-                        startAdornment: (
-                          <InputAdornment position='start'>
-                            <img src={mail2} alt='...' />
-                          </InputAdornment>
-                        ),
-                      }}
-                    />
-                    <Error
-                      error={errors.email_address}
-                      touched={touched.email_address}
-                    />
-                  </div>
-
-                  <div className='form-group'>
-                    <TextField
-                      name='mobile_number'
-                      type='number'
-                      placeholder={t("common.placeHolders.mobile")}
-                      autoComplete='off'
-                      value={values.mobile_number}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      InputProps={{
-                        startAdornment: (
-                          <InputAdornment position='start'>
-                            <img src={phone} alt='...' />
-                          </InputAdornment>
-                        ),
-                      }}
-                    />
-                    <Error
-                      error={errors.mobile_number}
-                      touched={touched.mobile_number}
-                    />
-                  </div>
-
-                  {/* <Row>
-                    <Col md={4} xs={12}>
-                      <div className='form-group mzero'>
-                        <GuidanceSelect
-                          title={t("common.time.3")}
-                          icon={false}
-                          listItem={days}
-                          defaultValue=''
-                          updateValues={(value) => setFieldValue("day", value)}
-                        />
-                      </div>
-                    </Col>
-                    <Col md={4} xs={12}>
-                      <div className='form-group mzero'>
-                        <GuidanceSelect
-                          title={t("common.time.4")}
-                          icon={false}
-                          listItem={months}
-                          defaultValue=''
-                          updateValues={(value) =>
-                            setFieldValue("month", value)
-                          }
-                        />
-                      </div>
-                    </Col>
-                    <Col md={4} xs={12}>
-                      <div className='form-group mzero'>
-                        <GuidanceSelect
-                          title={t("common.time.1")}
-                          icon={false}
-                          listItem={years}
-                          defaultValue=''
-                          updateValues={(value) => setFieldValue("year", value)}
-                        />
-                      </div>
-                    </Col>
-                  </Row> */}
-
-                  <Row>
-                    <Col md={12} xs={12}>
-                      {/* <div className='form-group Calendar'>
-                        <Form.Group controlId='validationFormik03'>
-                          <DatePicker
-                            selected={values.date_of_birth}
-                            title='date_of_birth'
-                            onChange={(e) => {
-                              setFieldValue("date_of_birth", e);
-                              setFieldTouched("date_of_birth");
-                            }}
-                            icon={true}
-                            className='form-control'
-                            placeholderText='date_of_birth'
-                            customInput={
-                              <input
-                                type='text'
-                                id='date_of_birth'
-                                placeholder='date_of_birth'
-                              />
-                              
-                            }
-                          />
-                          {console.log(
-                            "values.date_of_birth",
-                            values.date_of_birth,
-                          )}
-                         
-                          {touched.date_of_birth &&
-                            !!errors.date_of_birth &&
-                            errors.date_of_birth}
-                        </Form.Group>
-                      </div> */}
-                      {/* <div className='form-group'> */}
-                      {/* <label htmlFor=''>{t('common.formHeadings.dob')}</label> */}
-                      <div className='form-group mzero'>
-                        <Form.Group controlId='validationFormik03'>
-                          <img
-                            className='calendar_icon_guidance'
-                            src={Calendar}
-                            alt='...'
-                          />
-                          <DatePicker
-                            selected={
-                              values?.date_of_birth &&
-                              typeof values?.date_of_birth !== "undefined"
-                                ? new Date(values.date_of_birth)
-                                : null
-                            }
-                            placeholderText={"Enter DOB"}
-                            title='date_of_birth'
-                            icon={true}
-                            className='form-control'
-                            maxDate={new Date()}
-                            dateFormat='dd-MM-yyyy'
-                            onChange={(date) =>
-                              setFieldValue(
-                                "date_of_birth",
-                                moment(date, "DD-MM-YYYY").format("YYYY-MM-DD"),
-                              )
-                            }
-                            peekNextMonth
-                            showMonthDropdown
-                            showYearDropdown
-                            dropdownMode='select'
-                          />
-                          <Error
-                            error={errors.date_of_birth}
-                            touched={touched.date_of_birth}
-                          />
-                        </Form.Group>
-                      </div>
-                      {/* </div> */}
-                    </Col>
-                  </Row>
-
-                  <Row>
-                    <Col md={6} xs={12}>
-                      <div className='form-group mzero'>
-                        <Form.Group controlId='validationFormik04'>
-                          {/* <img className='calendar_icon' src={Gender} alt='...' /> */}
-                          <GuidanceSelect
-                            title={t("common.formHeadings.gender")}
-                            icon={true}
-                            listItem={["Female", "Male"]}
-                            defaultValue=''
-                            updateValues={(value) =>
-                              setFieldValue("gender", value)
-                            }
-                          />
-                        </Form.Group>
-                      </div>
-                    </Col>
-                    {/* <Col md={6} xs={12}>
-                      <div className='form-group mzero'>
-                        <GuidanceSelect
-                          title={t("common.formHeadings.coursesLooking")}
-                          icon={true}
-                          listItem={courseLookingFor}
-                          defaultValue=''
-                          updateValues={(value) =>
-                            setFieldValue("course_looking_for", value)
-                          }
-                        />
-                      </div>
-                    </Col> */}
-
-                    <Col md={6} xs={12}>
-                      <div className='form-group'>
-                        <TextField
-                          name='city'
-                          type='text'
-                          icon={true}
-                          placeholder={"City"}
-                          autoComplete='off'
-                          onChange={handleChange}
-                          value={values.city}
-                          onBlur={handleBlur}
-                          InputProps={{
-                            startAdornment: (
-                              <InputAdornment position='start'>
-                                <img src={City} alt='...' />
-                              </InputAdornment>
-                            ),
-                          }}
-                        />
-                        <Error error={errors.city} touched={touched.city} />
-                      </div>
-                    </Col>
-                  </Row>
-
-                  <Row>
-                    <Col md={6} xs={12}>
-                      <div className='form-group mzero'>
-                        <Form.Group controlId='validationFormik04'>
-                          <GuidanceSelect
-                            title={t("common.formHeadings.qualification")}
-                            icon={true}
-                            listItem={highEducation}
-                            defaultValue=''
-                            updateValues={(value) =>
-                              setFieldValue("qualifications", value)
-                            }
-                          />
-                        </Form.Group>
-                      </div>
-                    </Col>
-
-                    <Col md={6} xs={12}>
-                      <div className='form-group mzero'>
-                        <Form.Group controlId='validationFormik04'>
-                          {/* <Form.Label>Select-Gender</Form.Label> */}
-                          <GuidanceSelect
-                            title='Guidance Purpose'
-                            icon={true}
-                            listItem={GuidancePurpose}
-                            defaultValue=''
-                            updateValues={(value) =>
-                              setFieldValue("guidance_purpose", value)
-                            }
-                          />
-                        </Form.Group>
-                      </div>
-                    </Col>
-                  </Row>
-
-                  <div className='form-group mzero'>
-                    {/* <img className='edit_icon_guidance' src={Edit} alt='...' /> */}
-                    <TextareaAutosize
-                      name='message'
-                      icon={false}
-                      className='textarea_set'
-                      aria-label='minimum height'
-                      minRows={3}
-                      placeholder={t("common.placeHolders.message")}
-                      value={values.message}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      // InputProps={{
-                      //   startAdornment: (
-                      //     <InputAdornment position='start'>
-                      //       <img src={Edit} alt='...' />
-                      //     </InputAdornment>
-                      //   ),
-                      // }}
-                    />
-                    <Error error={errors.message} touched={touched.message} />
-                  </div>
-
-                  <button type='submit' className='book_sess_btn'>
-                    {isLoading ? (
-                      <CircularProgress color='secondary' size={20} />
-                    ) : (
-                      t("guidanceBookPage.heading.3")
-                    )}
-                  </button>
-                </form>
-              </div>
-            </Col>
-
-            <Col md={2} xs={12}>
-              <Container>
-                {bookCounsellorAds.length > 0 && (
-                  <Row>
-                    <div
-                      onClick={() => addEmail(bookCounsellorAds[0]?.add_email)}
-                    >
-                      <a
-                        href={bookCounsellorAds[0]?.url_adds}
-                        className='addimage098'
-                        target='_blank'
-                      >
-                        <img
-                          src={bookCounsellorAds[0]?.image}
-                          alt='Image'
-                          className='ads_guidence'
-                        />
-                      </a>
+                  <div className="sk-bookTab-sec">
+                  <form>
+                    <div className="form-inline sk-inline-field">
+                      <label>Hey, My name is </label>
+                      <input type="text" id="email2" placeholder="Enter email" name="email" />
+                      <label>, I am</label>
+                        <select>
+                          <option>Year</option>
+                          <option>1991</option>
+                          <option>1992</option>
+                        </select>
+                        <label>year old and</label>
                     </div>
-                  </Row>
-                )}
-              </Container>
-            </Col>
-          </Row>
-        </Container>
+                    <div className="form-inline sk-inline-field">
+                      <label>My last qualifications </label>
+                      <select>
+                          <option>Qualification</option>
+                          <option>BCA</option>
+                          <option>MCA</option>
+                      </select>
+                      <label>. I am looking for  </label>
+                      <label>, I am</label>
+                        <select>
+                          <option>Select Purpose</option>
+                          <option>1991</option>
+                          <option>1992</option>
+                        </select>
+                        <label>.</label>
+                    </div>
+                    <div className="form-inline sk-inline-field">
+                      <label>You can call me on </label>
+                      <input type="Number" placeholder="Mobile Number" />
+                      <label>or call me at </label>
+                      <input type="email" placeholder="Enter Id" />
+                      <label>.</label>
+                    </div>
+                    <div className="sk-sendMain-btn">
+                      <button type="submit" className="sk-btn-submit">Send Enquiry <EastSharpIcon /> </button>
+                    </div>
+                  </form>
+                  </div>
+                </div>
+              </div>
+              <div className="col-md-4">
+                <div className="sk-bookC-img">
+                  <img src={bookcounsellor} />
+                </div>
+              </div>
+          </div>
+        </div>
+       </section>
+
+       <section>
+          <div className="container">
+            
+          </div>
+       </section>
+
       </div>
       <Footer loginPage={false} />
     </div>
