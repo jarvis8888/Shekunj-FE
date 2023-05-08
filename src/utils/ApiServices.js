@@ -11,7 +11,7 @@ export const getLanguage = () => {
   return currentLang ? currentLang?.split("-")[0] : "en";
 };
 
-// const apiBaseUrl = 'https://admin.shekunj.com/';
+// const apiBaseUrl = "https://admin.shekunj.com/";
 const apiBaseUrl = "http://13.233.216.29:8000/";
 axios.defaults.baseURL = `${apiBaseUrl}${getLanguage()}/api/`;
 

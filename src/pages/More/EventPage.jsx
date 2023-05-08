@@ -86,7 +86,7 @@ function EventPage() {
     try {
       let url = `more/events`;
       if (selectedButton == "all") {
-        url += `?limit=${8}&offset=${currentOffset * 8}`;
+        url += `?limit=${20}&offset=${currentOffset}`;
       }
       if (genre || selectedOption) {
         const a = genre || selectedOption;
@@ -383,7 +383,7 @@ function EventPage() {
                 <div className='col-md-12'>
                   <div className='sk-explore-btn'>
                     <button
-                      disabled={currentData.length == 0}
+                      disabled={true}
                       type=''
                       onClick={() => {
                         setCurrentOffset(currentOffset + 1);
@@ -399,7 +399,7 @@ function EventPage() {
           )}
         </div>
       </section>
-      <div className="bottom-add">
+      <div className='bottom-add'>
         <>
           {eventBoxAds.length > 0 && (
             <a href={eventBoxAds[0]?.url_adds} target='_blank' rel='noreferrer'>

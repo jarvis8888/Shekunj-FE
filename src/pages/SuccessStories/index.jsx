@@ -41,7 +41,7 @@ function SuccessStory() {
   const { t } = useTranslation();
   const [offset, setOffset] = useState(0);
   const [page, setPage] = useState(1);
-  const pageLimit = 5;
+  const pageLimit = 20;
   const [searchValue, setSearchValue] = useState("");
 
   React.useEffect(() => {
@@ -334,10 +334,7 @@ function SuccessStory() {
               </div>
               <div className='d-flex justify-content-center align-items-center py-4'>
                 <button
-                  disabled={
-                    successStories?.featured_success_stories?.results.length ===
-                    0
-                  }
+                  disabled={true}
                   className='loadMore'
                   onClick={() => setOffset(offset + 5)}
                 >
