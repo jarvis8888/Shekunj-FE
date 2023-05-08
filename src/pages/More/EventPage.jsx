@@ -399,29 +399,36 @@ function EventPage() {
           )}
         </div>
       </section>
-      <div className="bottom-add">
-        <>
-          {eventBoxAds.length > 0 && (
-            <a href={eventBoxAds[0]?.url_adds} target='_blank' rel='noreferrer'>
-              {detect.isMobile
-                ? eventBoxAds[0]?.image_mobile && (
-                    <img
-                      src={eventBoxAds[0]?.image_mobile}
-                      alt=''
-                      // className='ads_story_cover_img'
-                    />
-                  )
-                : eventBoxAds[0]?.image && (
-                    <img
-                      src={eventBoxAds[0]?.image}
-                      alt=''
-                      // className='ads_story_cover_img'
-                    />
-                  )}
-            </a>
-          )}
-        </>
-      </div>
+      <section className="sk-bottomAdd-sec">
+        <div className="container">
+          <div className="row">  
+          <div className="col-md-12"> 
+          <>
+            {eventBoxAds.length > 0 && (
+              <a href={eventBoxAds[0]?.url_adds} target='_blank' rel='noreferrer'>
+                {detect.isMobile
+                  ? eventBoxAds[0]?.image_mobile && (
+                      <img
+                        src={eventBoxAds[0]?.image_mobile}
+                        alt=''
+                        // className='ads_story_cover_img'
+                      />
+                    )
+                  : eventBoxAds[0]?.image && (
+                      <img
+                        src={eventBoxAds[0]?.image}
+                        alt=''
+                        // className='ads_story_cover_img'
+                      />
+                    )}
+              </a>
+            )}
+          </>
+        </div>
+        </div>
+        </div>
+
+      </section>
       <Footer loginPage={false} />
     </div>
   );
