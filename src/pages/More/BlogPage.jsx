@@ -14,7 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Moment from "react-moment";
-import { routingConstants } from "../../utils/constants";
+import { apiConstants, routingConstants } from "../../utils/constants";
 
 import {
   setCollapseBlogs,
@@ -42,38 +42,44 @@ import LatestBlogCard from "../../components/cards/LatestBlogCard";
 import { TrendingBlogsCard2 } from "../../components/cards/TrendingBlogsCard2";
 import { HashtagAndCatagories } from "../../components/HastagAndCatagories/Index";
 import catagorie from "../../assets/icons/svgs/categories.png";
+import httpServices from "../../utils/ApiServices";
 
 function BlogPage() {
   const history = useHistory();
-  const { blogs } = useSelector((state) => state.blogsReducer);
   const dispatch = useDispatch();
   const [offset, setOffset] = useState(0);
   const pageLimit = 20;
 
   const { lan } = useSelector((state) => state.languageReducer);
   const { t } = useTranslation();
-
-  // React.useEffect(() => {
-  //   dispatch(fetchBlogs(pageLimit,offset));
-  //   window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-  // }, [dispatch, lan]);
-
-  useEffect(() => {
-    dispatch(getAllBlogs(pageLimit, offset));
-    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-  }, [lan, offset]);
-
-  const handleSetCollapse = (id, is_collapse) => {
-    dispatch(setCollapseBlogs(id, is_collapse ? false : true));
-  };
-
-  const [storiesBannerAds, setStoriesBannerAds] = useState([]);
-  const [image, setImage] = useState("NA");
   const [blogBoxAdds, setBlogBoxAdds] = useState([]);
   const [blogRight1, bolgRight1] = useState([]);
   const [blogRight2, bolgRight2] = useState([]);
-  const [adds, setAdds] = useState([]);
   const detect = useDeviceDetect();
+
+  const [topTrendingBlogs, setTopTrendingBlogs] = useState([]);
+  const [latestBlogs, setLatestBlogs] = useState([]);
+  const [trendingBlogs, setTrendingBlogs] = useState([]);
+  const [blogsCategories, setBlogsCategories] = useState([]);
+
+  const getAllBlogsData = async (limit, offset) => {
+    try {
+      const url = `${apiConstants.ALL_BLOGS.ALL_BLOGS}?limit=${limit}&offset=${offset}`;
+      const data = await httpServices.get(url);
+      const { latest_blogs, trending_blogs, blog_categories } = data;
+      setTopTrendingBlogs(trending_blogs);
+      setLatestBlogs(latest_blogs);
+      setBlogsCategories(blog_categories);
+      setTrendingBlogs(trending_blogs);
+    } catch (error) {
+    } finally {
+    }
+  };
+
+  useEffect(() => {
+    getAllBlogsData(pageLimit, offset);
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  }, [lan, offset]);
 
   useEffect(() => {
     dispatch(adsList());
@@ -130,32 +136,6 @@ function BlogPage() {
     );
   }, []);
 
-  // const addEmail = (email) => {
-  //   navigator.geolocation.getCurrentPosition(async function (position, values) {
-  //     const latitude = position.coords.latitude;
-  //     const longitude = position.coords.longitude;
-
-  //     let params = {
-  //       latitude: latitude.toString(),
-  //       longitude: longitude.toString(),
-  //     };
-  //     axios
-  //       .post("/private_adds/click_add/", {
-  //         // add_email:`${adds[0]?.add_email}`
-  //         add_email: email,
-  //         latitude: params.latitude.toString(),
-  //         longitude: params.longitude.toString(),
-  //       })
-  //       .then((response) => {
-  //         // setAdds(response.data.results);
-  //         console.log("addEmailresponse", response);
-  //       })
-  //       .catch((error) => {
-  //         // setMessage("No data found");
-  //         console.log(error);
-  //       });
-  //   });
-  // };
   const paginationBack = () => {
     dispatch(getAllBlogs(pageLimit, offset - pageLimit));
     setOffset(offset - pageLimit);
@@ -174,6 +154,11 @@ function BlogPage() {
     });
     return htmlNode.innerHTML;
   };
+
+  const handleSetCollapse = (id, is_collapse) => {
+    dispatch(setCollapseBlogs(id, is_collapse ? false : true));
+  };
+
   return (
     <div>
       <Header loginPage={true} page='more' subPage='moreblog' />
@@ -196,15 +181,13 @@ function BlogPage() {
           <div className='row'>
             <div className='col-xl-9 col-md-8'>
               <div className='carousel-blog'>
-                <BlogCarousel
-                  images={blogs?.latest_blogs?.results.slice(0, 5)}
-                />
+                <BlogCarousel images={topTrendingBlogs?.results?.slice(0, 5)} />
               </div>
             </div>
             <div className='col-xl-3 col-md-4'>
               <div className='sk-blog-sidebar'>
-                {blogs?.latest_blogs?.results.length
-                  ? blogs?.latest_blogs?.results
+                {topTrendingBlogs?.results?.length
+                  ? topTrendingBlogs?.results
                       .slice(0, 5)
                       .map((items, index) => {
                         return (
@@ -278,8 +261,8 @@ function BlogPage() {
                   <h4>Latest Blogs</h4>
                 </div>
                 <div className='row'>
-                  {blogs?.latest_blogs?.results.length
-                    ? blogs?.latest_blogs?.results.map((items, index) => {
+                  {latestBlogs?.results?.length
+                    ? latestBlogs?.results.map((items, index) => {
                         return (
                           <>
                             <div className='col-md-6'>
@@ -353,8 +336,8 @@ function BlogPage() {
                 <img src={fire} alt='fire' width={25} height={25} />
                 <h4>Trending Blogs</h4>
               </div>
-              {blogs?.trending_blogs?.results.length
-                ? blogs?.trending_blogs?.results.map((items, index) => {
+              {trendingBlogs?.results?.length
+                ? trendingBlogs?.results.map((items, index) => {
                     return (
                       <>
                         <TrendingBlogsCard2
@@ -376,7 +359,7 @@ function BlogPage() {
                 <HashtagAndCatagories
                   image={catagorie}
                   title={"Categories"}
-                  hashtags={blogs?.blog_categories}
+                  hashtags={blogsCategories}
                   rightOne={blogRight1}
                   rightTwo={blogRight2}
                 />

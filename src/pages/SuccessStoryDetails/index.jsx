@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Container, Row, Col } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -11,8 +10,6 @@ import useDeviceDetect from "../../hooks/useDeviceDetect";
 import { successStoriesDetails as fetchSuccessStoriesDetails } from "../../store/courses/action";
 import { useParams } from "react-router-dom";
 import { Footer, Header, SEO } from "../../components";
-import photo from "../../assets/icons/svgs/exphoto.png";
-import { TrendingStories } from "../SuccessStories/TrendingStories";
 import MenuBookRoundedIcon from "@mui/icons-material/MenuBookRounded";
 import facebookicon from "../../assets/images/facebook.svg";
 import linkedinicon from "../../assets/images/linkedin.svg";
@@ -28,6 +25,8 @@ import TrendingCards from "../../components/cards/TrendingCards";
 import fire from "../../assets/icons/svgs/fire.png";
 import { HashtagAndCatagories } from "../../components/HastagAndCatagories/Index";
 import hash from "../../assets/icons/svgs/hashtag.png";
+import { apiConstants } from "../../utils/constants";
+import httpServices from "../../utils/ApiServices";
 
 const SuccessStoryDetails = () => {
   const { successStoriesDetails } = useSelector((state) => {
@@ -37,17 +36,33 @@ const SuccessStoryDetails = () => {
     return state.coursesReducer;
   });
   const dispatch = useDispatch();
-  // ("Blogssssss", blogs);
+
   const { lan } = useSelector((state) => state.languageReducer);
-  // ("langggggg", lan);
+
   const { t } = useTranslation();
 
   const { id } = useParams();
+  const [trendingData, setTrendingData] = useState([]);
+  const [allHashTag, setAllHashTag] = useState([]);
   const [succesStoriesRight1, setSuccesStoriesRight1] = useState([]);
   const [succesStoriesRight2, setSuccesStoriesRight2] = useState([]);
-
   const [storyDetailsBoxAds, setStoryDetailsBoxAds] = useState([]);
   const detect = useDeviceDetect();
+
+  const getAllSuccessStoryData = async () => {
+    try {
+      const url = `${apiConstants.COURSES.SUCCESS_STORY}`;
+      const data = await httpServices.get(url);
+      const { trending_success_stories, all_hash_tags } = data;
+      setTrendingData(trending_success_stories);
+      setAllHashTag(all_hash_tags);
+    } catch (error) {
+    } finally {
+    }
+  };
+  useEffect(() => {
+    getAllSuccessStoryData();
+  }, [lan]);
 
   useEffect(() => {
     dispatch(fetchSuccessStoriesDetails(id));
@@ -98,30 +113,6 @@ const SuccessStoryDetails = () => {
       },
     );
   }, [dispatch]);
-
-  // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Latest code >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-  // const addEmail = (email) => {
-  //   navigator.geolocation.getCurrentPosition(async function (position, values) {
-  //     const latitude = position.coords.latitude;
-  //     const longitude = position.coords.longitude;
-
-  //     let params = {
-  //       latitude: latitude.toString(),
-  //       longitude: longitude.toString(),
-  //     };
-  //     axios
-  //       .post("/private_adds/click_add/", {
-  //         // add_email:`${adds[0]?.add_email}`
-  //         add_email: email,
-  //         latitude: params.latitude.toString(),
-  //         longitude: params.longitude.toString(),
-  //       })
-  //       .then((response) => {
-  //         // setAdds(response.data.results);
-  //         console.log("addEmailresponse", response);
-  //       });
-  //   });
-  // };
 
   useEffect(() => {
     dispatch(adsList());
@@ -183,31 +174,6 @@ const SuccessStoryDetails = () => {
     return htmlNode.innerHTML;
   };
 
-  // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-
-  // const addEmail = (email) => {
-  //   // ("addEmail", email);
-  //   navigator.geolocation.getCurrentPosition(async function (position, values) {
-  //     const latitude = position.coords.latitude;
-  //     const longitude = position.coords.longitude;
-
-  //     let params = {
-  //       latitude: latitude.toString(),
-  //       longitude: longitude.toString(),
-  //     };
-  //     axios
-  //       .post("/private_adds/click_add/", {
-  //         // add_email:`${adds[0]?.add_email}`
-  //         add_email: email,
-  //         latitude: params.latitude.toString(),
-  //         longitude: params.longitude.toString(),
-  //       })
-  //       .then((response) => {
-  //         // setAdds(response.data.results);
-  //         // ("addEmailresponse", response);
-  //       });
-  //   });
-  // };
   return (
     <div>
       <SEO title='Sheकुंज - Career' />
@@ -291,25 +257,23 @@ const SuccessStoryDetails = () => {
                 <h4>Trending Stories </h4>
               </div>
               <div className='row'>
-                {successStories?.trending_success_stories?.results.length
-                  ? successStories?.trending_success_stories?.results.map(
-                      (items, index) => {
-                        return (
-                          <>
-                            <TrendingCards
-                              image={items.image}
-                              hashtags={items.hash_tags}
-                              title={items.name}
-                              description={`${items.title}`}
-                              makeHtml={makeHtml}
-                              key={index}
-                              created_at={items.created_at}
-                              id={items.id}
-                            />
-                          </>
-                        );
-                      },
-                    )
+                {trendingData?.results?.length
+                  ? trendingData?.results.map((items, index) => {
+                      return (
+                        <>
+                          <TrendingCards
+                            image={items.image}
+                            hashtags={items.hash_tags}
+                            title={items.name}
+                            description={`${items.title}`}
+                            makeHtml={makeHtml}
+                            key={index}
+                            created_at={items.created_at}
+                            id={items.id}
+                          />
+                        </>
+                      );
+                    })
                   : null}
               </div>
               {/* <TrendingStories /> */}
@@ -321,7 +285,7 @@ const SuccessStoryDetails = () => {
                 title={`Trending Hastag`}
                 firstAdd={succesStoriesRight1}
                 // addEmail={addEmail}
-                hashtags={successStories?.all_hash_tags}
+                hashtags={allHashTag}
                 rightOne={succesStoriesRight1}
                 rightTwo={succesStoriesRight2}
               />

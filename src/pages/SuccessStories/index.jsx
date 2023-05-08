@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Container, Row, Col } from "react-bootstrap";
+
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import useDeviceDetect from "../../hooks/useDeviceDetect";
 
 import {
@@ -9,59 +9,76 @@ import {
   successStories as fetchSuccessStories,
 } from "../../store/courses/action";
 import { Header, Footer } from "../../components";
-import down1 from "../../assets/icons/down1.png";
-import up from "../../assets/icons/up.png";
-import double_quote from "../../assets/icons/double_quote.png";
-import global from "../../assets/images/Success/global.png";
+
 import "./index.scss";
 import "../../Styles/global.scss";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
 import { adsList } from "../../store/ads";
-import { Helmet } from "react-helmet-async";
-import { routingConstants } from "../../utils/constants";
-import Pagination from "../../components/Pagination";
+
+import { apiConstants, routingConstants } from "../../utils/constants";
+
 import AddsBanner from "../../components/AddsBanner/AddsBanner";
 
 import fire from "../../assets/icons/svgs/fire.png";
 import FeaturedCards from "../../components/cards/FeaturedCards";
-import { TrendingStories } from "./TrendingStories";
-import YouMayLikeCarousel from "../../components/Carousel/YouMayLikeCarousel";
+
 import { HashtagAndCatagories } from "../../components/HastagAndCatagories/Index";
 import TrendingCards from "../../components/cards/TrendingCards";
 import hash from "../../assets/icons/svgs/hashtag.png";
 
+import httpServices from "../../utils/ApiServices";
+
 function SuccessStory() {
   const history = useHistory();
   const dispatch = useDispatch();
-  const { successStories } = useSelector((state) => {
-    return state.coursesReducer;
-  });
+
   const { lan } = useSelector((state) => state.languageReducer);
   const { t } = useTranslation();
-  const [offset, setOffset] = useState(0);
+  const [offset, setOffset] = useState(1);
   const [page, setPage] = useState(1);
-  const pageLimit = 20;
-  const [searchValue, setSearchValue] = useState("");
-
-  React.useEffect(() => {
-    dispatch(fetchSuccessStories(pageLimit, offset));
-    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-  }, [lan, offset]);
-
-  const handleSetCollapse = (id, is_collapse) => {
-    dispatch(setCollapseSuccessStory(id, is_collapse ? false : true));
-  };
+  const pageLimit = 1;
 
   const [featuredData, setFeaturedData] = useState([]);
-  const [trendingData, setTrendingDataData] = useState([]);
+  const [trendingData, setTrendingData] = useState([]);
+  const [allHashTag, setAllHashTag] = useState([]);
   const [storiesBannerAds, setStoriesBannerAds] = useState([]);
   const [succesStoriesRight1, setSuccesStoriesRight1] = useState([]);
   const [succesStoriesRight2, setSuccesStoriesRight2] = useState([]);
   const [succesStoriesLeft, setSuccesStoriesLeft] = useState([]);
-  const [storiesBoxAds, setStoriesBoxAds] = useState([]);
-  const [image, setImage] = useState("NA");
   const detect = useDeviceDetect();
+
+  const getAllSuccessStoryData = async (limit, offset) => {
+    try {
+      const url = `${apiConstants.COURSES.SUCCESS_STORY}?limit=${limit}&offset=${offset}`;
+      const data = await httpServices.get(url);
+      const {
+        featured_success_stories,
+        trending_success_stories,
+        all_hash_tags,
+      } = data;
+      const num = Math.floor(Math.random() * 4);
+      const res = featured_success_stories?.results ?? [];
+      const addObjectData = { id: "advertisement" };
+      const newFeaturedData = [
+        ...res.slice(0, num),
+        addObjectData,
+        ...res.slice(num),
+      ];
+      setFeaturedData((prevFeaturedData) => [
+        ...prevFeaturedData,
+        ...newFeaturedData,
+      ]);
+      setTrendingData(trending_success_stories);
+      setAllHashTag(all_hash_tags);
+    } catch (error) {
+    } finally {
+    }
+  };
+  useEffect(() => {
+    getAllSuccessStoryData(pageLimit, offset);
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  }, [lan, offset]);
 
   useEffect(() => {
     dispatch(adsList());
@@ -176,17 +193,10 @@ function SuccessStory() {
     window.scrollTo(0, 1000);
   };
 
-  const addAddsFunction = () => {
-    const num = Math.floor(Math.random() * 4);
-    const res = successStories?.featured_success_stories?.results ?? [];
-    const addObjectdata = { id: "advertisement" };
-    const newData = [...res.slice(0, num), addObjectdata, ...res.slice(num)];
-    setFeaturedData(newData);
+  const handleSetCollapse = (id, is_collapse) => {
+    dispatch(setCollapseSuccessStory(id, is_collapse ? false : true));
   };
 
-  useEffect(() => {
-    addAddsFunction();
-  }, [successStories]);
   return (
     <div>
       <Header loginPage={true} page='story' />
@@ -348,34 +358,28 @@ function SuccessStory() {
                   <h4>Trending Stories </h4>
                 </div>
                 <div className='row'>
-                  {successStories?.trending_success_stories?.results.length
-                    ? successStories?.trending_success_stories?.results.map(
-                        (items, index) => {
-                          return (
-                            <>
-                              <TrendingCards
-                                image={items.image}
-                                hashtags={
-                                  items.hash_tags === null
-                                    ? []
-                                    : items.hash_tags
-                                }
-                                title={items.name}
-                                description={`${items.title}`}
-                                makeHtml={makeHtml}
-                                key={index}
-                                created_at={items.created_at}
-                                id={items.id}
-                              />
-                            </>
-                          );
-                        },
-                      )
+                  {trendingData?.results?.length
+                    ? trendingData?.results.map((items, index) => {
+                        return (
+                          <>
+                            <TrendingCards
+                              image={items.image}
+                              hashtags={
+                                items.hash_tags === null ? [] : items.hash_tags
+                              }
+                              title={items.name}
+                              description={`${items.title}`}
+                              makeHtml={makeHtml}
+                              key={index}
+                              created_at={items.created_at}
+                              id={items.id}
+                            />
+                          </>
+                        );
+                      })
                     : null}
                 </div>
               </div>
-
-              {/* <TrendingStories /> */}
             </div>
             <div className='col-xl-3 col-md-4 ads'>
               <HashtagAndCatagories
@@ -383,7 +387,7 @@ function SuccessStory() {
                 image={hash}
                 title={`Trending Hastag`}
                 // addEmail={addEmail}
-                hashtags={successStories?.all_hash_tags}
+                hashtags={allHashTag}
                 rightOne={succesStoriesRight1}
                 rightTwo={succesStoriesRight2}
               />
