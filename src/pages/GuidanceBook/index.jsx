@@ -13,7 +13,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import Calendar from "../../assets/images/MyProfile/calendar.png";
 // import Gender from "../../assets/icons/gender.png";
 // import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import EastSharpIcon from '@mui/icons-material/EastSharp';
+import EastSharpIcon from "@mui/icons-material/EastSharp";
 import Book_img from "../../assets/images/Guidance/Book_img.png";
 import bookcounsellor from "../../assets/images/Bookcoun.png";
 
@@ -57,7 +57,7 @@ function range(start, end) {
 // const today = new Date();
 
 const days = range(1, 31);
-const years = range(1970, 2021);
+const years = range(1970, 2023);
 const highEducation = ["10th", "12th", "Graduation", "Post Graduation"];
 const GenderCategory = ["Male", "Female"];
 const GuidancePurpose = [
@@ -85,9 +85,13 @@ const GuidancePurpose = [
 // ];
 
 const GuidancePage = () => {
-  const { isLoading } = useSelector((state) => state.guidanceReducer);
   const dispatch = useDispatch();
   const { t } = useTranslation();
+  const [activeTab, setActiveTab] = useState("Student");
+
+  const handleTabClick = (tab) => {
+    setActiveTab(tab);
+  };
 
   const validationSchema = Yup.object({
     first_name: Yup.string().required(t("login.form1.firstNameError.required")),
@@ -169,200 +173,111 @@ const GuidancePage = () => {
 
   const [bookCounsellorAds, setBookCounsellorAds] = useState([]);
   const [image, setImage] = useState("NA");
-  // const [value,setValue]= React.useState(null);
+
   const [value, setValue] = React.useState(dayjs("2014-08-18T21:11:54"));
-
-  // const handleChange = (newValue) => {
-  //   setValue(newValue);
-  // };
-
-  // useEffect(() => {
-  // 	axios.get('/private_adds/private_add?image_type=book_counsellor')
-  // 		.then((response) => {
-  // 			setBookCounsellorAds(response.data.results);
-  // 		});
-  // }, [])
-
-  const addEmail = (email) => {
-    navigator.geolocation.getCurrentPosition(async function (position, values) {
-      const latitude = position.coords.latitude;
-      const longitude = position.coords.longitude;
-
-      let params = {
-        latitude: latitude.toString(),
-        longitude: longitude.toString(),
-      };
-      axios
-        .post("/private_adds/click_add/", {
-          // add_email:`${adds[0]?.add_email}`
-          add_email: email,
-          latitude: params.latitude.toString(),
-          longitude: params.longitude.toString(),
-        })
-        .then((response) => {
-          // setAdds(response.data.results);
-          console.log("addEmailresponse", response);
-        });
-    });
-  };
-  // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>code below>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-  // useEffect(() => {
-  //   navigator.geolocation.getCurrentPosition(async function (position, values) {
-  //     const latitude = position.coords.latitude;
-  //     const longitude = position.coords.longitude;
-
-  //     let params = {
-  //       latitude: latitude.toString(),
-  //       longitude: longitude.toString(),
-  //     };
-  //     axios
-  //       .get(
-  //         `/private_adds/private_add?latitude=${latitude}&longitude=${longitude}`,
-  //       )
-  //       .then((response) => {
-  //         if (response.data.results.length > 0) {
-  //           let filterArray = response.data.results.filter((item, index) => {
-  //             return item.image_type == "book_counsellor";
-  //           });
-  //           let findImage =
-  //             filterArray.length > 0 ? filterArray[0].image : "NA";
-  //           setImage(findImage);
-  //           setBookCounsellorAds(filterArray);
-  //         }
-  //       })   .catch((error) => {
-  //         // setMessage("No data found");
-  //         console.log(error);
-  //     })
-  //   });
-  //   dispatch(adsList());
-  // }, [dispatch]);
-
-  // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>latest code below>>>>>>>>>>>>>>>>>>>>>>>>>>
-
-  useEffect(() => {
-    dispatch(adsList());
-    navigator.geolocation.getCurrentPosition(
-      async function (position, values) {
-        const latitude = position.coords.latitude;
-        const longitude = position.coords.longitude;
-
-        let params = {
-          latitude: latitude.toString(),
-          longitude: longitude.toString(),
-        };
-        axios
-          .get(
-            `/private_adds/private_add?latitude=${latitude}&longitude=${longitude}`,
-          )
-          .then((response) => {
-            if (response && response.data.results.length > 0) {
-              let filterArray1 = response.data.results.filter((item, index) => {
-                return item.image_type == "book_counsellor";
-              });
-              setBookCounsellorAds(filterArray1);
-              // console.log("filterArray1book_counsellor",filterArray1)
-            }
-          });
-      },
-      function (error) {
-        console.error("Error Code = " + error.code + " - " + error.message);
-        // alert("Your location is blocked")
-        axios.get(`/private_adds/private_add`).then((response) => {
-          if (response && response.data.results.length > 0) {
-            let filterArray1 = response.data.results.filter((item, index) => {
-              return item.image_type == "book_counsellor";
-            });
-            setBookCounsellorAds(filterArray1);
-            // console.log("filterArray1coursebox",filterArray1)
-          }
-        });
-      },
-    );
-  }, []);
 
   return (
     <div>
       <Header loginPage={true} page='guidance' subPage='bookCounsller' />
       <div className='guidance_book noselect'>
-
-      <Helmet>
-        <title>Get Free Online Counselling For Women in India - Shekunj.com</title>
-        <link rel="canonical" href="https://www.shekunj.com/online-counselling" />
-        <meta name="description" content="Choose the right path for you to get free
+        <Helmet>
+          <title>
+            Get Free Online Counselling For Women in India - Shekunj.com
+          </title>
+          <link
+            rel='canonical'
+            href='https://www.shekunj.com/online-counselling'
+          />
+          <meta
+            name='description'
+            content='Choose the right path for you to get free
          online counselling by the best counsellors in India, career counselling, business
-          counselling, mental health counselling."/>
-        <meta name="keywords" content="free online counselling in India, online free career counselling,        
- free business counselling, mental health counselling, medical counselling, best counsellors in Indore"/>
-      </Helmet>
+          counselling, mental health counselling.'
+          />
+          <meta
+            name='keywords'
+            content='free online counselling in India, online free career counselling,        
+ free business counselling, mental health counselling, medical counselling, best counsellors in Indore'
+          />
+        </Helmet>
 
-       <section className="sk-bookc-sec">
-        <div className="container">
-          <div className="row align-items-center">
-              <div className="col-md-8">
-                <div className="sk-bookC-content">
-                  <h6>Get Free Online Counselling Session</h6>
-                  <h2>From Finest Counsellors.</h2>
-                  <div className="sk-toggle-btn">
-
+        {
+          <section className='sk-bookc-sec'>
+            <div className='container'>
+              <div className='row align-items-center'>
+                <div className='col-md-8'>
+                  <div className='sk-bookC-content'>
+                    <h6>Get Free Online Counselling Session</h6>
+                    <h2>From Finest Counsellors.</h2>
+                    <div className='sk-toggle-btn'></div>
+                    <div className='sk-bookTab-sec'>
+                      {activeTab === "Student" ? (
+                        <form>
+                          <div className='form-inline sk-inline-field'>
+                            <label>Hey, My name is </label>
+                            <input
+                              type='text'
+                              id=''
+                              placeholder='Full Name'
+                              name=''
+                            />
+                            <label>, I am</label>
+                            <select>
+                              <option value=''>Year</option>
+                              {years.map((year) => (
+                                <option key={year} value={year}>
+                                  {year}
+                                </option>
+                              ))}
+                            </select>
+                            <label>year old and</label>
+                          </div>
+                          <div className='form-inline sk-inline-field'>
+                            <label>My last qualifications </label>
+                            <select>
+                              <option>Qualification</option>
+                              <option>BCA</option>
+                              <option>MCA</option>
+                            </select>
+                            <label>. I am looking for </label>
+                            <label>, I am</label>
+                            <select>
+                              <option>Select Purpose</option>
+                              <option>1991</option>
+                              <option>1992</option>
+                            </select>
+                            <label>.</label>
+                          </div>
+                          <div className='form-inline sk-inline-field'>
+                            <label>You can call me on </label>
+                            <input type='Number' placeholder='Mobile Number' />
+                            <label>or call me at </label>
+                            <input type='email' placeholder='Enter Id' />
+                            <label>.</label>
+                          </div>
+                          <div className='sk-sendMain-btn'>
+                            <button type='submit' className='sk-btn-submit'>
+                              Send Enquiry <EastSharpIcon />{" "}
+                            </button>
+                          </div>
+                        </form>
+                      ) : null}
+                    </div>
                   </div>
-                  <div className="sk-bookTab-sec">
-                  <form>
-                    <div className="form-inline sk-inline-field">
-                      <label>Hey, My name is </label>
-                      <input type="text" placeholder="Full Name" />
-                      <label>, I am</label>
-                        <select>
-                          <option>Year</option>
-                          <option>1991</option>
-                          <option>1992</option>
-                        </select>
-                        <label>year old and</label>
-                    </div>
-                    <div className="form-inline sk-inline-field">
-                      <label>My last qualifications </label>
-                      <select>
-                          <option>Qualification</option>
-                          <option>BCA</option>
-                          <option>MCA</option>
-                      </select>
-                      <label>. I am looking for  </label>
-                      <label>, I am</label>
-                        <select>
-                          <option>Select Purpose</option>
-                          <option>1991</option>
-                          <option>1992</option>
-                        </select>
-                        <label>.</label>
-                    </div>
-                    <div className="form-inline sk-inline-field">
-                      <label>You can call me on </label>
-                      <input type="Number" placeholder="Mobile Number" />
-                      <label>or call me at </label>
-                      <input type="email" placeholder="Enter Id" />
-                      <label>.</label>
-                    </div>
-                    <div className="sk-sendMain-btn">
-                      <button type="submit" className="sk-btn-submit">Send Enquiry <EastSharpIcon /> </button>
-                    </div>
-                  </form>
+                </div>
+                <div className='col-md-4'>
+                  <div className='sk-bookC-img'>
+                    <img src={bookcounsellor} alt='' />
                   </div>
                 </div>
               </div>
-              <div className="col-md-4">
-                <div className="sk-bookC-img">
-                  <img src={bookcounsellor} />
-                </div>
-              </div>
-          </div>
-        </div>
-       </section>
+            </div>
+          </section>
+        }
 
-       <section>
-          <div className="container">
-            
-          </div>
-       </section>
-
+        <section>
+          <div className='container'></div>
+        </section>
       </div>
       <Footer loginPage={false} />
     </div>
