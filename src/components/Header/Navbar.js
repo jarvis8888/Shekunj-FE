@@ -54,14 +54,6 @@ const Navbar = (props) => {
               isActive(routingConstants.SUCCESS_CAREER_OPTION) && "active"
             }
           >
-            Career
-          </Dropdown.Item>
-          <Dropdown.Item
-            onClick={() => history.push(routingConstants.SUCCESS_CAREER_OPTION)}
-            className={
-              isActive(routingConstants.SUCCESS_CAREER_OPTION) && "active"
-            }
-          >
             {t("headerComponent.menuItem.5")}
           </Dropdown.Item>
           <Dropdown.Item

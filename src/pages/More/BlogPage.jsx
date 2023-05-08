@@ -48,7 +48,7 @@ function BlogPage() {
   const { blogs } = useSelector((state) => state.blogsReducer);
   const dispatch = useDispatch();
   const [offset, setOffset] = useState(0);
-  const pageLimit = 5;
+  const pageLimit = 20;
 
   const { lan } = useSelector((state) => state.languageReducer);
   const { t } = useTranslation();
@@ -196,25 +196,29 @@ function BlogPage() {
           <div className='row'>
             <div className='col-xl-9 col-md-8'>
               <div className='carousel-blog'>
-                <BlogCarousel images={blogs?.latest_blogs?.results} />
+                <BlogCarousel
+                  images={blogs?.latest_blogs?.results.slice(0, 5)}
+                />
               </div>
             </div>
             <div className='col-xl-3 col-md-4'>
               <div className='sk-blog-sidebar'>
                 {blogs?.latest_blogs?.results.length
-                  ? blogs?.latest_blogs?.results.map((items, index) => {
-                      return (
-                        <>
-                          <TrendingBlogsCard
-                            image={items.image}
-                            id={items.id}
-                            description={items.title}
-                            time='5'
-                            date={items.created_at}
-                          />
-                        </>
-                      );
-                    })
+                  ? blogs?.latest_blogs?.results
+                      .slice(0, 5)
+                      .map((items, index) => {
+                        return (
+                          <>
+                            <TrendingBlogsCard
+                              image={items.image}
+                              id={items.id}
+                              description={items.title}
+                              time='5'
+                              date={items.created_at}
+                            />
+                          </>
+                        );
+                      })
                   : "no data"}
               </div>
             </div>
@@ -301,7 +305,7 @@ function BlogPage() {
                   <button
                     className='loadMore'
                     onClick={() => setOffset(offset + 5)}
-                    disabled={blogs?.latest_blogs?.results.length === 0}
+                    disabled={true}
                   >
                     Explore More
                   </button>
