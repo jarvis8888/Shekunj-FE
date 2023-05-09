@@ -229,12 +229,12 @@ function BlogPage() {
           <section>
             <div className='container'>
               <div className='row'>
-                <div className='col-xl-9 col-md-8'>
+                <div className='col-xl-9 col-md-8 col-lg-8'>
                   <div className='carousel-blog'>
                     <BlogCarousel images={topTrendingBlogs?.slice(0, 5)} />
                   </div>
                 </div>
-                <div className='col-xl-3 col-md-4'>
+                <div className='col-xl-3 col-md-4 col-lg-4'>
                   <div className='sk-blog-sidebar'>
                     {topTrendingBlogs?.length
                       ? topTrendingBlogs.slice(0, 5).map((items, index) => {
@@ -304,7 +304,7 @@ function BlogPage() {
           <section>
             <div className='container'>
               <div className='row'>
-                <div className='col-xl-9 col-md-8'>
+                <div className='col-xl-9 col-md-8 col-lg-8'>
                   <div className='blog-stories'>
                     <div className='title'>
                       <img src={fire} alt='fire' width={25} height={25} />
@@ -316,8 +316,7 @@ function BlogPage() {
                           return (
                             <>
                               {blogLeft.length > 0 && (
-                                <div
-                                  className='col-md-6'
+                                <div className='col-xl-6 col-md-6 col-lg-6 col-sm-12'
                                   // className='col-md-12 ads_home_cover '
                                   onClick={() =>
                                     addEmailToClient(blogLeft[0]?.add_email)
@@ -353,7 +352,7 @@ function BlogPage() {
                         } else {
                           return (
                             <>
-                              <div className='col-md-6'>
+                              <div className='col-xl-6 col-md-6 col-lg-6 col-sm-12'>
                                 <LatestBlogCard
                                   image={items.image}
                                   hashtags={items.hash_tags}
@@ -485,7 +484,7 @@ function BlogPage() {
                   })}
                 </div>
 
-                <div className='col-xl-3 col-md-4'>
+                <div className='col-xl-3 col-md-4 col-lg-4 col-sm-12'>
                   <div className='ads'>
                     <HashtagAndCatagories
                       image={catagorie}

@@ -11,5 +11,12 @@
   img {
     max-width: 100%;
     height: auto;
+    width: 100%;
   }
+}
+@media screen and (max-width: 480px) {
+  .sk-blog-sidebar {
+    margin-top: 15px;
+  }
+  
 }

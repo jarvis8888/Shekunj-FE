@@ -233,12 +233,32 @@ function EventPage() {
       <section className='sk-event-sec'>
         <div className='container-fluid'>
           <div className='sk-event-slide'>
-            <OwlCarousel
-              className='event-Carousel'
-              items={4}
-              margin={20}
-              autoPlay
-              nav={true}
+            <OwlCarousel className='event-Carousel'
+            loop={true} 
+            autoplay={true} 
+            autoplayspeed={1000} 
+            items={4} 
+            margin={20} 
+            nav={true}
+            responsive={
+                {
+                    '1':{
+                        items: 1,
+                    },
+                    '667': {
+                        items: 2
+                    },
+                    '991': {
+                        items: 2
+                    },
+                    '1199': {
+                        items: 4
+                    },
+                    '1920': {
+                        items: 4
+                    }
+                  }
+                }
             >
               {allEventData?.map((items, index) => {
                 return (
@@ -310,7 +330,7 @@ function EventPage() {
                 currentData?.map((items, index) => {
                   return (
                     <>
-                      <div className='col-md-3' key={index}>
+                      <div className='col-xl-3 col-lg-4 col-md-6' key={index}>
                         <div className='sk-card-box'>
                           <div className='sk-card-img'>
                             <img src={items.image} alt='' />

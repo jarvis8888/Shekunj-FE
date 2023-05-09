@@ -2,6 +2,34 @@ img {
   max-width: 100%;
   height: auto;
 }
+.sk-tagBlog-name {
+  background: #2867B2;
+  color: #fff;
+  font-size: 14px;
+  display: inline-block;
+  padding: 5px 8px;
+  text-transform: capitalize;
+  margin-bottom: 5px;
+}
+.sk-chipTag-blog {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: #1DA1F2;
+  color: #fff;
+  font-size: 14px;
+  margin: 15px 20px;
+  padding: 3px 10px;
+}
+.sk-treadingBlog-one {
+  background: #75B94A;
+  color: #fff;
+  padding: 4px 10px;
+  display: inline-block;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
 .sk-Blogcard-content {
   padding: 12px 15px 4px;
 }
@@ -18,10 +46,14 @@ img {
   margin: 20px 0 15px;
 
   &__image {
+    position: relative;
     img {
       width: 100%;
       height: auto;
       max-width: 100%;
+      object-fit: cover;
+      height: 250px;
+      object-position: center top;
     }
   }
 
@@ -136,6 +168,7 @@ img {
     background-size: cover;
     background-position: center;
     margin-bottom: 10px;
+    position: relative;
     @media screen and (max-width: 768px) {
       display: flex;
       flex-direction: column;
@@ -189,6 +222,7 @@ img {
     flex: 300px 0 0;
     height: auto;
     margin-right: 15px;
+    position: relative;
   }
   &__content {
     flex: 1;

@@ -144,7 +144,7 @@ section {
   display: inline-block;
 }
 .sk-title-heading h2 {
-  font-size: 40px;
+  font-size:calc(1rem + 1.5vw);
   font-weight: 500;
   color: #020202;
   font-family: "Poppins", sans-serif;
@@ -158,15 +158,21 @@ section {
   text-align: center;
 }
 .sk-event-sec {
-  background: linear-gradient(
-    89.98deg,
-    #8888889c 2.6%,
-    rgba(136, 136, 136, 0.28) 19.79%,
-    rgba(255, 255, 255, 0) 26.4%,
-    rgba(255, 255, 255, 0) 79.16%,
-    rgba(136, 136, 136, 0.29) 85.9%,
-    #8888887d 97.14%
-  );
+  position: relative;
+}
+.sk-event-sec:before {
+  background: linear-gradient(89.98deg, rgb(136 136 136 / 92%) 2.6%, rgba(136, 136, 136, 0.28) 19.79%, rgba(255, 255, 255, 0) 26.4%, rgba(255, 255, 255, 0) 79.16%, rgba(136, 136, 136, 0.29) 85.9%, rgb(136 136 136 / 87%) 97.14%);
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 9;
+}
+.sk-event-slide{
+  position: relative;
+  z-index: 9;
 }
 .sk-btn-register {
   background: #d3317d;
@@ -229,6 +235,9 @@ section {
 .sk-card-img img {
   border-radius: 5px 5px 0 0;
   width: 100%;
+  object-fit: cover;
+  min-height: 270px;
+  object-position: left top;
 }
 .sk-week-time span {
   font-size: 14px;
@@ -308,4 +317,12 @@ section {
 .hint-key-words:hover {
   color: #d3317d;
   cursor: pointer;
+}
+@media screen and (max-width: 480px) {
+  .sk-footer-menu p a{
+    justify-content: center;
+  }
+  .sk-footer-menu{
+    margin-bottom: 15px;
+  }
 }

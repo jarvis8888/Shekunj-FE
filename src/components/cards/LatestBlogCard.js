@@ -29,6 +29,7 @@ const LatestBlogCard = (props) => {
     <div className='card' key={key}>
       <div className='card__image'>
         <img src={image} alt={title} />
+        <span className="sk-chipTag-blog">Woman</span>
       </div>
       {/* <div className='card__hashtags'>
         {hashtags.map((tag) => (
