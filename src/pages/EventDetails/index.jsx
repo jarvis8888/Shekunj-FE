@@ -89,7 +89,10 @@ const EventDetails = () => {
   //states
   const [eventsDetails, setEventsDetails] = useState();
   const [eventDetailsBoxAds, setEventDetailsBoxAds] = useState([]);
+<<<<<<< HEAD
   const [eventDetailsBannerAds, setEventDetailsBannerAds] = useState([]);
+=======
+>>>>>>> 33f2ba56 (added the event and event details page intergation)
   const [loading, setLoading] = useState(false);
   //states
 
@@ -206,6 +209,7 @@ const EventDetails = () => {
 
   useEffect(() => {
     dispatch(adsList());
+<<<<<<< HEAD
     const successCallback = async (position) => {
       const { latitude, longitude } = position.coords;
       const params = {
@@ -269,6 +273,66 @@ const EventDetails = () => {
   //   });
   // };
 
+=======
+    navigator.geolocation.getCurrentPosition(
+      async function (position, values) {
+        const latitude = position.coords.latitude;
+        const longitude = position.coords.longitude;
+
+        let params = {
+          latitude: latitude.toString(),
+          longitude: longitude.toString(),
+        };
+        axios
+          .get(
+            `/private_adds/private_add?latitude=${latitude}&longitude=${longitude}`,
+          )
+          .then((response) => {
+            if (response && response.data.results.length > 0) {
+              let filterArray1 = response.data.results.filter((item, index) => {
+                return item.image_type == "success_stories_right1";
+              });
+              setEventDetailsBoxAds(filterArray1);
+            }
+          });
+      },
+      function (error) {
+        console.error("Error Code = " + error.code + " - " + error.message);
+        // alert("Your location is blocked")
+        axios.get(`/private_adds/private_add`).then((response) => {
+          if (response && response.data.results.length > 0) {
+            let filterArray1 = response.data.results.filter((item, index) => {
+              return item.image_type == "event_detail";
+            });
+            setEventDetailsBoxAds(filterArray1);
+          }
+        });
+      },
+    );
+  }, []);
+
+  // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+  const addEmail = (email) => {
+    navigator.geolocation.getCurrentPosition(async function (position, values) {
+      const latitude = position.coords.latitude;
+      const longitude = position.coords.longitude;
+
+      let params = {
+        latitude: latitude.toString(),
+        longitude: longitude.toString(),
+      };
+      axios
+        .post("/private_adds/click_add/", {
+          add_email: email,
+          latitude: params.latitude.toString(),
+          longitude: params.longitude.toString(),
+        })
+        .then((response) => {});
+    });
+  };
+
+>>>>>>> 33f2ba56 (added the event and event details page intergation)
   // useEffect(() => {
   //   dispatch(singleEventDetails(id));
   //   window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
@@ -436,6 +500,7 @@ const EventDetails = () => {
           apiConstants.ALL_EVENTS.BOOK_EVENT,
           data,
         );
+<<<<<<< HEAD
         if (res?.message === "You are already registered for this event") {
           toast.warn(res.message, toasterConfig);
           resetForm();
@@ -464,6 +529,30 @@ const EventDetails = () => {
     isSubmitting,
   } = onRegistrationFormSubmit;
 
+=======
+
+        localStorage.setItem("event_data", JSON.stringify(data));
+        toast.success(res.message, toasterConfig);
+        resetForm();
+      } catch (error) {
+      } finally {
+      }
+    },
+  });
+  const {
+    values,
+    errors,
+    touched,
+    handleChange,
+    validate,
+    handleBlur,
+    handleSubmit,
+    setFieldValue,
+    setValues,
+    setFieldTouched,
+  } = onRegistrationFormSubmit;
+
+>>>>>>> 33f2ba56 (added the event and event details page intergation)
   const getEventDetailById = async (id) => {
     setLoading(true);
     try {
@@ -498,6 +587,7 @@ const EventDetails = () => {
                   </div>
                   <div className='sk-eventDetail-content'>
                     <div className='sk-eventSocial-chiptag'>
+<<<<<<< HEAD
                       <div>
                         <div className='sk-edetail-chip'>
                           <span>{eventsDetails?.genre_name}</span>
@@ -537,6 +627,10 @@ const EventDetails = () => {
                             </li>
                           </ul>
                         </div>
+=======
+                      <div className='sk-edetail-chip'>
+                        <span>{eventsDetails?.genre_name}</span>
+>>>>>>> 33f2ba56 (added the event and event details page intergation)
                       </div>
                       <div className='sk-social-icon'>
                         <h6>Share this article</h6>
@@ -569,7 +663,47 @@ const EventDetails = () => {
                         </ul>
                       </div>
                     </div>
+<<<<<<< HEAD
 
+=======
+                    <div className='sk-details-datetime'>
+                      <ul>
+                        <li>
+                          {" "}
+                          <AccessTimeIcon />{" "}
+                          <span>
+                            {" "}
+                            {time_left(
+                              eventsDetails?.start_date,
+                              eventsDetails?.start_time,
+                              eventsDetails?.end_date,
+                              eventsDetails?.end_time,
+                            )}
+                          </span>{" "}
+                        </li>
+                        <li>
+                          {eventsDetails?.mode_of_event === "offline" ? (
+                            <>
+                              {" "}
+                              <img src={offlineicon} /> Offline{" "}
+                            </>
+                          ) : (
+                            <>
+                              {" "}
+                              <img src={onlineicon} /> Online{" "}
+                            </>
+                          )}
+                        </li>
+                        <li>
+                          {" "}
+                          <SchoolRoundedIcon /> {
+                            eventsDetails?.enrold_students
+                          }{" "}
+                          enrolled{" "}
+                        </li>
+                      </ul>
+                    </div>
+>>>>>>> 33f2ba56 (added the event and event details page intergation)
                     <h2>{eventsDetails?.title}</h2>
                     <div
                       className='sk-card-description'
@@ -577,7 +711,11 @@ const EventDetails = () => {
                         __html: makeHtml(eventsDetails?.about_event),
                       }}
                     />
+<<<<<<< HEAD
                     {/* <div className='sk-work-detail'>
+=======
+                    <div className='sk-work-detail'>
+>>>>>>> 33f2ba56 (added the event and event details page intergation)
                       <h4>Workshop Details</h4>
                       <ul>
                         <li>
@@ -609,6 +747,7 @@ const EventDetails = () => {
                           Please carry your booking confirmation email/message
                         </li>
                       </ul>
+<<<<<<< HEAD
                     </div> */}
                     <div className='sk-event-add'>
                       <a
@@ -809,6 +948,188 @@ const EventDetails = () => {
                   </div>
                 </div>
               </div>
+=======
+                    </div>
+                    <div className='sk-event-add'>
+                      <img src={eventadd01} />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class='col-xl-3 col-md-4'>
+                <div className='sk-event-sidebar'>
+                  <div className='sk-event-form'>
+                    <h6>Registration Form</h6>
+
+                    <form onSubmit={handleSubmit}>
+                      <div className='sk-eventForm-filed'>
+                        <input
+                          type='text'
+                          name='fullName'
+                          value={values.fullName}
+                          onChange={handleChange}
+                          touched={touched}
+                          onBlur={handleBlur}
+                          className='form-control'
+                          placeholder='Enter Full Name'
+                        />
+                        <span>
+                          <AccountBoxRoundedIcon />
+                        </span>
+                      </div>
+                      {errors.fullName && (
+                        <div className='sk-error-message'>
+                          {errors.fullName}
+                        </div>
+                      )}
+                      <div className='sk-eventForm-filed'>
+                        <input
+                          type='email'
+                          name='email'
+                          value={values.email}
+                          onChange={handleChange}
+                          touched={touched}
+                          onBlur={handleBlur}
+                          className='form-control'
+                          placeholder='Email Id'
+                        />
+                        <span>
+                          <EmailIcon />
+                        </span>
+                      </div>
+                      {errors.email && (
+                        <div className='sk-error-message'>{errors.email}</div>
+                      )}
+                      <div className='sk-eventForm-filed'>
+                        <input
+                          type='text'
+                          name='whatsappNumber'
+                          value={values.whatsappNumber}
+                          onChange={handleChange}
+                          touched={touched}
+                          onBlur={handleBlur}
+                          className='form-control'
+                          placeholder='Whatsapp Number'
+                        />
+                        <span>
+                          <CallIcon />
+                        </span>
+                      </div>
+                      {errors.whatsappNumber && (
+                        <div className='sk-error-message'>
+                          {errors.whatsappNumber}
+                        </div>
+                      )}
+                      <ul>
+                        <div className='sk-eventForm-filed'>
+                          <input
+                            type='text'
+                            name='gender'
+                            value={values.gender}
+                            onChange={handleChange}
+                            touched={touched}
+                            onBlur={handleBlur}
+                            className='form-control'
+                            placeholder='Gender'
+                          />
+                          <span>
+                            <AccountBoxRoundedIcon />
+                          </span>
+                        </div>
+
+                        <div className='sk-eventForm-filed'>
+                          <input
+                            type='text'
+                            name='location'
+                            value={values.location}
+                            onChange={handleChange}
+                            touched={touched}
+                            onBlur={handleBlur}
+                            className='form-control'
+                            placeholder='Location'
+                          />
+                          <span>
+                            <FmdGoodRoundedIcon />
+                          </span>
+                        </div>
+                        {errors.gender && (
+                          <div className='sk-error-message'>
+                            {errors.gender}
+                          </div>
+                        )}
+                        {errors.location && (
+                          <div className='sk-error-message'>
+                            {errors.location}
+                          </div>
+                        )}
+                      </ul>
+                      <div className='sk-eventForm-filed'>
+                        <input
+                          type='text'
+                          name='instituteName'
+                          value={values.instituteName}
+                          onChange={handleChange}
+                          touched={touched}
+                          onBlur={handleBlur}
+                          className='form-control'
+                          placeholder='Institute Name'
+                        />
+                        <span>
+                          <SchoolRoundedIcon />
+                        </span>
+                      </div>
+                      {errors.instituteName && (
+                        <span className='sk-error-message'>
+                          {errors.instituteName}
+                        </span>
+                      )}
+                      <div className='sk-eventForm-filed'>
+                        <button type='submit' className='sk-submit-btn'>
+                          {" "}
+                          Submit
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                  <div className='sk-add-slidebar'>
+                    <a
+                      href={eventDetailsBoxAds[0]?.url_adds}
+                      target='_blank'
+                      rel='noreferrer'
+                    >
+                      {detect.isMobile
+                        ? eventDetailsBoxAds[0]?.image_mobile && (
+                            <img
+                              src={eventDetailsBoxAds[0]?.image_mobile}
+                              alt='Image'
+                              className='ads_story_cover_img'
+                            />
+                          )
+                        : eventDetailsBoxAds[0]?.image && (
+                            <img
+                              src={eventDetailsBoxAds[0]?.image}
+                              alt='Image'
+                              className='ads_story_cover_img'
+                            />
+                          )}
+                    </a>
+                  </div>
+                  <div className='sk-like-event'>
+                    <YouMayLikeCarousel />
+                    {/* <h5>
+                    <span>
+                      <FavoriteBorderIcon />
+                    </span>{" "}
+                    You May Like
+                  </h5>
+                  <div className='sk-slide-img'>
+                    <img src={eventslideimg} />
+                  </div>
+                  <h6>10 mistakes to avoid while choosing an Ideal Career</h6> */}
+                  </div>
+                </div>
+              </div>
+>>>>>>> 33f2ba56 (added the event and event details page intergation)
             </div>
           </div>
         </section>

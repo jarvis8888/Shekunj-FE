@@ -44,6 +44,7 @@ import "owl.carousel/dist/assets/owl.theme.default.css";
 import httpServices from "../../utils/ApiServices";
 import { time_left } from "../../utils/utils";
 import { CustomLoader } from "../../components/customLoader/CustomLoader";
+<<<<<<< HEAD
 import AddsBanner from "../../components/AddsBanner/AddsBanner";
 import useDeviceDetect from "../../hooks/useDeviceDetect";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
@@ -51,6 +52,8 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 const useQuery = () => {
   return new URLSearchParams(useLocation().search);
 };
+=======
+>>>>>>> 33f2ba56 (added the event and event details page intergation)
 
 function EventPage() {
   const options = [
@@ -63,17 +66,30 @@ function EventPage() {
   const { lan } = useSelector((state) => state.languageReducer);
 
   const [eventBoxAds, setEventBoxAds] = useState([]);
+<<<<<<< HEAD
+=======
+  // const [events, setEvents] = useState([]);
+  // const [image, setImage] = useState("NA");
+  // const [adds, setAdds] = useState([]);
+  const [tempData, setTempData] = useState([]);
+>>>>>>> 33f2ba56 (added the event and event details page intergation)
   const [currentData, setCurrentData] = useState([]);
   const [allEventData, setAllEventData] = useState([]);
   const [todayTomorrowData, setTodayTomorrowData] = useState([]);
   const [thisWeekData, setThisWeekData] = useState([]);
   const [nextWeekData, setNextWeekData] = useState([]);
   const [genresListData, setGenresListData] = useState([]);
+<<<<<<< HEAD
   const [selectedButton, setSelectedButton] = useState("all");
   const [currentOffset, setCurrentOffset] = useState(0);
   const [loading, setLoading] = useState(false);
   const params = useQuery();
   const [selectedOption, setSelectedOption] = useState(params.get("genre_id"));
+=======
+  const [selectedOption, setSelectedOption] = useState(null);
+  const [selectedButton, setSelectedButton] = useState("all");
+  const [loading, setLoading] = useState(false);
+>>>>>>> 33f2ba56 (added the event and event details page intergation)
 
   const history = useHistory();
   const dispatch = useDispatch();
@@ -81,7 +97,17 @@ function EventPage() {
   const location = useLocation();
   const detect = useDeviceDetect();
 
+<<<<<<< HEAD
   const fetchEventsData = async (genre, isAllItem) => {
+=======
+  const searchParams = new URLSearchParams(location.search);
+  const currentSearch = searchParams.get("genre_id") || "";
+
+  // const { events } = useSelector((state) => state.eventsReducer);
+  const { lan } = useSelector((state) => state.languageReducer);
+
+  const fetchEventsData = async (search, selectedOption) => {
+>>>>>>> 33f2ba56 (added the event and event details page intergation)
     setLoading(true);
     try {
       let url = `more/events`;
@@ -95,14 +121,22 @@ function EventPage() {
       const { data } = await httpServices.get(url);
       const { event_list, today_tomorrow, this_week, next_week, genres_list } =
         data;
+<<<<<<< HEAD
+=======
+      setAllEventData(event_list);
+>>>>>>> 33f2ba56 (added the event and event details page intergation)
       setGenresListData(genres_list);
       setTodayTomorrowData(today_tomorrow);
       setThisWeekData(this_week);
       setNextWeekData(next_week);
+<<<<<<< HEAD
       if (isAllItem) {
         setAllEventData([...event_list?.results]);
       }
       setCurrentData(event_list?.results);
+=======
+      setCurrentData(event_list);
+>>>>>>> 33f2ba56 (added the event and event details page intergation)
     } catch (error) {
     } finally {
       setLoading(false);
@@ -110,6 +144,7 @@ function EventPage() {
   };
   const handleTimeOptionClick = (option) => {
     setSelectedButton(option);
+<<<<<<< HEAD
     setSelectedOption(null);
     const searchParams = new URLSearchParams();
     searchParams.set("genre_id", "");
@@ -140,6 +175,27 @@ function EventPage() {
     setCurrentOffset(0);
     fetchEventsData(option);
     const searchParams = new URLSearchParams();
+=======
+    switch (option) {
+      case "todayTomorrow":
+        setCurrentData(todayTomorrowData);
+        break;
+      case "thisWeek":
+        setCurrentData(thisWeekData);
+        break;
+      case "nextWeek":
+        setCurrentData(nextWeekData);
+        break;
+      default:
+        setCurrentData(allEventData);
+        break;
+    }
+  };
+  const handleGenerOptionClick = (option) => {
+    setSelectedButton("all");
+    setSelectedOption(option);
+    const searchParams = new URLSearchParams();
+>>>>>>> 33f2ba56 (added the event and event details page intergation)
     searchParams.set("genre_id", option);
     history.push({
       pathname: location.pathname,
@@ -227,6 +283,7 @@ function EventPage() {
       <section className='sk-event-sec'>
         <div className='container-fluid'>
           <div className='sk-event-slide'>
+<<<<<<< HEAD
             <OwlCarousel
               className='event-Carousel'
               items={4}
@@ -244,6 +301,30 @@ function EventPage() {
                   </>
                 );
               })}
+=======
+            <OwlCarousel items={4} margin={15} {...options}>
+              <div>
+                <img src={eventimg1} />
+              </div>
+              <div>
+                <img src={eventimg2} />
+              </div>
+              <div>
+                <img src={eventimg1} />
+              </div>
+              <div>
+                <img src={eventimg2} />
+              </div>
+              <div>
+                <img src={eventimg1} />
+              </div>
+              <div>
+                <img src={eventimg2} />
+              </div>
+              <div>
+                <img src={eventimg1} />
+              </div>
+>>>>>>> 33f2ba56 (added the event and event details page intergation)
             </OwlCarousel>
           </div>
         </div>
@@ -285,7 +366,11 @@ function EventPage() {
                         <a
                           onClick={() => handleGenerOptionClick(items.id)}
                           className={
+<<<<<<< HEAD
                             selectedOption == items.id && "active-time"
+=======
+                            selectedOption === items.id && "active-time"
+>>>>>>> 33f2ba56 (added the event and event details page intergation)
                           }
                         >
                           {items.name}
@@ -300,6 +385,7 @@ function EventPage() {
             <CustomLoader size='small' />
           ) : (
             <div className='row'>
+<<<<<<< HEAD
               {currentData.length ? (
                 currentData?.map((items, index) => {
                   return (
@@ -395,10 +481,93 @@ function EventPage() {
                   </div>
                 </div>
               )}
+=======
+              {currentData.length
+                ? currentData?.map((items, index) => {
+                    return (
+                      <>
+                        <div className='col-md-3' key={index}>
+                          <div className='sk-card-box'>
+                            <div className='sk-card-img'>
+                              <img src={items.image} alt='' />
+                            </div>
+                            <div className='sk-content-card'>
+                              <div className='sk-time-education'>
+                                <ul>
+                                  <li className='sk-chip-tag'>
+                                    {" "}
+                                    <span>{items.genre_name}</span>{" "}
+                                  </li>
+                                  <li>
+                                    {items.mode_of_event === "offline" ? (
+                                      <>
+                                        {" "}
+                                        <img src={offlineicon} /> Offline{" "}
+                                      </>
+                                    ) : (
+                                      <>
+                                        {" "}
+                                        <img src={onlineicon} /> Online{" "}
+                                      </>
+                                    )}
+                                  </li>
+                                </ul>
+                              </div>
+                              <h6 className='sk-card-heading'>{items.title}</h6>
+                              <div className='sk-time-education'>
+                                <ul>
+                                  <li>
+                                    {" "}
+                                    <AccessTimeIcon />{" "}
+                                    <span>
+                                      {time_left(
+                                        items.start_date,
+                                        items.start_time,
+                                        items.end_date,
+                                        items.end_time,
+                                      )}
+                                    </span>{" "}
+                                  </li>
+                                  <li>
+                                    {" "}
+                                    <SchoolRoundedIcon />{" "}
+                                    {items.enrold_students} enrolled{" "}
+                                  </li>
+                                </ul>
+                              </div>
+                              <div className='sk-tags-event'>
+                                <button
+                                  type='button'
+                                  className='sk-btn-register'
+                                  onClick={() =>
+                                    history.push(
+                                      routingConstants.MORE_EVENT + items.id,
+                                    )
+                                  }
+                                >
+                                  Registration Now
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </>
+                    );
+                  })
+                : "no data"}
+              <div className='col-md-12'>
+                <div className='sk-explore-btn'>
+                  <button type='' className='sk-btn'>
+                    Explore More{" "}
+                  </button>
+                </div>
+              </div>
+>>>>>>> 33f2ba56 (added the event and event details page intergation)
             </div>
           )}
         </div>
       </section>
+<<<<<<< HEAD
       <section className="sk-bottomAdd-sec">
         <div className="container">
           <div className="row">  
@@ -429,6 +598,8 @@ function EventPage() {
         </div>
 
       </section>
+=======
+>>>>>>> 33f2ba56 (added the event and event details page intergation)
       <Footer loginPage={false} />
     </div>
   );

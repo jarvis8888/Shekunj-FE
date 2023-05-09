@@ -29,8 +29,11 @@ section {
   font-size: 14px;
   color: #fff;
   padding: 5px 10px;
+<<<<<<< HEAD
   display: inline-block;
   margin-bottom: 10px;
+=======
+>>>>>>> 33f2ba56 (added the event and event details page intergation)
 }
 
 .sk-social-icon ul {
@@ -62,13 +65,20 @@ section {
 
 .sk-details-datetime ul li {
   font-size: 14px;
+<<<<<<< HEAD
   color: #888;
+=======
+>>>>>>> 33f2ba56 (added the event and event details page intergation)
 }
 
 .sk-details-datetime ul li svg {
   font-size: 20px;
   vertical-align: text-top;
+<<<<<<< HEAD
   color: #888;
+=======
+  color: #020202;
+>>>>>>> 33f2ba56 (added the event and event details page intergation)
   margin-right: 2px;
 }
 
@@ -151,7 +161,11 @@ section {
 }
 .sk-event-form .sk-eventForm-filed {
   position: relative;
+<<<<<<< HEAD
   margin: 15px 0 0px;
+=======
+  margin-bottom: 15px;
+>>>>>>> 33f2ba56 (added the event and event details page intergation)
 }
 .sk-event-form h6 {
   margin-bottom: 18px;
@@ -179,7 +193,11 @@ section {
 }
 .sk-event-form {
   border-bottom: 1px solid #d9d9d9;
+<<<<<<< HEAD
   padding-bottom: 20px;
+=======
+  padding-bottom: 10px;
+>>>>>>> 33f2ba56 (added the event and event details page intergation)
 }
 .sk-eventForm-filed span {
   position: absolute;
@@ -225,10 +243,17 @@ section {
 .sk-slide-img h6 {
   font-size: 20px;
 }
+<<<<<<< HEAD
 // .sk-event-imgcontent {
 //   border-right: 1px solid #d9d9d9;
 //   padding-right: 15px;
 // }
+=======
+.sk-event-imgcontent {
+  border-right: 1px solid #d9d9d9;
+  padding-right: 15px;
+}
+>>>>>>> 33f2ba56 (added the event and event details page intergation)
 // end
 
 .career_tit h2 {
@@ -1001,7 +1026,15 @@ button.book_event_btn:hover {
 }
 
 .sk-error-message {
+<<<<<<< HEAD
   font-weight: 400;
   font-size: 12px;
   color: #c93636;
+=======
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+>>>>>>> 33f2ba56 (added the event and event details page intergation)
 }
