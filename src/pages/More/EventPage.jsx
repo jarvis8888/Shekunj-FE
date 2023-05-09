@@ -61,6 +61,11 @@ function EventPage() {
   ];
 
   const { lan } = useSelector((state) => state.languageReducer);
+  const [currentData2, setCurrentData2] = useState([]);
+  console.log(
+    "🚀 ~ file: EventPage.jsx:65 ~ EventPage ~ currentData2:",
+    currentData2,
+  );
 
   const [eventBoxAds, setEventBoxAds] = useState([]);
   const [currentData, setCurrentData] = useState([]);
@@ -74,6 +79,7 @@ function EventPage() {
   const [loading, setLoading] = useState(false);
   const params = useQuery();
   const [selectedOption, setSelectedOption] = useState(params.get("genre_id"));
+  const [checkEventData, setCheckEventData] = useState([]);
 
   const history = useHistory();
   const dispatch = useDispatch();
@@ -81,17 +87,10 @@ function EventPage() {
   const location = useLocation();
   const detect = useDeviceDetect();
 
-  const fetchEventsData = async (genre, isAllItem) => {
+  const getAllEVentsData = async (currentOffset) => {
     setLoading(true);
     try {
-      let url = `more/events`;
-      if (selectedButton == "all") {
-        url += `?limit=${20}&offset=${currentOffset}`;
-      }
-      if (genre || selectedOption) {
-        const a = genre || selectedOption;
-        url += `&genre_id=${a}`;
-      }
+      const url = `more/events?limit=${8}&offset=${currentOffset}`;
       const { data } = await httpServices.get(url);
       const { event_list, today_tomorrow, this_week, next_week, genres_list } =
         data;
@@ -99,9 +98,30 @@ function EventPage() {
       setTodayTomorrowData(today_tomorrow);
       setThisWeekData(this_week);
       setNextWeekData(next_week);
-      if (isAllItem) {
-        setAllEventData([...event_list?.results]);
+      setCheckEventData(event_list?.results);
+      if (event_list?.results?.length > 0) {
+        setAllEventData((prevFeaturedData) => [
+          ...prevFeaturedData,
+          ...event_list?.results,
+        ]);
+        setCurrentData((prevFeaturedData) => [
+          ...prevFeaturedData,
+          ...event_list?.results,
+        ]);
       }
+    } catch (error) {
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const getAllGenreEVentsData = async (genre) => {
+    setLoading(true);
+    try {
+      const url = `more/events?genre_id=${genre}`;
+      const { data } = await httpServices.get(url);
+      const { event_list, today_tomorrow, this_week, next_week, genres_list } =
+        data;
       setCurrentData(event_list?.results);
     } catch (error) {
     } finally {
@@ -127,18 +147,17 @@ function EventPage() {
       case "nextWeek":
         setCurrentData(nextWeekData);
         break;
-      default:
+      case "all":
         setSelectedOption(null);
-        setCurrentOffset(0);
-        fetchEventsData();
+        setCurrentData(allEventData);
+        break;
+      default:
         break;
     }
   };
   const handleGenerOptionClick = (option) => {
-    setSelectedButton("all");
     setSelectedOption(option);
-    setCurrentOffset(0);
-    fetchEventsData(option);
+    setSelectedButton(null);
     const searchParams = new URLSearchParams();
     searchParams.set("genre_id", option);
     history.push({
@@ -147,31 +166,10 @@ function EventPage() {
     });
   };
 
-  useEffect(() => {
-    fetchEventsData(null, true);
-  }, [currentOffset, lan]);
+  // useEffect(() => {
+  //   fetchEventsData(null, true);
+  // }, [currentOffset, lan]);
 
-  const addEmail = async (email) => {
-    try {
-      const position = await navigator.geolocation.getCurrentPosition();
-      const { latitude, longitude } = position.coords;
-
-      const params = {
-        latitude: latitude.toString(),
-        longitude: longitude.toString(),
-      };
-
-      const response = await axios.post("/private_adds/click_add/", {
-        add_email: email,
-        latitude: params.latitude,
-        longitude: params.longitude,
-      });
-
-      console.log("addEmailresponse", response);
-    } catch (error) {
-      console.log(error);
-    }
-  };
   useEffect(() => {
     dispatch(adsList());
     const successCallback = async (position) => {
@@ -206,6 +204,14 @@ function EventPage() {
     navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
   }, []);
 
+  useEffect(() => {
+    getAllEVentsData(currentOffset);
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  }, [currentOffset, lan]);
+
+  useEffect(() => {
+    getAllGenreEVentsData(selectedOption);
+  }, [selectedOption]);
   return (
     <div>
       <Header loginPage={true} page='more' subPage='moreEvent' />
@@ -383,10 +389,10 @@ function EventPage() {
                 <div className='col-md-12'>
                   <div className='sk-explore-btn'>
                     <button
-                      disabled={true}
+                      disabled={checkEventData?.length === 0}
                       type=''
                       onClick={() => {
-                        setCurrentOffset(currentOffset + 1);
+                        setCurrentOffset(currentOffset + 8);
                       }}
                       className='sk-btn'
                     >
@@ -399,35 +405,38 @@ function EventPage() {
           )}
         </div>
       </section>
-      <section className="sk-bottomAdd-sec">
-        <div className="container">
-          <div className="row">  
-          <div className="col-md-12"> 
-          <>
-            {eventBoxAds.length > 0 && (
-              <a href={eventBoxAds[0]?.url_adds} target='_blank' rel='noreferrer'>
-                {detect.isMobile
-                  ? eventBoxAds[0]?.image_mobile && (
-                      <img
-                        src={eventBoxAds[0]?.image_mobile}
-                        alt=''
-                        // className='ads_story_cover_img'
-                      />
-                    )
-                  : eventBoxAds[0]?.image && (
-                      <img
-                        src={eventBoxAds[0]?.image}
-                        alt=''
-                        // className='ads_story_cover_img'
-                      />
-                    )}
-              </a>
-            )}
-          </>
+      <section className='sk-bottomAdd-sec'>
+        <div className='container'>
+          <div className='row'>
+            <div className='col-md-12'>
+              <>
+                {eventBoxAds.length > 0 && (
+                  <a
+                    href={eventBoxAds[0]?.url_adds}
+                    target='_blank'
+                    rel='noreferrer'
+                  >
+                    {detect.isMobile
+                      ? eventBoxAds[0]?.image_mobile && (
+                          <img
+                            src={eventBoxAds[0]?.image_mobile}
+                            alt=''
+                            // className='ads_story_cover_img'
+                          />
+                        )
+                      : eventBoxAds[0]?.image && (
+                          <img
+                            src={eventBoxAds[0]?.image}
+                            alt=''
+                            // className='ads_story_cover_img'
+                          />
+                        )}
+                  </a>
+                )}
+              </>
+            </div>
+          </div>
         </div>
-        </div>
-        </div>
-
       </section>
       <Footer loginPage={false} />
     </div>

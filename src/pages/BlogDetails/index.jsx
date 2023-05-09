@@ -417,7 +417,7 @@ const BlogDetails = () => {
                             image={items.image}
                             title={items.title}
                             id={items.id}
-                            // description={items.about_blog}
+                            description={`${items.about_blog}`}
                             time='5 min'
                             date={items.created_at}
                           />

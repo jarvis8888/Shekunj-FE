@@ -163,7 +163,7 @@ const SuccessStroyWithHashtag = () => {
                               image={items.image}
                               title={items.title}
                               id={items.id}
-                              // description={items.about_blog}
+                              description={`${items.about_blog}`}
                               time='5 min'
                               date={DateFormat(`${items.created_at}`)}
                             />
