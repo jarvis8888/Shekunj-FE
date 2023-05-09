@@ -70,7 +70,7 @@ export const GlobalSearchCard = ({
         case "Courses":
           return `/courses-details/${id}`;
         case "Mock Test":
-          return "/success-career-test";
+          return `/mock-test/${id}1`;
         default:
           return "";
       }

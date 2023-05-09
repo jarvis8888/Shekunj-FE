@@ -2,8 +2,8 @@ import React, { useState, memo } from "react";
 import "./navbar.scss";
 import closeIcon from "../../assets/icons/svgs/close.png";
 import memuIcon from "../../assets/icons/svgs/memu.png";
-import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
-import CloseIcon from '@mui/icons-material/Close';
+import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
+import CloseIcon from "@mui/icons-material/Close";
 import globalSreach from "../../assets/icons/svgs/globalSearch.png";
 import logo from "../../assets/images/shekunjlogo.svg";
 import SearchIcon from "@mui/icons-material/Search";
@@ -38,8 +38,7 @@ const Navbar = (props) => {
           }}
         />
       </span>
-     
-     
+
       <div className={`nav-items ${isOpen && "open"}`}>
         <a href='/about-us' className={isActive("/about-us") && "active"}>
           {t("header.heading.1")}
@@ -57,9 +56,9 @@ const Navbar = (props) => {
             {t("headerComponent.menuItem.5")}
           </Dropdown.Item>
           <Dropdown.Item
-            onClick={() => history.push(routingConstants.SUCCESS_CAREER_TEST)}
+            onClick={() => history.push(routingConstants.MOCKTEST)}
             className={
-              isActive(routingConstants.SUCCESS_CAREER_TEST) && "active"
+              isActive(routingConstants.MOCKTEST) && "active"
             }
           >
             {t("headerComponent.menuItem.6")}
@@ -122,23 +121,25 @@ const Navbar = (props) => {
         <a href='/more-faq' className='mobile-show'>
           FAQ
         </a>
-        <span className="sk-mobile-hide" onClick={() => history.push(routingConstants.SEARCH)}>
+        <span
+          className='sk-mobile-hide'
+          onClick={() => history.push(routingConstants.SEARCH)}
+        >
           <SearchIcon />
         </span>
       </div>
-      <div className="mobile-show">
-        <span className="mr-2" onClick={() => history.push(routingConstants.SEARCH)}>
+      <div className='mobile-show'>
+        <span
+          className='mr-2'
+          onClick={() => history.push(routingConstants.SEARCH)}
+        >
           <SearchIcon />
         </span>
         <span
           className={`nav-toggle ${isOpen && "open"}`}
           onClick={() => setIsOpen(!isOpen)}
         >
-          {isOpen ? (
-            <CloseIcon />
-          ) : (
-            <MenuOutlinedIcon />
-          )}
+          {isOpen ? <CloseIcon /> : <MenuOutlinedIcon />}
         </span>
       </div>
     </div>
