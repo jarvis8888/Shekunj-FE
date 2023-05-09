@@ -102,6 +102,7 @@ const apiConstants = {
   },
   GUIDANCE: {
     BOOK_SESSION: "/course/book-session/",
+    BOOK_SESSION_INSTITUTE: "/course/book-session_institute/",
     GUIDANCE_CATEGORY: "career/guidance-category/",
     START_USER_CAREER_TEST: "career/start-user-career-test/",
     USER_CAREER_COUNT: "career/user-career-count/",
