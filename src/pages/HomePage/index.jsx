@@ -7,14 +7,25 @@ import { useTranslation } from "react-i18next";
 import { Link, Redirect, useHistory, useLocation } from "react-router-dom";
 import { constants } from "../../utils";
 import { Header, Footer, Carousel, SEO } from "../../components";
-
+// import SlideContent from "./SlideContent";
 import "animate.css";
 import "aos/dist/aos.css";
 import "../../../node_modules/slick-carousel/slick/slick.css";
 import "../../../node_modules/slick-carousel/slick/slick-theme.css";
+// import Swiper core and required modules
+import { Navigation, Pagination} from 'swiper';
+
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
 
 import "../../pages/responsive.scss";
 import "../../pages/responsive.scss";
+import firstslidebanner from "../../assets/images/happystudentbanner.png"
 import "./index.scss";
 
 import add from "../../assets/images/add.png";
@@ -291,10 +302,94 @@ function HomePage() {
     });
   };
 
+  const pagination = {
+    clickable: true,
+    renderBullet: function (index, className) {
+      let num =  index + 1;
+        return `<span class=${className}>${0 + [num]}</span>`
+    },
+};
+
   return (
     <div>
       <SEO />
       <Header loginPage={false} page='home' />
+
+
+      <section className="sk-homeBanner-sec">
+        <div className="container">
+          <Swiper
+            modules={[Navigation, Pagination]}
+            slidesPerView={1}
+            navigation={{
+                navigation: {
+                  nextEl: ".swiper-button-next",
+                  prevEl: ".swiper-button-prev",
+                },
+              }}
+            pagination={pagination}
+            onSwiper={(swiper) => console.log(swiper)}
+            onSlideChange={() => console.log('slide change')}
+            
+          >
+            <SwiperSlide>
+              <div className="row align-items-center">
+                <div className="col-md-8">
+                  <div className="sh-bannerContent-top">
+                    <h1>Crack <span> dream jobs</span> with top rated certificate courses</h1>
+                    <p>Upskilling for Professionals from World’s top Universities</p>
+                    <button className="sk-btn" type="button">Start Learning</button>
+                  </div>
+                </div>
+                <div className="col-md-4">
+                  <div className="sk-imageBanner">
+                    <img src={firstslidebanner} />
+                  </div>
+                </div>
+              </div>
+            </SwiperSlide>
+            <SwiperSlide>
+              <div className="row align-items-center">
+                <div className="col-md-8">
+                  <div className="sh-bannerContent-top">
+                    <h1>Crack dream jobs with top rated certificate courses</h1>
+                    <p>Upskilling for Professionals from World’s top Universities</p>
+                    <button className="sk-btn" type="button">Start Learning</button>
+                  </div>
+                </div>
+                <div className="col-md-4">
+                  <img src={firstslidebanner} />
+                </div>
+              </div>
+            </SwiperSlide>
+            <SwiperSlide>
+              <div className="row align-items-center">
+                <div className="col-md-8">
+                  <div className="sh-bannerContent-top">
+                    <h1>Crack dream jobs with top rated certificate courses</h1>
+                    <p>Upskilling for Professionals from World’s top Universities</p>
+                    <button className="sk-btn" type="button">Start Learning</button>
+                  </div>
+                </div>
+                <div className="col-md-4">
+                  <img src={firstslidebanner} />
+                </div>
+              </div>
+            </SwiperSlide>
+          
+          </Swiper>
+          
+            {/* <div class="sk-banner-navigate">
+              <div class="swiper-button-next">
+                  <span>NEXT</span>
+              </div>
+              <div class="swiper-button-prev">
+                  <span>PREV</span>
+              </div>
+            </div> */}
+          
+        </div>
+      </section>
 
       {/* slider */}
 
@@ -416,6 +511,7 @@ function HomePage() {
         </button>
       </span>
       </Link> */}
+      
 
       <div className='courses'>
         <Link
@@ -428,6 +524,9 @@ function HomePage() {
       </div>
 
       {/* google add */}
+
+      
+
       <section>
         <div className='container'>
 
