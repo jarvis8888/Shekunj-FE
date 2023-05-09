@@ -43,6 +43,8 @@ import { TrendingBlogsCard2 } from "../../components/cards/TrendingBlogsCard2";
 import { HashtagAndCatagories } from "../../components/HastagAndCatagories/Index";
 import catagorie from "../../assets/icons/svgs/categories.png";
 import httpServices from "../../utils/ApiServices";
+import { CustomLoader } from "../../components/customLoader/CustomLoader";
+import { DateFormat, addEmailToClient } from "../../utils/utils";
 
 function BlogPage() {
   const history = useHistory();
@@ -63,8 +65,10 @@ function BlogPage() {
   const [trendingBlogs, setTrendingBlogs] = useState([]);
   const [blogsCategories, setBlogsCategories] = useState([]);
   const [currentBlogData, setCurrentBlogData] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const getAllBlogsData = async (limit, offset) => {
+    setLoading(true);
     try {
       const url = `${apiConstants.ALL_BLOGS.ALL_BLOGS}?limit=${limit}&offset=${offset}`;
       const data = await httpServices.get(url);
@@ -86,10 +90,10 @@ function BlogPage() {
       } else {
         setCurrentBlogData(latest_blogs);
       }
-      if (trending_blogs?.results?.length > 0) {
+      if (trending_blogs?.length > 0) {
         setTopTrendingBlogs(trending_blogs);
 
-        const res = trending_blogs?.results ?? [];
+        const res = trending_blogs ?? [];
         const addObjectData = { id: "advertisement" };
         const newFeaturedData = [];
 
@@ -104,6 +108,7 @@ function BlogPage() {
       setBlogsCategories(blog_categories);
     } catch (error) {
     } finally {
+      setLoading(false);
     }
   };
 
@@ -215,214 +220,180 @@ function BlogPage() {
           content='women empowerment organizations women empowerment initiative free online courses free career guidance'
         />
       </Helmet>
-      <section>
-        <div className='container'>
-          <div className='row'>
-            <div className='col-xl-9 col-md-8'>
-              <div className='carousel-blog'>
-                <BlogCarousel images={topTrendingBlogs?.results?.slice(0, 5)} />
-              </div>
-            </div>
-            <div className='col-xl-3 col-md-4'>
-              <div className='sk-blog-sidebar'>
-                {topTrendingBlogs?.results?.length
-                  ? topTrendingBlogs?.results
-                      .slice(0, 5)
-                      .map((items, index) => {
-                        return (
-                          <>
-                            <TrendingBlogsCard
-                              image={items.image}
-                              id={items.id}
-                              description={items.title}
-                              time='5'
-                              date={items.created_at}
-                            />
-                          </>
-                        );
-                      })
-                  : "no data"}
-              </div>
-            </div>
-          </div>
+      {loading ? (
+        <div>
+          <CustomLoader />
         </div>
-      </section>
-      <section className='sk-addBg-color'>
-        <div className='container'>
-          <div className='row'>
-            <div className='col-md-12'>
-              <AddsBanner
-                color='#F4F4F4'
-                children={
-                  <>
-                    {blogBoxAdds.length > 0 && (
-                      <div
-                        className='banner-adds'
-                        // onClick={() => addEmail(blogBoxAdds[0]?.add_email)}
-                      >
-                        <a
-                          href={blogBoxAdds[0]?.url_adds}
-                          target='_blank'
-                          rel='noreferrer'
-                        >
-                          {detect.isMobile
-                            ? blogBoxAdds[0]?.image_mobile && (
-                                <img
-                                  src={blogBoxAdds[0]?.image_mobile}
-                                  alt=''
-                                  className='ads_story_cover_img'
-                                />
-                              )
-                            : blogBoxAdds[0]?.image && (
-                                <img
-                                  src={blogBoxAdds[0]?.image}
-                                  alt=''
-                                  className='ads_story_cover_img'
-                                />
-                              )}
-                        </a>
-                      </div>
-                    )}
-                  </>
-                }
-              />
+      ) : (
+        <>
+          <section>
+            <div className='container'>
+              <div className='row'>
+                <div className='col-xl-9 col-md-8'>
+                  <div className='carousel-blog'>
+                    <BlogCarousel images={topTrendingBlogs?.slice(0, 5)} />
+                  </div>
+                </div>
+                <div className='col-xl-3 col-md-4'>
+                  <div className='sk-blog-sidebar'>
+                    {topTrendingBlogs?.length
+                      ? topTrendingBlogs.slice(0, 5).map((items, index) => {
+                          return (
+                            <>
+                              <TrendingBlogsCard
+                                image={items.image}
+                                id={items.id}
+                                description={items.title}
+                                time='5'
+                                date={DateFormat(`${items.created_at}`)}
+                              />
+                            </>
+                          );
+                        })
+                      : "no data"}
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-      </section>
-      <section>
-        <div className='container'>
-          <div className='row'>
-            <div className='col-xl-9 col-md-8'>
-              <div className='blog-stories'>
-                <div className='title'>
-                  <img src={fire} alt='fire' width={25} height={25} />
-                  <h4>Latest Blogs</h4>
-                </div>
-                <div className='row'>
-                  {latestBlogs?.map((items, index) => {
-                    if (items.id === "advertisement") {
-                      return (
-                        <>
-                          {blogLeft.length > 0 && (
-                            <div
-                              className='col-md-6'
-                              // className='col-md-12 ads_home_cover '
-                              // onClick={() => addEmail(blogLeft[0]?.add_email)}
-                            >
-                              <div className='card'>
-                                <a
-                                  href={blogLeft[0]?.url_adds}
-                                  target='_blank'
-                                  rel='noreferrer'
-                                >
-                                  {detect.isMobile
-                                    ? blogLeft[0]?.image_mobile && (
-                                        <img
-                                          src={blogLeft[0]?.image_mobile}
-                                          alt=''
-                                          // className='ads_story_cover_img'
-                                        />
-                                      )
-                                    : blogLeft[0]?.image && (
-                                        <img
-                                          src={blogLeft[0]?.image}
-                                          alt=''
-                                          // className='ads_story_cover_img'
-                                        />
-                                      )}
-                                </a>
-                              </div>
-                            </div>
-                          )}
-                        </>
-                      );
-                    } else {
-                      return (
-                        <>
-                          <div className='col-md-6'>
-                            <LatestBlogCard
-                              image={items.image}
-                              hashtags={items.hash_tags}
-                              title={items.title}
-                              description={`${items.about_blog}`}
-                              makeHtml={makeHtml}
-                              key={index}
-                              created_at={items.created_at}
-                              reading_time={items.reading_time}
-                              id={items.id}
-                              blog_count={items.blog_count}
-                            />
-                          </div>
-                        </>
-                      );
-                    }
-                  })}
-                </div>
-                <div className='d-flex justify-content-center align-items-center py-4'>
-                  <button
-                    className='loadMore'
-                    onClick={() => setOffset(offset + 5)}
-                    disabled={currentBlogData?.results?.length === 0}
-                  >
-                    Explore More
-                  </button>
-                </div>
-              </div>
-              <div className='pb-5'>
-                <AddsBanner
-                  color='#F4F4F4'
-                  children={
-                    <>
-                      {blogBoxAdds.length > 0 && (
-                        <div
-                          className='banner-adds'
-                          // onClick={() => addEmail(blogBoxAdds[0]?.add_email)}
-                        >
-                          <a
-                            href={blogBoxAdds[0]?.url_adds}
-                            target='_blank'
-                            rel='noreferrer'
-                          >
-                            {detect.isMobile
-                              ? blogBoxAdds[0]?.image_mobile && (
-                                  <img
-                                    src={blogBoxAdds[0]?.image_mobile}
-                                    alt=''
-                                    className='ads_story_cover_img'
-                                  />
-                                )
-                              : blogBoxAdds[0]?.image && (
-                                  <img
-                                    src={blogBoxAdds[0]?.image}
-                                    alt=''
-                                    className='ads_story_cover_img'
-                                  />
-                                )}
-                          </a>
-                        </div>
-                      )}
-                    </>
-                  }
-                />
-              </div>
-
-              <div className='title'>
-                <img src={fire} alt='fire' width={25} height={25} />
-                <h4>Trending Blogs</h4>
-              </div>
-              {trendingBlogs?.map((items, index) => {
-                if (items.id === "advertisement") {
-                  return (
-                    <>
-                      {blogBoxAdds.length > 0 && (
-                        <div className="row">
+          </section>
+          <section className='sk-addBg-color'>
+            <div className='container'>
+              <div className='row'>
+                <div className='col-md-12'>
+                  <AddsBanner
+                    color='#F4F4F4'
+                    children={
+                      <>
+                        {blogBoxAdds.length > 0 && (
                           <div
-                            className='col-md-12'
-                            // className='col-md-12 ads_home_cover '
-                            // onClick={() => addEmail(blogBoxAdds[0]?.add_email)}
+                            className='banner-adds'
+                            onClick={() =>
+                              addEmailToClient(blogBoxAdds[0]?.add_email)
+                            }
                           >
-                            <div className='card'>
+                            <a
+                              href={blogBoxAdds[0]?.url_adds}
+                              target='_blank'
+                              rel='noreferrer'
+                            >
+                              {detect.isMobile
+                                ? blogBoxAdds[0]?.image_mobile && (
+                                    <img
+                                      src={blogBoxAdds[0]?.image_mobile}
+                                      alt=''
+                                      className='ads_story_cover_img'
+                                    />
+                                  )
+                                : blogBoxAdds[0]?.image && (
+                                    <img
+                                      src={blogBoxAdds[0]?.image}
+                                      alt=''
+                                      className='ads_story_cover_img'
+                                    />
+                                  )}
+                            </a>
+                          </div>
+                        )}
+                      </>
+                    }
+                  />
+                </div>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div className='container'>
+              <div className='row'>
+                <div className='col-xl-9 col-md-8'>
+                  <div className='blog-stories'>
+                    <div className='title'>
+                      <img src={fire} alt='fire' width={25} height={25} />
+                      <h4>Latest Blogs</h4>
+                    </div>
+                    <div className='row'>
+                      {latestBlogs?.map((items, index) => {
+                        if (items.id === "advertisement") {
+                          return (
+                            <>
+                              {blogLeft.length > 0 && (
+                                <div
+                                  className='col-md-6'
+                                  // className='col-md-12 ads_home_cover '
+                                  onClick={() =>
+                                    addEmailToClient(blogLeft[0]?.add_email)
+                                  }
+                                >
+                                  <div className='card'>
+                                    <a
+                                      href={blogLeft[0]?.url_adds}
+                                      target='_blank'
+                                      rel='noreferrer'
+                                    >
+                                      {detect.isMobile
+                                        ? blogLeft[0]?.image_mobile && (
+                                            <img
+                                              src={blogLeft[0]?.image_mobile}
+                                              alt=''
+                                              // className='ads_story_cover_img'
+                                            />
+                                          )
+                                        : blogLeft[0]?.image && (
+                                            <img
+                                              src={blogLeft[0]?.image}
+                                              alt=''
+                                              // className='ads_story_cover_img'
+                                            />
+                                          )}
+                                    </a>
+                                  </div>
+                                </div>
+                              )}
+                            </>
+                          );
+                        } else {
+                          return (
+                            <>
+                              <div className='col-md-6'>
+                                <LatestBlogCard
+                                  image={items.image}
+                                  hashtags={items.hash_tags}
+                                  title={items.title}
+                                  description={`${items.about_blog}`}
+                                  makeHtml={makeHtml}
+                                  key={index}
+                                  created_at={DateFormat(`${items.created_at}`)}
+                                  reading_time={items.reading_time}
+                                  id={items.id}
+                                  blog_count={items.blog_count}
+                                />
+                              </div>
+                            </>
+                          );
+                        }
+                      })}
+                    </div>
+                    <div className='d-flex justify-content-center align-items-center py-4'>
+                      <button
+                        className='loadMore'
+                        onClick={() => setOffset(offset + 5)}
+                        disabled={currentBlogData?.results?.length === 0}
+                      >
+                        Explore More
+                      </button>
+                    </div>
+                  </div>
+                  <div className='pb-5'>
+                    <AddsBanner
+                      color='#F4F4F4'
+                      children={
+                        <>
+                          {blogBoxAdds.length > 0 && (
+                            <div
+                              className='banner-adds'
+                              onClick={() =>
+                                addEmailToClient(blogBoxAdds[0]?.add_email)
+                              }
+                            >
                               <a
                                 href={blogBoxAdds[0]?.url_adds}
                                 target='_blank'
@@ -433,54 +404,102 @@ function BlogPage() {
                                       <img
                                         src={blogBoxAdds[0]?.image_mobile}
                                         alt=''
-                                        // className='ads_story_cover_img'
+                                        className='ads_story_cover_img'
                                       />
                                     )
                                   : blogBoxAdds[0]?.image && (
                                       <img
                                         src={blogBoxAdds[0]?.image}
                                         alt=''
-                                        // className='ads_story_cover_img'
+                                        className='ads_story_cover_img'
                                       />
                                     )}
                               </a>
                             </div>
-                          </div>
-                        </div>
-                      )}
-                    </>
-                  );
-                } else {
-                  return (
-                    <>
-                      <TrendingBlogsCard2
-                        image={items.image}
-                        title={items.title}
-                        id={items.id}
-                        // description={items.about_blog}
-                        time='5 min'
-                        date={items.created_at}
-                      />
-                    </>
-                  );
-                }
-              })}
-            </div>
+                          )}
+                        </>
+                      }
+                    />
+                  </div>
 
-            <div className='col-xl-3 col-md-4'>
-              <div className='ads'>
-                <HashtagAndCatagories
-                  image={catagorie}
-                  title={"Categories"}
-                  hashtags={blogsCategories}
-                  rightOne={blogRight1}
-                  rightTwo={blogRight2}
-                />
+                  <div className='title'>
+                    <img src={fire} alt='fire' width={25} height={25} />
+                    <h4>Trending Blogs</h4>
+                  </div>
+                  {trendingBlogs?.map((items, index) => {
+                    if (items.id === "advertisement") {
+                      return (
+                        <>
+                          {blogBoxAdds.length > 0 && (
+                            <div className='row'>
+                              <div
+                                className='col-md-12'
+                                // className='col-md-12 ads_home_cover '
+                                onClick={() =>
+                                  addEmailToClient(blogBoxAdds[0]?.add_email)
+                                }
+                              >
+                                <div className='card'>
+                                  <a
+                                    href={blogBoxAdds[0]?.url_adds}
+                                    target='_blank'
+                                    rel='noreferrer'
+                                  >
+                                    {detect.isMobile
+                                      ? blogBoxAdds[0]?.image_mobile && (
+                                          <img
+                                            src={blogBoxAdds[0]?.image_mobile}
+                                            alt=''
+                                            // className='ads_story_cover_img'
+                                          />
+                                        )
+                                      : blogBoxAdds[0]?.image && (
+                                          <img
+                                            src={blogBoxAdds[0]?.image}
+                                            alt=''
+                                            // className='ads_story_cover_img'
+                                          />
+                                        )}
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+                          )}
+                        </>
+                      );
+                    } else {
+                      return (
+                        <>
+                          <TrendingBlogsCard2
+                            image={items.image}
+                            title={items.title}
+                            id={items.id}
+                            // description={items.about_blog}
+                            time='5 min'
+                            date={DateFormat(`${items.created_at}`)}
+                          />
+                        </>
+                      );
+                    }
+                  })}
+                </div>
+
+                <div className='col-xl-3 col-md-4'>
+                  <div className='ads'>
+                    <HashtagAndCatagories
+                      image={catagorie}
+                      title={"Categories"}
+                      hashtags={blogsCategories}
+                      rightOne={blogRight1}
+                      rightTwo={blogRight2}
+                    />
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
+          </section>
+        </>
+      )}
 
       <Footer loginPage={false} />
     </div>

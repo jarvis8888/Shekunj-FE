@@ -9,10 +9,14 @@ import hash from "../../assets/icons/svgs/hashtag.png";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { adsList } from "../../store/ads";
+import { CustomLoader } from "../../components/customLoader/CustomLoader";
+import useDeviceDetect from "../../hooks/useDeviceDetect";
+import { addEmailToClient } from "../../utils/utils";
 
 const SuccessStroyWithHashtag = () => {
   const location = useLocation();
   const dispatch = useDispatch();
+  const detect = useDeviceDetect();
 
   const { state } = location;
 
@@ -21,14 +25,26 @@ const SuccessStroyWithHashtag = () => {
   const [loading, setLoading] = useState(false);
   const [succesStoriesRight1, setSuccesStoriesRight1] = useState([]);
   const [succesStoriesRight2, setSuccesStoriesRight2] = useState([]);
+  const [succesStoriesLeft, setSuccesStoriesLeft] = useState([]);
 
   const getSuccessStroyWithHashtagData = async (search) => {
     setLoading(true);
     try {
       const url = `course/success-story?search=${search}`;
-      const res = await httpServices.get(url);
-      setData(res?.filtered_data?.results);
-      setAllHashTag(res?.all_hash_tags);
+      const data = await httpServices.get(url);
+      const { filtered_data, all_hash_tags } = data;
+      if (filtered_data?.length > 0) {
+        const num = Math.floor(Math.random() * 4);
+        const res = filtered_data ?? [];
+        const addObjectData = { id: "advertisement" };
+        const newFeaturedData = [
+          ...res.slice(0, num),
+          addObjectData,
+          ...res.slice(num),
+        ];
+        setData(newFeaturedData);
+      }
+      setAllHashTag(all_hash_tags);
       setLoading(false);
     } catch {
       setLoading(false);
@@ -93,6 +109,11 @@ const SuccessStroyWithHashtag = () => {
               });
 
               setSuccesStoriesRight2(filterArray3);
+              let filterArray4 = response.data.results.filter((item, index) => {
+                return item.image_type === "success_stories_box";
+              });
+
+              setSuccesStoriesLeft(filterArray4);
             }
           });
       },
@@ -111,6 +132,11 @@ const SuccessStroyWithHashtag = () => {
             });
 
             setSuccesStoriesRight2(filterArray3);
+            let filterArray4 = response.data.results.filter((item, index) => {
+              return item.image_type === "success_stories_box";
+            });
+
+            setSuccesStoriesLeft(filterArray4);
           }
         });
       },
@@ -135,28 +161,74 @@ const SuccessStroyWithHashtag = () => {
               </h4>
 
               {loading ? (
-                "loading....."
+                <div>
+                  <CustomLoader />
+                </div>
               ) : (
                 <div className='row'>
-                  {data.length
-                    ? data.map((items, index) => {
-                        return (
-                          <>
-                            <FeaturedCards
-                              image={items.image}
-                              hashtags={items.hash_tags}
-                              title={items.name}
-                              description={`${items.title}`}
-                              makeHtml={makeHtml}
-                              key={index}
-                              created_at={items.created_at}
-                              reading_time={items.reading_time}
-                              id={items.id}
-                            />
-                          </>
-                        );
-                      })
-                    : "no data"}
+                  {data?.map((items, index) => {
+                    if (items.id === "advertisement") {
+                      return (
+                        <>
+                          {succesStoriesLeft.length > 0 && (
+                            <div
+                              className='col-md-6'
+                              // className='col-md-12 ads_home_cover '
+                              onClick={() =>
+                                addEmailToClient(
+                                  succesStoriesLeft[0]?.add_email,
+                                )
+                              }
+                            >
+                              <div className='card'>
+                                <a
+                                  href={succesStoriesLeft[0]?.url_adds}
+                                  target='_blank'
+                                  rel='noreferrer'
+                                >
+                                  {detect.isMobile
+                                    ? succesStoriesLeft[0]?.image_mobile && (
+                                        <img
+                                          src={
+                                            succesStoriesLeft[0]?.image_mobile
+                                          }
+                                          alt=''
+                                          // className='ads_story_cover_img'
+                                        />
+                                      )
+                                    : succesStoriesLeft[0]?.image && (
+                                        <img
+                                          src={succesStoriesLeft[0]?.image}
+                                          alt=''
+                                          // className='ads_story_cover_img'
+                                        />
+                                      )}
+                                </a>
+                              </div>
+                            </div>
+                          )}
+                        </>
+                      );
+                    } else {
+                      return (
+                        <>
+                          <FeaturedCards
+                            image={items.image}
+                            hashtags={
+                              items.hash_tags === null ? [] : items.hash_tags
+                            }
+                            title={items.name}
+                            description={`${items.title}`}
+                            makeHtml={makeHtml}
+                            key={index}
+                            created_at={items.created_at}
+                            reading_time={items.reading_time}
+                            id={items.id}
+                          />
+                        </>
+                      );
+                    }
+                  })}
                 </div>
               )}
             </div>

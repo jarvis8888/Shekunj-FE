@@ -11,6 +11,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { adsList } from "../../store/ads";
 import { TrendingBlogsCard2 } from "../../components/cards/TrendingBlogsCard2";
 import catagorie from "../../assets/icons/svgs/categories.png";
+import { DateFormat } from "../../utils/utils";
+import { CustomLoader } from "../../components/customLoader/CustomLoader";
 
 const BlogWithCatogry = () => {
   const location = useLocation();
@@ -133,13 +135,15 @@ const BlogWithCatogry = () => {
       <Header />
       <section>
         <div className='container Hashtag_container'>
-          <div className="row">
+          <div className='row'>
             <div className='col-xl-9 col-md-8 Hashtag_container_cards sk-blog-detail-wa'>
               <h6 className='Hashtag_container_title'>
                 {state ? `${currentSearch}` : "NA"}
               </h6>
               {loading ? (
-                "Loading..."
+                <div>
+                  <CustomLoader />
+                </div>
               ) : (
                 <div>
                   {data?.length
@@ -151,8 +155,8 @@ const BlogWithCatogry = () => {
                               title={items.title}
                               id={items.id}
                               // description={items.about_blog}
-                              time='5'
-                              date={items.created_at}
+                              time='5 min'
+                              date={DateFormat(`${items.created_at}`)}
                             />
                           </>
                         );
@@ -161,7 +165,7 @@ const BlogWithCatogry = () => {
                 </div>
               )}
             </div>
-            <div div className="col-xl-3 col-md-4">
+            <div div className='col-xl-3 col-md-4'>
               <HashtagAndCatagories
                 image={catagorie}
                 title={`Categories`}

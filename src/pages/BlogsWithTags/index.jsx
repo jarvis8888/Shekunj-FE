@@ -12,8 +12,10 @@ import { adsList } from "../../store/ads";
 import { TrendingBlogsCard2 } from "../../components/cards/TrendingBlogsCard2";
 import catagorie from "../../assets/icons/svgs/categories.png";
 import cross from "../../assets/icons/svgs/cross.png";
-import CancelRoundedIcon from '@mui/icons-material/CancelRounded';
+import CancelRoundedIcon from "@mui/icons-material/CancelRounded";
 import { routingConstants } from "../../utils/constants";
+import { DateFormat } from "../../utils/utils";
+import { CustomLoader } from "../../components/customLoader/CustomLoader";
 
 const SuccessStroyWithHashtag = () => {
   const location = useLocation();
@@ -135,54 +137,56 @@ const SuccessStroyWithHashtag = () => {
   return (
     <div>
       <Header />
-     <section>
-      <div className='container'>
-        <div className="row">
-        <div className='col-xl-9 col-md-8 sk-blog-detail-wa'>
-          <div className='Hashtag_container_title'>
-            <span className='catagories-search'>
-              {state ? `${currentSearch}` : null}{" "}
-              <CancelRoundedIcon 
-                onClick={() => history.push(routingConstants.MORE_BLOG)}
-              />
-            </span>
-          </div>
-          {loading ? (
-            "Loading..."
-          ) : (
-            <div>
-              {data?.length
-                ? data?.map((items, index) => {
-                    return (
-                      <>
-                        <TrendingBlogsCard2
-                          image={items.image}
-                          title={items.title}
-                          id={items.id}
-                          // description={items.about_blog}
-                          time='5'
-                          date={items.created_at}
-                        />
-                      </>
-                    );
-                  })
-                : "no data"}
+      <section>
+        <div className='container'>
+          <div className='row'>
+            <div className='col-xl-9 col-md-8 sk-blog-detail-wa'>
+              <div className='Hashtag_container_title'>
+                <span className='catagories-search'>
+                  {state ? `${currentSearch}` : null}{" "}
+                  <CancelRoundedIcon
+                    onClick={() => history.push(routingConstants.MORE_BLOG)}
+                  />
+                </span>
+              </div>
+              {loading ? (
+                <div>
+                  <CustomLoader />
+                </div>
+              ) : (
+                <div>
+                  {data?.length
+                    ? data?.map((items, index) => {
+                        return (
+                          <>
+                            <TrendingBlogsCard2
+                              image={items.image}
+                              title={items.title}
+                              id={items.id}
+                              // description={items.about_blog}
+                              time='5 min'
+                              date={DateFormat(`${items.created_at}`)}
+                            />
+                          </>
+                        );
+                      })
+                    : "no data"}
+                </div>
+              )}
             </div>
-          )}
+            <div className='col-xl-3 col-md-4'>
+              <HashtagAndCatagories
+                image={catagorie}
+                title={`Categories`}
+                // addEmail={addEmail}
+                hashtags={allHashTag}
+                rightOne={succesStoriesRight1}
+                rightTwo={succesStoriesRight2}
+              />
+            </div>
+          </div>
         </div>
-        <div className="col-xl-3 col-md-4">
-          <HashtagAndCatagories
-            image={catagorie}
-            title={`Categories`}
-            // addEmail={addEmail}
-            hashtags={allHashTag}
-            rightOne={succesStoriesRight1}
-            rightTwo={succesStoriesRight2}
-          />
-        </div>
-        </div>
-      </div>
-    </section>
+      </section>
       <Footer />
     </div>
   );
