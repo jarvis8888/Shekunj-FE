@@ -30,16 +30,17 @@ export const TrendingBlogsCard2 = ({
   };
   return (
     <div
-      className='blog-card2'
+      className='row my-3'
       onClick={() => history.push(routingConstants.MORE_BLOG + id)}
       style={{ cursor: "pointer" }}
     >
-      <div className='blog-card2__image'>
+      <div className='col-md-4'>
         <img src={image} />
       </div>
-      <div className='blog-card2__content'>
+      <div className='col-md-8'>
+        <div className="pt-3">
         <h5 className='blog-card2__title'>{title}</h5>
-        <div>{category_name}</div>
+        <span className="sk-tagBlog-name">{category_name}</span>
         <p
           className='blog-card-description'
           dangerouslySetInnerHTML={{
@@ -55,6 +56,7 @@ export const TrendingBlogsCard2 = ({
             <MenuBookRoundedIcon />
             {time}
           </span>
+          </div>
         </div>
       </div>
     </div>

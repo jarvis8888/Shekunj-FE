@@ -27,7 +27,7 @@ export const TrendingBlogsCard = ({
         <img src={image} alt="images" />
       </div>
       <div className='blog-card__content sk-blog-side'>
-        <div></div>
+        <span className="sk-treadingBlog-one">woman</span>
         <p className='blog-card__description'>{description}</p>
         <div className='blog-card__meta'>
           <span className='blog-card__time'>

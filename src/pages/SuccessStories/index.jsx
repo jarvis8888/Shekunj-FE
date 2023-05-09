@@ -310,7 +310,7 @@ function SuccessStory() {
           <section>
             <div className='container'>
               <div className='row'>
-                <div className='col-xl-9 col-md-8 featured-stories'>
+                <div className='col-xl-9 col-lg-8 col-md-8 featured-stories'>
                   <div className='title'>
                     <img src={fire} alt='fire' width={30} height={30} />
                     <h4>Featured Stories </h4>
@@ -322,7 +322,7 @@ function SuccessStory() {
                           <>
                             {succesStoriesLeft.length > 0 && (
                               <div
-                                className='col-md-6'
+                                className='col-xl-6 col-md-6 col-lg-6 col-sm-12'
                                 // className='col-md-12 ads_home_cover '
                                 onClick={() =>
                                   addEmailToClient(
@@ -464,7 +464,7 @@ function SuccessStory() {
                     </div>
                   </div>
                 </div>
-                <div className='col-xl-3 col-md-4 ads'>
+                <div className='col-xl-3 col-md-4 col-lg-4 col-sm-12 ads'>
                   <HashtagAndCatagories
                     type='hashtag'
                     image={hash}
