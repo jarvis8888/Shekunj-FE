@@ -14,12 +14,11 @@
 }
 
 .selected_value {
-  color:black;
+  color: black;
   font-size: 16px;
 }
 
 .guidance_con h2 {
-  
   font-style: normal;
   font-weight: 800;
   font-size: 22px;
@@ -119,8 +118,8 @@
   height: 50px;
 }
 
-.form-control{
-  border-color:#e6e5eb !important;
+.form-control {
+  border-color: #e6e5eb !important;
   background: #fcfcfd !important;
   color: #5f6377 !important;
 }
@@ -167,12 +166,14 @@
   color: #fff !important;
 }
 
-.guidance_book_form svg.MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium.MuiSelect-icon.MuiSelect-iconOutlined.css-1636szt {
+.guidance_book_form
+  svg.MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium.MuiSelect-icon.MuiSelect-iconOutlined.css-1636szt {
   right: 5px !important;
   top: calc(50% - 0.15em) !important;
 }
 
-.guidance_book_form svg.MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium.MuiSelect-icon.MuiSelect-iconOutlined.MuiSelect-iconOpen.css-1yhq19e {
+.guidance_book_form
+  svg.MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium.MuiSelect-icon.MuiSelect-iconOutlined.MuiSelect-iconOpen.css-1yhq19e {
   right: 15px !important;
   top: calc(50% - 1em) !important;
 }
@@ -245,7 +246,7 @@ img.calendar_icon_guidance {
   right: 26px !important;
   top: 5px !important;
   z-index: 15 !important;
-  color: #fff !important;;
+  color: #fff !important;
 }
 img.edit_icon_guidance {
   position: absolute;
@@ -260,8 +261,8 @@ img.edit_icon_guidance {
     padding: 30px;
   }
 
-  .form-control{
-    border-color:#e6e5eb !important;
+  .form-control {
+    border-color: #e6e5eb !important;
     background: #fcfcfd !important;
     color: #5f6377 !important;
   }
@@ -302,11 +303,9 @@ img.edit_icon_guidance {
   padding-top: 0px;
 }
 
-
 // KC 30-08-2022
 
-@media screen and (max-width:767px) {
-
+@media screen and (max-width: 767px) {
   .addimage098 {
     width: 100%;
   }
@@ -338,19 +337,19 @@ img.edit_icon_guidance {
     white-space: unset;
   }
 
-img.calendar_icon_guidance {
-  position: absolute;
-  right: 26px !important;
-  top: 5px !important;
-  z-index: 15 !important;
-}
-img.edit_icon_guidance {
-  position: absolute;
-  // right: 330px !important;
-  margin-left: 10px;
-  margin-top: 13px !important;
-  // z-index: 15 !important;
-}
+  img.calendar_icon_guidance {
+    position: absolute;
+    right: 26px !important;
+    top: 5px !important;
+    z-index: 15 !important;
+  }
+  img.edit_icon_guidance {
+    position: absolute;
+    // right: 330px !important;
+    margin-left: 10px;
+    margin-top: 13px !important;
+    // z-index: 15 !important;
+  }
 }
 
 .form-group Calendar {
@@ -376,8 +375,8 @@ img.edit_icon_guidance {
   background-color: rgba(255, 142, 208, 0.54);
 }
 
-.sk-bookc-sec{
-  background: linear-gradient(90.75deg, #F2D1C7 17.41%, #E7BED4 88.78%);
+.sk-bookc-sec {
+  background: linear-gradient(90.75deg, #f2d1c7 17.41%, #e7bed4 88.78%);
   // padding: 60px 0;
 }
 .sk-bookTab-sec .sk-inline-field {
@@ -391,21 +390,22 @@ img.edit_icon_guidance {
   padding-left: 4px;
 }
 
-.sk-bookTab-sec .sk-inline-field input, .form-inline.sk-inline-field select  {
-    background: transparent;
-    border-bottom: 1px dashed rgba(32, 32, 32, 0.2);
-    font-size: 18px;
-    border-top: 0;
-    border-left: 0;
-    border-right: 0;
+.sk-bookTab-sec .sk-inline-field input,
+.form-inline.sk-inline-field select {
+  background: transparent;
+  border-bottom: 1px dashed rgba(32, 32, 32, 0.2);
+  font-size: 18px;
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
 }
-.sk-bookTab-sec .sk-inline-field input:focus{
+.sk-bookTab-sec .sk-inline-field input:focus {
   background: transparent !important;
 }
 .form-inline.sk-inline-field select {
   color: #777;
 }
-.form-inline.sk-inline-field select:focus{
+.form-inline.sk-inline-field select:focus {
   background: transparent;
 }
 .sk-bookTab-sec .sk-btn-submit {
@@ -429,7 +429,7 @@ img.edit_icon_guidance {
 }
 
 .sk-bookC-content h6:before {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   top: 0;
@@ -440,12 +440,28 @@ img.edit_icon_guidance {
   width: 30px;
   background: #ec4a8a;
 }
-.sk-sendMain-btn{
+.sk-sendMain-btn {
   margin-top: 30px;
 }
-.sk-bookC-content{
+.sk-bookC-content {
   padding: 30px 0;
 }
 .sk-sendMain-btn button svg {
   margin-left: 20px;
+}
+
+.sk-toggle-btn {
+  background: #e0b9ad;
+  box-shadow: inset 0px 4px 4px #d99e90;
+  border-radius: 30px;
+  width: 24%;
+  span {
+    padding: 0 10px;
+    cursor: pointer;
+  }
+  .sk-toggle-active {
+    background: #fbf0ec;
+    border-radius: 30px;
+    color: #d3317d;
+  }
 }

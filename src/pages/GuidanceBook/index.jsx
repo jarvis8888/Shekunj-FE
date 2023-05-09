@@ -93,89 +93,49 @@ const GuidancePage = () => {
     setActiveTab(tab);
   };
 
-  const validationSchema = Yup.object({
-    first_name: Yup.string().required(t("login.form1.firstNameError.required")),
-    last_name: Yup.string().required(t("login.form1.lastNameError.required")),
-    // City: Yup.string().required(t("login.form1.CityError.required")),
-    email_address: Yup.string()
-      .required(t("login.form1.emailError.required"))
-      .email(t("login.form1.emailError.invalid")),
-    mobile_number: Yup.number().positive(),
-    message: Yup.string().required(t("login.form1.message.required")),
-  });
-
-  const {
-    handleSubmit,
-    handleChange,
-    handleBlur,
-    values,
-    errors,
-    touched,
-    setFieldValue,
-    setFieldTouched,
-  } = useFormik({
-    initialValues: {
-      first_name: "",
-      last_name: "",
-      email_address: "",
-      mobile_number: "",
-      city: "",
-      // day: "",
-      // month: "",
-      // year: "",
-      date_of_birth: "",
-      qualifications: "",
-      gender: "",
-      guidance_purpose: "",
-      // course_looking_for: "",
-      message: "",
-      // date:"",
-      // value:""
-    },
-    validationSchema,
-    onSubmit(values) {
-      // const dateOfBirth = moment(
-      //   `${values?.year}-${values.month}-${values?.day}`,
-      // ).format("YYYY-MM-DD");
-      // const date_of_birth = moment(values.date_of_birth, 'DD-MM-YYYY').format('YYYY-MM-DD')
-      const date_of_birth = moment(`${values.date_of_birth}`).format(
-        "YYYY-MM-DD",
-      );
-      values = {
-        ...values,
-        // date_of_birth: dateOfBirth,
-        date_of_birth: date_of_birth,
-        qualifications: values?.qualifications,
-        gender: values?.gender,
-      };
-      dispatch(bookCounseller(values));
-    },
-  });
-
   useEffect(() => {
     Aos.init({ duration: 2000 });
   }, []);
-
-  const ValidatedForm = withFormik({
-    mapPropsToValues: () => ({
-      date: null,
-    }),
-
-    validate: (values) => {
-      const errors = {};
-
-      if (!values.date) {
-        errors.date = "please select a date";
-      }
-      return errors;
-    },
-  });
 
   const [bookCounsellorAds, setBookCounsellorAds] = useState([]);
   const [image, setImage] = useState("NA");
 
   const [value, setValue] = React.useState(dayjs("2014-08-18T21:11:54"));
 
+  const StudentInitialValues = {};
+  const StudentValidationSchema = Yup.object({});
+  const onStudentFormSubmit = useFormik({
+    initialValues: StudentInitialValues,
+    validationSchema: StudentValidationSchema,
+    onSubmit: async (values, { resetForm }) => {
+      const {
+        fullName,
+        email,
+        whatsappNumber,
+        gender,
+        location,
+        instituteName,
+      } = values;
+      const data = {};
+      try {
+      } catch (error) {
+      } finally {
+      }
+    },
+  });
+  const {
+    values: StudentValue,
+    errors: StudentError,
+    touched: StudentTouched,
+    handleChange: StudentHandleChnage,
+    validate: StudentValidate,
+    handleBlur: StudentHandleBlur,
+    handleSubmit: StudentHandleSubmit,
+    setFieldValue,
+    setValues,
+    setFieldTouched,
+    isSubmitting,
+  } = onStudentFormSubmit;
   return (
     <div>
       <Header loginPage={true} page='guidance' subPage='bookCounsller' />
@@ -209,10 +169,27 @@ const GuidancePage = () => {
                   <div className='sk-bookC-content'>
                     <h6>Get Free Online Counselling Session</h6>
                     <h2>From Finest Counsellors.</h2>
-                    <div className='sk-toggle-btn'></div>
+                    <div className='sk-toggle-btn'>
+                      <span
+                        className={`${
+                          activeTab === "Student" && "sk-toggle-active "
+                        }`}
+                        onClick={() => setActiveTab("Student")}
+                      >
+                        Student
+                      </span>
+                      <span
+                        className={`${
+                          activeTab === "institute" && "sk-toggle-active "
+                        }`}
+                        onClick={() => setActiveTab("institute")}
+                      >
+                        institute
+                      </span>
+                    </div>
                     <div className='sk-bookTab-sec'>
                       {activeTab === "Student" ? (
-                        <form>
+                        <form onSubmit={StudentHandleSubmit}>
                           <div className='form-inline sk-inline-field'>
                             <label>Hey, My name is </label>
                             <input
@@ -236,15 +213,27 @@ const GuidancePage = () => {
                             <label>My last qualifications </label>
                             <select>
                               <option>Qualification</option>
-                              <option>BCA</option>
-                              <option>MCA</option>
+                              {highEducation.map((highEducation) => (
+                                <option
+                                  key={highEducation}
+                                  value={highEducation}
+                                >
+                                  {highEducation}
+                                </option>
+                              ))}
                             </select>
                             <label>. I am looking for </label>
                             <label>, I am</label>
                             <select>
                               <option>Select Purpose</option>
-                              <option>1991</option>
-                              <option>1992</option>
+                              {GuidancePurpose.map((GuidancePurpose) => (
+                                <option
+                                  key={GuidancePurpose}
+                                  value={GuidancePurpose}
+                                >
+                                  {GuidancePurpose}
+                                </option>
+                              ))}
                             </select>
                             <label>.</label>
                           </div>
@@ -261,7 +250,54 @@ const GuidancePage = () => {
                             </button>
                           </div>
                         </form>
-                      ) : null}
+                      ) : (
+                        <form>
+                          <div className='form-inline sk-inline-field'>
+                            <label>Hey, This is </label>
+                            <input
+                              type='text'
+                              id=''
+                              placeholder='Name of Institute'
+                              name=''
+                            />
+                            <label>, We have</label>
+                            <input
+                              type='text'
+                              id=''
+                              placeholder='No of Students'
+                              name=''
+                            />
+                            <label>in our institution.</label>
+                          </div>
+                          <div className='form-inline sk-inline-field'>
+                            <label>We are looking for</label>
+                            <select>
+                              <option>Qualification</option>
+                              {highEducation.map((highEducation) => (
+                                <option
+                                  key={highEducation}
+                                  value={highEducation}
+                                >
+                                  {highEducation}
+                                </option>
+                              ))}
+                            </select>
+                            <label>.</label>
+                          </div>
+                          <div className='form-inline sk-inline-field'>
+                            <label>You can call me on </label>
+                            <input type='Number' placeholder='Mobile Number' />
+                            <label>or call me at </label>
+                            <input type='email' placeholder='Enter Id' />
+                            <label>.</label>
+                          </div>
+                          <div className='sk-sendMain-btn'>
+                            <button type='submit' className='sk-btn-submit'>
+                              Send Enquiry <EastSharpIcon />{" "}
+                            </button>
+                          </div>
+                        </form>
+                      )}
                     </div>
                   </div>
                 </div>

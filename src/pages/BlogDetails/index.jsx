@@ -38,6 +38,8 @@ import { HashtagAndCatagories } from "../../components/HastagAndCatagories/Index
 import { apiConstants } from "../../utils/constants";
 import catagorie from "../../assets/icons/svgs/categories.png";
 import fire from "../../assets/icons/svgs/fire.png";
+import { DateFormat, addEmailToClient } from "../../utils/utils";
+import { CustomLoader } from "../../components/customLoader/CustomLoader";
 
 const BlogDetails = () => {
   const history = useHistory();
@@ -59,6 +61,7 @@ const BlogDetails = () => {
   const [succesStoriesRight2, setSuccesStoriesRight2] = useState([]);
   const [blogCategories, setBlogCategories] = useState([]);
   const [trending, setTrending] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [offset, setOffset] = useState(0);
   const pageLimit = 10;
 
@@ -117,16 +120,33 @@ const BlogDetails = () => {
   // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Latest code >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
   const fetchData = async () => {
+    setLoading(true);
     try {
       const url = `more/blogs`;
-      const res = await httpServices.get(url);
-      setBlogCategories(res?.blog_categories);
-      setTrending(res?.trending_blogs?.results);
-    } catch (error) {}
+      const data = await httpServices.get(url);
+      const { trending_blogs, blog_categories } = data;
+      if (trending_blogs?.length > 0) {
+        const res = trending_blogs ?? [];
+        const addObjectData = { id: "advertisement" };
+        const newFeaturedData = [];
+
+        for (let i = 0; i < res.length; i++) {
+          newFeaturedData.push(res[i]);
+          if ((i + 1) % 2 === 0) {
+            newFeaturedData.push(addObjectData);
+          }
+        }
+        setTrending(newFeaturedData);
+      }
+      setBlogCategories(blog_categories);
+    } catch (error) {
+    } finally {
+      setLoading(false);
+    }
   };
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [lan]);
 
   useEffect(() => {
     dispatch(adsList());
@@ -165,6 +185,10 @@ const BlogDetails = () => {
         // alert("Your location is blocked")
         axios.get(`/private_adds/private_add`).then((response) => {
           if (response && response.data.results.length > 0) {
+            let filterArray1 = response.data.results.filter((item, index) => {
+              return item.image_type == "blog_index";
+            });
+            setBlogDetailsBoxAds(filterArray1);
             let filterArray2 = response.data.results.filter((item, index) => {
               return item.image_type == "blog_index_right1";
             });
@@ -218,151 +242,205 @@ const BlogDetails = () => {
     <div>
       <SEO title='Sheकुंज - Career' />
       <Header loginPage={true} page='more' subPage='moreblog' />
-      <section className='sk-block-details'>
-        <div className='container'>
-          <div className='row'>
-            <div className='col-xl-9 col-md-8'>
-              <img src={blogs?.image} alt='Story' className='img' />
-              <div className='story-bottom'>
-                <div className='hashtags-container'>
-                  <div className='sk-bdetail-chip'>
-                    <span>Parenting Tips</span>
+      {loading ? (
+        <div>
+          <CustomLoader />
+        </div>
+      ) : (
+        <section className='sk-block-details'>
+          <div className='container'>
+            <div className='row'>
+              <div className='col-xl-9 col-md-8'>
+                <img src={blogs?.image} alt='Story' className='img' />
+                <div className='story-bottom'>
+                  <div className='hashtags-container'>
+                    <div className='sk-bdetail-chip'>
+                      <span>Parenting Tips</span>
+                    </div>
+                    <div class='sk-blokTVE-icon'>
+                      <span>
+                        <AccessTimeIcon />
+                        {DateFormat(`${blogs?.created_at}`)}
+                      </span>
+                      <span>
+                        <MenuBookRoundedIcon /> 5 mins to read
+                      </span>
+                      <span>
+                        <VisibilityOutlinedIcon /> 828
+                      </span>
+                    </div>
                   </div>
-                  <div class='sk-blokTVE-icon'>
-                    <span>
-                      <AccessTimeIcon />
-                      {blogs?.created_at}
-                    </span>
-                    <span>
-                      <MenuBookRoundedIcon /> 5 mins to read
-                    </span>
-                    <span>
-                      <VisibilityOutlinedIcon /> 828
-                    </span>
+                  <div className='sk-social-icon'>
+                    <h6>Share this article</h6>
+                    <ul>
+                      <li>
+                        <a href='javascript:;'>
+                          <img src={facebookicon} />
+                        </a>
+                      </li>
+                      <li>
+                        <a href='javascript:;'>
+                          <img src={linkedinicon} />
+                        </a>
+                      </li>
+                      <li>
+                        <a href='javascript:;'>
+                          <img src={twittericon} />
+                        </a>
+                      </li>
+                      <li>
+                        <a href='javascript:;'>
+                          <img src={pintresticon} />
+                        </a>
+                      </li>
+                      <li>
+                        <a href='javascript:;'>
+                          <img src={instagramicon} />
+                        </a>
+                      </li>
+                    </ul>
                   </div>
                 </div>
-                <div className='sk-social-icon'>
-                  <h6>Share this article</h6>
-                  <ul>
-                    <li>
-                      <a href='javascript:;'>
-                        <img src={facebookicon} />
-                      </a>
-                    </li>
-                    <li>
-                      <a href='javascript:;'>
-                        <img src={linkedinicon} />
-                      </a>
-                    </li>
-                    <li>
-                      <a href='javascript:;'>
-                        <img src={twittericon} />
-                      </a>
-                    </li>
-                    <li>
-                      <a href='javascript:;'>
-                        <img src={pintresticon} />
-                      </a>
-                    </li>
-                    <li>
-                      <a href='javascript:;'>
-                        <img src={instagramicon} />
-                      </a>
-                    </li>
-                  </ul>
+                <h2>{blogs?.title}</h2>
+                <div
+                  className='sk-blogDetails-content'
+                  dangerouslySetInnerHTML={{
+                    __html: makeHtml(`${blogs?.about_blog}`),
+                  }}
+                />
+                <div className='sk-blogS-category'>
+                  <div className='sk-social-icon'>
+                    <h6 className='text-left'>Share this article</h6>
+                    <ul>
+                      <li>
+                        <a href='javascript:;'>
+                          <img src={facebookicon} />
+                        </a>
+                      </li>
+                      <li>
+                        <a href='javascript:;'>
+                          <img src={linkedinicon} />
+                        </a>
+                      </li>
+                      <li>
+                        <a href='javascript:;'>
+                          <img src={twittericon} />
+                        </a>
+                      </li>
+                      <li>
+                        <a href='javascript:;'>
+                          <img src={pintresticon} />
+                        </a>
+                      </li>
+                      <li>
+                        <a href='javascript:;'>
+                          <img src={instagramicon} />
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div className='catagorie_search_container'>
+                    {blogs?.tags?.length
+                      ? blogs?.tags.map((items) => {
+                          return (
+                            <span
+                              key={items}
+                              className='catagorie_search'
+                              onClick={() =>
+                                history.push(
+                                  `${routingConstants.MORE_BLOG_TAGS}?search=${items}`,
+                                  items,
+                                )
+                              }
+                            >
+                              {items}
+                            </span>
+                          );
+                        })
+                      : null}
+                  </div>
+                </div>
+                <div className='title'>
+                  <img src={fire} alt='fire' height={35} />
+                  <h4>Trending Blogs</h4>
+                </div>
+                <div>
+                  {trending?.map((items, index) => {
+                    if (items.id === "advertisement") {
+                      return (
+                        <>
+                          {blogDetailsBoxAds.length > 0 && (
+                            <div className='row'>
+                              <div
+                                className='col-md-12'
+                                // className='col-md-12 ads_home_cover '
+                                onClick={() =>
+                                  addEmailToClient(
+                                    blogDetailsBoxAds[0]?.add_email,
+                                  )
+                                }
+                              >
+                                <div className='card'>
+                                  <a
+                                    href={blogDetailsBoxAds[0]?.url_adds}
+                                    target='_blank'
+                                    rel='noreferrer'
+                                  >
+                                    {detect.isMobile
+                                      ? blogDetailsBoxAds[0]?.image_mobile && (
+                                          <img
+                                            src={
+                                              blogDetailsBoxAds[0]?.image_mobile
+                                            }
+                                            alt=''
+                                            // className='ads_story_cover_img'
+                                          />
+                                        )
+                                      : blogDetailsBoxAds[0]?.image && (
+                                          <img
+                                            src={blogDetailsBoxAds[0]?.image}
+                                            alt=''
+                                            // className='ads_story_cover_img'
+                                          />
+                                        )}
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+                          )}
+                        </>
+                      );
+                    } else {
+                      return (
+                        <>
+                          <TrendingBlogsCard2
+                            image={items.image}
+                            title={items.title}
+                            id={items.id}
+                            // description={items.about_blog}
+                            time='5 min'
+                            date={items.created_at}
+                          />
+                        </>
+                      );
+                    }
+                  })}
                 </div>
               </div>
-              <h2>{blogs?.title}</h2>
-              <div
-                className='sk-blogDetails-content'
-                dangerouslySetInnerHTML={{
-                  __html: makeHtml(`${blogs?.about_blog}`),
-                }}
-              />
-              <div className='sk-blogS-category'>
-                <div className='sk-social-icon'>
-                  <h6 className='text-left'>Share this article</h6>
-                  <ul>
-                    <li>
-                      <a href='javascript:;'>
-                        <img src={facebookicon} />
-                      </a>
-                    </li>
-                    <li>
-                      <a href='javascript:;'>
-                        <img src={linkedinicon} />
-                      </a>
-                    </li>
-                    <li>
-                      <a href='javascript:;'>
-                        <img src={twittericon} />
-                      </a>
-                    </li>
-                    <li>
-                      <a href='javascript:;'>
-                        <img src={pintresticon} />
-                      </a>
-                    </li>
-                    <li>
-                      <a href='javascript:;'>
-                        <img src={instagramicon} />
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-                <div className='catagorie_search_container'>
-                  {blogs?.tags?.length
-                    ? blogs?.tags.map((items) => {
-                        return (
-                          <span
-                            key={items}
-                            className='catagorie_search'
-                            onClick={() =>
-                              history.push(
-                                `${routingConstants.MORE_BLOG_TAGS}?search=${items}`,
-                                items,
-                              )
-                            }
-                          >
-                            {items}
-                          </span>
-                        );
-                      })
-                    : null}
-                </div>
+              <div className='col-xl-3 col-md-4'>
+                <HashtagAndCatagories
+                  image={catagorie}
+                  title={`Categories`}
+                  // addEmail={addEmail}
+                  hashtags={blogCategories}
+                  rightOne={succesStoriesRight1}
+                  rightTwo={succesStoriesRight2}
+                />
               </div>
-              <div className='title'>
-                <img src={fire} alt='fire' height={35} />
-                <h4>Trending Blogs</h4>
-              </div>
-              <div>
-                {trending.map((items, index) => {
-                  return (
-                    <TrendingBlogsCard2
-                      image={items.image}
-                      id={items.id}
-                      title={items.title}
-                      description=''
-                      time='5'
-                      date={items.created_at}
-                    />
-                  );
-                })}
-              </div>
-            </div>
-            <div className='col-xl-3 col-md-4'>
-              <HashtagAndCatagories
-                image={catagorie}
-                title={`Categories`}
-                addEmail={addEmail}
-                hashtags={blogCategories}
-                rightOne={succesStoriesRight1}
-                rightTwo={succesStoriesRight2}
-              />
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
       <Footer loginPage={false} />
     </div>
   );

@@ -3,11 +3,12 @@ import "./blogCarousel.scss";
 import time from "../../assets/icons/svgs/time.png";
 import book from "../../assets/icons/svgs/book.png";
 import eye from "../../assets/icons/svgs/eye.png";
-import AccessTimeIcon from '@mui/icons-material/AccessTime';
-import MenuBookRoundedIcon from '@mui/icons-material/MenuBookRounded';
-import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
+import AccessTimeIcon from "@mui/icons-material/AccessTime";
+import MenuBookRoundedIcon from "@mui/icons-material/MenuBookRounded";
+import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import { routingConstants } from "../../utils/constants";
 import { useHistory } from "react-router-dom";
+import { DateFormat } from "../../utils/utils";
 
 const BlogCarousel = ({ images = [] }) => {
   const history = useHistory();
@@ -24,18 +25,25 @@ const BlogCarousel = ({ images = [] }) => {
 
   return (
     <div className='carousel'>
-      <div className='carousel__slide' 
-      // style={{ backgroundImage: `url(${images[currentIndex]?.image})` }}
+      <div
+        className='carousel__slide'
+        // style={{ backgroundImage: `url(${images[currentIndex]?.image})` }}
       >
-        <img src={`${images[currentIndex]?.image}`} alt="image_blog" />
+        <img src={`${images[currentIndex]?.image}`} alt='image_blog' />
         <div className='carousel__content'>
-          <h2 style={{ color: "#020202", fontSize: "1.3rem", marginBottom: "15px" }}>
+          <h2
+            style={{
+              color: "#020202",
+              fontSize: "1.3rem",
+              marginBottom: "15px",
+            }}
+          >
             {images[currentIndex]?.title}
           </h2>
           <div className='has'>
             <span style={{ color: "#020202" }}>
               <AccessTimeIcon />
-              {images[currentIndex]?.created_at}
+              {DateFormat(`${images[currentIndex]?.created_at}`)}
             </span>
             <span style={{ color: "#020202" }}>
               <MenuBookRoundedIcon />

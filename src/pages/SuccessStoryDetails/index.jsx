@@ -27,14 +27,14 @@ import { HashtagAndCatagories } from "../../components/HastagAndCatagories/Index
 import hash from "../../assets/icons/svgs/hashtag.png";
 import { apiConstants } from "../../utils/constants";
 import httpServices from "../../utils/ApiServices";
+import { CustomLoader } from "../../components/customLoader/CustomLoader";
+import { addEmailToClient } from "../../utils/utils";
 
 const SuccessStoryDetails = () => {
   const { successStoriesDetails } = useSelector((state) => {
     return state.coursesReducer;
   });
-  const { successStories } = useSelector((state) => {
-    return state.coursesReducer;
-  });
+
   const dispatch = useDispatch();
 
   const { lan } = useSelector((state) => state.languageReducer);
@@ -47,22 +47,35 @@ const SuccessStoryDetails = () => {
   const [succesStoriesRight1, setSuccesStoriesRight1] = useState([]);
   const [succesStoriesRight2, setSuccesStoriesRight2] = useState([]);
   const [storyDetailsBoxAds, setStoryDetailsBoxAds] = useState([]);
+  const [storiesBannerAds, setStoriesBannerAds] = useState([]);
+  const [loading, setLoading] = useState(false);
   const detect = useDeviceDetect();
 
   const getAllSuccessStoryData = async () => {
+    setLoading(true);
     try {
       const url = `${apiConstants.COURSES.SUCCESS_STORY}`;
       const data = await httpServices.get(url);
       const { trending_success_stories, all_hash_tags } = data;
-      setTrendingData(trending_success_stories);
+      if (trending_success_stories?.length > 0) {
+        const res = trending_success_stories ?? [];
+        const addObjectData = { id: "advertisement" };
+        const newFeaturedData = [];
+
+        for (let i = 0; i < res.length; i++) {
+          if (i % 3 === 0 && i !== 0) {
+            newFeaturedData.push(addObjectData);
+          }
+          newFeaturedData.push(res[i]);
+        }
+        setTrendingData(newFeaturedData);
+      }
       setAllHashTag(all_hash_tags);
     } catch (error) {
     } finally {
+      setLoading(false);
     }
   };
-  useEffect(() => {
-    getAllSuccessStoryData();
-  }, [lan]);
 
   useEffect(() => {
     dispatch(fetchSuccessStoriesDetails(id));
@@ -141,6 +154,10 @@ const SuccessStoryDetails = () => {
               });
 
               setSuccesStoriesRight2(filterArray3);
+              let filterArray1 = response.data.results.filter((item, index) => {
+                return item.image_type == "success_stories_banner";
+              });
+              setStoriesBannerAds(filterArray1);
             }
           });
       },
@@ -159,6 +176,10 @@ const SuccessStoryDetails = () => {
             });
 
             setSuccesStoriesRight2(filterArray3);
+            let filterArray1 = response.data.results.filter((item, index) => {
+              return item.image_type == "success_stories_banner";
+            });
+            setStoriesBannerAds(filterArray1);
           }
         });
       },
@@ -174,96 +195,151 @@ const SuccessStoryDetails = () => {
     return htmlNode.innerHTML;
   };
 
+  useEffect(() => {
+    getAllSuccessStoryData();
+  }, [lan]);
+
   return (
     <div>
       <SEO title='Sheकुंज - Career' />
       <Header loginPage={true} page='story' subPage='moreStory' />
-      <section className='sk-storyDetail-sec'>
-        <div className='container'>
-          <div className='row'>
-            <div className='col-xl-9 col-md-8'>
-              <img
-                src={successStoriesDetails?.image}
-                alt='Story'
-                className='sk-storyBanner-img'
-              />
-              <div className='story-bottom'>
-                <div className='hashtags-container'>
-                  <div className='sk-storyD-tag'>
-                    {successStoriesDetails?.hash_tags?.length
-                      ? successStoriesDetails?.hash_tags.map((items) => {
-                          return <span key={items}>{`#${items}`}</span>;
-                        })
-                      : null}
-                  </div>
-                  <div className='sk-blokTVE-icon'>
-                    <span>
-                      <AccessTimeIcon />
-                      {successStoriesDetails?.created_at}
-                    </span>
-                    <span>
-                      <MenuBookRoundedIcon />
-                      {successStoriesDetails?.reading_time} to read
-                    </span>
-                  </div>
-                </div>
-                <div className='sk-social-icon'>
-                  <h6>Share this article</h6>
-                  <ul>
-                    <li>
-                      <a href='javascript:;'>
-                        <img src={facebookicon} />
-                      </a>
-                    </li>
-                    <li>
-                      <a href='javascript:;'>
-                        <img src={linkedinicon} />
-                      </a>
-                    </li>
-                    <li>
-                      <a href='javascript:;'>
-                        <img src={twittericon} />
-                      </a>
-                    </li>
-                    <li>
-                      <a href='javascript:;'>
-                        <img src={pintresticon} />
-                      </a>
-                    </li>
-                    <li>
-                      <a href='javascript:;'>
-                        <img src={instagramicon} />
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div className='sk-middleContent-story'>
-                <h4 className='story-tittle'>{successStoriesDetails?.name}</h4>
-                <h5 className='story-sub-tittle'>
-                  {successStoriesDetails?.designation}
-                </h5>
-                <h6 className='description'>{successStoriesDetails?.title}</h6>
-                <div
-                  className=''
-                  dangerouslySetInnerHTML={{
-                    __html: makeHtml(`${successStoriesDetails?.description}`),
-                  }}
+      {loading ? (
+        <div>
+          <CustomLoader />
+        </div>
+      ) : (
+        <section className='sk-storyDetail-sec'>
+          <div className='container'>
+            <div className='row'>
+              <div className='col-xl-9 col-md-8'>
+                <img
+                  src={successStoriesDetails?.image}
+                  alt='Story'
+                  className='sk-storyBanner-img'
                 />
-              </div>
+                <div className='story-bottom'>
+                  <div className='hashtags-container'>
+                    <div className='sk-storyD-tag'>
+                      {successStoriesDetails?.hash_tags?.length
+                        ? successStoriesDetails?.hash_tags.map((items) => {
+                            return <span key={items}>{`#${items}`}</span>;
+                          })
+                        : null}
+                    </div>
+                    <div className='sk-blokTVE-icon'>
+                      <span>
+                        <AccessTimeIcon />
+                        {successStoriesDetails?.created_at}
+                      </span>
+                      <span>
+                        <MenuBookRoundedIcon />
+                        {successStoriesDetails?.reading_time} to read
+                      </span>
+                    </div>
+                  </div>
+                  <div className='sk-social-icon'>
+                    <h6>Share this article</h6>
+                    <ul>
+                      <li>
+                        <a href='javascript:;'>
+                          <img src={facebookicon} />
+                        </a>
+                      </li>
+                      <li>
+                        <a href='javascript:;'>
+                          <img src={linkedinicon} />
+                        </a>
+                      </li>
+                      <li>
+                        <a href='javascript:;'>
+                          <img src={twittericon} />
+                        </a>
+                      </li>
+                      <li>
+                        <a href='javascript:;'>
+                          <img src={pintresticon} />
+                        </a>
+                      </li>
+                      <li>
+                        <a href='javascript:;'>
+                          <img src={instagramicon} />
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div className='sk-middleContent-story'>
+                  <h4 className='story-tittle'>
+                    {successStoriesDetails?.name}
+                  </h4>
+                  <h5 className='story-sub-tittle'>
+                    {successStoriesDetails?.designation}
+                  </h5>
+                  <h6 className='description'>
+                    {successStoriesDetails?.title}
+                  </h6>
+                  <div
+                    className=''
+                    dangerouslySetInnerHTML={{
+                      __html: makeHtml(`${successStoriesDetails?.description}`),
+                    }}
+                  />
+                </div>
 
-              <div className='title'>
-                <img src={fire} alt='fire' width={25} height={25} />
-                <h4>Trending Stories </h4>
-              </div>
-              <div className='row'>
-                {trendingData?.results?.length
-                  ? trendingData?.results.map((items, index) => {
+                <div className='title'>
+                  <img src={fire} alt='fire' width={25} height={25} />
+                  <h4>Trending Stories </h4>
+                </div>
+                <div className='row'>
+                  {trendingData?.map((items, index) => {
+                    if (items.id === "advertisement") {
+                      return (
+                        <>
+                          {storiesBannerAds.length > 0 && (
+                            <div
+                              className='col-xl-12'
+                              // className='col-md-12 ads_home_cover '
+                              onClick={() =>
+                                addEmailToClient(storiesBannerAds[0]?.add_email)
+                              }
+                            >
+                              <div className='card'>
+                                <a
+                                  href={storiesBannerAds[0]?.url_adds}
+                                  target='_blank'
+                                  rel='noreferrer'
+                                >
+                                  {detect.isMobile
+                                    ? storiesBannerAds[0]?.image_mobile && (
+                                        <img
+                                          src={
+                                            storiesBannerAds[0]?.image_mobile
+                                          }
+                                          alt=''
+                                          // className='ads_story_cover_img'
+                                        />
+                                      )
+                                    : storiesBannerAds[0]?.image && (
+                                        <img
+                                          src={storiesBannerAds[0]?.image}
+                                          alt=''
+                                          // className='ads_story_cover_img'
+                                        />
+                                      )}
+                                </a>
+                              </div>
+                            </div>
+                          )}
+                        </>
+                      );
+                    } else {
                       return (
                         <>
                           <TrendingCards
                             image={items.image}
-                            hashtags={items.hash_tags}
+                            hashtags={
+                              items.hash_tags === null ? [] : items.hash_tags
+                            }
                             title={items.name}
                             description={`${items.title}`}
                             makeHtml={makeHtml}
@@ -273,26 +349,27 @@ const SuccessStoryDetails = () => {
                           />
                         </>
                       );
-                    })
-                  : null}
+                    }
+                  })}
+                </div>
+                {/* <TrendingStories /> */}
               </div>
-              {/* <TrendingStories /> */}
-            </div>
-            <div className='col-xl-3 col-md-4'>
-              <HashtagAndCatagories
-                type='hashtag'
-                image={hash}
-                title={`Trending Hastag`}
-                firstAdd={succesStoriesRight1}
-                // addEmail={addEmail}
-                hashtags={allHashTag}
-                rightOne={succesStoriesRight1}
-                rightTwo={succesStoriesRight2}
-              />
+              <div className='col-xl-3 col-md-4'>
+                <HashtagAndCatagories
+                  type='hashtag'
+                  image={hash}
+                  title={`Trending Hastag`}
+                  firstAdd={succesStoriesRight1}
+                  // addEmail={addEmail}
+                  hashtags={allHashTag}
+                  rightOne={succesStoriesRight1}
+                  rightTwo={succesStoriesRight2}
+                />
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
       <Footer loginPage={false} />
     </div>
   );

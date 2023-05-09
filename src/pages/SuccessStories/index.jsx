@@ -29,6 +29,7 @@ import hash from "../../assets/icons/svgs/hashtag.png";
 
 import httpServices from "../../utils/ApiServices";
 import { CustomLoader } from "../../components/customLoader/CustomLoader";
+import { addEmailToClient } from "../../utils/utils";
 
 function SuccessStory() {
   const history = useHistory();
@@ -77,8 +78,8 @@ function SuccessStory() {
       } else {
         setCurrentFeaturedData(featured_success_stories);
       }
-      if (trending_success_stories?.results?.length > 0) {
-        const res = trending_success_stories?.results ?? [];
+      if (trending_success_stories?.length > 0) {
+        const res = trending_success_stories ?? [];
         const addObjectData = { id: "advertisement" };
         const newFeaturedData = [];
 
@@ -271,7 +272,9 @@ function SuccessStory() {
                         {storiesBannerAds.length > 0 && (
                           <div
                             className='ads_home_cover '
-                            // onClick={() => addEmail(storiesBannerAds[0]?.add_email)}
+                            onClick={() =>
+                              addEmailToClient(storiesBannerAds[0]?.add_email)
+                            }
                           >
                             <a
                               href={storiesBannerAds[0]?.url_adds}
@@ -321,7 +324,11 @@ function SuccessStory() {
                               <div
                                 className='col-md-6'
                                 // className='col-md-12 ads_home_cover '
-                                // onClick={() => addEmail(succesStoriesLeft[0]?.add_email)}
+                                onClick={() =>
+                                  addEmailToClient(
+                                    succesStoriesLeft[0]?.add_email,
+                                  )
+                                }
                               >
                                 <div className='card'>
                                   <a
@@ -394,9 +401,14 @@ function SuccessStory() {
                           return (
                             <>
                               {storiesBannerAds.length > 0 && (
-                                <div className='col-xl-12'
+                                <div
+                                  className='col-xl-12'
                                   // className='col-md-12 ads_home_cover '
-                                  // onClick={() => addEmail(storiesBannerAds[0]?.add_email)}
+                                  onClick={() =>
+                                    addEmailToClient(
+                                      storiesBannerAds[0]?.add_email,
+                                    )
+                                  }
                                 >
                                   <div className='card'>
                                     <a

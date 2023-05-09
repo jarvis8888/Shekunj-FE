@@ -4,6 +4,7 @@ import moment from "moment";
 import { toast } from "react-toastify";
 import i18njs from "../assets/i18n/i18n";
 import { routingConstants } from "./constants";
+import axios from "axios";
 
 export const toasterConfig = {
   position: "top-right",
@@ -266,11 +267,48 @@ export function time_left(start_date, start_time, end_date, end_time) {
   return `${date_str.replace(" at", " |")}`;
 }
 
-export  const makeHtml = (htmlString) => {
+export const makeHtml = (htmlString) => {
   const htmlNode = document.createElement("div");
   htmlNode.innerHTML = htmlString;
   htmlNode.querySelectorAll("*").forEach(function (node) {
     node.removeAttribute("style");
   });
   return htmlNode.innerHTML;
+};
+
+export function DateFormat(timestampStr) {
+  // extract the year, month, and day components from the timestamp string
+  const [dateStr] = timestampStr.split("T");
+  const [year, month, day] = dateStr.split("-").map(Number);
+
+  // create a Date object representing the date
+  const date = new Date(year, month - 1, day);
+
+  // format the date string
+  const options = { year: "2-digit", month: "short", day: "numeric" };
+  const formattedDate = date
+    .toLocaleDateString("en-US", options)
+    .replace(",", "");
+
+  return formattedDate;
+}
+
+export const addEmailToClient = async (email) => {
+  try {
+    const position = await new Promise((resolve, reject) => {
+      navigator.geolocation.getCurrentPosition(resolve, reject);
+    });
+
+    const { latitude, longitude } = position.coords;
+
+    const response = await axios.post("/private_adds/click_add/", {
+      add_email: email,
+      latitude: latitude.toString(),
+      longitude: longitude.toString(),
+    });
+
+    console.log("addEmail response", response);
+  } catch (error) {
+    console.error(error);
+  }
 };
