@@ -255,7 +255,7 @@ const BlogDetails = () => {
                 <div className='story-bottom'>
                   <div className='hashtags-container'>
                     <div className='sk-bdetail-chip'>
-                      <span>Parenting Tips</span>
+                      <span>{blogs?.category_name}</span>
                     </div>
                     <div class='sk-blokTVE-icon'>
                       <span>
@@ -263,7 +263,7 @@ const BlogDetails = () => {
                         {DateFormat(`${blogs?.created_at}`)}
                       </span>
                       <span>
-                        <MenuBookRoundedIcon /> 5 mins to read
+                        <MenuBookRoundedIcon /> {blogs?.reading_time}
                       </span>
                       <span>
                         <VisibilityOutlinedIcon /> 828
@@ -418,8 +418,9 @@ const BlogDetails = () => {
                             title={items.title}
                             id={items.id}
                             description={`${items.about_blog}`}
-                            time='5 min'
-                            date={items.created_at}
+                            time={items.reading_time}
+                            date={DateFormat(`${items.created_at}`)}
+                            category_name={items.category_name}
                           />
                         </>
                       );
