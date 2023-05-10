@@ -62,10 +62,6 @@ function EventPage() {
 
   const { lan } = useSelector((state) => state.languageReducer);
   const [currentData2, setCurrentData2] = useState([]);
-  console.log(
-    "🚀 ~ file: EventPage.jsx:65 ~ EventPage ~ currentData2:",
-    currentData2,
-  );
 
   const [eventBoxAds, setEventBoxAds] = useState([]);
   const [currentData, setCurrentData] = useState([]);
@@ -87,10 +83,15 @@ function EventPage() {
   const location = useLocation();
   const detect = useDeviceDetect();
 
-  const getAllEVentsData = async (currentOffset) => {
+  const getAllEVentsData = async (currentOffset, genre) => {
     setLoading(true);
     try {
-      const url = `more/events?limit=${8}&offset=${currentOffset}`;
+      let url = `more/events`;
+      if (genre) {
+        url += `?genre_id=${genre}`;
+      } else {
+        url += `?limit=${8}&offset=${currentOffset}`;
+      }
       const { data } = await httpServices.get(url);
       const { event_list, today_tomorrow, this_week, next_week, genres_list } =
         data;
@@ -99,15 +100,23 @@ function EventPage() {
       setThisWeekData(this_week);
       setNextWeekData(next_week);
       setCheckEventData(event_list?.results);
-      if (event_list?.results?.length > 0) {
-        setAllEventData((prevFeaturedData) => [
-          ...prevFeaturedData,
-          ...event_list?.results,
-        ]);
-        setCurrentData((prevFeaturedData) => [
-          ...prevFeaturedData,
-          ...event_list?.results,
-        ]);
+      if (genre) {
+        setCurrentData(event_list?.results);
+      }
+      if (currentOffset) {
+        if (event_list?.results?.length > 0) {
+          setAllEventData((prevFeaturedData) => [
+            ...prevFeaturedData,
+            ...event_list?.results,
+          ]);
+          setCurrentData((prevFeaturedData) => [
+            ...prevFeaturedData,
+            ...event_list?.results,
+          ]);
+        }
+      } else {
+        setAllEventData(event_list?.results);
+        setCurrentData(event_list?.results);
       }
     } catch (error) {
     } finally {
@@ -115,19 +124,6 @@ function EventPage() {
     }
   };
 
-  const getAllGenreEVentsData = async (genre) => {
-    setLoading(true);
-    try {
-      const url = `more/events?genre_id=${genre}`;
-      const { data } = await httpServices.get(url);
-      const { event_list, today_tomorrow, this_week, next_week, genres_list } =
-        data;
-      setCurrentData(event_list?.results);
-    } catch (error) {
-    } finally {
-      setLoading(false);
-    }
-  };
   const handleTimeOptionClick = (option) => {
     setSelectedButton(option);
     setSelectedOption(null);
@@ -149,7 +145,7 @@ function EventPage() {
         break;
       case "all":
         setSelectedOption(null);
-        setCurrentData(allEventData);
+        getAllEVentsData(0, null);
         break;
       default:
         break;
@@ -158,6 +154,7 @@ function EventPage() {
   const handleGenerOptionClick = (option) => {
     setSelectedOption(option);
     setSelectedButton(null);
+    setCurrentOffset(0);
     const searchParams = new URLSearchParams();
     searchParams.set("genre_id", option);
     history.push({
@@ -205,13 +202,13 @@ function EventPage() {
   }, []);
 
   useEffect(() => {
-    getAllEVentsData(currentOffset);
+    getAllEVentsData(currentOffset, selectedOption);
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-  }, [currentOffset, lan]);
+  }, [currentOffset, lan, selectedOption]);
 
-  useEffect(() => {
-    getAllGenreEVentsData(selectedOption);
-  }, [selectedOption]);
+  // useEffect(() => {
+  //   getAllGenreEVentsData(selectedOption);
+  // }, []);
   return (
     <div>
       <Header loginPage={true} page='more' subPage='moreEvent' />
@@ -233,32 +230,31 @@ function EventPage() {
       <section className='sk-event-sec'>
         <div className='container-fluid'>
           <div className='sk-event-slide'>
-            <OwlCarousel className='event-Carousel'
-            loop={true} 
-            autoplay={true} 
-            autoplayspeed={1000} 
-            items={4} 
-            margin={20} 
-            nav={true}
-            responsive={
-                {
-                    '1':{
-                        items: 1,
-                    },
-                    '667': {
-                        items: 2
-                    },
-                    '991': {
-                        items: 2
-                    },
-                    '1199': {
-                        items: 4
-                    },
-                    '1920': {
-                        items: 4
-                    }
-                  }
-                }
+            <OwlCarousel
+              className='event-Carousel'
+              loop={true}
+              autoplay={true}
+              autoplayspeed={1000}
+              items={4}
+              margin={20}
+              nav={true}
+              responsive={{
+                1: {
+                  items: 1,
+                },
+                667: {
+                  items: 2,
+                },
+                991: {
+                  items: 2,
+                },
+                1199: {
+                  items: 4,
+                },
+                1920: {
+                  items: 4,
+                },
+              }}
             >
               {allEventData?.map((items, index) => {
                 return (

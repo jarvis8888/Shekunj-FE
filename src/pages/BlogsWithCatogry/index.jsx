@@ -155,8 +155,9 @@ const BlogWithCatogry = () => {
                               title={items.title}
                               id={items.id}
                               description={`${items.about_blog}`}
-                              time='5 min'
+                              time={items.reading_time}
                               date={DateFormat(`${items.created_at}`)}
+                              category_name={items.category_name}
                             />
                           </>
                         );

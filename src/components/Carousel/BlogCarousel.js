@@ -47,9 +47,7 @@ const BlogCarousel = ({ images = [] }) => {
             </span>
             <span style={{ color: "#020202" }}>
               <MenuBookRoundedIcon />
-              {images[currentIndex]?.reading_time
-                ? images[currentIndex]?.reading_time
-                : "5 min"}
+              {images[currentIndex]?.reading_time}
             </span>
             <span style={{ color: "#020202" }}>
               <VisibilityOutlinedIcon />

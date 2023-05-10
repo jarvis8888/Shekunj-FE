@@ -244,8 +244,9 @@ function BlogPage() {
                                 image={items.image}
                                 id={items.id}
                                 description={items.title}
-                                time='5'
+                                time={items.reading_time}
                                 date={DateFormat(`${items.created_at}`)}
+                                category_name={items.category_name}
                               />
                             </>
                           );
@@ -364,6 +365,7 @@ function BlogPage() {
                                   reading_time={items.reading_time}
                                   id={items.id}
                                   blog_count={items.blog_count}
+                                  category_name={items.category_name}
                                 />
                               </div>
                             </>

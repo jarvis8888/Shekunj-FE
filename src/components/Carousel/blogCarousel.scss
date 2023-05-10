@@ -68,12 +68,19 @@ section{
   grid-template-columns: repeat(3, 1fr);
   align-items: center;
   max-width: 500px;
+  
 
   span {
     font-size: 14px;
     color: #fff !important;
     display: flex;
     margin-right: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+
   svg{
     margin-right: 8px;
     font-size: 20px;
