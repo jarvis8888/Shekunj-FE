@@ -52,7 +52,7 @@ img {
       height: auto;
       max-width: 100%;
       object-fit: cover;
-      height: 250px;
+      height: 200px;
       object-position: center top;
     }
   }
@@ -232,7 +232,7 @@ img {
   .blog-card2 {
     padding: 10px;
     &__title {
-      font-size: 0.7rem;
+      font-size: 1.1rem;
     }
     &__image {
       flex: 100px 0 0;

@@ -301,7 +301,7 @@ const BlogDetails = () => {
                     </ul>
                   </div>
                 </div>
-                <h2>{blogs?.title}</h2>
+                <h2 className="sk-headingblog-title">{blogs?.title}</h2>
                 <div
                   className='sk-blogDetails-content'
                   dangerouslySetInnerHTML={{

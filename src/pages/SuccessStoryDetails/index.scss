@@ -545,6 +545,9 @@
     justify-content: space-between;
     align-items: center;
   }
+  .sk-headingblog-title{
+    font-size: calc(1rem + 1.5vw);
+  }
 
   @media screen and (max-width: 768px) {
     flex-direction: column;
