@@ -38,7 +38,7 @@ export const TrendingBlogsCard2 = ({
         <img src={image} />
       </div>
       <div className='col-md-8'>
-        <div className="pt-3">
+        <div className="py-2">
         <h5 className='blog-card2__title'>{title}</h5>
         <span className="sk-tagBlog-name">{category_name}</span>
         <p

@@ -1,6 +1,6 @@
 import React from "react";
 import "./index.scss";
-import fire from "../../assets/icons/svgs/fire.png";
+import fire from "../../assets/images/fire.svg";
 import TrendingCards from "../../components/cards/TrendingCards";
 
 export const TrendingStories = () => {
@@ -8,7 +8,7 @@ export const TrendingStories = () => {
     <div>
       <div className='treading-stories'>
         <div className='title'>
-          <img src={fire} alt='fire' width={25} height={25} />
+          <img src={fire} alt='fire' width={28} />
           <h4>Trending Stories </h4>
         </div>
         <div className='treading-card-gird'>

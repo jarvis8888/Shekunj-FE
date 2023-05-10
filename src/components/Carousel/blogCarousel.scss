@@ -6,6 +6,8 @@ section {
   height: 100%;
   width: 100%;
   overflow: hidden;
+  border-radius: 8px;
+
 
   &__slide {
     transition: opacity 0.5s ease-in-out;
@@ -13,7 +15,8 @@ section {
     z-index: 1;
     position: relative;
     img {
-      width: 100%;
+    width: 100%;
+    border-radius: 8px;
     }
   }
 
