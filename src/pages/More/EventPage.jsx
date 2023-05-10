@@ -90,7 +90,7 @@ function EventPage() {
       if (genre) {
         url += `?genre_id=${genre}`;
       } else {
-        url += `?limit=${2}&offset=${currentOffset}`;
+        url += `?limit=${8}&offset=${currentOffset}`;
       }
       const { data } = await httpServices.get(url);
       const { event_list, today_tomorrow, this_week, next_week, genres_list } =
@@ -408,7 +408,7 @@ function EventPage() {
                       disabled={checkEventData?.length === 0}
                       type=''
                       onClick={() => {
-                        setCurrentOffset(currentOffset + 2);
+                        setCurrentOffset(currentOffset + 8);
                       }}
                       className='sk-btn'
                     >
