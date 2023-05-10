@@ -153,13 +153,16 @@ body {
 .nav-logo img {
   max-width: 154px;
 }
-
+.header-top button{
+  color: #020202;
+}
 .header-top {
   display: flex;
   justify-content: flex-end;
   background-color: #f0f0f0;  
   align-items: center;
   padding: 10px 80px;
+  
 
   nav {
    
@@ -186,9 +189,9 @@ body {
             text-decoration: underline;
           }
         }
-      }
     }
   }
+}
   .sk-header-btn {
     background: #d3317d;
     color: #fff;
@@ -291,6 +294,7 @@ body {
     position: relative;
   }
 }
+
 @media (max-width: 800px) {
   .header-top nav ul li{
     margin-left: 0 !important;
@@ -301,7 +305,7 @@ body {
   .header-top .custom-dropdown button{
     color: #fff;
   }
-  .header-top .makeStyles-language-1{
+  .header-top button{
     color: #fff !important;
     border-color: #434242 !important;
   }
