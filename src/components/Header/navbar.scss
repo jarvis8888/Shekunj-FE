@@ -8,7 +8,7 @@ body {
   align-items: center;
   background: #ffffff;
   padding: 10px 80px;
-  box-shadow: 8px 8px 20px 0px #fbf6f8;
+  box-shadow: 0 3px 10px 0px #fbf6f8;
 }
 .Navbar .custom-dropdown button {
   font-size: 16px;
@@ -79,7 +79,7 @@ body {
 
   .Navbar > .nav-items.open {
     transform: translateX(0);
-    z-index: 9999;
+    z-index: 9;
     height: 100vh;
     overflow: scroll;
   }
@@ -169,6 +169,7 @@ body {
       margin: 0;
       padding: 0;
       align-items: center;
+      flex-wrap: wrap;
       li {
         margin-left: 25px;
 
@@ -254,6 +255,9 @@ body {
   color: #020202;
   .rs-dropdown-menu {
     background-color: #f4f4f4;
+    z-index: 99 !important;
+    box-shadow: 4px 6px 10px 0px #3a071b1c !important;
+    border-radius: 0 0 8px 8px;
   }
 
   .rs-dropdown-item {
@@ -262,8 +266,14 @@ body {
     font-weight: 400;
     font-size: 14px;
     margin-left: 0;
+    @media (max-width: 800px) {
+      font-size: 12px;
+    }
     &:hover {
       color: #db5789;
+      background: #fff;
+      display: inline-block;
+      width: 100%;
     }
 
     &.active {
@@ -277,14 +287,29 @@ body {
   display: none;
   @media (max-width: 800px) {
     display: flex;
-    z-index: 9999;
+    z-index: 9;
     position: relative;
   }
 }
 @media (max-width: 800px) {
   .header-top nav ul li{
     margin-left: 0 !important;
-    margin-right: 20px;
+  }
+  .header-top{
+    background: #202020;
+  }
+  .header-top .custom-dropdown button{
+    color: #fff;
+  }
+  .header-top .makeStyles-language-1{
+    color: #fff !important;
+    border-color: #434242 !important;
+  }
+  .header-top nav ul{
+    justify-content: space-between;
+  }
+  .header-top nav{
+    width: 100%;
   }
   .sk-mobile-hide{
     display: none;
@@ -293,6 +318,13 @@ body {
 @media screen and (max-width: 1199px) {
   .Navbar{
     height: 60px;
+    position: sticky;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 10px 15px;
+    z-index: 99;
   }
   .Navbar > .nav-items > a{
     font-size: 14px;
@@ -300,8 +332,11 @@ body {
   .Navbar .custom-dropdown button{
     font-size: 14px;
   }
-  .Navbar, .header-top{
+  .header-top {
     padding: 10px 15px;
+    position: relative;
+    transition: 0.5s;
+    z-index: 999;
   }
   .nav-logo img {
     max-width: 120px;

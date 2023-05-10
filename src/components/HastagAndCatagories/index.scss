@@ -3,15 +3,19 @@
   flex-direction: column;
   width: 100%;
   padding: 0px 0px 20px;
+  position: sticky;
+  top: 20px;
 }
 .HashtagAndCatagoriesTitle {
   width: 100%;
   display: flex;
   flex-direction: row;
   padding: 0 0 10px 0;
+  color: #020202;
+  margin-bottom: 0;
 
   img {
-    height: 28px;
+    width: 28px;
     h4{
       margin-bottom: 0;
       font-size: 22px;
@@ -23,7 +27,7 @@
   background: linear-gradient(0deg, #E09B3D 0.29%, #C74C4D 29.97%, #C21975 59.65%, #7024C4 99.22%);
 }
 .SocialMediaIconscontainer .likes {
-  padding: 10px 5px;
+  padding: 20px 5px 15px;
   gap: 5px;
 }
 .youMayLikeCarousel{
@@ -55,7 +59,12 @@
   flex-wrap: wrap;
   gap: 10px;
   padding: 0px 0 18px;
+  font-style: italic;
 }
+.HashtagAndCatagoriesTitle h5 {
+  margin-bottom: 0;
+}
+
 .sk-blogDetails-content {
  
 }
@@ -95,4 +104,9 @@
 }
 .social-media {
   margin-top: 17px;
+}
+@media screen and (max-width: 800px) {
+.HashtagAndCatagories {
+    margin-top: 20px;
+  }
 }

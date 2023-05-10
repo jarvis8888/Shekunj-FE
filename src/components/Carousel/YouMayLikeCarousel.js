@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import photo from "../../assets/icons/svgs/exphoto.png";
 import httpServices from "../../utils/ApiServices";
-import like_icon from "../../assets/icons/like-story.png";
-
+import like_icon from "../../assets/images/likestory.svg";
 import "./YouMayLikeCarousel.scss";
 
 
@@ -33,7 +32,7 @@ const YouMayLikeCarousel = () => {
   return (
     <div className='youMayLikeCarousel'>
       <div className='YouMayLikeCarouselCarousel_header'>
-        <img src={like_icon} alt='fire' width={28} /> You May Like
+        <img src={like_icon} alt='like' width={28} /> You May Like
       </div>
       <div
         className='YouMayLikeCarouselCarousel__slide'

@@ -36,8 +36,8 @@ import { TrendingBlogsCard2 } from "../../components/cards/TrendingBlogsCard2";
 import httpServices from "../../utils/ApiServices";
 import { HashtagAndCatagories } from "../../components/HastagAndCatagories/Index";
 import { apiConstants } from "../../utils/constants";
-import catagorie from "../../assets/icons/svgs/categories.png";
-import fire from "../../assets/icons/svgs/fire.png";
+import catagorie from "../../assets/images/categoryblog.svg";
+import fire from "../../assets/images/fire.svg";
 import { DateFormat, addEmailToClient } from "../../utils/utils";
 import { CustomLoader } from "../../components/customLoader/CustomLoader";
 
@@ -270,7 +270,7 @@ const BlogDetails = () => {
                       </span>
                     </div>
                   </div>
-                  <div className='sk-social-icon'>
+                  <div className='sk-social-icon sk-mobile-view'>
                     <h6>Share this article</h6>
                     <ul>
                       <li>
@@ -309,7 +309,7 @@ const BlogDetails = () => {
                   }}
                 />
                 <div className='sk-blogS-category'>
-                  <div className='sk-social-icon'>
+                  <div className='sk-social-icon pb-3'>
                     <h6 className='text-left'>Share this article</h6>
                     <ul>
                       <li>
@@ -361,7 +361,7 @@ const BlogDetails = () => {
                   </div>
                 </div>
                 <div className='title'>
-                  <img src={fire} alt='fire' height={35} />
+                  <img src={fire} alt='fire' width={28} />
                   <h4>Trending Blogs</h4>
                 </div>
                 <div>

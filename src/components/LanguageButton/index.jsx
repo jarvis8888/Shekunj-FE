@@ -4,6 +4,7 @@ import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Fade from "@mui/material/Fade";
+import traslateicon from "../../assets/images/traslateicon.svg"
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import { makeStyles } from "@mui/styles";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,7 +15,7 @@ const useStyles = makeStyles({
   language: {
     borderRadius: "2px !important",
     color: "#020202 !important",
-    border: "1px solid #020202 !important",
+    border: "1px solid #888 !important",
     textTransform: "none !important",
     fontFamily: "Poppins !important",
     fontWeight: "300 !important",
@@ -68,6 +69,10 @@ function ChangeLanguageButton() {
         onClick={handleClick}
         endIcon={<ArrowDropDownIcon />}
       >
+      <span className="mr-2">
+        <img src={traslateicon} />
+      </span>
+
         {language.startsWith("en") ? "English" : "हिन्दी"}
       </Button>
       <Menu

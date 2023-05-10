@@ -36,12 +36,13 @@ import BlogCarousel from "../../components/Carousel/BlogCarousel";
 import photo from "../../assets/icons/svgs/exphoto.png";
 import AddsBanner from "../../components/AddsBanner/AddsBanner";
 import FeaturedCards from "../../components/cards/FeaturedCards";
-import fire from "../../assets/icons/svgs/fire.png";
+import fire from "../../assets/images/fire.svg";
+import timeicon from "../../assets/images/timeicon.svg";
 import { TrendingBlogsCard } from "../../components/cards/TrendingBlogsCard";
 import LatestBlogCard from "../../components/cards/LatestBlogCard";
 import { TrendingBlogsCard2 } from "../../components/cards/TrendingBlogsCard2";
 import { HashtagAndCatagories } from "../../components/HastagAndCatagories/Index";
-import catagorie from "../../assets/icons/svgs/categories.png";
+import catagorie from "../../assets/images/categoryblog.svg";
 import httpServices from "../../utils/ApiServices";
 import { CustomLoader } from "../../components/customLoader/CustomLoader";
 import { DateFormat, addEmailToClient } from "../../utils/utils";
@@ -308,7 +309,7 @@ function BlogPage() {
                 <div className='col-xl-9 col-md-8 col-lg-8'>
                   <div className='blog-stories'>
                     <div className='title'>
-                      <img src={fire} alt='fire' width={25} height={25} />
+                      <img src={timeicon} alt='time' width={28} />
                       <h4>Latest Blogs</h4>
                     </div>
                     <div className='row'>
@@ -424,7 +425,7 @@ function BlogPage() {
                   </div>
 
                   <div className='title'>
-                    <img src={fire} alt='fire' width={25} height={25} />
+                    <img src={fire} alt='fire' width={28} />
                     <h4>Trending Blogs</h4>
                   </div>
                   {trendingBlogs?.map((items, index) => {
@@ -487,15 +488,13 @@ function BlogPage() {
                 </div>
 
                 <div className='col-xl-3 col-md-4 col-lg-4 col-sm-12'>
-                  <div className='ads'>
-                    <HashtagAndCatagories
-                      image={catagorie}
-                      title={"Categories"}
-                      hashtags={blogsCategories}
-                      rightOne={blogRight1}
-                      rightTwo={blogRight2}
-                    />
-                  </div>
+                  <HashtagAndCatagories
+                    image={catagorie}
+                    title={"Categories"}
+                    hashtags={blogsCategories}
+                    rightOne={blogRight1}
+                    rightTwo={blogRight2}
+                  />
                 </div>
               </div>
             </div>
