@@ -1,4 +1,4 @@
-section{
+section {
   padding: 50px 0;
 }
 .carousel {
@@ -13,10 +13,10 @@ section{
     z-index: 1;
     position: relative;
     img {
-    width: 100%;
+      width: 100%;
     }
   }
-  
+
   &__content {
     color: #fff;
     padding: 1.5rem;
@@ -58,7 +58,7 @@ section{
 .grid-container {
   margin-top: 30px;
 }
-.carousel__content h2{
+.carousel__content h2 {
   color: #fff !important;
 }
 .has {
@@ -68,7 +68,6 @@ section{
   grid-template-columns: repeat(3, 1fr);
   align-items: center;
   max-width: 500px;
-  
 
   span {
     font-size: 14px;
@@ -81,9 +80,46 @@ section{
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
 
-  svg{
-    margin-right: 8px;
-    font-size: 20px;
+    svg {
+      margin-right: 8px;
+      font-size: 20px;
     }
   }
+}
+
+.sk-category-name {
+  background: #1da1f2;
+  color: #fff;
+  padding: 4px 10px;
+  display: inline-block;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+.carousel__arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  width: 50px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  font-size: 34px;
+  cursor: pointer;
+  z-index: 2;
+  transition: background-color 0.3s ease-in-out;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+}
+.carousel__arrow__left {
+  left: 0px;
+}
+
+.carousel__arrow__right {
+  right: 0px;
 }

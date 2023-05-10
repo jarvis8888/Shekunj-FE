@@ -14,6 +14,14 @@ const BlogCarousel = ({ images = [] }) => {
   const history = useHistory();
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  const handlePrev = () => {
+    setCurrentIndex(currentIndex === 0 ? images.length - 1 : currentIndex - 1);
+  };
+
+  const handleNext = () => {
+    setCurrentIndex(currentIndex === images.length - 1 ? 0 : currentIndex + 1);
+  };
+
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex(
@@ -25,12 +33,27 @@ const BlogCarousel = ({ images = [] }) => {
 
   return (
     <div className='carousel'>
+      <button
+        className='carousel__arrow carousel__arrow__left'
+        onClick={handlePrev}
+      >
+        &lt;
+      </button>
+      <button
+        className='carousel__arrow carousel__arrow__right'
+        onClick={handleNext}
+      >
+        &gt;
+      </button>
       <div
         className='carousel__slide'
         // style={{ backgroundImage: `url(${images[currentIndex]?.image})` }}
       >
         <img src={`${images[currentIndex]?.image}`} alt='image_blog' />
         <div className='carousel__content'>
+          <h5 className='sk-category-name'>
+            {images[currentIndex]?.category_name}
+          </h5>
           <h2
             style={{
               color: "#020202",

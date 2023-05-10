@@ -284,6 +284,41 @@ const SuccessStoryDetails = () => {
                       __html: makeHtml(`${successStoriesDetails?.description}`),
                     }}
                   />
+                  <>
+                    {storiesBannerAds.length > 0 && (
+                      <div
+                        className='col-xl-12'
+                        // className='col-md-12 ads_home_cover '
+                        onClick={() =>
+                          addEmailToClient(storiesBannerAds[0]?.add_email)
+                        }
+                      >
+                        <div className='card'>
+                          <a
+                            href={storiesBannerAds[0]?.url_adds}
+                            target='_blank'
+                            rel='noreferrer'
+                          >
+                            {detect.isMobile
+                              ? storiesBannerAds[0]?.image_mobile && (
+                                  <img
+                                    src={storiesBannerAds[0]?.image_mobile}
+                                    alt=''
+                                    // className='ads_story_cover_img'
+                                  />
+                                )
+                              : storiesBannerAds[0]?.image && (
+                                  <img
+                                    src={storiesBannerAds[0]?.image}
+                                    alt=''
+                                    // className='ads_story_cover_img'
+                                  />
+                                )}
+                          </a>
+                        </div>
+                      </div>
+                    )}
+                  </>
                 </div>
 
                 <div className='title'>
