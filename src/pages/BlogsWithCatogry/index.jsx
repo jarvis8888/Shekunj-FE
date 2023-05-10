@@ -5,12 +5,12 @@ import httpServices from "../../utils/ApiServices";
 import { useHistory, useLocation } from "react-router-dom";
 import FeaturedCards from "../../components/cards/FeaturedCards";
 import { HashtagAndCatagories } from "../../components/HastagAndCatagories/Index";
-import hash from "../../assets/icons/svgs/hashtag.png";
+import hash from "../../assets/images/hashtag.svg";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { adsList } from "../../store/ads";
 import { TrendingBlogsCard2 } from "../../components/cards/TrendingBlogsCard2";
-import catagorie from "../../assets/icons/svgs/categories.png";
+import catagorie from "../../assets/images/categoryblog.svg";
 import { DateFormat } from "../../utils/utils";
 import { CustomLoader } from "../../components/customLoader/CustomLoader";
 

@@ -5,7 +5,7 @@ import httpServices from "../../utils/ApiServices";
 import { useHistory, useLocation } from "react-router-dom";
 import FeaturedCards from "../../components/cards/FeaturedCards";
 import { HashtagAndCatagories } from "../../components/HastagAndCatagories/Index";
-import hash from "../../assets/icons/svgs/hashtag.png";
+import hash from "../../assets/images/hashtag.svg";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { adsList } from "../../store/ads";

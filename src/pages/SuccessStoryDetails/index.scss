@@ -7,11 +7,24 @@
   padding: 0;
   margin-bottom: 0;
 }
+.sk-storyDetail-sec{
+  padding: 50px 0;
+}
+
+.sk-storyDetail-sec .card__button {
+  border-left: 1px solid #d9d9d9;
+}
+.sk-storyDetail-sec .card__bottom{
+  border-top: 1px solid #d9d9d9;
+  padding-top: 5px;
+}
+
 .sk-storyDetail-sec .sk-storyBanner-img{
   width: 100%;
+  border-radius: 8px;
 }
 .sk-storyD-tag{
-  padding-bottom: 15px;
+  padding-bottom: 10px;
 }
 .sk-middleContent-story {
   border-bottom: 1px solid #d9d9d9;
@@ -36,7 +49,7 @@
   padding: 20px 0 30px;
 }
 .sk-blokTVE-icon span{
-  font-size: 14px;
+  font-size: 12px;
   color: #888;
   margin-right: 20px;
 }
@@ -44,7 +57,7 @@
   margin-right: 0 !important;
 }
 .sk-blokTVE-icon svg{
-  font-size: 20px;
+  font-size: 18px;
   vertical-align: text-bottom;
   margin-right: 5px;
 }
@@ -235,6 +248,9 @@
     height: auto;
     box-shadow: none;
     padding: 0;
+  }
+  .sk-mobile-view{
+    display: none;
   }
   .sk-social-icon{
     text-align: left;
@@ -602,6 +618,7 @@
         }
       }
     }
+   
     .social-media {
       display: none;
     }

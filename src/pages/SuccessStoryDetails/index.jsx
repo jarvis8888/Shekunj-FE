@@ -22,9 +22,9 @@ import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import time from "../../assets/icons/svgs/time.png";
 import book from "../../assets/icons/svgs/book.png";
 import TrendingCards from "../../components/cards/TrendingCards";
-import fire from "../../assets/icons/svgs/fire.png";
+import fire from "../../assets/images/fire.svg";
 import { HashtagAndCatagories } from "../../components/HastagAndCatagories/Index";
-import hash from "../../assets/icons/svgs/hashtag.png";
+import hash from "../../assets/images/hashtag.svg";
 import { apiConstants } from "../../utils/constants";
 import httpServices from "../../utils/ApiServices";
 import { CustomLoader } from "../../components/customLoader/CustomLoader";
@@ -237,7 +237,7 @@ const SuccessStoryDetails = () => {
                       </span>
                     </div>
                   </div>
-                  <div className='sk-social-icon'>
+                  <div className='sk-social-icon sk-mobile-view'>
                     <h6>Share this article</h6>
                     <ul>
                       <li>
@@ -284,10 +284,78 @@ const SuccessStoryDetails = () => {
                       __html: makeHtml(`${successStoriesDetails?.description}`),
                     }}
                   />
+
+                  <div className='my-4'>
+                    <div className='sk-social-icon'>
+                      <h6 className='text-left pb-0'>Share this article</h6>
+                      <ul>
+                        <li>
+                          <a href='javascript:;'>
+                            <img src={facebookicon} />
+                          </a>
+                        </li>
+                        <li>
+                          <a href='javascript:;'>
+                            <img src={linkedinicon} />
+                          </a>
+                        </li>
+                        <li>
+                          <a href='javascript:;'>
+                            <img src={twittericon} />
+                          </a>
+                        </li>
+                        <li>
+                          <a href='javascript:;'>
+                            <img src={pintresticon} />
+                          </a>
+                        </li>
+                        <li>
+                          <a href='javascript:;'>
+                            <img src={instagramicon} />
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <>
+                    {storiesBannerAds.length > 0 && (
+                      <div
+                        className='col-xl-12'
+                        // className='col-md-12 ads_home_cover '
+                        onClick={() =>
+                          addEmailToClient(storiesBannerAds[0]?.add_email)
+                        }
+                      >
+                        <div className='card'>
+                          <a
+                            href={storiesBannerAds[0]?.url_adds}
+                            target='_blank'
+                            rel='noreferrer'
+                          >
+                            {detect.isMobile
+                              ? storiesBannerAds[0]?.image_mobile && (
+                                  <img
+                                    src={storiesBannerAds[0]?.image_mobile}
+                                    alt=''
+                                    // className='ads_story_cover_img'
+                                  />
+                                )
+                              : storiesBannerAds[0]?.image && (
+                                  <img
+                                    src={storiesBannerAds[0]?.image}
+                                    alt=''
+                                    // className='ads_story_cover_img'
+                                  />
+                                )}
+                          </a>
+                        </div>
+                      </div>
+                    )}
+                  </>
                 </div>
 
                 <div className='title'>
-                  <img src={fire} alt='fire' width={25} height={25} />
+                  <img src={fire} alt='fire' width={28} />
                   <h4>Trending Stories </h4>
                 </div>
                 <div className='row'>

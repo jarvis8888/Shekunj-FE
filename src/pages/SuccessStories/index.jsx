@@ -3,7 +3,8 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import useDeviceDetect from "../../hooks/useDeviceDetect";
-
+import Aos from "aos";
+import "animate.css";
 import {
   setCollapseSuccessStory,
   successStories as fetchSuccessStories,
@@ -15,17 +16,21 @@ import "../../Styles/global.scss";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
 import { adsList } from "../../store/ads";
-
 import { apiConstants, routingConstants } from "../../utils/constants";
-
 import AddsBanner from "../../components/AddsBanner/AddsBanner";
-
-import fire from "../../assets/icons/svgs/fire.png";
+import fire from "../../assets/images/fire.svg";
 import FeaturedCards from "../../components/cards/FeaturedCards";
-
 import { HashtagAndCatagories } from "../../components/HastagAndCatagories/Index";
 import TrendingCards from "../../components/cards/TrendingCards";
-import hash from "../../assets/icons/svgs/hashtag.png";
+import hash from "../../assets/images/hashtag.svg";
+import ewoman1 from "../../assets/images/ewoman1.jpg";
+import ewoman2 from "../../assets/images/ewoman2.jpg";
+import ewoman3 from "../../assets/images/ewoman3.jpg";
+import ewoman4 from "../../assets/images/ewoman4.jpg";
+import ewoman5 from "../../assets/images/ewoman5.jpg";
+import ewoman6 from "../../assets/images/ewoman6.jpg";
+import ewoman7 from "../../assets/images/ewoman7.jpg";
+import ewoman8 from "../../assets/images/ewoman8.jpg";
 
 import httpServices from "../../utils/ApiServices";
 import { CustomLoader } from "../../components/customLoader/CustomLoader";
@@ -44,6 +49,7 @@ function SuccessStory() {
   const [featuredData, setFeaturedData] = useState([]);
   const [currentFeaturedData, setCurrentFeaturedData] = useState([]);
   const [trendingData, setTrendingData] = useState([]);
+  const [animationTrendingData, setAnimationTrendingData] = useState([]);
   const [allHashTag, setAllHashTag] = useState([]);
   const [storiesBannerAds, setStoriesBannerAds] = useState([]);
   const [succesStoriesRight1, setSuccesStoriesRight1] = useState([]);
@@ -51,7 +57,8 @@ function SuccessStory() {
   const [succesStoriesLeft, setSuccesStoriesLeft] = useState([]);
   const [loading, setLoading] = useState(false);
   const detect = useDeviceDetect();
-
+  // const handleOpen = () => setOpen(true);
+  // const redirect = query.get("redirect");
   const getAllSuccessStoryData = async (limit, offset) => {
     setLoading(true);
     try {
@@ -62,6 +69,7 @@ function SuccessStory() {
         trending_success_stories,
         all_hash_tags,
       } = data;
+      setAnimationTrendingData(trending_success_stories);
       if (featured_success_stories?.results?.length > 0) {
         const num = Math.floor(Math.random() * 4);
         const res = featured_success_stories?.results ?? [];
@@ -98,6 +106,12 @@ function SuccessStory() {
       setLoading(false);
     }
   };
+  // useEffect(() => {
+  //   Aos.init({ duration: 2000 });
+  //   if (redirect) {
+  //     handleOpen();
+  //   }
+  // }, [redirect]);
 
   useEffect(() => {
     getAllSuccessStoryData(pageLimit, offset);
@@ -232,8 +246,8 @@ function SuccessStory() {
         <>
           <section className='sk-storyMain-sec'>
             <div className='container'>
-              <div className='row'>
-                <div className='col-xl-6 col-md-12'>
+              <div className='row align-items-center'>
+                <div className='col-xl-6 col-lg-6 col-md-12'>
                   <div className='sk-story-content'>
                     <h1
                       className='sk-storyHeading-top'
@@ -252,10 +266,37 @@ function SuccessStory() {
                       }}
                     />
                     <p>{t("phase2.SuccessStoryContent.description")}</p>
+                    <div className='my-3'>
+                      <button className='sk-allStory-btn'>
+                        {t("phase2.SuccessStoryContent.buttonTitle")}
+                      </button>
+                    </div>
                   </div>
-                  <button className='sk-allStory-btn'>
-                    {t("phase2.SuccessStoryContent.buttonTitle")}
-                  </button>
+                </div>
+                <div className='col-xl-6 col-lg-6 col-sm-12'>
+                  <div className='sk-storyS-images'>
+                    <ul>
+                      {animationTrendingData
+                        ?.slice(0, 8)
+                        .map((items, index) => {
+                          return (
+                            <>
+                              <li data-aos='zoom-in' key={index}>
+                                <div className='sk-story-eimg'>
+                                  <img src={items.image} />
+                                </div>
+                                <div className='sk-story-econtent'>
+                                  <div className='sk-ewoman-title'>
+                                    <p>{items.name}</p>
+                                    <h6>{items.company_name}</h6>
+                                  </div>
+                                </div>
+                              </li>
+                            </>
+                          );
+                        })}
+                    </ul>
+                  </div>
                 </div>
               </div>
             </div>
@@ -307,12 +348,12 @@ function SuccessStory() {
             </div>
           </section>
 
-          <section>
+          <section className='sk-storyBoxMain-sec'>
             <div className='container'>
               <div className='row'>
                 <div className='col-xl-9 col-lg-8 col-md-8 featured-stories'>
                   <div className='title'>
-                    <img src={fire} alt='fire' width={30} height={30} />
+                    <img src={fire} alt='fire' width={28} />
                     <h4>Featured Stories </h4>
                   </div>
                   <div className='row'>
@@ -392,7 +433,7 @@ function SuccessStory() {
 
                   <div>
                     <div className='title'>
-                      <img src={fire} alt='fire' width={30} height={30} />
+                      <img src={fire} alt='fire' width={28} />
                       <h4>Trending Stories </h4>
                     </div>
                     <div className='row'>
