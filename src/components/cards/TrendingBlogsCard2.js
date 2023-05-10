@@ -29,8 +29,9 @@ export const TrendingBlogsCard2 = ({
     return htmlNode.innerHTML;
   };
   return (
+    <div className="sk-blogDivider-bottom">
     <div
-      className='row my-3'
+      className='row my-4'
       onClick={() => history.push(routingConstants.MORE_BLOG + id)}
       style={{ cursor: "pointer" }}
     >
@@ -59,6 +60,7 @@ export const TrendingBlogsCard2 = ({
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 };

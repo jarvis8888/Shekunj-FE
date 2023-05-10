@@ -364,7 +364,7 @@ const BlogDetails = () => {
                   <img src={fire} alt='fire' width={28} />
                   <h4>Trending Blogs</h4>
                 </div>
-                <div>
+                <div className="sk-blogMain-inner">
                   {trending?.map((items, index) => {
                     if (items.id === "advertisement") {
                       return (

@@ -288,10 +288,19 @@ img {
 }
 
 .blog-card-description {
-  font-family: "Roboto";
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
-  line-height: 140%;
   color: #434242;
+  margin-bottom: 5px;
 }
+.blog-card-description p{
+  margin-bottom: 0;
+}
+.sk-blogDivider-bottom{
+  border-bottom: 1px solid #d9d9d9;
+}
+.sk-blogDivider-bottom:last-child{
+  border-bottom: 0;
+}
+
