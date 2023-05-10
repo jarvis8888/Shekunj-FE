@@ -8,7 +8,9 @@
   padding: 0;
   margin-bottom: 0;
 }
-
+.sk-headingblog-title h2{
+  font-size: calc(2rem + 1.5vw);
+}
 .sk-social-icon {
   text-align: right;
 }
@@ -35,7 +37,7 @@
     padding: 50px 0;
     .img {
       width: 100%;
-    
+      border-radius: 8px;
 
     .hashtags-container {
       display: flex;
@@ -91,6 +93,9 @@
     flex-wrap: wrap;
     padding: 20px 0 30px;
   }
+  .sk-headingblog-title{
+    font-size: calc(1rem + 1.5vw);
+  }
   .sk-bdetail-chip span {
     background: #1DA1F2;
     padding: 5px 10px;
@@ -133,6 +138,10 @@
   }
 
   @media screen and (max-width: 480px) {
+    .sk-social-icon{
+      text-align: left;
+      padding-top: 10px;
+    }
     .story-image-container {
       .hashtags-container {
         span {

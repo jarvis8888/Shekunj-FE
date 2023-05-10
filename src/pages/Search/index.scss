@@ -236,14 +236,20 @@ section {
   border-radius: 5px 5px 0 0;
   width: 100%;
   object-fit: cover;
-  min-height: 270px;
-  object-position: left top;
+  min-height: 200px;
+  max-height: 200px;
+  object-position: center top;
 }
 .sk-week-time span {
   font-size: 14px;
   line-height: 22px;
   color: #888;
   font-family: "Poppins", sans-serif;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
 }
 .sk-time-education ul {
   list-style: none;
