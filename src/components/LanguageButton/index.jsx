@@ -14,7 +14,6 @@ import { translation } from "../../store/language";
 const useStyles = makeStyles({
   language: {
     borderRadius: "2px !important",
-    color: "#020202 !important",
     border: "1px solid #888 !important",
     textTransform: "none !important",
     fontFamily: "Poppins !important",
