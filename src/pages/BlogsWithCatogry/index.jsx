@@ -145,7 +145,7 @@ const BlogWithCatogry = () => {
                   <CustomLoader />
                 </div>
               ) : (
-                <div>
+                <div className="sk-blogCategory-detail">
                   {data?.length
                     ? data?.map((items, index) => {
                         return (

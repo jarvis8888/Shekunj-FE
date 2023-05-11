@@ -319,13 +319,13 @@ const SuccessStoryDetails = () => {
                   </div>
                   <>
                     {storiesBannerAds.length > 0 && (
-                      <div
-                        className='col-xl-12'
+                      <div className="row">
+                        <div className='col-xl-12'
                         // className='col-md-12 ads_home_cover '
-                        onClick={() =>
+                          onClick={() =>
                           addEmailToClient(storiesBannerAds[0]?.add_email)
-                        }
-                      >
+                          }
+                         >
                         <div className='card'>
                           <a
                             href={storiesBannerAds[0]?.url_adds}
@@ -349,6 +349,7 @@ const SuccessStoryDetails = () => {
                                 )}
                           </a>
                         </div>
+                      </div>
                       </div>
                     )}
                   </>
