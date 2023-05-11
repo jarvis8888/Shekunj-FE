@@ -47,6 +47,23 @@ img {
 .card .card__bottom:last-child {
   margin-right: 0;
 }
+.sk-cardAdd-fix {
+  background: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  margin: 20px 0 15px;
+  align-items: center;
+  border-radius: 4px;
+}
+.card img{
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
+  // text-align: center;
+  // margin: auto;
+  // height: auto;
+ width: 100%;
+}
 .card {
   border-radius: 4px;
   display: flex;
@@ -56,6 +73,9 @@ img {
   border: 0;
   margin: 20px 0 15px;
   transition: 0.5s;
+  justify-content: space-between;
+  height: calc(100% - 30px);
+  align-items: stretch;
  
   &__image {
     position: relative;
@@ -64,8 +84,9 @@ img {
       height: auto;
       max-width: 100%;
       object-fit: cover;
-      height: 200px;
+      height: 240px;
       object-position: center top;
+      border-radius: 4px 4px 0px 0;
       }
   }
   &__hashtags {
@@ -169,17 +190,17 @@ img {
   color: #020202;
 }
 .blog-card {
-  // display: flex;
-  margin-bottom: 1rem;
-  border-bottom: 1px solid #d9d9d9;
-  padding-bottom: 1rem;
-
+  display: grid;
+  grid-template-columns: repeat(2 ,1fr);
+  margin-bottom: 30px;
+  grid-gap: 15px;
+  gap: 15px;
+  
   &__image {
     flex: 80px 0 0;
     height: auto;
     background-size: cover;
     background-position: center;
-    margin-bottom: 10px;
     position: relative;
     @media screen and (max-width: 768px) {
       display: flex;

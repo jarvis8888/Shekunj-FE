@@ -304,7 +304,7 @@ function SuccessStory() {
           <section className='sk-successStories-sec'>
             <div className='container'>
               <div className='row'>
-                <div className='col-md-12'>
+                <div className='col-xl-8 col-lg-8 col-md-12 mx-auto'>
                   <AddsBanner
                     color='#F4F4F4'
                     children={
@@ -370,7 +370,7 @@ function SuccessStory() {
                                   )
                                 }
                               >
-                                <div className='card'>
+                                <div className='sk-cardAdd-fix'>
                                   <a
                                     href={succesStoriesLeft[0]?.url_adds}
                                     target='_blank'
@@ -474,7 +474,7 @@ function SuccessStory() {
                                               // className='ads_story_cover_img'
                                             />
                                           )}
-                                    </a>
+                                      </a>
                                   </div>
                                 </div>
                               )}

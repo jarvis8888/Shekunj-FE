@@ -7,7 +7,7 @@ body {
   justify-content: space-between;
   align-items: center;
   background: #ffffff;
-  padding: 10px 80px;
+  padding: 10px 66px;
   box-shadow: 0 3px 10px 0px #fbf6f8;
 }
 .Navbar .custom-dropdown button {
@@ -156,14 +156,15 @@ body {
 .header-top button{
   color: #020202;
 }
+.header-top .rs-dropdown-toggle-caret{
+  right: 5px;
+}
 .header-top {
   display: flex;
   justify-content: flex-end;
   background-color: #f0f0f0;  
   align-items: center;
-  padding: 10px 80px;
-  
-
+  padding: 10px 66px;
   nav {
    
     ul {
