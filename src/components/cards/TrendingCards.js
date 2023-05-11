@@ -3,7 +3,7 @@ import "./style.scss";
 import time from "../../assets/icons/svgs/time.png";
 import { truncateString } from "../../utils/utils";
 import { routingConstants } from "../../utils/constants";
-import EastRoundedIcon from '@mui/icons-material/EastRounded';
+import EastRoundedIcon from "@mui/icons-material/EastRounded";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import MenuBookRoundedIcon from "@mui/icons-material/MenuBookRounded";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
@@ -24,7 +24,10 @@ const TrendingCards = (data) => {
   const history = useHistory();
   return (
     <div className='col-xl-4 col-lg-6 col-md-6 col-sm-6'>
-      <div className='card'>
+      <div
+        className='card'
+        onClick={() => history.push(routingConstants.SUCCESS_STORIES + id)}
+      >
         <div className='card__image'>
           <img src={image} alt={title} />
         </div>
