@@ -358,6 +358,7 @@ function EventPage() {
                             addEmailToClient(eventBoxAds[0]?.add_email)
                           }
                         >
+                        <div className="sk-eventBox-adds">
                           {eventBoxAds.length > 0 && (
                             <a
                               href={eventBoxAds[0]?.url_adds}
@@ -381,6 +382,7 @@ function EventPage() {
                                   )}
                             </a>
                           )}
+                          </div>
                         </div>
                       </>
                     );
