@@ -99,124 +99,38 @@ const EventDetails = () => {
   const extraInfoCopy = events;
   const token = Cookies.get("sheToken");
 
-  useEffect(() => {}, [user]);
-
-  // const validationSchema = Yup.object({
-  //   name: Yup.string().required(t("login.form1.firstNameError.required")),
-  //   last_name: Yup.string().required(t("login.form1.lastNameError.required")),
-  //   city: Yup.string().required("city is required"),
-  //   email: Yup.string()
-  //     .required(t("login.form1.emailError.required"))
-  //     .email(t("login.form1.emailError.invalid")),
-  //   contact: Yup.number().positive().required("contact number is required"),
-  //   gender: Yup.string().required("Select Gender").oneOf(["Male", "Female"]),
-  //   // extra_info_reg:Yup.string().required("enter the value")
-  // });
-
-  const handleOpen = (index) => {
-    if (bookEvents == 200) {
-      setOpen(true);
-    }
-    // setData(data[index]);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const [image, setImage] = useState("NA");
   const [localData, setLocalData] = useState(
     JSON.parse(localStorage.getItem("login_data")),
   );
-  const [adds, setAdds] = useState([]);
 
-  const [extraInfo, setExtraInfo] = useState([]);
-  const [name, setName] = useState([]);
-  const highEducation = ["10th", "12th", "Graduation", "Post Graduation"];
-  const GenderCategory = ["male", "female"];
-  const GuidancePurpose = [
-    "Career Guidance",
-    "Business Support",
-    "Medical Guidance",
-    "Personal issues",
-    "other",
-  ];
+  // useEffect(async () => {
+  //   dispatch(fetchForm());
+  //   await dispatch(getUserProfile(id));
+  //   // let a = JSON.parse(localStorage.getItem('login_data'));
+  //   // setLocalData(a)
+  //   dispatch(localStData());
+  // }, [id]);
 
-  useEffect(() => {}, [registerData]);
-
-  useEffect(async () => {
-    dispatch(fetchForm());
-    await dispatch(getUserProfile(id));
-    // let a = JSON.parse(localStorage.getItem('login_data'));
-    // setLocalData(a)
-    dispatch(localStData());
-  }, [id]);
-
-  useEffect(() => {}, [!registerData]);
-
-  // const {
-  //   values,
-  //   errors,
-  //   touched,
-  //   handleChange,
-  //   validate,
-  //   handleBlur,
-  //   handleSubmit,
-  //   setFieldValue,
-  //   setValues,
-  //   setFieldTouched,
-  //   initialValues,
-  // } = useFormik({
-  //   initialValues: {
-  //     name: eventData == null ? user?.name : eventData?.name || "",
-  //     last_name:
-  //       eventData == null ? user?.last_name : eventData?.last_name || "",
-  //     email: eventData == null ? user?.email : eventData?.email || "",
-  //     contact: "",
-  //     city: "",
-  //     gender: "",
-  //     // extra_info_reg:""
-  //   },
-  //   validationSchema,
-  //   enableReinitialize: true,
-  //   onSubmit(values, actions) {
-  //     const date_of_birth = moment(`${values.date_of_birth}`).format(
-  //       "YYYY-MM-DD",
-  //     );
-  //     let finalObj = {};
-  //     for (let i = 0; i < extraInfo.length; i++) {
-  //       Object.assign(finalObj, extraInfo[i]);
-  //     }
-
-  //     values = {
-  //       ...values,
-  //       // date_of_birth: dateOfBirth,
-  //       event_id: parseInt(id),
-  //       qualifications: values?.qualifications,
-  //       gender: values?.gender,
-  //       extra_info_reg: finalObj,
-  //     };
-
-  //     setLocalData(values);
-  //     dispatch(bookEvent(values));
-  //   },
-  // });
-
-  // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Latest code >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-
+  // useEffect(() => {}, [!registerData]);
   useEffect(() => {
     dispatch(adsList());
     const successCallback = async (position) => {
       const { latitude, longitude } = position.coords;
-      const params = {
-        latitude: latitude.toString(),
-        longitude: longitude.toString(),
-      };
       try {
         const response = await axios.get(
-          `/private_adds/private_add?latitude=${params.latitude}&longitude=${params.longitude}`,
+          `/private_adds/private_add?latitude=${latitude}&longitude=${longitude}`,
         );
-        if (response && response.data.results.length > 0) {
+        const filterArray1 = response.data.results.filter(
+          (item) => item.image_type === "event_detail",
+        );
+        setEventDetailsBoxAds(filterArray1);
+        const filterArray2 = response?.data?.results?.filter(
+          (item) => item.image_type === "event_detail_footer",
+        );
+        setEventDetailsBannerAds(filterArray2);
+      } catch (error) {
+        console.error(error);
+        axios.get(`/private_adds/private_add`).then((response) => {
           const filterArray1 = response.data.results.filter(
             (item) => item.image_type === "event_detail",
           );
@@ -225,163 +139,29 @@ const EventDetails = () => {
             (item) => item.image_type === "event_detail_footer",
           );
           setEventDetailsBannerAds(filterArray2);
-        }
-      } catch (error) {
-        console.error(error);
+        });
       }
     };
-    // const errorCallback = (error) => {
-    //   console.error("Error Code = " + error.code + " - " + error.message);
-    //   axios.get(`/private_adds/private_add`).then((response) => {
-    //     if (response && response.data.results.length > 0) {
-    //       const filterArray1 = response.data.results.filter(
-    //         (item) => item.image_type === "event_detail",
-    //       );
-    //       setEventDetailsBoxAds(filterArray1);
-    //       const filterArray2 = response.data.results.filter(
-    //         (item) => item.image_type === "event_detail_footer",
-    //       );
-    //       setEventDetailsBannerAds(filterArray2);
-    //     }
-    //   });
-    // };
-    navigator.geolocation.getCurrentPosition(successCallback);
-  }, [dispatch]);
-
-  // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-
-  // const addEmail = (email) => {
-  //   navigator.geolocation.getCurrentPosition(async function (position, values) {
-  //     const latitude = position.coords.latitude;
-  //     const longitude = position.coords.longitude;
-
-  //     let params = {
-  //       latitude: latitude.toString(),
-  //       longitude: longitude.toString(),
-  //     };
-  //     axios
-  //       .post("/private_adds/click_add/", {
-  //         add_email: email,
-  //         latitude: params.latitude.toString(),
-  //         longitude: params.longitude.toString(),
-  //       })
-  //       .then((response) => {});
-  //   });
-  // };
-
-  // useEffect(() => {
-  //   dispatch(singleEventDetails(id));
-  //   window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-  // }, [dispatch, id, lan]);
+    const errorCallback = (error) => {
+      console.error("Error Code = " + error.code + " - " + error.message);
+      axios.get(`/private_adds/private_add`).then((response) => {
+        const filterArray1 = response.data.results.filter(
+          (item) => item.image_type === "event_detail",
+        );
+        setEventDetailsBoxAds(filterArray1);
+        const filterArray2 = response?.data?.results?.filter(
+          (item) => item.image_type === "event_detail_footer",
+        );
+        setEventDetailsBannerAds(filterArray2);
+      });
+    };
+    navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+  }, []);
 
   useEffect(() => {
     dispatch(getUserProfile(id));
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, [dispatch, id, lan]);
-
-  useEffect(() => {
-    handleOpen();
-  }, [bookEvents]);
-
-  let evalData = eval(events.extra_info);
-  // const whatsappUrl = `https://api.whatsapp.com/send?text=%20http%3A%2F%2F${events?.whatsapp_group_link?.whatsapp_link}`
-  // const whatsappUrl = `https://api.whatsapp.com/send?text=%20${events?.whatsapp_group_link?.whatsapp_link}`
-  const whatsappUrl = events?.whatsapp_group_link?.whatsapp_link;
-  const whatsAppModal = () => {
-    if (events && events?.whatsapp_group_link?.join_group) {
-      return (
-        <Modal
-          aria-labelledby='simple-modal-title'
-          aria-describedby='simple-modal-description'
-          open={open}
-          onClose={handleClose}
-          className='ModalBoxEvent'
-        >
-          <div className='ModalBodyBoxEvent'>
-            <CloseIcon className='ModalClose' onClick={handleClose} />
-            <div className='ModalHeadEvent'>
-              <Typography variant='h6' id='modal-title'>
-                Congratulations... you have been registered!
-              </Typography>
-            </div>
-            <div className='ModalMiddleEvent'>
-              <Typography variant='h6' id='simple-modal-description'>
-                You can join our whatsapp group.
-              </Typography>
-              <a href={whatsappUrl} target='_blank'>
-                <Button variant='contained' className='ModalButtonEvent'>
-                  JOIN WHATSAPP GROUP
-                </Button>
-              </a>
-              <divider />
-              <Typography variant='h4'>
-                Want to learn more? <br />
-                Checkout our other events
-              </Typography>
-              <div className='ModalLinkEvent'>
-                <Link to={routingConstants.MORE_EVENT}>
-                  <strong>Lets have a look... Shekunj Events!</strong>
-                </Link>
-              </div>
-            </div>
-            <div className='ModalBottomEvent'>
-              <Typography variant='h6' id='modal-title'>
-                are you excited to learn ? <br />
-                see you soon !
-              </Typography>
-            </div>
-          </div>
-        </Modal>
-      );
-    } else if (events && events?.whatsapp_group_link?.join_group == false) {
-      return (
-        <Modal
-          aria-labelledby='simple-modal-title'
-          aria-describedby='simple-modal-description'
-          open={open}
-          onClose={handleClose}
-          className='ModalBoxEvent'
-        >
-          <div className='ModalBodyBoxEvent2'>
-            {/* <img
-              className='close_img'
-              src={x}
-              alt='...'
-              onClick={() => handleClose()}
-            /> */}
-            <CloseIcon className='ModalClose' onClick={handleClose} />
-            <div className='ModalHeadEvent'>
-              <Typography variant='h6' id='modal-title'>
-                Congratulations... you have been registered!
-              </Typography>
-            </div>
-            <div className='ModalMiddleEvent'>
-              <Typography variant='h3' id='simple-modal-description'>
-                Thank You !
-              </Typography>
-              <br />
-              <divider />
-              <Typography variant='h4'>
-                Want to learn more? <br />
-                Checkout our other events
-              </Typography>
-              <div className='ModalLinkEvent'>
-                <Link to={routingConstants.MORE_EVENT}>
-                  <strong>Lets have a look... Shekunj Events!</strong>
-                </Link>
-              </div>
-            </div>
-            <div className='ModalBottomEvent'>
-              <Typography variant='h6' id='modal-title'>
-                are you excited to learn ? <br />
-                see you soon !
-              </Typography>
-            </div>
-          </div>
-        </Modal>
-      );
-    }
-  };
 
   //logic
   const initialValues = {
@@ -477,7 +257,7 @@ const EventDetails = () => {
 
   useEffect(() => {
     getEventDetailById(id);
-  }, [id]);
+  }, [id, lan]);
   return (
     <div>
       {/* <SEO title='Sheकुंज - Career' /> */}
@@ -621,14 +401,12 @@ const EventDetails = () => {
                               <img
                                 src={eventDetailsBannerAds[0]?.image_mobile}
                                 alt=''
-                                className='ads_story_cover_img'
                               />
                             )
                           : eventDetailsBannerAds[0]?.image && (
                               <img
                                 src={eventDetailsBannerAds[0]?.image}
                                 alt=''
-                                className='ads_story_cover_img'
                               />
                             )}
                       </a>
@@ -782,15 +560,10 @@ const EventDetails = () => {
                             <img
                               src={eventDetailsBoxAds[0]?.image_mobile}
                               alt=''
-                              className='ads_story_cover_img'
                             />
                           )
                         : eventDetailsBoxAds[0]?.image && (
-                            <img
-                              src={eventDetailsBoxAds[0]?.image}
-                              alt=''
-                              className='ads_story_cover_img'
-                            />
+                            <img src={eventDetailsBoxAds[0]?.image} alt='' />
                           )}
                     </a>
                   </div>

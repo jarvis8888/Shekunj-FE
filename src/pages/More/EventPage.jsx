@@ -42,7 +42,7 @@ import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import httpServices from "../../utils/ApiServices";
-import { time_left } from "../../utils/utils";
+import { addEmailToClient, time_left } from "../../utils/utils";
 import { CustomLoader } from "../../components/customLoader/CustomLoader";
 import AddsBanner from "../../components/AddsBanner/AddsBanner";
 import useDeviceDetect from "../../hooks/useDeviceDetect";
@@ -64,6 +64,7 @@ function EventPage() {
   const [currentData2, setCurrentData2] = useState([]);
 
   const [eventBoxAds, setEventBoxAds] = useState([]);
+  const [eventFooterAds, setEventFooterAds] = useState([]);
   const [currentData, setCurrentData] = useState([]);
   const [allEventData, setAllEventData] = useState([]);
   const [todayTomorrowData, setTodayTomorrowData] = useState([]);
@@ -76,7 +77,7 @@ function EventPage() {
   const params = useQuery();
   const [selectedOption, setSelectedOption] = useState(params.get("genre_id"));
   const [checkEventData, setCheckEventData] = useState([]);
-
+  const [dataWithAdds, setDataWithAdds] = useState([]);
   const history = useHistory();
   const dispatch = useDispatch();
   const { t } = useTranslation();
@@ -100,25 +101,36 @@ function EventPage() {
       setThisWeekData(this_week);
       setNextWeekData(next_week);
       setCheckEventData(event_list?.results);
+      let newEventData = [];
       if (genre) {
-        setCurrentData(event_list?.results);
-      }
-      if (currentOffset) {
+        newEventData = event_list?.results;
+      } else if (currentOffset) {
         if (event_list?.results?.length > 0) {
-          setAllEventData((prevFeaturedData) => [
-            ...prevFeaturedData,
-            ...event_list?.results,
-          ]);
-          setCurrentData((prevFeaturedData) => [
-            ...prevFeaturedData,
-            ...event_list?.results,
-          ]);
+          newEventData = [...allEventData, ...event_list?.results];
         }
       } else {
-        setAllEventData(event_list?.results);
-        setCurrentData(event_list?.results);
+        newEventData = event_list?.results;
+      }
+      if (newEventData.length > 0) {
+        const addObjectData = { id: "advertisement" };
+        const newDataWithAds = newEventData.reduce((acc, event, index) => {
+          if (index % 2 === 0 && index !== 0) {
+            acc.push(addObjectData);
+          }
+          acc.push(event);
+          if (
+            newEventData.length % 2 === 0 &&
+            index === newEventData.length - 1
+          ) {
+            acc.push(addObjectData);
+          }
+          return acc;
+        }, []);
+        setAllEventData(newEventData);
+        setDataWithAdds(newDataWithAds);
       }
     } catch (error) {
+      // handle error
     } finally {
       setLoading(false);
     }
@@ -135,13 +147,13 @@ function EventPage() {
     });
     switch (option) {
       case "todayTomorrow":
-        setCurrentData(todayTomorrowData);
+        setDataWithAdds(todayTomorrowData);
         break;
       case "thisWeek":
-        setCurrentData(thisWeekData);
+        setDataWithAdds(thisWeekData);
         break;
       case "nextWeek":
-        setCurrentData(nextWeekData);
+        setDataWithAdds(nextWeekData);
         break;
       case "all":
         setSelectedOption(null);
@@ -178,14 +190,22 @@ function EventPage() {
         let filterArray1 = response.data.results.filter((item, index) => {
           return item.image_type == "event_detail_footer";
         });
-        setEventBoxAds(filterArray1);
+        setEventFooterAds(filterArray1);
+        let filterArray2 = response.data.results.filter((item, index) => {
+          return item.image_type == "event_index";
+        });
+        setEventBoxAds(filterArray2);
       } catch (error) {
         console.error(error);
         axios.get(`/private_adds/private_add`).then((response) => {
           let filterArray1 = response.data.results.filter((item, index) => {
             return item.image_type == "event_detail_footer";
           });
-          setEventBoxAds(filterArray1);
+          setEventFooterAds(filterArray1);
+          let filterArray2 = response.data.results.filter((item, index) => {
+            return item.image_type == "event_index";
+          });
+          setEventBoxAds(filterArray2);
         });
       }
     };
@@ -195,7 +215,11 @@ function EventPage() {
         let filterArray1 = response.data.results.filter((item, index) => {
           return item.image_type == "event_detail_footer";
         });
-        setEventBoxAds(filterArray1);
+        setEventFooterAds(filterArray1);
+        let filterArray2 = response.data.results.filter((item, index) => {
+          return item.image_type == "event_index";
+        });
+        setEventBoxAds(filterArray2);
       });
     };
     navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
@@ -322,79 +346,115 @@ function EventPage() {
             <CustomLoader size='small' />
           ) : (
             <div className='row'>
-              {currentData.length ? (
-                currentData?.map((items, index) => {
-                  return (
-                    <>
-                      <div className='col-xl-3 col-lg-4 col-md-6' key={index}>
-                        <div className='sk-card-box'>
-                          <div className='sk-card-img'>
-                            <img src={items.image} alt='' />
-                          </div>
-                          <div className='sk-content-card'>
-                            <div className='sk-time-education'>
-                              <ul>
-                                <li className='sk-chip-tag'>
-                                  {" "}
-                                  <span>{items.genre_name}</span>{" "}
-                                </li>
-                                <li>
-                                  {items.mode_of_event === "offline" ? (
-                                    <>
-                                      {" "}
-                                      <img src={offlineicon} /> Offline{" "}
-                                    </>
-                                  ) : (
-                                    <>
-                                      {" "}
-                                      <img src={onlineicon} /> Online{" "}
-                                    </>
-                                  )}
-                                </li>
-                              </ul>
-                            </div>
-                            <h6 className='sk-card-heading'>{items.title}</h6>
-                            <div className='sk-time-education'>
-                              <ul>
-                                <li>
-                                  {" "}
-                                  <AccessTimeIcon />{" "}
-                                  <span>
-                                    {time_left(
-                                      items.start_date,
-                                      items.start_time,
-                                      items.end_date,
-                                      items.end_time,
-                                    )}
-                                  </span>{" "}
-                                </li>
-                                <li>
-                                  {" "}
-                                  <SchoolRoundedIcon /> {
-                                    items.enrold_students
-                                  }{" "}
-                                  enrolled{" "}
-                                </li>
-                              </ul>
-                            </div>
-                            <div className='sk-tags-event'>
-                              <button
-                                type='button'
-                                className='sk-btn-register'
-                                onClick={() =>
-                                  history.push(
-                                    routingConstants.MORE_EVENT + items.id,
+              {dataWithAdds?.length ? (
+                dataWithAdds?.map((items, index) => {
+                  if (items.id === "advertisement") {
+                    return (
+                      <>
+                        <div
+                          className='col-xl-3 col-lg-4 col-md-6'
+                          key={index}
+                          onClick={() =>
+                            addEmailToClient(eventBoxAds[0]?.add_email)
+                          }
+                        >
+                          {eventBoxAds.length > 0 && (
+                            <a
+                              href={eventBoxAds[0]?.url_adds}
+                              target='_blank'
+                              rel='noreferrer'
+                            >
+                              {detect.isMobile
+                                ? eventBoxAds[0]?.image_mobile && (
+                                    <img
+                                      src={eventBoxAds[0]?.image_mobile}
+                                      alt=''
+                                      // className='ads_story_cover_img'
+                                    />
                                   )
-                                }
-                              >
-                                Registration Now
-                              </button>
+                                : eventBoxAds[0]?.image && (
+                                    <img
+                                      src={eventBoxAds[0]?.image}
+                                      alt=''
+                                      // className='ads_story_cover_img'
+                                    />
+                                  )}
+                            </a>
+                          )}
+                        </div>
+                      </>
+                    );
+                  } else {
+                    return (
+                      <>
+                        <div className='col-xl-3 col-lg-4 col-md-6' key={index}>
+                          <div className='sk-card-box'>
+                            <div className='sk-card-img'>
+                              <img src={items.image} alt='' />
+                            </div>
+                            <div className='sk-content-card'>
+                              <div className='sk-time-education'>
+                                <ul>
+                                  <li className='sk-chip-tag'>
+                                    {" "}
+                                    <span>{items.genre_name}</span>{" "}
+                                  </li>
+                                  <li>
+                                    {items.mode_of_event === "offline" ? (
+                                      <>
+                                        {" "}
+                                        <img src={offlineicon} /> Offline{" "}
+                                      </>
+                                    ) : (
+                                      <>
+                                        {" "}
+                                        <img src={onlineicon} /> Online{" "}
+                                      </>
+                                    )}
+                                  </li>
+                                </ul>
+                              </div>
+                              <h6 className='sk-card-heading'>{items.title}</h6>
+                              <div className='sk-time-education'>
+                                <ul>
+                                  <li>
+                                    {" "}
+                                    <AccessTimeIcon />{" "}
+                                    <span>
+                                      {time_left(
+                                        items.start_date,
+                                        items.start_time,
+                                        items.end_date,
+                                        items.end_time,
+                                      )}
+                                    </span>{" "}
+                                  </li>
+                                  <li>
+                                    {" "}
+                                    <SchoolRoundedIcon />{" "}
+                                    {items.enrold_students} enrolled{" "}
+                                  </li>
+                                </ul>
+                              </div>
+                              <div className='sk-tags-event'>
+                                <button
+                                  type='button'
+                                  className='sk-btn-register'
+                                  onClick={() =>
+                                    history.push(
+                                      routingConstants.MORE_EVENT + items.id,
+                                    )
+                                  }
+                                >
+                                  Registration Now
+                                </button>
+                              </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-                    </>
-                  );
+                      </>
+                    );
+                  }
                 })
               ) : (
                 <div className='noData'>
@@ -426,23 +486,23 @@ function EventPage() {
           <div className='row'>
             <div className='col-md-12'>
               <>
-                {eventBoxAds.length > 0 && (
+                {eventFooterAds.length > 0 && (
                   <a
-                    href={eventBoxAds[0]?.url_adds}
+                    href={eventFooterAds[0]?.url_adds}
                     target='_blank'
                     rel='noreferrer'
                   >
                     {detect.isMobile
-                      ? eventBoxAds[0]?.image_mobile && (
+                      ? eventFooterAds[0]?.image_mobile && (
                           <img
-                            src={eventBoxAds[0]?.image_mobile}
+                            src={eventFooterAds[0]?.image_mobile}
                             alt=''
                             // className='ads_story_cover_img'
                           />
                         )
-                      : eventBoxAds[0]?.image && (
+                      : eventFooterAds[0]?.image && (
                           <img
-                            src={eventBoxAds[0]?.image}
+                            src={eventFooterAds[0]?.image}
                             alt=''
                             // className='ads_story_cover_img'
                           />
