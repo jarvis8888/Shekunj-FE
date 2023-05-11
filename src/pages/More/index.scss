@@ -26,7 +26,15 @@ body {
   color: #fff;
   font-size: 55px;
 }
-
+.sk-eventBox-adds {
+  height: calc(100% - 30px);
+  display: flex;
+  align-items: center;
+  background: #F0F0F0;
+  justify-content: center;
+  border-radius: 4px;
+  padding:30px 10px;
+}
 .global_img {
   margin-top: 100px;
 }
