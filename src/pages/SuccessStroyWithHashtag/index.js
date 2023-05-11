@@ -180,7 +180,7 @@ const SuccessStroyWithHashtag = () => {
                                 )
                               }
                             >
-                              <div className='card'>
+                              <div className='sk-cardAdd-fix'>
                                 <a
                                   href={succesStoriesLeft[0]?.url_adds}
                                   target='_blank'

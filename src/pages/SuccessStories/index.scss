@@ -594,6 +594,7 @@ button.want_btn {
   &__image {
     flex: 100px 0 0;
     margin-right: 10px;
+    position: relative;
 
     @media screen and (max-width: 768px) {
       display: flex;
@@ -642,6 +643,7 @@ button.want_btn {
     background-size: cover;
     background-position: center;
     margin-right: 10px;
+    position: relative;
 
     @media screen and (max-width: 768px) {
       display: flex;

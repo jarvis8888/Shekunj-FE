@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 import useDeviceDetect from "../../hooks/useDeviceDetect";
 import Aos from "aos";
 import "animate.css";
+import "aos/dist/aos.css";
 import {
   setCollapseSuccessStory,
   successStories as fetchSuccessStories,
@@ -56,6 +57,7 @@ function SuccessStory() {
   const [succesStoriesRight2, setSuccesStoriesRight2] = useState([]);
   const [succesStoriesLeft, setSuccesStoriesLeft] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [open, setOpen] = React.useState(false);
   const detect = useDeviceDetect();
   // const handleOpen = () => setOpen(true);
   // const redirect = query.get("redirect");
@@ -106,12 +108,9 @@ function SuccessStory() {
       setLoading(false);
     }
   };
-  // useEffect(() => {
-  //   Aos.init({ duration: 2000 });
-  //   if (redirect) {
-  //     handleOpen();
-  //   }
-  // }, [redirect]);
+  useEffect(() => {
+    Aos.init({ duration: 3000 });
+  }, []);
 
   useEffect(() => {
     getAllSuccessStoryData(pageLimit, offset);
@@ -305,7 +304,7 @@ function SuccessStory() {
           <section className='sk-successStories-sec'>
             <div className='container'>
               <div className='row'>
-                <div className='col-md-12'>
+                <div className='col-xl-8 col-lg-8 col-md-12 mx-auto'>
                   <AddsBanner
                     color='#F4F4F4'
                     children={
@@ -371,7 +370,7 @@ function SuccessStory() {
                                   )
                                 }
                               >
-                                <div className='card'>
+                                <div className='sk-cardAdd-fix'>
                                   <a
                                     href={succesStoriesLeft[0]?.url_adds}
                                     target='_blank'
@@ -475,7 +474,7 @@ function SuccessStory() {
                                               // className='ads_story_cover_img'
                                             />
                                           )}
-                                    </a>
+                                      </a>
                                   </div>
                                 </div>
                               )}

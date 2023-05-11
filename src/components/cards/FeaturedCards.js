@@ -25,7 +25,11 @@ const FeaturedCards = (props) => {
   const history = useHistory();
   return (
     <div className='col-xl-6 col-lg-6 col-md-6 col-sm-6'>
-      <div className='card' key={key}>
+      <div
+        className='card'
+        key={key}
+        onClick={() => history.push(routingConstants.SUCCESS_STORIES + id)}
+      >
         <div className='card__image'>
           <img src={image} alt={title} />
         </div>
