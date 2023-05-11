@@ -2,6 +2,9 @@ img {
   max-width: 100%;
   height: auto;
 }
+ .card:hover{
+    box-shadow: 0px 5px 15px 0px #87154221;
+  }
 .sk-tagBlog-name {
   background: #2867B2;
   color: #fff;
@@ -52,7 +55,8 @@ img {
   box-shadow: 0px 4px 12px 0px #8f9bb233;
   border: 0;
   margin: 20px 0 15px;
-
+  transition: 0.5s;
+ 
   &__image {
     position: relative;
     img {
@@ -62,9 +66,8 @@ img {
       object-fit: cover;
       height: 200px;
       object-position: center top;
-    }
+      }
   }
-
   &__hashtags {
     display: flex;
     flex-wrap: wrap;
