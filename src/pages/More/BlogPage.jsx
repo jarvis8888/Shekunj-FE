@@ -238,7 +238,7 @@ function BlogPage() {
                 <div className='col-xl-4 col-md-4 col-lg-4'>
                   <div className='sk-blog-sidebar'>
                     {topTrendingBlogs?.length
-                      ? topTrendingBlogs.slice(0, 5).map((items, index) => {
+                      ? topTrendingBlogs.slice(0, 3).map((items, index) => {
                           return (
                             <>
                               <TrendingBlogsCard
@@ -318,7 +318,8 @@ function BlogPage() {
                           return (
                             <>
                               {blogLeft.length > 0 && (
-                                <div className='col-xl-6 col-md-6 col-lg-6 col-sm-12'
+                                <div
+                                  className='col-xl-6 col-md-6 col-lg-6 col-sm-12'
                                   // className='col-md-12 ads_home_cover '
                                   onClick={() =>
                                     addEmailToClient(blogLeft[0]?.add_email)
