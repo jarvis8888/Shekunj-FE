@@ -296,51 +296,55 @@ function EventPage() {
       </section>
       <section className='sk-card-sec sk-eventcard-sec'>
         <div className='container'>
-          <div className='sk-title-heading'>
-            <h2>All Events Today</h2>
-          </div>
-          <div className='sk-category mb-3'>
-            <ul>
-              <li>Time</li>
-              {options.map((items, index) => {
-                return (
-                  <>
-                    <li>
-                      <a
-                        onClick={() => handleTimeOptionClick(items.value)}
-                        className={
-                          selectedButton === items.value && "active-time"
-                        }
-                      >
-                        {items.label}
-                      </a>
-                    </li>
-                  </>
-                );
-              })}
-            </ul>
-          </div>
-          <div className='sk-category'>
-            <ul>
-              <li>Genre</li>
-              {genresListData.length &&
-                genresListData.map((items, index) => {
-                  return (
-                    <>
-                      <li key={items.id}>
-                        <a
-                          onClick={() => handleGenerOptionClick(items.id)}
-                          className={
-                            selectedOption == items.id && "active-time"
-                          }
-                        >
-                          {items.name}
-                        </a>
-                      </li>
-                    </>
-                  );
-                })}
-            </ul>
+          <div className='row'>
+            <div className='col-xl-8 col-lg-10 col-md-10 col-sm-12 mx-auto'>
+              <div className='sk-title-heading'>
+                <h2>All Events Today</h2>
+              </div>
+              <div className='sk-category mb-3'>
+                <ul>
+                  <li>Time</li>
+                  {options.map((items, index) => {
+                    return (
+                      <>
+                        <li>
+                          <a
+                            onClick={() => handleTimeOptionClick(items.value)}
+                            className={
+                              selectedButton === items.value && "active-time"
+                            }
+                          >
+                            {items.label}
+                          </a>
+                        </li>
+                      </>
+                    );
+                  })}
+                </ul>
+              </div>
+              <div className='sk-category'>
+                <ul>
+                  <li>Genre</li>
+                  {genresListData.length &&
+                    genresListData.map((items, index) => {
+                      return (
+                        <>
+                          <li key={items.id}>
+                            <a
+                              onClick={() => handleGenerOptionClick(items.id)}
+                              className={
+                                selectedOption == items.id && "active-time"
+                              }
+                            >
+                              {items.name}
+                            </a>
+                          </li>
+                        </>
+                      );
+                    })}
+                </ul>
+              </div>
+            </div>
           </div>
           {loading ? (
             <CustomLoader size='small' />
@@ -358,30 +362,30 @@ function EventPage() {
                             addEmailToClient(eventBoxAds[0]?.add_email)
                           }
                         >
-                        <div className="sk-eventBox-adds">
-                          {eventBoxAds.length > 0 && (
-                            <a
-                              href={eventBoxAds[0]?.url_adds}
-                              target='_blank'
-                              rel='noreferrer'
-                            >
-                              {detect.isMobile
-                                ? eventBoxAds[0]?.image_mobile && (
-                                    <img
-                                      src={eventBoxAds[0]?.image_mobile}
-                                      alt=''
-                                      // className='ads_story_cover_img'
-                                    />
-                                  )
-                                : eventBoxAds[0]?.image && (
-                                    <img
-                                      src={eventBoxAds[0]?.image}
-                                      alt=''
-                                      // className='ads_story_cover_img'
-                                    />
-                                  )}
-                            </a>
-                          )}
+                          <div className='sk-eventBox-adds'>
+                            {eventBoxAds.length > 0 && (
+                              <a
+                                href={eventBoxAds[0]?.url_adds}
+                                target='_blank'
+                                rel='noreferrer'
+                              >
+                                {detect.isMobile
+                                  ? eventBoxAds[0]?.image_mobile && (
+                                      <img
+                                        src={eventBoxAds[0]?.image_mobile}
+                                        alt=''
+                                        // className='ads_story_cover_img'
+                                      />
+                                    )
+                                  : eventBoxAds[0]?.image && (
+                                      <img
+                                        src={eventBoxAds[0]?.image}
+                                        alt=''
+                                        // className='ads_story_cover_img'
+                                      />
+                                    )}
+                              </a>
+                            )}
                           </div>
                         </div>
                       </>

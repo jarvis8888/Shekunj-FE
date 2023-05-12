@@ -427,7 +427,7 @@ const SuccessStoryDetails = () => {
                 <HashtagAndCatagories
                   type='hashtag'
                   image={hash}
-                  title={`Trending Hastag`}
+                  title={`Trending Hashtag`}
                   firstAdd={succesStoriesRight1}
                   // addEmail={addEmail}
                   hashtags={allHashTag}

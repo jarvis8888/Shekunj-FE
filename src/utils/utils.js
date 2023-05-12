@@ -249,6 +249,10 @@ export function truncateString(str, len) {
 }
 
 export function time_left(start_date, start_time, end_date, end_time) {
+  if (!start_date || !start_time || !end_date || !end_time) {
+    return "";
+  }
+
   const start = new Date(start_date + " " + start_time);
   const end = new Date(end_date + " " + end_time);
   const delta = end - new Date();
@@ -256,15 +260,20 @@ export function time_left(start_date, start_time, end_date, end_time) {
   const hours = Math.floor((delta % (24 * 60 * 60 * 1000)) / (60 * 60 * 1000));
   const minutes = Math.floor((delta % (60 * 60 * 1000)) / (60 * 1000));
   const seconds = Math.floor((delta % (60 * 1000)) / 1000);
-  const date_str = start.toLocaleString("en-US", {
+
+  const formatter = new Intl.DateTimeFormat("en", {
     day: "numeric",
-    month: "long",
+    month: "short",
     year: "2-digit",
     hour: "numeric",
     minute: "numeric",
     hour12: true,
   });
-  return `${date_str.replace(" at", " |")}`;
+
+  const [month, day, year, time, meridiem] = formatter.format(start).split(" ");
+  return `${day} ${month} ${year.slice(
+    -2,
+  )} | ${time} ${meridiem.toUpperCase()}`.replace(/,/g, "");
 }
 
 export const makeHtml = (htmlString) => {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -40,6 +40,7 @@ import { addEmailToClient } from "../../utils/utils";
 function SuccessStory() {
   const history = useHistory();
   const dispatch = useDispatch();
+  const sectionRef = useRef(null);
 
   const { lan } = useSelector((state) => state.languageReducer);
   const { t } = useTranslation();
@@ -186,29 +187,6 @@ function SuccessStory() {
     );
   }, []);
 
-  // const addEmail = (email) => {
-  //   navigator.geolocation.getCurrentPosition(async function (position, values) {
-  //     const latitude = position.coords.latitude;
-  //     const longitude = position.coords.longitude;
-
-  //     let params = {
-  //       latitude: latitude.toString(),
-  //       longitude: longitude.toString(),
-  //     };
-  //     axios
-  //       .post("/private_adds/click_add/", {
-  //         // add_email:`${adds[0]?.add_email}`
-  //         add_email: email,
-  //         latitude: params.latitude.toString(),
-  //         longitude: params.longitude.toString(),
-  //       })
-  //       .then((response) => {
-  //         // setAdds(response.data.results);
-  //         console.log("addEmailresponse", response);
-  //       });
-  //   });
-  // };
-
   const makeHtml = (htmlString) => {
     const htmlNode = document.createElement("div");
     htmlNode.innerHTML = htmlString;
@@ -266,7 +244,14 @@ function SuccessStory() {
                     />
                     <p>{t("phase2.SuccessStoryContent.description")}</p>
                     <div className='my-3'>
-                      <button className='sk-allStory-btn'>
+                      <button
+                        className='sk-allStory-btn'
+                        onClick={() =>
+                          sectionRef.current.scrollIntoView({
+                            behavior: "smooth",
+                          })
+                        }
+                      >
                         {t("phase2.SuccessStoryContent.buttonTitle")}
                       </button>
                     </div>
@@ -280,9 +265,10 @@ function SuccessStory() {
                         .map((items, index) => {
                           return (
                             <>
-                              <li data-aos='zoom-in' key={index}>
+                              <li className='sk-scale-animate' key={index}>
                                 <div className='sk-story-eimg'>
                                   <img src={items.image} />
+                                  <span></span>
                                 </div>
                                 <div className='sk-story-econtent'>
                                   <div className='sk-ewoman-title'>
@@ -347,7 +333,7 @@ function SuccessStory() {
             </div>
           </section>
 
-          <section className='sk-storyBoxMain-sec'>
+          <section className='sk-storyBoxMain-sec' ref={sectionRef}>
             <div className='container'>
               <div className='row'>
                 <div className='col-xl-9 col-lg-8 col-md-8 featured-stories'>
@@ -474,7 +460,7 @@ function SuccessStory() {
                                               // className='ads_story_cover_img'
                                             />
                                           )}
-                                      </a>
+                                    </a>
                                   </div>
                                 </div>
                               )}
@@ -508,7 +494,7 @@ function SuccessStory() {
                   <HashtagAndCatagories
                     type='hashtag'
                     image={hash}
-                    title={`Trending Hastag`}
+                    title={`Trending Hashtag`}
                     // addEmail={addEmail}
                     hashtags={allHashTag}
                     rightOne={succesStoriesRight1}

@@ -47,14 +47,16 @@ const TrendingCards = (data) => {
             <span>
               <AccessTimeIcon /> {created_at}
             </span>
-            <button
-              className='card__button'
-              onClick={() =>
-                history.push(routingConstants.SUCCESS_STORIES + id)
-              }
-            >
-              Read More <EastRoundedIcon />
-            </button>
+            <span>
+              <button
+                className='card__button'
+                onClick={() =>
+                  history.push(routingConstants.SUCCESS_STORIES + id)
+                }
+              >
+                Read More <EastRoundedIcon />
+              </button>
+            </span>
           </div>
         </div>
       </div>

@@ -236,7 +236,7 @@ const SuccessStroyWithHashtag = () => {
               <HashtagAndCatagories
                 type='hashtag'
                 image={hash}
-                title={`Trending Hastag`}
+                title={`Trending Hashtag`}
                 // addEmail={addEmail}
                 hashtags={allHashTag}
                 rightOne={succesStoriesRight1}
