@@ -54,6 +54,8 @@ img {
   margin: 20px 0 10px;
   align-items: center;
   border-radius: 4px;
+  height: calc(100% - 30px);
+  padding: 20px;
 }
 .card img {
   // display: flex;
