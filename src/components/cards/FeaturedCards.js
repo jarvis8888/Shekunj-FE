@@ -55,6 +55,8 @@ const FeaturedCards = (props) => {
               <MenuBookRoundedIcon />
               {reading_time}
             </span>
+            
+            <span>
             <button
               className='card__button'
               onClick={() =>
@@ -63,6 +65,7 @@ const FeaturedCards = (props) => {
             >
               Read More <EastRoundedIcon />
             </button>
+            </span>
           </div>
         </div>
       </div>

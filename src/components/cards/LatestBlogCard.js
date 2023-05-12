@@ -59,12 +59,14 @@ const LatestBlogCard = (props) => {
             __html: makeHtml(`${truncateString(description, 100)}`),
           }}
         />
-        <button
-          className='card__button'
-          onClick={() => history.push(routingConstants.MORE_BLOG + id)}
-        >
-          Read More <EastRoundedIcon />
-        </button>
+        <span>
+          <button
+            className='card__button'
+            onClick={() => history.push(routingConstants.MORE_BLOG + id)}
+          >
+            Read More <EastRoundedIcon />
+          </button>
+        </span>
       </div>
     </div>
   );
