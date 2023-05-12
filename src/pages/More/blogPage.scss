@@ -60,6 +60,9 @@
 .card__image img{
   border-radius: 0;
 }
+.blog-stories span:last-child {
+  border-left: 0 !important;
+}
 .sk-cardAdd-fix {
   background: #f0f0f0;
   display: flex;
@@ -68,6 +71,8 @@
   align-items: center;
   border-radius: 4px;
   padding: 20px;
+  height: calc(100% - 30px);
+
 }
 .loadMore {
   background-color: #020202;
