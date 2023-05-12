@@ -299,7 +299,10 @@ function EventPage() {
           <div className='row'>
             <div className='col-xl-8 col-lg-10 col-md-10 col-sm-12 mx-auto'>
               <div className='sk-title-heading'>
-                <h2>All Events Today</h2>
+                <h1>Discover SheKunj Events</h1>
+                <p>Our events are designed to inspire, educate, and empower you both personally and professionally.
+                 Whether it's a networking event, conference, or workshop, we want you to leave feeling inspired and 
+                 energized.</p>
               </div>
               <div className='sk-category mb-3'>
                 <ul>
