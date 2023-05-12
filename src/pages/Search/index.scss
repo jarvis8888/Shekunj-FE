@@ -156,13 +156,17 @@ section {
   margin: 15px 0;
   display: inline-block;
 }
-.sk-title-heading h2 {
+.sk-title-heading {
+  text-align: center;
+  margin-bottom: 50px;
+}
+.sk-title-heading h1 {
   font-size: calc(1rem + 1.5vw);
   font-weight: 500;
   color: #020202;
   font-family: "Poppins", sans-serif;
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 15px;
 }
 .sk-event-slide .owl-dots {
   display: none;

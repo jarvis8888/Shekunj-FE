@@ -224,7 +224,7 @@ function SuccessStory() {
           <section className='sk-storyMain-sec'>
             <div className='container'>
               <div className='row align-items-center'>
-                <div className='col-xl-6 col-lg-6 col-md-12'>
+                <div className='col-xl-6 col-md-6 col-lg-6 col-md-12'>
                   <div className='sk-story-content'>
                     <h1
                       className='sk-storyHeading-top'
@@ -257,7 +257,7 @@ function SuccessStory() {
                     </div>
                   </div>
                 </div>
-                <div className='col-xl-6 col-lg-6 col-sm-12'>
+                <div className='col-xl-6 col-md-6 col-lg-6 col-sm-12'>
                   <div className='sk-storyS-images'>
                     <ul>
                       {animationTrendingData

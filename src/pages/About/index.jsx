@@ -2,14 +2,14 @@ import React, { useEffect } from "react";
 import Aos from "aos";
 import { useTranslation } from "react-i18next";
 
-import { Header, Footer, } from "../../components";
+import { Header, Footer } from "../../components";
 import half_star from "../../assets/images/half_star.svg";
 import img1 from "../../assets/images/About/img1.png";
 import Nikita from "../../assets/images/Nikita-Sharma.png";
 import Ankita from "../../assets/images/Ankita-Sharma.png";
 import star from "../../assets/images/Star 2.png";
 import mob_banner from "../../assets/images/About/mob_banner.png";
-import axios from "axios"
+import axios from "axios";
 
 import "../HomePage/index.scss";
 import "./index.scss";
@@ -17,7 +17,7 @@ import "aos/dist/aos.css";
 import "animate.css";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
-import SEO from '../../components/SEO/index';
+import SEO from "../../components/SEO/index";
 
 const AboutusPage = () => {
   const { t } = useTranslation();
@@ -35,7 +35,7 @@ const AboutusPage = () => {
   //     let params = {
   //       latitude: latitude.toString(),
   //       longitude: longitude.toString(),
-  //     } 
+  //     }
   //     axios
   //     .get(
   //       `/private_adds/private_add?latitude=${latitude}&longitude=${longitude}`,
@@ -64,11 +64,11 @@ const AboutusPage = () => {
   //             }
   //           }
   //         })
-     
+
   //   } ,
   //   function(error) {
   //     console.error("Error Code = " + error.code + " - " + error.message);
-  //     // alert("Your location is blocked")    
+  //     // alert("Your location is blocked")
   //   axios
   //   .get(
   //     `/private_adds/private_add`,
@@ -100,9 +100,8 @@ const AboutusPage = () => {
   //     }
 
   //   )
-   
+
   // },[])
-  
 
   const addEmail = (email) => {
     navigator.geolocation.getCurrentPosition(async function (position, values) {
@@ -129,8 +128,10 @@ const AboutusPage = () => {
 
   return (
     <div className='noselect'>
-      <SEO title='Sheकुंज - About us' link='https://www.shekunj.com/about-us'
-        keyword="women empowerment organizations, free online courses in india, free career guidance"
+      <SEO
+        title='Sheकुंज - About us'
+        link='https://www.shekunj.com/about-us'
+        keyword='women empowerment organizations, free online courses in india, free career guidance'
         description='Shekunj.com works for women empowerment by providing free online certification courses, 
           career guidance, job and internship opportunities across India.'
       />
@@ -140,7 +141,7 @@ const AboutusPage = () => {
           <div className='row'>
             <div className='col-lg-0 col-md-0'>
               <div className='mob_abo_banner'>
-                <img src={mob_banner} class="img-responsive" alt='' />
+                <img src={mob_banner} class='img-responsive' alt='' />
               </div>
             </div>
             <div className='col-lg-6 col-md-7'>
@@ -158,11 +159,13 @@ const AboutusPage = () => {
         <div className='container'>
           <div className='row'>
             <div className='col-md-6 noselect'>
-              <img src={img1} class="img-responsive" alt='' srcSet='' />
+              <img src={img1} class='img-responsive' alt='' srcSet='' />
             </div>
 
             <div className='col-md-6'>
               <div className='sec2_con'>
+                <h2>{t("aboutPage.heading.1")}</h2>
+                <h5>{t("aboutPage.heading.2")}</h5>
                 <p> {t("aboutPage.content2")}</p>
 
                 {/* <p>{t("aboutPage.content3")}</p> */}
@@ -201,7 +204,11 @@ const AboutusPage = () => {
                       </ul>
                       <h2>{t("aboutPage.reviewerDetails.reviewerName.1")}</h2>
                       <h6>{t("aboutPage.reviewerDetails.reviewerPost.2")}</h6>
-                      <img className='NikitaSharmaImage img-responsive' src={Nikita} alt='' />
+                      <img
+                        className='NikitaSharmaImage img-responsive'
+                        src={Nikita}
+                        alt=''
+                      />
                     </div>
                   </div>
 
@@ -258,7 +265,11 @@ const AboutusPage = () => {
                       </ul>
                       <h2>{t("aboutPage.reviewerDetails.reviewerName.2")}</h2>
                       <h6>{t("aboutPage.reviewerDetails.reviewerPost.1")}</h6>
-                      <img className='AnkitaSharmaImage img-responsive' src={Ankita} alt='' />
+                      <img
+                        className='AnkitaSharmaImage img-responsive'
+                        src={Ankita}
+                        alt=''
+                      />
                     </div>
                   </div>
                 </div>
