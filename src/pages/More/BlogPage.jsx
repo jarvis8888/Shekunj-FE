@@ -324,7 +324,7 @@ function BlogPage() {
                                     addEmailToClient(blogLeft[0]?.add_email)
                                   }
                                 >
-                                  <div className='card'>
+                                  <div className='sk-cardAdd-fix'>
                                     <a
                                       href={blogLeft[0]?.url_adds}
                                       target='_blank'

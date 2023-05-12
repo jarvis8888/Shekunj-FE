@@ -130,19 +130,23 @@ export const GlobalSearchCard = ({
   return (
     <section className='sk-card-sec'>
       <div className='container'>
-        <div className='sk-category'>
-          <ul>
-            {data.map((item) => (
-              <li key={item}>
-                <a
-                  onClick={() => setActiveTab(item)}
-                  className={activeTab === item && "active-time"}
-                >
-                  {item}
-                </a>
-              </li>
-            ))}
-          </ul>
+        <div className="row">
+          <div className="col-xl-8 mx-auto">
+            <div className='sk-category'>
+              <ul>
+                {data.map((item) => (
+                  <li key={item}>
+                    <a
+                      onClick={() => setActiveTab(item)}
+                      className={activeTab === item && "active-time"}
+                    >
+                      {item}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
         </div>
         {loading ? (
           <CustomLoader />

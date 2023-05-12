@@ -60,7 +60,15 @@
 .card__image img{
   border-radius: 0;
 }
-
+.sk-cardAdd-fix {
+  background: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  margin: 20px 0 10px;
+  align-items: center;
+  border-radius: 4px;
+  padding: 20px;
+}
 .loadMore {
   background-color: #020202;
   padding: 12px 30px;

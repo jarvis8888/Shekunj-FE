@@ -265,9 +265,10 @@ function SuccessStory() {
                         .map((items, index) => {
                           return (
                             <>
-                              <li data-aos='zoom-in' key={index}>
+                              <li className="sk-scale-animate" key={index}>
                                 <div className='sk-story-eimg'>
                                   <img src={items.image} />
+                                  <span></span>
                                 </div>
                                 <div className='sk-story-econtent'>
                                   <div className='sk-ewoman-title'>
