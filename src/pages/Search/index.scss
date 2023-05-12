@@ -100,29 +100,37 @@ section {
   list-style: none;
   padding: 0;
   display: flex;
-  justify-content: center;
+  justify-content:center;
   align-items: center;
   grid-gap: 15px;
   flex-wrap: wrap;
 }
-
+.sk-eventcard-sec .sk-category ul {
+  justify-content: left;
+}
 .sk-category ul li a {
   color: #020202;
   display: inline-block;
   padding: 10px 20px;
   border: 1px solid #d9d9d9;
-  border-radius: 30px;
+  border-radius: 8px;
   font-family: "Poppins", sans-serif;
   text-decoration: none;
   transition: all 0.3s;
   cursor: pointer;
 }
-.active-time {
+.sk-eventcard-sec .sk-category ul li a{
+  border-radius: 30px;
+}
+.sk-category ul li a:hover {
+  box-shadow: 4px 4px 10px 0 #00000026;
+}
+.sk-eventcard-sec .active-time {
   background: #020202;
   color: #fff !important;
   border-color: transparent;
 }
-.sk-category ul li a:hover {
+.sk-eventcard-sec .sk-category ul li a:hover {
   background: #020202;
   color: #fff !important;
   border-color: transparent;
