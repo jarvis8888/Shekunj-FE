@@ -5,7 +5,7 @@ $breakpoint-medium: 1024px;
   width: 100%;
   background-color: #222;
 }
-.sk-footer-menu{
+.sk-footer-menu {
   margin: 15px 0;
 }
 .footer {
@@ -91,7 +91,7 @@ $breakpoint-medium: 1024px;
   margin-bottom: 0;
 }
 
- .sk-footer-menu h5 {
+.sk-footer-menu h5 {
   font-weight: 600;
   font-size: 18px;
   padding-bottom: 5px;
@@ -104,33 +104,33 @@ $breakpoint-medium: 1024px;
   color: #cdcdcd;
   transition: all 0.3s;
 }
-.sk-socialMedia-sec{
+.sk-socialMedia-sec {
   border-bottom: 1px solid #343434;
   padding: 50px 0;
 }
-.footer .sk-footer-menu ul li a:hover{
+.footer .sk-footer-menu ul li a:hover {
   color: #d3317d;
   text-decoration: none;
 }
 .sk-footer-menu p {
   margin-bottom: 0;
 }
-.sk-footer-menu p a{
+.sk-footer-menu p a {
   color: #d3317d;
   font-size: 15px;
   display: flex;
   align-items: center;
 }
 .sk-social-icon ul li a img {
-    max-width: 30px;
+  // max-width: 30px;
 }
-.sk-footer-menu img{
+.sk-footer-menu img {
   max-width: 120px;
 }
-.sk-social-icon img{
+.sk-social-icon img {
   max-width: 130px;
 }
-.sk-footer-menu p a svg{
+.sk-footer-menu p a svg {
   margin-right: 5px;
   font-size: 20px;
 }
@@ -146,9 +146,7 @@ $breakpoint-medium: 1024px;
   padding: 4px 0;
 }
 .socialMedia {
- 
   .img {
-   
     &:hover {
       box-shadow: 0px 4px 20px #d3317d;
     }
@@ -166,24 +164,23 @@ $breakpoint-medium: 1024px;
     justify-content: space-around;
     align-items: center;
   }
-  .sk-socialMedia-sec{
+  .sk-socialMedia-sec {
   }
   .sk-socialMedia-sec .sk-social-icon {
     margin-bottom: 20px;
   }
-.sk-socialMedia-sec .sk-social-icon {
+  .sk-socialMedia-sec .sk-social-icon {
     margin-bottom: 20px;
     text-align: center;
     justify-content: center;
-}
-.sk-socialMedia-sec .sk-social-icon img{
-  display: block;
-}
-.sk-footer-menu h5{
-  padding-bottom: 0;
-}
-.copyRight{
-  justify-content: start;
-}
-
+  }
+  .sk-socialMedia-sec .sk-social-icon img {
+    display: block;
+  }
+  .sk-footer-menu h5 {
+    padding-bottom: 0;
+  }
+  .copyRight {
+    justify-content: start;
+  }
 }
