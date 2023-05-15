@@ -406,7 +406,7 @@ function SuccessStory() {
                       }
                     })}
                   </div>
-                  <div className='d-flex justify-content-center align-items-center py-4'>
+                  <div className='sk-blogbottom-border d-flex justify-content-center align-items-center py-4'>
                     <button
                       disabled={currentFeaturedData?.results?.length === 0}
                       className='loadMore'

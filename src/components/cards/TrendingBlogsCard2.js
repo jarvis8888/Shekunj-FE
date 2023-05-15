@@ -31,7 +31,7 @@ export const TrendingBlogsCard2 = ({
   return (
     <div className="sk-blogDivider-bottom">
     <div
-      className='row my-4'
+      className='row my-4 align-items-center'
       onClick={() => history.push(routingConstants.MORE_BLOG + id)}
       style={{ cursor: "pointer" }}
     >
@@ -39,7 +39,7 @@ export const TrendingBlogsCard2 = ({
         <img src={image} />
       </div>
       <div className='col-md-8'>
-        <div className="py-2">
+        <div className="">
         <h5 className='blog-card2__title'>{title}</h5>
         <span className="sk-tagBlog-name">{category_name}</span>
         <p

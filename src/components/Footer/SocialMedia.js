@@ -16,7 +16,7 @@ export const SocialMedia = () => {
         <div className="row align-items-center">
           <div class='col-xl-6 col-md-4 col-sm-4'>
           <div className='sk-social-icon text-left'>
-            <div className="mb-3"><img src={logo} alt='Company Logo' /></div>
+            <div className="sk-footerSpace-bottom"><img src={logo} alt='Company Logo' /></div>
             <ul>
               <li>
                 <a href='javascript:;'>

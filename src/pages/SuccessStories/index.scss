@@ -653,11 +653,20 @@ h1{
   }
 }
 .loadMore {
-  background-color: #020202;
-  padding: 10px 30px;
+  background-color: #202020;
+  padding: 15px 30px;
   border-radius: 8px;
   color: #fff;
-  transition: all 0.3s;
+  min-width: 212px;
+  max-width: 212px;
+  font-weight: 600;
+  margin-top: 11.5px;
+  margin-bottom: 10px;
+  display: inline-block;
+}
+.sk-blogbottom-border {
+  border-bottom: 1px solid #d9d9d9 !important;
+  margin-bottom: 40px;
 }
 .treading-card-gird {
   width: 90%;
