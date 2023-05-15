@@ -14,9 +14,7 @@ section {
   border-top: 1px solid #d9d9d9;
   padding-top: 5px;
 }
-.sk-storyBoxMain-sec .card__button {
-  // border-left: 1px solid #d9d9d9;
-}
+
 .sk-story-eimg {
   position: relative;
 }
@@ -30,7 +28,7 @@ section {
   z-index: 9;
 }
 
-.sk-scale-animate {
+.sk-scale-animate:nth-child(1), .sk-scale-animate:nth-child(3), .sk-scale-animate:nth-child(6), .sk-scale-animate:nth-child(8){
   animation: zoom-in-zoom-out 2.5s alternate infinite linear;
 }
 
@@ -67,6 +65,63 @@ section {
     transform: scale(1);
   }
 }
+
+
+.sk-scale-animate:nth-child(2), .sk-scale-animate:nth-child(4), .sk-scale-animate:nth-child(5), .sk-scale-animate:nth-child(7) {
+  animation: zoom-in-zoom-out1 2.5s alternate infinite linear;
+}
+
+@keyframes zoom-in-zoom-out1 {
+  0% {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+  0% {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+  0% {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+  0% {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+  10% {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+  20% {
+    transform: scale(0.3);
+    opacity:0;
+  }
+  30% {
+    transform: scale(0.3);
+    opacity: 0.5;
+  }
+  40% {
+    transform: scale(0.4);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scale(0.2);
+    opacity: 0.9;
+  }
+  50% {
+      transform: scale(1);
+      opacity:1;
+    }
+  80% {
+      transform: scale(1);
+    opacity:1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+
 .sk-successStories-sec {
   background: #f4f4f4;
 }
@@ -360,11 +415,7 @@ button.want_btn {
   }
 }
 
-// @media screen and (max-width: 1280px) {
-//     .SuccStory_banner {
-//     height: 534px;
-// }
-// }
+
 
 @media screen and (min-width: 1024px) and (max-width: 1400px) {
   .SuccStory_banner {
