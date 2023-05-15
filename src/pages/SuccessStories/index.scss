@@ -58,14 +58,13 @@ section {
       opacity:1;
     }
   80% {
-      transform: scale(1);
+    transform: scale(1);
     opacity:1;
   }
   100% {
     transform: scale(1);
   }
 }
-
 
 .sk-scale-animate:nth-child(2), .sk-scale-animate:nth-child(4), .sk-scale-animate:nth-child(5), .sk-scale-animate:nth-child(7) {
   animation: zoom-in-zoom-out1 2.5s alternate infinite linear;
@@ -156,6 +155,7 @@ section {
   object-fit: cover;
   height: 128px;
   object-position: top center;
+  width: 100%;
 }
 .sk-ewoman-title {
   padding: 8px;
@@ -466,13 +466,11 @@ button.want_btn {
   object-fit: cover;
 }
 .sk-storyMain-sec {
-  padding: 80px 0;
+  padding: 50px 0;
 }
 .sk-story-content p {
   padding: 15px 0 10px;
   color: #555;
-  font-size: 16px;
-  line-height: 32px;
 }
 .sk-allStory-btn {
   color: #fff;
@@ -620,13 +618,12 @@ button.want_btn {
   padding: 20px 0 30px;
   margin-bottom: 50px;
 }
-.sk-storyHeading-top {
-  font-size: 50px;
-  font-weight: 500;
+h1{
+  font-size: calc(2rem + 1.6vw);
 }
 .sk-storyHeading-top span {
   color: #d62c79;
-  font-weight: 700;
+  font-weight: 600;
 }
 .title {
   width: 100%;
@@ -774,10 +771,14 @@ button.want_btn {
     }
   }
 }
-@media screen and (max-width: 800px) {
-  .sk-storyHeading-top {
-    font-size: 32px;
+@media screen and (min-width: 320px) and (max-width: 1399px) {
+
+  h1{
+    font-size: calc(1.8rem + 1vw);
   }
+}
+@media screen and (max-width: 800px) {
+
   .sk-storyS-images ul {
     grid-template-columns: repeat(3, 1fr);
   }
