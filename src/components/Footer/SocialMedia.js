@@ -16,7 +16,7 @@ export const SocialMedia = () => {
         <div className='row align-items-center'>
           <div class='col-xl-6 col-md-4 col-sm-4'>
             <div className='sk-social-icon text-left'>
-              <div className='mb-3'>
+              <div className='sk-footerSpace-bottom'>
                 <img src={logo} alt='Company Logo' />
               </div>
               <ul>
@@ -26,7 +26,7 @@ export const SocialMedia = () => {
                     target='_blank'
                     rel='noreferrer'
                   >
-                    <img src={facebookicon} alt='facebookicon' />
+                    <img src={facebookicon} />
                   </a>
                 </li>
                 <li>
@@ -40,7 +40,7 @@ export const SocialMedia = () => {
                 </li>
                 <li>
                   <a
-                    href='https://twitter.com/SheKunj_edu?s=20'
+                    href='https://www.instagram.com/shekunj_edu/?hl=en'
                     target='_blank'
                     rel='noreferrer'
                   >

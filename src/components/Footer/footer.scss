@@ -81,9 +81,9 @@ $breakpoint-medium: 1024px;
   background: #222;
   justify-content: center;
   align-items: center;
-  color: #cdcdcd;
-  font-size: 15px;
-  padding: 15px;
+  color: #fff;
+  font-size: 16px;
+  padding: 20px 15px;
 }
 .footer .sk-footer-menu ul {
   list-style: none;
@@ -92,16 +92,17 @@ $breakpoint-medium: 1024px;
 }
 
 .sk-footer-menu h5 {
-  font-weight: 600;
-  font-size: 18px;
+  font-weight: 500;
+  font-size: 20px;
   padding-bottom: 5px;
   color: #fff;
 }
 
 .footer .sk-footer-menu ul li a {
-  font-size: 15px;
+  font-size: 16px;
   line-height: 30px;
-  color: #cdcdcd;
+  font-weight: 400;
+  color: #fff;
   transition: all 0.3s;
 }
 .sk-socialMedia-sec {
@@ -117,27 +118,30 @@ $breakpoint-medium: 1024px;
 }
 .sk-footer-menu p a {
   color: #d3317d;
-  font-size: 15px;
+  font-size: 16px;
   display: flex;
   align-items: center;
 }
-.sk-social-icon ul li a img {
-  // max-width: 30px;
+.sk-social-icon ul li img {
+  width: 44px;
 }
 .sk-footer-menu img {
   max-width: 120px;
 }
+.sk-footerSpace-bottom {
+  margin-bottom: 25px;
+}
 .sk-social-icon img {
-  max-width: 130px;
+  width: 173.33px;
 }
 .sk-footer-menu p a svg {
   margin-right: 5px;
-  font-size: 20px;
+  font-size: 24px;
 }
 .sk-social-icon ul {
   list-style: none;
   display: flex;
-  grid-gap: 10px;
+  grid-gap: 20px;
   padding: 0;
   margin-bottom: 0;
 }

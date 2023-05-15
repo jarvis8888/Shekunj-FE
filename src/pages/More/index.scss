@@ -52,7 +52,6 @@ body {
   align-items: center;
   background: #F0F0F0;
   justify-content: center;
-  border-radius: 4px;
   padding:30px 10px;
 }
 .global_img {
@@ -1318,7 +1317,7 @@ button.want_btn {
     right: 0;
     .owl-prev {
       position: absolute;
-      left: 2%;
+      left: 4.5%;
       top: 0;
       bottom: 0;
       right: 0;
@@ -1327,7 +1326,7 @@ button.want_btn {
     }
     .owl-next {
       position: absolute;
-      right: 2%;
+      right: 4.5%;
       top: 0;
       bottom: 0;
       margin: auto;

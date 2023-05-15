@@ -75,11 +75,18 @@
 
 }
 .loadMore {
-  background-color: #020202;
-  padding: 12px 30px;
+  background-color: #202020;
+  padding: 15px 30px;
   border-radius: 8px;
   color: #fff;
+  min-width: 212px;
+  max-width: 212px;
+  font-weight: 600;
+  margin-top: 11.5px;
+  margin-bottom: 21px;
+  display: inline-block;
 }
+
 .blog-card2__meta span img {
   margin-right: 7px;
 }
