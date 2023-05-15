@@ -24,7 +24,7 @@ const FeaturedCards = (props) => {
   } = props;
   const history = useHistory();
   return (
-    <div className='col-xl-6 col-lg-6 col-md-6 col-sm-6'>
+    <div className='col-xl-6 col-lg-6 col-md-12 col-sm-12'>
       <div
         className='card'
         key={key}
