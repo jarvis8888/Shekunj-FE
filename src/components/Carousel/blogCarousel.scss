@@ -67,11 +67,8 @@ section {
 .has {
   display: flex;
   flex-wrap: wrap;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
   align-items: center;
-  max-width: 500px;
-
   span {
     font-size: 14px;
     color: #fff !important;
@@ -86,6 +83,7 @@ section {
     svg {
       margin-right: 8px;
       font-size: 20px;
+      vertical-align: text-top;
     }
   }
 }
