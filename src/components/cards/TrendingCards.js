@@ -23,7 +23,7 @@ const TrendingCards = (data) => {
   } = data;
   const history = useHistory();
   return (
-    <div className='col-xl-4 col-lg-6 col-md-6 col-sm-6'>
+    <div className='col-xl-4 col-lg-6 col-md-6 col-sm-12'>
       <div
         className='card'
         onClick={() => history.push(routingConstants.SUCCESS_STORIES + id)}

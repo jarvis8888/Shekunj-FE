@@ -224,7 +224,7 @@ function SuccessStory() {
           <section className='sk-storyMain-sec'>
             <div className='container'>
               <div className='row align-items-center'>
-                <div className='col-xl-5 col-md-6 col-lg-6 col-md-12'>
+                <div className='col-xl-6 col-lg-6 col-md-12 col-sm-12'>
                   <div className='sk-story-content'>
                     <h1
                       className='sk-storyHeading-top'
@@ -257,7 +257,7 @@ function SuccessStory() {
                     </div>
                   </div>
                 </div>
-                <div className='col-xl-7 col-md-6 col-lg-6 col-sm-12'>
+                <div className='col-xl-6 col-lg-6 col-md-12 col-sm-12'>
                   <div className='sk-storyS-images'>
                     <ul>
                       {animationTrendingData
@@ -336,7 +336,7 @@ function SuccessStory() {
           <section className='sk-storyBoxMain-sec' ref={sectionRef}>
             <div className='container'>
               <div className='row'>
-                <div className='col-xl-9 col-lg-8 col-md-8 featured-stories'>
+                <div className='col-xl-9 col-lg-9 col-md-9 featured-stories'>
                   <div className='title'>
                     <img src={fire} alt='fire' width={28} />
                     <h4>Featured Stories </h4>
@@ -348,7 +348,7 @@ function SuccessStory() {
                           <>
                             {succesStoriesLeft.length > 0 && (
                               <div
-                                className='col-xl-6 col-md-6 col-lg-6 col-sm-12'
+                                className='col-xl-6 col-lg-6 col-md-12 col-sm-12'
                                 // className='col-md-12 ads_home_cover '
                                 onClick={() =>
                                   addEmailToClient(
@@ -490,7 +490,7 @@ function SuccessStory() {
                     </div>
                   </div>
                 </div>
-                <div className='col-xl-3 col-md-4 col-lg-4 col-sm-12 ads'>
+                <div className='col-xl-3 col-md-3 col-lg-3 col-sm-12 ads'>
                   <HashtagAndCatagories
                     type='hashtag'
                     image={hash}
