@@ -18,6 +18,7 @@ import { useTranslation } from "react-i18next";
 import axios from "axios";
 import { getFaq as fetchFaq } from "../../store/faq/action";
 import { adsList } from "../../store/ads";
+import faqsendicon from "../../assets/images/sendfaqicon.svg"
 import OpenInFullIcon from "@mui/icons-material/OpenInFull";
 import downArrow_icon from "../../assets/icons/svgs/downArrow.png";
 import add_icon from "../../assets/icons/svgs/exAddPhoto.png";
@@ -194,7 +195,7 @@ function FaqPage() {
           <div className='row'>
             <div className='col-md-12'>
               <h1>
-                HOW CAN WE <span>HELP YOU</span>
+                How can we <span>help you</span>
               </h1>
             </div>
           </div>
@@ -277,7 +278,9 @@ function FaqPage() {
                       />
                       <button type='submit'>
                         {" "}
-                        <SendRoundedIcon /> Send{" "}
+                        <span>
+                          <img src={faqsendicon} />
+                        </span> Send{" "}
                       </button>
                     </div>
                     {errors.email && (

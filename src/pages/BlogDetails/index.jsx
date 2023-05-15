@@ -40,6 +40,13 @@ import catagorie from "../../assets/images/categoryblog.svg";
 import fire from "../../assets/images/fire.svg";
 import { DateFormat, addEmailToClient } from "../../utils/utils";
 import { CustomLoader } from "../../components/customLoader/CustomLoader";
+import {
+  FacebookShareButton,
+  TwitterShareButton,
+  LinkedinShareButton,
+  PinterestShareButton,
+  InstapaperShareButton,
+} from "react-share";
 
 const BlogDetails = () => {
   const history = useHistory();
@@ -52,7 +59,7 @@ const BlogDetails = () => {
 
   const { id } = useParams();
   // ("id!!!!!!", id);
-
+  const currentUrl = window.location.href;
   const [image, setImage] = useState("NA");
   const [adds, setAdds] = useState([]);
   const [blogDetailsBoxAds, setBlogDetailsBoxAds] = useState([]);
@@ -274,34 +281,37 @@ const BlogDetails = () => {
                     <h6>Share this article</h6>
                     <ul>
                       <li>
-                        <a href='javascript:;'>
-                          <img src={facebookicon} />
-                        </a>
+                        <FacebookShareButton url={currentUrl}>
+                          <img src={facebookicon} alt='Facebook' />
+                        </FacebookShareButton>
                       </li>
                       <li>
-                        <a href='javascript:;'>
-                          <img src={linkedinicon} />
-                        </a>
+                        <LinkedinShareButton url={currentUrl}>
+                          <img src={linkedinicon} alt='LinkedIn' />
+                        </LinkedinShareButton>
                       </li>
                       <li>
-                        <a href='javascript:;'>
-                          <img src={twittericon} />
-                        </a>
+                        <TwitterShareButton url={currentUrl}>
+                          <img src={twittericon} alt='Twitter' />
+                        </TwitterShareButton>
                       </li>
                       <li>
-                        <a href='javascript:;'>
-                          <img src={pintresticon} />
-                        </a>
+                        <PinterestShareButton
+                          url={currentUrl}
+                          media={blogs?.image}
+                        >
+                          <img src={pintresticon} alt='Pinterest' />
+                        </PinterestShareButton>
                       </li>
                       <li>
-                        <a href='javascript:;'>
-                          <img src={instagramicon} />
+                        <a href='https://www.instagram.com/' target='_blank'>
+                          <img src={instagramicon} alt='instagramicon' />
                         </a>
                       </li>
                     </ul>
                   </div>
                 </div>
-                <h2 className="sk-headingblog-title">{blogs?.title}</h2>
+                <h2 className='sk-headingblog-title'>{blogs?.title}</h2>
                 <div
                   className='sk-blogDetails-content'
                   dangerouslySetInnerHTML={{
@@ -313,29 +323,32 @@ const BlogDetails = () => {
                     <h6 className='text-left'>Share this article</h6>
                     <ul>
                       <li>
-                        <a href='javascript:;'>
-                          <img src={facebookicon} />
-                        </a>
+                        <FacebookShareButton url={currentUrl}>
+                          <img src={facebookicon} alt='Facebook' />
+                        </FacebookShareButton>
                       </li>
                       <li>
-                        <a href='javascript:;'>
-                          <img src={linkedinicon} />
-                        </a>
+                        <LinkedinShareButton url={currentUrl}>
+                          <img src={linkedinicon} alt='LinkedIn' />
+                        </LinkedinShareButton>
                       </li>
                       <li>
-                        <a href='javascript:;'>
-                          <img src={twittericon} />
-                        </a>
+                        <TwitterShareButton url={currentUrl}>
+                          <img src={twittericon} alt='Twitter' />
+                        </TwitterShareButton>
                       </li>
                       <li>
-                        <a href='javascript:;'>
-                          <img src={pintresticon} />
-                        </a>
+                        <PinterestShareButton
+                          url={currentUrl}
+                          media={blogs?.image}
+                        >
+                          <img src={pintresticon} alt='Pinterest' />
+                        </PinterestShareButton>
                       </li>
                       <li>
-                        <a href='javascript:;'>
-                          <img src={instagramicon} />
-                        </a>
+                        <InstapaperShareButton url={currentUrl}>
+                          <img src={instagramicon} alt='instagramicon' />
+                        </InstapaperShareButton>
                       </li>
                     </ul>
                   </div>
@@ -364,7 +377,7 @@ const BlogDetails = () => {
                   <img src={fire} alt='fire' width={28} />
                   <h4>Trending Blogs</h4>
                 </div>
-                <div className="sk-blogMain-inner">
+                <div className='sk-blogMain-inner'>
                   {trending?.map((items, index) => {
                     if (items.id === "advertisement") {
                       return (

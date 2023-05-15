@@ -3,7 +3,18 @@ img {
   height: auto;
 }
 section {
-  padding: 40px 0;
+  padding: 50px 0;
+}
+.sk-eventcard-sec {
+  padding: 80px 0 54px;
+}
+.sk-explore-btn .sk-btn {
+  border-radius: 8px;
+  font-weight: 600;
+  padding: 15px 30px;
+  min-width: 212px;
+  max-width: 212px;
+  margin-top: 24px;
 }
 .sk-search-sec {
   background: url(../../assets/images/search-bg.png) no-repeat center center;
@@ -38,6 +49,8 @@ section {
 }
 .sk-event-slide .owl-carousel .owl-item img {
   width: 100%;
+  border-radius: 6px;
+  filter: drop-shadow(4px 4px 8px rgba(0, 0, 0, 0.25));
 }
 .sk-search-sec input {
   width: 100%;
@@ -105,9 +118,9 @@ section {
   grid-gap: 15px;
   flex-wrap: wrap;
 }
-.sk-eventcard-sec .sk-category ul {
-  justify-content: left;
-}
+// .sk-eventcard-sec .sk-category ul {
+//   justify-content: left;
+// }
 .sk-category ul li a {
   color: #020202;
   display: inline-block;
@@ -148,7 +161,7 @@ section {
   color: #505050;
 }
 .sk-category {
-  margin-bottom: 35px;
+  margin-bottom: 54px;
 }
 .sk-tags {
   position: absolute;
@@ -253,10 +266,10 @@ section {
   height: calc(100% - 30px);
   position: relative;
 }
-.sk-card-box:hover {
-  box-shadow: 0px 8px 26px 0px rgba(143, 155, 178, 0.2);
-  transform: scale(1.03);
-}
+// .sk-card-box:hover {
+//   box-shadow: 0px 8px 26px 0px rgba(143, 155, 178, 0.2);
+//   transform: scale(1.03);
+// }
 .sk-card-img img {
   border-radius: 5px 5px 0 0;
   width: 100%;
@@ -289,9 +302,14 @@ section {
   font-family: "Poppins", sans-serif;
 }
 
-.sk-time-education ul li svg {
-  font-size: 16px;
+.sk-time-education ul li img {
+  margin-right: 5px;
   vertical-align: top;
+}
+.sk-time-education ul li svg {
+  font-size: 16.5px;
+  vertical-align: top;
+  margin-right: 3px;
 }
 
 .sk-week-time span svg {
@@ -330,8 +348,7 @@ section {
   padding: 5px 10px;
   display: inline-block;
   color: #d3317d;
-  border-radius: 3px;
-  font-size: 13px;
+  font-size: 14px;
   font-family: "Poppins", sans-serif;
 }
 
