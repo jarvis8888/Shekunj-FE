@@ -315,6 +315,9 @@ function BlogPage() {
                     <div className='row'>
                       {latestBlogs?.map((items, index) => {
                         if (items.id === "advertisement") {
+                          const randomIndex = Math.floor(
+                            Math.random() * blogLeft.length,
+                          );
                           return (
                             <>
                               {blogLeft.length > 0 && (
@@ -322,26 +325,32 @@ function BlogPage() {
                                   className='col-xl-6 col-md-6 col-lg-6 col-sm-12'
                                   // className='col-md-12 ads_home_cover '
                                   onClick={() =>
-                                    addEmailToClient(blogLeft[0]?.add_email)
+                                    addEmailToClient(
+                                      blogLeft[randomIndex]?.add_email,
+                                    )
                                   }
                                 >
                                   <div className='sk-cardAdd-fix'>
                                     <a
-                                      href={blogLeft[0]?.url_adds}
+                                      href={blogLeft[randomIndex]?.url_adds}
                                       target='_blank'
                                       rel='noreferrer'
                                     >
                                       {detect.isMobile
-                                        ? blogLeft[0]?.image_mobile && (
+                                        ? blogLeft[randomIndex]
+                                            ?.image_mobile && (
                                             <img
-                                              src={blogLeft[0]?.image_mobile}
+                                              src={
+                                                blogLeft[randomIndex]
+                                                  ?.image_mobile
+                                              }
                                               alt=''
                                               // className='ads_story_cover_img'
                                             />
                                           )
-                                        : blogLeft[0]?.image && (
+                                        : blogLeft[randomIndex]?.image && (
                                             <img
-                                              src={blogLeft[0]?.image}
+                                              src={blogLeft[randomIndex]?.image}
                                               alt=''
                                               // className='ads_story_cover_img'
                                             />
@@ -431,6 +440,9 @@ function BlogPage() {
                   </div>
                   {trendingBlogs?.map((items, index) => {
                     if (items.id === "advertisement") {
+                      const randomIndex = Math.floor(
+                        Math.random() * blogLeft.length,
+                      );
                       return (
                         <>
                           {blogBoxAdds.length > 0 && (
@@ -439,26 +451,34 @@ function BlogPage() {
                                 className='col-md-12'
                                 // className='col-md-12 ads_home_cover '
                                 onClick={() =>
-                                  addEmailToClient(blogBoxAdds[0]?.add_email)
+                                  addEmailToClient(
+                                    blogBoxAdds[randomIndex]?.add_email,
+                                  )
                                 }
                               >
                                 <div className='card'>
                                   <a
-                                    href={blogBoxAdds[0]?.url_adds}
+                                    href={blogBoxAdds[randomIndex]?.url_adds}
                                     target='_blank'
                                     rel='noreferrer'
                                   >
                                     {detect.isMobile
-                                      ? blogBoxAdds[0]?.image_mobile && (
+                                      ? blogBoxAdds[randomIndex]
+                                          ?.image_mobile && (
                                           <img
-                                            src={blogBoxAdds[0]?.image_mobile}
+                                            src={
+                                              blogBoxAdds[randomIndex]
+                                                ?.image_mobile
+                                            }
                                             alt=''
                                             // className='ads_story_cover_img'
                                           />
                                         )
-                                      : blogBoxAdds[0]?.image && (
+                                      : blogBoxAdds[randomIndex]?.image && (
                                           <img
-                                            src={blogBoxAdds[0]?.image}
+                                            src={
+                                              blogBoxAdds[randomIndex]?.image
+                                            }
                                             alt=''
                                             // className='ads_story_cover_img'
                                           />

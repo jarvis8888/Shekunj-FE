@@ -380,6 +380,9 @@ const BlogDetails = () => {
                 <div className='sk-blogMain-inner'>
                   {trending?.map((items, index) => {
                     if (items.id === "advertisement") {
+                      const randomIndex = Math.floor(
+                        Math.random() * blogDetailsBoxAds.length,
+                      );
                       return (
                         <>
                           {blogDetailsBoxAds.length > 0 && (
@@ -389,29 +392,37 @@ const BlogDetails = () => {
                                 // className='col-md-12 ads_home_cover '
                                 onClick={() =>
                                   addEmailToClient(
-                                    blogDetailsBoxAds[0]?.add_email,
+                                    blogDetailsBoxAds[randomIndex]?.add_email,
                                   )
                                 }
                               >
                                 <div className='card'>
                                   <a
-                                    href={blogDetailsBoxAds[0]?.url_adds}
+                                    href={
+                                      blogDetailsBoxAds[randomIndex]?.url_adds
+                                    }
                                     target='_blank'
                                     rel='noreferrer'
                                   >
                                     {detect.isMobile
-                                      ? blogDetailsBoxAds[0]?.image_mobile && (
+                                      ? blogDetailsBoxAds[randomIndex]
+                                          ?.image_mobile && (
                                           <img
                                             src={
-                                              blogDetailsBoxAds[0]?.image_mobile
+                                              blogDetailsBoxAds[randomIndex]
+                                                ?.image_mobile
                                             }
                                             alt=''
                                             // className='ads_story_cover_img'
                                           />
                                         )
-                                      : blogDetailsBoxAds[0]?.image && (
+                                      : blogDetailsBoxAds[randomIndex]
+                                          ?.image && (
                                           <img
-                                            src={blogDetailsBoxAds[0]?.image}
+                                            src={
+                                              blogDetailsBoxAds[randomIndex]
+                                                ?.image
+                                            }
                                             alt=''
                                             // className='ads_story_cover_img'
                                           />
