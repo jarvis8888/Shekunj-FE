@@ -6,15 +6,29 @@ import axios from "axios";
 import { useTranslation } from "react-i18next";
 import { Link, Redirect, useHistory, useLocation } from "react-router-dom";
 import { constants } from "../../utils";
+import WorkspacePremiumSharpIcon from '@mui/icons-material/WorkspacePremiumSharp';
 import { Header, Footer, Carousel, SEO } from "../../components";
-
+// import SlideContent from "./SlideContent";
 import "animate.css";
 import "aos/dist/aos.css";
 import "../../../node_modules/slick-carousel/slick/slick.css";
 import "../../../node_modules/slick-carousel/slick/slick-theme.css";
+import SchoolRoundedIcon from "@mui/icons-material/SchoolRounded";
+import AccessTimeIcon from "@mui/icons-material/AccessTime";
+// import Swiper core and required modules
+import { Navigation, Pagination} from 'swiper';
+
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
 
 import "../../pages/responsive.scss";
 import "../../pages/responsive.scss";
+import firstslidebanner from "../../assets/images/happystudentbanner.png"
 import "./index.scss";
 
 import add from "../../assets/images/add.png";
@@ -50,6 +64,7 @@ import g17 from "../../assets/images/17.png";
 import g18 from "../../assets/images/18.png";
 import g19 from "../../assets/images/19.png";
 import g20 from "../../assets/images/20.png";
+import cousreimg from "../../assets/images/courseimg.png"
 import { Box, Modal, Typography } from "@mui/material";
 // import { useDispatch, useSelector } from "react-redux";
 import { useDispatch, useSelector } from "react-redux";
@@ -291,10 +306,138 @@ function HomePage() {
     });
   };
 
+  const pagination = {
+    clickable: true,
+    renderBullet: function (index, className) {
+      let num =  index + 1;
+        return `<span class=${className}>${0 + [num]}</span>`
+    },
+};
+
   return (
     <div>
       <SEO />
       <Header loginPage={false} page='home' />
+
+
+      <section className="sk-homeBanner-sec">
+        <div className="container">
+          <div className="row">
+            <Swiper
+              modules={[Navigation, Pagination]}
+              slidesPerView={1}
+              navigation={{
+                  navigation: {
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev",
+                  },
+                }}
+              pagination={pagination}
+              onSwiper={(swiper) => console.log(swiper)}
+              onSlideChange={() => console.log('slide change')}
+              
+            >
+              <SwiperSlide>
+                <div className="row align-items-center">
+                  <div className="col-md-8">
+                    <div className="sh-bannerContent-top">
+                      <h1>Crack <span> dream jobs</span> with top rated certificate courses</h1>
+                      <p>Upskilling for Professionals from World’s top Universities</p>
+                      <button className="sk-btn" type="button">Start Learning</button>
+                    </div>
+                  </div>
+                  <div className="col-md-4">
+                    <div className="sk-imageBanner">
+                      <img src={firstslidebanner} />
+                    </div>
+                  </div>
+                </div>
+              </SwiperSlide>
+              <SwiperSlide>
+                <div className="row align-items-center">
+                  <div className="col-md-8">
+                    <div className="sh-bannerContent-top">
+                      <h1>Crack dream jobs with top rated certificate courses</h1>
+                      <p>Upskilling for Professionals from World’s top Universities</p>
+                      <button className="sk-btn" type="button">Start Learning</button>
+                    </div>
+                  </div>
+                  <div className="col-md-4">
+                    <img src={firstslidebanner} />
+                  </div>
+                </div>
+              </SwiperSlide>
+              <SwiperSlide>
+                <div className="row align-items-center">
+                  <div className="col-md-8">
+                    <div className="sh-bannerContent-top">
+                      <h1>Crack dream jobs with top rated certificate courses</h1>
+                      <p>Upskilling for Professionals from World’s top Universities</p>
+                      <button className="sk-btn" type="button">Start Learning</button>
+                    </div>
+                  </div>
+                  <div className="col-md-4">
+                    <img src={firstslidebanner} />
+                  </div>
+                </div>
+              </SwiperSlide>
+            
+            </Swiper>
+            
+              {/* <div class="sk-banner-navigate">
+                <div class="swiper-button-next">
+                    <span>NEXT</span>
+                </div>
+                <div class="swiper-button-prev">
+                    <span>PREV</span>
+                </div>
+              </div> */}
+            
+          </div>
+        </div>
+      </section>
+
+      <section className="sk-course-sec">
+        <div className="container">
+          <div className="row">
+              <div className="col-md-6 mx-auto">
+                <div className="sk-heading-title">
+                  <h2>Courses In India</h2>
+                  <p>Courses focused on building strong foundational skills for career growth</p>
+                </div>
+              </div>
+          </div>
+          <div className="row">
+              <div className="col-md-3">
+                <div className="sk-course-box">
+                  <div className="sk-course-img">
+                    <img src={cousreimg} />
+                    <div className="sk-certificate-box"> <WorkspacePremiumSharpIcon/> Certificate</div>
+                  </div>
+                  <div className="sk-course-content">
+                    <span className="sk-smallBox-heading">Skill Based</span>
+                    <h6>Basic of Interview</h6>
+                    <span className="sk-smallBox-description">Lorem Ipsum has been the industry's standard dummy text ever since the</span>
+                    <div className="sk-time-education">
+                      <ul>
+                        <li>
+                          <AccessTimeIcon /> <span>6.10 hrs</span>{" "}
+                        </li>
+                        <li>
+                          <SchoolRoundedIcon /> 282,55 enrolled{" "}
+                        </li>
+                      </ul>
+                    </div>
+                    <div className="sk-course-btn">
+                      <button className="sk-course-btn">More Info</button>
+                      <button className="sk-course-btn sk-courseBg-color">Start Learning</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+      </section>
 
       {/* slider */}
 
@@ -378,7 +521,6 @@ function HomePage() {
                     <h4 className='mt-5 pt-lg-5 mb-1' data-aos='zoom-in'>
                       {t("homePage.mainSlider.heading.6.1")}
                     </h4>
-
                     <h5>{t("homePage.mainSlider.heading.6.2")}</h5>
 
                     <p className='mb-4 mt-3' data-aos='zoom-in'>
@@ -416,6 +558,7 @@ function HomePage() {
         </button>
       </span>
       </Link> */}
+      
 
       <div className='courses'>
         <Link
@@ -428,11 +571,11 @@ function HomePage() {
       </div>
 
       {/* google add */}
+
+      
+
       <section>
         <div className='container'>
-
-
-
           <div className='row'>
             {adsPosition1.length > 0 && (
               // <div className='col-md-12 ads_home_cover'>

@@ -8,6 +8,159 @@ body {
   padding: 60px 0px;
 }
 
+img{
+  max-width: 100%;
+  height: auto;
+}
+
+
+
+
+
+
+
+// Eight may 2023
+.sk-homeBanner-sec {
+  position: relative;
+}
+.sk-homeBanner-sec {
+  padding: 80px 0;
+}
+.sh-bannerContent-top {
+  width: 100%;
+  max-width: 600px;
+}
+
+.sh-bannerContent-top h1 {
+  font-size: 54px;
+}
+.sh-bannerContent-top h1 span{
+  color: #ec498a;
+}
+.sh-bannerContent-top p {
+  margin: 20px 0 40px;
+  font-size: 20px;
+  font-weight: 400;
+  color: #020202;
+}
+
+.sh-bannerContent-top button {
+  color: #fff;
+  border-radius: 5px;
+  font-weight: 600;
+}
+.sk-homeBanner-sec .swiper-pagination-bullet {
+  text-align: right;
+  line-height: 20px;
+  font-size: 18px;
+  color: #dbdbdb;
+  opacity: 1;
+  background: transparent;
+  width: 40px;
+  letter-spacing: 2px;
+  position: relative;
+  transition: 0.3s;
+  margin-right: 40px !important;
+}
+.sk-homeBanner-sec .swiper-pagination-bullet:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  height: 20px;
+  width: 1.5px;
+  background: #dbdbdb;
+  transform: skewX(-15deg);
+}
+
+.sk-homeBanner-sec .swiper-pagination-bullet-active {
+  background: transparent;
+  color: #ec498a;
+  position: relative;
+  transition: 0.3s;
+  font-size: 32px;
+  margin-right: 22px !important;
+}
+
+.sk-homeBanner-sec .swiper-pagination-bullet-active::before {
+  content: "";
+  position: absolute;
+  left: -90px;
+  width: 40px;
+  height: 1.5px;
+  top: 0px;
+  bottom: -10px;
+  transform: skewX(0deg);
+  margin: auto;
+  background: #999;
+  right: 0;
+}
+.sk-homeBanner-sec .swiper-pagination {
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+
+.sk-banner-navigate .swiper-button-next:after, .sk-banner-navigate .swiper-button-prev:after {
+  font-size: 0;
+}
+
+.sk-banner-navigate .swiper-button-next {
+  left: 0;
+  top: auto;
+  bottom: 0;
+}
+.sk-banner-navigate .swiper-button-prev {
+  right: 0;
+  top: auto;
+  bottom: 0;
+}
+ .swiper-button-next,
+.swiper-button-prev {
+  color: #ec498a;
+}
+.sk-banner-navigate .swiper-button-next:after, .sk-banner-navigate
+.swiper-rtl .swiper-button-prev:after {
+  content: "next";
+  margin-left: -200px;
+}
+.sk-banner-navigate .swiper-button-next.swiper-button-disabled,
+.sk-banner-navigate .swiper-button-prev.swiper-button-disabled {
+  color: #eee;
+  opacity: 1;
+}
+.sk-time-education ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sk-time-education ul li {
+  font-size: 12px;
+  font-family: "Poppins", sans-serif;
+}
+
+.sk-time-education ul li svg {
+  font-size: 16px;
+  vertical-align: top;
+}
+.sk-course-sec {
+  background: #F4F4F4;
+  padding: 50px 0;
+}
+.sk-course-img{
+  position: relative;
+}
+.sk-certificate-box {
+  background: #fff;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+// End 
+
 /* carousel */
 #myCarousel .carousel-item {
   position: relative;
@@ -1579,6 +1732,7 @@ ul.star {
 .mock_test_pop.MuiBox-root button.btn.btn-info {
   background: #EC498A;
   border: none;
+  font-family: Roboto;
   width: 115px;
   height: 30px;
   font-style: normal;
