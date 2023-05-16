@@ -43,6 +43,8 @@ const SuccessStroyWithHashtag = () => {
           ...res.slice(num),
         ];
         setData(newFeaturedData);
+      } else {
+        setData([]);
       }
       setAllHashTag(all_hash_tags);
       setLoading(false);
@@ -168,6 +170,9 @@ const SuccessStroyWithHashtag = () => {
                 <div className='row'>
                   {data?.map((items, index) => {
                     if (items.id === "advertisement") {
+                      const randomIndex = Math.floor(
+                        Math.random() * succesStoriesLeft.length,
+                      );
                       return (
                         <>
                           {succesStoriesLeft.length > 0 && (
@@ -176,29 +181,36 @@ const SuccessStroyWithHashtag = () => {
                               // className='col-md-12 ads_home_cover '
                               onClick={() =>
                                 addEmailToClient(
-                                  succesStoriesLeft[0]?.add_email,
+                                  succesStoriesLeft[randomIndex]?.add_email,
                                 )
                               }
                             >
                               <div className='sk-cardAdd-fix'>
                                 <a
-                                  href={succesStoriesLeft[0]?.url_adds}
+                                  href={
+                                    succesStoriesLeft[randomIndex]?.url_adds
+                                  }
                                   target='_blank'
                                   rel='noreferrer'
                                 >
                                   {detect.isMobile
-                                    ? succesStoriesLeft[0]?.image_mobile && (
+                                    ? succesStoriesLeft[randomIndex]
+                                        ?.image_mobile && (
                                         <img
                                           src={
-                                            succesStoriesLeft[0]?.image_mobile
+                                            succesStoriesLeft[randomIndex]
+                                              ?.image_mobile
                                           }
                                           alt=''
                                           // className='ads_story_cover_img'
                                         />
                                       )
-                                    : succesStoriesLeft[0]?.image && (
+                                    : succesStoriesLeft[randomIndex]?.image && (
                                         <img
-                                          src={succesStoriesLeft[0]?.image}
+                                          src={
+                                            succesStoriesLeft[randomIndex]
+                                              ?.image
+                                          }
                                           alt=''
                                           // className='ads_story_cover_img'
                                         />

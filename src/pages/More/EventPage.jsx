@@ -300,9 +300,12 @@ function EventPage() {
             <div className='col-xl-8 col-lg-10 col-md-10 col-sm-12 mx-auto'>
               <div className='sk-title-heading'>
                 <h1>Discover SheKunj Events</h1>
-                <p>Our events are designed to inspire, educate, and empower you both personally and professionally.
-                 Whether it's a networking event, conference, or workshop, we want you to leave feeling inspired and 
-                 energized.</p>
+                <p>
+                  Our events are designed to inspire, educate, and empower you
+                  both personally and professionally. Whether it's a networking
+                  event, conference, or workshop, we want you to leave feeling
+                  inspired and energized.
+                </p>
               </div>
               <div className='sk-category mb-3'>
                 <ul>
@@ -356,33 +359,41 @@ function EventPage() {
               {dataWithAdds?.length ? (
                 dataWithAdds?.map((items, index) => {
                   if (items.id === "advertisement") {
+                    const randomIndex = Math.floor(
+                      Math.random() * eventBoxAds.length,
+                    );
+
                     return (
                       <>
                         <div
                           className='col-xl-3 col-lg-4 col-md-6'
                           key={index}
                           onClick={() =>
-                            addEmailToClient(eventBoxAds[0]?.add_email)
+                            addEmailToClient(
+                              eventBoxAds[randomIndex]?.add_email,
+                            )
                           }
                         >
                           <div className='sk-eventBox-adds'>
                             {eventBoxAds.length > 0 && (
                               <a
-                                href={eventBoxAds[0]?.url_adds}
+                                href={eventBoxAds[randomIndex]?.url_adds}
                                 target='_blank'
                                 rel='noreferrer'
                               >
                                 {detect.isMobile
-                                  ? eventBoxAds[0]?.image_mobile && (
+                                  ? eventBoxAds[randomIndex]?.image_mobile && (
                                       <img
-                                        src={eventBoxAds[0]?.image_mobile}
+                                        src={
+                                          eventBoxAds[randomIndex]?.image_mobile
+                                        }
                                         alt=''
                                         // className='ads_story_cover_img'
                                       />
                                     )
-                                  : eventBoxAds[0]?.image && (
+                                  : eventBoxAds[randomIndex]?.image && (
                                       <img
-                                        src={eventBoxAds[0]?.image}
+                                        src={eventBoxAds[randomIndex]?.image}
                                         alt=''
                                         // className='ads_story_cover_img'
                                       />

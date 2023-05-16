@@ -72,7 +72,7 @@ const SuccessStoryDetails = () => {
         const newFeaturedData = [];
 
         for (let i = 0; i < res.length; i++) {
-          if (i % 3 === 0 && i !== 0) {
+          if (i % 6 === 0 && i !== 0) {
             newFeaturedData.push(addObjectData);
           }
           newFeaturedData.push(res[i]);
@@ -378,6 +378,9 @@ const SuccessStoryDetails = () => {
                 <div className='row'>
                   {trendingData?.map((items, index) => {
                     if (items.id === "advertisement") {
+                      const randomIndex = Math.floor(
+                        Math.random() * storiesBannerAds.length,
+                      );
                       return (
                         <>
                           {storiesBannerAds.length > 0 && (
@@ -385,28 +388,34 @@ const SuccessStoryDetails = () => {
                               className='col-xl-12'
                               // className='col-md-12 ads_home_cover '
                               onClick={() =>
-                                addEmailToClient(storiesBannerAds[0]?.add_email)
+                                addEmailToClient(
+                                  storiesBannerAds[randomIndex]?.add_email,
+                                )
                               }
                             >
                               <div className='card'>
                                 <a
-                                  href={storiesBannerAds[0]?.url_adds}
+                                  href={storiesBannerAds[randomIndex]?.url_adds}
                                   target='_blank'
                                   rel='noreferrer'
                                 >
                                   {detect.isMobile
-                                    ? storiesBannerAds[0]?.image_mobile && (
+                                    ? storiesBannerAds[randomIndex]
+                                        ?.image_mobile && (
                                         <img
                                           src={
-                                            storiesBannerAds[0]?.image_mobile
+                                            storiesBannerAds[randomIndex]
+                                              ?.image_mobile
                                           }
                                           alt=''
                                           // className='ads_story_cover_img'
                                         />
                                       )
-                                    : storiesBannerAds[0]?.image && (
+                                    : storiesBannerAds[randomIndex]?.image && (
                                         <img
-                                          src={storiesBannerAds[0]?.image}
+                                          src={
+                                            storiesBannerAds[randomIndex]?.image
+                                          }
                                           alt=''
                                           // className='ads_story_cover_img'
                                         />
