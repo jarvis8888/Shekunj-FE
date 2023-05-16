@@ -30,10 +30,19 @@ import httpServices from "../../utils/ApiServices";
 import { CustomLoader } from "../../components/customLoader/CustomLoader";
 import { addEmailToClient } from "../../utils/utils";
 
+import {
+  FacebookShareButton,
+  TwitterShareButton,
+  LinkedinShareButton,
+  PinterestShareButton,
+  InstapaperShareButton,
+} from "react-share";
+
 const SuccessStoryDetails = () => {
   const { successStoriesDetails } = useSelector((state) => {
     return state.coursesReducer;
   });
+  const currentUrl = window.location.href;
 
   const dispatch = useDispatch();
 
@@ -63,7 +72,7 @@ const SuccessStoryDetails = () => {
         const newFeaturedData = [];
 
         for (let i = 0; i < res.length; i++) {
-          if (i % 3 === 0 && i !== 0) {
+          if (i % 6 === 0 && i !== 0) {
             newFeaturedData.push(addObjectData);
           }
           newFeaturedData.push(res[i]);
@@ -241,28 +250,31 @@ const SuccessStoryDetails = () => {
                     <h6>Share this article</h6>
                     <ul>
                       <li>
-                        <a href='javascript:;'>
-                          <img src={facebookicon} />
-                        </a>
+                        <FacebookShareButton url={currentUrl}>
+                          <img src={facebookicon} alt='Facebook' />
+                        </FacebookShareButton>
                       </li>
                       <li>
-                        <a href='javascript:;'>
-                          <img src={linkedinicon} />
-                        </a>
+                        <LinkedinShareButton url={currentUrl}>
+                          <img src={linkedinicon} alt='LinkedIn' />
+                        </LinkedinShareButton>
                       </li>
                       <li>
-                        <a href='javascript:;'>
-                          <img src={twittericon} />
-                        </a>
+                        <TwitterShareButton url={currentUrl}>
+                          <img src={twittericon} alt='Twitter' />
+                        </TwitterShareButton>
                       </li>
                       <li>
-                        <a href='javascript:;'>
-                          <img src={pintresticon} />
-                        </a>
+                        <PinterestShareButton
+                          url={currentUrl}
+                          media={successStoriesDetails?.image}
+                        >
+                          <img src={pintresticon} alt='Pinterest' />
+                        </PinterestShareButton>
                       </li>
                       <li>
-                        <a href='javascript:;'>
-                          <img src={instagramicon} />
+                        <a href='https://www.instagram.com/' target='_blank'>
+                          <img src={instagramicon} alt='instagramicon' />
                         </a>
                       </li>
                     </ul>
@@ -290,28 +302,31 @@ const SuccessStoryDetails = () => {
                       <h6 className='text-left pb-0'>Share this article</h6>
                       <ul>
                         <li>
-                          <a href='javascript:;'>
-                            <img src={facebookicon} />
-                          </a>
+                          <FacebookShareButton url={currentUrl}>
+                            <img src={facebookicon} alt='Facebook' />
+                          </FacebookShareButton>
                         </li>
                         <li>
-                          <a href='javascript:;'>
-                            <img src={linkedinicon} />
-                          </a>
+                          <LinkedinShareButton url={currentUrl}>
+                            <img src={linkedinicon} alt='LinkedIn' />
+                          </LinkedinShareButton>
                         </li>
                         <li>
-                          <a href='javascript:;'>
-                            <img src={twittericon} />
-                          </a>
+                          <TwitterShareButton url={currentUrl}>
+                            <img src={twittericon} alt='Twitter' />
+                          </TwitterShareButton>
                         </li>
                         <li>
-                          <a href='javascript:;'>
-                            <img src={pintresticon} />
-                          </a>
+                          <PinterestShareButton
+                            url={currentUrl}
+                            media={successStoriesDetails?.image}
+                          >
+                            <img src={pintresticon} alt='Pinterest' />
+                          </PinterestShareButton>
                         </li>
                         <li>
-                          <a href='javascript:;'>
-                            <img src={instagramicon} />
+                          <a href='https://www.instagram.com/' target='_blank'>
+                            <img src={instagramicon} alt='instagramicon' />
                           </a>
                         </li>
                       </ul>
@@ -319,37 +334,38 @@ const SuccessStoryDetails = () => {
                   </div>
                   <>
                     {storiesBannerAds.length > 0 && (
-                      <div className="row">
-                        <div className='col-xl-12'
-                        // className='col-md-12 ads_home_cover '
+                      <div className='row'>
+                        <div
+                          className='col-xl-12'
+                          // className='col-md-12 ads_home_cover '
                           onClick={() =>
-                          addEmailToClient(storiesBannerAds[0]?.add_email)
+                            addEmailToClient(storiesBannerAds[0]?.add_email)
                           }
-                         >
-                        <div className='card'>
-                          <a
-                            href={storiesBannerAds[0]?.url_adds}
-                            target='_blank'
-                            rel='noreferrer'
-                          >
-                            {detect.isMobile
-                              ? storiesBannerAds[0]?.image_mobile && (
-                                  <img
-                                    src={storiesBannerAds[0]?.image_mobile}
-                                    alt=''
-                                    // className='ads_story_cover_img'
-                                  />
-                                )
-                              : storiesBannerAds[0]?.image && (
-                                  <img
-                                    src={storiesBannerAds[0]?.image}
-                                    alt=''
-                                    // className='ads_story_cover_img'
-                                  />
-                                )}
-                          </a>
+                        >
+                          <div className='card'>
+                            <a
+                              href={storiesBannerAds[0]?.url_adds}
+                              target='_blank'
+                              rel='noreferrer'
+                            >
+                              {detect.isMobile
+                                ? storiesBannerAds[0]?.image_mobile && (
+                                    <img
+                                      src={storiesBannerAds[0]?.image_mobile}
+                                      alt=''
+                                      // className='ads_story_cover_img'
+                                    />
+                                  )
+                                : storiesBannerAds[0]?.image && (
+                                    <img
+                                      src={storiesBannerAds[0]?.image}
+                                      alt=''
+                                      // className='ads_story_cover_img'
+                                    />
+                                  )}
+                            </a>
+                          </div>
                         </div>
-                      </div>
                       </div>
                     )}
                   </>
@@ -362,6 +378,9 @@ const SuccessStoryDetails = () => {
                 <div className='row'>
                   {trendingData?.map((items, index) => {
                     if (items.id === "advertisement") {
+                      const randomIndex = Math.floor(
+                        Math.random() * storiesBannerAds.length,
+                      );
                       return (
                         <>
                           {storiesBannerAds.length > 0 && (
@@ -369,28 +388,34 @@ const SuccessStoryDetails = () => {
                               className='col-xl-12'
                               // className='col-md-12 ads_home_cover '
                               onClick={() =>
-                                addEmailToClient(storiesBannerAds[0]?.add_email)
+                                addEmailToClient(
+                                  storiesBannerAds[randomIndex]?.add_email,
+                                )
                               }
                             >
                               <div className='card'>
                                 <a
-                                  href={storiesBannerAds[0]?.url_adds}
+                                  href={storiesBannerAds[randomIndex]?.url_adds}
                                   target='_blank'
                                   rel='noreferrer'
                                 >
                                   {detect.isMobile
-                                    ? storiesBannerAds[0]?.image_mobile && (
+                                    ? storiesBannerAds[randomIndex]
+                                        ?.image_mobile && (
                                         <img
                                           src={
-                                            storiesBannerAds[0]?.image_mobile
+                                            storiesBannerAds[randomIndex]
+                                              ?.image_mobile
                                           }
                                           alt=''
                                           // className='ads_story_cover_img'
                                         />
                                       )
-                                    : storiesBannerAds[0]?.image && (
+                                    : storiesBannerAds[randomIndex]?.image && (
                                         <img
-                                          src={storiesBannerAds[0]?.image}
+                                          src={
+                                            storiesBannerAds[randomIndex]?.image
+                                          }
                                           alt=''
                                           // className='ads_story_cover_img'
                                         />

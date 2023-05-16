@@ -11,12 +11,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { adsList } from "../../store/ads";
 import { TrendingBlogsCard2 } from "../../components/cards/TrendingBlogsCard2";
 import catagorie from "../../assets/images/categoryblog.svg";
-import { DateFormat } from "../../utils/utils";
+import { DateFormat, addEmailToClient } from "../../utils/utils";
 import { CustomLoader } from "../../components/customLoader/CustomLoader";
+import useDeviceDetect from "../../hooks/useDeviceDetect";
 
 const BlogWithCatogry = () => {
   const location = useLocation();
   const dispatch = useDispatch();
+  const detect = useDeviceDetect();
 
   const { state } = location;
 
@@ -28,14 +30,30 @@ const BlogWithCatogry = () => {
   const [loading, setLoading] = useState(false);
   const [succesStoriesRight1, setSuccesStoriesRight1] = useState([]);
   const [succesStoriesRight2, setSuccesStoriesRight2] = useState([]);
+  const [blogDetailsBoxAds, setBlogDetailsBoxAds] = useState([]);
 
   const getBlogWithHashtagData = async (search) => {
     setLoading(true);
     try {
       const url = `more/blogs?category_id=${search}`;
-      const res = await httpServices.get(url);
-      setData(res?.filtered_blogs);
-      setAllHashTag(res?.blog_categories);
+      const data = await httpServices.get(url);
+      const { filtered_blogs, blog_categories } = data;
+      if (filtered_blogs?.length > 0) {
+        const res = filtered_blogs ?? [];
+        const addObjectData = { id: "advertisement" };
+        const newFeaturedData = [];
+
+        for (let i = 0; i < res.length; i++) {
+          newFeaturedData.push(res[i]);
+          if ((i + 1) % 2 === 0) {
+            newFeaturedData.push(addObjectData);
+          }
+        }
+        setData(newFeaturedData);
+      } else {
+        setData([]);
+      }
+      setAllHashTag(blog_categories);
     } catch (error) {
     } finally {
       setLoading(false);
@@ -91,6 +109,10 @@ const BlogWithCatogry = () => {
           )
           .then((response) => {
             if (response && response.data.results.length > 0) {
+              let filterArray1 = response.data.results.filter((item, index) => {
+                return item.image_type == "blog_index";
+              });
+              setBlogDetailsBoxAds(filterArray1);
               let filterArray2 = response.data.results.filter((item, index) => {
                 return item.image_type === "blog_index_right1";
               });
@@ -109,6 +131,10 @@ const BlogWithCatogry = () => {
         // alert("Your location is blocked")
         axios.get(`/private_adds/private_add`).then((response) => {
           if (response && response.data.results.length > 0) {
+            let filterArray1 = response.data.results.filter((item, index) => {
+              return item.image_type == "blog_index";
+            });
+            setBlogDetailsBoxAds(filterArray1);
             let filterArray2 = response.data.results.filter((item, index) => {
               return item.image_type === "blog_index_right1";
             });
@@ -145,22 +171,81 @@ const BlogWithCatogry = () => {
                   <CustomLoader />
                 </div>
               ) : (
-                <div className="sk-blogCategory-detail">
+                <div className='sk-blogCategory-detail'>
                   {data?.length
                     ? data?.map((items, index) => {
-                        return (
-                          <>
-                            <TrendingBlogsCard2
-                              image={items.image}
-                              title={items.title}
-                              id={items.id}
-                              description={`${items.about_blog}`}
-                              time={items.reading_time}
-                              date={DateFormat(`${items.created_at}`)}
-                              category_name={items.category_name}
-                            />
-                          </>
-                        );
+                        if (items.id === "advertisement") {
+                          const randomIndex = Math.floor(
+                            Math.random() * blogDetailsBoxAds.length,
+                          );
+                          return (
+                            <>
+                              {blogDetailsBoxAds.length > 0 && (
+                                <div className='row'>
+                                  <div
+                                    className='col-md-12'
+                                    // className='col-md-12 ads_home_cover '
+                                    onClick={() =>
+                                      addEmailToClient(
+                                        blogDetailsBoxAds[randomIndex]
+                                          ?.add_email,
+                                      )
+                                    }
+                                  >
+                                    <div className='card'>
+                                      <a
+                                        href={
+                                          blogDetailsBoxAds[randomIndex]
+                                            ?.url_adds
+                                        }
+                                        target='_blank'
+                                        rel='noreferrer'
+                                      >
+                                        {detect.isMobile
+                                          ? blogDetailsBoxAds[randomIndex]
+                                              ?.image_mobile && (
+                                              <img
+                                                src={
+                                                  blogDetailsBoxAds[randomIndex]
+                                                    ?.image_mobile
+                                                }
+                                                alt=''
+                                                // className='ads_story_cover_img'
+                                              />
+                                            )
+                                          : blogDetailsBoxAds[randomIndex]
+                                              ?.image && (
+                                              <img
+                                                src={
+                                                  blogDetailsBoxAds[randomIndex]
+                                                    ?.image
+                                                }
+                                                alt=''
+                                                // className='ads_story_cover_img'
+                                              />
+                                            )}
+                                      </a>
+                                    </div>
+                                  </div>
+                                </div>
+                              )}
+                            </>
+                          );
+                        } else {
+                          return (
+                            <>
+                              <TrendingBlogsCard2
+                                image={items.image}
+                                title={items.title}
+                                id={items.id}
+                                description={`${items.about_blog}`}
+                                time={items.reading_time}
+                                date={DateFormat(`${items.created_at}`)}
+                                category_name={items.category_name}
+                              />
+                            </>
+                          );
+                        }
                       })
                     : "no data"}
                 </div>

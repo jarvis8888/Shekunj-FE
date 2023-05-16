@@ -68,6 +68,13 @@ import YouMayLikeCarousel from "../../components/Carousel/YouMayLikeCarousel";
 import { toast } from "react-toastify";
 import toasterConfig from "../../utils/toasterCongig";
 import { CustomLoader } from "../../components/customLoader/CustomLoader";
+import {
+  FacebookShareButton,
+  TwitterShareButton,
+  LinkedinShareButton,
+  PinterestShareButton,
+  InstapaperShareButton,
+} from "react-share";
 
 const EventDetails = () => {
   let a = JSON.parse(localStorage.getItem("login_data"));
@@ -77,7 +84,7 @@ const EventDetails = () => {
   // getModalStyle is not a pure function, we roll the style only on the first render
   // const [modalStyle] = useState(getModalStyle);
   // const [modalData, setData] = useState();
-
+  const currentUrl = window.location.href;
   const history = useHistory();
   const { events, isLoading } = useSelector((state) => state.eventsReducer);
   const { bookEvents } = useSelector((state) => state.eventsReducer);
@@ -322,28 +329,37 @@ const EventDetails = () => {
                         <h6>Share this article</h6>
                         <ul>
                           <li>
-                            <a href='javascript:;'>
-                              <img src={facebookicon} />
-                            </a>
+                            <FacebookShareButton url={currentUrl}>
+                              <img src={facebookicon} alt='Facebook' />
+                            </FacebookShareButton>
                           </li>
                           <li>
-                            <a href='javascript:;'>
-                              <img src={linkedinicon} />
-                            </a>
+                            <LinkedinShareButton url={currentUrl}>
+                              <img src={linkedinicon} alt='LinkedIn' />
+                            </LinkedinShareButton>
                           </li>
                           <li>
-                            <a href='javascript:;'>
-                              <img src={twittericon} />
-                            </a>
+                            <TwitterShareButton
+                              url={currentUrl}
+                              image={eventsDetails?.image}
+                            >
+                              <img src={twittericon} alt='Twitter' />
+                            </TwitterShareButton>
                           </li>
                           <li>
-                            <a href='javascript:;'>
-                              <img src={pintresticon} />
-                            </a>
+                            <PinterestShareButton
+                              url={currentUrl}
+                              media={eventsDetails?.image}
+                            >
+                              <img src={pintresticon} alt='Pinterest' />
+                            </PinterestShareButton>
                           </li>
                           <li>
-                            <a href='javascript:;'>
-                              <img src={instagramicon} />
+                            <a
+                              href='https://www.instagram.com/'
+                              target='_blank'
+                            >
+                              <img src={instagramicon} alt='instagramicon' />
                             </a>
                           </li>
                         </ul>
