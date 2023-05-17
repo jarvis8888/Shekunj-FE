@@ -4,6 +4,7 @@ import { withHeaderFooter } from "../../hocs/withHeaderFooter";
 import httpServices from "../../utils/ApiServices";
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import "./index.scss";
+import searchnavicon from "../../assets/images/searchicon.svg";
 import { GlobalSearchCard } from "../../components/cards/GlobalSearchCard";
 import { Grid } from "rsuite";
 import { useDispatch, useSelector } from "react-redux";
@@ -81,7 +82,6 @@ const GlobalSearch = () => {
     });
   };
 
-
   useEffect(() => {
     getGlobalSearchData(currentSearch);
   }, [currentSearch, lan]);
@@ -96,7 +96,7 @@ const GlobalSearch = () => {
                 <div className='sk-form'>
                   <div className='sk-form-group'>
                     <span className='sk-icon'>
-                      <SearchRoundedIcon />
+                      <img src={searchnavicon} />
                     </span>
                     <div className='career_form'>
                       <input

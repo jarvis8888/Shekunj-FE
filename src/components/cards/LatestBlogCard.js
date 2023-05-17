@@ -27,7 +27,11 @@ const LatestBlogCard = (props) => {
   } = props;
   const history = useHistory();
   return (
-    <div className='card' key={key}>
+    <div
+      className='card'
+      key={key}
+      onClick={() => history.push(routingConstants.MORE_BLOG + id)}
+    >
       <div className='card__image'>
         <img src={image} alt={title} />
         <span className='sk-chipTag-blog'>{category_name}</span>

@@ -34,14 +34,16 @@ const SuccessStroyWithHashtag = () => {
       const data = await httpServices.get(url);
       const { filtered_data, all_hash_tags } = data;
       if (filtered_data?.length > 0) {
-        const num = Math.floor(Math.random() * 4);
         const res = filtered_data ?? [];
         const addObjectData = { id: "advertisement" };
-        const newFeaturedData = [
-          ...res.slice(0, num),
-          addObjectData,
-          ...res.slice(num),
-        ];
+        const newFeaturedData = [];
+
+        for (let i = 0; i < res.length; i++) {
+          if (i % 2 === 0 && i !== 0) {
+            newFeaturedData.push(addObjectData);
+          }
+          newFeaturedData.push(res[i]);
+        }
         setData(newFeaturedData);
       } else {
         setData([]);
@@ -62,7 +64,6 @@ const SuccessStroyWithHashtag = () => {
     return htmlNode.innerHTML;
   };
 
-  // const addEmail = (email) => {
   //   navigator.geolocation.getCurrentPosition(async function (position, values) {
   //     const latitude = position.coords.latitude;
   //     const longitude = position.coords.longitude;
@@ -151,6 +152,43 @@ const SuccessStroyWithHashtag = () => {
     }
   }, [state]);
 
+  const succesStoriesLeftadCount = succesStoriesLeft.length; // Total number of ads
+  let adIndex = 0; // Current ad index
+
+  const getNextAdIndexSuccesStoriesLeft = () => {
+    // Increment the index and reset if it exceeds the total count
+    adIndex = (adIndex + 1) % succesStoriesLeftadCount;
+    return adIndex;
+  };
+
+  const renderAd = (ad) => (
+    <div
+      key={ad.id}
+      onClick={() => addEmailToClient(ad.add_email)}
+      className='col-xl-6 col-lg-6 col-md-12 col-sm-12'
+    >
+      <div className='sk-cardAdd-fix'>
+        <a href={ad.url_adds} target='_blank' rel='noreferrer'>
+          {detect.isMobile
+            ? ad.image_mobile && <img src={ad.image_mobile} alt='' />
+            : ad.image && <img src={ad.image} alt='' />}
+        </a>
+      </div>
+    </div>
+  );
+
+  const succesStoriesLeftRenderAds = () => {
+    const adsToRender = [];
+
+    for (let i = 0; i < succesStoriesLeftadCount; i++) {
+      const adIndex = getNextAdIndexSuccesStoriesLeft();
+      const ad = succesStoriesLeft[adIndex];
+      adsToRender.push(renderAd(ad));
+    }
+
+    return adsToRender[getNextAdIndexSuccesStoriesLeft()];
+  };
+
   return (
     <div>
       <Header />
@@ -163,62 +201,15 @@ const SuccessStroyWithHashtag = () => {
               </h4>
 
               {loading ? (
-                <div>
-                  <CustomLoader />
-                </div>
+                <CustomLoader size='small' />
               ) : (
                 <div className='row'>
                   {data?.map((items, index) => {
                     if (items.id === "advertisement") {
-                      const randomIndex = Math.floor(
-                        Math.random() * succesStoriesLeft.length,
-                      );
                       return (
                         <>
-                          {succesStoriesLeft.length > 0 && (
-                            <div
-                              className='col-md-6'
-                              // className='col-md-12 ads_home_cover '
-                              onClick={() =>
-                                addEmailToClient(
-                                  succesStoriesLeft[randomIndex]?.add_email,
-                                )
-                              }
-                            >
-                              <div className='sk-cardAdd-fix'>
-                                <a
-                                  href={
-                                    succesStoriesLeft[randomIndex]?.url_adds
-                                  }
-                                  target='_blank'
-                                  rel='noreferrer'
-                                >
-                                  {detect.isMobile
-                                    ? succesStoriesLeft[randomIndex]
-                                        ?.image_mobile && (
-                                        <img
-                                          src={
-                                            succesStoriesLeft[randomIndex]
-                                              ?.image_mobile
-                                          }
-                                          alt=''
-                                          // className='ads_story_cover_img'
-                                        />
-                                      )
-                                    : succesStoriesLeft[randomIndex]?.image && (
-                                        <img
-                                          src={
-                                            succesStoriesLeft[randomIndex]
-                                              ?.image
-                                          }
-                                          alt=''
-                                          // className='ads_story_cover_img'
-                                        />
-                                      )}
-                                </a>
-                              </div>
-                            </div>
-                          )}
+                          {succesStoriesLeft.length > 0 &&
+                            succesStoriesLeftRenderAds()}
                         </>
                       );
                     } else {

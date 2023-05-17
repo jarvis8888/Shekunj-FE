@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Container, Row, Col, Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useLocation } from "react-router-dom";
+import { useHistory, useLocation, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { routingConstants } from "../../utils/constants";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -61,6 +61,7 @@ function EventPage() {
   ];
 
   const { lan } = useSelector((state) => state.languageReducer);
+  const sectionRef = useRef(null);
   const [currentData2, setCurrentData2] = useState([]);
 
   const [eventBoxAds, setEventBoxAds] = useState([]);
@@ -227,12 +228,44 @@ function EventPage() {
 
   useEffect(() => {
     getAllEVentsData(currentOffset, selectedOption);
-    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, [currentOffset, lan, selectedOption]);
 
-  // useEffect(() => {
-  //   getAllGenreEVentsData(selectedOption);
-  // }, []);
+  const adCount = eventBoxAds.length;
+  let adIndex = 0;
+
+  const getNextAdIndex = () => {
+    adIndex = (adIndex + 1) % adCount;
+    return adIndex;
+  };
+
+  const renderAd = (ad) => (
+    <div
+      key={ad.id}
+      onClick={() => addEmailToClient(ad.add_email)}
+      className='col-xl-3 col-lg-4 col-md-6'
+    >
+      <div className='sk-eventBox-adds'>
+        <a href={ad.url_adds} target='_blank' rel='noreferrer'>
+          {detect.isMobile
+            ? ad.image_mobile && <img src={ad.image_mobile} alt='' />
+            : ad.image && <img src={ad.image} alt='' />}
+        </a>
+      </div>
+    </div>
+  );
+
+  const renderAds = () => {
+    const adsToRender = [];
+
+    for (let i = 0; i < adCount; i++) {
+      const adIndex = getNextAdIndex();
+      const ad = eventBoxAds[adIndex];
+      adsToRender.push(renderAd(ad));
+    }
+
+    return adsToRender[getNextAdIndex()];
+  };
+
   return (
     <div>
       <Header loginPage={true} page='more' subPage='moreEvent' />
@@ -307,7 +340,7 @@ function EventPage() {
                   inspired and energized.
                 </p>
               </div>
-              <div className='sk-category mb-3'>
+              <div className='sk-category mb-3' ref={sectionRef}>
                 <ul>
                   <li>Time</li>
                   {options.map((items, index) => {
@@ -359,55 +392,18 @@ function EventPage() {
               {dataWithAdds?.length ? (
                 dataWithAdds?.map((items, index) => {
                   if (items.id === "advertisement") {
-                    const randomIndex = Math.floor(
-                      Math.random() * eventBoxAds.length,
-                    );
-
+                    return <>{eventBoxAds.length > 0 && renderAds()}</>;
+                  } else {
                     return (
                       <>
                         <div
                           className='col-xl-3 col-lg-4 col-md-6'
                           key={index}
                           onClick={() =>
-                            addEmailToClient(
-                              eventBoxAds[randomIndex]?.add_email,
-                            )
+                            history.push(routingConstants.MORE_EVENT + items.id)
                           }
+                          style={{ cursor: "pointer" }}
                         >
-                          <div className='sk-eventBox-adds'>
-                            {eventBoxAds.length > 0 && (
-                              <a
-                                href={eventBoxAds[randomIndex]?.url_adds}
-                                target='_blank'
-                                rel='noreferrer'
-                              >
-                                {detect.isMobile
-                                  ? eventBoxAds[randomIndex]?.image_mobile && (
-                                      <img
-                                        src={
-                                          eventBoxAds[randomIndex]?.image_mobile
-                                        }
-                                        alt=''
-                                        // className='ads_story_cover_img'
-                                      />
-                                    )
-                                  : eventBoxAds[randomIndex]?.image && (
-                                      <img
-                                        src={eventBoxAds[randomIndex]?.image}
-                                        alt=''
-                                        // className='ads_story_cover_img'
-                                      />
-                                    )}
-                              </a>
-                            )}
-                          </div>
-                        </div>
-                      </>
-                    );
-                  } else {
-                    return (
-                      <>
-                        <div className='col-xl-3 col-lg-4 col-md-6' key={index}>
                           <div className='sk-card-box'>
                             <div className='sk-card-img'>
                               <img src={items.image} alt='' />
@@ -489,6 +485,9 @@ function EventPage() {
                       type=''
                       onClick={() => {
                         setCurrentOffset(currentOffset + 8);
+                        sectionRef.current.scrollIntoView({
+                          behavior: "smooth",
+                        });
                       }}
                       className='sk-btn'
                     >

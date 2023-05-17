@@ -4,6 +4,7 @@ img {
 }
 .card:hover {
   box-shadow: 0px 5px 15px 0px #87154221;
+  cursor: pointer;
 }
 .sk-tagBlog-name {
   background: #2867b2;
@@ -216,6 +217,7 @@ img {
   margin-bottom: 30px;
   grid-gap: 15px;
   gap: 15px;
+  cursor: pointer;
 
   &__image {
     flex: 80px 0 0;

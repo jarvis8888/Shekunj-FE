@@ -287,13 +287,16 @@ body {
     }
   }
 }
-
+.searchIconSmall{
+  max-width: 19.5px;
+}
 .mobile-show {
   display: none;
   @media (max-width: 800px) {
     display: flex;
     z-index: 9;
     position: relative;
+    align-items: center;
   }
 }
 

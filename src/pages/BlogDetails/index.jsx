@@ -66,6 +66,7 @@ const BlogDetails = () => {
   const detect = useDeviceDetect();
   const [succesStoriesRight1, setSuccesStoriesRight1] = useState([]);
   const [succesStoriesRight2, setSuccesStoriesRight2] = useState([]);
+  const [blogLeft, setBolgLeft] = useState([]);
   const [blogCategories, setBlogCategories] = useState([]);
   const [trending, setTrending] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -76,55 +77,6 @@ const BlogDetails = () => {
     dispatch(singleBlogDetails(id));
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, [dispatch, id, lan]);
-
-  // useEffect(() => {
-  //     dispatch(getAllBlogs());
-  //   }, [dispatch, lan]);
-
-  // const transformImg = (image) => {
-  //     return image ? image : TopCollage;
-  // };
-  // const transformGalley = (image) => {
-  //     return image ? image : noImageIcon;
-  // };
-  // const transformCovImg = (image) => {
-  //     return image ? image : dummySchool;
-  // };
-
-  // >>>>>>>>>>>>>>>>>>>>>>>>>> code below >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-
-  // useEffect(() => {
-  //   navigator.geolocation.getCurrentPosition(async function (position, values) {
-  //     const latitude = position.coords.latitude;
-  //     const longitude = position.coords.longitude;
-
-  //     let params = {
-  //       latitude: latitude.toString(),
-  //       longitude: longitude.toString(),
-  //     };
-  //     axios
-  //       .get(
-  //         `/private_adds/private_add?latitude=${latitude}&longitude=${longitude}`,
-  //       )
-  //       .then((response) => {
-  //         if (response.data.results.length > 0) {
-  //           let filterArray = response.data.results.filter((item, index) => {
-  //             return item.image_type == "blog_details";
-  //           });
-  //           let findImage =
-  //             filterArray.length > 0 ? filterArray[0].image : "NA";
-  //           setImage(findImage);
-  //           setBlogDetailsBoxAds(filterArray);
-  //         }
-  //       })   .catch((error) => {
-  //         // setMessage("No data found");
-  //         (error);
-  //     })
-  //   });
-  //   dispatch(adsList());
-  // }, [dispatch]);
-
-  // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Latest code >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
   const fetchData = async () => {
     setLoading(true);
@@ -184,6 +136,10 @@ const BlogDetails = () => {
                 return item.image_type == "blog_index_right2";
               });
               setSuccesStoriesRight2(filterArray3);
+              let filterArray4 = response.data.results.filter((item, index) => {
+                return item.image_type === "blog_index_left";
+              });
+              setBolgLeft(filterArray4);
             }
           });
       },
@@ -204,37 +160,15 @@ const BlogDetails = () => {
               return item.image_type == "blog_index_right2";
             });
             setSuccesStoriesRight2(filterArray3);
+            let filterArray4 = response.data.results.filter((item, index) => {
+              return item.image_type === "blog_index_left";
+            });
+            setBolgLeft(filterArray4);
           }
         });
       },
     );
   }, []);
-
-  // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-
-  const addEmail = (email) => {
-    // ("addEmail", email);
-    navigator.geolocation.getCurrentPosition(async function (position, values) {
-      const latitude = position.coords.latitude;
-      const longitude = position.coords.longitude;
-
-      let params = {
-        latitude: latitude.toString(),
-        longitude: longitude.toString(),
-      };
-      axios
-        .post("/private_adds/click_add/", {
-          // add_email:`${adds[0]?.add_email}`
-          add_email: email,
-          latitude: params.latitude.toString(),
-          longitude: params.longitude.toString(),
-        })
-        .then((response) => {
-          // setAdds(response.data.results);
-          // ("addEmailresponse", response);
-        });
-    });
-  };
 
   const makeHtml = (htmlString) => {
     const htmlNode = document.createElement("div");
@@ -243,6 +177,43 @@ const BlogDetails = () => {
       node.removeAttribute("style");
     });
     return htmlNode.innerHTML;
+  };
+
+  const blogsLeftadCount = blogLeft.length; // Total number of ads
+  let blogLeftadIndex = 0; // Current ad index
+
+  const getNextAdIndexBlogLeft = () => {
+    // Increment the index and reset if it exceeds the total count
+    blogLeftadIndex = (blogLeftadIndex + 1) % blogsLeftadCount;
+    return blogLeftadIndex;
+  };
+
+  const renderAd = (ad) => (
+    <div
+      key={ad.id}
+      onClick={() => addEmailToClient(ad.add_email)}
+      className='col-xl-12'
+    >
+      <div className='card'>
+        <a href={ad.url_adds} target='_blank' rel='noreferrer'>
+          {detect.isMobile
+            ? ad.image_mobile && <img src={ad.image_mobile} alt='' />
+            : ad.image && <img src={ad.image} alt='' />}
+        </a>
+      </div>
+    </div>
+  );
+
+  const blogLeftRenderAds = () => {
+    const adsToRender = [];
+
+    for (let i = 0; i < blogsLeftadCount; i++) {
+      const adIndex = getNextAdIndexBlogLeft();
+      const ad = blogLeft[adIndex];
+      adsToRender.push(renderAd(ad));
+    }
+
+    return adsToRender[getNextAdIndexBlogLeft()];
   };
 
   return (
@@ -380,60 +351,7 @@ const BlogDetails = () => {
                 <div className='sk-blogMain-inner'>
                   {trending?.map((items, index) => {
                     if (items.id === "advertisement") {
-                      const randomIndex = Math.floor(
-                        Math.random() * blogDetailsBoxAds.length,
-                      );
-                      return (
-                        <>
-                          {blogDetailsBoxAds.length > 0 && (
-                            <div className='row'>
-                              <div
-                                className='col-md-12'
-                                // className='col-md-12 ads_home_cover '
-                                onClick={() =>
-                                  addEmailToClient(
-                                    blogDetailsBoxAds[randomIndex]?.add_email,
-                                  )
-                                }
-                              >
-                                <div className='card'>
-                                  <a
-                                    href={
-                                      blogDetailsBoxAds[randomIndex]?.url_adds
-                                    }
-                                    target='_blank'
-                                    rel='noreferrer'
-                                  >
-                                    {detect.isMobile
-                                      ? blogDetailsBoxAds[randomIndex]
-                                          ?.image_mobile && (
-                                          <img
-                                            src={
-                                              blogDetailsBoxAds[randomIndex]
-                                                ?.image_mobile
-                                            }
-                                            alt=''
-                                            // className='ads_story_cover_img'
-                                          />
-                                        )
-                                      : blogDetailsBoxAds[randomIndex]
-                                          ?.image && (
-                                          <img
-                                            src={
-                                              blogDetailsBoxAds[randomIndex]
-                                                ?.image
-                                            }
-                                            alt=''
-                                            // className='ads_story_cover_img'
-                                          />
-                                        )}
-                                  </a>
-                                </div>
-                              </div>
-                            </div>
-                          )}
-                        </>
-                      );
+                      return <>{blogLeft.length > 0 && blogLeftRenderAds()}</>;
                     } else {
                       return (
                         <>

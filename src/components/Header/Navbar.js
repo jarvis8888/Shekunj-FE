@@ -6,6 +6,9 @@ import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import CloseIcon from "@mui/icons-material/Close";
 import globalSreach from "../../assets/icons/svgs/globalSearch.png";
 import logo from "../../assets/images/shekunjlogo.svg";
+import searchnavicon from "../../assets/images/searchicon.svg";
+import mobilemenu from "../../assets/images/mobilemenuicon.svg";
+import closemenuicon from "../../assets/images/closecmenu.svg";
 import SearchIcon from "@mui/icons-material/Search";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
@@ -125,21 +128,21 @@ const Navbar = (props) => {
           className='sk-mobile-hide'
           onClick={() => history.push(routingConstants.SEARCH)}
         >
-          <SearchIcon />
+        <img src={searchnavicon} />
         </span>
       </div>
       <div className='mobile-show'>
         <span
-          className='mr-2'
+          className='mr-3'
           onClick={() => history.push(routingConstants.SEARCH)}
         >
-          <SearchIcon />
+        <img src={searchnavicon} className="searchIconSmall" />
         </span>
         <span
           className={`nav-toggle ${isOpen && "open"}`}
           onClick={() => setIsOpen(!isOpen)}
         >
-          {isOpen ? <CloseIcon /> : <MenuOutlinedIcon />}
+          {isOpen ? <img src={closemenuicon} /> : <img src={mobilemenu} />}
         </span>
       </div>
     </div>

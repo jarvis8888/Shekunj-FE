@@ -6,6 +6,7 @@ import linkedinicon from "../../assets/images/linkedin.svg";
 import twittericon from "../../assets/images/twitter.svg";
 import pintresticon from "../../assets/images/pintrest.svg";
 import instagramicon from "../../assets/images/instagram.svg";
+import youtubeIcon from "../../assets/images/youtube.svg";
 import instagram from "../../assets/images/instagram.png";
 import MailOutlineRoundedIcon from "@mui/icons-material/MailOutlineRounded";
 
@@ -22,43 +23,48 @@ export const SocialMedia = () => {
               <ul>
                 <li>
                   <a
-                    href='https://www.facebook.com/SheKunj/'
+                    href='https://www.facebook.com/Shekunj-105073495386436'
                     target='_blank'
                     rel='noreferrer'
                   >
-                    <img src={facebookicon} />
+                    <img src={facebookicon} alt='facebookicon' />
                   </a>
                 </li>
                 <li>
                   <a
-                    href='https://www.linkedin.com/showcase/shekunjedu/'
+                    href='https://in.linkedin.com/showcase/shekunjedu'
                     target='_blank'
                     rel='noreferrer'
                   >
-                    <img src={linkedinicon} />
+                    <img src={linkedinicon} alt='linkedinicon' />
                   </a>
                 </li>
                 <li>
                   <a
-                    href='https://www.instagram.com/shekunj_edu/?hl=en'
+                    href='https://twitter.com/SheKunj_edu'
                     target='_blank'
                     rel='noreferrer'
                   >
-                    <img src={twittericon} />
+                    <img src={twittericon} alt='twittericon ' />
                   </a>
                 </li>
+
                 <li>
-                  <a href='javascript:;'>
-                    <img src={pintresticon} />
+                  <a
+                    href='https://in.linkedin.com/showcase/shekunjedu'
+                    target='_blank'
+                    rel='noreferrer'
+                  >
+                    <img src={instagramicon} alt='instagramicon' />
                   </a>
                 </li>
                 <li>
                   <a
-                    href='https://www.instagram.com/shekunj_edu/?hl=en'
+                    href='https://www.youtube.com/@shekunj_edu'
                     target='_blank'
                     rel='noreferrer'
                   >
-                    <img src={instagramicon} />
+                    <img src={youtubeIcon} alt='youtubeIcon' />
                   </a>
                 </li>
               </ul>

@@ -52,11 +52,14 @@ function SuccessStory() {
   const [currentFeaturedData, setCurrentFeaturedData] = useState([]);
   const [trendingData, setTrendingData] = useState([]);
   const [animationTrendingData, setAnimationTrendingData] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [animationData, setAnimationData] = useState([]);
   const [allHashTag, setAllHashTag] = useState([]);
   const [storiesBannerAds, setStoriesBannerAds] = useState([]);
   const [succesStoriesRight1, setSuccesStoriesRight1] = useState([]);
   const [succesStoriesRight2, setSuccesStoriesRight2] = useState([]);
   const [succesStoriesLeft, setSuccesStoriesLeft] = useState([]);
+  const [succesStoriesBox, setSuccesStoriesBox] = useState([]);
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = React.useState(false);
   const detect = useDeviceDetect();
@@ -74,21 +77,26 @@ function SuccessStory() {
       } = data;
       setAnimationTrendingData(trending_success_stories);
       if (featured_success_stories?.results?.length > 0) {
-        const num = Math.floor(Math.random() * 4);
         const res = featured_success_stories?.results ?? [];
         const addObjectData = { id: "advertisement" };
-        const newFeaturedData = [
-          ...res.slice(0, num),
-          addObjectData,
-          ...res.slice(num),
-        ];
+        const newFeaturedData = [];
+
+        for (let i = 0; i < res.length; i++) {
+          newFeaturedData.push(res[i]);
+
+          if ((i + 1) % 2 === 0) {
+            newFeaturedData.push(addObjectData);
+          }
+        }
+
         setFeaturedData((prevFeaturedData) => [
-          ...prevFeaturedData,
           ...newFeaturedData,
+          ...prevFeaturedData,
         ]);
       } else {
         setCurrentFeaturedData(featured_success_stories);
       }
+
       if (trending_success_stories?.length > 0) {
         const res = trending_success_stories ?? [];
         const addObjectData = { id: "advertisement" };
@@ -115,7 +123,6 @@ function SuccessStory() {
 
   useEffect(() => {
     getAllSuccessStoryData(pageLimit, offset);
-    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, [lan, offset]);
 
   useEffect(() => {
@@ -150,10 +157,15 @@ function SuccessStory() {
 
               setSuccesStoriesRight2(filterArray3);
               let filterArray4 = response.data.results.filter((item, index) => {
-                return item.image_type === "success_stories_box";
+                return item.image_type === "success_stories_left";
               });
 
               setSuccesStoriesLeft(filterArray4);
+              let filterArray5 = response.data.results.filter((item, index) => {
+                return item.image_type === "success_stories_box";
+              });
+
+              setSuccesStoriesBox(filterArray5);
             }
           });
       },
@@ -177,10 +189,15 @@ function SuccessStory() {
 
             setSuccesStoriesRight2(filterArray3);
             let filterArray4 = response.data.results.filter((item, index) => {
-              return item.image_type === "success_stories_box";
+              return item.image_type === "success_stories_left";
             });
 
             setSuccesStoriesLeft(filterArray4);
+            let filterArray5 = response.data.results.filter((item, index) => {
+              return item.image_type === "success_stories_box";
+            });
+
+            setSuccesStoriesBox(filterArray5);
           }
         });
       },
@@ -212,13 +229,114 @@ function SuccessStory() {
     dispatch(setCollapseSuccessStory(id, is_collapse ? false : true));
   };
 
+  const succesStoriesLeftadCount = succesStoriesLeft.length; // Total number of ads
+  let adIndex = 0; // Current ad index
+
+  const getNextAdIndexSuccesStoriesLeft = () => {
+    // Increment the index and reset if it exceeds the total count
+    adIndex = (adIndex + 1) % succesStoriesLeftadCount;
+    return adIndex;
+  };
+
+  const renderAd = (ad) => (
+    <div
+      key={ad.id}
+      onClick={() => addEmailToClient(ad.add_email)}
+      className='col-xl-12'
+    >
+      <div className='card'>
+        <a href={ad.url_adds} target='_blank' rel='noreferrer'>
+          {detect.isMobile
+            ? ad.image_mobile && <img src={ad.image_mobile} alt='' />
+            : ad.image && <img src={ad.image} alt='' />}
+        </a>
+      </div>
+    </div>
+  );
+
+  const succesStoriesLeftRenderAds = () => {
+    const adsToRender = [];
+
+    for (let i = 0; i < succesStoriesLeftadCount; i++) {
+      const adIndex = getNextAdIndexSuccesStoriesLeft();
+      const ad = succesStoriesLeft[adIndex];
+      adsToRender.push(renderAd(ad));
+    }
+
+    return adsToRender[getNextAdIndexSuccesStoriesLeft()];
+  };
+
+  const succesStoriesBoxadCount = succesStoriesBox.length; // Total number of ads
+  let BoxadIndex = 0; // Current ad index
+
+  const getNextAdIndexSuccesStoriesBox = () => {
+    // Increment the index and reset if it exceeds the total count
+    BoxadIndex = (BoxadIndex + 1) % succesStoriesBoxadCount;
+    return BoxadIndex;
+  };
+
+  const renderBoxAd = (ad) => (
+    <div
+      key={ad.id}
+      onClick={() => addEmailToClient(ad.add_email)}
+      className='col-xl-6 col-lg-6 col-md-12 col-sm-12'
+    >
+      <div className='sk-cardAdd-fix'>
+        <a href={ad.url_adds} target='_blank' rel='noreferrer'>
+          {detect.isMobile
+            ? ad.image_mobile && <img src={ad.image_mobile} alt='' />
+            : ad.image && <img src={ad.image} alt='' />}
+        </a>
+      </div>
+    </div>
+  );
+
+  const succesStoriesBoxRenderAds = () => {
+    const adsToRender = [];
+
+    for (let i = 0; i < succesStoriesBoxadCount; i++) {
+      const BoxadIndex = getNextAdIndexSuccesStoriesBox();
+      const ad = succesStoriesBox[BoxadIndex];
+      adsToRender.push(renderBoxAd(ad));
+    }
+
+    return adsToRender[getNextAdIndexSuccesStoriesBox()];
+  };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex(
+        (prevIndex) => (prevIndex + 1) % animationTrendingData.length,
+      );
+    }, 5000);
+
+    // Cleanup the interval on component unmount
+    return () => {
+      clearInterval(interval);
+    };
+  }, [animationTrendingData.length]);
+
+  useEffect(() => {
+    // Update the animation data when the currentIndex changes
+    const endIndex = (currentIndex + 8) % animationTrendingData.length;
+    // Declare a variable to store the updated animation data
+    // Check if the range falls within a single continuous section of the array
+    const updatedData =
+      currentIndex <= endIndex
+        ? animationTrendingData.slice(currentIndex, endIndex)
+        : [
+            ...animationTrendingData.slice(currentIndex),
+            ...animationTrendingData.slice(0, endIndex),
+          ];
+    // Set the updated animation data using setAnimationData
+    setAnimationData(updatedData);
+  }, [currentIndex, animationTrendingData]);
+
   return (
     <div>
       <Header loginPage={true} page='story' />
       {loading ? (
-        <div>
-          <CustomLoader />
-        </div>
+        <CustomLoader />
       ) : (
         <>
           <section className='sk-storyMain-sec'>
@@ -260,34 +378,32 @@ function SuccessStory() {
                 <div className='col-xl-6 col-lg-6 col-md-12 col-sm-12'>
                   <div className='sk-storyS-images'>
                     <ul>
-                      {animationTrendingData
-                        ?.slice(0, 8)
-                        .map((items, index) => {
-                          return (
-                            <>
-                              <li
-                                className='sk-scale-animate'
-                                key={index}
-                                onClick={() =>
-                                  history.push(
-                                    routingConstants.SUCCESS_STORIES + items.id,
-                                  )
-                                }
-                              >
-                                <div className='sk-story-eimg'>
-                                  <img src={items.image} />
-                                  <span></span>
+                      {animationData?.map((items, index) => {
+                        return (
+                          <>
+                            <li
+                              className='sk-scale-animate'
+                              key={index}
+                              onClick={() =>
+                                history.push(
+                                  routingConstants.SUCCESS_STORIES + items.id,
+                                )
+                              }
+                            >
+                              <div className='sk-story-eimg'>
+                                <img src={items.image} alt='' />
+                                <span></span>
+                              </div>
+                              <div className='sk-story-econtent'>
+                                <div className='sk-ewoman-title'>
+                                  <p>{items.name}</p>
+                                  <h6>{items.company_name}</h6>
                                 </div>
-                                <div className='sk-story-econtent'>
-                                  <div className='sk-ewoman-title'>
-                                    <p>{items.name}</p>
-                                    <h6>{items.company_name}</h6>
-                                  </div>
-                                </div>
-                              </li>
-                            </>
-                          );
-                        })}
+                              </div>
+                            </li>
+                          </>
+                        );
+                      })}
                     </ul>
                   </div>
                 </div>
@@ -352,57 +468,10 @@ function SuccessStory() {
                   <div className='row'>
                     {featuredData?.map((items, index) => {
                       if (items.id === "advertisement") {
-                        const randomIndex = Math.floor(
-                          Math.random() * succesStoriesLeft.length,
-                        );
-
                         return (
                           <>
-                            {succesStoriesLeft.length > 0 && (
-                              <div
-                                className='col-xl-6 col-lg-6 col-md-12 col-sm-12'
-                                // className='col-md-12 ads_home_cover '
-                                onClick={() =>
-                                  addEmailToClient(
-                                    succesStoriesLeft[randomIndex]?.add_email,
-                                  )
-                                }
-                              >
-                                <div className='sk-cardAdd-fix'>
-                                  <a
-                                    href={
-                                      succesStoriesLeft[randomIndex]?.url_adds
-                                    }
-                                    target='_blank'
-                                    rel='noreferrer'
-                                  >
-                                    {detect.isMobile
-                                      ? succesStoriesLeft[randomIndex]
-                                          ?.image_mobile && (
-                                          <img
-                                            src={
-                                              succesStoriesLeft[randomIndex]
-                                                ?.image_mobile
-                                            }
-                                            alt=''
-                                            // className='ads_story_cover_img'
-                                          />
-                                        )
-                                      : succesStoriesLeft[randomIndex]
-                                          ?.image && (
-                                          <img
-                                            src={
-                                              succesStoriesLeft[randomIndex]
-                                                ?.image
-                                            }
-                                            alt=''
-                                            // className='ads_story_cover_img'
-                                          />
-                                        )}
-                                  </a>
-                                </div>
-                              </div>
-                            )}
+                            {succesStoriesBox.length > 0 &&
+                              succesStoriesBoxRenderAds()}
                           </>
                         );
                       } else {
@@ -430,7 +499,12 @@ function SuccessStory() {
                     <button
                       disabled={currentFeaturedData?.results?.length === 0}
                       className='loadMore'
-                      onClick={() => setOffset(offset + 5)}
+                      onClick={() => {
+                        setOffset(offset + 5);
+                        sectionRef.current.scrollIntoView({
+                          behavior: "smooth",
+                        });
+                      }}
                     >
                       Load More
                     </button>
@@ -444,56 +518,10 @@ function SuccessStory() {
                     <div className='row'>
                       {trendingData?.map((items, index) => {
                         if (items.id === "advertisement") {
-                          const randomIndex = Math.floor(
-                            Math.random() * storiesBannerAds.length,
-                          );
                           return (
                             <>
-                              {storiesBannerAds.length > 0 && (
-                                <div
-                                  className='col-xl-12'
-                                  // className='col-md-12 ads_home_cover '
-                                  onClick={() =>
-                                    addEmailToClient(
-                                      storiesBannerAds[randomIndex]?.add_email,
-                                    )
-                                  }
-                                >
-                                  <div className='card'>
-                                    <a
-                                      href={
-                                        storiesBannerAds[randomIndex]?.url_adds
-                                      }
-                                      target='_blank'
-                                      rel='noreferrer'
-                                    >
-                                      {detect.isMobile
-                                        ? storiesBannerAds[randomIndex]
-                                            ?.image_mobile && (
-                                            <img
-                                              src={
-                                                storiesBannerAds[randomIndex]
-                                                  ?.image_mobile
-                                              }
-                                              alt=''
-                                              // className='ads_story_cover_img'
-                                            />
-                                          )
-                                        : storiesBannerAds[randomIndex]
-                                            ?.image && (
-                                            <img
-                                              src={
-                                                storiesBannerAds[randomIndex]
-                                                  ?.image
-                                              }
-                                              alt=''
-                                              // className='ads_story_cover_img'
-                                            />
-                                          )}
-                                    </a>
-                                  </div>
-                                </div>
-                              )}
+                              {succesStoriesLeft.length > 0 &&
+                                succesStoriesLeftRenderAds()}
                             </>
                           );
                         } else {
