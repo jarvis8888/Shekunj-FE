@@ -1,5 +1,28 @@
-<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M65 60H35V140H65V60Z" fill="#D3317D"/>
-<path d="M115 60H85V140H115V60Z" fill="#C380A0"/>
-<path d="M165 60H135V140H165V60Z" fill="#C6A5B5"/>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 23.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 200 200" style="enable-background:new 0 0 200 200;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#D3317D;}
+	.st1{fill:#C380A0;}
+	.st2{fill:#C6A5B5;}
+</style>
+<rect x="35" y="60" class="st0" width="30" height="80">
+<animate  accumulate="none" additive="replace" attributeName="y" begin="-0.2s" calcMode="spline" dur="1s" fill="remove" keySplines="0 0.5 0.5 1;0 0.5 0.5 1" keyTimes="0;0.5;1" repeatCount="indefinite" restart="always" values="18;30;30">
+	</animate>
+<animate  accumulate="none" additive="replace" attributeName="height" begin="-0.2s" calcMode="spline" dur="1s" fill="remove" keySplines="0 0.5 0.5 1;0 0.5 0.5 1" keyTimes="0;0.5;1" repeatCount="indefinite" restart="always" values="64;40;40">
+	</animate>
+</rect>
+<rect x="85" y="60" class="st1" width="30" height="80">
+<animate  accumulate="none" additive="replace" attributeName="y" begin="-0.1s" calcMode="spline" dur="1s" fill="remove" keySplines="0 0.5 0.5 1;0 0.5 0.5 1" keyTimes="0;0.5;1" repeatCount="indefinite" restart="always" values="20.999999999999996;30;30">
+	</animate>
+<animate  accumulate="none" additive="replace" attributeName="height" begin="-0.1s" calcMode="spline" dur="1s" fill="remove" keySplines="0 0.5 0.5 1;0 0.5 0.5 1" keyTimes="0;0.5;1" repeatCount="indefinite" restart="always" values="58.00000000000001;40;40">
+	</animate>
+</rect>
+<rect x="135" y="60" class="st2" width="30" height="80">
+<animate  accumulate="none" additive="replace" attributeName="y" calcMode="spline" dur="1s" fill="remove" keySplines="0 0.5 0.5 1;0 0.5 0.5 1" keyTimes="0;0.5;1" repeatCount="indefinite" restart="always" values="20.999999999999996;30;30">
+	</animate>
+<animate  accumulate="none" additive="replace" attributeName="height" calcMode="spline" dur="1s" fill="remove" keySplines="0 0.5 0.5 1;0 0.5 0.5 1" keyTimes="0;0.5;1" repeatCount="indefinite" restart="always" values="58.00000000000001;40;40">
+	</animate>
+</rect>
 </svg>

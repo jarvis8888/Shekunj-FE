@@ -286,18 +286,27 @@ export const makeHtml = (htmlString) => {
 };
 
 export function DateFormat(timestampStr) {
-  // extract the year, month, and day components from the timestamp string
-  const [dateStr] = timestampStr.split("T");
-  const [year, month, day] = dateStr.split("-").map(Number);
+  const timestamp = new Date(timestampStr);
 
-  // create a Date object representing the date
-  const date = new Date(year, month - 1, day);
+  const day = timestamp.getDate();
+  const monthNames = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  const month = monthNames[timestamp.getMonth()];
+  const year = timestamp.getFullYear().toString().slice(-2);
 
-  // format the date string
-  const options = { year: "2-digit", month: "short", day: "numeric" };
-  const formattedDate = date
-    .toLocaleDateString("en-US", options)
-    .replace(",", "");
+  const formattedDate = `${day} ${month} ${year}`;
 
   return formattedDate;
 }

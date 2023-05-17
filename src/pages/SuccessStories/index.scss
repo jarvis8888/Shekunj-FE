@@ -28,8 +28,12 @@ section {
   z-index: 9;
 }
 
-.sk-scale-animate:nth-child(1), .sk-scale-animate:nth-child(3), .sk-scale-animate:nth-child(6), .sk-scale-animate:nth-child(8){
+.sk-scale-animate:nth-child(1),
+.sk-scale-animate:nth-child(3),
+.sk-scale-animate:nth-child(6),
+.sk-scale-animate:nth-child(8) {
   animation: zoom-in-zoom-out 2.5s alternate infinite linear;
+  cursor: pointer;
 }
 
 @keyframes zoom-in-zoom-out {
@@ -39,7 +43,7 @@ section {
   }
   20% {
     transform: scale(0.2);
-    opacity:0.9;
+    opacity: 0.9;
   }
   30% {
     transform: scale(0.2);
@@ -54,20 +58,24 @@ section {
     opacity: 0.9;
   }
   50% {
-      transform: scale(1);
-      opacity:1;
-    }
+    transform: scale(1);
+    opacity: 1;
+  }
   80% {
     transform: scale(1);
-    opacity:1;
+    opacity: 1;
   }
   100% {
     transform: scale(1);
   }
 }
 
-.sk-scale-animate:nth-child(2), .sk-scale-animate:nth-child(4), .sk-scale-animate:nth-child(5), .sk-scale-animate:nth-child(7) {
+.sk-scale-animate:nth-child(2),
+.sk-scale-animate:nth-child(4),
+.sk-scale-animate:nth-child(5),
+.sk-scale-animate:nth-child(7) {
   animation: zoom-in-zoom-out1 2.5s alternate infinite linear;
+  cursor: pointer;
 }
 
 @keyframes zoom-in-zoom-out1 {
@@ -93,7 +101,7 @@ section {
   }
   20% {
     transform: scale(0.3);
-    opacity:0;
+    opacity: 0;
   }
   30% {
     transform: scale(0.3);
@@ -108,18 +116,17 @@ section {
     opacity: 0.9;
   }
   50% {
-      transform: scale(1);
-      opacity:1;
-    }
+    transform: scale(1);
+    opacity: 1;
+  }
   80% {
-      transform: scale(1);
-    opacity:1;
+    transform: scale(1);
+    opacity: 1;
   }
   100% {
     transform: scale(1);
   }
 }
-
 
 .sk-successStories-sec {
   background: #f4f4f4;
@@ -416,8 +423,6 @@ button.want_btn {
   }
 }
 
-
-
 @media screen and (min-width: 1024px) and (max-width: 1400px) {
   .SuccStory_banner {
     height: 560px;
@@ -619,7 +624,7 @@ button.want_btn {
   padding: 20px 0 30px;
   margin-bottom: 50px;
 }
-h1{
+h1 {
   font-size: calc(2rem + 1.6vw);
 }
 .sk-storyHeading-top span {
@@ -782,13 +787,11 @@ h1{
   }
 }
 @media screen and (min-width: 320px) and (max-width: 1399px) {
-
-  h1{
+  h1 {
     font-size: calc(1.8rem + 1vw);
   }
 }
 @media screen and (max-width: 800px) {
-
   .sk-storyS-images ul {
     grid-template-columns: repeat(3, 1fr);
   }

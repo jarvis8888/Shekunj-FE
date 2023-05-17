@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./blogPage.scss";
 import {
   Container,
@@ -52,13 +52,15 @@ function BlogPage() {
   const dispatch = useDispatch();
   const [offset, setOffset] = useState(0);
   const pageLimit = 5;
+  const sectionRef = useRef(null);
 
   const { lan } = useSelector((state) => state.languageReducer);
   const { t } = useTranslation();
   const [blogBoxAdds, setBlogBoxAdds] = useState([]);
   const [blogRight1, bolgRight1] = useState([]);
   const [blogRight2, bolgRight2] = useState([]);
-  const [blogLeft, bolgLeft] = useState([]);
+  const [blogLeft, setBolgLeft] = useState([]);
+  const [blogGrid, setBolgGrid] = useState([]);
   const detect = useDeviceDetect();
 
   const [topTrendingBlogs, setTopTrendingBlogs] = useState([]);
@@ -76,17 +78,21 @@ function BlogPage() {
       const { latest_blogs, trending_blogs, blog_categories } = data;
 
       if (latest_blogs?.results?.length > 0) {
-        const num = Math.floor(Math.random() * 4);
         const res = latest_blogs?.results ?? [];
         const addObjectData = { id: "advertisement" };
-        const newFeaturedData = [
-          ...res.slice(0, num),
-          addObjectData,
-          ...res.slice(num),
-        ];
+        const newFeaturedData = [];
+
+        for (let i = 0; i < res.length; i++) {
+          newFeaturedData.push(res[i]);
+
+          if ((i + 1) % 2 === 0) {
+            newFeaturedData.push(addObjectData);
+          }
+        }
+
         setLatestBlogs((prevFeaturedData) => [
-          ...prevFeaturedData,
           ...newFeaturedData,
+          ...prevFeaturedData,
         ]);
       } else {
         setCurrentBlogData(latest_blogs);
@@ -115,7 +121,6 @@ function BlogPage() {
 
   useEffect(() => {
     getAllBlogsData(pageLimit, offset);
-    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, [lan, offset]);
 
   useEffect(() => {
@@ -136,21 +141,25 @@ function BlogPage() {
           .then((response) => {
             if (response && response.data.results.length > 0) {
               let filterArray1 = response.data.results.filter((item, index) => {
-                return item.image_type == "blog_index";
+                return item.image_type === "blog_index";
               });
               setBlogBoxAdds(filterArray1);
               let filterArray2 = response.data.results.filter((item, index) => {
-                return item.image_type == "blog_index_right1";
+                return item.image_type === "blog_index_right1";
               });
               bolgRight1(filterArray2);
               let filterArray3 = response.data.results.filter((item, index) => {
-                return item.image_type == "blog_index_right2";
+                return item.image_type === "blog_index_right2";
               });
               bolgRight2(filterArray3);
               let filterArray4 = response.data.results.filter((item, index) => {
-                return item.image_type == "blog_index_left";
+                return item.image_type === "blog_index_left";
               });
-              bolgLeft(filterArray4);
+              setBolgLeft(filterArray4);
+              let filterArray5 = response.data.results.filter((item, index) => {
+                return item.image_type === "blog_index_trending_grid";
+              });
+              setBolgGrid(filterArray5);
             }
           });
       },
@@ -160,21 +169,25 @@ function BlogPage() {
         axios.get(`/private_adds/private_add`).then((response) => {
           if (response && response.data.results.length > 0) {
             let filterArray1 = response.data.results.filter((item, index) => {
-              return item.image_type == "blog_index";
+              return item.image_type === "blog_index";
             });
             setBlogBoxAdds(filterArray1);
             let filterArray2 = response.data.results.filter((item, index) => {
-              return item.image_type == "blog_index_right1";
+              return item.image_type === "blog_index_right1";
             });
             bolgRight1(filterArray2);
             let filterArray3 = response.data.results.filter((item, index) => {
-              return item.image_type == "blog_index_right2";
+              return item.image_type === "blog_index_right2";
             });
             bolgRight2(filterArray3);
             let filterArray4 = response.data.results.filter((item, index) => {
-              return item.image_type == "blog_index_left";
+              return item.image_type === "blog_index_left";
             });
-            bolgLeft(filterArray4);
+            setBolgLeft(filterArray4);
+            let filterArray5 = response.data.results.filter((item, index) => {
+              return item.image_type === "blog_index_trending_grid";
+            });
+            setBolgGrid(filterArray5);
           }
         });
       },
@@ -200,8 +213,78 @@ function BlogPage() {
     return htmlNode.innerHTML;
   };
 
-  const handleSetCollapse = (id, is_collapse) => {
-    dispatch(setCollapseBlogs(id, is_collapse ? false : true));
+  const blogsGridadCount = blogGrid.length; // Total number of ads
+  let blogGridadIndex = 0; // Current ad index
+
+  const getNextAdIndexBlogGrid = () => {
+    // Increment the index and reset if it exceeds the total count
+    blogGridadIndex = (blogGridadIndex + 1) % blogsGridadCount;
+    return blogGridadIndex;
+  };
+
+  const renderBoxAd = (ad) => (
+    <div
+      key={ad.id}
+      onClick={() => addEmailToClient(ad.add_email)}
+      className='col-xl-6 col-lg-6 col-md-12 col-sm-12'
+    >
+      <div className='sk-cardAdd-fix'>
+        <a href={ad.url_adds} target='_blank' rel='noreferrer'>
+          {detect.isMobile
+            ? ad.image_mobile && <img src={ad.image_mobile} alt='' />
+            : ad.image && <img src={ad.image} alt='' />}
+        </a>
+      </div>
+    </div>
+  );
+
+  const blogGridRenderAds = () => {
+    const adsToRender = [];
+
+    for (let i = 0; i < blogsGridadCount; i++) {
+      const BoxadIndex = getNextAdIndexBlogGrid();
+      const ad = blogGrid[BoxadIndex];
+      adsToRender.push(renderBoxAd(ad));
+    }
+
+    return adsToRender[getNextAdIndexBlogGrid()];
+  };
+
+  const blogsLeftadCount = blogLeft.length; // Total number of ads
+  let blogLeftadIndex = 0; // Current ad index
+
+  const getNextAdIndexBlogLeft = () => {
+    // Increment the index and reset if it exceeds the total count
+    blogLeftadIndex = (blogLeftadIndex + 1) % blogsLeftadCount;
+    return blogLeftadIndex;
+  };
+
+  const renderAd = (ad) => (
+    <div
+      key={ad.id}
+      onClick={() => addEmailToClient(ad.add_email)}
+      className='col-xl-12'
+    >
+      <div className='card'>
+        <a href={ad.url_adds} target='_blank' rel='noreferrer'>
+          {detect.isMobile
+            ? ad.image_mobile && <img src={ad.image_mobile} alt='' />
+            : ad.image && <img src={ad.image} alt='' />}
+        </a>
+      </div>
+    </div>
+  );
+
+  const blogLeftRenderAds = () => {
+    const adsToRender = [];
+
+    for (let i = 0; i < blogsLeftadCount; i++) {
+      const adIndex = getNextAdIndexBlogLeft();
+      const ad = blogLeft[adIndex];
+      adsToRender.push(renderAd(ad));
+    }
+
+    return adsToRender[getNextAdIndexBlogLeft()];
   };
 
   return (
@@ -308,58 +391,15 @@ function BlogPage() {
               <div className='row'>
                 <div className='col-xl-9 col-md-8 col-lg-8'>
                   <div className='blog-stories'>
-                    <div className='title'>
+                    <div className='title' ref={sectionRef}>
                       <img src={timeicon} alt='time' width={28} />
                       <h4>Latest Blogs</h4>
                     </div>
                     <div className='row'>
                       {latestBlogs?.map((items, index) => {
                         if (items.id === "advertisement") {
-                          const randomIndex = Math.floor(
-                            Math.random() * blogLeft.length,
-                          );
                           return (
-                            <>
-                              {blogLeft.length > 0 && (
-                                <div
-                                  className='col-xl-6 col-md-6 col-lg-6 col-sm-12'
-                                  // className='col-md-12 ads_home_cover '
-                                  onClick={() =>
-                                    addEmailToClient(
-                                      blogLeft[randomIndex]?.add_email,
-                                    )
-                                  }
-                                >
-                                  <div className='sk-cardAdd-fix'>
-                                    <a
-                                      href={blogLeft[randomIndex]?.url_adds}
-                                      target='_blank'
-                                      rel='noreferrer'
-                                    >
-                                      {detect.isMobile
-                                        ? blogLeft[randomIndex]
-                                            ?.image_mobile && (
-                                            <img
-                                              src={
-                                                blogLeft[randomIndex]
-                                                  ?.image_mobile
-                                              }
-                                              alt=''
-                                              // className='ads_story_cover_img'
-                                            />
-                                          )
-                                        : blogLeft[randomIndex]?.image && (
-                                            <img
-                                              src={blogLeft[randomIndex]?.image}
-                                              alt=''
-                                              // className='ads_story_cover_img'
-                                            />
-                                          )}
-                                    </a>
-                                  </div>
-                                </div>
-                              )}
-                            </>
+                            <>{blogGrid.length > 0 && blogGridRenderAds()}</>
                           );
                         } else {
                           return (
@@ -387,7 +427,12 @@ function BlogPage() {
                     <div className='d-flex justify-content-center align-items-center py-4'>
                       <button
                         className='loadMore'
-                        onClick={() => setOffset(offset + 5)}
+                        onClick={() => {
+                          setOffset(offset + 5);
+                          sectionRef.current.scrollIntoView({
+                            behavior: "smooth",
+                          });
+                        }}
                         disabled={currentBlogData?.results?.length === 0}
                       >
                         Explore More
@@ -440,55 +485,9 @@ function BlogPage() {
                   </div>
                   {trendingBlogs?.map((items, index) => {
                     if (items.id === "advertisement") {
-                      const randomIndex = Math.floor(
-                        Math.random() * blogLeft.length,
-                      );
+                      
                       return (
-                        <>
-                          {blogBoxAdds.length > 0 && (
-                            <div className='row'>
-                              <div
-                                className='col-md-12'
-                                // className='col-md-12 ads_home_cover '
-                                onClick={() =>
-                                  addEmailToClient(
-                                    blogBoxAdds[randomIndex]?.add_email,
-                                  )
-                                }
-                              >
-                                <div className='card'>
-                                  <a
-                                    href={blogBoxAdds[randomIndex]?.url_adds}
-                                    target='_blank'
-                                    rel='noreferrer'
-                                  >
-                                    {detect.isMobile
-                                      ? blogBoxAdds[randomIndex]
-                                          ?.image_mobile && (
-                                          <img
-                                            src={
-                                              blogBoxAdds[randomIndex]
-                                                ?.image_mobile
-                                            }
-                                            alt=''
-                                            // className='ads_story_cover_img'
-                                          />
-                                        )
-                                      : blogBoxAdds[randomIndex]?.image && (
-                                          <img
-                                            src={
-                                              blogBoxAdds[randomIndex]?.image
-                                            }
-                                            alt=''
-                                            // className='ads_story_cover_img'
-                                          />
-                                        )}
-                                  </a>
-                                </div>
-                              </div>
-                            </div>
-                          )}
-                        </>
+                        <>{blogLeft.length > 0 && blogLeftRenderAds()}</>
                       );
                     } else {
                       return (

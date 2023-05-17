@@ -81,7 +81,6 @@ const GlobalSearch = () => {
     });
   };
 
-
   useEffect(() => {
     getGlobalSearchData(currentSearch);
   }, [currentSearch, lan]);

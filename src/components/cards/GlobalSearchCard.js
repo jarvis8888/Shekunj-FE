@@ -130,8 +130,8 @@ export const GlobalSearchCard = ({
   return (
     <section className='sk-card-sec'>
       <div className='container'>
-        <div className="row">
-          <div className="col-xl-8 mx-auto">
+        <div className='row'>
+          <div className='col-xl-8 mx-auto'>
             <div className='sk-category'>
               <ul>
                 {data.map((item) => (
@@ -149,7 +149,7 @@ export const GlobalSearchCard = ({
           </div>
         </div>
         {loading ? (
-          <CustomLoader />
+          <CustomLoader size='small' />
         ) : (
           <div className='row'>
             {filterData(activeTab).length

@@ -56,6 +56,7 @@ const SuccessStoryDetails = () => {
   const [succesStoriesRight1, setSuccesStoriesRight1] = useState([]);
   const [succesStoriesRight2, setSuccesStoriesRight2] = useState([]);
   const [storyDetailsBoxAds, setStoryDetailsBoxAds] = useState([]);
+  const [succesStoriesLeft, setSuccesStoriesLeft] = useState([]);
   const [storiesBannerAds, setStoriesBannerAds] = useState([]);
   const [loading, setLoading] = useState(false);
   const detect = useDeviceDetect();
@@ -167,6 +168,11 @@ const SuccessStoryDetails = () => {
                 return item.image_type == "success_stories_banner";
               });
               setStoriesBannerAds(filterArray1);
+              let filterArray4 = response.data.results.filter((item, index) => {
+                return item.image_type === "success_stories_left";
+              });
+
+              setSuccesStoriesLeft(filterArray4);
             }
           });
       },
@@ -189,6 +195,11 @@ const SuccessStoryDetails = () => {
               return item.image_type == "success_stories_banner";
             });
             setStoriesBannerAds(filterArray1);
+            let filterArray4 = response.data.results.filter((item, index) => {
+              return item.image_type === "success_stories_left";
+            });
+
+            setSuccesStoriesLeft(filterArray4);
           }
         });
       },
@@ -208,14 +219,48 @@ const SuccessStoryDetails = () => {
     getAllSuccessStoryData();
   }, [lan]);
 
+  const succesStoriesLeftadCount = succesStoriesLeft.length; // Total number of ads
+  let adIndex = 0; // Current ad index
+
+  const getNextAdIndexSuccesStoriesLeft = () => {
+    // Increment the index and reset if it exceeds the total count
+    adIndex = (adIndex + 1) % succesStoriesLeftadCount;
+    return adIndex;
+  };
+
+  const renderAd = (ad) => (
+    <div
+      key={ad.id}
+      onClick={() => addEmailToClient(ad.add_email)}
+      className='col-xl-12'
+    >
+      <div className='card'>
+        <a href={ad.url_adds} target='_blank' rel='noreferrer'>
+          {detect.isMobile
+            ? ad.image_mobile && <img src={ad.image_mobile} alt='' />
+            : ad.image && <img src={ad.image} alt='' />}
+        </a>
+      </div>
+    </div>
+  );
+
+  const succesStoriesLeftRenderAds = () => {
+    const adsToRender = [];
+
+    for (let i = 0; i < succesStoriesLeftadCount; i++) {
+      const adIndex = getNextAdIndexSuccesStoriesLeft();
+      const ad = succesStoriesLeft[adIndex];
+      adsToRender.push(renderAd(ad));
+    }
+
+    return adsToRender[getNextAdIndexSuccesStoriesLeft()];
+  };
   return (
     <div>
       <SEO title='Sheकुंज - Career' />
       <Header loginPage={true} page='story' subPage='moreStory' />
       {loading ? (
-        <div>
-          <CustomLoader />
-        </div>
+        <CustomLoader />
       ) : (
         <section className='sk-storyDetail-sec'>
           <div className='container'>
@@ -378,52 +423,10 @@ const SuccessStoryDetails = () => {
                 <div className='row'>
                   {trendingData?.map((items, index) => {
                     if (items.id === "advertisement") {
-                      const randomIndex = Math.floor(
-                        Math.random() * storiesBannerAds.length,
-                      );
                       return (
                         <>
-                          {storiesBannerAds.length > 0 && (
-                            <div
-                              className='col-xl-12'
-                              // className='col-md-12 ads_home_cover '
-                              onClick={() =>
-                                addEmailToClient(
-                                  storiesBannerAds[randomIndex]?.add_email,
-                                )
-                              }
-                            >
-                              <div className='card'>
-                                <a
-                                  href={storiesBannerAds[randomIndex]?.url_adds}
-                                  target='_blank'
-                                  rel='noreferrer'
-                                >
-                                  {detect.isMobile
-                                    ? storiesBannerAds[randomIndex]
-                                        ?.image_mobile && (
-                                        <img
-                                          src={
-                                            storiesBannerAds[randomIndex]
-                                              ?.image_mobile
-                                          }
-                                          alt=''
-                                          // className='ads_story_cover_img'
-                                        />
-                                      )
-                                    : storiesBannerAds[randomIndex]?.image && (
-                                        <img
-                                          src={
-                                            storiesBannerAds[randomIndex]?.image
-                                          }
-                                          alt=''
-                                          // className='ads_story_cover_img'
-                                        />
-                                      )}
-                                </a>
-                              </div>
-                            </div>
-                          )}
+                          {succesStoriesLeft.length > 0 &&
+                            succesStoriesLeftRenderAds()}
                         </>
                       );
                     } else {
