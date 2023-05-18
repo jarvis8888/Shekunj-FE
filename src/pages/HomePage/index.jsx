@@ -16,12 +16,12 @@ import "../../../node_modules/slick-carousel/slick/slick-theme.css";
 import SchoolRoundedIcon from "@mui/icons-material/SchoolRounded";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 // import Swiper core and required modules
-import SwiperCore, { Autoplay, Navigation, Pagination, EffectFade} from "swiper";
+import SwiperCore, { Autoplay, Navigation, Pagination, EffectFade } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import "../../pages/responsive.scss";
+// import "../../pages/responsive.scss";
 import vectorimg from "../../assets/images/storyvector.svg";
 import vectorimg1 from "../../assets/images/storyvector1.svg";
 import firstslidebanner from "../../assets/images/happystudentbanner.png";
@@ -241,9 +241,7 @@ function HomePage() {
                 slidesPerView={1}
                 simulateTouch={true}
                 effect={"fade"}
-                // parallax={true}
                 speed={1500}
-                loop={true}
                 autoplay={{ delay: 5500 }}
                 navigation={navigation}
                 pagination={pagination}
@@ -259,13 +257,15 @@ function HomePage() {
                           {t("homePage.mainSlider.heading.4")}
                         </h1>
                         <p>{t("homePage.mainSlider.subHeading.1")}</p>
-                        <button
-                          className='sk-btn'
-                          type='button'
-                          onClick={() => history.push(routingConstants.COURSES)}
-                        >
-                          {t("homePage.mainSlider.button.1")}
-                        </button>
+                        <div className="sk-thireChangescolor-btn">
+                          <button
+                            className='loadMore'
+                            type='button'
+                            onClick={() => history.push(routingConstants.COURSES)}
+                          >
+                            {t("homePage.mainSlider.button.1")}
+                          </button>
+                        </div>
                       </div>
                     </div>
                     <div className='col-xl-4 col-lg-4 col-md-4'>
@@ -284,8 +284,9 @@ function HomePage() {
                           {t("homePage.mainSlider.heading.5")}
                         </h1>
                         <p>{t("homePage.mainSlider.subHeading.2")}</p>
+                        <div className="sk-thireChangescolor-btn">
                         <button
-                          className='sk-btn'
+                          className='loadMore'
                           type='button'
                           onClick={() =>
                             history.push(routingConstants.TOP_COLLEGES)
@@ -293,6 +294,7 @@ function HomePage() {
                         >
                           {t("homePage.mainSlider.button.5")}
                         </button>
+                        </div>
                       </div>
                     </div>
                     <div className='col-md-4'>
@@ -310,15 +312,13 @@ function HomePage() {
                           {t("homePage.mainSlider.heading.3.3.2")}
                         </h1>
                         <p>{t("homePage.mainSlider.subHeading.3")}</p>
-                        <button
-                          className='sk-btn'
-                          type='button'
-                          onClick={() =>
-                            history.push(routingConstants.GUIDANCE_BOOK)
-                          }
-                        >
-                          {t("homePage.mainSlider.button.4")}
-                        </button>
+                        <div className="sk-thireChangescolor-btn">
+                          <button className='loadMore'
+                            type='button'
+                            onClick={() => history.push(routingConstants.GUIDANCE_BOOK)}>
+                            {t("homePage.mainSlider.button.4")}
+                          </button>
+                        </div>
                       </div>
                     </div>
                     <div className='col-md-4'>
@@ -336,15 +336,17 @@ function HomePage() {
                           {t("homePage.mainSlider.heading.6.2")}
                         </h1>
                         <p> {t("homePage.mainSlider.subHeading.4")}</p>
-                        <button
-                          className='sk-btn'
-                          type='button'
-                          onClick={() =>
-                            history.push(routingConstants.TOP_SCHOOLS)
-                          }
-                        >
-                          {t("homePage.mainSlider.button.6")}
-                        </button>
+                        <div className="sk-thireChangescolor-btn">
+                          <button
+                            className='loadMore'
+                            type='button'
+                            onClick={() =>
+                              history.push(routingConstants.TOP_SCHOOLS)
+                            }
+                          >
+                            {t("homePage.mainSlider.button.6")}
+                          </button>
+                        </div>
                       </div>
                     </div>
                     <div className='col-md-4'>
@@ -369,14 +371,15 @@ function HomePage() {
       <section className='sk-course-sec sk-slide-arrow sk-bg-color'>
         <div className='container'>
           <div className='row'>
-            <div className='col-md-6 mx-auto'>
+            <div className='col-xl-8 col-md-10 mx-auto'>
               <div className='sk-heading-title'>
                 <h2>Courses In India</h2>
                 <p>
                   Courses focused on building strong foundational skills for
                   career growth
                 </p>
-                <div>
+                <div className="sk-tabBtn-home">
+                
                   <ul>
                     {categoryList.map((items, index) => {
                       return (
@@ -394,6 +397,7 @@ function HomePage() {
                       );
                     })}
                   </ul>
+                  
                 </div>
               </div>
             </div>
@@ -416,7 +420,7 @@ function HomePage() {
                   },
                   767: {
                     slidesPerView: 2,
-                    spaceBetween: 10,
+                    spaceBetween: 15,
                   },
                   991: {
                     slidesPerView: 3,
@@ -739,55 +743,51 @@ function HomePage() {
       </section>
 
       <section className='sk-changeBothhire-sec'>
-        <div className='container'>
-          <div className='row'>
-            <div className='col-xl-6 col-lg-6'>
-              <div className='sk-hireStory-box'>
-                <div className='sk-hireSotory-innerbox'>
-                  <h2>Seeking for a Chance and a Change?</h2>
-                  <p>
-                    Go nowhere. We here at Shekunj offer the best job
-                    opportunities from the best companies. Find a job and move
-                    towards your bright future.
-                  </p>
-                  <div className='sk-hireChanges-btn'>
-                    <a
-                      href='https://octahire.com/Home/candidate_register'
-                      target='_blank'
-                      rel='noreferrer'
-                    >
-                      <button className='loadMore'>
-                        View All Job Opportunities
-                      </button>
-                    </a>
-                  </div>
-                </div>
-                <div className='sk-vectorImg-inner'>
-                  <img src={vectorimg} />
-                </div>
+        <div className='sk-hire-container'>
+          <div className='sk-hireStory-box'>
+            <div className='sk-hireSotory-innerbox'>
+              <h2>Seeking for a Chance and a Change?</h2>
+              <p>
+                Go nowhere. We here at Shekunj offer the best job
+                opportunities from the best companies. Find a job and move
+                towards your bright future.
+              </p>
+              <div className='sk-hireChanges-btn'>
+                <a
+                  href='https://octahire.com/Home/candidate_register'
+                  target='_blank'
+                  rel='noreferrer'
+                >
+                  <button className='loadMore'>
+                    View All Job Opportunities
+                  </button>
+                </a>
               </div>
             </div>
-            <div className='col-xl-6 col-lg-6'>
-              <div className='sk-hireStory-box'>
-                <div className='sk-hireSotory-innerbox sk-woman-story'>
-                  <h2>Get hired for your dream job!</h2>
-                  <p>
-                    Land your dream job by designing a perfect resume in a
-                    print-ready <br /> format
-                  </p>
-                  <div className='sk-thireChangescolor-btn'>
-                    <a
-                      href='https://octahire.com/Home/candidate_register'
-                      target='_blank'
-                      rel='noreferrer'
-                    >
-                      <button className='loadMore'>Create Your CV Now</button>
-                    </a>
-                  </div>
+            <div className='sk-vectorImg-inner'>
+              <img src={vectorimg} />
+            </div>
+          </div>
+          <div className='sk-hireInner-box'>
+            <div className='sk-hireStory-box'>
+              <div className='sk-hireSotory-innerbox sk-woman-story'>
+                <h2>Get hired for your dream job!</h2>
+                <p>
+                  Land your dream job by designing a perfect resume in a
+                  print-ready <br/> format
+                </p>
+                <div className='sk-thireChangescolor-btn'>
+                  <a
+                    href='https://octahire.com/Home/candidate_register'
+                    target='_blank'
+                    rel='noreferrer'
+                  >
+                    <button className='loadMore'>Create Your CV Now</button>
+                  </a>
                 </div>
-                <div className='sk-vectorImg-inner'>
-                  <img src={vectorimg1} />
-                </div>
+              </div>
+              <div className='sk-vectorImg-inner'>
+                <img src={vectorimg1} />
               </div>
             </div>
           </div>
