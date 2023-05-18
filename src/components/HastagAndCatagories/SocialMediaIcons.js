@@ -6,10 +6,10 @@ import instagram from "../../assets/images/Instagramsideicon.svg";
 import linkedin from "../../assets/images/linkedinsideicon.svg";
 
 function SocialMediaIcons() {
-  const [facebookLikes, setFacebookLikes] = useState(0);
-  const [twitterLikes, setTwitterLikes] = useState(0);
-  const [instagramLikes, setInstagramLikes] = useState(0);
-  const [youtubeLikes, setYoutubeLikes] = useState(0);
+  const [facebookLikes, setFacebookLikes] = useState("30k");
+  const [twitterLikes, setTwitterLikes] = useState("12k");
+  const [instagramLikes, setInstagramLikes] = useState("60k");
+  const [youtubeLikes, setYoutubeLikes] = useState("20k");
 
   return (
     <div className='SocialMediaIconscontainer'>
@@ -24,30 +24,28 @@ function SocialMediaIcons() {
         <div style={{ color: "#fff", fontSize: "12px" }}> {`Likes`}</div>
       </div>
       <div className='likes' style={{ backgroundColor: "#49ABEC" }}>
-
         <i className='fab fa-twitter'>
           <img src={twitter} alt='twitter' />
         </i>
-        <div style={{ color: "#fff" }}>{`${facebookLikes}`}</div>
+        <div style={{ color: "#fff" }}>{`${twitterLikes}`}</div>
         <div style={{ color: "#fff", fontSize: "12px" }}>{`Likes`}</div>
       </div>
-      <div
-        className='likes'
-        style={{ backgroundColor: "#2867B2"}}
-
-      >
+      <div className='likes' style={{ backgroundColor: "#2867B2" }}>
         <i className='fab fa-youtube'>
           <img src={linkedin} alt='youtube' />
         </i>
 
-        <div style={{ color: "#fff" }}>{`${facebookLikes}`}</div>
+        <div style={{ color: "#fff" }}>{`${youtubeLikes}`}</div>
         <div style={{ color: "#fff", fontSize: "12px" }}>{`Likes`}</div>
       </div>
-      <div className='likes sk-instagram' style={{ backgroundColor: "#305B94", borderRadius: "0 4px 4px 0"}}>
+      <div
+        className='likes sk-instagram'
+        style={{ backgroundColor: "#305B94", borderRadius: "0 4px 4px 0" }}
+      >
         <i className='fab fa-instagram'>
           <img src={instagram} alt='instagram' />
         </i>
-        <div style={{ color: "#fff" }}>{`${facebookLikes}`}</div>
+        <div style={{ color: "#fff" }}>{`${instagramLikes}`}</div>
         <div style={{ color: "#fff", fontSize: "12px" }}>{`Likes`}</div>
       </div>
     </div>

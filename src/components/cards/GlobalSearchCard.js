@@ -5,6 +5,7 @@ import { truncateString } from "../../utils/utils";
 import { useHistory, useLocation } from "react-router-dom";
 import { routingConstants } from "../../utils/constants";
 import { CustomLoader } from "../customLoader/CustomLoader";
+import { NoDataFound } from "../noDataFound/NoDataFound";
 
 export const GlobalSearchCard = ({
   SuccessStoriesData = [],
@@ -152,9 +153,13 @@ export const GlobalSearchCard = ({
           <CustomLoader size='small' />
         ) : (
           <div className='row'>
-            {filterData(activeTab).length
-              ? renderCards(filterData(activeTab), activeTab)
-              : "Based on your search no results found"}
+            {filterData(activeTab).length ? (
+              renderCards(filterData(activeTab), activeTab)
+            ) : (
+              <>
+                <NoDataFound size='small' />
+              </>
+            )}
           </div>
         )}
       </div>

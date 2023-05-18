@@ -46,6 +46,7 @@ import catagorie from "../../assets/images/categoryblog.svg";
 import httpServices from "../../utils/ApiServices";
 import { CustomLoader } from "../../components/customLoader/CustomLoader";
 import { DateFormat, addEmailToClient } from "../../utils/utils";
+import { NoDataFound } from "../../components/noDataFound/NoDataFound";
 
 function BlogPage() {
   const history = useHistory();
@@ -320,22 +321,26 @@ function BlogPage() {
                 </div>
                 <div className='col-xl-4 col-md-4 col-lg-4'>
                   <div className='sk-blog-sidebar'>
-                    {topTrendingBlogs?.length
-                      ? topTrendingBlogs.slice(0, 3).map((items, index) => {
-                          return (
-                            <>
-                              <TrendingBlogsCard
-                                image={items.image}
-                                id={items.id}
-                                description={items.title}
-                                time={items.reading_time}
-                                date={DateFormat(`${items.created_at}`)}
-                                category_name={items.category_name}
-                              />
-                            </>
-                          );
-                        })
-                      : "no data"}
+                    {topTrendingBlogs?.length ? (
+                      topTrendingBlogs.slice(0, 3).map((items, index) => {
+                        return (
+                          <>
+                            <TrendingBlogsCard
+                              image={items.image}
+                              id={items.id}
+                              description={items.title}
+                              time={items.reading_time}
+                              date={DateFormat(`${items.created_at}`)}
+                              category_name={items.category_name}
+                            />
+                          </>
+                        );
+                      })
+                    ) : (
+                      <>
+                        <NoDataFound size='small' />
+                      </>
+                    )}
                   </div>
                 </div>
               </div>
@@ -485,10 +490,7 @@ function BlogPage() {
                   </div>
                   {trendingBlogs?.map((items, index) => {
                     if (items.id === "advertisement") {
-                      
-                      return (
-                        <>{blogLeft.length > 0 && blogLeftRenderAds()}</>
-                      );
+                      return <>{blogLeft.length > 0 && blogLeftRenderAds()}</>;
                     } else {
                       return (
                         <>

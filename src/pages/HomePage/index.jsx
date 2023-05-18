@@ -16,19 +16,24 @@ import "../../../node_modules/slick-carousel/slick/slick-theme.css";
 import SchoolRoundedIcon from "@mui/icons-material/SchoolRounded";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 // import Swiper core and required modules
-import SwiperCore, { Autoplay, Navigation, Pagination, EffectFade} from "swiper";
+import SwiperCore, {
+  Autoplay,
+  Navigation,
+  Pagination,
+  EffectFade,
+} from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import "../../pages/responsive.scss";
+// import "../../pages/responsive.scss";
 import vectorimg from "../../assets/images/storyvector.svg";
 import vectorimg1 from "../../assets/images/storyvector1.svg";
 import firstslidebanner from "../../assets/images/happystudentbanner.png";
 import successstoryimg from "../../assets/images/storysuccess.png";
 import "./index.scss";
 import arrowbicon from "../../assets/images/arrowicon.svg";
-import EastRoundedIcon from '@mui/icons-material/EastRounded';
+import EastRoundedIcon from "@mui/icons-material/EastRounded";
 import begainimg from "../../assets/images/begainimg.png";
 import addbannerhome from "../../assets/images/homeaddbanner.png";
 import mocktesttimg from "../../assets/images/mocktest.png";
@@ -44,6 +49,7 @@ import { addEmailToClient, truncateString } from "../../utils/utils";
 import httpServices from "../../utils/ApiServices";
 import { apiConstants, routingConstants } from "../../utils/constants";
 import { CustomLoader } from "../../components/customLoader/CustomLoader";
+import { NoDataFound } from "../../components/noDataFound/NoDataFound";
 
 function HomePage() {
   const dispatch = useDispatch();
@@ -241,9 +247,7 @@ function HomePage() {
                 slidesPerView={1}
                 simulateTouch={true}
                 effect={"fade"}
-                // parallax={true}
                 speed={1500}
-                loop={true}
                 autoplay={{ delay: 5500 }}
                 navigation={navigation}
                 pagination={pagination}
@@ -259,13 +263,15 @@ function HomePage() {
                           {t("homePage.mainSlider.heading.4")}
                         </h1>
                         <p>{t("homePage.mainSlider.subHeading.1")}</p>
-                        <button
-                          className='sk-btn'
-                          type='button'
-                          onClick={() => history.push(routingConstants.COURSES)}
-                        >
-                          {t("homePage.mainSlider.button.1")}
-                        </button>
+                        <div className="sk-thireChangescolor-btn">
+                          <button
+                            className='loadMore'
+                            type='button'
+                            onClick={() => history.push(routingConstants.COURSES)}
+                          >
+                            {t("homePage.mainSlider.button.1")}
+                          </button>
+                        </div>
                       </div>
                     </div>
                     <div className='col-xl-4 col-lg-4 col-md-4'>
@@ -284,8 +290,9 @@ function HomePage() {
                           {t("homePage.mainSlider.heading.5")}
                         </h1>
                         <p>{t("homePage.mainSlider.subHeading.2")}</p>
+                        <div className="sk-thireChangescolor-btn">
                         <button
-                          className='sk-btn'
+                          className='loadMore'
                           type='button'
                           onClick={() =>
                             history.push(routingConstants.TOP_COLLEGES)
@@ -293,6 +300,7 @@ function HomePage() {
                         >
                           {t("homePage.mainSlider.button.5")}
                         </button>
+                        </div>
                       </div>
                     </div>
                     <div className='col-md-4'>
@@ -310,15 +318,13 @@ function HomePage() {
                           {t("homePage.mainSlider.heading.3.3.2")}
                         </h1>
                         <p>{t("homePage.mainSlider.subHeading.3")}</p>
-                        <button
-                          className='sk-btn'
-                          type='button'
-                          onClick={() =>
-                            history.push(routingConstants.GUIDANCE_BOOK)
-                          }
-                        >
-                          {t("homePage.mainSlider.button.4")}
-                        </button>
+                        <div className="sk-thireChangescolor-btn">
+                          <button className='loadMore'
+                            type='button'
+                            onClick={() => history.push(routingConstants.GUIDANCE_BOOK)}>
+                            {t("homePage.mainSlider.button.4")}
+                          </button>
+                        </div>
                       </div>
                     </div>
                     <div className='col-md-4'>
@@ -336,15 +342,17 @@ function HomePage() {
                           {t("homePage.mainSlider.heading.6.2")}
                         </h1>
                         <p> {t("homePage.mainSlider.subHeading.4")}</p>
-                        <button
-                          className='sk-btn'
-                          type='button'
-                          onClick={() =>
-                            history.push(routingConstants.TOP_SCHOOLS)
-                          }
-                        >
-                          {t("homePage.mainSlider.button.6")}
-                        </button>
+                        <div className="sk-thireChangescolor-btn">
+                          <button
+                            className='loadMore'
+                            type='button'
+                            onClick={() =>
+                              history.push(routingConstants.TOP_SCHOOLS)
+                            }
+                          >
+                            {t("homePage.mainSlider.button.6")}
+                          </button>
+                        </div>
                       </div>
                     </div>
                     <div className='col-md-4'>
@@ -369,14 +377,15 @@ function HomePage() {
       <section className='sk-course-sec sk-slide-arrow sk-bg-color'>
         <div className='container'>
           <div className='row'>
-            <div className='col-md-6 mx-auto'>
+            <div className='col-xl-8 col-md-10 mx-auto'>
               <div className='sk-heading-title'>
                 <h2>Courses In India</h2>
                 <p>
                   Courses focused on building strong foundational skills for
                   career growth
                 </p>
-                <div>
+                <div className="sk-tabBtn-home">
+                
                   <ul>
                     {categoryList.map((items, index) => {
                       return (
@@ -394,6 +403,7 @@ function HomePage() {
                       );
                     })}
                   </ul>
+                  
                 </div>
               </div>
             </div>
@@ -416,7 +426,7 @@ function HomePage() {
                   },
                   767: {
                     slidesPerView: 2,
-                    spaceBetween: 10,
+                    spaceBetween: 15,
                   },
                   991: {
                     slidesPerView: 3,
@@ -510,7 +520,9 @@ function HomePage() {
                     );
                   })
                 ) : (
-                  "no data found"
+                  <>
+                    <NoDataFound size='small' />
+                  </>
                 )}
               </Swiper>
             </div>
@@ -682,46 +694,57 @@ function HomePage() {
                   },
                 }}
               >
-                {mockData?.length
-                  ? mockData?.map((items, index) => {
-                      return (
-                        <>
-                          <SwiperSlide>
-                            <div className='sk-course-box'>
-                              <div className='sk-course-img'>
-                                <img src={items?.image} alt='' />
+                {mockData?.length ? (
+                  mockData?.map((items, index) => {
+                    return (
+                      <>
+                        <SwiperSlide>
+                          <div className='sk-course-box'>
+                            <div className='sk-course-img'>
+                              <img src={items?.image} alt='' />
+                            </div>
+                            <div className='sk-course-content'>
+                              <span className='sk-smallBox-heading'>
+                                Government
+                              </span>
+                              <h6>{items?.name}</h6>
+                              <div className='sk-time-education'>
+                                <ul>
+                                  <li>
+                                    <AccessTimeIcon />{" "}
+                                    <span>
+                                      {items?.career_test_time} Minutes
+                                    </span>{" "}
+                                  </li>
+                                  <li>
+                                    <SchoolRoundedIcon /> {items?.enrolled}{" "}
+                                    enrolled{" "}
+                                  </li>
+                                </ul>
                               </div>
-                              <div className='sk-course-content'>
-                                <span className='sk-smallBox-heading'>
-                                  Government
-                                </span>
-                                <h6>{items?.name}</h6>
-                                <div className='sk-time-education'>
-                                  <ul>
-                                    <li>
-                                      <AccessTimeIcon />{" "}
-                                      <span>
-                                        {items?.career_test_time} Minutes
-                                      </span>{" "}
-                                    </li>
-                                    <li>
-                                      <SchoolRoundedIcon /> {items?.enrolled}{" "}
-                                      enrolled{" "}
-                                    </li>
-                                  </ul>
-                                </div>
-                                <div className='sk-course-btn'>
-                                  <button className='sk-course-btn sk-courseBg-color'>
-                                    Attempt
-                                  </button>
-                                </div>
+                              <div className='sk-course-btn'>
+                                <button
+                                  className='sk-course-btn sk-courseBg-color'
+                                  onClick={() =>
+                                    history.push(
+                                      routingConstants.MOCKTEST + items?.id,
+                                    )
+                                  }
+                                >
+                                  Attempt
+                                </button>
                               </div>
                             </div>
-                          </SwiperSlide>
-                        </>
-                      );
-                    })
-                  : "no data found"}
+                          </div>
+                        </SwiperSlide>
+                      </>
+                    );
+                  })
+                ) : (
+                  <>
+                    <NoDataFound size='small' />
+                  </>
+                )}
               </Swiper>
             </div>
             <div className='col-xl-12'>
@@ -739,55 +762,51 @@ function HomePage() {
       </section>
 
       <section className='sk-changeBothhire-sec'>
-        <div className='container'>
-          <div className='row'>
-            <div className='col-xl-6 col-lg-6'>
-              <div className='sk-hireStory-box'>
-                <div className='sk-hireSotory-innerbox'>
-                  <h2>Seeking for a Chance and a Change?</h2>
-                  <p>
-                    Go nowhere. We here at Shekunj offer the best job
-                    opportunities from the best companies. Find a job and move
-                    towards your bright future.
-                  </p>
-                  <div className='sk-hireChanges-btn'>
-                    <a
-                      href='https://octahire.com/Home/candidate_register'
-                      target='_blank'
-                      rel='noreferrer'
-                    >
-                      <button className='loadMore'>
-                        View All Job Opportunities
-                      </button>
-                    </a>
-                  </div>
-                </div>
-                <div className='sk-vectorImg-inner'>
-                  <img src={vectorimg} />
-                </div>
+        <div className='sk-hire-container'>
+          <div className='sk-hireStory-box'>
+            <div className='sk-hireSotory-innerbox'>
+              <h2>Seeking for a Chance and a Change?</h2>
+              <p>
+                Go nowhere. We here at Shekunj offer the best job
+                opportunities from the best companies. Find a job and move
+                towards your bright future.
+              </p>
+              <div className='sk-hireChanges-btn'>
+                <a
+                  href='https://octahire.com/Home/candidate_register'
+                  target='_blank'
+                  rel='noreferrer'
+                >
+                  <button className='loadMore'>
+                    View All Job Opportunities
+                  </button>
+                </a>
               </div>
             </div>
-            <div className='col-xl-6 col-lg-6'>
-              <div className='sk-hireStory-box'>
-                <div className='sk-hireSotory-innerbox sk-woman-story'>
-                  <h2>Get hired for your dream job!</h2>
-                  <p>
-                    Land your dream job by designing a perfect resume in a
-                    print-ready <br /> format
-                  </p>
-                  <div className='sk-thireChangescolor-btn'>
-                    <a
-                      href='https://octahire.com/Home/candidate_register'
-                      target='_blank'
-                      rel='noreferrer'
-                    >
-                      <button className='loadMore'>Create Your CV Now</button>
-                    </a>
-                  </div>
+            <div className='sk-vectorImg-inner'>
+              <img src={vectorimg} />
+            </div>
+          </div>
+          <div className='sk-hireInner-box'>
+            <div className='sk-hireStory-box'>
+              <div className='sk-hireSotory-innerbox sk-woman-story'>
+                <h2>Get hired for your dream job!</h2>
+                <p>
+                  Land your dream job by designing a perfect resume in a
+                  print-ready <br/> format
+                </p>
+                <div className='sk-thireChangescolor-btn'>
+                  <a
+                    href='https://octahire.com/Home/candidate_register'
+                    target='_blank'
+                    rel='noreferrer'
+                  >
+                    <button className='loadMore'>Create Your CV Now</button>
+                  </a>
                 </div>
-                <div className='sk-vectorImg-inner'>
-                  <img src={vectorimg1} />
-                </div>
+              </div>
+              <div className='sk-vectorImg-inner'>
+                <img src={vectorimg1} />
               </div>
             </div>
           </div>
@@ -815,61 +834,64 @@ function HomePage() {
                   modules={[Pagination]}
                   className='sk-swiperSuccess-story'
                 >
-                  {successData?.length
-                    ? successData?.slice(0, 6).map((items, index) => {
-                        return (
-                          <>
-                            <SwiperSlide>
-                              <div
-                                className='sk-story-testmonial'
-                                onClick={() =>
-                                  history.push(
-                                    routingConstants.SUCCESS_STORIES +
-                                      items?.id,
-                                  )
-                                }
-                              >
-                                <div className='sk-story-content'>
-                                  <img src={items?.image} alt='' />
-                                </div>
-                                <div className='sk-story-content'>
-                                  <h4>{items?.title}</h4>
-                                  <div className='sk-bottom-box'>
-                                    <div className='sk-storySuccess-testmonial'>
-                                      <span>
-                                        <AccessTimeIcon />
-                                        {items.created_at}
-                                      </span>
-                                      <span>
-                                        <MenuBookRoundedIcon />
-                                        {items.reading_time}
-                                      </span>
-                                      <span>
-                                        <VisibilityOutlinedIcon />
-                                        {items?.ss_count}
-                                      </span>
-                                    </div>
-                                    <div className='sk-readmore-story'>
-                                      <button
-                                        className='sk-storyRead-more'
-                                        onClick={() =>
-                                          history.push(
-                                            routingConstants.SUCCESS_STORIES +
-                                              items?.id,
-                                          )
-                                        }
-                                      >
-                                        Read More <EastRoundedIcon />
-                                      </button>
-                                    </div>
+                  {successData?.length ? (
+                    successData?.slice(0, 6).map((items, index) => {
+                      return (
+                        <>
+                          <SwiperSlide>
+                            <div
+                              className='sk-story-testmonial'
+                              onClick={() =>
+                                history.push(
+                                  routingConstants.SUCCESS_STORIES + items?.id,
+                                )
+                              }
+                            >
+                              <div className='sk-story-content'>
+                                <img src={items?.image} alt='' />
+                              </div>
+                              <div className='sk-story-content'>
+                                <h4>{items?.title}</h4>
+                                <div className='sk-bottom-box'>
+                                  <div className='sk-storySuccess-testmonial'>
+                                    <span>
+                                      <AccessTimeIcon />
+                                      {items.created_at}
+                                    </span>
+                                    <span>
+                                      <MenuBookRoundedIcon />
+                                      {items.reading_time}
+                                    </span>
+                                    <span>
+                                      <VisibilityOutlinedIcon />
+                                      {items?.ss_count}
+                                    </span>
+                                  </div>
+                                  <div className='sk-readmore-story'>
+                                    <button
+                                      className='sk-storyRead-more'
+                                      onClick={() =>
+                                        history.push(
+                                          routingConstants.SUCCESS_STORIES +
+                                            items?.id,
+                                        )
+                                      }
+                                    >
+                                      Read More <EastRoundedIcon />
+                                    </button>
                                   </div>
                                 </div>
                               </div>
-                            </SwiperSlide>
-                          </>
-                        );
-                      })
-                    : "no data found"}
+                            </div>
+                          </SwiperSlide>
+                        </>
+                      );
+                    })
+                  ) : (
+                    <>
+                      <NoDataFound size='small' />
+                    </>
+                  )}
                 </Swiper>
               </div>
             </div>

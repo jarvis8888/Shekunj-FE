@@ -48,6 +48,7 @@ import AddsBanner from "../../components/AddsBanner/AddsBanner";
 import useDeviceDetect from "../../hooks/useDeviceDetect";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import { NoDataFound } from "../../components/noDataFound/NoDataFound";
 const useQuery = () => {
   return new URLSearchParams(useLocation().search);
 };
@@ -85,6 +86,20 @@ function EventPage() {
   const location = useLocation();
   const detect = useDeviceDetect();
 
+  const addAdvertisementObjects = (eventsData) => {
+    const addObjectData = { id: "advertisement" };
+    return eventsData.reduce((acc, event, index) => {
+      if (index % 2 === 0 && index !== 0) {
+        acc.push(addObjectData);
+      }
+      acc.push(event);
+      if (eventsData.length % 2 === 0 && index === eventsData.length - 1) {
+        acc.push(addObjectData);
+      }
+      return acc;
+    }, []);
+  };
+
   const getAllEVentsData = async (currentOffset, genre) => {
     setLoading(true);
     try {
@@ -98,9 +113,24 @@ function EventPage() {
       const { event_list, today_tomorrow, this_week, next_week, genres_list } =
         data;
       setGenresListData(genres_list);
-      setTodayTomorrowData(today_tomorrow);
-      setThisWeekData(this_week);
-      setNextWeekData(next_week);
+
+      // Process today_tomorrow data
+      const todayTomorrowEventData = today_tomorrow?.results || [];
+      const todayTomorrowDataWithAds = addAdvertisementObjects(
+        todayTomorrowEventData,
+      );
+      setTodayTomorrowData(todayTomorrowDataWithAds);
+
+      // Process this_week data
+      const thisWeekEventData = this_week?.results || [];
+      const thisWeekDataWithAds = addAdvertisementObjects(thisWeekEventData);
+      setThisWeekData(thisWeekDataWithAds);
+
+      // Process next_week data
+      const nextWeekEventData = next_week?.results || [];
+      const nextWeekDataWithAds = addAdvertisementObjects(nextWeekEventData);
+      setNextWeekData(nextWeekDataWithAds);
+
       setCheckEventData(event_list?.results);
       let newEventData = [];
       if (genre) {
@@ -113,20 +143,7 @@ function EventPage() {
         newEventData = event_list?.results;
       }
       if (newEventData.length > 0) {
-        const addObjectData = { id: "advertisement" };
-        const newDataWithAds = newEventData.reduce((acc, event, index) => {
-          if (index % 2 === 0 && index !== 0) {
-            acc.push(addObjectData);
-          }
-          acc.push(event);
-          if (
-            newEventData.length % 2 === 0 &&
-            index === newEventData.length - 1
-          ) {
-            acc.push(addObjectData);
-          }
-          return acc;
-        }, []);
+        const newDataWithAds = addAdvertisementObjects(newEventData);
         setAllEventData(newEventData);
         setDataWithAdds(newDataWithAds);
       }
@@ -474,7 +491,7 @@ function EventPage() {
                 })
               ) : (
                 <div className='noData'>
-                  <p>{"No more events available"}</p>
+                  <NoDataFound />
                 </div>
               )}
               {selectedButton == "all" && (
