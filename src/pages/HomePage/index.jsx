@@ -16,7 +16,12 @@ import "../../../node_modules/slick-carousel/slick/slick-theme.css";
 import SchoolRoundedIcon from "@mui/icons-material/SchoolRounded";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 // import Swiper core and required modules
-import SwiperCore, { Autoplay, Navigation, Pagination, EffectFade} from "swiper";
+import SwiperCore, {
+  Autoplay,
+  Navigation,
+  Pagination,
+  EffectFade,
+} from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -28,7 +33,7 @@ import firstslidebanner from "../../assets/images/happystudentbanner.png";
 import successstoryimg from "../../assets/images/storysuccess.png";
 import "./index.scss";
 import arrowbicon from "../../assets/images/arrowicon.svg";
-import EastRoundedIcon from '@mui/icons-material/EastRounded';
+import EastRoundedIcon from "@mui/icons-material/EastRounded";
 import begainimg from "../../assets/images/begainimg.png";
 import addbannerhome from "../../assets/images/homeaddbanner.png";
 import mocktesttimg from "../../assets/images/mocktest.png";
@@ -44,6 +49,7 @@ import { addEmailToClient, truncateString } from "../../utils/utils";
 import httpServices from "../../utils/ApiServices";
 import { apiConstants, routingConstants } from "../../utils/constants";
 import { CustomLoader } from "../../components/customLoader/CustomLoader";
+import { NoDataFound } from "../../components/noDataFound/NoDataFound";
 
 function HomePage() {
   const dispatch = useDispatch();
@@ -510,7 +516,9 @@ function HomePage() {
                     );
                   })
                 ) : (
-                  "no data found"
+                  <>
+                    <NoDataFound size='small' />
+                  </>
                 )}
               </Swiper>
             </div>
@@ -682,46 +690,57 @@ function HomePage() {
                   },
                 }}
               >
-                {mockData?.length
-                  ? mockData?.map((items, index) => {
-                      return (
-                        <>
-                          <SwiperSlide>
-                            <div className='sk-course-box'>
-                              <div className='sk-course-img'>
-                                <img src={items?.image} alt='' />
+                {mockData?.length ? (
+                  mockData?.map((items, index) => {
+                    return (
+                      <>
+                        <SwiperSlide>
+                          <div className='sk-course-box'>
+                            <div className='sk-course-img'>
+                              <img src={items?.image} alt='' />
+                            </div>
+                            <div className='sk-course-content'>
+                              <span className='sk-smallBox-heading'>
+                                Government
+                              </span>
+                              <h6>{items?.name}</h6>
+                              <div className='sk-time-education'>
+                                <ul>
+                                  <li>
+                                    <AccessTimeIcon />{" "}
+                                    <span>
+                                      {items?.career_test_time} Minutes
+                                    </span>{" "}
+                                  </li>
+                                  <li>
+                                    <SchoolRoundedIcon /> {items?.enrolled}{" "}
+                                    enrolled{" "}
+                                  </li>
+                                </ul>
                               </div>
-                              <div className='sk-course-content'>
-                                <span className='sk-smallBox-heading'>
-                                  Government
-                                </span>
-                                <h6>{items?.name}</h6>
-                                <div className='sk-time-education'>
-                                  <ul>
-                                    <li>
-                                      <AccessTimeIcon />{" "}
-                                      <span>
-                                        {items?.career_test_time} Minutes
-                                      </span>{" "}
-                                    </li>
-                                    <li>
-                                      <SchoolRoundedIcon /> {items?.enrolled}{" "}
-                                      enrolled{" "}
-                                    </li>
-                                  </ul>
-                                </div>
-                                <div className='sk-course-btn'>
-                                  <button className='sk-course-btn sk-courseBg-color'>
-                                    Attempt
-                                  </button>
-                                </div>
+                              <div className='sk-course-btn'>
+                                <button
+                                  className='sk-course-btn sk-courseBg-color'
+                                  onClick={() =>
+                                    history.push(
+                                      routingConstants.MOCKTEST + items?.id,
+                                    )
+                                  }
+                                >
+                                  Attempt
+                                </button>
                               </div>
                             </div>
-                          </SwiperSlide>
-                        </>
-                      );
-                    })
-                  : "no data found"}
+                          </div>
+                        </SwiperSlide>
+                      </>
+                    );
+                  })
+                ) : (
+                  <>
+                    <NoDataFound size='small' />
+                  </>
+                )}
               </Swiper>
             </div>
             <div className='col-xl-12'>
@@ -815,61 +834,64 @@ function HomePage() {
                   modules={[Pagination]}
                   className='sk-swiperSuccess-story'
                 >
-                  {successData?.length
-                    ? successData?.slice(0, 6).map((items, index) => {
-                        return (
-                          <>
-                            <SwiperSlide>
-                              <div
-                                className='sk-story-testmonial'
-                                onClick={() =>
-                                  history.push(
-                                    routingConstants.SUCCESS_STORIES +
-                                      items?.id,
-                                  )
-                                }
-                              >
-                                <div className='sk-story-content'>
-                                  <img src={items?.image} alt='' />
-                                </div>
-                                <div className='sk-story-content'>
-                                  <h4>{items?.title}</h4>
-                                  <div className='sk-bottom-box'>
-                                    <div className='sk-storySuccess-testmonial'>
-                                      <span>
-                                        <AccessTimeIcon />
-                                        {items.created_at}
-                                      </span>
-                                      <span>
-                                        <MenuBookRoundedIcon />
-                                        {items.reading_time}
-                                      </span>
-                                      <span>
-                                        <VisibilityOutlinedIcon />
-                                        {items?.ss_count}
-                                      </span>
-                                    </div>
-                                    <div className='sk-readmore-story'>
-                                      <button
-                                        className='sk-storyRead-more'
-                                        onClick={() =>
-                                          history.push(
-                                            routingConstants.SUCCESS_STORIES +
-                                              items?.id,
-                                          )
-                                        }
-                                      >
-                                        Read More <EastRoundedIcon />
-                                      </button>
-                                    </div>
+                  {successData?.length ? (
+                    successData?.slice(0, 6).map((items, index) => {
+                      return (
+                        <>
+                          <SwiperSlide>
+                            <div
+                              className='sk-story-testmonial'
+                              onClick={() =>
+                                history.push(
+                                  routingConstants.SUCCESS_STORIES + items?.id,
+                                )
+                              }
+                            >
+                              <div className='sk-story-content'>
+                                <img src={items?.image} alt='' />
+                              </div>
+                              <div className='sk-story-content'>
+                                <h4>{items?.title}</h4>
+                                <div className='sk-bottom-box'>
+                                  <div className='sk-storySuccess-testmonial'>
+                                    <span>
+                                      <AccessTimeIcon />
+                                      {items.created_at}
+                                    </span>
+                                    <span>
+                                      <MenuBookRoundedIcon />
+                                      {items.reading_time}
+                                    </span>
+                                    <span>
+                                      <VisibilityOutlinedIcon />
+                                      {items?.ss_count}
+                                    </span>
+                                  </div>
+                                  <div className='sk-readmore-story'>
+                                    <button
+                                      className='sk-storyRead-more'
+                                      onClick={() =>
+                                        history.push(
+                                          routingConstants.SUCCESS_STORIES +
+                                            items?.id,
+                                        )
+                                      }
+                                    >
+                                      Read More <EastRoundedIcon />
+                                    </button>
                                   </div>
                                 </div>
                               </div>
-                            </SwiperSlide>
-                          </>
-                        );
-                      })
-                    : "no data found"}
+                            </div>
+                          </SwiperSlide>
+                        </>
+                      );
+                    })
+                  ) : (
+                    <>
+                      <NoDataFound size='small' />
+                    </>
+                  )}
                 </Swiper>
               </div>
             </div>
