@@ -16,12 +16,7 @@ import "../../../node_modules/slick-carousel/slick/slick-theme.css";
 import SchoolRoundedIcon from "@mui/icons-material/SchoolRounded";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 // import Swiper core and required modules
-import SwiperCore, {
-  Autoplay,
-  Navigation,
-  Pagination,
-  EffectFade,
-} from "swiper";
+import SwiperCore, { Autoplay, Navigation, Pagination, EffectFade} from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -33,14 +28,10 @@ import firstslidebanner from "../../assets/images/happystudentbanner.png";
 import successstoryimg from "../../assets/images/storysuccess.png";
 import "./index.scss";
 import arrowbicon from "../../assets/images/arrowicon.svg";
-
+import EastRoundedIcon from '@mui/icons-material/EastRounded';
 import begainimg from "../../assets/images/begainimg.png";
-
 import addbannerhome from "../../assets/images/homeaddbanner.png";
-
 import mocktesttimg from "../../assets/images/mocktest.png";
-
-import EastRoundedIcon from "@mui/icons-material/EastRounded";
 import MenuBookRoundedIcon from "@mui/icons-material/MenuBookRounded";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import cousreimg from "../../assets/images/courseimg.png";
@@ -82,9 +73,7 @@ function HomePage() {
     return React.useMemo(() => new URLSearchParams(search), [search]);
   }
   let query = useQuery();
-
   const redirect = query.get("redirect");
-
   useEffect(() => {
     Aos.init({ duration: 2000 });
     if (redirect) {
@@ -243,7 +232,6 @@ function HomePage() {
     <div>
       <SEO />
       <Header loginPage={false} page='home' />
-
       <section className='sk-homeBanner-sec'>
         <div className='container'>
           <div className='row'>
@@ -251,10 +239,11 @@ function HomePage() {
               <Swiper
                 modules={[Navigation, Pagination, Autoplay]}
                 slidesPerView={1}
-                loop={true}
                 simulateTouch={true}
                 effect={"fade"}
+                // parallax={true}
                 speed={1500}
+                loop={true}
                 autoplay={{ delay: 5500 }}
                 navigation={navigation}
                 pagination={pagination}
@@ -425,23 +414,21 @@ function HomePage() {
                     slidesPerView: 1,
                     spaceBetween: 10,
                   },
-                  639: {
+                  767: {
                     slidesPerView: 2,
                     spaceBetween: 10,
                   },
-                  865: {
+                  991: {
                     slidesPerView: 3,
-                    spaceBetween: 10,
                   },
-                  1000: {
+                  1199: {
                     slidesPerView: 4,
-                    spaceBetween: 30,
                   },
-                  1500: {
+                  1250: {
                     slidesPerView: 4,
                   },
                   1920: {
-                    slidesPerView: 5,
+                    slidesPerView: 4,
                   },
                 }}
               >
@@ -675,25 +662,23 @@ function HomePage() {
                 breakpoints={{
                   0: {
                     slidesPerView: 1,
-                    spaceBetween: 10,
-                  },
-                  639: {
-                    slidesPerView: 2,
-                    spaceBetween: 10,
-                  },
-                  865: {
-                    slidesPerView: 3,
                     spaceBetween: 15,
                   },
-                  1000: {
-                    slidesPerView: 4,
-                    spaceBetween: 30,
+                  767: {
+                    slidesPerView: 2,
+                    spaceBetween: 15,
                   },
-                  1500: {
+                  991: {
+                    slidesPerView: 3,
+                  },
+                  1199: {
+                    slidesPerView: 4,
+                  },
+                  1250: {
                     slidesPerView: 4,
                   },
                   1920: {
-                    slidesPerView: 5,
+                    slidesPerView: 4,
                   },
                 }}
               >
