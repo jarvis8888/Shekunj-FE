@@ -8,7 +8,6 @@ import { adsList } from "../../store/ads";
 
 const AddsPopup = (props) => {
   const dispatch = useDispatch();
-
   const [popupAds, setPopupAds] = useState([]);
   const [image, setImage] = useState("NA");
 
@@ -60,7 +59,7 @@ const AddsPopup = (props) => {
         .catch((error) => {
           // setMessage("No data found");
           console.log(error);
-      })
+        });
     });
   };
 
@@ -91,7 +90,7 @@ const AddsPopup = (props) => {
         .catch((error) => {
           // setMessage("No data found");
           console.log(error);
-      })
+        });
     });
     dispatch(adsList());
   }, [dispatch]);
