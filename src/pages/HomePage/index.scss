@@ -11,7 +11,6 @@ img {
   max-width: 100%;
   height: auto;
 }
-
 // Eight may 2023
 
 .sk-homeBanner-sec {
@@ -303,18 +302,20 @@ img {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 15px 2px 30px;
+  padding: 10px 20px 2px 20px;
   margin: 10px 0;
 }
 .sk-begain-content h5 {
   margin-bottom: 0;
   color: #202020;
+  font-size: 18px;
 }
 .sk-begain-content h6 {
   color: #434242;
   font-weight: 400;
   padding-bottom: 15px;
   margin-bottom: 0;
+  font-size: 14px;
 }
 .sk-begain-content h5 img {
   padding-left: 10px;
@@ -347,7 +348,7 @@ img {
   margin-top: 0px;
   position: absolute;
   top: 50%;
-  right: -50px;
+  right: -45px;
   transform: translateY(-50%);
 }
 .sk-slide-arrow .swiper-button-next.swiper-button-disabled, .sk-slide-arrow .swiper-button-prev.swiper-button-disabled {
@@ -357,7 +358,7 @@ img {
 .sk-slide-arrow .swiper-button-prev {
   position: absolute;
   top: 50%;
-  left: -50px;
+  left: -45px;
   transform: translateY(-50%);
   margin-top: 0px;
 }
@@ -388,8 +389,8 @@ img {
   font-size: calc(1.11em + .5vw);
   font-weight: 500;
   color: #434242;
-  line-height: 38px;
-  margin-bottom: 35px;
+  line-height: 1.6;
+  margin-bottom: 30px;
 }
 .sk-bottom-box {
   display: flex;
@@ -479,12 +480,13 @@ img {
 }
 .loadMore {
   background-color: #202020;
-  padding: 15px 30px;
+  padding: 13px 25px;
   border-radius: 8px;
   color: #fff;
   font-weight: 600;
   display: inline-block;
   transition: all 0.3s;
+  height: 50px;
 }
 .sk-changeBothhire-sec{
   position: relative;
@@ -570,6 +572,9 @@ img {
   }
   .sk-begain-content h5{
     font-size: 16px;
+  }
+  .sk-begain-sec{
+    padding: 40px 0;
   }
 }
 @media screen and (max-width: 480px) {
