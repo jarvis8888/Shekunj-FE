@@ -295,9 +295,6 @@ img.edit_icon_guidance {
     color: #5f6377 !important;
   }
 
-  .guidance_book {
-    padding: 30px 0;
-  }
 
   .guidance_book .col-md-5.col-12 {
     order: 2;
@@ -545,8 +542,12 @@ img.edit_icon_guidance {
   }
   .sk-bookC-contentinner ul {
     grid-template-columns: repeat(2, 1fr);
+    gap:10px;
   }
   .sk-bookc-sec{
     padding-bottom: 50px;
+  }
+  .sk-bookC-contentinner ul li {
+    padding: 0px 0px 0px;
   }
 }
