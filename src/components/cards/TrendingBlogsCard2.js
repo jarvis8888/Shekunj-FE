@@ -35,11 +35,11 @@ export const TrendingBlogsCard2 = ({
       onClick={() => history.push(routingConstants.MORE_BLOG + id)}
       style={{ cursor: "pointer" }}
     >
-      <div className='col-md-4'>
+      <div className='col-xl-4 col-lg-6 col-md-6'>
         <img src={image} />
       </div>
-      <div className='col-md-8'>
-        <div className="">
+      <div className='col-xl-8 col-lg-6 col-md-6'>
+        <div className="sk-tradingBlog-card">
         <h5 className='blog-card2__title'>{title}</h5>
         <span className="sk-tagBlog-name">{category_name}</span>
         <p
