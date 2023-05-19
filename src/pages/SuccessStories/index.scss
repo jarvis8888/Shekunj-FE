@@ -481,7 +481,7 @@ button.want_btn {
 }
 .sk-allStory-btn {
   color: #fff;
-  border-radius: 5px;
+  border-radius: 50px;
   font-weight: 500;
 }
 .sk-Blogcard-content h5 {
@@ -802,11 +802,15 @@ h1 {
 }
 @media screen and (max-width: 480px) {
   .sk-storyS-images ul {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
   .sk-storyS-images ul li img {
     width: 100%;
+    height: 84px;
   }
+.sk-allStory-btn {
+  margin-bottom: 30px;  
+}
 }
 .carousel__content h2 {
   color: #fff;

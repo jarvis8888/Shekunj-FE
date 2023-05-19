@@ -318,7 +318,14 @@ function SuccessStory() {
 
   useEffect(() => {
     // Update the animation data when the currentIndex changes
-    const endIndex = (currentIndex + 8) % animationTrendingData.length;
+    let endIndex; // Declare the variable outside of the if-else blocks
+
+    if (detect.isMobile) {
+      endIndex = (currentIndex + 6) % animationTrendingData.length;
+    } else {
+      endIndex = (currentIndex + 8) % animationTrendingData.length;
+    }
+
     // Declare a variable to store the updated animation data
     // Check if the range falls within a single continuous section of the array
     const updatedData =

@@ -21,7 +21,6 @@ body {
   background: linear-gradient(90deg, transparent, #929292);
   width: 250px;
 }
-
 .SuccStory_banner {
   background-image: url("../../assets/images/Success/sus_banner.jpg");
   background-repeat: no-repeat;
@@ -1379,3 +1378,14 @@ button.want_btn {
 }
 
 
+
+@media screen and (max-width: 480px) {
+  .event-Carousel .owl-nav:before, .event-Carousel .owl-nav:after {
+    background: transparent;
+  }
+  .event-Carousel .owl-nav button span{
+    border: 3px solid #fff;
+    font-weight: 300;
+    background: rgb(0 0 0 / 57%);
+  }
+}
