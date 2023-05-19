@@ -394,7 +394,7 @@ function BlogPage() {
           <section>
             <div className='container'>
               <div className='row'>
-                <div className='col-xl-9 col-md-8 col-lg-8'>
+                <div className='col-xl-9 col-md-6 col-lg-8'>
                   <div className='blog-stories'>
                     <div className='title' ref={sectionRef}>
                       <img src={timeicon} alt='time' width={28} />
@@ -509,7 +509,7 @@ function BlogPage() {
                   })}
                 </div>
 
-                <div className='col-xl-3 col-md-4 col-lg-4 col-sm-12'>
+                <div className='col-xl-3 col-md-6 col-lg-4 col-sm-12'>
                   <HashtagAndCatagories
                     image={catagorie}
                     title={"Categories"}

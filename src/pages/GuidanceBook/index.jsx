@@ -5,18 +5,14 @@ import EastSharpIcon from "@mui/icons-material/EastSharp";
 import Book_img from "../../assets/images/Guidance/Book_img.png";
 import bookcounsellor from "../../assets/images/Bookcoun.png";
 import CountUp from "react-countup";
-
 import "./index.scss";
 import "../LoginPage/LoginForm/LoginTabs/index.scss";
-
 import "aos/dist/aos.css";
 import "animate.css";
 import Aos from "aos";
 import * as Yup from "yup";
 import { useFormik } from "formik";
-
 import { useTranslation } from "react-i18next";
-
 import { Helmet } from "react-helmet-async";
 import { apiConstants } from "../../utils/constants";
 import httpServices from "../../utils/ApiServices";
@@ -187,8 +183,7 @@ const GuidancePage = () => {
           />
           <meta
             name='keywords'
-            content='free online counselling in India, online free career counselling,        
- free business counselling, mental health counselling, medical counselling, best counsellors in Indore'
+            content='free online counselling in India, online free career counselling, free business counselling, mental health counselling, medical counselling, best counsellors in Indore'
           />
         </Helmet>{
           <section className='sk-bookc-sec'>
@@ -349,7 +344,6 @@ const GuidancePage = () => {
                               </li>
                             </ul>
                           </div>
-
                           <div className='form-inline sk-inline-field'>
                             <ul>
                               <li>
@@ -412,28 +406,6 @@ const GuidancePage = () => {
                         <form onSubmit={InstituteHandleSubmit}>
                           <div className='form-inline sk-inline-field'>
                             <ul>
-                              <li>
-                                <label>Hey, This is </label>
-                                <input
-                                  type='text'
-                                  id='institute_name'
-                                  placeholder='Name of Institute'
-                                  name='institute_name'
-                                  value={InstituteValue.institute_name}
-                                  onBlur={InstituteHandleBlur}
-                                  onChange={InstituteHandleChange}
-                                  touched={InstituteTouched}
-                                  autoComplete='off'
-                                />
-                                <label>, We have</label>
-                                {InstituteError.institute_name &&
-                                  InstituteTouched.institute_name && (
-                                    <div className='sk-form-error'>
-                                      {InstituteError.institute_name}
-                                    </div>
-                                  )}
-                              </li>
-
                               <li>
                                 <label>Hey, This is </label>
                                 <input
