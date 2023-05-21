@@ -131,7 +131,9 @@ section {
     padding-bottom: 10px;
   }
   .carousel{
-    border-radius: 4px;
+    border-radius: 0;
   }
- 
+  .carousel__slide img{
+    border-radius: 0;
+  }
 }
