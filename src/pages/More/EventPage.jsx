@@ -156,7 +156,7 @@ function EventPage() {
 
   const handleTimeOptionClick = (option) => {
     setSelectedButton(option);
-    setSelectedOption(null);
+    // setSelectedOption(null);
     const searchParams = new URLSearchParams();
     searchParams.set("genre_id", "");
     history.push({

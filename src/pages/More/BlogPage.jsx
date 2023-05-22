@@ -311,7 +311,7 @@ function BlogPage() {
         </div>
       ) : (
         <>
-          <section className="sk-blogTopbar-sec">
+          <section className='sk-blogTopbar-sec'>
             <div className='container'>
               <div className='row'>
                 <div className='col-xl-8 col-md-8 col-lg-8'>
