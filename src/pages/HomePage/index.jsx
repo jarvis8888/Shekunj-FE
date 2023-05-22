@@ -450,68 +450,135 @@ function HomePage() {
                       <>
                         <SwiperSlide>
                           <div className='sk-course-box' key={index}>
-                            <div className='sk-course-img'>
-                              <img src={items?.image} alt='cousreimg' />
-                              {items?.has_certificate ? (
-                                <>
-                                  <div className='sk-certificate-box'>
-                                    <WorkspacePremiumSharpIcon /> Certificate
-                                  </div>
-                                </>
-                              ) : null}
-                            </div>
-                            <div className='sk-course-content'>
-                              <span className='sk-smallBox-heading'>
-                                {items?.category_name}
-                              </span>
-                              <h6>{items?.name}</h6>
-                              <p
-                                className='sk-smallBox-description'
-                                dangerouslySetInnerHTML={{
-                                  __html: makeHtml(
-                                    `${truncateString(
-                                      items?.description,
-                                      100,
-                                    )}`,
-                                  ),
-                                }}
-                              />
-
-                              <div className='sk-time-education'>
-                                <ul>
-                                  <li>
-                                    <AccessTimeIcon />{" "}
-                                    <span>{items?.reading_time}</span>{" "}
-                                  </li>
-                                  <li>
-                                    <SchoolRoundedIcon /> {items?.enrold}{" "}
-                                    enrolled{" "}
-                                  </li>
-                                </ul>
+                            <div className="sk-inner-box">
+                              <div className='sk-course-img'>
+                                <img src={items?.image} alt='cousreimg' />
+                                {items?.has_certificate ? (
+                                  <>
+                                    <div className='sk-certificate-box'>
+                                      <WorkspacePremiumSharpIcon /> Certificate
+                                    </div>
+                                  </>
+                                ) : null}
                               </div>
-                              <div className='sk-course-btn'>
-                                <button
-                                  className='sk-course-btn'
-                                  onClick={() =>
-                                    history.push(
-                                      routingConstants.COURSE_DETAILS +
-                                        items?.id,
-                                    )
-                                  }
-                                >
-                                  More Info
-                                </button>
-                                <button
-                                  className='sk-course-btn sk-courseBg-color'
-                                  onClick={() =>
-                                    history.push(
-                                      routingConstants.COURSES_MODULE +
-                                        items?.id,
-                                    )
-                                  }
-                                >
-                                  Start Learning
-                                </button>
+                              <div className='sk-course-content'>
+                                <div className="sk-category-describe">
+                                  <span className='sk-smallBox-heading'>
+                                    {items?.category_name}
+                                  </span>
+                                  <h6>{items?.name}</h6>
+                                  <p className='sk-smallBox-description'
+                                    dangerouslySetInnerHTML={{
+                                      __html: makeHtml(
+                                        `${truncateString(
+                                          items?.description,
+                                          100,
+                                        )}`,
+                                      ),
+                                    }}
+                                  />
+                                </div>
+                                <div className='sk-time-education'>
+                                  <ul>
+                                    <li>
+                                      <AccessTimeIcon />{" "}
+                                      <span>{items?.reading_time}</span>{" "}
+                                    </li>
+                                    <li>
+                                      <SchoolRoundedIcon /> {items?.enrold}{" "}
+                                      enrolled{" "}
+                                    </li>
+                                  </ul>
+                                </div>
+                                <div className='sk-course-btn'>
+                                  <button
+                                    className='sk-course-btn'
+                                    onClick={() =>
+                                      history.push(
+                                        routingConstants.COURSE_DETAILS +
+                                          items?.id,
+                                      )
+                                    }
+                                  >
+                                    More Info
+                                  </button>
+                                  <button
+                                    className='sk-course-btn sk-courseBg-color'
+                                    onClick={() =>
+                                      history.push(
+                                        routingConstants.COURSES_MODULE +
+                                          items?.id,
+                                      )
+                                    }
+                                  >
+                                    Start Learning
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="sk-innerHover-box">  
+                              <div className='sk-course-content'>
+                                <div className="sk-category-describe">
+                                  <span className='sk-smallBox-heading'>
+                                    {items?.category_name}
+                                  </span>
+                                  <h6>{items?.name}</h6>
+                                  <p className='sk-smallBox-description'
+                                    dangerouslySetInnerHTML={{
+                                      __html: makeHtml(
+                                        `${truncateString(
+                                          items?.description,
+                                          100,
+                                        )}`,
+                                      ),
+                                    }}
+                                  />
+                                </div>
+                                <div className='sk-time-education'>
+                                  <ul>
+                                    <li>
+                                      <AccessTimeIcon />{" "}
+                                      <span>{items?.reading_time}</span>{" "}
+                                    </li>
+                                    <li>
+                                      <SchoolRoundedIcon /> {items?.enrold}{" "}
+                                      enrolled{" "}
+                                    </li>
+                                  </ul>
+                                </div>
+                                <div className="sk-content-point">
+                                  <h6>What you will learn</h6>
+                                  <ul>
+                                    <li>Lorem Ipsum has been the industry's standard dummy </li>
+                                    <li>Lorem Ipsum has been the industry's standard dummy </li>
+                                    <li>Lorem Ipsum has been the industry's standard dummy </li>
+                                  </ul>
+                                </div>
+                                <div className='sk-course-btn'>
+                                  <button
+                                    className='sk-course-btn'
+                                    onClick={() =>
+                                      history.push(
+                                        routingConstants.COURSE_DETAILS +
+                                          items?.id,
+                                      )
+                                    }
+                                  >
+                                    More Info
+                                  </button>
+                                  <button
+                                    className='sk-course-btn sk-courseBg-color'
+                                    onClick={() =>
+                                      history.push(
+                                        routingConstants.COURSES_MODULE +
+                                          items?.id,
+                                      )
+                                    }
+                                  >
+                                    Start Learning
+                                  </button>
+                                </div>
                               </div>
                             </div>
                           </div>
