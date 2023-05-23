@@ -1,26 +1,16 @@
-import React, { useState, useEffect } from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import React, { useState, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import { AccordionComponent, Footer, Header, SEO } from "../../components";
+import { Footer, Header, SEO } from "../../components";
 import { Link, useParams } from "react-router-dom";
 import { useHistory } from "react-router-dom";
-import Moment from "react-moment";
 import { routingConstants } from "../../utils/constants";
-import { getAllBlogs, singleBlogDetails } from "../../store/blogs/action";
+import { singleBlogDetails } from "../../store/blogs/action";
 import "../HomePage/index.scss";
 import "./index.scss";
 import { adsList } from "../../store/ads";
 import axios from "axios";
-import noImageIcon from "../../assets/images/no-image.jpeg";
 import useDeviceDetect from "../../hooks/useDeviceDetect";
-import photo from "../../assets/icons/svgs/exphoto.png";
-import { TrendingStories } from "../SuccessStories/TrendingStories";
-import twitter1 from "../../assets/images/twitter1.png";
-import facebook from "../../assets/images/facebook.png";
-import youTube from "../../assets/images/youTube.png";
-import linkedinlogo from "../../assets/images/linkedinlogo.png";
-import instagram from "../../assets/images/instagram.png";
 import MenuBookRoundedIcon from "@mui/icons-material/MenuBookRounded";
 import facebookicon from "../../assets/images/facebook.svg";
 import linkedinicon from "../../assets/images/linkedin.svg";
@@ -28,10 +18,7 @@ import twittericon from "../../assets/images/twitter.svg";
 import pintresticon from "../../assets/images/pintrest.svg";
 import instagramicon from "../../assets/images/instagram.svg";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
-import SchoolRoundedIcon from "@mui/icons-material/SchoolRounded";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
-import time from "../../assets/icons/svgs/time.png";
-import book from "../../assets/icons/svgs/book.png";
 import { TrendingBlogsCard2 } from "../../components/cards/TrendingBlogsCard2";
 import httpServices from "../../utils/ApiServices";
 import { HashtagAndCatagories } from "../../components/HastagAndCatagories/Index";
@@ -52,26 +39,29 @@ const BlogDetails = () => {
   const history = useHistory();
   const { blogs } = useSelector((state) => state.blogsReducer);
   const dispatch = useDispatch();
-  // ("Blogssssss", blogs);
+
   const { lan } = useSelector((state) => state.languageReducer);
-  // ("langggggg", lan);
+
   const { t } = useTranslation();
+  const trendingSectionRef = useRef(null);
 
   const { id } = useParams();
-  // ("id!!!!!!", id);
+
   const currentUrl = window.location.href;
-  const [image, setImage] = useState("NA");
-  const [adds, setAdds] = useState([]);
+
   const [blogDetailsBoxAds, setBlogDetailsBoxAds] = useState([]);
   const detect = useDeviceDetect();
   const [succesStoriesRight1, setSuccesStoriesRight1] = useState([]);
   const [succesStoriesRight2, setSuccesStoriesRight2] = useState([]);
   const [blogLeft, setBolgLeft] = useState([]);
   const [blogCategories, setBlogCategories] = useState([]);
-  const [trending, setTrending] = useState([]);
+  const [trendingBlogs, setTrendingBlogs] = useState([]);
+  const [currentTrendingBlogData, setCurrentTrendingBlogData] = useState([]);
+  const [trendingLoading, setTrendingLoading] = useState(false);
+  const [trendingOffset, setTrendingOffset] = useState(0);
   const [loading, setLoading] = useState(false);
   const [offset, setOffset] = useState(0);
-  const pageLimit = 10;
+  const trendingPageLimit = 6;
 
   useEffect(() => {
     dispatch(singleBlogDetails(id));
@@ -83,26 +73,63 @@ const BlogDetails = () => {
     try {
       const url = `more/blogs`;
       const data = await httpServices.get(url);
-      const { trending_blogs, blog_categories } = data;
-      if (trending_blogs?.length > 0) {
-        const res = trending_blogs ?? [];
-        const addObjectData = { id: "advertisement" };
-        const newFeaturedData = [];
+      const { blog_categories } = data;
+      // if (trending_blogs?.length > 0) {
+      //   const res = trending_blogs ?? [];
+      //   const addObjectData = { id: "advertisement" };
+      //   const newFeaturedData = [];
 
-        for (let i = 0; i < res.length; i++) {
-          newFeaturedData.push(res[i]);
-          if ((i + 1) % 2 === 0) {
-            newFeaturedData.push(addObjectData);
-          }
-        }
-        setTrending(newFeaturedData);
-      }
+      //   for (let i = 0; i < res.length; i++) {
+      //     newFeaturedData.push(res[i]);
+      //     if ((i + 1) % 2 === 0) {
+      //       newFeaturedData.push(addObjectData);
+      //     }
+      //   }
+      //   setTrending(newFeaturedData);
+      // }
       setBlogCategories(blog_categories);
     } catch (error) {
     } finally {
       setLoading(false);
     }
   };
+
+  const getAllTrendingBlogsData = async (limit, offset) => {
+    setTrendingLoading(true);
+    try {
+      const url = `${apiConstants.ALL_BLOGS.TRENDING_BLOGS}?limit=${limit}&offset=${offset}`;
+      const data = await httpServices.get(url);
+      const { trending_blogs } = data;
+
+      if (trending_blogs?.results?.length > 0) {
+        const res = trending_blogs?.results ?? [];
+        const addObjectData = { id: "advertisement" };
+        const newFeaturedData = [];
+
+        for (let i = 0; i < res.length; i++) {
+          newFeaturedData.push(res[i]);
+
+          if ((i + 1) % 2 === 0) {
+            newFeaturedData.push(addObjectData);
+          }
+        }
+
+        setTrendingBlogs((prevFeaturedData) => [
+          ...newFeaturedData,
+          ...prevFeaturedData,
+        ]);
+      } else {
+        setCurrentTrendingBlogData(trending_blogs);
+      }
+    } catch (error) {
+    } finally {
+      setTrendingLoading(false);
+    }
+  };
+  useEffect(() => {
+    getAllTrendingBlogsData(trendingPageLimit, trendingOffset);
+  }, [lan, trendingOffset]);
+
   useEffect(() => {
     fetchData();
   }, [lan]);
@@ -125,15 +152,15 @@ const BlogDetails = () => {
           .then((response) => {
             if (response && response.data.results.length > 0) {
               let filterArray1 = response.data.results.filter((item, index) => {
-                return item.image_type == "blog_index";
+                return item.image_type === "blog_index";
               });
               setBlogDetailsBoxAds(filterArray1);
               let filterArray2 = response.data.results.filter((item, index) => {
-                return item.image_type == "blog_index_right1";
+                return item.image_type === "blog_index_right1";
               });
               setSuccesStoriesRight1(filterArray2);
               let filterArray3 = response.data.results.filter((item, index) => {
-                return item.image_type == "blog_index_right2";
+                return item.image_type === "blog_index_right2";
               });
               setSuccesStoriesRight2(filterArray3);
               let filterArray4 = response.data.results.filter((item, index) => {
@@ -149,15 +176,15 @@ const BlogDetails = () => {
         axios.get(`/private_adds/private_add`).then((response) => {
           if (response && response.data.results.length > 0) {
             let filterArray1 = response.data.results.filter((item, index) => {
-              return item.image_type == "blog_index";
+              return item.image_type === "blog_index";
             });
             setBlogDetailsBoxAds(filterArray1);
             let filterArray2 = response.data.results.filter((item, index) => {
-              return item.image_type == "blog_index_right1";
+              return item.image_type === "blog_index_right1";
             });
             setSuccesStoriesRight1(filterArray2);
             let filterArray3 = response.data.results.filter((item, index) => {
-              return item.image_type == "blog_index_right2";
+              return item.image_type === "blog_index_right2";
             });
             setSuccesStoriesRight2(filterArray3);
             let filterArray4 = response.data.results.filter((item, index) => {
@@ -344,12 +371,12 @@ const BlogDetails = () => {
                       : null}
                   </div>
                 </div>
-                <div className='title'>
+                <div className='title' ref={trendingSectionRef}>
                   <img src={fire} alt='fire' width={28} />
                   <h4>Trending Blogs</h4>
                 </div>
                 <div className='sk-blogMain-inner'>
-                  {trending?.map((items, index) => {
+                  {trendingBlogs?.map((items, index) => {
                     if (items.id === "advertisement") {
                       return <>{blogLeft.length > 0 && blogLeftRenderAds()}</>;
                     } else {
@@ -368,6 +395,20 @@ const BlogDetails = () => {
                       );
                     }
                   })}
+                  <div className='d-flex justify-content-center align-items-center py-4'>
+                    <button
+                      className='loadMore'
+                      onClick={() => {
+                        setTrendingOffset(trendingOffset + 6);
+                        trendingSectionRef.current.scrollIntoView({
+                          behavior: "smooth",
+                        });
+                      }}
+                      disabled={currentTrendingBlogData?.results?.length === 0}
+                    >
+                      Explore More
+                    </button>
+                  </div>
                 </div>
               </div>
               <div className='col-xl-3 col-md-4'>

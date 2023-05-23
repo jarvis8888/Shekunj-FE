@@ -1380,12 +1380,23 @@ button.want_btn {
 
 
 @media screen and (max-width: 480px) {
-  .event-Carousel .owl-nav:before, .event-Carousel .owl-nav:after {
-    background: transparent;
+  .event-Carousel .owl-nav:before {
+    background: linear-gradient(90deg, rgb(146 146 146 / 58%), transparent);
+    width: 110px;
   }
-  .event-Carousel .owl-nav button span{
-    border: 3px solid #fff;
+  .event-Carousel .owl-nav:after {
+    background: linear-gradient(90deg, transparent, rgb(146 146 146 / 58%) );
+    width: 110px;
+  }
+  .event-Carousel .owl-nav button span {
+    border: 2px solid #fff;
     font-weight: 300;
-    background: rgb(0 0 0 / 57%);
-  }
+    background: rgb(0 0 0 / 28%);
+    width: 36px;
+    height: 36px;
+    font-size: 30px;
+    line-height: 20px;
+    padding: 0 12px;
+    line-height: 30px;
+    }
 }
