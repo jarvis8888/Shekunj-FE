@@ -140,17 +140,21 @@ const GlobalSearch = () => {
                   </div>
                 </div>
               </div>
+              <ul>
               {hintData?.map((items, index) => {
                 return (
                   <>
-                    <span
-                      key={items.id}
-                      className='hint-key-words'
-                      onClick={() => searchByTags(items?.name)}
-                    >{`#${items?.name}`}</span>
+                    
+                      <li
+                        key={items.id}
+                        className='hint-key-words'
+                        onClick={() => searchByTags(items?.name)}>{`#${items?.name}`}
+                      </li>
+                    
                   </>
                 );
               })}
+              </ul>
             </div>
           </div>
         </div>

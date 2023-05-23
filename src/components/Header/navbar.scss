@@ -339,7 +339,7 @@ body {
     font-size: 11px;
   }
   .Navbar .custom-dropdown button{
-    font-size: 12px;
+    font-size: 11px;
     padding-left: 15px;
   }
   .header-top {
@@ -347,6 +347,9 @@ body {
     position: relative;
     transition: 0.5s;
     z-index: 999;
+  }
+  .rs-dropdown-toggle-caret{
+    font-size: 11px;
   }
   .nav-logo img {
     max-width: 120px;

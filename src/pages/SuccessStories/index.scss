@@ -806,7 +806,11 @@ button.want_btn {
     grid-template-columns: repeat(3, 1fr);
   }
   .sk-storyMain-sec {
-    padding: 40px 0;
+    padding: 30px 0;
+  }
+  .sk-story-content p
+  {
+    font-size: 14px;
   }
   .sk-storyHeading-top{
     font-size: 24px;
@@ -821,8 +825,14 @@ button.want_btn {
     height: 84px;
   }
 .sk-allStory-btn {
-  margin-bottom: 30px;  
+  margin-bottom: 20px;  
 }
+section{
+  padding: 30px 0;
+  }
+  .sk-blogbottom-border{
+    margin-bottom: 20px;
+  }
 }
 .carousel__content h2 {
   color: #fff;

@@ -91,7 +91,8 @@ function BlogPage() {
     try {
       const url = `${apiConstants.ALL_BLOGS.TRENDING_BLOGS}?limit=${limit}&offset=${offset}`;
       const data = await httpServices.get(url);
-      const { trending_blogs } = data;
+      const { trending_blogs, banner_featured_blogs } = data;
+      setTopTrendingBlogs(banner_featured_blogs);
 
       if (trending_blogs?.results?.length > 0) {
         const res = trending_blogs?.results ?? [];

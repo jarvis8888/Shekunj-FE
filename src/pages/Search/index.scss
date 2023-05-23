@@ -68,7 +68,13 @@ section {
 .sk-carrers-search.style-8 .info .form .form-group {
   position: relative;
 }
-
+.sk-search-sec ul {
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 0;
+  gap:10px
+}
 .sk-carrers-search .sk-form-group {
   display: flex;
   align-items: center;
@@ -413,7 +419,6 @@ section {
     justify-content: start;
     flex-wrap: nowrap;
     margin-bottom: 0;
-
   }
   .sk-category ul::-webkit-scrollbar {
     width: 0px;
@@ -428,5 +433,30 @@ section {
   .sk-category ul li a{
     font-size: 14px;
   }
-
+  .sk-search-sec{
+    padding: 30px 0 10px;
+  }
+  .sk-card-sec{
+    padding: 30px 0;
+  }
+  .sk-card-sec .sk-category {
+    margin-bottom: 20px;
+  }
+  .sk-search-sec ul {
+    flex-wrap: nowrap;
+    overflow: auto;
+    justify-content: start;
+  }
+  .sk-search-sec ul::-webkit-scrollbar{
+    width: 0;
+    background: transparent;
+  }
+  .sk-btn{
+    min-width: 100px;
+    padding: 10px;
+    font-size: 14px;
+  }
+  .sk-search-sec input{
+    height: 38px;
+  }
 }

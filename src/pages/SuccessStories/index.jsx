@@ -98,8 +98,8 @@ function SuccessStory() {
     try {
       const url = `${apiConstants.COURSES.TRENDING_SUCCESS_STORY}?limit=${limit}&offset=${offset}`;
       const data = await httpServices.get(url);
-      const { trending_success_stories } = data;
-
+      const { trending_success_stories, banner_featured_ss } = data;
+      setAnimationTrendingData(banner_featured_ss);
       if (trending_success_stories?.results?.length > 0) {
         const res = trending_success_stories?.results ?? [];
         const addObjectData = { id: "advertisement" };
