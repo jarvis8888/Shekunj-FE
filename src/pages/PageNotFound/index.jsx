@@ -13,10 +13,10 @@ const PageNotFound = () => {
       <section className='sk-notFound-sec'>
         <div className='container'>
           <div className='row align-items-center'>
-            <div className='col-xl-6 col-lg-6 col-md-7'>
+            <div className='col-xl-6 col-lg-6 col-md-7 order-2 order-md-1'>
               <div className='sk-notFound-box'>
                 <h1>Ooops.</h1>
-                <div className='py-3'>
+                <div className='py-2'>
                   <h3>Relax, take it easy</h3>
                   <h3> Keep fresh your mind!</h3>
                 </div>
@@ -29,7 +29,7 @@ const PageNotFound = () => {
                 </div>
               </div>
             </div>
-            <div className='col-xl-6 col-lg-6 col-md-5'>
+            <div className='col-xl-6 col-lg-6 col-md-5 order-1 order-md-2'>
               <div className='sk-notFound-img'>
                 <img src={pagenotfound} />
               </div>

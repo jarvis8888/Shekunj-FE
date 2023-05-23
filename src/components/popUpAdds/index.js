@@ -61,7 +61,7 @@ const PopUpAdds = () => {
   return (
     <div className='pop-up-ads-container'>
       {leftAddIsVisible && (
-        <div className='pop-up-ads left-bottom'>
+        <div className='pop-up-ads '>
           <>
             {leftData.length > 0 && (
               <div>

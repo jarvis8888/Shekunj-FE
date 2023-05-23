@@ -13,7 +13,7 @@ const ComingSoon = () => {
       <section className='sk-notFound-sec'>
         <div className='container'>
           <div className='row align-items-center'>
-            <div className='col-xl-6 col-lg-6 col-md-7'>
+            <div className='col-xl-6 col-lg-6 col-md-7 order-2 order-md-1'>
               <div className='sk-notFound-box'>
                 <div className='py-3'>
                   <h3>Under</h3>
@@ -31,7 +31,7 @@ const ComingSoon = () => {
                 </div>
               </div>
             </div>
-            <div className='col-xl-6 col-lg-6 col-md-5'>
+            <div className='col-xl-6 col-lg-6 col-md-5 order-1 order-md-2'>
               <div className='sk-notFound-img'>
                 <img src={comingsoon} alt='comingsoon' />
               </div>
