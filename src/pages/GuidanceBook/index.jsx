@@ -190,7 +190,7 @@ const GuidancePage = () => {
           <section className='sk-bookc-sec'>
             <div className='container'>
               <div className='row align-items-center'>
-                <div className='col-md-6 col-xl-10 col-lg-10'>
+                <div className='col-md-6 col-xl-9 col-lg-9'>
                   <div className='sk-bookC-content'>
                     <h6>Get Free Online Counselling Session</h6>
                     <h2>From Finest Counsellors.</h2>
@@ -272,6 +272,7 @@ const GuidancePage = () => {
                                   touched={StudentTouched}
                                   autoComplete='off'
                                 />
+                                <label>,</label>
                                 {StudentError.full_name &&
                                   StudentTouched.full_name && (
                                     <div className='sk-form-error'>
@@ -280,7 +281,7 @@ const GuidancePage = () => {
                                   )}
                               </li>
                               <li>
-                                <label>, I am</label>
+                              <label>I am</label>
                                 <select
                                   id='age'
                                   name='age'
@@ -337,8 +338,7 @@ const GuidancePage = () => {
                                   )}
                               </li>
                               <li>
-                                <label>. I am looking for </label>
-                                <label>, I am</label>
+                                <label>I am looking for </label>
                                 <select
                                   id='guidance_purpose'
                                   name='guidance_purpose'
@@ -443,7 +443,7 @@ const GuidancePage = () => {
                                   touched={InstituteTouched}
                                   autoComplete='off'
                                 />
-                                <label>, We have</label>
+                                <label>,</label>
                                 {InstituteError.institute_name &&
                                   InstituteTouched.institute_name && (
                                     <div className='sk-form-error'>
@@ -452,6 +452,7 @@ const GuidancePage = () => {
                                   )}
                               </li>
                               <li>
+                              <label>We have</label>
                                 <input
                                   type='text'
                                   id='students'
@@ -569,7 +570,7 @@ const GuidancePage = () => {
                     </div>
                   </div>
                 </div>
-                <div className='col-md-6 col-xl-2 col-lg-2'>
+                <div className='col-md-6 col-xl-3 col-lg-3'>
                   <div className='sk-bookC-img'>
                     <img src={bookcounsellor} alt='' />
                   </div>

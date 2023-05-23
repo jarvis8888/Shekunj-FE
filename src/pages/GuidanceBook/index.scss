@@ -75,6 +75,7 @@
 
 .sk-bookC-counter {
   padding: 50px 0;
+  background: #eac6d04a;
 }
 
 .sk-bookC-contentinner ul li {
@@ -430,8 +431,8 @@ img.edit_icon_guidance {
 .sk-bookTab-sec ul{
   list-style: none;
   padding-left: 0;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
+  flex-wrap: wrap;
   margin-bottom: 0;
 }
 
@@ -538,16 +539,42 @@ img.edit_icon_guidance {
   .sk-bookTab-sec ul{
     gap: 15px;
     grid-template-columns: repeat(1, 1fr);
-    margin-bottom: 15;
   }
   .sk-bookC-contentinner ul {
     grid-template-columns: repeat(2, 1fr);
     gap:10px;
   }
   .sk-bookc-sec{
-    padding-bottom: 50px;
+    padding-bottom: 30px;
   }
   .sk-bookC-contentinner ul li {
-    padding: 0px 0px 0px;
+    padding: 0px 5px 0px;
+  }
+  .sk-bookTab-sec .sk-inline-field{
+    margin-bottom: 15px;
+  }
+  .sk-bookC-content h2{
+    font-size: 24px;
+  }
+  .sk-bookC-content h6 {
+    font-size: 14px;
+  }
+  .sk-bookTab-sec .sk-inline-field label{
+    font-size: 14px;
+  }
+  .sk-bookTab-sec .sk-inline-field input, .form-inline.sk-inline-field select{
+    font-size: 13px;
+  }
+  .sk-bookC-contentinner ul li h3{
+    font-size: 24px;
+  }
+  .sk-bookC-contentinner ul li p{
+    font-size: 12px;
+  }
+  .sk-bookC-counter{
+    padding: 30px 0;
+  }
+  .sk-bookC-img img {
+    padding: 30px 30px 15px;
   }
 }

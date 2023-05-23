@@ -417,6 +417,7 @@ function HomePage() {
                 spaceBetween={30}
                 navigation={true}
                 speed={1500}
+                autoHeight={true}
                 autoplay={{ delay: 4000 }}
                 className='sk-mySwiper-slide'
                 breakpoints={{
@@ -490,7 +491,7 @@ function HomePage() {
                                     </li>
                                   </ul>
                                 </div>
-                                <div className='sk-course-btn'>
+                                <div className='sk-courseboth-btn'>
                                   <button
                                     className='sk-course-btn'
                                     onClick={() =>
@@ -555,7 +556,7 @@ function HomePage() {
                                     <li>Lorem Ipsum has been the industry's standard dummy </li>
                                   </ul>
                                 </div>
-                                <div className='sk-course-btn'>
+                                <div className='sk-courseboth-btn'>
                                   <button
                                     className='sk-course-btn'
                                     onClick={() =>
@@ -597,8 +598,7 @@ function HomePage() {
               <div className='sk-testCourse-btn'>
                 <button
                   className='loadMore'
-                  onClick={() => history.push(routingConstants.COURSES)}
-                >
+                  onClick={() => history.push(routingConstants.COURSES)}>
                   Explore More Courses
                 </button>
               </div>
@@ -789,7 +789,7 @@ function HomePage() {
                                   </li>
                                 </ul>
                               </div>
-                              <div className='sk-course-btn'>
+                              <div className='sk-courseboth-btn'>
                                 <button
                                   className='sk-course-btn sk-courseBg-color'
                                   onClick={() =>
