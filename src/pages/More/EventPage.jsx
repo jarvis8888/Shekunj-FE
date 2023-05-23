@@ -309,12 +309,13 @@ function EventPage() {
               loop={true}
               autoplay={true}
               autoplayspeed={1000}
+              center={true}
               items={4}
               margin={20}
               nav={true}
               responsive={{
                 1: {
-                  items: 1,
+                  items: 2,
                 },
                 667: {
                   items: 2,
@@ -357,9 +358,9 @@ function EventPage() {
                   inspired and energized.
                 </p>
               </div>
-              <div className='sk-category mb-3' ref={sectionRef}>
+              <div className='sk-category sk-categoryRemove-m' ref={sectionRef}>
+                <h6>Time</h6>
                 <ul>
-                  <li>Time</li>
                   {options.map((items, index) => {
                     return (
                       <>
@@ -379,8 +380,8 @@ function EventPage() {
                 </ul>
               </div>
               <div className='sk-category'>
+                <h6>Genre</h6>
                 <ul>
-                  <li>Genre</li>
                   {genresListData.length &&
                     genresListData.map((items, index) => {
                       return (

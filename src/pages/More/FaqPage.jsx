@@ -210,16 +210,21 @@ function FaqPage() {
         <section className='faqs-container'>
           <div className='container'>
             <div className='row'>
-              <div className='col-xl-2 col-md-3 tabs-container'>
+              <div className='col-xl-2 col-md-3 col-sm-12'>
+                <div className="tabs-container">
+                <ul>
                 {faqData?.map((tab) => (
-                  <div
+                  <li
                     key={tab.id}
                     className={`tab ${activeTab === tab.id ? "active" : ""}`}
                     onClick={() => handleTabClick(tab.id)}
                   >
                     {tab.name}
-                  </div>
+                  </li>
+                  
                 ))}
+                </ul>
+                </div>
               </div>
               <div className='col-xl-7 col-md-5 questions-container-wrapper'>
                 <div className='questions-container'>

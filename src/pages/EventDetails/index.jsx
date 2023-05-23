@@ -325,7 +325,7 @@ const EventDetails = () => {
                           </ul>
                         </div>
                       </div>
-                      <div className='sk-social-icon'>
+                      <div className='sk-social-icon sk-desktopSocial-icon'>
                         <h6>Share this article</h6>
                         <ul>
                           <li>
@@ -406,6 +406,45 @@ const EventDetails = () => {
                         </li>
                       </ul>
                     </div> */}
+                    <div className='sk-social-icon sk-mobileSocial-icon'>
+                        <h6>Share this article</h6>
+                        <ul>
+                          <li>
+                            <FacebookShareButton url={currentUrl}>
+                              <img src={facebookicon} alt='Facebook' />
+                            </FacebookShareButton>
+                          </li>
+                          <li>
+                            <LinkedinShareButton url={currentUrl}>
+                              <img src={linkedinicon} alt='LinkedIn' />
+                            </LinkedinShareButton>
+                          </li>
+                          <li>
+                            <TwitterShareButton
+                              url={currentUrl}
+                              image={eventsDetails?.image}
+                            >
+                              <img src={twittericon} alt='Twitter' />
+                            </TwitterShareButton>
+                          </li>
+                          <li>
+                            <PinterestShareButton
+                              url={currentUrl}
+                              media={eventsDetails?.image}
+                            >
+                              <img src={pintresticon} alt='Pinterest' />
+                            </PinterestShareButton>
+                          </li>
+                          <li>
+                            <a
+                              href='https://www.instagram.com/'
+                              target='_blank'
+                            >
+                              <img src={instagramicon} alt='instagramicon' />
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
                     <div className='sk-event-add'>
                       <a
                         href={eventDetailsBannerAds[0]?.url_adds}
