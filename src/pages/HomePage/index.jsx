@@ -66,6 +66,7 @@ function HomePage() {
   const [categoryList, setCategoryList] = useState([]);
   const [categoryName, setCategoryName] = useState(null);
   const [courseLoader, setCourseLoader] = useState(false);
+  const [activeTab, setActiveTab] = useState();
 
   const handleClose = () => {
     setOpen(false);
@@ -211,10 +212,10 @@ function HomePage() {
     try {
       const url = `${
         apiConstants.COURSES.SUCCESS_STORY
-      }?limit=${5}&offset=${0}`;
+      }?limit=${6}&offset=${0}`;
       const data = await httpServices.get(url);
-      const { trending_success_stories } = data;
-      setSuccessData(trending_success_stories);
+      const { featured_success_stories } = data;
+      setSuccessData(featured_success_stories?.results);
     } catch (error) {
     } finally {
     }
@@ -263,11 +264,13 @@ function HomePage() {
                           {t("homePage.mainSlider.heading.4")}
                         </h1>
                         <p>{t("homePage.mainSlider.subHeading.1")}</p>
-                        <div className="sk-thireChangescolor-btn">
+                        <div className='sk-thireChangescolor-btn'>
                           <button
                             className='loadMore'
                             type='button'
-                            onClick={() => history.push(routingConstants.COURSES)}
+                            onClick={() =>
+                              history.push(routingConstants.COURSES)
+                            }
                           >
                             {t("homePage.mainSlider.button.1")}
                           </button>
@@ -290,16 +293,16 @@ function HomePage() {
                           {t("homePage.mainSlider.heading.5")}
                         </h1>
                         <p>{t("homePage.mainSlider.subHeading.2")}</p>
-                        <div className="sk-thireChangescolor-btn">
-                        <button
-                          className='loadMore'
-                          type='button'
-                          onClick={() =>
-                            history.push(routingConstants.TOP_COLLEGES)
-                          }
-                        >
-                          {t("homePage.mainSlider.button.5")}
-                        </button>
+                        <div className='sk-thireChangescolor-btn'>
+                          <button
+                            className='loadMore'
+                            type='button'
+                            onClick={() =>
+                              history.push(routingConstants.TOP_COLLEGES)
+                            }
+                          >
+                            {t("homePage.mainSlider.button.5")}
+                          </button>
                         </div>
                       </div>
                     </div>
@@ -318,10 +321,14 @@ function HomePage() {
                           {t("homePage.mainSlider.heading.3.3.2")}
                         </h1>
                         <p>{t("homePage.mainSlider.subHeading.3")}</p>
-                        <div className="sk-thireChangescolor-btn">
-                          <button className='loadMore'
+                        <div className='sk-thireChangescolor-btn'>
+                          <button
+                            className='loadMore'
                             type='button'
-                            onClick={() => history.push(routingConstants.GUIDANCE_BOOK)}>
+                            onClick={() =>
+                              history.push(routingConstants.GUIDANCE_BOOK)
+                            }
+                          >
                             {t("homePage.mainSlider.button.4")}
                           </button>
                         </div>
@@ -342,7 +349,7 @@ function HomePage() {
                           {t("homePage.mainSlider.heading.6.2")}
                         </h1>
                         <p> {t("homePage.mainSlider.subHeading.4")}</p>
-                        <div className="sk-thireChangescolor-btn">
+                        <div className='sk-thireChangescolor-btn'>
                           <button
                             className='loadMore'
                             type='button'
@@ -384,16 +391,19 @@ function HomePage() {
                   Courses focused on building strong foundational skills for
                   career growth
                 </p>
-                <div className="sk-tabBtn-home">
-                
+                <div className='sk-tabBtn-home'>
                   <ul>
                     {categoryList.map((items, index) => {
                       return (
                         <>
                           <li key={index}>
                             <a
-                              onClick={() =>
-                                handleCategoryOptionClick(items.id)
+                              onClick={() => {
+                                handleCategoryOptionClick(items.id);
+                                setActiveTab(items.id);
+                              }}
+                              className={
+                                activeTab === items.id && "active-time"
                               }
                             >
                               {items.name}
@@ -403,7 +413,6 @@ function HomePage() {
                       );
                     })}
                   </ul>
-                  
                 </div>
               </div>
             </div>
@@ -451,7 +460,7 @@ function HomePage() {
                       <>
                         <SwiperSlide>
                           <div className='sk-course-box' key={index}>
-                            <div className="sk-inner-box">
+                            <div className='sk-inner-box'>
                               <div className='sk-course-img'>
                                 <img src={items?.image} alt='cousreimg' />
                                 {items?.has_certificate ? (
@@ -463,12 +472,13 @@ function HomePage() {
                                 ) : null}
                               </div>
                               <div className='sk-course-content'>
-                                <div className="sk-category-describe">
+                                <div className='sk-category-describe'>
                                   <span className='sk-smallBox-heading'>
                                     {items?.category_name}
                                   </span>
                                   <h6>{items?.name}</h6>
-                                  <p className='sk-smallBox-description'
+                                  <p
+                                    className='sk-smallBox-description'
                                     dangerouslySetInnerHTML={{
                                       __html: makeHtml(
                                         `${truncateString(
@@ -518,14 +528,15 @@ function HomePage() {
                               </div>
                             </div>
 
-                            <div className="sk-innerHover-box">  
+                            <div className='sk-innerHover-box'>
                               <div className='sk-course-content'>
-                                <div className="sk-category-describe">
+                                <div className='sk-category-describe'>
                                   <span className='sk-smallBox-heading'>
                                     {items?.category_name}
                                   </span>
                                   <h6>{items?.name}</h6>
-                                  <p className='sk-smallBox-description'
+                                  <p
+                                    className='sk-smallBox-description'
                                     dangerouslySetInnerHTML={{
                                       __html: makeHtml(
                                         `${truncateString(
@@ -548,12 +559,18 @@ function HomePage() {
                                     </li>
                                   </ul>
                                 </div>
-                                <div className="sk-content-point">
+                                <div className='sk-content-point'>
                                   <h6>What you will learn</h6>
                                   <ul>
-                                    <li>Lorem Ipsum has been the industry's standard dummy </li>
-                                    <li>Lorem Ipsum has been the industry's standard dummy </li>
-                                    <li>Lorem Ipsum has been the industry's standard dummy </li>
+                                    {items?.What_you_will_learn?.length
+                                      ? items?.What_you_will_learn.map(
+                                          (list, index) => {
+                                            return (
+                                              <li key={index}>{list?.name}</li>
+                                            );
+                                          },
+                                        )
+                                      : null}
                                   </ul>
                                 </div>
                                 <div className='sk-courseboth-btn'>
@@ -598,7 +615,8 @@ function HomePage() {
               <div className='sk-testCourse-btn'>
                 <button
                   className='loadMore'
-                  onClick={() => history.push(routingConstants.COURSES)}>
+                  onClick={() => history.push(routingConstants.COURSES)}
+                >
                   Explore More Courses
                 </button>
               </div>
@@ -834,9 +852,9 @@ function HomePage() {
             <div className='sk-hireSotory-innerbox'>
               <h2>Seeking for a Chance and a Change?</h2>
               <p>
-                Go nowhere. We here at Shekunj offer the best job
-                opportunities from the best companies. Find a job and move
-                towards your bright future.
+                Go nowhere. We here at Shekunj offer the best job opportunities
+                from the best companies. Find a job and move towards your bright
+                future.
               </p>
               <div className='sk-hireChanges-btn'>
                 <a
@@ -860,7 +878,7 @@ function HomePage() {
                 <h2>Get hired for your dream job!</h2>
                 <p>
                   Land your dream job by designing a perfect resume in a
-                  print-ready <br/> format
+                  print-ready <br /> format
                 </p>
                 <div className='sk-thireChangescolor-btn'>
                   <a

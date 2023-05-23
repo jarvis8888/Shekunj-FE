@@ -59,6 +59,8 @@ const routingConstants = {
   DETAILS_MOCKTEST: "/mock-test-detail/",
   SUCCESS_STORIES_HASHTAG: "/success-stories/hastag",
   SEARCH: "/search/",
+  RESUME_BUILDER: "/resume/",
+  JOBS: "/jobs/",
 };
 
 const apiConstants = {

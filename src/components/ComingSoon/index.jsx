@@ -1,11 +1,11 @@
 import React from "react";
 import "./index.scss";
 import EastRoundedIcon from "@mui/icons-material/EastRounded";
-import pagenotfound from "../../assets/images/pagenotf.svg";
+import comingsoon from "../../assets/images/comingsoon.svg";
 import { Footer, Header } from "../../components";
 import { useHistory } from "react-router-dom";
 
-const PageNotFound = () => {
+const ComingSoon = () => {
   const history = useHistory();
   return (
     <div>
@@ -15,13 +15,15 @@ const PageNotFound = () => {
           <div className='row align-items-center'>
             <div className='col-xl-6 col-lg-6 col-md-7'>
               <div className='sk-notFound-box'>
-                <h1>Ooops.</h1>
                 <div className='py-3'>
-                  <h3>Relax, take it easy</h3>
-                  <h3> Keep fresh your mind!</h3>
+                  <h3>Under</h3>
+                  <h3> Construction</h3>
                 </div>
-                <p>This page doesn’t exist or was removed!</p>
-                <p>We suggest you back to home</p>
+
+                <p>
+                  Our website is currently undergoing scheduled maintenance.
+                </p>
+                <p>We Should be back shortly. Thank you for your patience</p>
                 <div className='sk-notFound-btn'>
                   <button className='sk-btn' onClick={() => history.push(`/`)}>
                     Back to Home <EastRoundedIcon />
@@ -31,7 +33,7 @@ const PageNotFound = () => {
             </div>
             <div className='col-xl-6 col-lg-6 col-md-5'>
               <div className='sk-notFound-img'>
-                <img src={pagenotfound} />
+                <img src={comingsoon} alt='comingsoon' />
               </div>
             </div>
           </div>
@@ -42,4 +44,4 @@ const PageNotFound = () => {
   );
 };
 
-export default PageNotFound;
+export default ComingSoon;

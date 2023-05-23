@@ -1,0 +1,44 @@
+img {
+  max-width: 100%;
+  height: auto;
+}
+.sk-notFound-box h1 {
+  font-size: 54px;
+  font-weight: 500;
+  color: #434242;
+}
+
+.sk-notFound-box h3 {
+  font-size: 40px;
+  color: #202020;
+  text-transform: capitalize;
+}
+
+.sk-notFound-box p {
+  color: #434242;
+  margin-bottom: 0;
+}
+.sk-notFound-sec {
+  padding: 50px 0;
+}
+.sk-notFound-btn {
+  margin-top: 30px;
+}
+.sk-notFound-btn .sk-btn {
+  border-radius: 8px;
+  color: #fff;
+  font-weight: 600;
+  height: 50px;
+  width: max-content;
+}
+.sk-notFound-btn .sk-btn svg {
+  margin-left: 20px;
+}
+@media screen and (max-width: 480px) {
+  .sk-notFound-box h1 {
+    font-size: 30px;
+  }
+  .sk-notFound-box h3 {
+    font-size: 21px;
+  }
+}
