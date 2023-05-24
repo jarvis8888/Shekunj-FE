@@ -351,6 +351,33 @@ function SuccessStory() {
     setAnimationData(updatedData);
   }, [currentIndex, animationTrendingData]);
 
+  const handleLoadMoreClick = () => {
+    if (currentFeaturedData?.results?.length === 0) {
+      return; // Do not scroll if button is disabled
+    }
+
+    setTimeout(() => {
+      sectionRef.current.scrollIntoView({
+        behavior: "smooth",
+      });
+    }, 10); // Minimal delay for rendering update
+
+    setOffset(offset + 5);
+  };
+  const handleLoadMoreClickOnTrending = () => {
+    if (currentTrendingData?.results?.length === 0) {
+      return; // Do not scroll if button is disabled
+    }
+
+    setTimeout(() => {
+      trendingSectionRef.current.scrollIntoView({
+        behavior: "smooth",
+      });
+    }, 10); // Minimal delay for rendering update
+
+    setTrendingOffset(trendingOffset + 6);
+  };
+
   return (
     <div>
       <Header loginPage={true} page='story' />
@@ -516,19 +543,14 @@ function SuccessStory() {
                   <button
                     disabled={currentFeaturedData?.results?.length === 0}
                     className='loadMore'
-                    onClick={() => {
-                      sectionRef.current.scrollIntoView({
-                        behavior: "smooth",
-                      });
-                      setOffset(offset + 5);
-                    }}
+                    onClick={handleLoadMoreClick}
                   >
                     Load More
                   </button>
                 </div>
 
-                <div>
-                  <div className='title' ref={trendingSectionRef}>
+                <div ref={trendingSectionRef}>
+                  <div className='title'>
                     <img src={fire} alt='fire' width={28} />
                     <h4>Trending Stories </h4>
                   </div>
@@ -572,12 +594,7 @@ function SuccessStory() {
                   <button
                     disabled={currentTrendingData?.results?.length === 0}
                     className='loadMore'
-                    onClick={() => {
-                      trendingSectionRef.current.scrollIntoView({
-                        behavior: "smooth",
-                      });
-                      setTrendingOffset(trendingOffset + 6);
-                    }}
+                    onClick={handleLoadMoreClickOnTrending}
                   >
                     Load More
                   </button>

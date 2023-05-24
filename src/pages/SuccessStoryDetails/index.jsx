@@ -16,6 +16,7 @@ import twittericon from "../../assets/images/twitter.svg";
 import pintresticon from "../../assets/images/pintrest.svg";
 import instagramicon from "../../assets/images/instagram.svg";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
+import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import TrendingCards from "../../components/cards/TrendingCards";
 import fire from "../../assets/images/fire.svg";
 import { HashtagAndCatagories } from "../../components/HastagAndCatagories/Index";
@@ -309,7 +310,11 @@ const SuccessStoryDetails = () => {
                       </span>
                       <span>
                         <MenuBookRoundedIcon />
-                        {successStoriesDetails?.reading_time} to read
+                        {successStoriesDetails?.reading_time}
+                      </span>
+                      <span>
+                        <VisibilityOutlinedIcon />{" "}
+                        {successStoriesDetails?.ss_count}
                       </span>
                     </div>
                   </div>
