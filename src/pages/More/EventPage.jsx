@@ -117,19 +117,19 @@ function EventPage() {
       setGenresListData(genres_list);
 
       // Process today_tomorrow data
-      const todayTomorrowEventData = today_tomorrow?.results || [];
+      const todayTomorrowEventData = today_tomorrow || [];
       const todayTomorrowDataWithAds = addAdvertisementObjects(
         todayTomorrowEventData,
       );
       setTodayTomorrowData(todayTomorrowDataWithAds);
 
       // Process this_week data
-      const thisWeekEventData = this_week?.results || [];
+      const thisWeekEventData = this_week || [];
       const thisWeekDataWithAds = addAdvertisementObjects(thisWeekEventData);
       setThisWeekData(thisWeekDataWithAds);
 
       // Process next_week data
-      const nextWeekEventData = next_week?.results || [];
+      const nextWeekEventData = next_week || [];
       const nextWeekDataWithAds = addAdvertisementObjects(nextWeekEventData);
       setNextWeekData(nextWeekDataWithAds);
 
