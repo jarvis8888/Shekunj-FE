@@ -281,6 +281,21 @@ function BlogPage() {
     return adsToRender[getNextAdIndexBlogLeft()];
   };
 
+
+  const handleLoadMoreClick = () => {
+    if (currentBlogData?.results?.length === 0) {
+      return; // Do not scroll if button is disabled
+    }
+
+    setTimeout(() => {
+      sectionRef.current.scrollIntoView({
+        behavior: "smooth",
+      });
+    }, 10); // Minimal delay for rendering update
+
+    setOffset(offset + 5);
+  };
+
   return (
     <div>
       <Header loginPage={true} page='more' subPage='moreblog' />
@@ -425,12 +440,7 @@ function BlogPage() {
                   <div className='d-flex justify-content-center align-items-center py-4'>
                     <button
                       className='loadMore'
-                      onClick={() => {
-                        setOffset(offset + 5);
-                        sectionRef.current.scrollIntoView({
-                          behavior: "smooth",
-                        });
-                      }}
+                      onClick={handleLoadMoreClick}
                       disabled={currentBlogData?.results?.length === 0}
                     >
                       Explore More

@@ -271,7 +271,7 @@ const BlogDetails = () => {
                         <MenuBookRoundedIcon /> {blogs?.reading_time}
                       </span>
                       <span>
-                        <VisibilityOutlinedIcon /> 828
+                        <VisibilityOutlinedIcon /> {blogs?.blog_count}
                       </span>
                     </div>
                   </div>

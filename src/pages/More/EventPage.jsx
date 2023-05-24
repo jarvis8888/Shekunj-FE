@@ -112,6 +112,8 @@ function EventPage() {
       const { data } = await httpServices.get(url);
       const { event_list, today_tomorrow, this_week, next_week, genres_list } =
         data;
+
+      setCurrentData(event_list?.results);
       setGenresListData(genres_list);
 
       // Process today_tomorrow data
@@ -156,7 +158,7 @@ function EventPage() {
 
   const handleTimeOptionClick = (option) => {
     setSelectedButton(option);
-    // setSelectedOption(null);
+    setSelectedOption(null);
     const searchParams = new URLSearchParams();
     searchParams.set("genre_id", "");
     history.push({
@@ -191,11 +193,8 @@ function EventPage() {
       pathname: location.pathname,
       search: searchParams.toString(),
     });
+    getAllEVentsData(0, option);
   };
-
-  // useEffect(() => {
-  //   fetchEventsData(null, true);
-  // }, [currentOffset, lan]);
 
   useEffect(() => {
     dispatch(adsList());
@@ -244,8 +243,15 @@ function EventPage() {
   }, []);
 
   useEffect(() => {
-    getAllEVentsData(currentOffset, selectedOption);
-  }, [currentOffset, lan, selectedOption]);
+    const params = new URLSearchParams(location.search);
+    const genreParam = params.get("genre_id");
+    setSelectedOption(genreParam);
+    if (genreParam) {
+      handleGenerOptionClick(genreParam);
+    } else {
+      getAllEVentsData(currentOffset, null);
+    }
+  }, [currentOffset, lan]);
 
   const adCount = eventBoxAds.length;
   let adIndex = 0;
