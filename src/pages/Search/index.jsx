@@ -120,13 +120,13 @@ const GlobalSearch = () => {
                     </span>
                     <div className='career_form'>
                       <input
-                        placeholder={placeholder}
+                        placeholder=""
                         hide_label='true'
                         type='search'
                         name='search'
                         value={onSearchInput}
                         onChange={(e) => setOnSearchInput(e.target.value)}
-                      />
+                      /><div className="updown-move">{placeholder}</div>
 
                       <button
                         name='button'
