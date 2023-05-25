@@ -14,6 +14,7 @@ import catagorie from "../../assets/images/categoryblog.svg";
 import { DateFormat, addEmailToClient } from "../../utils/utils";
 import { CustomLoader } from "../../components/customLoader/CustomLoader";
 import useDeviceDetect from "../../hooks/useDeviceDetect";
+import { NoDataFound } from "../../components/noDataFound/NoDataFound";
 
 const BlogWithCatogry = () => {
   const location = useLocation();
@@ -175,33 +176,35 @@ const BlogWithCatogry = () => {
               </h6>
               {loading ? (
                 <div>
-                  <CustomLoader size='small' />
+                  <CustomLoader />
                 </div>
               ) : (
                 <div className='sk-blogCategory-detail'>
-                  {data?.length
-                    ? data?.map((items, index) => {
-                        if (items.id === "advertisement") {
-                          return (
-                            <>{blogDetailsBoxAds.length > 0 && renderAds()}</>
-                          );
-                        } else {
-                          return (
-                            <>
-                              <TrendingBlogsCard2
-                                image={items.image}
-                                title={items.title}
-                                id={items.id}
-                                description={`${items.about_blog}`}
-                                time={items.reading_time}
-                                date={DateFormat(`${items.created_at}`)}
-                                category_name={items.category_name}
-                              />
-                            </>
-                          );
-                        }
-                      })
-                    : "no data"}
+                  {data?.length ? (
+                    data?.map((items, index) => {
+                      if (items.id === "advertisement") {
+                        return (
+                          <>{blogDetailsBoxAds.length > 0 && renderAds()}</>
+                        );
+                      } else {
+                        return (
+                          <>
+                            <TrendingBlogsCard2
+                              image={items.image}
+                              title={items.title}
+                              id={items.id}
+                              description={`${items.about_blog}`}
+                              time={items.reading_time}
+                              date={DateFormat(`${items.created_at}`)}
+                              category_name={items.category_name}
+                            />
+                          </>
+                        );
+                      }
+                    })
+                  ) : (
+                    <NoDataFound />
+                  )}
                 </div>
               )}
             </div>

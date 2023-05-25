@@ -481,7 +481,7 @@ button.want_btn {
 }
 .sk-allStory-btn {
   color: #fff;
-  border-radius: 5px;
+  border-radius: 50px;
   font-weight: 500;
 }
 .sk-Blogcard-content h5 {
@@ -625,9 +625,8 @@ button.want_btn {
   padding: 20px 0 30px;
   margin-bottom: 50px;
 }
-h1 {
-  font-size: calc(2rem + 1.6vw);
-}
+
+
 .sk-storyHeading-top span {
   color: #d62c79;
   font-weight: 600;
@@ -715,7 +714,6 @@ h1 {
 
   &__content {
     flex: 1;
-
     @media screen and (max-width: 768px) {
       width: 100%;
     }
@@ -787,9 +785,20 @@ h1 {
     }
   }
 }
+.sk-storyHeading-top{
+  font-size: 54px;
+}
+@media screen and (min-width: 1399px) and (max-width: 2550) {
+  h1{
+  font-size: 54px;
+  }
+}
 @media screen and (min-width: 320px) and (max-width: 1399px) {
   h1 {
     font-size: calc(1.8rem + 1vw);
+  }
+  .sk-storyHeading-top{
+    font-size: 40px;
   }
 }
 @media screen and (max-width: 800px) {
@@ -797,15 +806,32 @@ h1 {
     grid-template-columns: repeat(3, 1fr);
   }
   .sk-storyMain-sec {
-    padding: 40px 0;
+    padding: 30px 0;
+  }
+  .sk-story-content p
+  {
+    font-size: 14px;
+  }
+  .sk-storyHeading-top{
+    font-size: 24px;
   }
 }
 @media screen and (max-width: 480px) {
   .sk-storyS-images ul {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
   .sk-storyS-images ul li img {
     width: 100%;
+    height: 84px;
+  }
+.sk-allStory-btn {
+  margin-bottom: 20px;  
+}
+section{
+  padding: 30px 0;
+  }
+  .sk-blogbottom-border{
+    margin-bottom: 20px;
   }
 }
 .carousel__content h2 {

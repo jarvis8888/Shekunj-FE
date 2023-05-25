@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-
 import "../HomePage/index.scss";
 import "./index.scss";
 import { adsList } from "../../store/ads";
@@ -15,12 +14,9 @@ import facebookicon from "../../assets/images/facebook.svg";
 import linkedinicon from "../../assets/images/linkedin.svg";
 import twittericon from "../../assets/images/twitter.svg";
 import pintresticon from "../../assets/images/pintrest.svg";
-import instagramicon from "../../assets/images/instagram.svg";
-import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
-import SchoolRoundedIcon from "@mui/icons-material/SchoolRounded";
+import whatsapp from "../../assets/images/whatsapp.svg";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
-import time from "../../assets/icons/svgs/time.png";
-import book from "../../assets/icons/svgs/book.png";
+import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import TrendingCards from "../../components/cards/TrendingCards";
 import fire from "../../assets/images/fire.svg";
 import { HashtagAndCatagories } from "../../components/HastagAndCatagories/Index";
@@ -29,13 +25,12 @@ import { apiConstants } from "../../utils/constants";
 import httpServices from "../../utils/ApiServices";
 import { CustomLoader } from "../../components/customLoader/CustomLoader";
 import { addEmailToClient } from "../../utils/utils";
-
 import {
   FacebookShareButton,
   TwitterShareButton,
   LinkedinShareButton,
   PinterestShareButton,
-  InstapaperShareButton,
+  WhatsappShareButton,
 } from "react-share";
 
 const SuccessStoryDetails = () => {
@@ -45,6 +40,7 @@ const SuccessStoryDetails = () => {
   const currentUrl = window.location.href;
 
   const dispatch = useDispatch();
+  const trendingSectionRef = useRef(null);
 
   const { lan } = useSelector((state) => state.languageReducer);
 
@@ -59,27 +55,18 @@ const SuccessStoryDetails = () => {
   const [succesStoriesLeft, setSuccesStoriesLeft] = useState([]);
   const [storiesBannerAds, setStoriesBannerAds] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [trendingLoading, setTrendingLoading] = useState(false);
+  const [trendingOffset, setTrendingOffset] = useState(0);
+  const [currentTrendingData, setCurrentTrendingData] = useState([]);
   const detect = useDeviceDetect();
+  const trendingPageLimit = 6;
 
   const getAllSuccessStoryData = async () => {
     setLoading(true);
     try {
       const url = `${apiConstants.COURSES.SUCCESS_STORY}`;
       const data = await httpServices.get(url);
-      const { trending_success_stories, all_hash_tags } = data;
-      if (trending_success_stories?.length > 0) {
-        const res = trending_success_stories ?? [];
-        const addObjectData = { id: "advertisement" };
-        const newFeaturedData = [];
-
-        for (let i = 0; i < res.length; i++) {
-          if (i % 6 === 0 && i !== 0) {
-            newFeaturedData.push(addObjectData);
-          }
-          newFeaturedData.push(res[i]);
-        }
-        setTrendingData(newFeaturedData);
-      }
+      const { all_hash_tags } = data;
       setAllHashTag(all_hash_tags);
     } catch (error) {
     } finally {
@@ -87,10 +74,47 @@ const SuccessStoryDetails = () => {
     }
   };
 
+  const getAllSuccessStoryTrendingData = async (limit, offset) => {
+    setTrendingLoading(true);
+    try {
+      const url = `${apiConstants.COURSES.TRENDING_SUCCESS_STORY}?limit=${limit}&offset=${offset}`;
+      const data = await httpServices.get(url);
+      const { trending_success_stories } = data;
+
+      if (trending_success_stories?.results?.length > 0) {
+        const res = trending_success_stories?.results ?? [];
+        const addObjectData = { id: "advertisement" };
+        const newFeaturedData = [];
+
+        for (let i = 0; i < res.length; i++) {
+          if (i % 3 === 0 && i !== 0) {
+            newFeaturedData.push(addObjectData);
+          }
+          newFeaturedData.push(res[i]);
+        }
+        newFeaturedData.push(addObjectData);
+
+        setTrendingData((prevFeaturedData) => [
+          ...newFeaturedData,
+          ...prevFeaturedData,
+        ]);
+      } else {
+        setCurrentTrendingData(trending_success_stories);
+      }
+    } catch (error) {
+    } finally {
+      setTrendingLoading(false);
+    }
+  };
+
   useEffect(() => {
     dispatch(fetchSuccessStoriesDetails(id));
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, [dispatch, id, lan]);
+
+  useEffect(() => {
+    getAllSuccessStoryTrendingData(trendingPageLimit, trendingOffset);
+  }, [lan, trendingOffset]);
 
   useEffect(() => {
     dispatch(adsList());
@@ -287,7 +311,11 @@ const SuccessStoryDetails = () => {
                       </span>
                       <span>
                         <MenuBookRoundedIcon />
-                        {successStoriesDetails?.reading_time} to read
+                        {successStoriesDetails?.reading_time}
+                      </span>
+                      <span>
+                        <VisibilityOutlinedIcon />{" "}
+                        {successStoriesDetails?.ss_count}
                       </span>
                     </div>
                   </div>
@@ -317,10 +345,14 @@ const SuccessStoryDetails = () => {
                           <img src={pintresticon} alt='Pinterest' />
                         </PinterestShareButton>
                       </li>
+
                       <li>
-                        <a href='https://www.instagram.com/' target='_blank'>
-                          <img src={instagramicon} alt='instagramicon' />
-                        </a>
+                        <WhatsappShareButton
+                          url={currentUrl}
+                          // media={successStoriesDetails?.image}
+                        >
+                          <img src={whatsapp} alt='Pinterest' />
+                        </WhatsappShareButton>
                       </li>
                     </ul>
                   </div>
@@ -370,9 +402,12 @@ const SuccessStoryDetails = () => {
                           </PinterestShareButton>
                         </li>
                         <li>
-                          <a href='https://www.instagram.com/' target='_blank'>
-                            <img src={instagramicon} alt='instagramicon' />
-                          </a>
+                          <WhatsappShareButton
+                            url={currentUrl}
+                            // media={successStoriesDetails?.image}
+                          >
+                            <img src={whatsapp} alt='Pinterest' />
+                          </WhatsappShareButton>
                         </li>
                       </ul>
                     </div>
@@ -416,40 +451,57 @@ const SuccessStoryDetails = () => {
                   </>
                 </div>
 
-                <div className='title'>
+                <div className='title' ref={trendingSectionRef}>
                   <img src={fire} alt='fire' width={28} />
                   <h4>Trending Stories </h4>
                 </div>
-                <div className='row'>
-                  {trendingData?.map((items, index) => {
-                    if (items.id === "advertisement") {
-                      return (
-                        <>
-                          {succesStoriesLeft.length > 0 &&
-                            succesStoriesLeftRenderAds()}
-                        </>
-                      );
-                    } else {
-                      return (
-                        <>
-                          <TrendingCards
-                            image={items.image}
-                            hashtags={
-                              items.hash_tags === null ? [] : items.hash_tags
-                            }
-                            title={items.name}
-                            description={`${items.title}`}
-                            makeHtml={makeHtml}
-                            key={index}
-                            created_at={items.created_at}
-                            id={items.id}
-                          />
-                        </>
-                      );
-                    }
-                  })}
+                {trendingLoading ? (
+                  <CustomLoader size='samll' />
+                ) : (
+                  <div className='row'>
+                    {trendingData?.map((items, index) => {
+                      if (items.id === "advertisement") {
+                        return (
+                          <>
+                            {succesStoriesLeft.length > 0 &&
+                              succesStoriesLeftRenderAds()}
+                          </>
+                        );
+                      } else {
+                        return (
+                          <>
+                            <TrendingCards
+                              image={items.image}
+                              hashtags={
+                                items.hash_tags === null ? [] : items.hash_tags
+                              }
+                              title={items.name}
+                              description={`${items.title}`}
+                              makeHtml={makeHtml}
+                              key={index}
+                              created_at={items.created_at}
+                              id={items.id}
+                            />
+                          </>
+                        );
+                      }
+                    })}
+                  </div>
+                )}
+                <div className='sk-blogbottom-border d-flex justify-content-center align-items-center py-4'>
+                  <button
+                    disabled={currentTrendingData?.results?.length === 0}
+                    className='loadMore'
+                    onClick={() => {
+                      setTrendingOffset(trendingOffset + 6);
+                      trendingSectionRef.current.scrollIntoView({
+                        behavior: "smooth",
+                      });
+                    }}
+                  >
+                    Load More
+                  </button>
                 </div>
-                {/* <TrendingStories /> */}
               </div>
               <div className='col-xl-3 col-md-4'>
                 <HashtagAndCatagories

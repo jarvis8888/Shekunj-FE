@@ -10,7 +10,7 @@ img {
   max-width: 100%;
   height: auto;
 }
-.sk-eventDetails-img img{
+.sk-eventDetails-img img {
   width: 100%;
 }
 section {
@@ -89,7 +89,7 @@ section {
   font-weight: 600;
   padding-bottom: 10px;
 }
-.sk-event-add{
+.sk-event-add {
   margin: 10px 0 15px;
 }
 .sk-add-slidebar img {
@@ -176,14 +176,24 @@ section {
   grid-gap: 5px 10px;
   margin-bottom: 0;
 }
-.sk-event-form .sk-eventForm-filed input {
+.sk-event-form .sk-eventForm-filed input, .sk-event-form .sk-eventForm-filed select {
   border: 1px solid #d9d9d9;
   border-radius: 8px;
   height: 48px;
   font-size: 14px;
   padding-left: 40px;
+  width: 100%;
 }
-.sk-event-form .sk-eventForm-filed input:focus {
+.sk-event-form .sk-eventForm-filed select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: transparent;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='gray' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+  background-repeat: no-repeat;
+  background-position-x: 96%;
+  background-position-y: 10px;
+}
+.sk-event-form .sk-eventForm-filed input:focus, .sk-event-form .sk-eventForm-filed select:focus {
   border-color: #fcbdda;
 }
 .sk-event-form {
@@ -412,21 +422,59 @@ section {
   text-align: center;
   color: #ffffff;
 }
+.sk-mobileSocial-icon {
+  display: none;
+}
+.sk-desktopSocial-icon {
+  display: block;
+}
+
 @media screen and (max-width: 480px) {
-  .sk-details-datetime ul{
+  .sk-details-datetime ul {
     grid-gap: 10px;
+    margin-bottom: 0;
   }
-  .sk-eventSocial-chiptag{
+  .sk-eventSocial-chiptag {
     flex-wrap: wrap;
   }
-  .sk-details-datetime ul li{
+  .sk-details-datetime ul li {
     font-size: 12px;
   }
-  .sk-details-datetime ul li svg{
+  .sk-details-datetime ul li svg {
     font-size: 16px;
   }
-  .sk-social-icon{
+  .sk-eventDetail-content h2 {
+    padding-bottom: 0;
+  }
+  .sk-eventDetail-content p {
+    font-size: 14px;
+  }
+  .sk-event-add {
+    border-bottom: 1px solid #d9d9d9;
+    padding-bottom: 20px;
+    margin-bottom: 25px;
+  }
+  .sk-add-slidebar {
+    margin-bottom: 0;
+  }
+  .sk-social-icon {
     text-align: left;
+  }
+  .sk-event-sidebar {
+    padding: 0;
+    border: 0;
+  }
+  .sk-mobileSocial-icon {
+    display: block;
+  }
+  .sk-desktopSocial-icon {
+    display: none;
+  }
+  .sk-eventDetails-sec {
+    padding: 30px 0;
+  }
+  .sk-eventDetail-content {
+    margin-top: 20px;
   }
 }
 @media screen and (max-device-width: 667px) {

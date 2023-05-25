@@ -214,7 +214,7 @@ img {
 .blog-card {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   grid-gap: 15px;
   gap: 15px;
   cursor: pointer;
@@ -357,4 +357,16 @@ img {
   .card__button {
     font-size: 12px;
   }
+}
+@media screen and (min-width: 320px) and (max-width: 1350px) {
+  .card__button {
+    font-size: 10px;
+  }
+}
+
+@media screen and (max-width: 767px){
+  .sk-tradingBlog-card{
+    margin-top: 15px;
+  }
+  
 }

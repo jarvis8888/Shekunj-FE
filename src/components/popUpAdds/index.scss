@@ -4,6 +4,12 @@
   left: 0;
   right: 0;
   z-index: 9999;
+  margin: auto;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
 .pop-up-ads {
@@ -13,7 +19,7 @@
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   text-align: center;
-  padding: 5px;
+
   display: inline-flex;
 }
 
@@ -26,7 +32,7 @@
   border: none;
   cursor: pointer;
   color: #888;
-  font-size: 24px;
+  font-size: 21px;
   line-height: 1;
 }
 
@@ -38,40 +44,32 @@
   outline: none;
 }
 
-.left-bottom {
-  bottom: 10px;
-  left: 10px;
-}
-
 .right-bottom {
   bottom: 10px;
-  right: 10px;
+  left: 10px;
 }
 .pop-up-ads.left-bottom {
   display: flex;
   align-items: center;
 }
 .pop-up-ads.right-bottom {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  bottom: 0;
 }
 
 .pop-up-ads.left-bottom img {
-  max-height: 100%;
+  height: auto;
   max-width: 100%;
+  margin: auto;
 }
 
 .pop-up-ads.right-bottom video {
-  max-height: 100%;
+  height: auto;
   max-width: 100%;
+  padding: 5px;
 }
 
 @media (max-width: 767px) {
   .pop-up-ads {
-    width: 200px;
-    height: 200px;
-    padding: 10px;
   }
 
   .close-button {
@@ -82,10 +80,5 @@
   .pop-up-ads.left-bottom {
     bottom: 5px;
     left: 5px;
-  }
-
-  .pop-up-ads.right-bottom {
-    bottom: 5px;
-    right: 5px;
   }
 }

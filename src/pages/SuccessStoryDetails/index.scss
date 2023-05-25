@@ -21,7 +21,7 @@
 
 .sk-storyDetail-sec .sk-storyBanner-img{
   width: 100%;
-  border-radius: 8px;
+  // border-radius: 8px;
 }
 .sk-storyD-tag{
   padding-bottom: 10px;
@@ -631,5 +631,16 @@
       line-height: 160%;
       margin-bottom: 5px;
     }
+  }
+}
+@media screen and (max-width: 480px) {
+  .sk-storyDetail-sec{
+    padding: 30px 0;
+  }
+  .sk-storyDetail-sec .story-bottom{
+    padding-bottom: 20px;
+  }
+  .sk-middleContent-story p{
+    font-size: 14px;
   }
 }

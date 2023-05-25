@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import { withHeaderFooter } from "../../hocs/withHeaderFooter";
 import httpServices from "../../utils/ApiServices";
@@ -26,6 +26,26 @@ const GlobalSearch = () => {
   const [hintData, setHintData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [onSearchInput, setOnSearchInput] = useState("");
+
+  const placeholderOptions = useMemo(() => {
+    return hintData.map((data) => `Search by ${data.name}`);
+  }, [hintData]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const placeholder = useMemo(
+    () => placeholderOptions[currentIndex],
+    [currentIndex],
+  );
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex(
+        (prevIndex) => (prevIndex + 1) % placeholderOptions.length,
+      );
+    }, 2000);
+
+    return () => clearInterval(interval);
+  }, [currentIndex, placeholderOptions]);
 
   const getGlobalSearchData = async (search) => {
     setLoading(true);
@@ -100,13 +120,16 @@ const GlobalSearch = () => {
                     </span>
                     <div className='career_form'>
                       <input
-                        placeholder='Search By Name'
+                        placeholder=''
                         hide_label='true'
                         type='search'
                         name='search'
                         value={onSearchInput}
                         onChange={(e) => setOnSearchInput(e.target.value)}
                       />
+                      {onSearchInput === "" ? (
+                        <div className='updown-move'>{placeholder}</div>
+                      ) : null}
 
                       <button
                         name='button'
@@ -120,17 +143,21 @@ const GlobalSearch = () => {
                   </div>
                 </div>
               </div>
-              {hintData?.map((items, index) => {
-                return (
-                  <>
-                    <span
-                      key={items.id}
-                      className='hint-key-words'
-                      onClick={() => searchByTags(items?.name)}
-                    >{`#${items?.name}`}</span>
-                  </>
-                );
-              })}
+              <ul>
+                {hintData?.map((items, index) => {
+                  return (
+                    <>
+                      <li
+                        key={items.id}
+                        className='hint-key-words'
+                        onClick={() => searchByTags(items?.name)}
+                      >
+                        {`#${items?.name}`}
+                      </li>
+                    </>
+                  );
+                })}
+              </ul>
             </div>
           </div>
         </div>

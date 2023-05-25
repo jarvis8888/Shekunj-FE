@@ -271,9 +271,10 @@ export function time_left(start_date, start_time, end_date, end_time) {
   });
 
   const [month, day, year, time, meridiem] = formatter.format(start).split(" ");
-  return `${day} ${month} ${year.slice(
-    -2,
-  )} | ${time} ${meridiem.toUpperCase()}`.replace(/,/g, "");
+  return `${day} ${month} ${year} | ${time} ${meridiem.toUpperCase()}`.replace(
+    /,/g,
+    "",
+  );
 }
 
 export const makeHtml = (htmlString) => {

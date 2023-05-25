@@ -75,6 +75,7 @@
 
 .sk-bookC-counter {
   padding: 50px 0;
+  background: #eac6d04a;
 }
 
 .sk-bookC-contentinner ul li {
@@ -295,9 +296,6 @@ img.edit_icon_guidance {
     color: #5f6377 !important;
   }
 
-  .guidance_book {
-    padding: 30px 0;
-  }
 
   .guidance_book .col-md-5.col-12 {
     order: 2;
@@ -415,28 +413,29 @@ img.edit_icon_guidance {
   display: inline-block;
 } 
 .sk-bookTab-sec .sk-inline-field label {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 400;
   padding-right: 4px;
   padding-left: 4px;
   display: inline-block;
 }
-.sk-bookTab-sec ul{
-  list-style: none;
-  padding-left: 0;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  margin-bottom: 0;
-}
 .sk-bookTab-sec .sk-inline-field input,
 .form-inline.sk-inline-field select {
   background: transparent;
   border-bottom: 1px dashed rgba(32, 32, 32, 0.2);
-  font-size: 16px;
+  font-size: 14px;
   border-top: 0;
   border-left: 0;
   border-right: 0;
 }
+.sk-bookTab-sec ul{
+  list-style: none;
+  padding-left: 0;
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 0;
+}
+
 .sk-bookTab-sec .sk-inline-field input:focus {
   background: transparent !important;
 }
@@ -514,4 +513,71 @@ img.edit_icon_guidance {
   font-weight: 400;
   font-size: 12px;
   color: #c93636;
+}
+.sk-bookC-img img {
+  max-width: 100%;
+  height: auto;
+}
+@media screen and (min-width: 991px) and (max-width: 1366px) {
+  .sk-bookTab-sec .sk-inline-field label {
+    font-size: 14px;
+  }
+  .sk-bookTab-sec .sk-inline-field input,
+  .form-inline.sk-inline-field select {
+    font-size: 13px;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  .sk-bookTab-sec ul{
+    gap: 15px;
+    grid-template-columns: repeat(1, 1fr);
+    margin-bottom: 15;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .sk-bookTab-sec ul{
+    gap: 15px;
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .sk-bookC-contentinner ul {
+    grid-template-columns: repeat(2, 1fr);
+    gap:10px;
+  }
+  .sk-bookc-sec{
+    padding: 30px 0;
+  }
+  .sk-bookC-content{
+    padding-top: 0; 
+  }
+  .sk-bookC-contentinner ul li {
+    padding: 0px 5px 0px;
+  }
+  .sk-bookTab-sec .sk-inline-field{
+    margin-bottom: 15px;
+  }
+  .sk-bookC-content h2{
+    font-size: 24px;
+  }
+  .sk-bookC-content h6 {
+    font-size: 14px;
+  }
+  .sk-bookTab-sec .sk-inline-field label{
+    font-size: 14px;
+  }
+  .sk-bookTab-sec .sk-inline-field input, .form-inline.sk-inline-field select{
+    font-size: 13px;
+  }
+  .sk-bookC-contentinner ul li h3{
+    font-size: 24px;
+  }
+  .sk-bookC-contentinner ul li p{
+    font-size: 12px;
+  }
+  .sk-bookC-counter{
+    padding: 30px 0;
+  }
+  .sk-bookC-img img {
+    padding: 30px 30px 0px;
+  }
 }

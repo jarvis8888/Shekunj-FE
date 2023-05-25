@@ -60,9 +60,7 @@ const Navbar = (props) => {
           </Dropdown.Item>
           <Dropdown.Item
             onClick={() => history.push(routingConstants.MOCKTEST)}
-            className={
-              isActive(routingConstants.MOCKTEST) && "active"
-            }
+            className={isActive(routingConstants.MOCKTEST) && "active"}
           >
             {t("headerComponent.menuItem.6")}
           </Dropdown.Item>
@@ -73,20 +71,8 @@ const Navbar = (props) => {
             {t("headerComponent.menuItem.7")}
           </Dropdown.Item>
         </Dropdown>
-        <a
-          href='https://octahire.com/Resume_maker'
-          target='_blank'
-          rel='noreferrer'
-        >
-          {t("header.heading.4")}
-        </a>
-        <a
-          href='https://octahire.com/Home/candidate_register'
-          target='_blank'
-          rel='noreferrer'
-        >
-          {t("header.heading.6")}
-        </a>
+        <a href='/resume/'>{t("header.heading.4")}</a>
+        <a href='/jobs/'>{t("header.heading.6")}</a>
         <Dropdown title={t("header.heading.5")} className='custom-dropdown'>
           <Dropdown.Item
             onClick={() => history.push(routingConstants.TOP_COLLEGES)}
@@ -128,7 +114,7 @@ const Navbar = (props) => {
           className='sk-mobile-hide'
           onClick={() => history.push(routingConstants.SEARCH)}
         >
-        <img src={searchnavicon} />
+          <img src={searchnavicon} />
         </span>
       </div>
       <div className='mobile-show'>
@@ -136,7 +122,7 @@ const Navbar = (props) => {
           className='mr-3'
           onClick={() => history.push(routingConstants.SEARCH)}
         >
-        <img src={searchnavicon} className="searchIconSmall" />
+          <img src={searchnavicon} className='searchIconSmall' />
         </span>
         <span
           className={`nav-toggle ${isOpen && "open"}`}

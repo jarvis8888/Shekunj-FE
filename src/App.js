@@ -71,6 +71,8 @@ const DataNotFound = React.lazy(() => import("./pages/DataNotFound"));
 const BlogCategoryPage = React.lazy(() => import("./pages/BlogsWithCatogry"));
 const BlogTagsPage = React.lazy(() => import("./pages/BlogsWithTags"));
 const GlobalSearchPage = React.lazy(() => import("./pages/Search"));
+const ResumeBUilderPage = React.lazy(() => import("./pages/ResumeBuilder"));
+const JobPage = React.lazy(() => import("./pages/Jobs"));
 
 function App() {
   useEffect(() => {
@@ -291,6 +293,12 @@ function App() {
           path={routingConstants.DATA_NOT_FOUND}
           component={DataNotFound}
         />
+        <Route
+          exact
+          path={routingConstants.RESUME_BUILDER}
+          component={ResumeBUilderPage}
+        />
+        <Route exact path={routingConstants.JOBS} component={JobPage} />
         <Route path='*' component={PageNotFound} />
       </Switch>
     </>

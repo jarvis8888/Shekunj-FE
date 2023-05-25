@@ -59,6 +59,8 @@ const routingConstants = {
   DETAILS_MOCKTEST: "/mock-test-detail/",
   SUCCESS_STORIES_HASHTAG: "/success-stories/hastag",
   SEARCH: "/search/",
+  RESUME_BUILDER: "/resume/",
+  JOBS: "/jobs/",
 };
 
 const apiConstants = {
@@ -95,6 +97,7 @@ const apiConstants = {
     ONLINE_TEST_CATEGORY_LIST: "/course/online-test-category-list/",
     START_USER_COURSE: "/course/start-user-course/",
     SUCCESS_STORY: "/course/success-story/",
+    TRENDING_SUCCESS_STORY: "/course/tranding-success-story/",
     USER_COURSE_END_TIME: "/course/user-course-end-time/",
     USER_COURSE_RESULT: "/course/user-course-result/",
     USER_TEST_COURSE: "/course/user-test-course/",
@@ -120,6 +123,7 @@ const apiConstants = {
   },
   ALL_BLOGS: {
     ALL_BLOGS: "more/blogs",
+    TRENDING_BLOGS: "more/tranding_blogs",
   },
   ALL_EVENTS: {
     ALL_EVENTS: "more/events",

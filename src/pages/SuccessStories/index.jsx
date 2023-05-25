@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from "react";
-
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import useDeviceDetect from "../../hooks/useDeviceDetect";
@@ -24,15 +23,6 @@ import FeaturedCards from "../../components/cards/FeaturedCards";
 import { HashtagAndCatagories } from "../../components/HastagAndCatagories/Index";
 import TrendingCards from "../../components/cards/TrendingCards";
 import hash from "../../assets/images/hashtag.svg";
-import ewoman1 from "../../assets/images/ewoman1.jpg";
-import ewoman2 from "../../assets/images/ewoman2.jpg";
-import ewoman3 from "../../assets/images/ewoman3.jpg";
-import ewoman4 from "../../assets/images/ewoman4.jpg";
-import ewoman5 from "../../assets/images/ewoman5.jpg";
-import ewoman6 from "../../assets/images/ewoman6.jpg";
-import ewoman7 from "../../assets/images/ewoman7.jpg";
-import ewoman8 from "../../assets/images/ewoman8.jpg";
-
 import httpServices from "../../utils/ApiServices";
 import { CustomLoader } from "../../components/customLoader/CustomLoader";
 import { addEmailToClient } from "../../utils/utils";
@@ -41,15 +31,19 @@ function SuccessStory() {
   const history = useHistory();
   const dispatch = useDispatch();
   const sectionRef = useRef(null);
+  const trendingSectionRef = useRef(null);
 
   const { lan } = useSelector((state) => state.languageReducer);
   const { t } = useTranslation();
   const [offset, setOffset] = useState(0);
+  const [trendingOffset, setTrendingOffset] = useState(0);
   const [page, setPage] = useState(0);
   const pageLimit = 5;
+  const trendingPageLimit = 6;
 
   const [featuredData, setFeaturedData] = useState([]);
   const [currentFeaturedData, setCurrentFeaturedData] = useState([]);
+  const [currentTrendingData, setCurrentTrendingData] = useState([]);
   const [trendingData, setTrendingData] = useState([]);
   const [animationTrendingData, setAnimationTrendingData] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -61,6 +55,7 @@ function SuccessStory() {
   const [succesStoriesLeft, setSuccesStoriesLeft] = useState([]);
   const [succesStoriesBox, setSuccesStoriesBox] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [trendingLoading, setTrendingLoading] = useState(false);
   const [open, setOpen] = React.useState(false);
   const detect = useDeviceDetect();
   // const handleOpen = () => setOpen(true);
@@ -70,12 +65,7 @@ function SuccessStory() {
     try {
       const url = `${apiConstants.COURSES.SUCCESS_STORY}?limit=${limit}&offset=${offset}`;
       const data = await httpServices.get(url);
-      const {
-        featured_success_stories,
-        trending_success_stories,
-        all_hash_tags,
-      } = data;
-      setAnimationTrendingData(trending_success_stories);
+      const { featured_success_stories, all_hash_tags } = data;
       if (featured_success_stories?.results?.length > 0) {
         const res = featured_success_stories?.results ?? [];
         const addObjectData = { id: "advertisement" };
@@ -96,25 +86,43 @@ function SuccessStory() {
       } else {
         setCurrentFeaturedData(featured_success_stories);
       }
-
-      if (trending_success_stories?.length > 0) {
-        const res = trending_success_stories ?? [];
-        const addObjectData = { id: "advertisement" };
-        const newFeaturedData = [];
-
-        for (let i = 0; i < res.length; i++) {
-          if (i % 6 === 0 && i !== 0) {
-            newFeaturedData.push(addObjectData);
-          }
-          newFeaturedData.push(res[i]);
-        }
-        setTrendingData(newFeaturedData);
-      }
-
       setAllHashTag(all_hash_tags);
     } catch (error) {
     } finally {
       setLoading(false);
+    }
+  };
+
+  const getAllSuccessStoryTrendingData = async (limit, offset) => {
+    setTrendingLoading(true);
+    try {
+      const url = `${apiConstants.COURSES.TRENDING_SUCCESS_STORY}?limit=${limit}&offset=${offset}`;
+      const data = await httpServices.get(url);
+      const { trending_success_stories, banner_featured_ss } = data;
+      setAnimationTrendingData(banner_featured_ss);
+      if (trending_success_stories?.results?.length > 0) {
+        const res = trending_success_stories?.results ?? [];
+        const addObjectData = { id: "advertisement" };
+        const newFeaturedData = [];
+
+        for (let i = 0; i < res.length; i++) {
+          if (i % 3 === 0 && i !== 0) {
+            newFeaturedData.push(addObjectData);
+          }
+          newFeaturedData.push(res[i]);
+        }
+        newFeaturedData.push(addObjectData);
+
+        setTrendingData((prevFeaturedData) => [
+          ...newFeaturedData,
+          ...prevFeaturedData,
+        ]);
+      } else {
+        setCurrentTrendingData(trending_success_stories);
+      }
+    } catch (error) {
+    } finally {
+      setTrendingLoading(false);
     }
   };
   useEffect(() => {
@@ -124,6 +132,10 @@ function SuccessStory() {
   useEffect(() => {
     getAllSuccessStoryData(pageLimit, offset);
   }, [lan, offset]);
+
+  useEffect(() => {
+    getAllSuccessStoryTrendingData(trendingPageLimit, trendingOffset);
+  }, [lan, trendingOffset]);
 
   useEffect(() => {
     dispatch(adsList());
@@ -318,7 +330,14 @@ function SuccessStory() {
 
   useEffect(() => {
     // Update the animation data when the currentIndex changes
-    const endIndex = (currentIndex + 8) % animationTrendingData.length;
+    let endIndex; // Declare the variable outside of the if-else blocks
+
+    if (detect.isMobile) {
+      endIndex = (currentIndex + 6) % animationTrendingData.length;
+    } else {
+      endIndex = (currentIndex + 8) % animationTrendingData.length;
+    }
+
     // Declare a variable to store the updated animation data
     // Check if the range falls within a single continuous section of the array
     const updatedData =
@@ -332,139 +351,163 @@ function SuccessStory() {
     setAnimationData(updatedData);
   }, [currentIndex, animationTrendingData]);
 
+  const handleLoadMoreClick = () => {
+    if (currentFeaturedData?.results?.length === 0) {
+      return; // Do not scroll if button is disabled
+    }
+
+    setTimeout(() => {
+      sectionRef.current.scrollIntoView({
+        behavior: "smooth",
+      });
+    }, 10); // Minimal delay for rendering update
+
+    setOffset(offset + 5);
+  };
+  const handleLoadMoreClickOnTrending = () => {
+    if (currentTrendingData?.results?.length === 0) {
+      return; // Do not scroll if button is disabled
+    }
+
+    setTimeout(() => {
+      trendingSectionRef.current.scrollIntoView({
+        behavior: "smooth",
+      });
+    }, 10); // Minimal delay for rendering update
+
+    setTrendingOffset(trendingOffset + 6);
+  };
+
   return (
     <div>
       <Header loginPage={true} page='story' />
-      {loading ? (
-        <CustomLoader />
-      ) : (
-        <>
-          <section className='sk-storyMain-sec'>
-            <div className='container'>
-              <div className='row align-items-center'>
-                <div className='col-xl-6 col-lg-6 col-md-12 col-sm-12'>
-                  <div className='sk-story-content'>
-                    <h1
-                      className='sk-storyHeading-top'
-                      dangerouslySetInnerHTML={{
-                        __html: makeHtml(
-                          t("phase2.SuccessStoryContent.title1"),
-                        ),
-                      }}
-                    />
-                    <h1
-                      className='sk-storyHeading-top'
-                      dangerouslySetInnerHTML={{
-                        __html: makeHtml(
-                          t("phase2.SuccessStoryContent.title2"),
-                        ),
-                      }}
-                    />
-                    <p>{t("phase2.SuccessStoryContent.description")}</p>
-                    <div className='my-3'>
-                      <button
-                        className='sk-allStory-btn'
-                        onClick={() =>
-                          sectionRef.current.scrollIntoView({
-                            behavior: "smooth",
-                          })
-                        }
-                      >
-                        {t("phase2.SuccessStoryContent.buttonTitle")}
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                <div className='col-xl-6 col-lg-6 col-md-12 col-sm-12'>
-                  <div className='sk-storyS-images'>
-                    <ul>
-                      {animationData?.map((items, index) => {
-                        return (
-                          <>
-                            <li
-                              className='sk-scale-animate'
-                              key={index}
-                              onClick={() =>
-                                history.push(
-                                  routingConstants.SUCCESS_STORIES + items.id,
-                                )
-                              }
-                            >
-                              <div className='sk-story-eimg'>
-                                <img src={items.image} alt='' />
-                                <span></span>
-                              </div>
-                              <div className='sk-story-econtent'>
-                                <div className='sk-ewoman-title'>
-                                  <p>{items.name}</p>
-                                  <h6>{items.company_name}</h6>
-                                </div>
-                              </div>
-                            </li>
-                          </>
-                        );
-                      })}
-                    </ul>
+
+      <>
+        <section className='sk-storyMain-sec'>
+          <div className='container'>
+            <div className='row align-items-center'>
+              <div className='col-xl-6 col-lg-6 col-md-12 col-sm-12'>
+                <div className='sk-story-content'>
+                  <h1
+                    className='sk-storyHeading-top'
+                    dangerouslySetInnerHTML={{
+                      __html: makeHtml(t("phase2.SuccessStoryContent.title1")),
+                    }}
+                  />
+                  <h1
+                    className='sk-storyHeading-top'
+                    dangerouslySetInnerHTML={{
+                      __html: makeHtml(t("phase2.SuccessStoryContent.title2")),
+                    }}
+                  />
+                  <p>{t("phase2.SuccessStoryContent.description")}</p>
+                  <div className='my-3'>
+                    <button
+                      className='sk-allStory-btn'
+                      onClick={() =>
+                        sectionRef.current.scrollIntoView({
+                          behavior: "smooth",
+                        })
+                      }
+                    >
+                      {t("phase2.SuccessStoryContent.buttonTitle")}
+                    </button>
                   </div>
                 </div>
               </div>
-            </div>
-          </section>
-
-          <section className='sk-successStories-sec'>
-            <div className='container'>
-              <div className='row'>
-                <div className='col-xl-8 col-lg-8 col-md-12 mx-auto'>
-                  <AddsBanner
-                    color='#F4F4F4'
-                    children={
-                      <>
-                        {storiesBannerAds.length > 0 && (
-                          <div
-                            className='ads_home_cover '
+              <div className='col-xl-6 col-lg-6 col-md-12 col-sm-12'>
+                <div className='sk-storyS-images'>
+                  <ul>
+                    {animationData?.map((items, index) => {
+                      return (
+                        <>
+                          <li
+                            className='sk-scale-animate'
+                            key={index}
                             onClick={() =>
-                              addEmailToClient(storiesBannerAds[0]?.add_email)
+                              history.push(
+                                routingConstants.SUCCESS_STORIES + items.id,
+                              )
                             }
                           >
-                            <a
-                              href={storiesBannerAds[0]?.url_adds}
-                              target='_blank'
-                              rel='noreferrer'
-                            >
-                              {detect.isMobile
-                                ? storiesBannerAds[0]?.image_mobile && (
-                                    <img
-                                      src={storiesBannerAds[0]?.image_mobile}
-                                      alt=''
-                                      className='ads_story_cover_img'
-                                    />
-                                  )
-                                : storiesBannerAds[0]?.image && (
-                                    <img
-                                      src={storiesBannerAds[0]?.image}
-                                      alt=''
-                                      className='ads_story_cover_img'
-                                    />
-                                  )}
-                            </a>
-                          </div>
-                        )}
-                      </>
-                    }
-                  />
+                            <div className='sk-story-eimg'>
+                              <img src={items.image} alt='' />
+                              <span></span>
+                            </div>
+                            <div className='sk-story-econtent'>
+                              <div className='sk-ewoman-title'>
+                                <p>{items.name}</p>
+                                <h6>{items.company_name}</h6>
+                              </div>
+                            </div>
+                          </li>
+                        </>
+                      );
+                    })}
+                  </ul>
                 </div>
               </div>
             </div>
-          </section>
+          </div>
+        </section>
 
-          <section className='sk-storyBoxMain-sec' ref={sectionRef}>
-            <div className='container'>
-              <div className='row'>
-                <div className='col-xl-9 col-lg-9 col-md-9 featured-stories'>
-                  <div className='title'>
-                    <img src={fire} alt='fire' width={28} />
-                    <h4>Featured Stories </h4>
-                  </div>
+        <section className='sk-successStories-sec'>
+          <div className='container'>
+            <div className='row'>
+              <div className='col-xl-8 col-lg-8 col-md-12 mx-auto'>
+                <AddsBanner
+                  color='#F4F4F4'
+                  children={
+                    <>
+                      {storiesBannerAds.length > 0 && (
+                        <div
+                          className='ads_home_cover '
+                          onClick={() =>
+                            addEmailToClient(storiesBannerAds[0]?.add_email)
+                          }
+                        >
+                          <a
+                            href={storiesBannerAds[0]?.url_adds}
+                            target='_blank'
+                            rel='noreferrer'
+                          >
+                            {detect.isMobile
+                              ? storiesBannerAds[0]?.image_mobile && (
+                                  <img
+                                    src={storiesBannerAds[0]?.image_mobile}
+                                    alt=''
+                                    className='ads_story_cover_img'
+                                  />
+                                )
+                              : storiesBannerAds[0]?.image && (
+                                  <img
+                                    src={storiesBannerAds[0]?.image}
+                                    alt=''
+                                    className='ads_story_cover_img'
+                                  />
+                                )}
+                          </a>
+                        </div>
+                      )}
+                    </>
+                  }
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className='sk-storyBoxMain-sec'>
+          <div className='container'>
+            <div className='row'>
+              <div className='col-xl-9 col-lg-9 col-md-9 featured-stories'>
+                <div className='title' ref={sectionRef}>
+                  <img src={fire} alt='fire' width={28} />
+                  <h4>Featured Stories </h4>
+                </div>
+                {loading ? (
+                  <CustomLoader size='small' />
+                ) : (
                   <div className='row'>
                     {featuredData?.map((items, index) => {
                       if (items.id === "advertisement") {
@@ -495,26 +538,25 @@ function SuccessStory() {
                       }
                     })}
                   </div>
-                  <div className='sk-blogbottom-border d-flex justify-content-center align-items-center py-4'>
-                    <button
-                      disabled={currentFeaturedData?.results?.length === 0}
-                      className='loadMore'
-                      onClick={() => {
-                        setOffset(offset + 5);
-                        sectionRef.current.scrollIntoView({
-                          behavior: "smooth",
-                        });
-                      }}
-                    >
-                      Load More
-                    </button>
-                  </div>
+                )}
+                <div className='sk-blogbottom-border d-flex justify-content-center align-items-center py-4'>
+                  <button
+                    disabled={currentFeaturedData?.results?.length === 0}
+                    className='loadMore'
+                    onClick={handleLoadMoreClick}
+                  >
+                    Load More
+                  </button>
+                </div>
 
-                  <div>
-                    <div className='title'>
-                      <img src={fire} alt='fire' width={28} />
-                      <h4>Trending Stories </h4>
-                    </div>
+                <div ref={trendingSectionRef}>
+                  <div className='title'>
+                    <img src={fire} alt='fire' width={28} />
+                    <h4>Trending Stories </h4>
+                  </div>
+                  {trendingLoading ? (
+                    <CustomLoader size='small' />
+                  ) : (
                     <div className='row'>
                       {trendingData?.map((items, index) => {
                         if (items.id === "advertisement") {
@@ -546,24 +588,33 @@ function SuccessStory() {
                         }
                       })}
                     </div>
-                  </div>
+                  )}
                 </div>
-                <div className='col-xl-3 col-md-3 col-lg-3 col-sm-12 ads'>
-                  <HashtagAndCatagories
-                    type='hashtag'
-                    image={hash}
-                    title={`Trending Hashtag`}
-                    // addEmail={addEmail}
-                    hashtags={allHashTag}
-                    rightOne={succesStoriesRight1}
-                    rightTwo={succesStoriesRight2}
-                  />
+                <div className='sk-blogbottom-border d-flex justify-content-center align-items-center py-4'>
+                  <button
+                    disabled={currentTrendingData?.results?.length === 0}
+                    className='loadMore'
+                    onClick={handleLoadMoreClickOnTrending}
+                  >
+                    Load More
+                  </button>
                 </div>
               </div>
+              <div className='col-xl-3 col-md-3 col-lg-3 col-sm-12 ads'>
+                <HashtagAndCatagories
+                  type='hashtag'
+                  image={hash}
+                  title={`Trending Hashtag`}
+                  // addEmail={addEmail}
+                  hashtags={allHashTag}
+                  rightOne={succesStoriesRight1}
+                  rightTwo={succesStoriesRight2}
+                />
+              </div>
             </div>
-          </section>
-        </>
-      )}
+          </div>
+        </section>
+      </>
 
       <Footer />
     </div>

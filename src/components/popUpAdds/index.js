@@ -6,8 +6,8 @@ import useDeviceDetect from "../../hooks/useDeviceDetect";
 const PopUpAdds = () => {
   const detect = useDeviceDetect();
 
-  const [leftAddIsVisible, setLeftAddIsVisible] = useState(true);
-  const [rightAddIsVisible, setRightAddIsVisible] = useState(true);
+  const [leftAddIsVisible, setLeftAddIsVisible] = useState(false);
+  const [rightAddIsVisible, setRightAddIsVisible] = useState(false);
   const [leftData, setLeftData] = useState([]);
   const [rightData, setRightData] = useState([]);
 
@@ -61,7 +61,7 @@ const PopUpAdds = () => {
   return (
     <div className='pop-up-ads-container'>
       {leftAddIsVisible && (
-        <div className='pop-up-ads left-bottom'>
+        <div className='pop-up-ads '>
           <>
             {leftData.length > 0 && (
               <div>

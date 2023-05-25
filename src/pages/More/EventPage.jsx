@@ -112,22 +112,24 @@ function EventPage() {
       const { data } = await httpServices.get(url);
       const { event_list, today_tomorrow, this_week, next_week, genres_list } =
         data;
+
+      setCurrentData(event_list?.results);
       setGenresListData(genres_list);
 
       // Process today_tomorrow data
-      const todayTomorrowEventData = today_tomorrow?.results || [];
+      const todayTomorrowEventData = today_tomorrow || [];
       const todayTomorrowDataWithAds = addAdvertisementObjects(
         todayTomorrowEventData,
       );
       setTodayTomorrowData(todayTomorrowDataWithAds);
 
       // Process this_week data
-      const thisWeekEventData = this_week?.results || [];
+      const thisWeekEventData = this_week || [];
       const thisWeekDataWithAds = addAdvertisementObjects(thisWeekEventData);
       setThisWeekData(thisWeekDataWithAds);
 
       // Process next_week data
-      const nextWeekEventData = next_week?.results || [];
+      const nextWeekEventData = next_week || [];
       const nextWeekDataWithAds = addAdvertisementObjects(nextWeekEventData);
       setNextWeekData(nextWeekDataWithAds);
 
@@ -191,11 +193,8 @@ function EventPage() {
       pathname: location.pathname,
       search: searchParams.toString(),
     });
+    getAllEVentsData(0, option);
   };
-
-  // useEffect(() => {
-  //   fetchEventsData(null, true);
-  // }, [currentOffset, lan]);
 
   useEffect(() => {
     dispatch(adsList());
@@ -244,8 +243,15 @@ function EventPage() {
   }, []);
 
   useEffect(() => {
-    getAllEVentsData(currentOffset, selectedOption);
-  }, [currentOffset, lan, selectedOption]);
+    const params = new URLSearchParams(location.search);
+    const genreParam = params.get("genre_id");
+    setSelectedOption(genreParam);
+    if (genreParam) {
+      handleGenerOptionClick(genreParam);
+    } else {
+      getAllEVentsData(currentOffset, null);
+    }
+  }, [currentOffset, lan]);
 
   const adCount = eventBoxAds.length;
   let adIndex = 0;
@@ -309,12 +315,13 @@ function EventPage() {
               loop={true}
               autoplay={true}
               autoplayspeed={1000}
+              center={true}
               items={4}
               margin={20}
               nav={true}
               responsive={{
                 1: {
-                  items: 1,
+                  items: 2,
                 },
                 667: {
                   items: 2,
@@ -334,7 +341,12 @@ function EventPage() {
                 return (
                   <>
                     {" "}
-                    <div key={index}>
+                    <div
+                      key={index}
+                      onClick={() =>
+                        history.push(routingConstants.MORE_EVENT + items.id)
+                      }
+                    >
                       <img src={items.image} alt='' />
                     </div>
                   </>
@@ -357,9 +369,9 @@ function EventPage() {
                   inspired and energized.
                 </p>
               </div>
-              <div className='sk-category mb-3' ref={sectionRef}>
+              <div className='sk-category sk-categoryRemove-m' ref={sectionRef}>
+                <h6>Time</h6>
                 <ul>
-                  <li>Time</li>
                   {options.map((items, index) => {
                     return (
                       <>
@@ -379,8 +391,8 @@ function EventPage() {
                 </ul>
               </div>
               <div className='sk-category'>
+                <h6>Genre</h6>
                 <ul>
-                  <li>Genre</li>
                   {genresListData.length &&
                     genresListData.map((items, index) => {
                       return (

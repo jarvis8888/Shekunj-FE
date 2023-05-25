@@ -8,7 +8,7 @@ body {
   align-items: center;
   background: #ffffff;
   padding: 10px 66px;
-  box-shadow: 0 3px 10px 0px #fbf6f8;
+  box-shadow: 0 2px 15px 0px #edd7e175;
 }
 .Navbar .custom-dropdown button {
   font-size: 16px;
@@ -22,7 +22,7 @@ body {
   color: #020202;
   font-size: 16px;
   text-decoration: none;
-  margin: 15px;
+  margin: 10px 15px;
   position: relative;
   transition: all 0.3s;
   cursor: pointer;
@@ -294,7 +294,7 @@ body {
   display: none;
   @media (max-width: 800px) {
     display: flex;
-    z-index: 9;
+    // z-index: 9;
     position: relative;
     align-items: center;
   }
@@ -336,16 +336,20 @@ body {
     z-index: 99;
   }
   .Navbar > .nav-items > a{
-    font-size: 14px;
+    font-size: 11px;
   }
   .Navbar .custom-dropdown button{
-    font-size: 14px;
+    font-size: 11px;
+    padding-left: 15px;
   }
   .header-top {
     padding: 10px 15px;
     position: relative;
     transition: 0.5s;
     z-index: 999;
+  }
+  .rs-dropdown-toggle-caret{
+    font-size: 11px;
   }
   .nav-logo img {
     max-width: 120px;
