@@ -176,14 +176,24 @@ section {
   grid-gap: 5px 10px;
   margin-bottom: 0;
 }
-.sk-event-form .sk-eventForm-filed input {
+.sk-event-form .sk-eventForm-filed input, .sk-event-form .sk-eventForm-filed select {
   border: 1px solid #d9d9d9;
   border-radius: 8px;
   height: 48px;
   font-size: 14px;
   padding-left: 40px;
+  width: 100%;
 }
-.sk-event-form .sk-eventForm-filed input:focus {
+.sk-event-form .sk-eventForm-filed select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: transparent;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='gray' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+  background-repeat: no-repeat;
+  background-position-x: 96%;
+  background-position-y: 10px;
+}
+.sk-event-form .sk-eventForm-filed input:focus, .sk-event-form .sk-eventForm-filed select:focus {
   border-color: #fcbdda;
 }
 .sk-event-form {

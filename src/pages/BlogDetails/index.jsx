@@ -16,7 +16,7 @@ import facebookicon from "../../assets/images/facebook.svg";
 import linkedinicon from "../../assets/images/linkedin.svg";
 import twittericon from "../../assets/images/twitter.svg";
 import pintresticon from "../../assets/images/pintrest.svg";
-import instagramicon from "../../assets/images/instagram.svg";
+import whatsapp from "../../assets/images/whatsapp.svg";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import { TrendingBlogsCard2 } from "../../components/cards/TrendingBlogsCard2";
@@ -32,7 +32,7 @@ import {
   TwitterShareButton,
   LinkedinShareButton,
   PinterestShareButton,
-  InstapaperShareButton,
+  WhatsappShareButton,
 } from "react-share";
 
 const BlogDetails = () => {
@@ -302,9 +302,12 @@ const BlogDetails = () => {
                         </PinterestShareButton>
                       </li>
                       <li>
-                        <a href='https://www.instagram.com/' target='_blank'>
-                          <img src={instagramicon} alt='instagramicon' />
-                        </a>
+                        <WhatsappShareButton
+                          url={currentUrl}
+                          // media={successStoriesDetails?.image}
+                        >
+                          <img src={whatsapp} alt='Pinterest' />
+                        </WhatsappShareButton>
                       </li>
                     </ul>
                   </div>
@@ -344,9 +347,12 @@ const BlogDetails = () => {
                         </PinterestShareButton>
                       </li>
                       <li>
-                        <InstapaperShareButton url={currentUrl}>
-                          <img src={instagramicon} alt='instagramicon' />
-                        </InstapaperShareButton>
+                        <WhatsappShareButton
+                          url={currentUrl}
+                          // media={successStoriesDetails?.image}
+                        >
+                          <img src={whatsapp} alt='Pinterest' />
+                        </WhatsappShareButton>
                       </li>
                     </ul>
                   </div>
