@@ -37,6 +37,8 @@ import linkedinicon from "../../assets/images/linkedin.svg";
 import twittericon from "../../assets/images/twitter.svg";
 import pintresticon from "../../assets/images/pintrest.svg";
 import whatsapp from "../../assets/images/whatsapp.svg";
+import instagramicon from "../../assets/images/instagram.svg";
+import gendericon from "../../assets/images/gendericon.svg";
 import SchoolRoundedIcon from "@mui/icons-material/SchoolRounded";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import onlineicon from "../../assets/images/onlineicon.svg";
@@ -445,13 +447,13 @@ const EventDetails = () => {
                             </PinterestShareButton>
                           </li>
                           <li>
-                        <WhatsappShareButton
-                          url={currentUrl}
-                          // media={successStoriesDetails?.image}
-                        >
-                          <img src={whatsapp} alt='Pinterest' />
-                        </WhatsappShareButton>
-                      </li>
+                            <WhatsappShareButton
+                              url={currentUrl}
+                              // media={successStoriesDetails?.image}
+                            >
+                              <img src={whatsapp} alt='Pinterest' />
+                            </WhatsappShareButton>
+                          </li>
                         </ul>
                       </div>
                     </div>
@@ -526,13 +528,13 @@ const EventDetails = () => {
                           </PinterestShareButton>
                         </li>
                         <li>
-                        <WhatsappShareButton
-                          url={currentUrl}
-                          // media={successStoriesDetails?.image}
-                        >
-                          <img src={whatsapp} alt='Pinterest' />
-                        </WhatsappShareButton>
-                      </li>
+                          <WhatsappShareButton
+                            url={currentUrl}
+                            // media={successStoriesDetails?.image}
+                          >
+                            <img src={whatsapp} alt='Pinterest' />
+                          </WhatsappShareButton>
+                        </li>
                       </ul>
                     </div>
                     <div className='sk-event-add'>
@@ -613,7 +615,7 @@ const EventDetails = () => {
                             touched={touched}
                             autoComplete='off'
                           >
-                            <option>Select Gender</option>
+                            <option>Gender</option>
                             {Gender.map((Gender) => (
                               <option key={Gender} value={Gender}>
                                 {Gender}
@@ -621,7 +623,7 @@ const EventDetails = () => {
                             ))}
                           </select>
                           <span>
-                            <AccountBoxRoundedIcon />
+                            <img src={gendericon} />
                           </span>
                         </div>
                         <div className='sk-eventForm-filed'>
@@ -663,7 +665,7 @@ const EventDetails = () => {
                                     name='extra_info_reg'
                                     type='text'
                                     placeholder={propertyName}
-                                    value={extraInfo[key[0]] || ""}
+                                    // value={extraInfo[key[0]] || ""}
                                     autoComplete='off'
                                     onChange={(e) => {
                                       const updatedValue = e.target.value;
