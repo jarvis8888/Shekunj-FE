@@ -76,6 +76,8 @@ import {
   InstapaperShareButton,
 } from "react-share";
 
+const Gender = ["Male", "Female", "Others"];
+
 const EventDetails = () => {
   let a = JSON.parse(localStorage.getItem("login_data"));
   let eventData = JSON.parse(localStorage.getItem("event_data"));
@@ -98,6 +100,7 @@ const EventDetails = () => {
   const [eventDetailsBoxAds, setEventDetailsBoxAds] = useState([]);
   const [eventDetailsBannerAds, setEventDetailsBannerAds] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [extraInfo, setExtraInfo] = useState([]);
   //states
 
   // const { isLoading } = useSelector((state) => state.eventReducer);
@@ -110,15 +113,6 @@ const EventDetails = () => {
     JSON.parse(localStorage.getItem("login_data")),
   );
 
-  // useEffect(async () => {
-  //   dispatch(fetchForm());
-  //   await dispatch(getUserProfile(id));
-  //   // let a = JSON.parse(localStorage.getItem('login_data'));
-  //   // setLocalData(a)
-  //   dispatch(localStData());
-  // }, [id]);
-
-  // useEffect(() => {}, [!registerData]);
   useEffect(() => {
     dispatch(adsList());
     const successCallback = async (position) => {
@@ -187,7 +181,7 @@ const EventDetails = () => {
     whatsappNumber: Yup.string()
       .required("Whatsapp Number is required")
       .matches(/^[0-9]*$/, "Must be a number"),
-    gender: Yup.string().required("Select Gender").oneOf(["Male", "Female"]),
+    gender: Yup.string().required("Select Gender"),
     location: Yup.string().required("Location is required"),
     instituteName: Yup.string().required("Institute Name is required"),
   });
@@ -230,6 +224,7 @@ const EventDetails = () => {
         } else {
           localStorage.setItem("event_data", JSON.stringify(data));
           toast.success(res.message, toasterConfig);
+          handleOpen();
           resetForm();
         }
       } catch (error) {
@@ -265,6 +260,115 @@ const EventDetails = () => {
   useEffect(() => {
     getEventDetailById(id);
   }, [id, lan]);
+
+  const handleOpen = (index) => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const whatsappUrl = eventsDetails?.whatsapp_group_link?.whatsapp_link;
+  const whatsAppModal = () => {
+    if (eventsDetails && eventsDetails?.whatsapp_group_link?.join_group) {
+      return (
+        <Modal
+          aria-labelledby='simple-modal-title'
+          aria-describedby='simple-modal-description'
+          open={open}
+          onClose={handleClose}
+          className='ModalBoxEvent'
+        >
+          <div className='ModalBodyBoxEvent'>
+            <CloseIcon className='ModalClose' onClick={handleClose} />
+            <div className='ModalHeadEvent'>
+              <Typography variant='h6' id='modal-title'>
+                Congratulations... you have been registered!
+              </Typography>
+            </div>
+            <div className='ModalMiddleEvent'>
+              <Typography variant='h6' id='simple-modal-description'>
+                You can join our whatsapp group.
+              </Typography>
+              <a href={whatsappUrl} target='_blank'>
+                <Button variant='contained' className='ModalButtonEvent'>
+                  JOIN WHATSAPP GROUP
+                </Button>
+              </a>
+              <divider />
+              <Typography variant='h4'>
+                Want to learn more? <br />
+                Checkout our other events
+              </Typography>
+              <div className='ModalLinkEvent'>
+                <Link to={routingConstants.MORE_EVENT}>
+                  <strong>Lets have a look... Shekunj Events!</strong>
+                </Link>
+              </div>
+            </div>
+            <div className='ModalBottomEvent'>
+              <Typography variant='h6' id='modal-title'>
+                are you excited to learn ? <br />
+                see you soon !
+              </Typography>
+            </div>
+          </div>
+        </Modal>
+      );
+    } else if (
+      eventsDetails &&
+      eventsDetails?.whatsapp_group_link?.join_group === false
+    ) {
+      return (
+        <Modal
+          aria-labelledby='simple-modal-title'
+          aria-describedby='simple-modal-description'
+          open={open}
+          onClose={handleClose}
+          className='ModalBoxEvent'
+        >
+          <div className='ModalBodyBoxEvent2'>
+            {/* <img
+              className='close_img'
+              src={x}
+              alt='...'
+              onClick={() => handleClose()}
+            /> */}
+            <CloseIcon className='ModalClose' onClick={handleClose} />
+            <div className='ModalHeadEvent'>
+              <Typography variant='h6' id='modal-title'>
+                Congratulations... you have been registered!
+              </Typography>
+            </div>
+            <div className='ModalMiddleEvent'>
+              <Typography variant='h3' id='simple-modal-description'>
+                Thank You !
+              </Typography>
+              <br />
+              <divider />
+              <Typography variant='h4'>
+                Want to learn more? <br />
+                Checkout our other events
+              </Typography>
+              <div className='ModalLinkEvent'>
+                <Link to={routingConstants.MORE_EVENT}>
+                  <strong>Lets have a look... Shekunj Events!</strong>
+                </Link>
+              </div>
+            </div>
+            <div className='ModalBottomEvent'>
+              <Typography variant='h6' id='modal-title'>
+                are you excited to learn ? <br />
+                see you soon !
+              </Typography>
+            </div>
+          </div>
+        </Modal>
+      );
+    }
+  };
+
   return (
     <div>
       {/* <SEO title='Sheकुंज - Career' /> */}
@@ -407,44 +511,41 @@ const EventDetails = () => {
                       </ul>
                     </div> */}
                     <div className='sk-social-icon sk-mobileSocial-icon'>
-                        <h6>Share this article</h6>
-                        <ul>
-                          <li>
-                            <FacebookShareButton url={currentUrl}>
-                              <img src={facebookicon} alt='Facebook' />
-                            </FacebookShareButton>
-                          </li>
-                          <li>
-                            <LinkedinShareButton url={currentUrl}>
-                              <img src={linkedinicon} alt='LinkedIn' />
-                            </LinkedinShareButton>
-                          </li>
-                          <li>
-                            <TwitterShareButton
-                              url={currentUrl}
-                              image={eventsDetails?.image}
-                            >
-                              <img src={twittericon} alt='Twitter' />
-                            </TwitterShareButton>
-                          </li>
-                          <li>
-                            <PinterestShareButton
-                              url={currentUrl}
-                              media={eventsDetails?.image}
-                            >
-                              <img src={pintresticon} alt='Pinterest' />
-                            </PinterestShareButton>
-                          </li>
-                          <li>
-                            <a
-                              href='https://www.instagram.com/'
-                              target='_blank'
-                            >
-                              <img src={instagramicon} alt='instagramicon' />
-                            </a>
-                          </li>
-                        </ul>
-                      </div>
+                      <h6>Share this article</h6>
+                      <ul>
+                        <li>
+                          <FacebookShareButton url={currentUrl}>
+                            <img src={facebookicon} alt='Facebook' />
+                          </FacebookShareButton>
+                        </li>
+                        <li>
+                          <LinkedinShareButton url={currentUrl}>
+                            <img src={linkedinicon} alt='LinkedIn' />
+                          </LinkedinShareButton>
+                        </li>
+                        <li>
+                          <TwitterShareButton
+                            url={currentUrl}
+                            image={eventsDetails?.image}
+                          >
+                            <img src={twittericon} alt='Twitter' />
+                          </TwitterShareButton>
+                        </li>
+                        <li>
+                          <PinterestShareButton
+                            url={currentUrl}
+                            media={eventsDetails?.image}
+                          >
+                            <img src={pintresticon} alt='Pinterest' />
+                          </PinterestShareButton>
+                        </li>
+                        <li>
+                          <a href='https://www.instagram.com/' target='_blank'>
+                            <img src={instagramicon} alt='instagramicon' />
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
                     <div className='sk-event-add'>
                       <a
                         href={eventDetailsBannerAds[0]?.url_adds}
@@ -535,7 +636,7 @@ const EventDetails = () => {
                       )}
                       <ul>
                         <div className='sk-eventForm-filed'>
-                          <input
+                          {/* <input
                             type='text'
                             name='gender'
                             value={values.gender}
@@ -544,7 +645,23 @@ const EventDetails = () => {
                             onBlur={handleBlur}
                             className='form-control'
                             placeholder='Gender'
-                          />
+                          /> */}
+
+                          <select
+                            name='gender'
+                            value={values.gender}
+                            onBlur={handleBlur}
+                            onChange={handleChange}
+                            touched={touched}
+                            autoComplete='off'
+                          >
+                            <option>Select Gender</option>
+                            {Gender.map((Gender) => (
+                              <option key={Gender} value={Gender}>
+                                {Gender}
+                              </option>
+                            ))}
+                          </select>
                           <span>
                             <AccountBoxRoundedIcon />
                           </span>
@@ -596,6 +713,54 @@ const EventDetails = () => {
                           {errors.instituteName}
                         </span>
                       )}
+                      {eventsDetails?.id &&
+                        Object.entries(eventsDetails?.extra_info).map(
+                          (key, index) => {
+                            return (
+                              <div>
+                                <div className='sk-eventForm-filed'>
+                                  <input
+                                    name='extra_info_reg'
+                                    type='text'
+                                    placeholder={key[0]}
+                                    autoComplete='off'
+                                    onChange={(e) => {
+                                      if (extraInfo.length < 0) {
+                                        extraInfo.push({
+                                          [key[0]]: e.target.value,
+                                        });
+                                      } else {
+                                        let newIndex = extraInfo.findIndex(
+                                          (item) => {
+                                            return (
+                                              Object.keys(item)[0] === key[0]
+                                            );
+                                          },
+                                        );
+
+                                        if (newIndex !== -1) {
+                                          extraInfo[newIndex][key[0]] =
+                                            e.target.value;
+                                        } else {
+                                          extraInfo.push({
+                                            [key[0]]: e.target.value,
+                                          });
+                                        }
+                                      }
+                                      setExtraInfo([...extraInfo]);
+                                    }}
+                                    onBlur={handleBlur}
+                                  />
+                                  {errors.extra_info_reg && (
+                                    <span className='sk-error-message'>
+                                      {errors.extra_info_reg}
+                                    </span>
+                                  )}
+                                </div>
+                              </div>
+                            );
+                          },
+                        )}
                       <div className='sk-eventForm-filed'>
                         <button type='submit' className='sk-submit-btn'>
                           {" "}
@@ -641,6 +806,8 @@ const EventDetails = () => {
           </div>
         </section>
       )}
+      {whatsAppModal()}
+
       <Footer loginPage={false} />
     </div>
   );

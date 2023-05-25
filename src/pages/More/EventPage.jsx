@@ -341,7 +341,12 @@ function EventPage() {
                 return (
                   <>
                     {" "}
-                    <div key={index}>
+                    <div
+                      key={index}
+                      onClick={() =>
+                        history.push(routingConstants.MORE_EVENT + items.id)
+                      }
+                    >
                       <img src={items.image} alt='' />
                     </div>
                   </>
@@ -415,6 +420,14 @@ function EventPage() {
             <div className='row'>
               {dataWithAdds?.length ? (
                 dataWithAdds?.map((items, index) => {
+                  console.log(
+                    time_left(
+                      items.start_date,
+                      items.start_time,
+                      items.end_date,
+                      items.end_time,
+                    ),
+                  );
                   if (items.id === "advertisement") {
                     return <>{eventBoxAds.length > 0 && renderAds()}</>;
                   } else {
