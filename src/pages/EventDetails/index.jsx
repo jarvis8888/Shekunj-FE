@@ -36,7 +36,7 @@ import facebookicon from "../../assets/images/facebook.svg";
 import linkedinicon from "../../assets/images/linkedin.svg";
 import twittericon from "../../assets/images/twitter.svg";
 import pintresticon from "../../assets/images/pintrest.svg";
-import instagramicon from "../../assets/images/instagram.svg";
+import whatsapp from "../../assets/images/whatsapp.svg";
 import SchoolRoundedIcon from "@mui/icons-material/SchoolRounded";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import onlineicon from "../../assets/images/onlineicon.svg";
@@ -73,7 +73,7 @@ import {
   TwitterShareButton,
   LinkedinShareButton,
   PinterestShareButton,
-  InstapaperShareButton,
+  WhatsappShareButton,
 } from "react-share";
 
 const Gender = ["Male", "Female", "Others"];
@@ -83,9 +83,7 @@ const EventDetails = () => {
   let eventData = JSON.parse(localStorage.getItem("event_data"));
   const { id } = useParams();
   const [open, setOpen] = useState(false);
-  // getModalStyle is not a pure function, we roll the style only on the first render
-  // const [modalStyle] = useState(getModalStyle);
-  // const [modalData, setData] = useState();
+
   const currentUrl = window.location.href;
   const history = useHistory();
   const { events, isLoading } = useSelector((state) => state.eventsReducer);
@@ -101,12 +99,15 @@ const EventDetails = () => {
   const [eventDetailsBannerAds, setEventDetailsBannerAds] = useState([]);
   const [loading, setLoading] = useState(false);
   const [extraInfo, setExtraInfo] = useState([]);
+  console.log(
+    "🚀 ~ file: index.jsx:102 ~ EventDetails ~ extraInfo:",
+    extraInfo,
+  );
   //states
 
   // const { isLoading } = useSelector((state) => state.eventReducer);
   const { lan } = useSelector((state) => state.languageReducer);
   const { t } = useTranslation();
-  const extraInfoCopy = events;
   const token = Cookies.get("sheToken");
 
   const [localData, setLocalData] = useState(
@@ -168,49 +169,39 @@ const EventDetails = () => {
   const initialValues = {
     fullName: eventData == null ? user?.name : eventData?.name || "",
     email: eventData == null ? user?.email : eventData?.email || "",
-    whatsappNumber: "",
     gender: "",
     location: "",
-    instituteName: "",
   };
   const validationSchema = Yup.object({
     fullName: Yup.string().required("Full Name is required"),
     email: Yup.string()
       .email("Invalid email format")
       .required("Email is required"),
-    whatsappNumber: Yup.string()
-      .required("Whatsapp Number is required")
-      .matches(/^[0-9]*$/, "Must be a number"),
     gender: Yup.string().required("Select Gender"),
     location: Yup.string().required("Location is required"),
-    instituteName: Yup.string().required("Institute Name is required"),
   });
   const onRegistrationFormSubmit = useFormik({
     initialValues: initialValues,
     validationSchema: validationSchema,
     onSubmit: async (values, { resetForm }) => {
-      const {
-        fullName,
-        email,
-        whatsappNumber,
-        gender,
-        location,
-        instituteName,
-      } = values;
+      const { fullName, email, gender, location } = values;
+
+      const extraInfoReg = {}; // Initialize the extra_info_reg object
+
+      // Construct the extra_info_reg object with key-value pairs
+      for (const [key, value] of Object.entries(extraInfo)) {
+        extraInfoReg[key] = value;
+      }
+
       const data = {
         event_id: id,
         email: email,
         name: fullName,
         last_name: "",
         city: location,
-        contact: whatsappNumber,
+        contact: "",
         gender: gender,
-        extra_info_reg: {
-          Age: "",
-          Stream: "",
-          "Institute Name": instituteName,
-          "Whatsapp Number": whatsappNumber,
-        },
+        extra_info_reg: extraInfoReg,
       };
       try {
         const res = await httpServices.post(
@@ -237,12 +228,8 @@ const EventDetails = () => {
     errors,
     touched,
     handleChange,
-    validate,
     handleBlur,
     handleSubmit,
-    setFieldValue,
-    setValues,
-    setFieldTouched,
     isSubmitting,
   } = onRegistrationFormSubmit;
 
@@ -251,6 +238,7 @@ const EventDetails = () => {
     try {
       const res = await httpServices.get("more/event" + "/" + id);
       setEventsDetails(res?.data);
+      setExtraInfo(res?.data?.extra_info);
     } catch (error) {
     } finally {
       setLoading(false);
@@ -371,9 +359,7 @@ const EventDetails = () => {
 
   return (
     <div>
-      {/* <SEO title='Sheकुंज - Career' /> */}
       <Header loginPage={true} page='more' />
-
       {loading ? (
         <div>
           <CustomLoader />
@@ -459,13 +445,13 @@ const EventDetails = () => {
                             </PinterestShareButton>
                           </li>
                           <li>
-                            <a
-                              href='https://www.instagram.com/'
-                              target='_blank'
-                            >
-                              <img src={instagramicon} alt='instagramicon' />
-                            </a>
-                          </li>
+                        <WhatsappShareButton
+                          url={currentUrl}
+                          // media={successStoriesDetails?.image}
+                        >
+                          <img src={whatsapp} alt='Pinterest' />
+                        </WhatsappShareButton>
+                      </li>
                         </ul>
                       </div>
                     </div>
@@ -540,10 +526,13 @@ const EventDetails = () => {
                           </PinterestShareButton>
                         </li>
                         <li>
-                          <a href='https://www.instagram.com/' target='_blank'>
-                            <img src={instagramicon} alt='instagramicon' />
-                          </a>
-                        </li>
+                        <WhatsappShareButton
+                          url={currentUrl}
+                          // media={successStoriesDetails?.image}
+                        >
+                          <img src={whatsapp} alt='Pinterest' />
+                        </WhatsappShareButton>
+                      </li>
                       </ul>
                     </div>
                     <div className='sk-event-add'>
@@ -614,39 +603,8 @@ const EventDetails = () => {
                       {errors.email && (
                         <span className='sk-error-message'>{errors.email}</span>
                       )}
-                      <div className='sk-eventForm-filed'>
-                        <input
-                          type='text'
-                          name='whatsappNumber'
-                          value={values.whatsappNumber}
-                          onChange={handleChange}
-                          touched={touched}
-                          onBlur={handleBlur}
-                          className='form-control'
-                          placeholder='Whatsapp Number'
-                        />
-                        <span>
-                          <CallIcon />
-                        </span>
-                      </div>
-                      {errors.whatsappNumber && (
-                        <span className='sk-error-message'>
-                          {errors.whatsappNumber}
-                        </span>
-                      )}
                       <ul>
                         <div className='sk-eventForm-filed'>
-                          {/* <input
-                            type='text'
-                            name='gender'
-                            value={values.gender}
-                            onChange={handleChange}
-                            touched={touched}
-                            onBlur={handleBlur}
-                            className='form-control'
-                            placeholder='Gender'
-                          /> */}
-
                           <select
                             name='gender'
                             value={values.gender}
@@ -666,7 +624,6 @@ const EventDetails = () => {
                             <AccountBoxRoundedIcon />
                           </span>
                         </div>
-
                         <div className='sk-eventForm-filed'>
                           <input
                             type='text'
@@ -693,71 +650,44 @@ const EventDetails = () => {
                           </span>
                         )}
                       </ul>
-                      <div className='sk-eventForm-filed'>
-                        <input
-                          type='text'
-                          name='instituteName'
-                          value={values.instituteName}
-                          onChange={handleChange}
-                          touched={touched}
-                          onBlur={handleBlur}
-                          className='form-control'
-                          placeholder='Institute Name'
-                        />
-                        <span>
-                          <SchoolRoundedIcon />
-                        </span>
-                      </div>
-                      {errors.instituteName && (
-                        <span className='sk-error-message'>
-                          {errors.instituteName}
-                        </span>
-                      )}
+
                       {eventsDetails?.id &&
                         Object.entries(eventsDetails?.extra_info).map(
                           (key, index) => {
+                            const propertyName = key[0];
+
                             return (
-                              <div>
+                              <>
                                 <div className='sk-eventForm-filed'>
                                   <input
                                     name='extra_info_reg'
                                     type='text'
-                                    placeholder={key[0]}
+                                    placeholder={propertyName}
+                                    value={extraInfo[key[0]] || ""}
                                     autoComplete='off'
                                     onChange={(e) => {
-                                      if (extraInfo.length < 0) {
-                                        extraInfo.push({
-                                          [key[0]]: e.target.value,
-                                        });
+                                      const updatedValue = e.target.value;
+                                      if (!extraInfo.hasOwnProperty(key[0])) {
+                                        extraInfo[key[0]] = updatedValue;
                                       } else {
-                                        let newIndex = extraInfo.findIndex(
-                                          (item) => {
-                                            return (
-                                              Object.keys(item)[0] === key[0]
-                                            );
-                                          },
-                                        );
-
-                                        if (newIndex !== -1) {
-                                          extraInfo[newIndex][key[0]] =
-                                            e.target.value;
-                                        } else {
-                                          extraInfo.push({
-                                            [key[0]]: e.target.value,
-                                          });
-                                        }
+                                        extraInfo[key[0]] = updatedValue;
                                       }
-                                      setExtraInfo([...extraInfo]);
+                                      setExtraInfo((prevExtraInfo) => ({
+                                        ...prevExtraInfo,
+                                        [key[0]]: updatedValue,
+                                      }));
                                     }}
-                                    onBlur={handleBlur}
                                   />
-                                  {errors.extra_info_reg && (
-                                    <span className='sk-error-message'>
-                                      {errors.extra_info_reg}
-                                    </span>
-                                  )}
+                                  <span>
+                                    <AccountBoxRoundedIcon />
+                                  </span>
                                 </div>
-                              </div>
+                                {errors.extra_info_reg && (
+                                  <span className='sk-error-message'>
+                                    {errors.extra_info_reg}
+                                  </span>
+                                )}
+                              </>
                             );
                           },
                         )}

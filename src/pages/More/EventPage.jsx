@@ -420,14 +420,6 @@ function EventPage() {
             <div className='row'>
               {dataWithAdds?.length ? (
                 dataWithAdds?.map((items, index) => {
-                  console.log(
-                    time_left(
-                      items.start_date,
-                      items.start_time,
-                      items.end_date,
-                      items.end_time,
-                    ),
-                  );
                   if (items.id === "advertisement") {
                     return <>{eventBoxAds.length > 0 && renderAds()}</>;
                   } else {
