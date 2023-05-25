@@ -58,14 +58,16 @@
 
 .pop-up-ads.left-bottom img {
   height: auto;
-  max-width: 100%;
+  width: 100%;
+  max-width: 450px;
   margin: auto;
 }
 
 .pop-up-ads.right-bottom video {
   height: auto;
-  max-width: 100%;
+  width: 100%;
   padding: 5px;
+  max-width: 400px;
 }
 
 @media (max-width: 767px) {
@@ -77,8 +79,17 @@
     font-size: 20px;
   }
 
-  .pop-up-ads.left-bottom {
-    bottom: 5px;
-    left: 5px;
+  .pop-up-ads.left-bottom img {
+    height: auto;
+    width: 100%;
+    max-width: 300px;
+    margin: auto;
+  }
+
+  .pop-up-ads.right-bottom video {
+    height: auto;
+    width: 100%;
+    padding: 5px;
+    max-width: 250px;
   }
 }
