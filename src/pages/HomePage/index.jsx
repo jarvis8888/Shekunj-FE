@@ -424,6 +424,7 @@ function HomePage() {
                 modules={[Navigation, Autoplay]}
                 slidesPerView={4}
                 spaceBetween={30}
+                // centeredSlides={true}
                 navigation={true}
                 speed={1500}
                 autoHeight={true}
@@ -431,7 +432,7 @@ function HomePage() {
                 className='sk-mySwiper-slide'
                 breakpoints={{
                   0: {
-                    slidesPerView: 1,
+                    slidesPerView: 1.5,
                     spaceBetween: 10,
                   },
                   767: {
@@ -752,13 +753,14 @@ function HomePage() {
                 modules={[Navigation, Autoplay]}
                 slidesPerView={4}
                 spaceBetween={30}
+                // centeredSlides={true}
                 speed={1500}
                 autoplay={{ delay: 4000 }}
                 navigation={true}
                 className='sk-mockSwiper'
                 breakpoints={{
                   0: {
-                    slidesPerView: 1,
+                    slidesPerView: 1.5,
                     spaceBetween: 15,
                   },
                   767: {

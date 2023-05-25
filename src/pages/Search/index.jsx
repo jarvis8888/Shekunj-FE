@@ -120,13 +120,16 @@ const GlobalSearch = () => {
                     </span>
                     <div className='career_form'>
                       <input
-                        placeholder={placeholder}
+                        placeholder=''
                         hide_label='true'
                         type='search'
                         name='search'
                         value={onSearchInput}
                         onChange={(e) => setOnSearchInput(e.target.value)}
                       />
+                      {onSearchInput === "" ? (
+                        <div className='updown-move'>{placeholder}</div>
+                      ) : null}
 
                       <button
                         name='button'
@@ -141,19 +144,19 @@ const GlobalSearch = () => {
                 </div>
               </div>
               <ul>
-              {hintData?.map((items, index) => {
-                return (
-                  <>
-                    
+                {hintData?.map((items, index) => {
+                  return (
+                    <>
                       <li
                         key={items.id}
                         className='hint-key-words'
-                        onClick={() => searchByTags(items?.name)}>{`#${items?.name}`}
+                        onClick={() => searchByTags(items?.name)}
+                      >
+                        {`#${items?.name}`}
                       </li>
-                    
-                  </>
-                );
-              })}
+                    </>
+                  );
+                })}
               </ul>
             </div>
           </div>

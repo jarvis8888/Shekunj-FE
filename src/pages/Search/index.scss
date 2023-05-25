@@ -39,6 +39,8 @@ section {
 .career_form {
   width: 100%;
   display: flex;
+  position: relative;
+  overflow: hidden;
 }
 
 .sk-event-slide .owl-carousel .owl-stage-outer {
@@ -73,7 +75,7 @@ section {
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 0;
-  gap:10px
+  gap: 10px;
 }
 .sk-carrers-search .sk-form-group {
   display: flex;
@@ -93,6 +95,42 @@ section {
 .sk-carrers-search .sk-form-group input {
   border: 0;
 }
+
+.updown-move{
+  animation: move 3s infinite; 
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: auto;
+  font-size:14px;
+  color: #555;
+  height: 50px;
+}
+@keyframes move {
+  0% {
+    transform: translatey(-5%);
+  }
+  10% {
+    transform: translatey(-20%);
+  }
+  20% {
+    transform: translatey(-20%);
+  }
+  30% {
+    transform: translatey(-20%);
+  }
+
+  50% {
+    transform: translatey(-100%);
+  }
+  100% {
+    transform: translatey(-100%);
+  }
+}
+
+
+
 .sk-btn {
   display: inline-block;
   min-width: 140px;
@@ -146,16 +184,17 @@ section {
 }
 .sk-category ul li a:hover {
   box-shadow: 4px 4px 10px 0 #00000026;
-}.sk-eventcard-sec .sk-category {
+}
+.sk-eventcard-sec .sk-category {
   display: flex;
   align-items: center;
   gap: 10px;
 }
-.sk-eventcard-sec .sk-category h6{
+.sk-eventcard-sec .sk-category h6 {
   font-weight: 400;
   width: 100%;
   max-width: 60px;
-  color: #888
+  color: #888;
 }
 .sk-eventcard-sec .active-time {
   background: #020202;
@@ -385,7 +424,7 @@ section {
   color: #d3317d;
   cursor: pointer;
 }
-.sk-categoryRemove-m{
+.sk-categoryRemove-m {
   margin-bottom: 15px;
 }
 @media screen and (max-width: 480px) {
@@ -393,28 +432,36 @@ section {
     margin-bottom: 15px;
   }
   .sk-event-sec:before {
-    background: linear-gradient(89.98deg, rgba(136, 136, 136, 0.49) 2.6%, rgba(136, 136, 136, 0.21) 12.1%, rgba(255, 255, 255, 0) 26.4%, rgba(255, 255, 255, 0) 79.16%, rgba(136, 136, 136, 0.2) 89.1%, rgba(136, 136, 136, 0.5) 97.14%);
+    background: linear-gradient(
+      89.98deg,
+      rgba(136, 136, 136, 0.49) 2.6%,
+      rgba(136, 136, 136, 0.21) 12.1%,
+      rgba(255, 255, 255, 0) 26.4%,
+      rgba(255, 255, 255, 0) 79.16%,
+      rgba(136, 136, 136, 0.2) 89.1%,
+      rgba(136, 136, 136, 0.5) 97.14%
+    );
   }
-  .sk-event-sec{
+  .sk-event-sec {
     padding: 0px;
   }
   .sk-event-slide .owl-carousel .owl-item img {
     border-radius: 4px;
-    filter: drop-shadow(4px 4px 8px rgba(0, 0, 0, 0.10));
+    filter: drop-shadow(4px 4px 8px rgba(0, 0, 0, 0.1));
   }
-  .sk-event-sec .container-fluid{
+  .sk-event-sec .container-fluid {
     padding: 0;
   }
   .sk-event-slide .owl-carousel .owl-stage-outer {
     padding: 15px 0;
   }
-  .sk-eventcard-sec{
+  .sk-eventcard-sec {
     padding: 40px 0;
   }
-  .sk-title-heading p{
+  .sk-title-heading p {
     font-size: 14px;
   }
-  .sk-category ul{
+  .sk-category ul {
     overflow: auto;
     justify-content: start;
     flex-wrap: nowrap;
@@ -424,39 +471,42 @@ section {
     width: 0px;
     background: transparent;
   }
-  .sk-categoryRemove-m{
+  .sk-categoryRemove-m {
     margin-bottom: 0px;
   }
-  .sk-title-heading{
+  .sk-title-heading {
     margin-bottom: 30px;
   }
-  .sk-category ul li a{
+  .sk-category ul li a {
     font-size: 14px;
   }
-  .sk-search-sec{
+  .sk-search-sec {
     padding: 30px 0 10px;
   }
-  .sk-card-sec{
+  .sk-card-sec {
     padding: 30px 0;
   }
-  .sk-card-sec .sk-category {
-    margin-bottom: 20px;
+  .sk-eventcard-sec .sk-category:last-child {
+    margin-bottom: 30px;
   }
+  // .sk-card-sec .sk-category {
+  //   margin-bottom: 20px;
+  // }
   .sk-search-sec ul {
     flex-wrap: nowrap;
     overflow: auto;
     justify-content: start;
   }
-  .sk-search-sec ul::-webkit-scrollbar{
+  .sk-search-sec ul::-webkit-scrollbar {
     width: 0;
     background: transparent;
   }
-  .sk-btn{
+  .sk-btn {
     min-width: 100px;
     padding: 10px;
     font-size: 14px;
   }
-  .sk-search-sec input{
+  .sk-search-sec input {
     height: 38px;
   }
 }

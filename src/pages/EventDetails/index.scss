@@ -10,7 +10,7 @@ img {
   max-width: 100%;
   height: auto;
 }
-.sk-eventDetails-img img{
+.sk-eventDetails-img img {
   width: 100%;
 }
 section {
@@ -89,7 +89,7 @@ section {
   font-weight: 600;
   padding-bottom: 10px;
 }
-.sk-event-add{
+.sk-event-add {
   margin: 10px 0 15px;
 }
 .sk-add-slidebar img {
@@ -412,31 +412,31 @@ section {
   text-align: center;
   color: #ffffff;
 }
-.sk-mobileSocial-icon{
+.sk-mobileSocial-icon {
   display: none;
 }
-.sk-desktopSocial-icon{
+.sk-desktopSocial-icon {
   display: block;
 }
 
 @media screen and (max-width: 480px) {
-  .sk-details-datetime ul{
+  .sk-details-datetime ul {
     grid-gap: 10px;
     margin-bottom: 0;
   }
-  .sk-eventSocial-chiptag{
+  .sk-eventSocial-chiptag {
     flex-wrap: wrap;
   }
-  .sk-details-datetime ul li{
+  .sk-details-datetime ul li {
     font-size: 12px;
   }
-  .sk-details-datetime ul li svg{
+  .sk-details-datetime ul li svg {
     font-size: 16px;
   }
-  .sk-eventDetail-content h2{
+  .sk-eventDetail-content h2 {
     padding-bottom: 0;
   }
-  .sk-eventDetail-content p{
+  .sk-eventDetail-content p {
     font-size: 14px;
   }
   .sk-event-add {
@@ -444,26 +444,26 @@ section {
     padding-bottom: 20px;
     margin-bottom: 25px;
   }
-  .sk-add-slidebar{
+  .sk-add-slidebar {
     margin-bottom: 0;
   }
-  .sk-social-icon{
+  .sk-social-icon {
     text-align: left;
   }
-  .sk-event-sidebar{
+  .sk-event-sidebar {
     padding: 0;
     border: 0;
   }
-  .sk-mobileSocial-icon{
+  .sk-mobileSocial-icon {
     display: block;
   }
-  .sk-desktopSocial-icon{
+  .sk-desktopSocial-icon {
     display: none;
   }
-  .sk-eventDetails-sec{
+  .sk-eventDetails-sec {
     padding: 30px 0;
   }
-  .sk-eventDetail-content{
+  .sk-eventDetail-content {
     margin-top: 20px;
   }
 }
