@@ -37,6 +37,7 @@ import linkedinicon from "../../assets/images/linkedin.svg";
 import twittericon from "../../assets/images/twitter.svg";
 import pintresticon from "../../assets/images/pintrest.svg";
 import instagramicon from "../../assets/images/instagram.svg";
+import gendericon from "../../assets/images/gendericon.svg";
 import SchoolRoundedIcon from "@mui/icons-material/SchoolRounded";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import onlineicon from "../../assets/images/onlineicon.svg";
@@ -459,10 +460,7 @@ const EventDetails = () => {
                             </PinterestShareButton>
                           </li>
                           <li>
-                            <a
-                              href='https://www.instagram.com/'
-                              target='_blank'
-                            >
+                            <a href='https://www.instagram.com/' target='_blank'>
                               <img src={instagramicon} alt='instagramicon' />
                             </a>
                           </li>
@@ -655,7 +653,7 @@ const EventDetails = () => {
                             touched={touched}
                             autoComplete='off'
                           >
-                            <option>Select Gender</option>
+                            <option>Gender</option>
                             {Gender.map((Gender) => (
                               <option key={Gender} value={Gender}>
                                 {Gender}
@@ -663,7 +661,7 @@ const EventDetails = () => {
                             ))}
                           </select>
                           <span>
-                            <AccountBoxRoundedIcon />
+                            <img src={gendericon} />
                           </span>
                         </div>
 
