@@ -9,7 +9,21 @@ import PublicIcon from "@mui/icons-material/Public";
 import { Header, Footer } from "../../components";
 import global from "../../assets/images/Success/global.png";
 import "./index.scss";
+import "../HomePage/index.scss";
+
 import "../Search/index.scss";
+// import Swiper core and required modules
+import SwiperCore, {
+  Autoplay,
+  Navigation,
+  Pagination,
+  EffectFade,
+} from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+// import "../../pages/responsive.scss";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
 import { getAllEvents } from "../../store/events";
@@ -49,6 +63,7 @@ import useDeviceDetect from "../../hooks/useDeviceDetect";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { NoDataFound } from "../../components/noDataFound/NoDataFound";
+
 const useQuery = () => {
   return new URLSearchParams(useLocation().search);
 };
@@ -98,6 +113,10 @@ function EventPage() {
       }
       return acc;
     }, []);
+  };
+  const navigation = {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
   };
 
   const getAllEVentsData = async (currentOffset, genre) => {
@@ -226,6 +245,7 @@ function EventPage() {
         });
       }
     };
+  
     const errorCallback = (error) => {
       console.error("Error Code = " + error.code + " - " + error.message);
       axios.get(`/private_adds/private_add`).then((response) => {
@@ -241,6 +261,8 @@ function EventPage() {
     };
     navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
   }, []);
+
+  SwiperCore.use([Autoplay]);
 
   useEffect(() => {
     const params = new URLSearchParams(location.search);
@@ -307,52 +329,65 @@ function EventPage() {
           content='women empowerment organizations women empowerment initiative free online courses free career guidance'
         />
       </Helmet>
-      <section className='sk-event-sec'>
-        <div className='container-fluid'>
-          <div className='sk-event-slide'>
-            <OwlCarousel
-              className='event-Carousel'
-              loop={true}
-              autoplay={true}
-              autoplayspeed={1000}
-              center={true}
-              items={4}
-              margin={20}
-              nav={true}
-              responsive={{
-                1: {
-                  items: 2,
-                },
-                667: {
-                  items: 2,
-                },
-                991: {
-                  items: 2,
-                },
-                1199: {
-                  items: 4,
-                },
-                1920: {
-                  items: 4,
-                },
-              }}
-            >
-              {allEventData?.map((items, index) => {
-                return (
-                  <>
-                    {" "}
-                    <div
-                      key={index}
-                      onClick={() =>
-                        history.push(routingConstants.MORE_EVENT + items.id)
-                      }
-                    >
-                      <img src={items.image} alt='' />
-                    </div>
-                  </>
-                );
-              })}
-            </OwlCarousel>
+      <section className='sk-event-sec sk-course-sec sk-slide-arrow '>
+        <div className='container'>
+          <div className='row'>
+            <div className='col-xl-12'>
+              <Swiper
+                modules={[Navigation, Autoplay]}
+                slidesPerView={4}
+                spaceBetween={20}
+                // centeredSlides={true}
+                navigation={true}
+                speed={1500}
+                loop={true}
+                autoHeight={true}
+                autoplay={{ delay: 4000 }}
+                className='sk-mySwiper-slide'
+                breakpoints={{
+                  0: {
+                    slidesPerView: 1.5,
+                    spaceBetween: 10,
+                  },
+                  767: {
+                    slidesPerView: 2,
+                    spaceBetween: 15,
+                  },
+                  991: {
+                    slidesPerView: 3,
+                  },
+                  1199: {
+                    slidesPerView: 4,
+                  },
+                  1250: {
+                    slidesPerView: 4,
+                  },
+                  1920: {
+                    slidesPerView: 5,
+                  },
+                }}> 
+                {allEventData?.map((items, index) => {
+                      return (
+                        <>
+                     <SwiperSlide>
+                       
+                          {" "}
+                          <div
+                            key={index}
+                            onClick={() =>
+                              history.push(routingConstants.MORE_EVENT + items.id)
+                            }
+                          >
+                            <img src={items.image} alt='' />
+                          </div>
+                       
+                  
+                    </SwiperSlide>
+                    </>
+                      );
+                    })}
+              </Swiper>
+            </div>
           </div>
         </div>
       </section>
@@ -542,19 +577,19 @@ function EventPage() {
                   >
                     {detect.isMobile
                       ? eventFooterAds[0]?.image_mobile && (
-                          <img
-                            src={eventFooterAds[0]?.image_mobile}
-                            alt=''
-                            // className='ads_story_cover_img'
-                          />
-                        )
+                        <img
+                          src={eventFooterAds[0]?.image_mobile}
+                          alt=''
+                        // className='ads_story_cover_img'
+                        />
+                      )
                       : eventFooterAds[0]?.image && (
-                          <img
-                            src={eventFooterAds[0]?.image}
-                            alt=''
-                            // className='ads_story_cover_img'
-                          />
-                        )}
+                        <img
+                          src={eventFooterAds[0]?.image}
+                          alt=''
+                        // className='ads_story_cover_img'
+                        />
+                      )}
                   </a>
                 )}
               </>
