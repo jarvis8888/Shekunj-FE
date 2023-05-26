@@ -329,20 +329,20 @@ function EventPage() {
           content='women empowerment organizations women empowerment initiative free online courses free career guidance'
         />
       </Helmet>
-      <section className='sk-event-sec sk-course-sec sk-slide-arrow '>
-        <div className='container'>
-          <div className='row'>
+      <section className='sk-event-sec sk-slide-arrow'>
+        <div className='container-fluid p-0'>
+          <div className='row align-items-center'>
             <div className='col-xl-12'>
               <Swiper
                 modules={[Navigation, Autoplay]}
                 slidesPerView={4}
-                spaceBetween={20}
+                spaceBetween={30}
                 // centeredSlides={true}
                 navigation={true}
                 speed={1500}
                 loop={true}
                 autoHeight={true}
-                autoplay={{ delay: 4000 }}
+                autoplay={{ delay: 2000 }}
                 className='sk-mySwiper-slide'
                 breakpoints={{
                   0: {
@@ -360,7 +360,7 @@ function EventPage() {
                     slidesPerView: 4,
                   },
                   1250: {
-                    slidesPerView: 4,
+                    slidesPerView: 5,
                   },
                   1920: {
                     slidesPerView: 5,

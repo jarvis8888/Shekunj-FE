@@ -28,6 +28,8 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 // import "../../pages/responsive.scss";
 import quatesicon from "../../assets/images/quate.svg"
+import FavoriteRoundedIcon from '@mui/icons-material/FavoriteRounded';
+import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
 import testmonailimg from "../../assets/images/testmonial.png";
 import agricultureicon from "../../assets/images/agriculture.svg";
 import vectorimg from "../../assets/images/storyvector.svg";
@@ -1372,7 +1374,9 @@ function HomePage() {
           <div className="row">
             <div className="col-xl-12">
             <div className='sk-heading-title'>
-              <h2>Why our students LOVE us?</h2>
+              <h2>Why our students <span>LOVE 
+                    
+              </span> us?</h2>
               <p>Hear itfrom our Alumni</p>
             </div>
             </div>
