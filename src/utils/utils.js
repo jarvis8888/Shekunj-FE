@@ -331,3 +331,55 @@ export const addEmailToClient = async (email) => {
     console.error(error);
   }
 };
+
+const formatTimeString = (timeString, options) => {
+  const [hours, minutes, seconds] = timeString.split(":");
+  const date = new Date();
+  date.setHours(hours);
+  date.setMinutes(minutes);
+  date.setSeconds(seconds);
+
+  return date.toLocaleTimeString("en-US", options);
+};
+
+export const formatTimeRange = (startTime, endTime) => {
+  const options = { hour: "numeric", minute: "numeric", hour12: true };
+  const formattedStartTime = formatTimeString(startTime, options);
+  const formattedEndTime = formatTimeString(endTime, options);
+
+  return `${formattedStartTime} - ${formattedEndTime}`;
+};
+
+const getMonthString = (date) => {
+  const months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  const monthIndex = parseInt(date.split('-')[1], 10) - 1;
+  return months[monthIndex];
+};
+
+const getDayString = (date) => {
+  const day = parseInt(date.split('-')[2], 10);
+  return day.toString();
+};
+
+export const formatDateRange = (startDate, endDate) => {
+  const startMonth = getMonthString(startDate);
+  const startDay = getDayString(startDate);
+  const endMonth = getMonthString(endDate);
+  const endDay = getDayString(endDate);
+
+  const html = `<h6>${startMonth}</h6><h3>${startDay}</h3>`;
+  return html;
+};

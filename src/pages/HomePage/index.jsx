@@ -27,8 +27,9 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 // import "../../pages/responsive.scss";
-import quatesicon from "../../assets/images/quate.svg";import FavoriteRoundedIcon from '@mui/icons-material/FavoriteRounded';
-import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
+import quatesicon from "../../assets/images/quate.svg";
+import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
+import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
 import testmonailimg from "../../assets/images/testmonial.png";
 import agricultureicon from "../../assets/images/agriculture.svg";
 import vectorimg from "../../assets/images/storyvector.svg";
@@ -41,6 +42,9 @@ import EastRoundedIcon from "@mui/icons-material/EastRounded";
 import begainimg from "../../assets/images/begainimg.png";
 import addbannerhome from "../../assets/images/homeaddbanner.png";
 import mocktesttimg from "../../assets/images/mocktest.png";
+import google from "../../assets/images/google-icon.svg";
+import trustpilot from "../../assets/images/trustpilot-logo.svg";
+import glassdrop from "../../assets/images/glassdrop.svg";
 import MenuBookRoundedIcon from "@mui/icons-material/MenuBookRounded";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import cousreimg from "../../assets/images/courseimg.png";
@@ -52,6 +56,8 @@ import useDeviceDetect from "../../hooks/useDeviceDetect";
 import {
   DateFormat,
   addEmailToClient,
+  formatDateRange,
+  formatTimeRange,
   truncateString,
 } from "../../utils/utils";
 import httpServices from "../../utils/ApiServices";
@@ -81,6 +87,7 @@ function HomePage() {
   const [categoryName, setCategoryName] = useState(null);
   const [courseLoader, setCourseLoader] = useState(false);
   const [activeTab, setActiveTab] = useState();
+  const [googleActiveTab, setGoogleActiveTab] = useState("google-reviews");
 
   const handleClose = () => {
     setOpen(false);
@@ -124,6 +131,10 @@ function HomePage() {
     },
   };
   SwiperCore.use([Autoplay]);
+
+  const openTab = (tabName) => {
+    setGoogleActiveTab(tabName);
+  };
 
   useEffect(() => {
     dispatch(adsList());
@@ -1026,7 +1037,12 @@ function HomePage() {
                     govtData?.map((items, index) => {
                       return (
                         <>
-                          <li key={index}>
+                          <li
+                            key={index}
+                            onClick={() =>
+                              history.push(routingConstants.GOVERNMENT_SCHEMES)
+                            }
+                          >
                             <h5 className='sk-gScheme-title'>
                               {items?.schemes_count ? items?.schemes_count : 0}{" "}
                               Schemes
@@ -1035,7 +1051,14 @@ function HomePage() {
                               {items?.name}
                             </h4>
                             <div className='sk-readmore-story'>
-                              <button className='sk-storyRead-more'>
+                              <button
+                                className='sk-storyRead-more'
+                                onClick={() =>
+                                  history.push(
+                                    routingConstants.GOVERNMENT_SCHEMES,
+                                  )
+                                }
+                              >
                                 View All <EastRoundedIcon />
                               </button>
                             </div>
@@ -1058,7 +1081,14 @@ function HomePage() {
             </div>
             <div className='col-xl-12'>
               <div className='sk-testCourse-btn'>
-                <button className='loadMore'>Explore More Scheme</button>
+                <button
+                  className='loadMore'
+                  onClick={() =>
+                    history.push(routingConstants.GOVERNMENT_SCHEMES)
+                  }
+                >
+                  Explore More Scheme
+                </button>
               </div>
             </div>
           </div>
@@ -1087,12 +1117,25 @@ function HomePage() {
                                 )
                               }
                             >
-                              <div className='sk-eventDate'>
-                                <h6>May</h6>
-                                <h3>16</h3>
-                              </div>
+                              <div
+                                className='sk-eventDate'
+                                dangerouslySetInnerHTML={{
+                                  __html: makeHtml(
+                                    formatDateRange(
+                                      items.start_date,
+                                      items.end_date,
+                                    ),
+                                  ),
+                                }}
+                              />
+
                               <div className='sk-eventTime-detail'>
-                                <h6>10:00 am - 11:00 am</h6>
+                                <h6>
+                                  {formatTimeRange(
+                                    items.start_time,
+                                    items.end_time,
+                                  )}
+                                </h6>
                                 <h4>{items?.title}</h4>
                               </div>
                             </li>
@@ -1317,17 +1360,17 @@ function HomePage() {
           </div>
         </div>
       </section>
-                    
-      <section className="sk-testmonail-sec sk-homeStory-sec sk-slide-arrow">
-        <div className="container">
-          <div className="row">
-            <div className="col-xl-12">
-            <div className='sk-heading-title'>
-              <h2>Why our students <span>LOVE 
-                    
-              </span> us?</h2>
-              <p>Hear itfrom our Alumni</p>
-            </div>
+
+      <section className='sk-testmonail-sec sk-homeStory-sec sk-slide-arrow'>
+        <div className='container'>
+          <div className='row'>
+            <div className='col-xl-12'>
+              <div className='sk-heading-title'>
+                <h2>
+                  Why our students <span>LOVE</span> us?
+                </h2>
+                <p>Hear itfrom our Alumni</p>
+              </div>
             </div>
             <div className='col-xl-12'>
               <div className='sk-success-story'>
@@ -1482,6 +1525,71 @@ function HomePage() {
                     </SwiperSlide>
                   </>
                 </Swiper>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div className='container'>
+          <div className='row'>
+            <div className='col-md-12'>
+              <div className='tabs'>
+                <button
+                  className={`tab-link ${
+                    googleActiveTab === "google-reviews" ? "active" : ""
+                  }`}
+                  onClick={() => openTab("google-reviews")}
+                >
+                  <img src={google} alt='google' />
+                </button>
+                <button
+                  className={`tab-link ${
+                    googleActiveTab === "trustpilot" ? "active" : ""
+                  }`}
+                  onClick={() => openTab("trustpilot")}
+                >
+                  <img src={trustpilot} alt='trustpilot' />
+                </button>
+                <button
+                  className={`tab-link ${
+                    googleActiveTab === "glassdoor" ? "active" : ""
+                  }`}
+                  onClick={() => openTab("glassdoor")}
+                >
+                  <img src={glassdrop} alt='glassdrop' />
+                </button>
+              </div>
+
+              <div
+                id='google-reviews'
+                className={`tab-content ${
+                  googleActiveTab === "google-reviews" ? "active" : ""
+                }`}
+              >
+                <h2>Google Reviews</h2>
+                <p>This is the content for Google Reviews.</p>
+              </div>
+
+              <div
+                id='trustpilot'
+                className={`tab-content ${
+                  googleActiveTab === "trustpilot" ? "active" : ""
+                }`}
+              >
+                <h2>Trustpilot</h2>
+                <p>This is the content for Trustpilot.</p>
+              </div>
+
+              <div
+                id='glassdoor'
+                className={`tab-content ${
+                  googleActiveTab === "glassdoor" ? "active" : ""
+                }`}
+              >
+                <h2>Glassdoor</h2>
+                <p>This is the content for Glassdoor.</p>
               </div>
             </div>
           </div>
