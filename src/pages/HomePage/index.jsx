@@ -27,7 +27,8 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 // import "../../pages/responsive.scss";
-import quatesicon from "../../assets/images/quate.svg";
+import quatesicon from "../../assets/images/quate.svg";import FavoriteRoundedIcon from '@mui/icons-material/FavoriteRounded';
+import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
 import testmonailimg from "../../assets/images/testmonial.png";
 import agricultureicon from "../../assets/images/agriculture.svg";
 import vectorimg from "../../assets/images/storyvector.svg";
@@ -1316,15 +1317,17 @@ function HomePage() {
           </div>
         </div>
       </section>
-
-      <section className='sk-testmonail-sec sk-homeStory-sec sk-slide-arrow'>
-        <div className='container'>
-          <div className='row'>
-            <div className='col-xl-12'>
-              <div className='sk-heading-title'>
-                <h2>Why our students LOVE us?</h2>
-                <p>Hear itfrom our Alumni</p>
-              </div>
+                    
+      <section className="sk-testmonail-sec sk-homeStory-sec sk-slide-arrow">
+        <div className="container">
+          <div className="row">
+            <div className="col-xl-12">
+            <div className='sk-heading-title'>
+              <h2>Why our students <span>LOVE 
+                    
+              </span> us?</h2>
+              <p>Hear itfrom our Alumni</p>
+            </div>
             </div>
             <div className='col-xl-12'>
               <div className='sk-success-story'>
