@@ -6,8 +6,8 @@ import useDeviceDetect from "../../hooks/useDeviceDetect";
 const PopUpAdds = () => {
   const detect = useDeviceDetect();
 
-  const [leftAddIsVisible, setLeftAddIsVisible] = useState(false);
-  const [rightAddIsVisible, setRightAddIsVisible] = useState(false);
+  const [leftAddIsVisible, setLeftAddIsVisible] = useState(true);
+  const [rightAddIsVisible, setRightAddIsVisible] = useState(true);
   const [leftData, setLeftData] = useState([]);
   const [rightData, setRightData] = useState([]);
 
@@ -58,67 +58,75 @@ const PopUpAdds = () => {
   if (!leftAddIsVisible && !rightAddIsVisible) {
     return null;
   }
+  const isLeftDataAvailable = leftData.length > 0;
+  const isRightDataAvailable = rightData.length > 0;
   return (
-    <div className='pop-up-ads-container'>
-      {leftAddIsVisible && (
-        <div className='pop-up-ads '>
-          <>
-            {leftData.length > 0 && (
-              <div>
-                <a
-                  href={leftData[0]?.url_adds}
-                  target='_blank'
-                  rel='noreferrer'
-                >
-                  {detect.isMobile
-                    ? leftData[0]?.file_mobile && (
-                        <img src={leftData[0]?.file_mobile} alt='' />
-                      )
-                    : leftData[0]?.file && (
-                        <img src={leftData[0]?.file} alt='' />
-                      )}
-                </a>
-              </div>
-            )}
-          </>
-          <button className='close-button' onClick={leftHandleClose}>
-            &#x2715;
-          </button>
-        </div>
-      )}
-      {rightAddIsVisible && (
-        <div className='pop-up-ads right-bottom'>
-          <>
-            {rightData.length > 0 && (
-              <div>
-                <a
-                  href={rightData[0]?.url_adds}
-                  target='_blank'
-                  rel='noreferrer'
-                >
-                  {detect.isMobile ? (
-                    <video controls>
-                      <source
-                        src={rightData[0]?.file_mobile}
-                        type='video/mp4'
-                      />
-                    </video>
-                  ) : (
-                    <video controls>
-                      <source src={rightData[0]?.file} type='video/mp4' />
-                    </video>
+    <>
+      {isLeftDataAvailable && isRightDataAvailable && (
+        <>
+          <div className='pop-up-ads-container'>
+            {leftAddIsVisible && (
+              <div className='pop-up-ads '>
+                <>
+                  {leftData.length > 0 && (
+                    <div>
+                      <a
+                        href={leftData[0]?.url_adds}
+                        target='_blank'
+                        rel='noreferrer'
+                      >
+                        {detect.isMobile
+                          ? leftData[0]?.file_mobile && (
+                              <img src={leftData[0]?.file_mobile} alt='' />
+                            )
+                          : leftData[0]?.file && (
+                              <img src={leftData[0]?.file} alt='' />
+                            )}
+                      </a>
+                    </div>
                   )}
-                </a>
+                </>
+                <button className='close-button' onClick={leftHandleClose}>
+                  &#x2715;
+                </button>
               </div>
             )}
-          </>
+            {rightAddIsVisible && (
+              <div className='pop-up-ads right-bottom'>
+                <>
+                  {rightData.length > 0 && (
+                    <div>
+                      <a
+                        href={rightData[0]?.url_adds}
+                        target='_blank'
+                        rel='noreferrer'
+                      >
+                        {detect.isMobile ? (
+                          <video controls>
+                            <source
+                              src={rightData[0]?.file_mobile}
+                              type='video/mp4'
+                            />
+                          </video>
+                        ) : (
+                          <video controls>
+                            <source src={rightData[0]?.file} type='video/mp4' />
+                          </video>
+                        )}
+                      </a>
+                    </div>
+                  )}
+                </>
 
-          <button className='close-button' onClick={rightHandleClose}>
-            &#x2715;
-          </button>
-        </div>
+                <button className='close-button' onClick={rightHandleClose}>
+                  &#x2715;
+                </button>
+              </div>
+            )}
+          </div>
+        </>
       )}
-    </div>
+    </>
   );
 };
 
