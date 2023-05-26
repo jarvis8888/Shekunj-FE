@@ -27,7 +27,6 @@ import "swiper/css/pagination";
 // import "../../pages/responsive.scss";
 import quatesicon from "../../assets/images/quate.svg";
 import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
-import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
 import GradeRoundedIcon from "@mui/icons-material/GradeRounded";
 import testmonailimg from "../../assets/images/testmonial.png";
 import agricultureicon from "../../assets/images/agriculture.svg";
@@ -39,7 +38,7 @@ import successstoryimg from "../../assets/images/storysuccess.png";
 import "./index.scss";
 import arrowbicon from "../../assets/images/arrowicon.svg";
 import EastRoundedIcon from "@mui/icons-material/EastRounded";
-import begainimg from "../../assets/images/begainimg.svg";
+import begainimg from "../../assets/images/skillgirl.png";
 import addbannerhome from "../../assets/images/homeaddbanner.png";
 import mocktesttimg from "../../assets/images/mocktest.png";
 import google from "../../assets/images/google-icon.svg";
@@ -773,12 +772,15 @@ function HomePage() {
                 <div class='sk-begain-content'>
                   <h6>I want to</h6>
                   <h5>
-                    Upskill <img src={arrowbicon} alt='arrowbicon' />{" "}
+                    Upskill <EastRoundedIcon />{" "}
                   </h5>
                 </div>
-                <div class='sk-begain-img'></div>
+                <div class='sk-begain-img'>
+                  <img src={begainimg} />
+                </div>
               </div>
             </div>
+
             <div class='col-md-4'>
               <div
                 class='sk-begain-box'
@@ -787,10 +789,29 @@ function HomePage() {
                 <div class='sk-begain-content'>
                   <h6>I want to</h6>
                   <h5>
-                    Change Career <img src={arrowbicon} alt='arrowbicon' />{" "}
+                    Change Career <EastRoundedIcon />{" "}
                   </h5>
                 </div>
-                <div class='sk-begain-img'></div>
+                <div class='sk-begain-img'>
+                  <img src={begainimg} />
+                </div>
+              </div>
+            </div>
+
+            <div class='col-md-4'>
+              <div
+                class='sk-begain-box'
+                onClick={() => history.push(routingConstants.GUIDANCE_BOOK)}
+              >
+                <div class='sk-begain-content'>
+                  <h6>I want to crack</h6>
+                  <h5>
+                    Government Exam <EastRoundedIcon />{" "}
+                  </h5>
+                </div>
+                <div class='sk-begain-img'>
+                  <img src={begainimg} />
+                </div>
               </div>
             </div>
           </div>
@@ -1065,53 +1086,62 @@ function HomePage() {
                   career growth
                 </p>
               </div>
-              <div className='sk-gScheme-box'>
-                <ul>
-                  {govtData?.length ? (
-                    govtData?.map((items, index) => {
-                      return (
-                        <>
-                          <li
-                            key={index}
-                            onClick={() =>
-                              history.push(routingConstants.GOVERNMENT_SCHEMES)
-                            }
-                          >
-                            <h5 className='sk-gScheme-title'>
-                              {items?.schemes_count ? items?.schemes_count : 0}{" "}
-                              Schemes
-                            </h5>
-                            <h4 className='sk-gScheme-heading'>
-                              {items?.name}
-                            </h4>
-                            <div className='sk-readmore-story'>
-                              <button
-                                className='sk-storyRead-more'
-                                onClick={() =>
-                                  history.push(
-                                    routingConstants.GOVERNMENT_SCHEMES,
-                                  )
-                                }
-                              >
-                                View All <EastRoundedIcon />
-                              </button>
-                            </div>
-                            <span>
-                              {items?.image && (
-                                <img src={items?.image} alt='agricultureicon' />
-                              )}
-                            </span>
-                          </li>
-                        </>
-                      );
-                    })
-                  ) : (
+              {govtData?.length ? (
+                govtData?.map((items, index) => {
+                  return (
                     <>
-                      <NoDataFound size='small' />
+                      <div className='sk-gScheme-box'>
+                        <ul>
+                          <>
+                            <li
+                              key={index}
+                              onClick={() =>
+                                history.push(
+                                  routingConstants.GOVERNMENT_SCHEMES,
+                                )
+                              }
+                            >
+                              <h5 className='sk-gScheme-title'>
+                                {items?.schemes_count
+                                  ? items?.schemes_count
+                                  : 0}{" "}
+                                Schemes
+                              </h5>
+                              <h4 className='sk-gScheme-heading'>
+                                {items?.name}
+                              </h4>
+                              <div className='sk-readmore-story'>
+                                <button
+                                  className='sk-storyRead-more'
+                                  onClick={() =>
+                                    history.push(
+                                      routingConstants.GOVERNMENT_SCHEMES,
+                                    )
+                                  }
+                                >
+                                  View All <EastRoundedIcon />
+                                </button>
+                              </div>
+                              <span>
+                                {items?.image && (
+                                  <img
+                                    src={items?.image}
+                                    alt='agricultureicon'
+                                  />
+                                )}
+                              </span>
+                            </li>
+                          </>
+                        </ul>
+                      </div>
                     </>
-                  )}
-                </ul>
-              </div>
+                  );
+                })
+              ) : (
+                <>
+                  <NoDataFound size='small' />
+                </>
+              )}
             </div>
             <div className='col-xl-12'>
               <div className='sk-testCourse-btn'>
@@ -1403,7 +1433,7 @@ function HomePage() {
                 <h2>
                   Why our students{" "}
                   <span className='sk-favorite-icon'>
-                    L <FavoriteOutlinedIcon /> VE{" "}
+                    L <FavoriteRoundedIcon /> VE{" "}
                   </span>{" "}
                   us?
                 </h2>
