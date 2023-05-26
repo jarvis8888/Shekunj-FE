@@ -431,7 +431,7 @@ function HomePage() {
                 navigation={true}
                 speed={1500}
                 autoHeight={true}
-                // autoplay={{ delay: 4000 }}
+                autoplay={{ delay: 4000 }}
                 className='sk-mySwiper-slide'
                 breakpoints={{
                   0: {
@@ -1044,7 +1044,7 @@ function HomePage() {
             <div className='col-xl-12'>
               <div className='sk-testCourse-btn'>
                 <button className='loadMore'>
-                  Explore More Test
+                  Explore More Scheme
                 </button>
               </div>
             </div>

@@ -247,6 +247,8 @@ img {
 .sk-content-point ul {
   list-style: none;
   padding: 0;
+  overflow: auto;
+  height: 130px;
 }
 
 .sk-content-point ul li {
