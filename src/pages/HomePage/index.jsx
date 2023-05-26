@@ -27,7 +27,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 // import "../../pages/responsive.scss";
-import quatesicon from "../../assets/images/quate.svg"
+import quatesicon from "../../assets/images/quate.svg";
 import testmonailimg from "../../assets/images/testmonial.png";
 import agricultureicon from "../../assets/images/agriculture.svg";
 import vectorimg from "../../assets/images/storyvector.svg";
@@ -48,11 +48,16 @@ import { Box, Modal, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { adsList } from "../../store/ads";
 import useDeviceDetect from "../../hooks/useDeviceDetect";
-import { addEmailToClient, truncateString } from "../../utils/utils";
+import {
+  DateFormat,
+  addEmailToClient,
+  truncateString,
+} from "../../utils/utils";
 import httpServices from "../../utils/ApiServices";
 import { apiConstants, routingConstants } from "../../utils/constants";
 import { CustomLoader } from "../../components/customLoader/CustomLoader";
 import { NoDataFound } from "../../components/noDataFound/NoDataFound";
+import LatestBlogCard from "../../components/cards/LatestBlogCard";
 
 function HomePage() {
   const dispatch = useDispatch();
@@ -63,9 +68,14 @@ function HomePage() {
   const { lan } = useSelector((state) => state.languageReducer);
   const [adsPosition1, setAdsPosition1] = useState([]);
   const [adsPosition2, setAdsPosition2] = useState([]);
+  const [adsPosition3, setAdsPosition3] = useState([]);
+  const [adsPosition4, setAdsPosition4] = useState([]);
   const [courseData, setCourseData] = useState([]);
   const [mockData, setMockData] = useState([]);
   const [successData, setSuccessData] = useState([]);
+  const [govtData, setGovtData] = useState([]);
+  const [eventsData, setEventsData] = useState([]);
+  const [blogsData, setBlogsData] = useState([]);
   const [categoryList, setCategoryList] = useState([]);
   const [categoryName, setCategoryName] = useState(null);
   const [courseLoader, setCourseLoader] = useState(false);
@@ -224,6 +234,53 @@ function HomePage() {
     }
   };
 
+  const getAllGovtCatagoriesData = async () => {
+    try {
+      const url = `${apiConstants.CAREER.GOVERNMENT_SCHEMES}`;
+      const data = await httpServices.get(url);
+      const { govt_category } = data;
+      setGovtData(govt_category);
+    } catch (error) {
+    } finally {
+    }
+  };
+
+  const getAllEVentsData = async () => {
+    try {
+      let url = `more/events?limit=${20}&offset=${0}`;
+      const { data } = await httpServices.get(url);
+      const { event_list, today_tomorrow, this_week, next_week, genres_list } =
+        data;
+      const setEventsDataUnique = Array.from(
+        new Set([...today_tomorrow, ...this_week, ...next_week]),
+      );
+
+      const filteredData = setEventsDataUnique.reduce((accumulator, item) => {
+        if (!accumulator.find((existingItem) => existingItem.id === item.id)) {
+          accumulator.push(item);
+        }
+        return accumulator;
+      }, []);
+      setEventsData(filteredData);
+    } catch (error) {
+      // handle error
+    } finally {
+    }
+  };
+
+  const getAllBlogsData = async () => {
+    try {
+      const url = `${
+        apiConstants.ALL_BLOGS.TRENDING_BLOGS
+      }?limit=${10}&offset=${0}`;
+      const data = await httpServices.get(url);
+      const { trending_blogs } = data;
+      setBlogsData(trending_blogs?.results);
+    } catch (error) {
+    } finally {
+    }
+  };
+
   const handleCategoryOptionClick = (option) => {
     setCategoryName(option);
   };
@@ -232,6 +289,9 @@ function HomePage() {
     getCategoryList();
     allHomeCourses();
     getAllSuccessStoryData();
+    getAllGovtCatagoriesData();
+    getAllEVentsData();
+    getAllBlogsData();
   }, [lan]);
 
   useEffect(() => {
@@ -948,298 +1008,188 @@ function HomePage() {
         </div>
       </section>
 
-      <section className="sk-scheme-sec sk-bg-color">
-        <div className="container">
-          <div className="row">
-            <div className="col-xl-12">
+      <section className='sk-scheme-sec sk-bg-color'>
+        <div className='container'>
+          <div className='row'>
+            <div className='col-xl-12'>
               <div className='sk-heading-title'>
                 <h2>Government Scheme</h2>
-                <p>Courses focused on building strong foundational skills for career growth</p>
+                <p>
+                  Courses focused on building strong foundational skills for
+                  career growth
+                </p>
               </div>
-              <div className="sk-gScheme-box">
+              <div className='sk-gScheme-box'>
                 <ul>
-                  <li>
-                    <h5 className="sk-gScheme-title">75 Schemes</h5>
-                    <h4 className="sk-gScheme-heading">Agriculture,Rural & Environment</h4>
-                    <div className='sk-readmore-story'>
-                      <button className='sk-storyRead-more'>
-                        View All <EastRoundedIcon />
-                      </button>
-                    </div>
-                    <span><img src={agricultureicon} /></span>
-                  </li>
-                  <li>
-                    <h5 className="sk-gScheme-title">75 Schemes</h5>
-                    <h4 className="sk-gScheme-heading">Agriculture,Rural & Environment</h4>
-                    <div className='sk-readmore-story'>
-                      <button className='sk-storyRead-more'>
-                        View All <EastRoundedIcon />
-                      </button>
-                    </div>
-                    <span><img src={agricultureicon} /></span>
-                  </li>
-                  <li>
-                    <h5 className="sk-gScheme-title">75 Schemes</h5>
-                    <h4 className="sk-gScheme-heading">Agriculture,Rural & Environment</h4>
-                    <div className='sk-readmore-story'>
-                      <button className='sk-storyRead-more'>
-                        View All <EastRoundedIcon />
-                      </button>
-                    </div>
-                    <span><img src={agricultureicon} /></span>
-                  </li>
-                  <li>
-                    <h5 className="sk-gScheme-title">75 Schemes</h5>
-                    <h4 className="sk-gScheme-heading">Agriculture,Rural & Environment</h4>
-                    <div className='sk-readmore-story'>
-                      <button className='sk-storyRead-more'>
-                        View All <EastRoundedIcon />
-                      </button>
-                    </div>
-                    <span><img src={agricultureicon} /></span>
-                  </li>
-                  <li>
-                    <h5 className="sk-gScheme-title">75 Schemes</h5>
-                    <h4 className="sk-gScheme-heading">Agriculture,Rural & Environment</h4>
-                    <div className='sk-readmore-story'>
-                      <button className='sk-storyRead-more'>
-                        View All <EastRoundedIcon />
-                      </button>
-                    </div>
-                    <span><img src={agricultureicon} /></span>
-                  </li>
-                  <li>
-                    <h5 className="sk-gScheme-title">75 Schemes</h5>
-                    <h4 className="sk-gScheme-heading">Agriculture,Rural & Environment</h4>
-                    <div className='sk-readmore-story'>
-                      <button className='sk-storyRead-more'>
-                        View All <EastRoundedIcon />
-                      </button>
-                    </div>
-                    <span><img src={agricultureicon} /></span>
-                  </li>
-                  <li>
-                    <h5 className="sk-gScheme-title">75 Schemes</h5>
-                    <h4 className="sk-gScheme-heading">Agriculture,Rural & Environment</h4>
-                    <div className='sk-readmore-story'>
-                      <button className='sk-storyRead-more'>
-                        View All <EastRoundedIcon />
-                      </button>
-                    </div>
-                    <span><img src={agricultureicon} /></span>
-                  </li>
-                  <li>
-                    <h5 className="sk-gScheme-title">75 Schemes</h5>
-                    <h4 className="sk-gScheme-heading">Agriculture,Rural & Environment</h4>
-                    <div className='sk-readmore-story'>
-                      <button className='sk-storyRead-more'>
-                        View All <EastRoundedIcon />
-                      </button>
-                    </div>
-                    <span><img src={agricultureicon} /></span>
-                  </li>
+                  {govtData?.length ? (
+                    govtData?.map((items, index) => {
+                      return (
+                        <>
+                          <li key={index}>
+                            <h5 className='sk-gScheme-title'>
+                              {items?.schemes_count ? items?.schemes_count : 0}{" "}
+                              Schemes
+                            </h5>
+                            <h4 className='sk-gScheme-heading'>
+                              {items?.name}
+                            </h4>
+                            <div className='sk-readmore-story'>
+                              <button className='sk-storyRead-more'>
+                                View All <EastRoundedIcon />
+                              </button>
+                            </div>
+                            <span>
+                              {items?.image && (
+                                <img src={items?.image} alt='agricultureicon' />
+                              )}
+                            </span>
+                          </li>
+                        </>
+                      );
+                    })
+                  ) : (
+                    <>
+                      <NoDataFound size='small' />
+                    </>
+                  )}
                 </ul>
               </div>
             </div>
             <div className='col-xl-12'>
               <div className='sk-testCourse-btn'>
-                <button className='loadMore'>
-                  Explore More Scheme
-                </button>
+                <button className='loadMore'>Explore More Scheme</button>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="sk-blogHome-sec">
-        <div className="container">
-            <div className="row">
-              <div className="col-xl-4">
-                <div className="sk-blogSidebar-event">
-                  <div className="sk-blogHeadinghome-title">
-                    <h3>Upcoming Event</h3>
-                  </div>
-                  <div className="sk-eventDatetime-detail">
-                    <ul>
-                      <li>
-                        <div className="sk-eventDate">
-                            <h6>May</h6>
-                            <h3>16</h3>
-                        </div>
-                        <div className="sk-eventTime-detail">
-                            <h6>10:00 am - 11:00 am</h6>
-                            <h4>Organising Workshop on</h4>
-                        </div>
-                      </li>
-                      <li>
-                        <div className="sk-eventDate">
-                            <h6>May</h6>
-                            <h3>16</h3>
-                        </div>
-                        <div className="sk-eventTime-detail">
-                            <h6>10:00 am - 11:00 am</h6>
-                            <h4>Organising Workshop on</h4>
-                        </div>
-                      </li>
-                      <li>
-                        <div className="sk-eventDate">
-                            <h6>May</h6>
-                            <h3>16</h3>
-                        </div>
-                        <div className="sk-eventTime-detail">
-                            <h6>10:00 am - 11:00 am</h6>
-                            <h4>Organising Workshop on</h4>
-                        </div>
-                      </li>
-                      <li>
-                        <div className="sk-eventDate">
-                            <h6>May</h6>
-                            <h3>16</h3>
-                        </div>
-                        <div className="sk-eventTime-detail">
-                            <h6>10:00 am - 11:00 am</h6>
-                            <h4>Organising Workshop on</h4>
-                        </div>
-                      </li>
-                      <div className='sk-readmore-story text-right mt-2'>
-                        <button className='sk-storyRead-more'>
-                          View All <EastRoundedIcon />
-                        </button>
-                      </div>
-                    </ul>
-                  </div>
+      <section className='sk-blogHome-sec'>
+        <div className='container'>
+          <div className='row'>
+            <div className='col-xl-4'>
+              <div className='sk-blogSidebar-event'>
+                <div className='sk-blogHeadinghome-title'>
+                  <h3>Upcoming Event</h3>
                 </div>
-              </div>
-              <div className="col-xl-8">
-                <div className="sk-blog-slider sk-slide-arrow">
-                  <div className="sk-blogHeadinghome-title">
-                    <h3>Blog</h3>
-                  </div>
-                  <div className="sk-blogSlider-home">
-                  <Swiper
-                modules={[Navigation, Autoplay]}
-                slidesPerView={4}
-                spaceBetween={24}
-                // centeredSlides={true}
-                navigation={true}
-                speed={1500}
-                autoHeight={true}
-                autoplay={{ delay: 4000 }}
-                className='sk-mySwiper-slide'
-                breakpoints={{
-                  0: {
-                    slidesPerView: 1.5,
-                    spaceBetween: 10,
-                  },
-                  767: {
-                    slidesPerView: 2,
-                    spaceBetween: 10,
-                  },
-                  991: {
-                    slidesPerView: 2,
-                  },
-                  1199: {
-                    slidesPerView: 2,
-                  },
-                  1250: {
-                    slidesPerView: 2,
-                  },
-                  1920: {
-                    slidesPerView: 2,
-                  },
-                }}
-              >
-                {courseLoader ? (
-                  <CustomLoader size='small' />
-                ) : courseData?.length ? (
-                  courseData?.map((items, index) => {
-                    return (
+                <div className='sk-eventDatetime-detail'>
+                  <ul>
+                    {eventsData?.length ? (
+                      eventsData?.map((items, index) => {
+                        return (
+                          <>
+                            <li
+                              key={index}
+                              onClick={() =>
+                                history.push(
+                                  routingConstants.MORE_EVENT + items.id,
+                                )
+                              }
+                            >
+                              <div className='sk-eventDate'>
+                                <h6>May</h6>
+                                <h3>16</h3>
+                              </div>
+                              <div className='sk-eventTime-detail'>
+                                <h6>10:00 am - 11:00 am</h6>
+                                <h4>{items?.title}</h4>
+                              </div>
+                            </li>
+                          </>
+                        );
+                      })
+                    ) : (
                       <>
-                        <SwiperSlide>
-                          <div className='sk-course-box' key={index}>
-                            <div className='sk-inner-box'>
-                              <div className='sk-course-img'>
-                                <img src={items?.image} alt='cousreimg' />
-                                {items?.has_certificate ? (
-                                  <>
-                                    <div className='sk-certificate-box'>
-                                      <WorkspacePremiumSharpIcon /> Certificate
-                                    </div>
-                                  </>
-                                ) : null}
-                              </div>
-                              <div className='sk-course-content'>
-                                <div className='sk-category-describe'>
-                                  <span className='sk-smallBox-heading'>
-                                    {items?.category_name}
-                                  </span>
-                                  <h6>{items?.name}</h6>
-                                  <p
-                                    className='sk-smallBox-description'
-                                    dangerouslySetInnerHTML={{
-                                      __html: makeHtml(
-                                        `${truncateString(
-                                          items?.description,
-                                          100,
-                                        )}`,
-                                      ),
-                                    }}
-                                  />
-                                </div>
-                                <div className='sk-time-education'>
-                                  <ul>
-                                    <li>
-                                      <AccessTimeIcon />{" "}
-                                      <span>{items?.reading_time}</span>{" "}
-                                    </li>
-                                    <li>
-                                      <SchoolRoundedIcon /> {items?.enrold}{" "}
-                                      enrolled{" "}
-                                    </li>
-                                  </ul>
-                                </div>
-                                <div className='sk-courseboth-btn'>
-                                  <button
-                                    className='sk-course-btn'
-                                    onClick={() =>
-                                      history.push(
-                                        routingConstants.COURSE_DETAILS +
-                                          items?.id,
-                                      )
-                                    }
-                                  >
-                                    More Info
-                                  </button>
-                                  <button
-                                    className='sk-course-btn sk-courseBg-color'
-                                    onClick={() =>
-                                      history.push(
-                                        routingConstants.COURSES_MODULE +
-                                          items?.id,
-                                      )
-                                    }
-                                  >
-                                    Start Learning
-                                  </button>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </SwiperSlide>
+                        <NoDataFound size='small' />
                       </>
-                    );
-                  })
-                ) : (
-                  <>
-                    <NoDataFound size='small' />
-                  </>
-                )}
-              </Swiper>
-                  </div>
+                    )}
+                    <div className='sk-readmore-story text-right mt-2'>
+                      <button
+                        className='sk-storyRead-more'
+                        onClick={() =>
+                          history.push(routingConstants.MORE_EVENT)
+                        }
+                      >
+                        View All <EastRoundedIcon />
+                      </button>
+                    </div>
+                  </ul>
                 </div>
               </div>
-              <div className='col-xl-12 mx-auto'>
+            </div>
+            <div className='col-xl-8'>
+              <div className='sk-blog-slider sk-slide-arrow'>
+                <div className='sk-blogHeadinghome-title'>
+                  <h3>Blog</h3>
+                </div>
+                <div className='sk-blogSlider-home'>
+                  <Swiper
+                    modules={[Navigation, Autoplay]}
+                    slidesPerView={4}
+                    spaceBetween={24}
+                    // centeredSlides={true}
+                    navigation={true}
+                    speed={1500}
+                    autoHeight={true}
+                    autoplay={{ delay: 4000 }}
+                    className='sk-mySwiper-slide'
+                    breakpoints={{
+                      0: {
+                        slidesPerView: 1.5,
+                        spaceBetween: 10,
+                      },
+                      767: {
+                        slidesPerView: 2,
+                        spaceBetween: 10,
+                      },
+                      991: {
+                        slidesPerView: 2,
+                      },
+                      1199: {
+                        slidesPerView: 2,
+                      },
+                      1250: {
+                        slidesPerView: 2,
+                      },
+                      1920: {
+                        slidesPerView: 2,
+                      },
+                    }}
+                  >
+                    {courseLoader ? (
+                      <CustomLoader size='small' />
+                    ) : blogsData?.length ? (
+                      blogsData?.map((items, index) => {
+                        return (
+                          <>
+                            <SwiperSlide>
+                              <LatestBlogCard
+                                image={items.image}
+                                hashtags={items.hash_tags}
+                                title={items.title}
+                                description={`${items.about_blog}`}
+                                makeHtml={makeHtml}
+                                key={index}
+                                created_at={DateFormat(`${items.created_at}`)}
+                                reading_time={items.reading_time}
+                                id={items.id}
+                                blog_count={items.blog_count}
+                                category_name={items.category_name}
+                              />
+                            </SwiperSlide>
+                          </>
+                        );
+                      })
+                    ) : (
+                      <>
+                        <NoDataFound size='small' />
+                      </>
+                    )}
+                  </Swiper>
+                </div>
+              </div>
+            </div>
+            <div className='col-xl-12 mx-auto'>
               <div className='text-center pt-4'>
                 {
                   <>
@@ -1276,8 +1226,8 @@ function HomePage() {
                   </>
                 }
               </div>
-              </div>
             </div>
+          </div>
         </div>
       </section>
 
@@ -1366,18 +1316,18 @@ function HomePage() {
           </div>
         </div>
       </section>
-                    
-      <section className="sk-testmonail-sec sk-homeStory-sec sk-slide-arrow">
-        <div className="container">
-          <div className="row">
-            <div className="col-xl-12">
-            <div className='sk-heading-title'>
-              <h2>Why our students LOVE us?</h2>
-              <p>Hear itfrom our Alumni</p>
-            </div>
+
+      <section className='sk-testmonail-sec sk-homeStory-sec sk-slide-arrow'>
+        <div className='container'>
+          <div className='row'>
+            <div className='col-xl-12'>
+              <div className='sk-heading-title'>
+                <h2>Why our students LOVE us?</h2>
+                <p>Hear itfrom our Alumni</p>
+              </div>
             </div>
             <div className='col-xl-12'>
-              <div className="sk-success-story">
+              <div className='sk-success-story'>
                 <Swiper
                   pagination={{
                     clickable: true,
@@ -1413,42 +1363,127 @@ function HomePage() {
                     },
                   }}
                 >
-                  {mockData?.length ? (
-                    mockData?.map((items, index) => {
-                      return (
-                        <>
-                          <SwiperSlide>
-                            <div className="sk-studentlove-box">
-                              <p>HR Course and Training really helped me out to learn and made me capable to start my career in HR Industry</p>
-                              <div className="sk-userReview-box">
-                                <span>
-                                  <img src={testmonailimg} />
-                                </span>
-                                <span>
-                                  <h5>Nikita Sharma</h5>
-                                  <h6>Content Writer</h6>
-                                  <span className="sk-review-home">
-
-                                  </span>
-                                </span>
-                              </div>
-                              <span className="sk-qoutesicon"><img src={quatesicon} /></span>
-                            </div>
-                          </SwiperSlide>
-                        </>
-                      );
-                    })
-                  ) : (
-                    <>
-                      <NoDataFound size='small' />
-                    </>
-                  )}
+                  <>
+                    <SwiperSlide>
+                      <div className='sk-studentlove-box'>
+                        <p>
+                          HR Course and Training really helped me out to learn
+                          and made me capable to start my career in HR Industry
+                        </p>
+                        <div className='sk-userReview-box'>
+                          <span>
+                            <img src={testmonailimg} />
+                          </span>
+                          <span>
+                            <h5>Nikita Sharma</h5>
+                            <h6>Content Writer</h6>
+                            <span className='sk-review-home'></span>
+                          </span>
+                        </div>
+                        <span className='sk-qoutesicon'>
+                          <img src={quatesicon} />
+                        </span>
+                      </div>
+                    </SwiperSlide>
+                  </>
+                  <>
+                    <SwiperSlide>
+                      <div className='sk-studentlove-box'>
+                        <p>
+                          HR Course and Training really helped me out to learn
+                          and made me capable to start my career in HR Industry
+                        </p>
+                        <div className='sk-userReview-box'>
+                          <span>
+                            <img src={testmonailimg} />
+                          </span>
+                          <span>
+                            <h5>Nikita Sharma</h5>
+                            <h6>Content Writer</h6>
+                            <span className='sk-review-home'></span>
+                          </span>
+                        </div>
+                        <span className='sk-qoutesicon'>
+                          <img src={quatesicon} />
+                        </span>
+                      </div>
+                    </SwiperSlide>
+                  </>
+                  <>
+                    <SwiperSlide>
+                      <div className='sk-studentlove-box'>
+                        <p>
+                          HR Course and Training really helped me out to learn
+                          and made me capable to start my career in HR Industry
+                        </p>
+                        <div className='sk-userReview-box'>
+                          <span>
+                            <img src={testmonailimg} />
+                          </span>
+                          <span>
+                            <h5>Nikita Sharma</h5>
+                            <h6>Content Writer</h6>
+                            <span className='sk-review-home'></span>
+                          </span>
+                        </div>
+                        <span className='sk-qoutesicon'>
+                          <img src={quatesicon} />
+                        </span>
+                      </div>
+                    </SwiperSlide>
+                  </>
+                  <>
+                    <SwiperSlide>
+                      <div className='sk-studentlove-box'>
+                        <p>
+                          HR Course and Training really helped me out to learn
+                          and made me capable to start my career in HR Industry
+                        </p>
+                        <div className='sk-userReview-box'>
+                          <span>
+                            <img src={testmonailimg} />
+                          </span>
+                          <span>
+                            <h5>Nikita Sharma</h5>
+                            <h6>Content Writer</h6>
+                            <span className='sk-review-home'></span>
+                          </span>
+                        </div>
+                        <span className='sk-qoutesicon'>
+                          <img src={quatesicon} />
+                        </span>
+                      </div>
+                    </SwiperSlide>
+                  </>
+                  <>
+                    <SwiperSlide>
+                      <div className='sk-studentlove-box'>
+                        <p>
+                          HR Course and Training really helped me out to learn
+                          and made me capable to start my career in HR Industry
+                        </p>
+                        <div className='sk-userReview-box'>
+                          <span>
+                            <img src={testmonailimg} />
+                          </span>
+                          <span>
+                            <h5>Nikita Sharma</h5>
+                            <h6>Content Writer</h6>
+                            <span className='sk-review-home'></span>
+                          </span>
+                        </div>
+                        <span className='sk-qoutesicon'>
+                          <img src={quatesicon} />
+                        </span>
+                      </div>
+                    </SwiperSlide>
+                  </>
                 </Swiper>
               </div>
             </div>
           </div>
         </div>
-      </section>    
+      </section>
 
       <section className='sk-addHome-sec'>
         <div className='container'>
