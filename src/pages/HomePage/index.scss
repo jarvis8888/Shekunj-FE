@@ -272,6 +272,83 @@ img {
   border-bottom: 2px solid #888;
   border-right: 2px solid #888;
 }
+.sk-blogHome-sec .card__bottom span:last-child {
+  border-left: 0px solid #d9d9d9;
+}
+
+.sk-favorite-icon{
+  position: relative;
+  display: inline-block;
+  letter-spacing: 2.5px;
+}
+.sk-favorite-icon svg {
+  position: absolute;
+  left: 9.8px;
+  top: 5px;
+  bottom: 0;
+  margin: auto;
+  right: auto;
+  font-size: 30px;
+  color: #D3317D;
+}
+
+
+.sk-userReview-box {
+  display: flex;
+  gap: 10px;
+  /* align-items: center; */
+}
+
+.sk-userReview-box span h5 {
+  font-size: 18px;
+  font-weight: 400;
+  color: #202020;
+  margin-bottom: 3px;
+}
+
+.sk-userReview-box span h6 {
+  font-size: 12px;
+  font-weight: 400;
+  color: #888;
+  margin-bottom: 0;
+}
+.sk-userReview-box span .sk-review-home a {
+  color: #F9C836;
+  /* font-size: 12px; */
+}
+
+.sk-userReview-box span .sk-review-home a svg {
+  font-size: 18px;
+}
+
+
+.sk-Blogcard-content {
+  padding: 12px 15px 5px;
+}
+.sk-Blogcard-content h5{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  margin-bottom: 0;
+  margin: 10px 0;
+}
+.sk-Blogcard-content p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  font-size: 14px;
+}
+.card .card__bottom:last-child {
+  margin-right: 0;
+}
+
+
+
+
 
 .sk-course-box .sk-course-img img {
   width: 100%;
@@ -416,9 +493,20 @@ img {
   margin: 10px 0;
   transition: 0.3s;
 }
-.sk-begain-box:hover {
+.sk-begain-img svg {
+  fill: #686868;
+  height: 150px;
+  max-width: 80px;
+  width: 100%;
+  transition: 0.3s;
+}
+.sk-begain-box:hover .sk-begain-img svg {
+  fill: #db5789;
+}
+.sk-begain-box:hover{
   border: 1px solid #db5789;
   box-shadow: -5px 5px 11px 0px #db578940;
+  
 }
 .sk-begain-content h5 {
   margin-bottom: 0;
@@ -547,6 +635,26 @@ img {
   margin-right: 0;
 }
 
+.sk-number-q {
+  border-top: 1px solid #D9d9d9;
+  padding: 20px 0;
+}
+
+.sk-number-q ul {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin-bottom: 0;
+}
+
+.sk-number-q ul li {
+  font-size: 14px;
+  line-height: 40px;
+}
+.sk-number-q ul li:nth-child(2), .sk-number-q ul li:nth-child(4), .sk-number-q ul li:nth-child(6){
+  text-align: right;
+}
 .sk-storySuccess-testmonial {
   display: flex;
   align-items: center;
@@ -706,10 +814,11 @@ img {
 .sk-gScheme-box ul li {
   background: #fff;
   box-shadow: 4px 4px 20px 2px #faeff4;
-  padding: 20px 20px 15px;
+  padding: 20px 30px 20px;
   border-radius: 4px;
   position: relative;
   height: calc(100% - 0px);
+  margin-bottom: 30px;
 }
 .sk-gScheme-box ul {
   padding-left: 0;
@@ -723,11 +832,21 @@ img {
   font-weight: 400;
   color: #434242;
   font-size: 18px;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .sk-gScheme-box ul li h4 {
   font-weight: 500;
   color: #434242;
   line-height: 140%;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .sk-gScheme-box ul li span {
   position: absolute;
@@ -739,13 +858,17 @@ img {
 .sk-gScheme-box .sk-readmore-story {
   text-align: right;
 }
+.sk-gScheme-box .sk-readmore-story button{
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
 .sk-blogHome-sec {
   padding: 60px 0;
 }
 .sk-eventDatetime-detail ul {
   padding-left: 0;
   list-style: none;
-  margin-bottom: 0;
 }
 .sk-eventDatetime-detail ul li {
   display: flex;
@@ -809,8 +932,10 @@ img {
   padding: 60px 0;
 }
 .sk-testmonail-sec .swiper-wrapper {
-  padding: 80px 0 0;
+  padding: 60px 0 0;
+  margin-bottom: 60px;
 }
+
 .sk-studentlove-box {
   box-shadow: 4px 4px 20px 2px #faeff4;
   padding: 30px;
@@ -835,8 +960,9 @@ img {
   padding: 8px;
 }
 .sk-studentlove-box p {
-  padding-top: 31px;
+  padding: 30px 50px 50px  0;
 }
+
 // custom responsive start
 
 @media screen and (max-width: 1920px) {
@@ -884,6 +1010,12 @@ img {
   .sk-slide-arrow .swiper-button-next {
     right: 0;
   }
+  .sk-blog-slider.sk-slide-arrow .swiper-button-prev {
+    left: 75%;
+  }
+  .sk-studentlove-box p {
+    padding: 30px 0px 20px 0;
+  }
   .sk-slide-arrow .swiper-button-prev {
     left: 0;
   }
@@ -919,16 +1051,18 @@ img {
     width: 0px;
     background: transparent;
   }
-  .sk-slide-arrow .swiper-button-next {
-    right: 15px;
+.sk-slide-arrow .swiper-button-next{
+    right: 5px;
   }
-  .sk-slide-arrow .swiper-button-prev {
-    left: 15px;
+.sk-slide-arrow .swiper-button-prev{
+    left: 5px;
   }
   .sk-slide-arrow .swiper-button-next,
   .sk-slide-arrow .swiper-button-prev {
     height: 36px;
     width: 36px;
+    background: #fff;
+    display: none;
   }
   // .sk-banner-navigate {
   //   display: none;
@@ -994,6 +1128,79 @@ img {
   .sk-gScheme-box ul {
     overflow: auto;
     display: flex;
+    gap:15px;
+  }
+  .sk-gScheme-box ul li h4{
+    font-size: 18px;
+  }
+  .sk-favorite-icon svg{
+    font-size: 18px;
+    left: 6px;
+    top: 1px;
+  }
+  .sk-blogHeadinghome-title {
+    margin-bottom: 30px;
+  }
+  .sk-blogHeadinghome-title h3{
+    font-size: 21px;
+  }
+  .sk-testmonail-sec .swiper-wrapper {
+    padding: 40px 0 0;
+  }
+  .sk-blogSidebar-event {
+    position: relative;
+  }
+  .sk-blogSidebar-event .sk-readmore-story {
+      position: absolute;
+      top: -10px;
+      right: 0;
+  }
+  .sk-eventDatetime-detail ul li .sk-eventTime-detail h4{
+    font-size: 21px;
+  }
+  .sk-scheme-sec{
+    padding: 30px 0;
+  }
+  .sk-homeStory-sec .swiper-wrapper {
+    margin-bottom: 50px;
+  }
+  .sk-hireStory-box .sk-hireSotory-innerbox p{
+    padding-top: 0;
+    font-size: 14px;
+  }
+
+  .sk-mockTest-sec .sk-course-img img {
+    height: 140px;
+    background: radial-gradient(#c3c3c3, #ffffff);
+  }
+  .sk-gScheme-box ul li{
+    flex: 300px 0 0;
+    max-width: 250px;
+    height: 160px;
+    padding: 20px;
+    min-width: 250px;
+  }
+  .sk-storySuccess-testmonial{
+    gap: 10px;
+  }
+  .sk-story-testmonial .sk-story-content:last-child{
+    padding: 10px;
+  }
+  .sk-gScheme-box ul li h5{
+    font-size: 12px;
+  }
+  .sk-studentlove-box {
+    padding: 15px;
+    border-radius: 4px;
+  }
+  .sk-userReview-box span h5{
+    font-size: 14px;
+  }
+  .sk-studentlove-box p{
+    font-size: 14px;
+  }
+  .sk-hireSotory-innerbox h2{
+    font-size: 24px;
   }
 }
 
