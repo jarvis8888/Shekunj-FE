@@ -793,7 +793,7 @@ function HomePage() {
                   </h5>
                 </div>
                 <div class='sk-begain-img'>
-                 <img src={begainimg} />
+                  <img src={begainimg} />
                 </div>
               </div>
             </div>
@@ -806,11 +806,11 @@ function HomePage() {
                 <div class='sk-begain-content'>
                   <h6>I want to crack</h6>
                   <h5>
-                  Government Exam <EastRoundedIcon />{" "}
+                    Government Exam <EastRoundedIcon />{" "}
                   </h5>
                 </div>
                 <div class='sk-begain-img'>
-                 <img src={begainimg} />
+                  <img src={begainimg} />
                 </div>
               </div>
             </div>
@@ -1086,53 +1086,62 @@ function HomePage() {
                   career growth
                 </p>
               </div>
-              <div className='sk-gScheme-box'>
-                <ul>
-                  {govtData?.length ? (
-                    govtData?.map((items, index) => {
-                      return (
-                        <>
-                          <li
-                            key={index}
-                            onClick={() =>
-                              history.push(routingConstants.GOVERNMENT_SCHEMES)
-                            }
-                          >
-                            <h5 className='sk-gScheme-title'>
-                              {items?.schemes_count ? items?.schemes_count : 0}{" "}
-                              Schemes
-                            </h5>
-                            <h4 className='sk-gScheme-heading'>
-                              {items?.name}
-                            </h4>
-                            <div className='sk-readmore-story'>
-                              <button
-                                className='sk-storyRead-more'
-                                onClick={() =>
-                                  history.push(
-                                    routingConstants.GOVERNMENT_SCHEMES,
-                                  )
-                                }
-                              >
-                                View All <EastRoundedIcon />
-                              </button>
-                            </div>
-                            <span>
-                              {items?.image && (
-                                <img src={items?.image} alt='agricultureicon' />
-                              )}
-                            </span>
-                          </li>
-                        </>
-                      );
-                    })
-                  ) : (
+              {govtData?.length ? (
+                govtData?.map((items, index) => {
+                  return (
                     <>
-                      <NoDataFound size='small' />
+                      <div className='sk-gScheme-box'>
+                        <ul>
+                          <>
+                            <li
+                              key={index}
+                              onClick={() =>
+                                history.push(
+                                  routingConstants.GOVERNMENT_SCHEMES,
+                                )
+                              }
+                            >
+                              <h5 className='sk-gScheme-title'>
+                                {items?.schemes_count
+                                  ? items?.schemes_count
+                                  : 0}{" "}
+                                Schemes
+                              </h5>
+                              <h4 className='sk-gScheme-heading'>
+                                {items?.name}
+                              </h4>
+                              <div className='sk-readmore-story'>
+                                <button
+                                  className='sk-storyRead-more'
+                                  onClick={() =>
+                                    history.push(
+                                      routingConstants.GOVERNMENT_SCHEMES,
+                                    )
+                                  }
+                                >
+                                  View All <EastRoundedIcon />
+                                </button>
+                              </div>
+                              <span>
+                                {items?.image && (
+                                  <img
+                                    src={items?.image}
+                                    alt='agricultureicon'
+                                  />
+                                )}
+                              </span>
+                            </li>
+                          </>
+                        </ul>
+                      </div>
                     </>
-                  )}
-                </ul>
-              </div>
+                  );
+                })
+              ) : (
+                <>
+                  <NoDataFound size='small' />
+                </>
+              )}
             </div>
             <div className='col-xl-12'>
               <div className='sk-testCourse-btn'>
