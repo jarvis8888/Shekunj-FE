@@ -71,8 +71,12 @@ const Navbar = (props) => {
             {t("headerComponent.menuItem.7")}
           </Dropdown.Item>
         </Dropdown>
-        <a href='/resume/'>{t("header.heading.4")}</a>
-        <a href='/jobs/'>{t("header.heading.6")}</a>
+        <a href='/resume' className={isActive("/resume") && "active"}>
+          {t("header.heading.4")}
+        </a>
+        <a href='/jobs' className={isActive("/jobs") && "active"}>
+          {t("header.heading.6")}
+        </a>
         <Dropdown title={t("header.heading.5")} className='custom-dropdown'>
           <Dropdown.Item
             onClick={() => history.push(routingConstants.TOP_COLLEGES)}
