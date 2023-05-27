@@ -461,6 +461,15 @@ section {
   .sk-title-heading p {
     font-size: 14px;
   }
+  .sk-event-sec{
+    padding: 0;
+  }
+  .sk-event-sec:hover {
+    background: linear-gradient(89.98deg, rgb(136 136 136 / 23%) 2.6%, rgb(136 136 136 / 18%) 19.79%, rgba(255, 255, 255, 0) 26.4%, rgba(255, 255, 255, 0) 79.16%, rgba(136, 136, 136, 0.29) 85.9%, rgb(136 136 136 / 22%) 97.14%)
+  }
+  .sk-event-sec:before {
+    background: linear-gradient(89.98deg, rgb(136 136 136 / 35%) 2.6%, rgba(136, 136, 136, 0.28) 19.79%, rgba(255, 255, 255, 0) 26.4%, rgba(255, 255, 255, 0) 79.16%, rgba(136, 136, 136, 0.29) 85.9%, rgb(136 136 136 / 41%) 97.14%);
+  }
   .sk-category ul {
     overflow: auto;
     justify-content: start;

@@ -331,7 +331,7 @@ function HomePage() {
                 simulateTouch={true}
                 effect={"fade"}
                 speed={1500}
-                autoplay={{ delay: 5500 }}
+                autoplay={{ delay: 3000 }}
                 navigation={navigation}
                 pagination={pagination}
                 onSwiper={(swiper) => console.log(swiper)}
@@ -510,12 +510,12 @@ function HomePage() {
                 navigation={true}
                 speed={1500}
                 autoHeight={true}
-                autoplay={{ delay: 4000 }}
+                autoplay={{ delay: 3000 }}
                 className='sk-mySwiper-slide'
                 breakpoints={{
                   0: {
                     slidesPerView: 1.5,
-                    spaceBetween: 10,
+                    spaceBetween: 15,
                   },
                   767: {
                     slidesPerView: 2,
@@ -839,7 +839,7 @@ function HomePage() {
                 spaceBetween={30}
                 // centeredSlides={true}
                 speed={1500}
-                autoplay={{ delay: 4000 }}
+                autoplay={{ delay: 3000 }}
                 navigation={true}
                 className='sk-mockSwiper'
                 breakpoints={{
@@ -1228,7 +1228,7 @@ function HomePage() {
                     navigation={true}
                     speed={1500}
                     autoHeight={true}
-                    autoplay={{ delay: 4000 }}
+                    autoplay={{ delay: 3000 }}
                     className='sk-mySwiper-slide'
                     breakpoints={{
                       0: {
@@ -1344,7 +1344,7 @@ function HomePage() {
                 <Swiper
                   spaceBetween={30}
                   speed={1500}
-                  autoplay={{ delay: 4000 }}
+                  autoplay={{ delay: 3000 }}
                   pagination={{
                     clickable: true,
                   }}
@@ -1442,7 +1442,7 @@ function HomePage() {
                   spaceBetween={30}
                   // centeredSlides={true}
                   speed={1500}
-                  autoplay={{ delay: 4000 }}
+                  autoplay={{ delay: 3000 }}
                   navigation={true}
                   className='sk-mockSwiper'
                   breakpoints={{
