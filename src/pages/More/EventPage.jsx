@@ -330,24 +330,26 @@ function EventPage() {
         />
       </Helmet>
       <section className='sk-event-sec sk-slide-arrow'>
-        <div className='container-fluid p-0'>
+        <div className='container-fluid'>
           <div className='row align-items-center'>
             <div className='col-xl-12'>
               <Swiper
                 modules={[Navigation, Autoplay]}
                 slidesPerView={4}
-                spaceBetween={30}
-                // centeredSlides={true}
+                spaceBetween={24}
                 navigation={true}
-                speed={1500}
                 loop={true}
                 autoHeight={true}
                 autoplay={{ delay: 2000 }}
+                speed={1500}
+                onSwiper={(swiper) => console.log(swiper)}
+                onSlideChange={() => console.log("slide change")}
                 className='sk-mySwiper-slide'
                 breakpoints={{
                   0: {
-                    slidesPerView: 1.5,
-                    spaceBetween: 10,
+                    slidesPerView: 2,
+                    spaceBetween: 15,
+                    centeredSlides: true,
                   },
                   767: {
                     slidesPerView: 2,
@@ -360,30 +362,27 @@ function EventPage() {
                     slidesPerView: 4,
                   },
                   1250: {
-                    slidesPerView: 5,
+                    slidesPerView: 4,
                   },
                   1920: {
-                    slidesPerView: 5,
+                    slidesPerView: 4,
                   },
                 }}> 
                 {allEventData?.map((items, index) => {
                       return (
-                        <>
-                     <SwiperSlide>
                        
-                          {" "}
-                          <div
-                            key={index}
-                            onClick={() =>
-                              history.push(routingConstants.MORE_EVENT + items.id)
-                            }
-                          >
-                            <img src={items.image} alt='' />
-                          </div>
+                          <SwiperSlide>
+                            {" "}
+                            <div
+                              key={index}
+                              onClick={() =>
+                                history.push(routingConstants.MORE_EVENT + items.id)
+                              }
+                            >
+                              <img src={items.image} alt='' />
+                            </div>
+                          </SwiperSlide>
                        
-                  
-                    </SwiperSlide>
-                    </>
                       );
                     })}
               </Swiper>
@@ -409,18 +408,16 @@ function EventPage() {
                 <ul>
                   {options.map((items, index) => {
                     return (
-                      <>
-                        <li>
-                          <a
-                            onClick={() => handleTimeOptionClick(items.value)}
-                            className={
-                              selectedButton === items.value && "active-time"
-                            }
-                          >
-                            {items.label}
-                          </a>
-                        </li>
-                      </>
+                      <li>
+                        <a
+                          onClick={() => handleTimeOptionClick(items.value)}
+                          className={
+                            selectedButton === items.value && "active-time"
+                          }
+                        >
+                          {items.label}
+                        </a>
+                      </li>
                     );
                   })}
                 </ul>
