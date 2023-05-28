@@ -832,6 +832,11 @@ img {
   gap: 30px 30px;
   margin-bottom: 0;
 }
+.sk-gScheme-box ul:empty::before {
+  grid-column: 1 / -1; /* Span the entire grid */
+  text-align: center;
+  margin-bottom: 30px; /* Adjust as needed */
+}
 .sk-gScheme-box ul li h5 {
   font-weight: 400;
   color: #434242;
@@ -946,6 +951,7 @@ img {
   border-radius: 6px;
   position: relative;
 }
+
 .sk-story-testmonial .sk-story-content img {
   object-fit: cover;
   height: 260px;
@@ -964,7 +970,13 @@ img {
   padding: 8px;
 }
 .sk-studentlove-box p {
-  padding: 30px 50px 50px 0;
+  padding: 30px 50px 0 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  margin-bottom: 50px;
 }
 
 .sk-review-main {
@@ -972,7 +984,7 @@ img {
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap:20px;
+  gap: 20px;
 }
 
 .sk-review-main .sk-rating-overall h5 {
@@ -1032,7 +1044,7 @@ img {
 
 .tab-content.active {
   display: block;
-  }
+}
 
 // custom responsive start
 
@@ -1146,7 +1158,7 @@ img {
   .sk-blog-slider.sk-slide-arrow .swiper-button-prev::after {
     font-size: 8px;
   }
-  .tab-content{
+  .tab-content {
     padding: 20px;
   }
   // .sk-banner-navigate {
@@ -1215,7 +1227,7 @@ img {
     display: flex;
     gap: 15px;
   }
-  .sk-gScheme-box ul::-webkit-scrollbar{
+  .sk-gScheme-box ul::-webkit-scrollbar {
     background: transparent;
     width: 0;
   }
@@ -1244,13 +1256,13 @@ img {
     top: -10px;
     right: 0;
   }
-  .sk-eventDatetime-detail ul li .sk-eventTime-detail h6{
+  .sk-eventDatetime-detail ul li .sk-eventTime-detail h6 {
     font-size: 14px;
   }
-  .sk-eventDatetime-detail ul li .sk-eventDate h6{
+  .sk-eventDatetime-detail ul li .sk-eventDate h6 {
     font-size: 14px;
   }
-  .sk-eventDatetime-detail ul li .sk-eventDate h3{
+  .sk-eventDatetime-detail ul li .sk-eventDate h3 {
     font-size: 21px;
   }
   .sk-eventDatetime-detail ul li .sk-eventTime-detail h4 {
