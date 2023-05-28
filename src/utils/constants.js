@@ -135,6 +135,9 @@ const apiConstants = {
   ADD: {
     ADD: "/private_adds/click_add/",
   },
+  REVIEWS: {
+    ALL_REVIEWS: "/more/reviews/",
+  },
 };
 
 export { carouselConstant, routingConstants, apiConstants };

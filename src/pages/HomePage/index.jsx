@@ -82,6 +82,8 @@ function HomePage() {
   const [govtData, setGovtData] = useState([]);
   const [eventsData, setEventsData] = useState([]);
   const [blogsData, setBlogsData] = useState([]);
+  const [testimonialData, setTestimonialData] = useState([]);
+  const [reviewsData, setReviewsData] = useState([]);
   const [categoryList, setCategoryList] = useState([]);
   const [categoryName, setCategoryName] = useState(null);
   const [courseLoader, setCourseLoader] = useState(false);
@@ -135,6 +137,12 @@ function HomePage() {
     setGoogleActiveTab(tabName);
   };
 
+  const handleWriteReview = () => {
+    window.open(
+      "https://www.google.com/maps/place/SheKunj+%7C+India%27s+Leading+Women+Empowerment+Organization/@22.7469274,75.891115,17z/data=!4m8!3m7!1s0x3962fde887718c3f:0x5493aa5072c50c99!8m2!3d22.7469274!4d75.8936899!9m1!1b1!16s%2Fg%2F11sjlpmgl6?entry=ttu",
+      "_blank",
+    );
+  };
   useEffect(() => {
     dispatch(adsList());
     navigator.geolocation.getCurrentPosition(
@@ -300,6 +308,18 @@ function HomePage() {
     }
   };
 
+  const getAllReviewsData = async () => {
+    try {
+      const url = `${apiConstants.REVIEWS.ALL_REVIEWS}`;
+      const data = await httpServices.get(url);
+      const { reviews_list, reviews_on } = data;
+      setTestimonialData(reviews_list);
+      setReviewsData(reviews_on);
+    } catch (error) {
+    } finally {
+    }
+  };
+
   const handleCategoryOptionClick = (option) => {
     setCategoryName(option);
   };
@@ -311,6 +331,7 @@ function HomePage() {
     getAllGovtCatagoriesData();
     getAllEVentsData();
     getAllBlogsData();
+    getAllReviewsData();
   }, [lan]);
 
   useEffect(() => {
@@ -331,7 +352,7 @@ function HomePage() {
                 simulateTouch={true}
                 effect={"fade"}
                 speed={1500}
-                autoplay={{ delay: 5500 }}
+                autoplay={{ delay: 3000 }}
                 navigation={navigation}
                 pagination={pagination}
                 onSwiper={(swiper) => console.log(swiper)}
@@ -510,12 +531,12 @@ function HomePage() {
                 navigation={true}
                 speed={1500}
                 autoHeight={true}
-                autoplay={{ delay: 4000 }}
+                autoplay={{ delay: 3000 }}
                 className='sk-mySwiper-slide'
                 breakpoints={{
                   0: {
                     slidesPerView: 1.5,
-                    spaceBetween: 10,
+                    spaceBetween: 15,
                   },
                   767: {
                     slidesPerView: 2,
@@ -839,7 +860,7 @@ function HomePage() {
                 spaceBetween={30}
                 // centeredSlides={true}
                 speed={1500}
-                autoplay={{ delay: 4000 }}
+                autoplay={{ delay: 3000 }}
                 navigation={true}
                 className='sk-mockSwiper'
                 breakpoints={{
@@ -1086,63 +1107,49 @@ function HomePage() {
                   career growth
                 </p>
               </div>
-              {govtData?.length ? (
-                govtData?.map((items, index) => {
-                  return (
-                    <>
-                      <div className='sk-gScheme-box'>
-                        <ul>
-                          <>
-                            <li
-                              key={index}
+              <div className='sk-gScheme-box'>
+                {govtData?.length ? (
+                  <ul>
+                    {govtData?.map((items, index) => {
+                      return (
+                        <li
+                          key={index}
+                          onClick={() =>
+                            history.push(routingConstants.GOVERNMENT_SCHEMES)
+                          }
+                        >
+                          <h5 className='sk-gScheme-title'>
+                            {items?.schemes_count ? items?.schemes_count : 0}{" "}
+                            Schemes
+                          </h5>
+                          <h4 className='sk-gScheme-heading'>{items?.name}</h4>
+                          <div className='sk-readmore-story'>
+                            <button
+                              className='sk-storyRead-more'
                               onClick={() =>
                                 history.push(
                                   routingConstants.GOVERNMENT_SCHEMES,
                                 )
                               }
                             >
-                              <h5 className='sk-gScheme-title'>
-                                {items?.schemes_count
-                                  ? items?.schemes_count
-                                  : 0}{" "}
-                                Schemes
-                              </h5>
-                              <h4 className='sk-gScheme-heading'>
-                                {items?.name}
-                              </h4>
-                              <div className='sk-readmore-story'>
-                                <button
-                                  className='sk-storyRead-more'
-                                  onClick={() =>
-                                    history.push(
-                                      routingConstants.GOVERNMENT_SCHEMES,
-                                    )
-                                  }
-                                >
-                                  View All <EastRoundedIcon />
-                                </button>
-                              </div>
-                              <span>
-                                {items?.image && (
-                                  <img
-                                    src={items?.image}
-                                    alt='agricultureicon'
-                                  />
-                                )}
-                              </span>
-                            </li>
-                          </>
-                        </ul>
-                      </div>
-                    </>
-                  );
-                })
-              ) : (
-                <>
+                              View All <EastRoundedIcon />
+                            </button>
+                          </div>
+                          <span>
+                            {items?.image && (
+                              <img src={items?.image} alt='agricultureicon' />
+                            )}
+                          </span>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                ) : (
                   <NoDataFound size='small' />
-                </>
-              )}
+                )}
+              </div>
             </div>
+
             <div className='col-xl-12'>
               <div className='sk-testCourse-btn'>
                 <button
@@ -1237,7 +1244,7 @@ function HomePage() {
                     navigation={true}
                     speed={1500}
                     autoHeight={true}
-                    autoplay={{ delay: 4000 }}
+                    autoplay={{ delay: 3000 }}
                     className='sk-mySwiper-slide'
                     breakpoints={{
                       0: {
@@ -1353,7 +1360,7 @@ function HomePage() {
                 <Swiper
                   spaceBetween={30}
                   speed={1500}
-                  autoplay={{ delay: 4000 }}
+                  autoplay={{ delay: 3000 }}
                   pagination={{
                     clickable: true,
                   }}
@@ -1451,7 +1458,7 @@ function HomePage() {
                   spaceBetween={30}
                   // centeredSlides={true}
                   speed={1500}
-                  autoplay={{ delay: 4000 }}
+                  autoplay={{ delay: 3000 }}
                   navigation={true}
                   className='sk-mockSwiper'
                   breakpoints={{
@@ -1478,199 +1485,40 @@ function HomePage() {
                   }}
                 >
                   <>
-                    <SwiperSlide>
-                      <div className='sk-studentlove-box'>
-                        <p>
-                          HR Course and Training really helped me out to learn
-                          and made me capable to start my career in HR Industry
-                        </p>
-                        <div className='sk-userReview-box'>
-                          <span>
-                            <img src={testmonailimg} />
-                          </span>
-                          <span>
-                            <h5>Nikita Sharma</h5>
-                            <h6>Content Writer</h6>
-                            <span className='sk-review-home'>
-                              <a href='javascript:;'>
-                                <GradeRoundedIcon />
-                              </a>
-                              <a href='javascript:;'>
-                                <GradeRoundedIcon />
-                              </a>
-                              <a href='javascript:;'>
-                                <GradeRoundedIcon />
-                              </a>
-                              <a href='javascript:;'>
-                                <GradeRoundedIcon />
-                              </a>
-                              <a href='javascript:;'>
-                                <GradeRoundedIcon />
-                              </a>
-                            </span>
-                          </span>
-                        </div>
-                        <span className='sk-qoutesicon'>
-                          <img src={quatesicon} />
-                        </span>
-                      </div>
-                    </SwiperSlide>
-                  </>
-                  <>
-                    <SwiperSlide>
-                      <div className='sk-studentlove-box'>
-                        <p>
-                          HR Course and Training really helped me out to learn
-                          and made me capable to start my career in HR Industry
-                        </p>
-                        <div className='sk-userReview-box'>
-                          <span>
-                            <img src={testmonailimg} />
-                          </span>
-                          <span>
-                            <h5>Nikita Sharma</h5>
-                            <h6>Content Writer</h6>
-                            <span className='sk-review-home'>
-                              <a href='javascript:;'>
-                                <GradeRoundedIcon />
-                              </a>
-                              <a href='javascript:;'>
-                                <GradeRoundedIcon />
-                              </a>
-                              <a href='javascript:;'>
-                                <GradeRoundedIcon />
-                              </a>
-                              <a href='javascript:;'>
-                                <GradeRoundedIcon />
-                              </a>
-                              <a href='javascript:;'>
-                                <GradeRoundedIcon />
-                              </a>
-                            </span>
-                          </span>
-                        </div>
-                        <span className='sk-qoutesicon'>
-                          <img src={quatesicon} />
-                        </span>
-                      </div>
-                    </SwiperSlide>
-                  </>
-                  <>
-                    <SwiperSlide>
-                      <div className='sk-studentlove-box'>
-                        <p>
-                          HR Course and Training really helped me out to learn
-                          and made me capable to start my career in HR Industry
-                        </p>
-                        <div className='sk-userReview-box'>
-                          <span>
-                            <img src={testmonailimg} />
-                          </span>
-                          <span>
-                            <h5>Nikita Sharma</h5>
-                            <h6>Content Writer</h6>
-                            <span className='sk-review-home'>
-                              <a href='javascript:;'>
-                                <GradeRoundedIcon />
-                              </a>
-                              <a href='javascript:;'>
-                                <GradeRoundedIcon />
-                              </a>
-                              <a href='javascript:;'>
-                                <GradeRoundedIcon />
-                              </a>
-                              <a href='javascript:;'>
-                                <GradeRoundedIcon />
-                              </a>
-                              <a href='javascript:;'>
-                                <GradeRoundedIcon />
-                              </a>
-                            </span>
-                          </span>
-                        </div>
-                        <span className='sk-qoutesicon'>
-                          <img src={quatesicon} />
-                        </span>
-                      </div>
-                    </SwiperSlide>
-                  </>
-                  <>
-                    <SwiperSlide>
-                      <div className='sk-studentlove-box'>
-                        <p>
-                          HR Course and Training really helped me out to learn
-                          and made me capable to start my career in HR Industry
-                        </p>
-                        <div className='sk-userReview-box'>
-                          <span>
-                            <img src={testmonailimg} />
-                          </span>
-                          <span>
-                            <h5>Nikita Sharma</h5>
-                            <h6>Content Writer</h6>
-                            <span className='sk-review-home'>
-                              <a href='javascript:;'>
-                                <GradeRoundedIcon />
-                              </a>
-                              <a href='javascript:;'>
-                                <GradeRoundedIcon />
-                              </a>
-                              <a href='javascript:;'>
-                                <GradeRoundedIcon />
-                              </a>
-                              <a href='javascript:;'>
-                                <GradeRoundedIcon />
-                              </a>
-                              <a href='javascript:;'>
-                                <GradeRoundedIcon />
-                              </a>
-                            </span>
-                          </span>
-                        </div>
-                        <span className='sk-qoutesicon'>
-                          <img src={quatesicon} />
-                        </span>
-                      </div>
-                    </SwiperSlide>
-                  </>
-                  <>
-                    <SwiperSlide>
-                      <div className='sk-studentlove-box'>
-                        <p>
-                          HR Course and Training really helped me out to learn
-                          and made me capable to start my career in HR Industry
-                        </p>
-                        <div className='sk-userReview-box'>
-                          <span>
-                            <img src={testmonailimg} />
-                          </span>
-                          <span>
-                            <h5>Nikita Sharma</h5>
-                            <h6>Content Writer</h6>
-                            <span className='sk-review-home'>
-                              <a href='javascript:;'>
-                                <GradeRoundedIcon />
-                              </a>
-                              <a href='javascript:;'>
-                                <GradeRoundedIcon />
-                              </a>
-                              <a href='javascript:;'>
-                                <GradeRoundedIcon />
-                              </a>
-                              <a href='javascript:;'>
-                                <GradeRoundedIcon />
-                              </a>
-                              <a href='javascript:;'>
-                                <GradeRoundedIcon />
-                              </a>
-                            </span>
-                          </span>
-                        </div>
-                        <span className='sk-qoutesicon'>
-                          <img src={quatesicon} />
-                        </span>
-                      </div>
-                    </SwiperSlide>
+                    {testimonialData?.length
+                      ? testimonialData?.map((items, index) => {
+                          const ratingStars = [];
+                          for (let i = 0; i < items?.rating; i++) {
+                            ratingStars.push(<GradeRoundedIcon key={i} />);
+                          }
+                          return (
+                            <>
+                              <SwiperSlide>
+                                <div className='sk-studentlove-box'>
+                                  <p>{items?.description}</p>
+                                  <div className='sk-userReview-box'>
+                                    <span>
+                                      <img src={items?.image} alt='' />
+                                    </span>
+                                    <span>
+                                      <h5>{items?.name}</h5>
+                                      <h6>{items?.job_title}</h6>
+                                      <span className='sk-review-home'>
+                                        {ratingStars.map((star, index) => (
+                                          <a key={index}>{star}</a>
+                                        ))}
+                                      </span>
+                                    </span>
+                                  </div>
+                                  <span className='sk-qoutesicon'>
+                                    <img src={quatesicon} />
+                                  </span>
+                                </div>
+                              </SwiperSlide>
+                            </>
+                          );
+                        })
+                      : null}
                   </>
                 </Swiper>
               </div>
@@ -1742,7 +1590,9 @@ function HomePage() {
                     </div>
                   </div>
                   <div className='sk-button-write'>
-                    <button className='sk-btn'>Write a Review</button>
+                    <button className='sk-btn' onClick={handleWriteReview}>
+                      Write a Review
+                    </button>
                   </div>
                 </div>
               </div>
