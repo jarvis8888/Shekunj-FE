@@ -13,12 +13,7 @@ import "../HomePage/index.scss";
 
 import "../Search/index.scss";
 // import Swiper core and required modules
-import SwiperCore, {
-  Autoplay,
-  Navigation,
-  Pagination,
-  EffectFade,
-} from "swiper";
+import SwiperCore, { Autoplay, Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -114,10 +109,10 @@ function EventPage() {
       return acc;
     }, []);
   };
-  const navigation = {
-    nextEl: ".swiper-button-next",
-    prevEl: ".swiper-button-prev",
-  };
+  // const navigation = {
+  //   nextEl: ".swiper-button-next",
+  //   prevEl: ".swiper-button-prev",
+  // };
 
   const getAllEVentsData = async (currentOffset, genre) => {
     setLoading(true);
@@ -245,7 +240,7 @@ function EventPage() {
         });
       }
     };
-  
+
     const errorCallback = (error) => {
       console.error("Error Code = " + error.code + " - " + error.message);
       axios.get(`/private_adds/private_add`).then((response) => {
@@ -334,19 +329,15 @@ function EventPage() {
           <div className='row align-items-center'>
             <div className='col-xl-12'>
               <Swiper
-                modules={[Navigation, Autoplay]}
                 slidesPerView={4}
                 spaceBetween={24}
                 navigation={true}
                 loop={true}
-                autoHeight={true}
                 autoplay={{ delay: 2000 }}
                 speed={1500}
-                onSwiper={(swiper) => console.log(swiper)}
-                onSlideChange={() => console.log("slide change")}
-                className='sk-mySwiper-slide'
+                modules={[Navigation, Autoplay]}
                 breakpoints={{
-                  0: {
+                  320: {
                     slidesPerView: 2,
                     spaceBetween: 15,
                     centeredSlides: true,
@@ -358,33 +349,28 @@ function EventPage() {
                   991: {
                     slidesPerView: 3,
                   },
-                  1199: {
-                    slidesPerView: 4,
-                  },
                   1250: {
                     slidesPerView: 4,
                   },
-                  1920: {
-                    slidesPerView: 4,
-                  },
-                }}> 
+                }}
+              >
                 {allEventData?.map((items, index) => {
-                      return (
-                       
-                          <SwiperSlide>
-                            {" "}
-                            <div
-                              key={index}
-                              onClick={() =>
-                                history.push(routingConstants.MORE_EVENT + items.id)
-                              }
-                            >
-                              <img src={items.image} alt='' />
-                            </div>
-                          </SwiperSlide>
-                       
-                      );
-                    })}
+                  return (
+                    <>
+                      <SwiperSlide>
+                        {" "}
+                        <div
+                          key={index}
+                          onClick={() =>
+                            history.push(routingConstants.MORE_EVENT + items.id)
+                          }
+                        >
+                          <img src={items.image} alt='' />
+                        </div>
+                      </SwiperSlide>
+                    </>
+                  );
+                })}
               </Swiper>
             </div>
           </div>
@@ -480,12 +466,18 @@ function EventPage() {
                                     {items.mode_of_event === "offline" ? (
                                       <>
                                         {" "}
-                                        <img src={offlineicon} alt="" /> Offline{" "}
+                                        <img
+                                          src={offlineicon}
+                                          alt=''
+                                        /> Offline{" "}
                                       </>
                                     ) : (
                                       <>
                                         {" "}
-                                        <img src={onlineicon} alt="" /> Online{" "}
+                                        <img
+                                          src={onlineicon}
+                                          alt=''
+                                        /> Online{" "}
                                       </>
                                     )}
                                   </li>
@@ -574,19 +566,19 @@ function EventPage() {
                   >
                     {detect.isMobile
                       ? eventFooterAds[0]?.image_mobile && (
-                        <img
-                          src={eventFooterAds[0]?.image_mobile}
-                          alt=''
-                        // className='ads_story_cover_img'
-                        />
-                      )
+                          <img
+                            src={eventFooterAds[0]?.image_mobile}
+                            alt=''
+                            // className='ads_story_cover_img'
+                          />
+                        )
                       : eventFooterAds[0]?.image && (
-                        <img
-                          src={eventFooterAds[0]?.image}
-                          alt=''
-                        // className='ads_story_cover_img'
-                        />
-                      )}
+                          <img
+                            src={eventFooterAds[0]?.image}
+                            alt=''
+                            // className='ads_story_cover_img'
+                          />
+                        )}
                   </a>
                 )}
               </>

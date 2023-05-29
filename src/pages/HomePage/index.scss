@@ -1046,6 +1046,13 @@ img {
   display: block;
 }
 
+.sk-userReview-box span:first-child {
+  max-width: 60px;
+  border-radius: 50px;
+  overflow: hidden;
+  height: 60px;
+}
+
 // custom responsive start
 
 @media screen and (max-width: 1920px) {
@@ -1096,7 +1103,13 @@ img {
     left: 77%;
   }
   .sk-studentlove-box p {
-    padding: 30px 0px 20px 0;
+    padding: 30px 0px 0px 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    margin-bottom: 20px;
   }
   .sk-slide-arrow .swiper-button-prev {
     left: 0;

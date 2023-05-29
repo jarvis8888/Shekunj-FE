@@ -88,7 +88,7 @@ function HomePage() {
   const [categoryName, setCategoryName] = useState(null);
   const [courseLoader, setCourseLoader] = useState(false);
   const [activeTab, setActiveTab] = useState();
-  const [googleActiveTab, setGoogleActiveTab] = useState("google-reviews");
+  const [googleActiveTab, setGoogleActiveTab] = useState("");
 
   const handleClose = () => {
     setOpen(false);
@@ -337,6 +337,46 @@ function HomePage() {
   useEffect(() => {
     allCourses(categoryName);
   }, [categoryName, lan]);
+
+  const renderReviewTabs = () => {
+    const googleRatingStars = [];
+    for (let i = 0; i < reviewsData?.over_all_rating; i++) {
+      googleRatingStars.push(<GradeRoundedIcon key={i} />);
+    }
+    return reviewsData.map((item) => (
+      <div
+        id={item.title}
+        className={`tab-content ${
+          googleActiveTab === item.title ? "active" : ""
+        }`}
+        key={item.id}
+      >
+        <div className='sk-review-main'>
+          <div className='sk-rating-overall'>
+            <h5>Overall Rating</h5>
+            <div>
+              <span className='sk-view-no'>{item.over_all_rating}</span>
+              <span className='sk-review-home'>
+                <span className='sk-review-home'>
+                  {googleRatingStars.map((star, index) => (
+                    <a key={index}>{star}</a>
+                  ))}
+                </span>
+              </span>
+              <span className='sk-view-rating'>
+                {item.no_of_review} reviews
+              </span>
+            </div>
+          </div>
+          <div className='sk-button-write'>
+            <button className='sk-btn' onClick={handleWriteReview}>
+              Write a Review
+            </button>
+          </div>
+        </div>
+      </div>
+    ));
+  };
 
   return (
     <div>
@@ -1532,135 +1572,23 @@ function HomePage() {
           <div className='row'>
             <div className='col-md-12'>
               <div className='tabs'>
-                <button
-                  className={`tab-link ${
-                    googleActiveTab === "google-reviews" ? "active" : ""
-                  }`}
-                  onClick={() => openTab("google-reviews")}
-                >
-                  <img src={google} alt='google' />
-                </button>
-                <button
-                  className={`tab-link ${
-                    googleActiveTab === "trustpilot" ? "active" : ""
-                  }`}
-                  onClick={() => openTab("trustpilot")}
-                >
-                  <img src={trustpilot} alt='trustpilot' />
-                </button>
-                <button
-                  className={`tab-link ${
-                    googleActiveTab === "glassdoor" ? "active" : ""
-                  }`}
-                  onClick={() => openTab("glassdoor")}
-                >
-                  <img src={glassdrop} alt='glassdrop' />
-                </button>
+                {reviewsData.map((item) => {
+                  return (
+                    <>
+                      <button
+                        className={`tab-link ${
+                          googleActiveTab === item.title ? "active" : ""
+                        }`}
+                        onClick={() => openTab(item.title)}
+                        key={item.id}
+                      >
+                        <img src={item.image} alt={item.title} />
+                      </button>
+                    </>
+                  );
+                })}
               </div>
-
-              <div
-                id='google-reviews'
-                className={`tab-content ${
-                  googleActiveTab === "google-reviews" ? "active" : ""
-                }`}
-              >
-                <div className='sk-review-main'>
-                  <div className='sk-rating-overall'>
-                    <h5>Overall Rating</h5>
-                    <div>
-                      <span className='sk-view-no'>4.8</span>
-                      <span className='sk-review-home'>
-                        <a href='javascript:;'>
-                          <GradeRoundedIcon />
-                        </a>
-                        <a href='javascript:;'>
-                          <GradeRoundedIcon />
-                        </a>
-                        <a href='javascript:;'>
-                          <GradeRoundedIcon />
-                        </a>
-                        <a href='javascript:;'>
-                          <GradeRoundedIcon />
-                        </a>
-                        <a href='javascript:;'>
-                          <GradeRoundedIcon />
-                        </a>
-                      </span>
-                      <span className='sk-view-rating'>1,189 reviews</span>
-                    </div>
-                  </div>
-                  <div className='sk-button-write'>
-                    <button className='sk-btn' onClick={handleWriteReview}>
-                      Write a Review
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              <div
-                id='trustpilot'
-                className={`tab-content ${
-                  googleActiveTab === "trustpilot" ? "active" : ""
-                }`}
-              >
-                <div className='sk-review-main'>
-                  <div className='sk-rating-overall'>
-                    <h5>Overall Rating</h5>
-                    <div>
-                      <span className='sk-view-no'>5.0</span>
-                      <span className='sk-review-home'>
-                        <a href='javascript:;'>
-                          <GradeRoundedIcon />
-                        </a>
-                        <a href='javascript:;'>
-                          <GradeRoundedIcon />
-                        </a>
-                        <a href='javascript:;'>
-                          <GradeRoundedIcon />
-                        </a>
-                        <a href='javascript:;'>
-                          <GradeRoundedIcon />
-                        </a>
-                      </span>
-                      <span className='sk-view-rating'>1099 reviews</span>
-                    </div>
-                  </div>
-                  <div className='sk-button-write'>
-                    <button className='sk-btn'>Write a Review</button>
-                  </div>
-                </div>
-              </div>
-
-              <div
-                id='glassdoor'
-                className={`tab-content ${
-                  googleActiveTab === "glassdoor" ? "active" : ""
-                }`}
-              >
-                <div className='sk-review-main'>
-                  <div className='sk-rating-overall'>
-                    <h5>Overall Rating</h5>
-                    <div>
-                      <span className='sk-view-no'>3.2</span>
-                      <span className='sk-review-home'>
-                        <a href='javascript:;'>
-                          <GradeRoundedIcon />
-                        </a>
-                        <a href='javascript:;'>
-                          <GradeRoundedIcon />
-                        </a>
-                        <a href='javascript:;'>
-                          <GradeRoundedIcon />
-                        </a>
-                      </span>
-                      <span className='sk-view-rating'>1,289 reviews</span>
-                    </div>
-                  </div>
-                  <div className='sk-button-write'>
-                    <button className='sk-btn'>Write a Review</button>
-                  </div>
-                </div>
-              </div>
+              {renderReviewTabs()}
             </div>
           </div>
         </div>
