@@ -1175,8 +1175,8 @@ function HomePage() {
                             </button>
                           </div>
                           <span>
-                            {items?.image && (
-                              <img src={items?.image} alt='agricultureicon' />
+                            {items?.logo && (
+                              <img src={items?.logo} alt='agricultureicon' />
                             )}
                           </span>
                         </li>
