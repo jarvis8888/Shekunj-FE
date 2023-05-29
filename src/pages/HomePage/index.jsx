@@ -315,6 +315,7 @@ function HomePage() {
       const { reviews_list, reviews_on } = data;
       setTestimonialData(reviews_list);
       setReviewsData(reviews_on);
+      setGoogleActiveTab(reviews_on[0]?.title)
     } catch (error) {
     } finally {
     }
@@ -339,43 +340,41 @@ function HomePage() {
   }, [categoryName, lan]);
 
   const renderReviewTabs = () => {
-    const googleRatingStars = [];
-    for (let i = 0; i < reviewsData?.over_all_rating; i++) {
-      googleRatingStars.push(<GradeRoundedIcon key={i} />);
-    }
-    return reviewsData.map((item) => (
-      <div
-        id={item.title}
-        className={`tab-content ${
-          googleActiveTab === item.title ? "active" : ""
-        }`}
-        key={item.id}
-      >
-        <div className='sk-review-main'>
-          <div className='sk-rating-overall'>
-            <h5>Overall Rating</h5>
-            <div>
-              <span className='sk-view-no'>{item.over_all_rating}</span>
-              <span className='sk-review-home'>
-                <span className='sk-review-home'>
-                  {googleRatingStars.map((star, index) => (
-                    <a key={index}>{star}</a>
-                  ))}
+    return reviewsData.map((item) => {
+      const rating = Math.floor(item.over_all_rating); // Convert the rating to an integer
+      const googleRatingStars = Array.from({ length: rating }, (_, index) => (
+        <a href=''>
+          <GradeRoundedIcon key={index} />
+        </a>
+      ));
+      return (
+        <div
+          id={item.title}
+          className={`tab-content ${
+            googleActiveTab === item.title ? "active" : ""
+          }`}
+          key={item.id}
+        >
+          <div className='sk-review-main'>
+            <div className='sk-rating-overall'>
+              <h5>Overall Rating</h5>
+              <div>
+                <span className='sk-view-no'>{item.over_all_rating}</span>
+                <span className='sk-review-home'>{googleRatingStars}</span>
+                <span className='sk-view-rating'>
+                  {item.no_of_review} reviews
                 </span>
-              </span>
-              <span className='sk-view-rating'>
-                {item.no_of_review} reviews
-              </span>
+              </div>
+            </div>
+            <div className='sk-button-write'>
+              <button className='sk-btn' onClick={handleWriteReview}>
+                Write a Review
+              </button>
             </div>
           </div>
-          <div className='sk-button-write'>
-            <button className='sk-btn' onClick={handleWriteReview}>
-              Write a Review
-            </button>
-          </div>
         </div>
-      </div>
-    ));
+      );
+    });
   };
 
   return (
