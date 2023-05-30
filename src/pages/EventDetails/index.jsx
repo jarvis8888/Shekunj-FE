@@ -565,7 +565,6 @@ const EventDetails = () => {
                 <div className='sk-event-sidebar'>
                   <div className='sk-event-form'>
                     <h6>Registration Form</h6>
-
                     <form onSubmit={handleSubmit}>
                       <div className='sk-eventForm-filed'>
                         <input
