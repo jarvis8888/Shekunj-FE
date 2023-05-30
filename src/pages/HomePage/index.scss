@@ -62,11 +62,11 @@ img {
   content: "";
   left: 68px;
   width: 1.5px;
-  height: 20px;
+  height: 18px;
   background: #dbdbdb;
   /* right: 0; */
   margin: 0 auto;
-  bottom: 10px;
+  bottom: 12px;
 }
 .sk-homeBanner-sec .swiper-pagination-bullet:before {
   content: "";
@@ -721,7 +721,7 @@ img {
 }
 .loadMore {
   background-color: #202020;
-  padding: 13px 25px;
+  padding: 13px 20px;
   border-radius: 8px;
   color: #fff;
   font-weight: 600;
@@ -864,6 +864,11 @@ img {
   display: inline-block;
   padding: 10px;
 }
+.sk-gScheme-box ul li span img{
+  opacity: 0.1;
+  max-width: 36px;
+}
+
 .sk-gScheme-box .sk-readmore-story {
   text-align: right;
 }
@@ -1047,10 +1052,10 @@ img {
 }
 
 .sk-userReview-box span:first-child {
-  max-width: 60px;
+  max-width: 52px;
   border-radius: 50px;
   overflow: hidden;
-  height: 60px;
+  height: 52px;
 }
 
 // custom responsive start
