@@ -269,15 +269,10 @@ const SuccessStoryDetails = () => {
   );
 
   const succesStoriesLeftRenderAds = () => {
-    const adsToRender = [];
+    const adIndex = getNextAdIndexSuccesStoriesLeft();
+    const ad = succesStoriesLeft[adIndex];
 
-    for (let i = 0; i < succesStoriesLeftadCount; i++) {
-      const adIndex = getNextAdIndexSuccesStoriesLeft();
-      const ad = succesStoriesLeft[adIndex];
-      adsToRender.push(renderAd(ad));
-    }
-
-    return adsToRender[getNextAdIndexSuccesStoriesLeft()];
+    return renderAd(ad);
   };
   return (
     <div>

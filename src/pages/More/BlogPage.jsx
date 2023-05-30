@@ -233,15 +233,10 @@ function BlogPage() {
   );
 
   const blogGridRenderAds = () => {
-    const adsToRender = [];
+    const BoxadIndex = getNextAdIndexBlogGrid();
+    const ad = blogGrid[BoxadIndex];
 
-    for (let i = 0; i < blogsGridadCount; i++) {
-      const BoxadIndex = getNextAdIndexBlogGrid();
-      const ad = blogGrid[BoxadIndex];
-      adsToRender.push(renderBoxAd(ad));
-    }
-
-    return adsToRender[getNextAdIndexBlogGrid()];
+    return renderBoxAd(ad);
   };
 
   const blogsLeftadCount = blogLeft.length; // Total number of ads
@@ -270,17 +265,11 @@ function BlogPage() {
   );
 
   const blogLeftRenderAds = () => {
-    const adsToRender = [];
+    const adIndex = getNextAdIndexBlogLeft();
+    const ad = blogLeft[adIndex];
 
-    for (let i = 0; i < blogsLeftadCount; i++) {
-      const adIndex = getNextAdIndexBlogLeft();
-      const ad = blogLeft[adIndex];
-      adsToRender.push(renderAd(ad));
-    }
-
-    return adsToRender[getNextAdIndexBlogLeft()];
+    return renderAd(ad);
   };
-
 
   const handleLoadMoreClick = () => {
     if (currentBlogData?.results?.length === 0) {

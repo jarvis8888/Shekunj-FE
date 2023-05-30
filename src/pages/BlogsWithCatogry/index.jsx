@@ -153,15 +153,9 @@ const BlogWithCatogry = () => {
   );
 
   const renderAds = () => {
-    const adsToRender = [];
-
-    for (let i = 0; i < adCount; i++) {
-      const adIndex = getNextAdIndex();
-      const ad = blogDetailsBoxAds[adIndex];
-      adsToRender.push(renderAd(ad));
-    }
-
-    return adsToRender[getNextAdIndex()];
+    const adIndex = getNextAdIndex();
+    const ad = blogDetailsBoxAds[adIndex];
+    return renderAd(ad);
   };
 
   return (
