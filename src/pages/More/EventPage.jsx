@@ -428,7 +428,7 @@ function EventPage() {
             </div>
           </div>
           {loading ? (
-            <CustomLoader size='small' />
+            <CustomLoader  />
           ) : (
             <div className='row'>
               {dataWithAdds?.length ? (

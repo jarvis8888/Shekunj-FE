@@ -169,7 +169,7 @@ export const GlobalSearchCard = ({
           </div>
         </div>
         {loading ? (
-          <CustomLoader size='small' />
+          <CustomLoader />
         ) : (
           <div className='row'>
             {filterData(activeTab).length ? (

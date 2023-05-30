@@ -451,7 +451,7 @@ const SuccessStoryDetails = () => {
                   <h4>Trending Stories </h4>
                 </div>
                 {trendingLoading ? (
-                  <CustomLoader size='samll' />
+                  <CustomLoader  />
                 ) : (
                   <div className='row'>
                     {trendingData?.map((items, index) => {

@@ -281,7 +281,7 @@ const GuidancePage = () => {
                                   )}
                               </li>
                               <li>
-                              <label>I am</label>
+                                <label>I am</label>
                                 <select
                                   id='age'
                                   name='age'
@@ -413,7 +413,11 @@ const GuidancePage = () => {
                             </ul>
                           </div>
                           <div className='sk-sendMain-btn'>
-                            <button type='submit' className='sk-btn-submit'>
+                            <button
+                              type='submit'
+                              className='sk-btn-submit'
+                              disabled={StudentIsSubmitting}
+                            >
                               {StudentIsSubmitting ? (
                                 <>
                                   Sending... <EastSharpIcon />
@@ -452,7 +456,7 @@ const GuidancePage = () => {
                                   )}
                               </li>
                               <li>
-                              <label>We have</label>
+                                <label>We have</label>
                                 <input
                                   type='text'
                                   id='students'
@@ -553,7 +557,11 @@ const GuidancePage = () => {
                             </ul>
                           </div>
                           <div className='sk-sendMain-btn'>
-                            <button type='submit' className='sk-btn-submit'>
+                            <button
+                              type='submit'
+                              className='sk-btn-submit'
+                              disabled={InstituteIsSubmitting}
+                            >
                               {InstituteIsSubmitting ? (
                                 <>
                                   Sending... <EastSharpIcon />
