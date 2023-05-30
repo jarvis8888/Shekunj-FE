@@ -187,15 +187,10 @@ const SuccessStroyWithHashtag = () => {
   );
 
   const renderAds = () => {
-    const adsToRender = [];
+    const adIndex = getNextAdIndex();
+    const ad = blogDetailsBoxAds[adIndex];
 
-    for (let i = 0; i < adCount; i++) {
-      const adIndex = getNextAdIndex();
-      const ad = blogDetailsBoxAds[adIndex];
-      adsToRender.push(renderAd(ad));
-    }
-
-    return adsToRender[getNextAdIndex()];
+    return renderAd(ad);
   };
 
   return (

@@ -232,15 +232,10 @@ const BlogDetails = () => {
   );
 
   const blogLeftRenderAds = () => {
-    const adsToRender = [];
+    const adIndex = getNextAdIndexBlogLeft();
+    const ad = blogLeft[adIndex];
 
-    for (let i = 0; i < blogsLeftadCount; i++) {
-      const adIndex = getNextAdIndexBlogLeft();
-      const ad = blogLeft[adIndex];
-      adsToRender.push(renderAd(ad));
-    }
-
-    return adsToRender[getNextAdIndexBlogLeft()];
+    return renderAd(ad);
   };
 
   return (

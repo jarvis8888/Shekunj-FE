@@ -267,15 +267,10 @@ function SuccessStory() {
   );
 
   const succesStoriesLeftRenderAds = () => {
-    const adsToRender = [];
+    const adIndex = getNextAdIndexSuccesStoriesLeft();
+    const ad = succesStoriesLeft[adIndex];
 
-    for (let i = 0; i < succesStoriesLeftadCount; i++) {
-      const adIndex = getNextAdIndexSuccesStoriesLeft();
-      const ad = succesStoriesLeft[adIndex];
-      adsToRender.push(renderAd(ad));
-    }
-
-    return adsToRender[getNextAdIndexSuccesStoriesLeft()];
+    return renderAd(ad);
   };
 
   const succesStoriesBoxadCount = succesStoriesBox.length; // Total number of ads
@@ -304,15 +299,10 @@ function SuccessStory() {
   );
 
   const succesStoriesBoxRenderAds = () => {
-    const adsToRender = [];
+    const BoxadIndex = getNextAdIndexSuccesStoriesBox();
+    const ad = succesStoriesBox[BoxadIndex];
 
-    for (let i = 0; i < succesStoriesBoxadCount; i++) {
-      const BoxadIndex = getNextAdIndexSuccesStoriesBox();
-      const ad = succesStoriesBox[BoxadIndex];
-      adsToRender.push(renderBoxAd(ad));
-    }
-
-    return adsToRender[getNextAdIndexSuccesStoriesBox()];
+    return renderBoxAd(ad);
   };
 
   useEffect(() => {
