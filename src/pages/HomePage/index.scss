@@ -930,7 +930,7 @@ img {
 .sk-blog-slider.sk-slide-arrow .swiper-button-prev {
   top: 0;
   right: 0;
-  left: 87.5%;
+  left: 89%;
   transform: translateY(0%);
 }
 .sk-blog-slider.sk-slide-arrow .swiper-button-next:after,
@@ -1058,6 +1058,11 @@ img {
 @media screen and (max-width: 1920px) {
   .sh-bannerContent-top {
     max-width: 600px;
+  }
+}
+@media screen and (min-width: 1250px) and (max-width: 1366px){
+  .sk-blog-slider.sk-slide-arrow .swiper-button-prev {
+    left: 88%;
   }
 }
 @media screen and (min-width: 991) and (max-width: 1250px) {
@@ -1188,7 +1193,7 @@ img {
   }
   .sh-bannerContent-top p {
     font-size: 14px;
-    margin: 10px 0;
+    margin: 10px 0 15px;
   }
   .sh-bannerContent-top button {
     font-weight: 500;
