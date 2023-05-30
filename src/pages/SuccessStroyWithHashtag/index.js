@@ -196,7 +196,7 @@ const SuccessStroyWithHashtag = () => {
               </h4>
 
               {loading ? (
-                <CustomLoader size='small' />
+                <CustomLoader />
               ) : (
                 <div className='row'>
                   {data?.map((items, index) => {

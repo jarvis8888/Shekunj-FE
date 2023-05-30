@@ -693,7 +693,7 @@ const EventDetails = () => {
                           },
                         )}
                       <div className='sk-eventForm-filed'>
-                        <button type='submit' className='sk-submit-btn'>
+                        <button type='submit' className='sk-submit-btn' disabled={isSubmitting}>
                           {" "}
                           Submit
                         </button>
