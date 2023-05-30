@@ -12,7 +12,7 @@ body{
 
 header {
   background: $mainColor;
-  box-shadow: 0px 8px 25px rgb(0 0 0 / 10%);
+  box-shadow: 8px 8px 20px 0 #FBF6F8;
 }
 
 .topbar {
@@ -250,9 +250,9 @@ header {
   // .other_head .btn.btn-bg-pink {
   //   margin-right: 15px;
   // }
-  header {
-    box-shadow: none;
-  }
+  // header {
+  //   box-shadow: none;
+  // }
 
   .other_head .MuiButton-text.MuiButton-root:hover {
     background: #ec498a;
