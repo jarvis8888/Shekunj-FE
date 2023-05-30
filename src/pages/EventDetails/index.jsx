@@ -60,7 +60,7 @@ import City from "../../assets/icons/city.png";
 import { Button, Typography, Modal, Box } from "@mui/material";
 import Cookies from "js-cookie";
 import useDeviceDetect from "../../hooks/useDeviceDetect";
-
+import CircleRoundedIcon from "@mui/icons-material/CircleRounded";
 import { ClipLoader } from "react-spinners";
 import x from "../../assets/images/Career/x.png";
 import CloseIcon from "@mui/icons-material/Close";
@@ -680,7 +680,7 @@ const EventDetails = () => {
                                     }}
                                   />
                                   <span>
-                                    <AccountBoxRoundedIcon />
+                                    <CircleRoundedIcon />
                                   </span>
                                 </div>
                                 {errors.extra_info_reg && (
@@ -693,7 +693,11 @@ const EventDetails = () => {
                           },
                         )}
                       <div className='sk-eventForm-filed'>
-                        <button type='submit' className='sk-submit-btn' disabled={isSubmitting}>
+                        <button
+                          type='submit'
+                          className='sk-submit-btn'
+                          disabled={isSubmitting}
+                        >
                           {" "}
                           Submit
                         </button>
