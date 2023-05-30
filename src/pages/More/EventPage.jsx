@@ -10,14 +10,13 @@ import { Header, Footer } from "../../components";
 import global from "../../assets/images/Success/global.png";
 import "./index.scss";
 import "../HomePage/index.scss";
-
 import "../Search/index.scss";
 // import Swiper core and required modules
-import SwiperCore, { Autoplay, Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import SwiperCore, { Autoplay, Navigation } from "swiper";
 // import "../../pages/responsive.scss";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
@@ -28,8 +27,6 @@ import Grid from "@mui/material/Grid";
 import eventimg1 from "../../assets/images/eventslide1.jpg";
 import eventimg2 from "../../assets/images/eventslide2.jpg";
 import eventimg4 from "../../assets/images/eventimg4.jpg";
-// import eventimg5 from "../../assets/images/eventimg5.jpg";
-// import eventadd from "../../assets/images/eventadd.jpg";
 import offlineicon from "../../assets/images/offline-icon.svg";
 import onlineicon from "../../assets/images/onlineicon.svg";
 import CardActions from "@mui/material/CardActions";
@@ -333,7 +330,10 @@ function EventPage() {
                 spaceBetween={24}
                 navigation={true}
                 loop={true}
-                autoplay={{ delay: 2000 }}
+                autoplay={{
+                   delay: 2000,
+                   disableOnInteraction: false,
+                }}
                 speed={1500}
                 modules={[Navigation, Autoplay]}
                 breakpoints={{
