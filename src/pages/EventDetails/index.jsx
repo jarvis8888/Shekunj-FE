@@ -32,7 +32,7 @@ import mail2 from "../../assets/icons/mail2.png";
 import phone from "../../assets/icons/phone2.png";
 import eventadd01 from "../../assets/images/eventdetailsadd.jpg";
 import eventadd02 from "../../assets/images/eventadd02.png";
-
+import CircleRoundedIcon from '@mui/icons-material/CircleRounded';
 import locationicon from "../../assets/images/location.svg";
 import eventemailsend from "../../assets/images/eventemailsend.svg";
 import facebookicon from "../../assets/images/facebook.svg";
@@ -705,7 +705,7 @@ const EventDetails = () => {
                                     }}
                                   />
                                   <span className="sk-icon-set">
-                                    <AccountBoxRoundedIcon />
+                                    <CircleRoundedIcon />
                                   </span>
                                 </div>
                                 {errors.extra_info_reg && (
