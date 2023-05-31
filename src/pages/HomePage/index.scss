@@ -1112,8 +1112,21 @@ img {
   .sk-hire-container {
     grid-template-columns: repeat(1, 1fr);
   }
-  .sk-gScheme-box ul {
-    grid-template-columns: repeat(3, 1fr);
+  .sk-gScheme-box ul{
+    display: flex;
+    overflow: auto;
+    gap:15px
+  }
+  .sk-blog-slider.sk-slide-arrow .swiper-button-prev{
+    left: 82%;
+  }
+  .sk-gScheme-box ul li {
+    flex: 300px 0 0;
+    max-width: 250px;
+    height: 160px;
+    padding: 20px;
+    min-width: 250px;
+    margin-bottom: 0;
   }
 }
 @media screen and (max-width: 480px) {

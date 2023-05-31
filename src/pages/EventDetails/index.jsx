@@ -32,7 +32,7 @@ import mail2 from "../../assets/icons/mail2.png";
 import phone from "../../assets/icons/phone2.png";
 import eventadd01 from "../../assets/images/eventdetailsadd.jpg";
 import eventadd02 from "../../assets/images/eventadd02.png";
-
+import CircleRoundedIcon from '@mui/icons-material/CircleRounded';
 import locationicon from "../../assets/images/location.svg";
 import eventemailsend from "../../assets/images/eventemailsend.svg";
 import facebookicon from "../../assets/images/facebook.svg";
@@ -63,7 +63,6 @@ import City from "../../assets/icons/city.png";
 import { Button, Typography, Modal, Box } from "@mui/material";
 import Cookies from "js-cookie";
 import useDeviceDetect from "../../hooks/useDeviceDetect";
-import CircleRoundedIcon from "@mui/icons-material/CircleRounded";
 import { ClipLoader } from "react-spinners";
 import x from "../../assets/images/Career/x.png";
 import CloseIcon from "@mui/icons-material/Close";
@@ -705,7 +704,7 @@ const EventDetails = () => {
                                     }}
                                   />
                                   <span className="sk-icon-set">
-                                    <AccountBoxRoundedIcon />
+                                    <CircleRoundedIcon />
                                   </span>
                                 </div>
                                 {errors.extra_info_reg && (
