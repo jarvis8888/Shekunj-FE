@@ -32,6 +32,9 @@ import mail2 from "../../assets/icons/mail2.png";
 import phone from "../../assets/icons/phone2.png";
 import eventadd01 from "../../assets/images/eventdetailsadd.jpg";
 import eventadd02 from "../../assets/images/eventadd02.png";
+
+import locationicon from "../../assets/images/location.svg";
+import eventemailsend from "../../assets/images/eventemailsend.svg";
 import facebookicon from "../../assets/images/facebook.svg";
 import linkedinicon from "../../assets/images/linkedin.svg";
 import twittericon from "../../assets/images/twitter.svg";
@@ -370,7 +373,7 @@ const EventDetails = () => {
         <section className='sk-eventDetails-sec'>
           <div className='container'>
             <div className='row'>
-              <div className='col-xl-9 col-md-8'>
+              <div className='col-xl-8 col-md-8'>
                 <div className='sk-event-imgcontent'>
                   <div className='sk-eventDetails-img'>
                     <img src={eventsDetails?.image} alt='events' />
@@ -561,7 +564,7 @@ const EventDetails = () => {
                   </div>
                 </div>
               </div>
-              <div class='col-xl-3 col-md-4'>
+              <div class='col-xl-4 col-md-4'>
                 <div className='sk-event-sidebar'>
                   <div className='sk-event-form'>
                     <h6>Registration Form</h6>
@@ -577,8 +580,8 @@ const EventDetails = () => {
                           className='form-control'
                           placeholder='Enter Full Name'
                         />
-                        <span>
-                          <AccountBoxRoundedIcon />
+                        <span className="sk-icon-set">
+                          <img src={gendericon} />
                         </span>
                       </div>
                       {errors.fullName && (
@@ -597,8 +600,8 @@ const EventDetails = () => {
                           className='form-control'
                           placeholder='Email Id'
                         />
-                        <span>
-                          <EmailIcon />
+                        <span className="sk-icon-set">
+                          <img src={eventemailsend} />
                         </span>
                       </div>
                       {errors.email && (
@@ -621,9 +624,14 @@ const EventDetails = () => {
                               </option>
                             ))}
                           </select>
-                          <span>
+                          <span className="sk-icon-set">
                             <img src={gendericon} />
                           </span>
+                          {errors.gender && (
+                          <span className='sk-error-message'>
+                            {errors.gender}
+                          </span>
+                        )}
                         </div>
                         <div className='sk-eventForm-filed'>
                           <input
@@ -636,20 +644,15 @@ const EventDetails = () => {
                             className='form-control'
                             placeholder='Location'
                           />
-                          <span>
-                            <FmdGoodRoundedIcon />
+                          <span className="sk-icon-set">
+                            <img src={locationicon}/>
                           </span>
-                        </div>
-                        {errors.gender && (
-                          <span className='sk-error-message'>
-                            {errors.gender}
-                          </span>
-                        )}
-                        {errors.location && (
+                          {errors.location && (
                           <span className='sk-error-message'>
                             {errors.location}
                           </span>
                         )}
+                        </div>
                       </ul>
 
                       {eventsDetails?.id &&
@@ -679,7 +682,7 @@ const EventDetails = () => {
                                       }));
                                     }}
                                   />
-                                  <span>
+                                  <span className="sk-icon-set">
                                     <AccountBoxRoundedIcon />
                                   </span>
                                 </div>

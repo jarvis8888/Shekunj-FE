@@ -338,6 +338,10 @@ header {
     visibility: hidden;
     z-index: 999999999;
   }
+  header{
+    box-shadow: none;
+    border-bottom: 1px solid #f8f8f8;
+  }
 }
 
 @media screen and (max-width: 767px) {

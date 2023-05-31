@@ -520,7 +520,7 @@ function SuccessStory() {
           <section className='sk-storyBoxMain-sec'>
             <div className='container'>
               <div className='row'>
-                <div className='col-xl-9 col-lg-9 col-md-9 featured-stories'>
+                <div className='col-xl-8 col-lg-8 col-md-8 featured-stories'>
                   <div className='title' ref={sectionRef}>
                     <img src={fire} alt='fire' width={28} />
                     <h4>Featured Stories </h4>
@@ -622,7 +622,7 @@ function SuccessStory() {
                     </button>
                   </div>
                 </div>
-                <div className='col-xl-3 col-md-3 col-lg-3 col-sm-12 ads'>
+                <div className='col-xl-4 col-md-4 col-lg-4 col-sm-12 ads'>
                   <HashtagAndCatagories
                     type='hashtag'
                     image={hash}

@@ -428,7 +428,7 @@ function HomePage() {
                             <p>{t("homePage.mainSlider.subHeading.1")}</p>
                             <div className='sk-thireChangescolor-btn'>
                               <button
-                                className='loadMore'
+                                className='sk-loadMore'
                                 type='button'
                                 onClick={() =>
                                   history.push(routingConstants.COURSES)
@@ -457,7 +457,7 @@ function HomePage() {
                             <p>{t("homePage.mainSlider.subHeading.2")}</p>
                             <div className='sk-thireChangescolor-btn'>
                               <button
-                                className='loadMore'
+                                className='sk-loadMore'
                                 type='button'
                                 onClick={() =>
                                   history.push(routingConstants.TOP_COLLEGES)
@@ -485,7 +485,7 @@ function HomePage() {
                             <p>{t("homePage.mainSlider.subHeading.3")}</p>
                             <div className='sk-thireChangescolor-btn'>
                               <button
-                                className='loadMore'
+                                className='sk-loadMore'
                                 type='button'
                                 onClick={() =>
                                   history.push(routingConstants.GUIDANCE_BOOK)
@@ -513,7 +513,7 @@ function HomePage() {
                             <p> {t("homePage.mainSlider.subHeading.4")}</p>
                             <div className='sk-thireChangescolor-btn'>
                               <button
-                                className='loadMore'
+                                className='sk-loadMore'
                                 type='button'
                                 onClick={() =>
                                   history.push(routingConstants.TOP_SCHOOLS)
@@ -780,7 +780,7 @@ function HomePage() {
                 <div className='col-xl-12'>
                   <div className='sk-testCourse-btn'>
                     <button
-                      className='loadMore'
+                      className='sk-loadMore'
                       onClick={() => history.push(routingConstants.COURSES)}
                     >
                       Explore More Courses
@@ -1052,7 +1052,7 @@ function HomePage() {
                 <div className='col-xl-12'>
                   <div className='sk-testCourse-btn'>
                     <button
-                      className='loadMore'
+                      className='sk-loadMore'
                       onClick={() => history.push(routingConstants.MOCKTEST)}
                     >
                       Explore More Test
@@ -1079,7 +1079,7 @@ function HomePage() {
                       target='_blank'
                       rel='noreferrer'
                     >
-                      <button className='loadMore'>
+                      <button className='sk-loadMore'>
                         View All Job Opportunities
                       </button>
                     </a>
@@ -1103,7 +1103,7 @@ function HomePage() {
                         target='_blank'
                         rel='noreferrer'
                       >
-                        <button className='loadMore'>Create Your CV Now</button>
+                        <button className='sk-loadMore'>Create Your CV Now</button>
                       </a>
                     </div>
                   </div>
@@ -1226,7 +1226,7 @@ function HomePage() {
                 <div className='col-xl-12'>
                   <div className='sk-testCourse-btn'>
                     <button
-                      className='loadMore'
+                      className='sk-loadMore'
                       onClick={() =>
                         history.push(routingConstants.GOVERNMENT_SCHEMES)
                       }
