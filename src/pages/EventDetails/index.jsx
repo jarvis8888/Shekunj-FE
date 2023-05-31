@@ -421,24 +421,35 @@ const EventDetails = () => {
                         <h6>Share this article</h6>
                         <ul>
                           <li>
-                            <FacebookShareButton url={currentUrl}>
+                            <FacebookShareButton
+                              url={currentUrl}
+                              title={eventsDetails?.title}
+                              imageUrl={eventsDetails?.image}
+                            >
                               <img src={facebookicon} alt='Facebook' />
                             </FacebookShareButton>
                           </li>
                           <li>
-                            <LinkedinShareButton url={currentUrl}>
+                            <LinkedinShareButton
+                              url={currentUrl}
+                              title={eventsDetails?.title}
+                              source='Shekunj'
+                              imageUrl={eventsDetails?.image}
+                            >
                               <img src={linkedinicon} alt='LinkedIn' />
                             </LinkedinShareButton>
                           </li>
                           <li>
                             <TwitterShareButton
                               url={currentUrl}
+                              title={eventsDetails?.title}
+                              imageUrl={eventsDetails?.image}
                               image={eventsDetails?.image}
                             >
                               <img src={twittericon} alt='Twitter' />
                             </TwitterShareButton>
                           </li>
-                          <li>
+                          {/* <li>
                             <PinterestShareButton
                               url={currentUrl}
                               media={eventsDetails?.image}
@@ -453,7 +464,7 @@ const EventDetails = () => {
                             >
                               <img src={whatsapp} alt='Pinterest' />
                             </WhatsappShareButton>
-                          </li>
+                          </li> */}
                         </ul>
                       </div>
                     </div>
@@ -502,39 +513,50 @@ const EventDetails = () => {
                       <h6>Share this article</h6>
                       <ul>
                         <li>
-                          <FacebookShareButton url={currentUrl}>
+                          <FacebookShareButton
+                            url={currentUrl}
+                            title={eventsDetails?.title}
+                            imageUrl={eventsDetails?.image}
+                          >
                             <img src={facebookicon} alt='Facebook' />
                           </FacebookShareButton>
                         </li>
                         <li>
-                          <LinkedinShareButton url={currentUrl}>
+                          <LinkedinShareButton
+                            url={currentUrl}
+                            title={eventsDetails?.title}
+                            source='Shekunj'
+                            imageUrl={eventsDetails?.image}
+                          >
                             <img src={linkedinicon} alt='LinkedIn' />
                           </LinkedinShareButton>
                         </li>
                         <li>
                           <TwitterShareButton
                             url={currentUrl}
+                            title={eventsDetails?.title}
+                            imageUrl={eventsDetails?.image}
                             image={eventsDetails?.image}
                           >
                             <img src={twittericon} alt='Twitter' />
                           </TwitterShareButton>
                         </li>
-                        <li>
-                          <PinterestShareButton
-                            url={currentUrl}
-                            media={eventsDetails?.image}
-                          >
-                            <img src={pintresticon} alt='Pinterest' />
-                          </PinterestShareButton>
-                        </li>
-                        <li>
-                          <WhatsappShareButton
-                            url={currentUrl}
-                            // media={successStoriesDetails?.image}
-                          >
-                            <img src={whatsapp} alt='Pinterest' />
-                          </WhatsappShareButton>
-                        </li>
+                        {/* <li>
+                            <PinterestShareButton
+                              url={currentUrl}
+                              media={eventsDetails?.image}
+                            >
+                              <img src={pintresticon} alt='Pinterest' />
+                            </PinterestShareButton>
+                          </li>
+                          <li>
+                            <WhatsappShareButton
+                              url={currentUrl}
+                              // media={successStoriesDetails?.image}
+                            >
+                              <img src={whatsapp} alt='Pinterest' />
+                            </WhatsappShareButton>
+                          </li> */}
                       </ul>
                     </div>
                     <div className='sk-event-add'>

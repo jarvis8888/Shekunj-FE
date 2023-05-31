@@ -522,7 +522,7 @@ function EventPage() {
                 })
               ) : (
                 <div className='noData'>
-                  <NoDataFound />
+                  <NoDataFound  />
                 </div>
               )}
               {selectedButton == "all" && (
