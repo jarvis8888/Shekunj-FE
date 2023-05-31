@@ -719,6 +719,17 @@ img {
   justify-content: center;
   align-items: center;
 }
+.sk-loadMore {
+  background-color: #202020;
+  padding: 13px 30px;
+  border-radius: 8px;
+  color: #fff;
+  font-weight: 600;
+  display: inline-block;
+  transition: all 0.3s;
+  height: 50px;
+  width: max-content;
+}
 .loadMore {
   background-color: #202020;
   padding: 13px 20px;
@@ -769,11 +780,11 @@ img {
 .sk-vectorImg-inner {
   flex: 180px 0 0;
 }
-.sk-thireChangescolor-btn .loadMore {
+.sk-thireChangescolor-btn .sk-loadMore {
   background: #d3317d;
   transition: 0.3s;
 }
-.sk-thireChangescolor-btn .loadMore:hover {
+.sk-thireChangescolor-btn .sk-loadMore:hover {
   background: #202020;
 }
 .sk-hireStory-box .sk-hireSotory-innerbox h3 {
@@ -1206,7 +1217,7 @@ img {
     padding: 8px 15px;
     height: 40px;
   }
-  .loadMore {
+  .sk-loadMore {
     height: 40px;
     font-weight: 500;
     font-size: 14px;

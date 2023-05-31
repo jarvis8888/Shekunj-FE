@@ -31,6 +31,7 @@ import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import useDeviceDetect from "../../hooks/useDeviceDetect";
 import Pagination from "../../components/Pagination";
+import ComingSoon from "../../components/ComingSoon";
 
 const CareerPage = () => {
   // const [loading, setLoading] = useState(false);
@@ -50,26 +51,33 @@ const CareerPage = () => {
   const { lan } = useSelector((state) => state.languageReducer);
   const { t } = useTranslation();
   const [offset, setOffset] = useState(0);
-  const [flag, setFlag] = useState(true)
-  const pageLimit = 10
+  const [flag, setFlag] = useState(true);
+  const pageLimit = 10;
 
   useEffect(() => {
     dispatch(reSetFilterValue());
 
-    navigator.geolocation.getCurrentPosition(async function (position, values) {
-      const latitude = position?.coords?.latitude;
-      const longitude = position?.coords?.longitude;
+    navigator.geolocation.getCurrentPosition(
+      async function (position, values) {
+        const latitude = position?.coords?.latitude;
+        const longitude = position?.coords?.longitude;
 
-      dispatch(getTopCollages({ filter: false, latitude, longitude, pageLimit, offset }));
-    },
+        dispatch(
+          getTopCollages({
+            filter: false,
+            latitude,
+            longitude,
+            pageLimit,
+            offset,
+          }),
+        );
+      },
       function (error) {
         console.error("Error Code = " + error.code + " - " + error.message);
         dispatch(getTopCollages(false));
-      }
-    )
+      },
+    );
   }, []);
-
-
 
   // const transformPrice = (price) => {
   //   let nf = new Intl.NumberFormat("en-US");
@@ -134,99 +142,94 @@ const CareerPage = () => {
     });
   };
 
-
   // >>>>>>>>>>>>>>>>>>latest code change>>>>>>>>>>>>>>>>>>
   const findAdds = (addslen, len) => {
-    let x = 0
+    let x = 0;
 
-    let arr = []
+    let arr = [];
     for (let i = 0; i < len; i++) {
       let y;
       if (x + 1 >= addslen) {
-        y = 0
+        y = 0;
       } else {
         y = x + 1;
       }
       if (x >= addslen) {
-        x = 0
-        y = 1
+        x = 0;
+        y = 1;
       }
 
       arr.push([x, y]);
       if (x + 1 >= addslen) {
-        x = 1
+        x = 1;
       } else {
         x += 2;
       }
-
     }
-    return arr
-  }
+    return arr;
+  };
   useEffect(() => {
-    if (topCollages?.collage_list?.results.length > 0 && collegeBoxAds.length && flag) {
-      const addslen = collegeBoxAds.length
+    if (
+      topCollages?.collage_list?.results.length > 0 &&
+      collegeBoxAds.length &&
+      flag
+    ) {
+      const addslen = collegeBoxAds.length;
       let len = topCollages?.collage_list?.count / pageLimit;
-      len = Math.trunc(len)
+      len = Math.trunc(len);
 
-
-      const adds_arr = findAdds(addslen, len)
-      sessionStorage.setItem('current_adds', JSON.stringify({ addIndex: 0, addsData: adds_arr }));
-      setFlag(false)
+      const adds_arr = findAdds(addslen, len);
+      sessionStorage.setItem(
+        "current_adds",
+        JSON.stringify({ addIndex: 0, addsData: adds_arr }),
+      );
+      setFlag(false);
     }
-  }, [topCollages, collegeBoxAds])
+  }, [topCollages, collegeBoxAds]);
   useEffect(() => {
-    dispatch(adsList())
-    navigator.geolocation.getCurrentPosition(async function (position, values) {
-      const latitude = position?.coords?.latitude;
-      const longitude = position?.coords?.longitude;
-      axios
-        .get(
-          `/private_adds/private_add?latitude=${latitude}&longitude=${longitude}`,
-        )
-        .then((response) => {
-          if (response && response.data.results.length > 0) {
-            let filterArray1 = response.data.results.filter((item, index) => {
-
-              return item.image_type == "top_college_box";
-
-            });
-            setCollegeBoxAds(filterArray1);
-
-            // console.log("filterArray1top_college_box",filterArray1)
-            let filterArray2 = response.data.results.filter((item, index) => {
-
-              return item.image_type == "top_college_banner";
-
-            });
-            setCollegeBannerAds(filterArray2);
-          }
-        })
-    },
-      function (error) {
-        console.error("Error Code = " + error.code + " - " + error.message);
-        // alert("Your location is blocked")    
+    dispatch(adsList());
+    navigator.geolocation.getCurrentPosition(
+      async function (position, values) {
+        const latitude = position?.coords?.latitude;
+        const longitude = position?.coords?.longitude;
         axios
           .get(
-            `/private_adds/private_add`,
+            `/private_adds/private_add?latitude=${latitude}&longitude=${longitude}`,
           )
           .then((response) => {
             if (response && response.data.results.length > 0) {
               let filterArray1 = response.data.results.filter((item, index) => {
                 return item.image_type == "top_college_box";
               });
+              setCollegeBoxAds(filterArray1);
 
-
-              // sessionStorage.setItem('current_adds', JSON.stringify([0, 1]));
+              // console.log("filterArray1top_college_box",filterArray1)
               let filterArray2 = response.data.results.filter((item, index) => {
                 return item.image_type == "top_college_banner";
               });
               setCollegeBannerAds(filterArray2);
             }
-          })
-      }
-    )
-  }, [])
+          });
+      },
+      function (error) {
+        console.error("Error Code = " + error.code + " - " + error.message);
+        // alert("Your location is blocked")
+        axios.get(`/private_adds/private_add`).then((response) => {
+          if (response && response.data.results.length > 0) {
+            let filterArray1 = response.data.results.filter((item, index) => {
+              return item.image_type == "top_college_box";
+            });
 
+            // sessionStorage.setItem('current_adds', JSON.stringify([0, 1]));
+            let filterArray2 = response.data.results.filter((item, index) => {
+              return item.image_type == "top_college_banner";
+            });
+            setCollegeBannerAds(filterArray2);
+          }
+        });
+      },
+    );
+  }, []);
 
   // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Latest code >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
   // useEffect(() => {
@@ -238,7 +241,7 @@ const CareerPage = () => {
   //     let params = {
   //       latitude: latitude.toString(),
   //       longitude: longitude.toString(),
-  //     } 
+  //     }
   //     axios
   //     .get(
   //       `/private_adds/private_add?latitude=${latitude}&longitude=${longitude}`,
@@ -266,7 +269,7 @@ const CareerPage = () => {
   //   } ,
   //   function(error) {
   //     console.error("Error Code = " + error.code + " - " + error.message);
-  //     // alert("Your location is blocked")    
+  //     // alert("Your location is blocked")
   //   axios
   //   .get(
   //     `/private_adds/private_add`,
@@ -294,13 +297,16 @@ const CareerPage = () => {
   // )
   // },[])
 
-
   // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-  const page_adds = JSON.parse(sessionStorage.getItem('current_adds'))
+  const page_adds = JSON.parse(sessionStorage.getItem("current_adds"));
   const [searchInput, setSearchInput] = useState("");
   const SearchFilterHandle = (e) => {
     e.preventDefault();
-    dispatch(getTopCollages({ search: searchInput !== "" ? `&search=${searchInput}` : "" }));
+    dispatch(
+      getTopCollages({
+        search: searchInput !== "" ? `&search=${searchInput}` : "",
+      }),
+    );
   };
   const handleResetSearch = () => {
     dispatch(getTopCollages({ filter: true, search: "" }));
@@ -311,405 +317,64 @@ const CareerPage = () => {
       const latitude = position?.coords?.latitude;
       const longitude = position?.coords?.longitude;
 
-      dispatch(getTopCollages({ filter: true, latitude, longitude, pageLimit, offset: offset - 10, search: searchInput !== "" ? `&search=${searchInput}` : "" }));
+      dispatch(
+        getTopCollages({
+          filter: true,
+          latitude,
+          longitude,
+          pageLimit,
+          offset: offset - 10,
+          search: searchInput !== "" ? `&search=${searchInput}` : "",
+        }),
+      );
     });
 
     if (page_adds) {
       setTimeout(() => {
-        sessionStorage.setItem('current_adds', JSON.stringify({ ...page_adds, addIndex: page_adds?.addIndex - 1 }))
+        sessionStorage.setItem(
+          "current_adds",
+          JSON.stringify({ ...page_adds, addIndex: page_adds?.addIndex - 1 }),
+        );
       }, 500);
-
     }
 
-    setOffset(offset - 10)
+    setOffset(offset - 10);
     window.scrollTo(0, 1000);
-
   };
 
-
   const paginationNext = () => {
-
     navigator.geolocation.getCurrentPosition(async function (position, values) {
       const latitude = position?.coords?.latitude;
       const longitude = position?.coords?.longitude;
 
-      dispatch(getTopCollages({ filter: true, latitude, longitude, pageLimit, offset: offset + 10, search: searchInput !== "" ? `&search=${searchInput}` : "" }));
+      dispatch(
+        getTopCollages({
+          filter: true,
+          latitude,
+          longitude,
+          pageLimit,
+          offset: offset + 10,
+          search: searchInput !== "" ? `&search=${searchInput}` : "",
+        }),
+      );
     });
     if (page_adds) {
-
       setTimeout(() => {
-        sessionStorage.setItem('current_adds', JSON.stringify({ ...page_adds, addIndex: page_adds?.addIndex + 1 }))
+        sessionStorage.setItem(
+          "current_adds",
+          JSON.stringify({ ...page_adds, addIndex: page_adds?.addIndex + 1 }),
+        );
       }, 500);
-
     }
 
     setOffset(offset + 10);
     window.scrollTo(0, 1000);
-
   };
 
-  console.log(page_adds?.addsData[page_adds?.addIndex][0])
+  console.log(page_adds?.addsData[page_adds?.addIndex][0]);
   return (
     <div>
-      <SEO title={`List of Top Colleges in India & Apply - Shekunj.com`}
-        link={`https://www.shekunj.com/top-colleges-in-india`}
-        description={` Find list of top Colleges and Universities in
-  India along with the courses offered and
-  detailed information.`}
-        keywords={`top colleges in india
-  top educational institutions in india
-  top colleges in madhya pradesh
-  best universities in india
-  top women colleges in india`} />
-      <Header loginPage={true} page='career' subPage='colleges' />
-
-      <Container>
-        <Row>
-          <div className='col-md-12'>
-            {collegeBannerAds.length > 0 && (
-              <div
-                className='add_college_cover'
-                onClick={() => addEmail(collegeBannerAds[0]?.add_email)}
-              >
-                <a href={collegeBannerAds[0]?.url_adds} target='_blank' rel="noreferrer">
-                  {detect.isMobile ? (collegeBannerAds[0]?.image_mobile && (
-                    <img src={collegeBannerAds[0]?.image_mobile} alt='Image' className=' google_add_college' />)) :
-                    (collegeBannerAds[0]?.image && (
-                      <img src={collegeBannerAds[0]?.image} alt='Image' className=' google_add_college' />))
-                  }
-                </a>
-              </div>
-            )}
-          </div>
-        </Row>
-      </Container>
-
-      <div className='mainDiv_college'>
-        <Container>
-          <div className='career_tit noselect'>
-            <Row>
-              <Col md={6} xs={12}>
-                <h1>{t("careerTopColleges.heading.1")}</h1>
-                <p>
-                  {t("careerTopColleges.other.2")}{" "}
-                  {topCollages?.collage_list?.results?.length || 0}{" "}
-                  {t("careerTopColleges.other.3")}
-                </p>
-              </Col>
-              <Col md={6} xs={12}>
-                <div className='input-group searchSection'>
-                  <form onSubmit={SearchFilterHandle}>
-                    <div className='d-flex'>
-                      <div className='wraper '>
-                        <input
-                          type='text'
-                          onChange={(e) => setSearchInput(e.target.value)}
-                          value={searchInput}
-                          name='searchInput'
-                          class='form-control searchInput'
-                          placeholder='Search here...'
-                        />
-                      </div>
-                      <div className='d-flex'>
-                        <button type='submit' className='searchBtn1'>
-                          <img
-                            src={Search}
-                            alt='Image'
-                            className='searchIcon'
-                          />
-                        </button>
-                        <img
-                          src={Cross}
-                          alt='Image'
-                          className='searchclose'
-                          onClick={() => handleResetSearch()}
-                        />
-                      </div>
-                    </div>
-                  </form>
-                </div>
-              </Col>
-            </Row>
-          </div>
-
-          <Row>
-            <Col md={4} xs={12}>
-              <div className='desktop_view_city_selct'>
-                <AccordionComponent
-                  type='colleges'
-                  //stream={STREAM}
-                  offset={offset}
-                  limit={pageLimit}
-                  stream={courseSector}
-                  ownership={ownership}
-                  state={STATE}
-                  city={CITY}
-                />
-              </div>
-
-              {/* mobile menu */}
-              <div className='mobile_view_city_selct'>
-                <Accordion>
-                  <AccordionSummary
-                    expandIcon={<ExpandMoreIcon />}
-                    aria-controls='panel1a-content'
-                    id='panel1a-header'
-                  >
-                    <img src={logo} alt='Image' className='filter_city_123' />
-                  </AccordionSummary>
-                  <AccordionDetails>
-                    <Typography>
-                      <div>
-                        <AccordionComponent
-                          type='colleges'
-                          //stream={STREAM}
-                          offset={offset}
-                          limit={pageLimit}
-                          stream={courseSector}
-                          ownership={ownership}
-                          state={STATE}
-                          city={CITY}
-                        />
-                      </div>
-                    </Typography>
-                  </AccordionDetails>
-                </Accordion>
-              </div>
-            </Col>
-
-            <Col
-              md={8}
-              xs={12}
-              className='top_collages_add_g top_collages_list_filter123'
-            >
-              {topCollages?.collage_list?.results?.length > 0 ? (
-                topCollages.collage_list?.results?.map(
-                  (c, index) =>
-                    c &&
-                    c.name && (
-                      <>
-                        {/* {console.log("c",c)}
-                           {loading ? (
-                      <div className="loader-container">
-      	              <div className="spinner"></div>
-                      </div>
-                      ) : ( */}
-
-                        <div
-                          className='career_box noselect'
-                          style={{ height: "auto" }}
-                          key={c?.id}
-                        >
-                          <Row>
-                            <Col md={3} xs={12}>
-                              <div className='college_logo_box'>
-                                <Link
-                                  to={routingConstants.TOP_COLLEGES + c.id}
-                                  className='col-md-6'
-                                  key={c?.id}
-                                >
-                                  <div className=' career_logo_box'>
-                                    <img
-                                      src={transformImg(c?.logo)}
-                                      alt='...'
-                                      className='career_logo_img'
-                                    />
-                                  </div>
-                                </Link>
-                              </div>
-                            </Col>
-
-                            <Col md={9} xs={12}>
-                              <div className='top_col_content'>
-                                <h3>
-                                  <Link
-                                    to={routingConstants.TOP_COLLEGES + c.id}
-                                    className=''
-                                    key={c?.id}
-                                  >
-                                    {c && c.name}
-                                  </Link>
-                                </h3>
-                                <ul class='list-inline list-unstyled'>
-                                  {c.collage_type && (
-                                    <li>
-                                      <span
-                                        style={{ textTransform: "capitalize" }}
-                                      >
-                                        {c && c.collage_type}
-                                      </span>
-                                    </li>
-                                  )}
-
-                                  {c.collage_type && <li>|</li>}
-
-                                  {c.established_year && (
-                                    <li>
-                                      <span>
-                                        {t("careerTopColleges.other.10")}
-                                      </span>{" "}
-                                      : {c && c.established_year}
-                                    </li>
-                                  )}
-
-                                  {c.established_year && <li>|</li>}
-                                  {c.gender_intech && (
-                                    <li>
-                                      <span>
-                                        {t("careerTopColleges.other.12")}
-                                      </span>{" "}
-                                      : {c && c.gender_intech}
-                                    </li>
-                                  )}
-                                </ul>
-
-                                <ul>
-                                  <li>
-                                    <span>
-                                      {t("careerTopColleges.other.13")}{"  "}
-                                    </span>
-                                    : {c && c.city} {c && c.state}
-                                  </li>
-                                </ul>
-
-                                <ul className='mt-1'>
-                                  {c.contact_no && (
-                                    <li>
-                                      <p>
-                                        <span>
-                                          {t("careerTopColleges.other.4")}
-                                        </span>{" "}
-                                        : {c && c.contact_no}
-                                      </p>
-                                    </li>
-                                  )}
-
-                                  {c.website && (
-                                    <li>
-                                      <span>
-                                        {t("careerTopColleges.other.5")}
-                                      </span>
-                                      :{" "}
-                                      {/* <Link
-                                        to={{ pathname: c?.website }}
-                                        target='_blank'
-                                        rel='noreferrer'>
-                                        {c && c.website}
-                                      </Link> */}
-                                      <a
-                                        rel='noreferrer'
-                                        target='_blank'
-                                        href={`https:/${c?.website}`}
-                                      >
-                                        {c && c?.website}
-                                      </a>
-                                    </li>
-                                  )}
-                                </ul>
-                              </div>
-                            </Col>
-                          </Row>
-                        </div>
-
-                        {collegeBoxAds.length > 0 && (
-                          <>
-                            {index === 3 && collegeBoxAds.length > 0 && (
-                              <div
-                                className='top_clg_add_img'
-                                onClick={() =>
-                                  addEmail(collegeBoxAds[page_adds?.addsData[page_adds?.addIndex][0]]?.add_email)
-                                }
-                              >
-                                <a
-                                  href={collegeBoxAds[page_adds?.addsData[page_adds?.addIndex][0]]?.url_adds}
-                                  target='_blank' rel="noreferrer"
-                                >
-                                  {detect.isMobile ?
-                                    (collegeBoxAds[page_adds?.addsData[page_adds?.addIndex][0]]?.image_mobile && (
-                                      <img src={collegeBoxAds[page_adds?.addsData[page_adds?.addIndex][0]]?.image_mobile} alt='Image' className='college_ads_box' />
-                                    ))
-                                    :
-                                    (collegeBoxAds[page_adds?.addsData[page_adds?.addIndex][0]]?.image && (
-                                      <img src={collegeBoxAds[page_adds?.addsData[page_adds?.addIndex][0]]?.image} alt='Image' className='college_ads_box' />
-                                    ))}
-                                </a>
-                              </div>
-                            )}
-                            {index === 7 && collegeBoxAds.length > 0 && (
-                              <div
-                                className='top_clg_add_img'
-                                onClick={() =>
-                                  addEmail(collegeBoxAds[page_adds?.addsData[page_adds?.addIndex][1]]?.add_email)
-                                }
-                              >
-                                <a
-                                  href={collegeBoxAds[page_adds?.addsData[page_adds?.addIndex][1]]?.url_adds}
-                                  target='_blank' rel="noreferrer"
-                                >
-                                  {detect.isMobile ?
-                                    (collegeBoxAds[page_adds?.addsData[page_adds?.addIndex][1]]?.image_mobile && (
-                                      <img src={collegeBoxAds[page_adds?.addsData[page_adds?.addIndex][1]]?.image_mobile} alt='Image' className='college_ads_box' />
-                                    ))
-                                    :
-                                    (collegeBoxAds[page_adds?.addsData[page_adds?.addIndex][1]]?.image && (
-                                      <img src={collegeBoxAds[page_adds?.addsData[page_adds?.addIndex][1]]?.image} alt='Image' className='college_ads_box' />
-                                    ))}
-                                </a>
-                              </div>
-                            )}
-                          </>
-                        )}
-                      </>
-                    ),
-                )
-              ) : //  (
-                //   <div className='text-center'>{t("common.noDataFound")}</div>
-                // )
-                //  (
-                //   <div className="loader-container">
-                //     <div className="spinner"></div>
-                //   </div>
-                // )
-
-                // (
-                //   <ContentLoader viewBox="0 0 380 70">
-                //     {/* Only SVG shapes */}
-                //     <rect x="0" y="0" rx="5" ry="5" width="70" height="70" />
-                //     <rect x="80" y="17" rx="4" ry="4" width="300" height="13" />
-                //     <rect x="80" y="40" rx="3" ry="3" width="250" height="10" />
-                //   </ContentLoader>
-                // )
-                isLoading ? (
-                  <div>
-                    <h4>Loading...</h4>
-                    <ClipLoader className='loader' color='#ec498a' />
-                  </div>
-                ) : (
-                  <div className='text-center'>{t("common.noDataFound")}</div>
-                )}
-              {topCollages?.collage_list?.count > pageLimit && (
-                <Pagination
-                  finalCount={topCollages?.collage_list?.count / pageLimit}
-                  nextPage={() => {
-                    if (topCollages?.collage_list?.next) {
-                      paginationNext()
-                    }
-
-                  }
-                  }
-                  backPage={() => {
-                    if (topCollages?.collage_list?.previous) {
-                      paginationBack()
-                    }
-
-                  }}
-                />
-              )}
-            </Col>
-          </Row>
-        </Container>
-      </div>
-      <Footer loginPage={false} />
+      <ComingSoon />
     </div>
   );
 };

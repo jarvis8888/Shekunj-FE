@@ -284,7 +284,7 @@ const SuccessStoryDetails = () => {
         <section className='sk-storyDetail-sec'>
           <div className='container'>
             <div className='row'>
-              <div className='col-xl-9 col-md-8'>
+              <div className='col-xl-8 col-lg-8 col-md-8'>
                 <img
                   src={successStoriesDetails?.image}
                   alt='Story'
@@ -318,21 +318,34 @@ const SuccessStoryDetails = () => {
                     <h6>Share this article</h6>
                     <ul>
                       <li>
-                        <FacebookShareButton url={currentUrl}>
+                        <FacebookShareButton
+                          url={currentUrl}
+                          title={successStoriesDetails?.title}
+                          imageUrl={successStoriesDetails?.image}
+                        >
                           <img src={facebookicon} alt='Facebook' />
                         </FacebookShareButton>
                       </li>
                       <li>
-                        <LinkedinShareButton url={currentUrl}>
+                        <LinkedinShareButton
+                          url={currentUrl}
+                          title={successStoriesDetails?.title}
+                          source='Shekunj'
+                          imageUrl={successStoriesDetails?.image}
+                        >
                           <img src={linkedinicon} alt='LinkedIn' />
                         </LinkedinShareButton>
                       </li>
                       <li>
-                        <TwitterShareButton url={currentUrl}>
+                        <TwitterShareButton
+                          url={currentUrl}
+                          title={successStoriesDetails?.title}
+                          imageUrl={successStoriesDetails?.image}
+                        >
                           <img src={twittericon} alt='Twitter' />
                         </TwitterShareButton>
                       </li>
-                      <li>
+                      {/* <li>
                         <PinterestShareButton
                           url={currentUrl}
                           media={successStoriesDetails?.image}
@@ -348,7 +361,7 @@ const SuccessStoryDetails = () => {
                         >
                           <img src={whatsapp} alt='Pinterest' />
                         </WhatsappShareButton>
-                      </li>
+                      </li> */}
                     </ul>
                   </div>
                 </div>
@@ -374,36 +387,49 @@ const SuccessStoryDetails = () => {
                       <h6 className='text-left pb-0'>Share this article</h6>
                       <ul>
                         <li>
-                          <FacebookShareButton url={currentUrl}>
+                          <FacebookShareButton
+                            url={currentUrl}
+                            title={successStoriesDetails?.title}
+                            imageUrl={successStoriesDetails?.image}
+                          >
                             <img src={facebookicon} alt='Facebook' />
                           </FacebookShareButton>
                         </li>
                         <li>
-                          <LinkedinShareButton url={currentUrl}>
+                          <LinkedinShareButton
+                            url={currentUrl}
+                            title={successStoriesDetails?.title}
+                            source='Shekunj'
+                            imageUrl={successStoriesDetails?.image}
+                          >
                             <img src={linkedinicon} alt='LinkedIn' />
                           </LinkedinShareButton>
                         </li>
                         <li>
-                          <TwitterShareButton url={currentUrl}>
+                          <TwitterShareButton
+                            url={currentUrl}
+                            title={successStoriesDetails?.title}
+                            imageUrl={successStoriesDetails?.image}
+                          >
                             <img src={twittericon} alt='Twitter' />
                           </TwitterShareButton>
                         </li>
-                        <li>
+                        {/* <li>
                           <PinterestShareButton
                             url={currentUrl}
                             media={successStoriesDetails?.image}
                           >
                             <img src={pintresticon} alt='Pinterest' />
                           </PinterestShareButton>
-                        </li>
-                        <li>
+                        </li> */}
+                        {/* <li>
                           <WhatsappShareButton
                             url={currentUrl}
                             // media={successStoriesDetails?.image}
                           >
                             <img src={whatsapp} alt='Pinterest' />
                           </WhatsappShareButton>
-                        </li>
+                        </li> */}
                       </ul>
                     </div>
                   </div>
@@ -451,7 +477,7 @@ const SuccessStoryDetails = () => {
                   <h4>Trending Stories </h4>
                 </div>
                 {trendingLoading ? (
-                  <CustomLoader  />
+                  <CustomLoader />
                 ) : (
                   <div className='row'>
                     {trendingData?.map((items, index) => {
@@ -498,7 +524,7 @@ const SuccessStoryDetails = () => {
                   </button>
                 </div>
               </div>
-              <div className='col-xl-3 col-md-4'>
+              <div className='col-xl-4 col-lg-4 col-md-4'>
                 <HashtagAndCatagories
                   type='hashtag'
                   image={hash}

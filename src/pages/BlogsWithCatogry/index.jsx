@@ -164,7 +164,7 @@ const BlogWithCatogry = () => {
       <section>
         <div className='container Hashtag_container'>
           <div className='row'>
-            <div className='col-xl-9 col-md-8 Hashtag_container_cards sk-blog-detail-wa'>
+            <div className='col-xl-8 col-lg-8 col-md-8 Hashtag_container_cards sk-blog-detail-wa'>
               <h6 className='Hashtag_container_title'>
                 {state ? `${currentSearch}` : "NA"}
               </h6>
@@ -202,7 +202,7 @@ const BlogWithCatogry = () => {
                 </div>
               )}
             </div>
-            <div div className='col-xl-3 col-md-4'>
+            <div div className='col-xl-4 col-lg-4 col-md-4'>
               <HashtagAndCatagories
                 image={catagorie}
                 title={`Categories`}
