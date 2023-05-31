@@ -98,8 +98,8 @@ img {
     margin-bottom: 10px;
 
     span {
-      margin-right: 5px;
-      font-size: 12px;
+      margin-right: 10px;
+      font-size: 13px;
       color: #555;
       display: flex;
       justify-content: center;
@@ -142,7 +142,7 @@ img {
       -webkit-line-clamp: 1;
       -webkit-box-orient: vertical;
       svg {
-        font-size: 16px;
+        font-size: 18px;
         margin-right: 5px;
         vertical-align: top;
       }
@@ -353,10 +353,20 @@ img {
 .sk-blogDivider-bottom:last-child {
   border-bottom: 0;
 }
-
-@media screen and (min-width: 320px) and (max-width: 1400px) {
+@media screen and (min-width: 1400px) and (max-width: 3500px) {
+  .card__button {
+    font-size: 14px;
+  }
+  .card__button svg{
+    font-size: 20px;
+  }
+}
+@media screen and (min-width: 320px) and (max-width: 1399px) {
   .card__button {
     font-size: 12px;
+  }
+  .card__bottom span svg{
+    font-size: 14px;
   }
 }
 @media screen and (min-width: 320px) and (max-width: 1350px) {

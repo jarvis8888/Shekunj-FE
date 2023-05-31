@@ -199,7 +199,7 @@ const SuccessStroyWithHashtag = () => {
       <section>
         <div className='container'>
           <div className='row'>
-            <div className='col-xl-9 col-md-8 sk-blog-detail-wa'>
+            <div className='col-xl-8 col-lg-8 col-md-8 sk-blog-detail-wa'>
               <div className='Hashtag_container_title'>
                 <span className='catagories-search'>
                   {state ? `${currentSearch}` : null}{" "}
@@ -242,7 +242,7 @@ const SuccessStroyWithHashtag = () => {
                 </div>
               )}
             </div>
-            <div className='col-xl-3 col-md-4'>
+            <div className='col-xl-4 col-lg-4 col-md-4'>
               <HashtagAndCatagories
                 image={catagorie}
                 title={`Categories`}

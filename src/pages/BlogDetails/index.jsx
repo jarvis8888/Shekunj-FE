@@ -250,7 +250,7 @@ const BlogDetails = () => {
         <section className='sk-block-details'>
           <div className='container'>
             <div className='row'>
-              <div className='col-xl-9 col-md-8'>
+              <div className='col-xl-8 col-lg-8 col-md-8'>
                 <img src={blogs?.image} alt='Story' className='img' />
                 <div className='story-bottom'>
                   <div className='hashtags-container'>
@@ -438,7 +438,7 @@ const BlogDetails = () => {
                   </div>
                 </div>
               </div>
-              <div className='col-xl-3 col-md-4'>
+              <div className='col-xl-4 col-lg-4 col-md-4'>
                 <HashtagAndCatagories
                   image={catagorie}
                   title={`Categories`}

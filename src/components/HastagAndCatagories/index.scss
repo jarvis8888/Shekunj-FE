@@ -59,7 +59,7 @@
 .HashtagAndCatagoriesTitle {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 10px 15px;
   padding: 0px 0 18px;
   font-style: italic;
 }
@@ -82,6 +82,10 @@
   border-radius: 8px;
   padding:7.5px 12px;
   cursor: pointer;
+  transition: 0.3s;
+}
+.hashtage-item:hover {
+  box-shadow: 3px 3px 8px 0px #00000026;
 }
 
 .SocialMediaIconscontainer {
