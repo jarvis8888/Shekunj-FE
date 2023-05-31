@@ -274,21 +274,34 @@ const BlogDetails = () => {
                     <h6>Share this article</h6>
                     <ul>
                       <li>
-                        <FacebookShareButton url={currentUrl}>
+                        <FacebookShareButton
+                          url={currentUrl}
+                          title={blogs?.title}
+                          imageUrl={blogs?.image}
+                        >
                           <img src={facebookicon} alt='Facebook' />
                         </FacebookShareButton>
                       </li>
                       <li>
-                        <LinkedinShareButton url={currentUrl}>
+                        <LinkedinShareButton
+                          url={currentUrl}
+                          title={blogs?.title}
+                          source='Shekunj'
+                          imageUrl={blogs?.image}
+                        >
                           <img src={linkedinicon} alt='LinkedIn' />
                         </LinkedinShareButton>
                       </li>
                       <li>
-                        <TwitterShareButton url={currentUrl}>
+                        <TwitterShareButton
+                          url={currentUrl}
+                          title={blogs?.title}
+                          imageUrl={blogs?.image}
+                        >
                           <img src={twittericon} alt='Twitter' />
                         </TwitterShareButton>
                       </li>
-                      <li>
+                      {/* <li>
                         <PinterestShareButton
                           url={currentUrl}
                           media={blogs?.image}
@@ -303,7 +316,7 @@ const BlogDetails = () => {
                         >
                           <img src={whatsapp} alt='Pinterest' />
                         </WhatsappShareButton>
-                      </li>
+                      </li> */}
                     </ul>
                   </div>
                 </div>
@@ -319,21 +332,34 @@ const BlogDetails = () => {
                     <h6 className='text-left'>Share this article</h6>
                     <ul>
                       <li>
-                        <FacebookShareButton url={currentUrl}>
+                        <FacebookShareButton
+                          url={currentUrl}
+                          title={blogs?.title}
+                          imageUrl={blogs?.image}
+                        >
                           <img src={facebookicon} alt='Facebook' />
                         </FacebookShareButton>
                       </li>
                       <li>
-                        <LinkedinShareButton url={currentUrl}>
+                        <LinkedinShareButton
+                          url={currentUrl}
+                          title={blogs?.title}
+                          source='Shekunj'
+                          imageUrl={blogs?.image}
+                        >
                           <img src={linkedinicon} alt='LinkedIn' />
                         </LinkedinShareButton>
                       </li>
                       <li>
-                        <TwitterShareButton url={currentUrl}>
+                        <TwitterShareButton
+                          url={currentUrl}
+                          title={blogs?.title}
+                          imageUrl={blogs?.image}
+                        >
                           <img src={twittericon} alt='Twitter' />
                         </TwitterShareButton>
                       </li>
-                      <li>
+                      {/* <li>
                         <PinterestShareButton
                           url={currentUrl}
                           media={blogs?.image}
@@ -348,7 +374,7 @@ const BlogDetails = () => {
                         >
                           <img src={whatsapp} alt='Pinterest' />
                         </WhatsappShareButton>
-                      </li>
+                      </li> */}
                     </ul>
                   </div>
                   <div className='catagorie_search_container'>

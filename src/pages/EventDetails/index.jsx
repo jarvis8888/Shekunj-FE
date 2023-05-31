@@ -63,7 +63,6 @@ import City from "../../assets/icons/city.png";
 import { Button, Typography, Modal, Box } from "@mui/material";
 import Cookies from "js-cookie";
 import useDeviceDetect from "../../hooks/useDeviceDetect";
-
 import { ClipLoader } from "react-spinners";
 import x from "../../assets/images/Career/x.png";
 import CloseIcon from "@mui/icons-material/Close";
@@ -424,24 +423,35 @@ const EventDetails = () => {
                         <h6>Share this article</h6>
                         <ul>
                           <li>
-                            <FacebookShareButton url={currentUrl}>
+                            <FacebookShareButton
+                              url={currentUrl}
+                              title={eventsDetails?.title}
+                              imageUrl={eventsDetails?.image}
+                            >
                               <img src={facebookicon} alt='Facebook' />
                             </FacebookShareButton>
                           </li>
                           <li>
-                            <LinkedinShareButton url={currentUrl}>
+                            <LinkedinShareButton
+                              url={currentUrl}
+                              title={eventsDetails?.title}
+                              source='Shekunj'
+                              imageUrl={eventsDetails?.image}
+                            >
                               <img src={linkedinicon} alt='LinkedIn' />
                             </LinkedinShareButton>
                           </li>
                           <li>
                             <TwitterShareButton
                               url={currentUrl}
+                              title={eventsDetails?.title}
+                              imageUrl={eventsDetails?.image}
                               image={eventsDetails?.image}
                             >
                               <img src={twittericon} alt='Twitter' />
                             </TwitterShareButton>
                           </li>
-                          <li>
+                          {/* <li>
                             <PinterestShareButton
                               url={currentUrl}
                               media={eventsDetails?.image}
@@ -456,7 +466,7 @@ const EventDetails = () => {
                             >
                               <img src={whatsapp} alt='Pinterest' />
                             </WhatsappShareButton>
-                          </li>
+                          </li> */}
                         </ul>
                       </div>
                     </div>
@@ -505,39 +515,50 @@ const EventDetails = () => {
                       <h6>Share this article</h6>
                       <ul>
                         <li>
-                          <FacebookShareButton url={currentUrl}>
+                          <FacebookShareButton
+                            url={currentUrl}
+                            title={eventsDetails?.title}
+                            imageUrl={eventsDetails?.image}
+                          >
                             <img src={facebookicon} alt='Facebook' />
                           </FacebookShareButton>
                         </li>
                         <li>
-                          <LinkedinShareButton url={currentUrl}>
+                          <LinkedinShareButton
+                            url={currentUrl}
+                            title={eventsDetails?.title}
+                            source='Shekunj'
+                            imageUrl={eventsDetails?.image}
+                          >
                             <img src={linkedinicon} alt='LinkedIn' />
                           </LinkedinShareButton>
                         </li>
                         <li>
                           <TwitterShareButton
                             url={currentUrl}
+                            title={eventsDetails?.title}
+                            imageUrl={eventsDetails?.image}
                             image={eventsDetails?.image}
                           >
                             <img src={twittericon} alt='Twitter' />
                           </TwitterShareButton>
                         </li>
-                        <li>
-                          <PinterestShareButton
-                            url={currentUrl}
-                            media={eventsDetails?.image}
-                          >
-                            <img src={pintresticon} alt='Pinterest' />
-                          </PinterestShareButton>
-                        </li>
-                        <li>
-                          <WhatsappShareButton
-                            url={currentUrl}
-                            // media={successStoriesDetails?.image}
-                          >
-                            <img src={whatsapp} alt='Pinterest' />
-                          </WhatsappShareButton>
-                        </li>
+                        {/* <li>
+                            <PinterestShareButton
+                              url={currentUrl}
+                              media={eventsDetails?.image}
+                            >
+                              <img src={pintresticon} alt='Pinterest' />
+                            </PinterestShareButton>
+                          </li>
+                          <li>
+                            <WhatsappShareButton
+                              url={currentUrl}
+                              // media={successStoriesDetails?.image}
+                            >
+                              <img src={whatsapp} alt='Pinterest' />
+                            </WhatsappShareButton>
+                          </li> */}
                       </ul>
                     </div>
                     <div className='sk-event-add'>
@@ -696,7 +717,11 @@ const EventDetails = () => {
                           },
                         )}
                       <div className='sk-eventForm-filed'>
-                        <button type='submit' className='sk-submit-btn' disabled={isSubmitting}>
+                        <button
+                          type='submit'
+                          className='sk-submit-btn'
+                          disabled={isSubmitting}
+                        >
                           {" "}
                           Submit
                         </button>

@@ -892,6 +892,7 @@ function HomePage() {
                         Government Exam <EastRoundedIcon />{" "}
                       </h5>
                     </div>
+                    0
                     <div class='sk-begain-img'>
                       <img src={begainimg} />
                     </div>
@@ -1185,10 +1186,7 @@ function HomePage() {
                               }
                             >
                               <h5 className='sk-gScheme-title'>
-                                {items?.schemes_count
-                                  ? items?.schemes_count
-                                  : 0}{" "}
-                                Schemes
+                                {items?.schemes_count} Schemes
                               </h5>
                               <h4 className='sk-gScheme-heading'>
                                 {items?.name}
