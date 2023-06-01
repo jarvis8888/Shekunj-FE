@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import { Footer, Header, SEO } from "../../components";
+import { Footer, Header, SEO, SocialShare } from "../../components";
 import { Link, useParams } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import { routingConstants } from "../../utils/constants";
@@ -12,11 +12,6 @@ import { adsList } from "../../store/ads";
 import axios from "axios";
 import useDeviceDetect from "../../hooks/useDeviceDetect";
 import MenuBookRoundedIcon from "@mui/icons-material/MenuBookRounded";
-import facebookicon from "../../assets/images/facebook.svg";
-import linkedinicon from "../../assets/images/linkedin.svg";
-import twittericon from "../../assets/images/twitter.svg";
-import pintresticon from "../../assets/images/pintrest.svg";
-import whatsapp from "../../assets/images/whatsapp.svg";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import { TrendingBlogsCard2 } from "../../components/cards/TrendingBlogsCard2";
@@ -27,13 +22,7 @@ import catagorie from "../../assets/images/categoryblog.svg";
 import fire from "../../assets/images/fire.svg";
 import { DateFormat, addEmailToClient } from "../../utils/utils";
 import { CustomLoader } from "../../components/customLoader/CustomLoader";
-import {
-  FacebookShareButton,
-  TwitterShareButton,
-  LinkedinShareButton,
-  PinterestShareButton,
-  WhatsappShareButton,
-} from "react-share";
+import { HashtagAndCatagoriesForMobile } from "../../components/HastagAndCatagories/HastagAndCatagoriesForMobile";
 
 const BlogDetails = () => {
   const history = useHistory();
@@ -46,6 +35,13 @@ const BlogDetails = () => {
   const trendingSectionRef = useRef(null);
 
   const { id } = useParams();
+  // Extract the last number from the id
+
+  const lastNumber = id.split("-").pop();
+  // const parts = id.split("/");
+  // console.log("🚀 ~ file: index.jsx:51 ~ BlogDetails ~ parts:", parts)
+  // const lastPart = parts[parts.length - 1];
+  // const lastNumber = parseInt(lastPart.match(/\d+/)[0]);
 
   const currentUrl = window.location.href;
 
@@ -64,9 +60,9 @@ const BlogDetails = () => {
   const trendingPageLimit = 6;
 
   useEffect(() => {
-    dispatch(singleBlogDetails(id));
+    dispatch(singleBlogDetails(lastNumber));
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-  }, [dispatch, id, lan]);
+  }, [dispatch, lastNumber, lan, id]);
 
   const fetchData = async () => {
     setLoading(true);
@@ -232,15 +228,10 @@ const BlogDetails = () => {
   );
 
   const blogLeftRenderAds = () => {
-    const adsToRender = [];
+    const adIndex = getNextAdIndexBlogLeft();
+    const ad = blogLeft[adIndex];
 
-    for (let i = 0; i < blogsLeftadCount; i++) {
-      const adIndex = getNextAdIndexBlogLeft();
-      const ad = blogLeft[adIndex];
-      adsToRender.push(renderAd(ad));
-    }
-
-    return adsToRender[getNextAdIndexBlogLeft()];
+    return renderAd(ad);
   };
 
   return (
@@ -255,7 +246,7 @@ const BlogDetails = () => {
         <section className='sk-block-details'>
           <div className='container'>
             <div className='row'>
-              <div className='col-xl-9 col-md-8'>
+              <div className='col-xl-8 col-lg-8 col-md-8'>
                 <img src={blogs?.image} alt='Story' className='img' />
                 <div className='story-bottom'>
                   <div className='hashtags-container'>
@@ -277,39 +268,11 @@ const BlogDetails = () => {
                   </div>
                   <div className='sk-social-icon sk-mobile-view'>
                     <h6>Share this article</h6>
-                    <ul>
-                      <li>
-                        <FacebookShareButton url={currentUrl}>
-                          <img src={facebookicon} alt='Facebook' />
-                        </FacebookShareButton>
-                      </li>
-                      <li>
-                        <LinkedinShareButton url={currentUrl}>
-                          <img src={linkedinicon} alt='LinkedIn' />
-                        </LinkedinShareButton>
-                      </li>
-                      <li>
-                        <TwitterShareButton url={currentUrl}>
-                          <img src={twittericon} alt='Twitter' />
-                        </TwitterShareButton>
-                      </li>
-                      <li>
-                        <PinterestShareButton
-                          url={currentUrl}
-                          media={blogs?.image}
-                        >
-                          <img src={pintresticon} alt='Pinterest' />
-                        </PinterestShareButton>
-                      </li>
-                      <li>
-                        <WhatsappShareButton
-                          url={currentUrl}
-                          // media={successStoriesDetails?.image}
-                        >
-                          <img src={whatsapp} alt='Pinterest' />
-                        </WhatsappShareButton>
-                      </li>
-                    </ul>
+                    <SocialShare
+                      currentUrl={currentUrl}
+                      title={blogs?.title}
+                      image={blogs?.image}
+                    />
                   </div>
                 </div>
                 <h2 className='sk-headingblog-title'>{blogs?.title}</h2>
@@ -322,39 +285,11 @@ const BlogDetails = () => {
                 <div className='sk-blogS-category'>
                   <div className='sk-social-icon pb-3'>
                     <h6 className='text-left'>Share this article</h6>
-                    <ul>
-                      <li>
-                        <FacebookShareButton url={currentUrl}>
-                          <img src={facebookicon} alt='Facebook' />
-                        </FacebookShareButton>
-                      </li>
-                      <li>
-                        <LinkedinShareButton url={currentUrl}>
-                          <img src={linkedinicon} alt='LinkedIn' />
-                        </LinkedinShareButton>
-                      </li>
-                      <li>
-                        <TwitterShareButton url={currentUrl}>
-                          <img src={twittericon} alt='Twitter' />
-                        </TwitterShareButton>
-                      </li>
-                      <li>
-                        <PinterestShareButton
-                          url={currentUrl}
-                          media={blogs?.image}
-                        >
-                          <img src={pintresticon} alt='Pinterest' />
-                        </PinterestShareButton>
-                      </li>
-                      <li>
-                        <WhatsappShareButton
-                          url={currentUrl}
-                          // media={successStoriesDetails?.image}
-                        >
-                          <img src={whatsapp} alt='Pinterest' />
-                        </WhatsappShareButton>
-                      </li>
-                    </ul>
+                    <SocialShare
+                      currentUrl={currentUrl}
+                      title={blogs?.title}
+                      image={blogs?.image}
+                    />
                   </div>
                   <div className='catagorie_search_container'>
                     {blogs?.tags?.length
@@ -377,6 +312,11 @@ const BlogDetails = () => {
                       : null}
                   </div>
                 </div>
+                <HashtagAndCatagoriesForMobile
+                  image={catagorie}
+                  title={`Categories`}
+                  hashtags={blogCategories}
+                />
                 <div className='title' ref={trendingSectionRef}>
                   <img src={fire} alt='fire' width={28} />
                   <h4>Trending Blogs</h4>
@@ -417,7 +357,7 @@ const BlogDetails = () => {
                   </div>
                 </div>
               </div>
-              <div className='col-xl-3 col-md-4'>
+              <div className='col-xl-4 col-lg-4 col-md-4'>
                 <HashtagAndCatagories
                   image={catagorie}
                   title={`Categories`}

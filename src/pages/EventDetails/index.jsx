@@ -8,6 +8,7 @@ import {
   Header,
   Loader,
   SEO,
+  SocialShare,
 } from "../../components";
 import { Link, useParams } from "react-router-dom";
 import { useHistory } from "react-router-dom";
@@ -22,22 +23,9 @@ import Form from "react-bootstrap/Form";
 import GuidanceSelect from "./Select";
 // import { withFormik } from "formik";
 import { apiConstants, routingConstants } from "../../utils/constants";
-import { CircularProgress, TextareaAutosize } from "@mui/material";
-import { bookEvent, localStData, fetchForm } from "../../store/events/action";
-import moment from "moment";
-import InputAdornment from "@mui/material/InputAdornment";
-import User2 from "../../assets/icons/user2.png";
-import User3 from "../../assets/icons/user3.png";
-import mail2 from "../../assets/icons/mail2.png";
-import phone from "../../assets/icons/phone2.png";
-import eventadd01 from "../../assets/images/eventdetailsadd.jpg";
-import eventadd02 from "../../assets/images/eventadd02.png";
-import facebookicon from "../../assets/images/facebook.svg";
-import linkedinicon from "../../assets/images/linkedin.svg";
-import twittericon from "../../assets/images/twitter.svg";
-import pintresticon from "../../assets/images/pintrest.svg";
-import whatsapp from "../../assets/images/whatsapp.svg";
-import instagramicon from "../../assets/images/instagram.svg";
+import CircleRoundedIcon from "@mui/icons-material/CircleRounded";
+import locationicon from "../../assets/images/location.svg";
+import eventemailsend from "../../assets/images/eventemailsend.svg";
 import gendericon from "../../assets/images/gendericon.svg";
 import SchoolRoundedIcon from "@mui/icons-material/SchoolRounded";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
@@ -45,24 +33,12 @@ import onlineicon from "../../assets/images/onlineicon.svg";
 import offlineicon from "../../assets/images/offline-icon.svg";
 import { getAllEvents, singleEventDetails } from "../../store/events/action";
 import { getUserProfile } from "../../store/auth/action";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import AccountBoxRoundedIcon from "@mui/icons-material/AccountBoxRounded";
-import EmailIcon from "@mui/icons-material/Email";
-import CallIcon from "@mui/icons-material/Call";
-import FmdGoodRoundedIcon from "@mui/icons-material/FmdGoodRounded";
 import "../HomePage/index.scss";
 import "./index.scss";
-import eventimgdetails from "../../assets/images/eventdetails.png";
-import noImageIcon from "../../assets/images/no-image.jpeg";
-import eventslideimg from "../../assets/images/slideimges11.jpg";
 import { adsList } from "../../store/ads";
-import City from "../../assets/icons/city.png";
 import { Button, Typography, Modal, Box } from "@mui/material";
 import Cookies from "js-cookie";
 import useDeviceDetect from "../../hooks/useDeviceDetect";
-
-import { ClipLoader } from "react-spinners";
-import x from "../../assets/images/Career/x.png";
 import CloseIcon from "@mui/icons-material/Close";
 import httpServices from "../../utils/ApiServices";
 import { makeHtml, time_left } from "../../utils/utils";
@@ -70,13 +46,6 @@ import YouMayLikeCarousel from "../../components/Carousel/YouMayLikeCarousel";
 import { toast } from "react-toastify";
 import toasterConfig from "../../utils/toasterCongig";
 import { CustomLoader } from "../../components/customLoader/CustomLoader";
-import {
-  FacebookShareButton,
-  TwitterShareButton,
-  LinkedinShareButton,
-  PinterestShareButton,
-  WhatsappShareButton,
-} from "react-share";
 
 const Gender = ["Male", "Female", "Others"];
 
@@ -84,13 +53,13 @@ const EventDetails = () => {
   let a = JSON.parse(localStorage.getItem("login_data"));
   let eventData = JSON.parse(localStorage.getItem("event_data"));
   const { id } = useParams();
+  const lastNumber = id.split("-").pop();
   const [open, setOpen] = useState(false);
 
   const currentUrl = window.location.href;
   const history = useHistory();
   const { events, isLoading } = useSelector((state) => state.eventsReducer);
   const { bookEvents } = useSelector((state) => state.eventsReducer);
-  const { user } = useSelector((state) => state.authReducer);
   const { registerData } = useSelector((state) => state.eventsReducer);
   const detect = useDeviceDetect();
   const dispatch = useDispatch();
@@ -101,10 +70,7 @@ const EventDetails = () => {
   const [eventDetailsBannerAds, setEventDetailsBannerAds] = useState([]);
   const [loading, setLoading] = useState(false);
   const [extraInfo, setExtraInfo] = useState([]);
-  console.log(
-    "🚀 ~ file: index.jsx:102 ~ EventDetails ~ extraInfo:",
-    extraInfo,
-  );
+
   //states
 
   // const { isLoading } = useSelector((state) => state.eventReducer);
@@ -162,15 +128,10 @@ const EventDetails = () => {
     navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
   }, []);
 
-  useEffect(() => {
-    dispatch(getUserProfile(id));
-    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-  }, [dispatch, id, lan]);
-
   //logic
   const initialValues = {
-    fullName: eventData == null ? user?.name : eventData?.name || "",
-    email: eventData == null ? user?.email : eventData?.email || "",
+    fullName: eventData == null ? localData?.name : eventData?.name || "",
+    email: eventData == null ? localData?.email : eventData?.email || "",
     gender: "",
     location: "",
   };
@@ -196,7 +157,7 @@ const EventDetails = () => {
       }
 
       const data = {
-        event_id: id,
+        event_id: lastNumber,
         email: email,
         name: fullName,
         last_name: "",
@@ -248,8 +209,8 @@ const EventDetails = () => {
   };
 
   useEffect(() => {
-    getEventDetailById(id);
-  }, [id, lan]);
+    getEventDetailById(lastNumber);
+  }, [lastNumber, lan, id]);
 
   const handleOpen = (index) => {
     setOpen(true);
@@ -370,7 +331,7 @@ const EventDetails = () => {
         <section className='sk-eventDetails-sec'>
           <div className='container'>
             <div className='row'>
-              <div className='col-xl-9 col-md-8'>
+              <div className='col-xl-8 col-md-8'>
                 <div className='sk-event-imgcontent'>
                   <div className='sk-eventDetails-img'>
                     <img src={eventsDetails?.image} alt='events' />
@@ -419,42 +380,11 @@ const EventDetails = () => {
                       </div>
                       <div className='sk-social-icon sk-desktopSocial-icon'>
                         <h6>Share this article</h6>
-                        <ul>
-                          <li>
-                            <FacebookShareButton url={currentUrl}>
-                              <img src={facebookicon} alt='Facebook' />
-                            </FacebookShareButton>
-                          </li>
-                          <li>
-                            <LinkedinShareButton url={currentUrl}>
-                              <img src={linkedinicon} alt='LinkedIn' />
-                            </LinkedinShareButton>
-                          </li>
-                          <li>
-                            <TwitterShareButton
-                              url={currentUrl}
-                              image={eventsDetails?.image}
-                            >
-                              <img src={twittericon} alt='Twitter' />
-                            </TwitterShareButton>
-                          </li>
-                          <li>
-                            <PinterestShareButton
-                              url={currentUrl}
-                              media={eventsDetails?.image}
-                            >
-                              <img src={pintresticon} alt='Pinterest' />
-                            </PinterestShareButton>
-                          </li>
-                          <li>
-                            <WhatsappShareButton
-                              url={currentUrl}
-                              // media={successStoriesDetails?.image}
-                            >
-                              <img src={whatsapp} alt='Pinterest' />
-                            </WhatsappShareButton>
-                          </li>
-                        </ul>
+                        <SocialShare
+                          currentUrl={currentUrl}
+                          title={eventsDetails?.title}
+                          image={eventsDetails?.image}
+                        />
                       </div>
                     </div>
 
@@ -500,42 +430,11 @@ const EventDetails = () => {
                     </div> */}
                     <div className='sk-social-icon sk-mobileSocial-icon'>
                       <h6>Share this article</h6>
-                      <ul>
-                        <li>
-                          <FacebookShareButton url={currentUrl}>
-                            <img src={facebookicon} alt='Facebook' />
-                          </FacebookShareButton>
-                        </li>
-                        <li>
-                          <LinkedinShareButton url={currentUrl}>
-                            <img src={linkedinicon} alt='LinkedIn' />
-                          </LinkedinShareButton>
-                        </li>
-                        <li>
-                          <TwitterShareButton
-                            url={currentUrl}
-                            image={eventsDetails?.image}
-                          >
-                            <img src={twittericon} alt='Twitter' />
-                          </TwitterShareButton>
-                        </li>
-                        <li>
-                          <PinterestShareButton
-                            url={currentUrl}
-                            media={eventsDetails?.image}
-                          >
-                            <img src={pintresticon} alt='Pinterest' />
-                          </PinterestShareButton>
-                        </li>
-                        <li>
-                          <WhatsappShareButton
-                            url={currentUrl}
-                            // media={successStoriesDetails?.image}
-                          >
-                            <img src={whatsapp} alt='Pinterest' />
-                          </WhatsappShareButton>
-                        </li>
-                      </ul>
+                      <SocialShare
+                        currentUrl={currentUrl}
+                        title={eventsDetails?.title}
+                        image={eventsDetails?.image}
+                      />
                     </div>
                     <div className='sk-event-add'>
                       <a
@@ -561,11 +460,10 @@ const EventDetails = () => {
                   </div>
                 </div>
               </div>
-              <div class='col-xl-3 col-md-4'>
+              <div class='col-xl-4 col-md-4'>
                 <div className='sk-event-sidebar'>
                   <div className='sk-event-form'>
                     <h6>Registration Form</h6>
-
                     <form onSubmit={handleSubmit}>
                       <div className='sk-eventForm-filed'>
                         <input
@@ -578,8 +476,8 @@ const EventDetails = () => {
                           className='form-control'
                           placeholder='Enter Full Name'
                         />
-                        <span>
-                          <AccountBoxRoundedIcon />
+                        <span className='sk-icon-set'>
+                          <img src={gendericon} />
                         </span>
                       </div>
                       {errors.fullName && (
@@ -598,8 +496,8 @@ const EventDetails = () => {
                           className='form-control'
                           placeholder='Email Id'
                         />
-                        <span>
-                          <EmailIcon />
+                        <span className='sk-icon-set'>
+                          <img src={eventemailsend} />
                         </span>
                       </div>
                       {errors.email && (
@@ -622,9 +520,14 @@ const EventDetails = () => {
                               </option>
                             ))}
                           </select>
-                          <span>
+                          <span className='sk-icon-set'>
                             <img src={gendericon} />
                           </span>
+                          {errors.gender && (
+                            <span className='sk-error-message'>
+                              {errors.gender}
+                            </span>
+                          )}
                         </div>
                         <div className='sk-eventForm-filed'>
                           <input
@@ -637,20 +540,15 @@ const EventDetails = () => {
                             className='form-control'
                             placeholder='Location'
                           />
-                          <span>
-                            <FmdGoodRoundedIcon />
+                          <span className='sk-icon-set'>
+                            <img src={locationicon} />
                           </span>
+                          {errors.location && (
+                            <span className='sk-error-message'>
+                              {errors.location}
+                            </span>
+                          )}
                         </div>
-                        {errors.gender && (
-                          <span className='sk-error-message'>
-                            {errors.gender}
-                          </span>
-                        )}
-                        {errors.location && (
-                          <span className='sk-error-message'>
-                            {errors.location}
-                          </span>
-                        )}
                       </ul>
 
                       {eventsDetails?.id &&
@@ -680,8 +578,8 @@ const EventDetails = () => {
                                       }));
                                     }}
                                   />
-                                  <span>
-                                    <AccountBoxRoundedIcon />
+                                  <span className='sk-icon-set'>
+                                    <CircleRoundedIcon />
                                   </span>
                                 </div>
                                 {errors.extra_info_reg && (
@@ -694,7 +592,11 @@ const EventDetails = () => {
                           },
                         )}
                       <div className='sk-eventForm-filed'>
-                        <button type='submit' className='sk-submit-btn'>
+                        <button
+                          type='submit'
+                          className='sk-submit-btn'
+                          disabled={isSubmitting}
+                        >
                           {" "}
                           Submit
                         </button>

@@ -9,7 +9,15 @@ import PublicIcon from "@mui/icons-material/Public";
 import { Header, Footer } from "../../components";
 import global from "../../assets/images/Success/global.png";
 import "./index.scss";
+import "../HomePage/index.scss";
 import "../Search/index.scss";
+// import Swiper core and required modules
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import SwiperCore, { Autoplay, Navigation } from "swiper";
+// import "../../pages/responsive.scss";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
 import { getAllEvents } from "../../store/events";
@@ -19,8 +27,6 @@ import Grid from "@mui/material/Grid";
 import eventimg1 from "../../assets/images/eventslide1.jpg";
 import eventimg2 from "../../assets/images/eventslide2.jpg";
 import eventimg4 from "../../assets/images/eventimg4.jpg";
-// import eventimg5 from "../../assets/images/eventimg5.jpg";
-// import eventadd from "../../assets/images/eventadd.jpg";
 import offlineicon from "../../assets/images/offline-icon.svg";
 import onlineicon from "../../assets/images/onlineicon.svg";
 import CardActions from "@mui/material/CardActions";
@@ -42,13 +48,18 @@ import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import httpServices from "../../utils/ApiServices";
-import { addEmailToClient, time_left } from "../../utils/utils";
+import {
+  addEmailToClient,
+  addHyphensToLink,
+  time_left,
+} from "../../utils/utils";
 import { CustomLoader } from "../../components/customLoader/CustomLoader";
 import AddsBanner from "../../components/AddsBanner/AddsBanner";
 import useDeviceDetect from "../../hooks/useDeviceDetect";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { NoDataFound } from "../../components/noDataFound/NoDataFound";
+
 const useQuery = () => {
   return new URLSearchParams(useLocation().search);
 };
@@ -99,6 +110,10 @@ function EventPage() {
       return acc;
     }, []);
   };
+  // const navigation = {
+  //   nextEl: ".swiper-button-next",
+  //   prevEl: ".swiper-button-prev",
+  // };
 
   const getAllEVentsData = async (currentOffset, genre) => {
     setLoading(true);
@@ -226,6 +241,7 @@ function EventPage() {
         });
       }
     };
+
     const errorCallback = (error) => {
       console.error("Error Code = " + error.code + " - " + error.message);
       axios.get(`/private_adds/private_add`).then((response) => {
@@ -241,6 +257,8 @@ function EventPage() {
     };
     navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
   }, []);
+
+  SwiperCore.use([Autoplay]);
 
   useEffect(() => {
     const params = new URLSearchParams(location.search);
@@ -278,15 +296,10 @@ function EventPage() {
   );
 
   const renderAds = () => {
-    const adsToRender = [];
+    const adIndex = getNextAdIndex();
+    const ad = eventBoxAds[adIndex];
 
-    for (let i = 0; i < adCount; i++) {
-      const adIndex = getNextAdIndex();
-      const ad = eventBoxAds[adIndex];
-      adsToRender.push(renderAd(ad));
-    }
-
-    return adsToRender[getNextAdIndex()];
+    return renderAd(ad);
   };
 
   return (
@@ -307,52 +320,63 @@ function EventPage() {
           content='women empowerment organizations women empowerment initiative free online courses free career guidance'
         />
       </Helmet>
-      <section className='sk-event-sec'>
+      <section className='sk-event-sec sk-slide-arrow'>
         <div className='container-fluid'>
-          <div className='sk-event-slide'>
-            <OwlCarousel
-              className='event-Carousel'
-              loop={true}
-              autoplay={true}
-              autoplayspeed={1000}
-              center={true}
-              items={4}
-              margin={20}
-              nav={true}
-              responsive={{
-                1: {
-                  items: 2,
-                },
-                667: {
-                  items: 2,
-                },
-                991: {
-                  items: 2,
-                },
-                1199: {
-                  items: 4,
-                },
-                1920: {
-                  items: 4,
-                },
-              }}
-            >
-              {allEventData?.map((items, index) => {
-                return (
-                  <>
-                    {" "}
-                    <div
-                      key={index}
-                      onClick={() =>
-                        history.push(routingConstants.MORE_EVENT + items.id)
-                      }
-                    >
-                      <img src={items.image} alt='' />
-                    </div>
-                  </>
-                );
-              })}
-            </OwlCarousel>
+          <div className='row align-items-center'>
+            <div className='col-xl-12'>
+              <Swiper
+                slidesPerView={4}
+                spaceBetween={24}
+                navigation={true}
+                loop={true}
+                autoplay={{
+                  delay: 2000,
+                  disableOnInteraction: false,
+                }}
+                speed={1500}
+                modules={[Navigation, Autoplay]}
+                breakpoints={{
+                  320: {
+                    slidesPerView: 2,
+                    spaceBetween: 15,
+                    centeredSlides: true,
+                  },
+                  767: {
+                    slidesPerView: 2,
+                    spaceBetween: 15,
+                  },
+                  991: {
+                    slidesPerView: 3,
+                  },
+                  1250: {
+                    slidesPerView: 4,
+                  },
+                }}
+              >
+                {allEventData?.map((items, index) => {
+                  return (
+                    <>
+                      <SwiperSlide>
+                        {" "}
+                        <div
+                          key={index}
+                          onClick={() =>
+                            history.push(
+                              routingConstants.MORE_EVENT +
+                                addHyphensToLink(items?.title) +
+                                "-" +
+                                items.id,
+                            )
+                          }
+                        >
+                          <img src={items.image} alt='' />
+                        </div>
+                      </SwiperSlide>
+                    </>
+                  );
+                })}
+              </Swiper>
+            </div>
           </div>
         </div>
       </section>
@@ -374,18 +398,16 @@ function EventPage() {
                 <ul>
                   {options.map((items, index) => {
                     return (
-                      <>
-                        <li>
-                          <a
-                            onClick={() => handleTimeOptionClick(items.value)}
-                            className={
-                              selectedButton === items.value && "active-time"
-                            }
-                          >
-                            {items.label}
-                          </a>
-                        </li>
-                      </>
+                      <li>
+                        <a
+                          onClick={() => handleTimeOptionClick(items.value)}
+                          className={
+                            selectedButton === items.value && "active-time"
+                          }
+                        >
+                          {items.label}
+                        </a>
+                      </li>
                     );
                   })}
                 </ul>
@@ -415,7 +437,7 @@ function EventPage() {
             </div>
           </div>
           {loading ? (
-            <CustomLoader size='small' />
+            <CustomLoader />
           ) : (
             <div className='row'>
               {dataWithAdds?.length ? (
@@ -429,7 +451,12 @@ function EventPage() {
                           className='col-xl-3 col-lg-4 col-md-6'
                           key={index}
                           onClick={() =>
-                            history.push(routingConstants.MORE_EVENT + items.id)
+                            history.push(
+                              routingConstants.MORE_EVENT +
+                                addHyphensToLink(items?.title) +
+                                "-" +
+                                items.id,
+                            )
                           }
                           style={{ cursor: "pointer" }}
                         >
@@ -448,12 +475,18 @@ function EventPage() {
                                     {items.mode_of_event === "offline" ? (
                                       <>
                                         {" "}
-                                        <img src={offlineicon} /> Offline{" "}
+                                        <img
+                                          src={offlineicon}
+                                          alt=''
+                                        /> Offline{" "}
                                       </>
                                     ) : (
                                       <>
                                         {" "}
-                                        <img src={onlineicon} /> Online{" "}
+                                        <img
+                                          src={onlineicon}
+                                          alt=''
+                                        /> Online{" "}
                                       </>
                                     )}
                                   </li>
@@ -487,7 +520,10 @@ function EventPage() {
                                   className='sk-btn-register'
                                   onClick={() =>
                                     history.push(
-                                      routingConstants.MORE_EVENT + items.id,
+                                      routingConstants.MORE_EVENT +
+                                        addHyphensToLink(items?.title) +
+                                        "-" +
+                                        items.id,
                                     )
                                   }
                                 >

@@ -6,7 +6,7 @@ import eye from "../../assets/icons/svgs/eye.png";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import MenuBookRoundedIcon from "@mui/icons-material/MenuBookRounded";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
-import { truncateString } from "../../utils/utils";
+import { addHyphensToLink, truncateString } from "../../utils/utils";
 import EastRoundedIcon from "@mui/icons-material/EastRounded";
 import { routingConstants } from "../../utils/constants";
 import { useHistory } from "react-router-dom";
@@ -30,7 +30,11 @@ const LatestBlogCard = (props) => {
     <div
       className='card'
       key={key}
-      onClick={() => history.push(routingConstants.MORE_BLOG + id)}
+      onClick={() =>
+        history.push(
+          routingConstants.MORE_BLOG + addHyphensToLink(title) + "-" + id ,
+        )
+      }
     >
       <div className='card__image'>
         <img src={image} alt={title} />
@@ -66,7 +70,11 @@ const LatestBlogCard = (props) => {
         <span>
           <button
             className='card__button'
-            onClick={() => history.push(routingConstants.MORE_BLOG + id)}
+            onClick={() =>
+              history.push(
+                routingConstants.MORE_BLOG + addHyphensToLink(title) + "-" + id,
+              )
+            }
           >
             Read More <EastRoundedIcon />
           </button>

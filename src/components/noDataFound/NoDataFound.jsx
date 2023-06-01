@@ -4,7 +4,7 @@ import noData from "../../assets/icons/svgs/NoData.svg";
 
 export const NoDataFound = ({ size }) => {
   return (
-    <div className={`loader-wrap ${size === "small" ? "size" : ""}`}>
+    <div className={`nodata-wrap ${size === "small" ? "size" : ""}`}>
       <img src={noData} alt='globalLoader' />
     </div>
   );

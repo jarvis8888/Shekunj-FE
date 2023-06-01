@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import SchoolRoundedIcon from "@mui/icons-material/SchoolRounded";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
-import { truncateString } from "../../utils/utils";
+import { DateFormat, truncateString } from "../../utils/utils";
 import { useHistory, useLocation } from "react-router-dom";
 import { routingConstants } from "../../utils/constants";
 import { CustomLoader } from "../customLoader/CustomLoader";
@@ -77,7 +77,7 @@ export const GlobalSearchCard = ({
       }
     };
     return data.map((item, index) => (
-      <div className='col-md-3' key={index}>
+      <div className='col-md-3' key={index} style={{ cursor: "pointer" }}>
         <div
           className='sk-card-box'
           onClick={() => history.push(`${getRoute(item.type, item.id)}`)}
@@ -87,11 +87,23 @@ export const GlobalSearchCard = ({
           </div>
           <div className='sk-content-card'>
             <div className='sk-week-time'>
-              <span>
-                <AccessTimeIcon /> {item.created_at}
-              </span>
+              {item?.type === "Blog" && (
+                <span>
+                  <AccessTimeIcon /> {DateFormat(`${item.created_at}`)}
+                </span>
+              )}
+              {item?.type === "Success Story" && (
+                <span>
+                  <AccessTimeIcon /> {item.created_at}
+                </span>
+              )}
             </div>
-            <h6 className='sk-card-heading'>{item.title || item.name}</h6>
+            {item?.type === "Blog" ? (
+              <h6 className='sk-card-heading'>{item.title}</h6>
+            ) : (
+              <h6 className='sk-card-heading'>{item.name}</h6>
+            )}
+
             <div
               className='sk-card-description'
               dangerouslySetInnerHTML={{
@@ -105,20 +117,32 @@ export const GlobalSearchCard = ({
                 ),
               }}
             />
-            {/* <div className='sk-time-education'>
+            <div className='sk-time-education'>
               {item?.type === "Courses" && (
                 <ul>
                   <li>
                     {" "}
-                    <AccessTimeIcon /> <span>6.10 hrs</span>{" "}
+                    <AccessTimeIcon /> <span>{item?.reading_time}</span>{" "}
                   </li>
                   <li>
                     {" "}
-                    <SchoolRoundedIcon /> 282,55 enrolled{" "}
+                    <SchoolRoundedIcon /> {item?.enrold} enrolled{" "}
                   </li>
                 </ul>
               )}
-            </div> */}
+              {item?.type === "Mock Test" && (
+                <ul>
+                  <li>
+                    {" "}
+                    {/* <AccessTimeIcon /> <span>{item?.reading_time}</span>{" "} */}
+                  </li>
+                  <li>
+                    {" "}
+                    <SchoolRoundedIcon /> {item?.enrolled} enrolled{" "}
+                  </li>
+                </ul>
+              )}
+            </div>
             <div className='sk-tags'>
               <span>{item?.type}</span>
             </div>
@@ -150,14 +174,14 @@ export const GlobalSearchCard = ({
           </div>
         </div>
         {loading ? (
-          <CustomLoader size='small' />
+          <CustomLoader />
         ) : (
           <div className='row'>
             {filterData(activeTab).length ? (
               renderCards(filterData(activeTab), activeTab)
             ) : (
               <>
-                <NoDataFound size='small' />
+                <NoDataFound />
               </>
             )}
           </div>

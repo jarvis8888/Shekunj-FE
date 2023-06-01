@@ -1,9 +1,34 @@
-import React, { memo } from "react";
+import React, { memo, useEffect, useState } from "react";
 import "./footer.scss";
 import { CopyRight } from "./CopyRight";
 import { SocialMedia } from "./SocialMedia";
+import httpServices from "../../utils/ApiServices";
+import { apiConstants, routingConstants } from "../../utils/constants";
+import { useHistory } from "react-router-dom";
 
 export const TopFooter = memo(() => {
+  const history = useHistory();
+
+  const [courseLoader, setCourseLoader] = useState(false);
+  const [data, setData] = useState([]);
+
+  const allCourses = async () => {
+    setCourseLoader(true);
+    try {
+      const data = await httpServices.get(
+        `${apiConstants.COURSES.COURSE_LIST}?limit=50`,
+      );
+      setData(data?.results);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setCourseLoader(false);
+    }
+  };
+  useEffect(() => {
+    allCourses();
+  }, []);
+
   return (
     <>
       <div className='wrapper'>
@@ -14,24 +39,24 @@ export const TopFooter = memo(() => {
                 <div className='sk-footer-menu'>
                   <h5>Free Courses</h5>
                   <ul>
-                    <li>
-                      <a href='javascript:;'>Information Technology</a>
-                    </li>
-                    <li>
-                      <a href='javascript:;'>Health</a>
-                    </li>
-                    <li>
-                      <a href='javascript:;'>Language</a>
-                    </li>
-                    <li>
-                      <a href='javascript:;'>Management</a>
-                    </li>
-                    <li>
-                      <a href='javascript:;'>Sales & Marketing</a>
-                    </li>
-                    <li>
-                      <a href='javascript:;'>Skill Based</a>
-                    </li>
+                    {data?.length
+                      ? data
+                          .sort((a, b) => b.enrold - a.enrold)
+                          .slice(0, 6)
+                          .map((item, index) => (
+                            <li key={item.id}>
+                              <a
+                                href={
+                                  routingConstants.COURSE_DETAILS + item?.id
+                                }
+                              >
+                                {item.name.length > 20
+                                  ? item.name.substring(0, 20) + "..."
+                                  : item.name}
+                              </a>
+                            </li>
+                          ))
+                      : null}
                   </ul>
                 </div>
               </div>
@@ -48,28 +73,16 @@ export const TopFooter = memo(() => {
                       </a>
                     </li>
                     <li>
-                      <a href='javascript:;'>Certificate</a>
+                      <a href='/all-certificate-page/'>Certificate</a>
                     </li>
                     <li>
-                      <a
-                        href='https://octahire.com/Resume_maker'
-                        target='_blank'
-                        rel='noreferrer'
-                      >
-                        Resume Builder
-                      </a>
+                      <a href='/resume'>Resume Builder</a>
                     </li>
                     <li>
-                      <a href='javascript:;'>Guidance</a>
+                      <a href='/online-counselling/'>Guidance</a>
                     </li>
                     <li>
-                      <a
-                        href='https://octahire.com/Home/candidate_register'
-                        target='_blank'
-                        rel='noreferrer'
-                      >
-                        Jobs
-                      </a>
+                      <a href='/jobs'>Jobs</a>
                     </li>
                   </ul>
                 </div>

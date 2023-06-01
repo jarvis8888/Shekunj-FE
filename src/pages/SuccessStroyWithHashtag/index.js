@@ -12,6 +12,7 @@ import { adsList } from "../../store/ads";
 import { CustomLoader } from "../../components/customLoader/CustomLoader";
 import useDeviceDetect from "../../hooks/useDeviceDetect";
 import { addEmailToClient } from "../../utils/utils";
+import { HashtagAndCatagoriesForMobile } from "../../components/HastagAndCatagories/HastagAndCatagoriesForMobile";
 
 const SuccessStroyWithHashtag = () => {
   const location = useLocation();
@@ -178,30 +179,33 @@ const SuccessStroyWithHashtag = () => {
   );
 
   const succesStoriesLeftRenderAds = () => {
-    const adsToRender = [];
+    const adIndex = getNextAdIndexSuccesStoriesLeft();
+    const ad = succesStoriesLeft[adIndex];
 
-    for (let i = 0; i < succesStoriesLeftadCount; i++) {
-      const adIndex = getNextAdIndexSuccesStoriesLeft();
-      const ad = succesStoriesLeft[adIndex];
-      adsToRender.push(renderAd(ad));
-    }
-
-    return adsToRender[getNextAdIndexSuccesStoriesLeft()];
+    return renderAd(ad);
   };
 
   return (
     <div>
       <Header />
+     
+
       <section className='sk-hashtag-sec'>
         <div className='container'>
+        <HashtagAndCatagoriesForMobile
+        type='hashtag'
+        image={hash}
+        title={`Trending Hashtag`}
+        hashtags={allHashTag}
+      />
           <div className='row'>
-            <div className='col-xl-9 col-md-8'>
+            <div className='col-xl-8 col-lg-8 col-md-8'>
               <h4 className='Hashtag_container_title'>
                 {state ? `#${state}` : "NA"}
               </h4>
 
               {loading ? (
-                <CustomLoader size='small' />
+                <CustomLoader />
               ) : (
                 <div className='row'>
                   {data?.map((items, index) => {
@@ -235,7 +239,7 @@ const SuccessStroyWithHashtag = () => {
                 </div>
               )}
             </div>
-            <div className='col-xl-3 col-md-4'>
+            <div className='col-xl-4 col-lg-4 col-md-4'>
               <HashtagAndCatagories
                 type='hashtag'
                 image={hash}

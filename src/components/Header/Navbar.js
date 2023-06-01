@@ -31,107 +31,119 @@ const Navbar = (props) => {
   };
 
   return (
-    <div className='Navbar'>
-      <span className='nav-logo'>
-        <img
-          src={logo}
-          alt='logo shekunj'
-          onClick={() => {
-            history.push("");
-          }}
-        />
-      </span>
+    <header className='sk-header-bg'>
+      <div className='container'>
+        <div className='Navbar'>
+          <span className='nav-logo'>
+            <img
+              src={logo}
+              alt='logo shekunj'
+              onClick={() => {
+                history.push("");
+              }}
+            />
+          </span>
 
-      <div className={`nav-items ${isOpen && "open"}`}>
-        <a href='/about-us' className={isActive("/about-us") && "active"}>
-          {t("header.heading.1")}
-        </a>
-        <a href='/courses' className={isActive("/courses") && "active"}>
-          {t("header.heading.2")}
-        </a>
-        <Dropdown title={t("header.heading.3")} className='custom-dropdown'>
-          <Dropdown.Item
-            onClick={() => history.push(routingConstants.SUCCESS_CAREER_OPTION)}
-            className={
-              isActive(routingConstants.SUCCESS_CAREER_OPTION) && "active"
-            }
-          >
-            {t("headerComponent.menuItem.5")}
-          </Dropdown.Item>
-          <Dropdown.Item
-            onClick={() => history.push(routingConstants.MOCKTEST)}
-            className={isActive(routingConstants.MOCKTEST) && "active"}
-          >
-            {t("headerComponent.menuItem.6")}
-          </Dropdown.Item>
-          <Dropdown.Item
-            onClick={() => history.push(routingConstants.GUIDANCE_BOOK)}
-            className={isActive(routingConstants.GUIDANCE_BOOK) && "active"}
-          >
-            {t("headerComponent.menuItem.7")}
-          </Dropdown.Item>
-        </Dropdown>
-        <a href='/resume/'>{t("header.heading.4")}</a>
-        <a href='/jobs/'>{t("header.heading.6")}</a>
-        <Dropdown title={t("header.heading.5")} className='custom-dropdown'>
-          <Dropdown.Item
-            onClick={() => history.push(routingConstants.TOP_COLLEGES)}
-            className={isActive(routingConstants.TOP_COLLEGES) && "active"}
-          >
-            Top Colleges
-          </Dropdown.Item>
-          <Dropdown.Item
-            onClick={() => history.push(routingConstants.TOP_SCHOOLS)}
-            className={isActive(routingConstants.TOP_SCHOOLS) && "active"}
-          >
-            Top Schools
-          </Dropdown.Item>
-          <Dropdown.Item
-            onClick={() => history.push(routingConstants.GOVERNMENT_SCHEMES)}
-            className={
-              isActive(routingConstants.GOVERNMENT_SCHEMES) && "active"
-            }
-          >
-            Government Schemes
-          </Dropdown.Item>
-        </Dropdown>
-        <a
-          href='/success-stories'
-          className={isActive("/success-stories") && "active"}
-        >
-          {t("header.heading.8")}
-        </a>
-        <a href='/event' className='mobile-show'>
-          Events
-        </a>
-        <a href='/blogs' className='mobile-show'>
-          Blog
-        </a>
-        <a href='/more-faq' className='mobile-show'>
-          FAQ
-        </a>
-        <span
-          className='sk-mobile-hide'
-          onClick={() => history.push(routingConstants.SEARCH)}
-        >
-          <img src={searchnavicon} />
-        </span>
+          <div className={`nav-items ${isOpen && "open"}`}>
+            <a href='/about-us' className={isActive("/about-us") && "active"}>
+              {t("header.heading.1")}
+            </a>
+            <a href='/courses' className={isActive("/courses") && "active"}>
+              {t("header.heading.2")}
+            </a>
+            <Dropdown title={t("header.heading.3")} className='custom-dropdown'>
+              <Dropdown.Item
+                onClick={() =>
+                  history.push(routingConstants.SUCCESS_CAREER_OPTION)
+                }
+                className={
+                  isActive(routingConstants.SUCCESS_CAREER_OPTION) && "active"
+                }
+              >
+                {t("headerComponent.menuItem.5")}
+              </Dropdown.Item>
+              <Dropdown.Item
+                onClick={() => history.push(routingConstants.MOCKTEST)}
+                className={isActive(routingConstants.MOCKTEST) && "active"}
+              >
+                {t("headerComponent.menuItem.6")}
+              </Dropdown.Item>
+              <Dropdown.Item
+                onClick={() => history.push(routingConstants.GUIDANCE_BOOK)}
+                className={isActive(routingConstants.GUIDANCE_BOOK) && "active"}
+              >
+                {t("headerComponent.menuItem.7")}
+              </Dropdown.Item>
+            </Dropdown>
+            <a href='/resume' className={isActive("/resume") && "active"}>
+              {t("header.heading.4")}
+            </a>
+            <a href='/jobs' className={isActive("/jobs") && "active"}>
+              {t("header.heading.6")}
+            </a>
+            <Dropdown title={t("header.heading.5")} className='custom-dropdown'>
+              <Dropdown.Item
+                onClick={() => history.push(routingConstants.TOP_COLLEGES)}
+                className={isActive(routingConstants.TOP_COLLEGES) && "active"}
+              >
+                Top Colleges
+              </Dropdown.Item>
+              <Dropdown.Item
+                onClick={() => history.push(routingConstants.TOP_SCHOOLS)}
+                className={isActive(routingConstants.TOP_SCHOOLS) && "active"}
+              >
+                Top Schools
+              </Dropdown.Item>
+              <Dropdown.Item
+                onClick={() =>
+                  history.push(routingConstants.GOVERNMENT_SCHEMES)
+                }
+                className={
+                  isActive(routingConstants.GOVERNMENT_SCHEMES) && "active"
+                }
+              >
+                Government Schemes
+              </Dropdown.Item>
+            </Dropdown>
+            <a
+              href='/success-stories'
+              className={isActive("/success-stories") && "active"}
+            >
+              {t("header.heading.8")}
+            </a>
+            <a href='/event' className='mobile-show'>
+              Events
+            </a>
+            <a href='/blogs' className='mobile-show'>
+              Blog
+            </a>
+            <a href='/more-faq' className='mobile-show'>
+              FAQ
+            </a>
+            <span
+              className='sk-mobile-hide'
+              onClick={() => history.push(routingConstants.SEARCH)}
+            >
+              <img src={searchnavicon} />
+            </span>
+          </div>
+          <div className='mobile-show'>
+            <span
+              className='mr-3'
+              onClick={() => history.push(routingConstants.SEARCH)}
+            >
+              <img src={searchnavicon} className='searchIconSmall' />
+            </span>
+            <span
+              className={`nav-toggle ${isOpen && "open"}`}
+              onClick={() => setIsOpen(!isOpen)}
+            >
+              {isOpen ? <img src={closemenuicon} /> : <img src={mobilemenu} />}
+            </span>
+          </div>
+        </div>
       </div>
-      <div className='mobile-show'>
-        <span
-          className='mr-3'
-          onClick={() => history.push(routingConstants.SEARCH)}
-        >
-          <img src={searchnavicon} className='searchIconSmall' />
-        </span>
-        <span
-          className={`nav-toggle ${isOpen && "open"}`}
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          {isOpen ? <img src={closemenuicon} /> : <img src={mobilemenu} />}
-        </span>
-      </div>
-    </div>
+    </header>
   );
 };
 

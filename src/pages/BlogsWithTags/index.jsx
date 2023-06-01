@@ -17,6 +17,7 @@ import { DateFormat, addEmailToClient } from "../../utils/utils";
 import { CustomLoader } from "../../components/customLoader/CustomLoader";
 import useDeviceDetect from "../../hooks/useDeviceDetect";
 import { NoDataFound } from "../../components/noDataFound/NoDataFound";
+import { HashtagAndCatagoriesForMobile } from "../../components/HastagAndCatagories/HastagAndCatagoriesForMobile";
 
 const SuccessStroyWithHashtag = () => {
   const location = useLocation();
@@ -187,15 +188,10 @@ const SuccessStroyWithHashtag = () => {
   );
 
   const renderAds = () => {
-    const adsToRender = [];
+    const adIndex = getNextAdIndex();
+    const ad = blogDetailsBoxAds[adIndex];
 
-    for (let i = 0; i < adCount; i++) {
-      const adIndex = getNextAdIndex();
-      const ad = blogDetailsBoxAds[adIndex];
-      adsToRender.push(renderAd(ad));
-    }
-
-    return adsToRender[getNextAdIndex()];
+    return renderAd(ad);
   };
 
   return (
@@ -203,8 +199,13 @@ const SuccessStroyWithHashtag = () => {
       <Header />
       <section>
         <div className='container'>
+        <HashtagAndCatagoriesForMobile
+            image={catagorie}
+            title={`Categories`}
+            hashtags={allHashTag}
+          />
           <div className='row'>
-            <div className='col-xl-9 col-md-8 sk-blog-detail-wa'>
+            <div className='col-xl-8 col-lg-8 col-md-8 sk-blog-detail-wa'>
               <div className='Hashtag_container_title'>
                 <span className='catagories-search'>
                   {state ? `${currentSearch}` : null}{" "}
@@ -247,7 +248,7 @@ const SuccessStroyWithHashtag = () => {
                 </div>
               )}
             </div>
-            <div className='col-xl-3 col-md-4'>
+            <div className='col-xl-4 col-lg-4 col-md-4'>
               <HashtagAndCatagories
                 image={catagorie}
                 title={`Categories`}

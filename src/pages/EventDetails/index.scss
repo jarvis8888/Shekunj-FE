@@ -160,7 +160,7 @@ section {
 }
 .sk-event-form .sk-eventForm-filed {
   position: relative;
-  margin: 15px 0 0px;
+  margin: 24px 0 0px;
 }
 .sk-event-form h6 {
   margin-bottom: 18px;
@@ -173,13 +173,13 @@ section {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   padding: 0;
-  grid-gap: 5px 10px;
+  grid-gap: 5px 15px;
   margin-bottom: 0;
 }
 .sk-event-form .sk-eventForm-filed input, .sk-event-form .sk-eventForm-filed select {
   border: 1px solid #d9d9d9;
   border-radius: 8px;
-  height: 48px;
+  height: 50px;
   font-size: 14px;
   padding-left: 40px;
   width: 100%;
@@ -204,11 +204,10 @@ section {
   border-left: 1px solid #d9d9d9;
   padding-left: 20px;
 }
-.sk-eventForm-filed span {
+.sk-eventForm-filed .sk-icon-set {
   position: absolute;
   left: 10px;
-  top: 0;
-  bottom: 0;
+  top: 14px;
   margin: auto;
   display: flex;
   align-items: center;
@@ -224,6 +223,7 @@ section {
   height: 50px;
   color: #fff;
   margin-top: 8px;
+  font-weight: 600;
 }
 .sk-add-slidebar {
   margin: 20px 0;

@@ -4,7 +4,7 @@ import globalLoader from "../../assets/icons/svgs/globalLoader.svg";
 
 export const CustomLoader = ({ size }) => {
   return (
-    <div className={`loader-wrap ${size === "small" ? "size" : ""}`}>
+    <div className={`loader-wrap`}>
       <img src={globalLoader} alt='globalLoader' />
     </div>
   );
