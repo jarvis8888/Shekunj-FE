@@ -176,7 +176,7 @@ export const GlobalSearchCard = ({
               renderCards(filterData(activeTab), activeTab)
             ) : (
               <>
-                <NoDataFound size='small' />
+                <NoDataFound />
               </>
             )}
           </div>

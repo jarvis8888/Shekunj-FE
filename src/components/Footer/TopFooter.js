@@ -73,28 +73,16 @@ export const TopFooter = memo(() => {
                       </a>
                     </li>
                     <li>
-                      <a href='javascript:;'>Certificate</a>
+                      <a href='/all-certificate-page/'>Certificate</a>
                     </li>
                     <li>
-                      <a
-                        href='https://octahire.com/Resume_maker'
-                        target='_blank'
-                        rel='noreferrer'
-                      >
-                        Resume Builder
-                      </a>
+                      <a href='/resume'>Resume Builder</a>
                     </li>
                     <li>
-                      <a href='javascript:;'>Guidance</a>
+                      <a href='/online-counselling/'>Guidance</a>
                     </li>
                     <li>
-                      <a
-                        href='https://octahire.com/Home/candidate_register'
-                        target='_blank'
-                        rel='noreferrer'
-                      >
-                        Jobs
-                      </a>
+                      <a href='/jobs'>Jobs</a>
                     </li>
                   </ul>
                 </div>

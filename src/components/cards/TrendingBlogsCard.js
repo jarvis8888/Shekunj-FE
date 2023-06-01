@@ -7,6 +7,7 @@ import MenuBookRoundedIcon from "@mui/icons-material/MenuBookRounded";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import time_icon from "../../assets/icons/svgs/time.png";
 import book from "../../assets/icons/svgs/book.png";
+import { addHyphensToLink } from "../../utils/utils";
 
 export const TrendingBlogsCard = ({
   image,
@@ -16,12 +17,17 @@ export const TrendingBlogsCard = ({
   date,
   id,
   category_name,
+  key,
 }) => {
   const history = useHistory();
   return (
     <div
       className='blog-card'
-      onClick={() => history.push(routingConstants.MORE_BLOG + id)}
+      onClick={() =>
+        history.push(
+          routingConstants.MORE_BLOG + addHyphensToLink(description) + "-" + id,
+        )
+      }
       style={{ cursor: "pointer" }}
     >
       <div className='blog-card__image new-blog-card'>

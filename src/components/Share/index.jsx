@@ -1,43 +1,94 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   FacebookShareButton,
   LinkedinShareButton,
   WhatsappShareButton,
-  WhatsappIcon,
-  FacebookIcon,
-  LinkedinIcon,
+  TwitterShareButton,
 } from "react-share";
+import facebookicon from "../../assets/images/facebook.svg";
+import linkedinicon from "../../assets/images/linkedin.svg";
+import twittericon from "../../assets/images/twitter.svg";
+import whatsappicon from "../../assets/images/whatsapp.svg";
+import instagramicon from "../../assets/images/instagram.svg";
+import toasterConfig from "../../utils/toasterCongig";
+import { toast } from "react-toastify";
 
-const SocialShare = () => {
+const SocialShare = ({ currentUrl, title, image }) => {
+  const icons = {
+    facebook: facebookicon,
+    linkedin: linkedinicon,
+    twitter: twittericon,
+    whatsapp: whatsappicon,
+    instagram: instagramicon,
+  };
+
+  const handleInstagramClick = () => {
+    navigator.clipboard.writeText(currentUrl);
+    toast.success("URL copied to clipboard!", toasterConfig);
+    setTimeout(() => {
+      window.open("https://www.instagram.com/", "_blank");
+    }, 2000); // Delay in milliseconds (adjust as needed)
+  };
+
+  const shareButtons = [
+    {
+      platform: "facebook",
+      Button: FacebookShareButton,
+      quote: title,
+      imageUrl: image,
+    },
+    {
+      platform: "linkedin",
+      Button: LinkedinShareButton,
+      url: currentUrl,
+      title,
+      imageUrl: image,
+    },
+    {
+      platform: "twitter",
+      Button: TwitterShareButton,
+      url: currentUrl,
+      title,
+      imageUrl: image,
+    },
+    {
+      platform: "whatsapp",
+      Button: WhatsappShareButton,
+      url: currentUrl,
+      title,
+      separator: " - ",
+      imageUrl: image,
+    },
+    { platform: "instagram", Button: "button", onClick: handleInstagramClick },
+  ];
+
+  // Dynamically set the og:image meta tag
+  React.useEffect(() => {
+    const metaTag = document.querySelector('meta[property="og:image"]');
+    if (metaTag) {
+      metaTag.setAttribute("content", image);
+    }
+  }, [image]);
+
   return (
-    <>
-      <WhatsappShareButton
-        url={window.location.href}
-        quote={"Hey shekunj students"}
-        hashtag='#ShekunjCertificate'
-      >
-        <WhatsappIcon size={32} round />
-      </WhatsappShareButton>{" "}
-      
-
-      <FacebookShareButton url={
-          "https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2850&q=80"
-        }
-        quote={"test sharing"}
-        image={
-          "https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2850&q=80"
-        }
-        imageURL={
-          "https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2850&q=80"
-        }>
-        <FacebookIcon size={32} round />
-      </FacebookShareButton>{" "}
-
-
-      <LinkedinShareButton url={window.location.href}>
-        <LinkedinIcon size={32} round />
-      </LinkedinShareButton>
-    </>
+    <ul>
+      {shareButtons.map(({ platform, Button, ...props }) => (
+        <li key={platform}>
+          {platform === "instagram" ? (
+            <img
+              src={icons[platform]}
+              alt={platform}
+              onClick={props.onClick}
+              style={{ cursor: "pointer" }}
+            />
+          ) : (
+            <Button {...props}>
+              <img src={icons[platform]} alt={platform} />
+            </Button>
+          )}
+        </li>
+      ))}
+    </ul>
   );
 };
 

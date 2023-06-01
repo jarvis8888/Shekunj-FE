@@ -8,13 +8,8 @@ import axios from "axios";
 import useDeviceDetect from "../../hooks/useDeviceDetect";
 import { successStoriesDetails as fetchSuccessStoriesDetails } from "../../store/courses/action";
 import { useParams } from "react-router-dom";
-import { Footer, Header, SEO } from "../../components";
+import { Footer, Header, SEO, SocialShare } from "../../components";
 import MenuBookRoundedIcon from "@mui/icons-material/MenuBookRounded";
-import facebookicon from "../../assets/images/facebook.svg";
-import linkedinicon from "../../assets/images/linkedin.svg";
-import twittericon from "../../assets/images/twitter.svg";
-import pintresticon from "../../assets/images/pintrest.svg";
-import whatsapp from "../../assets/images/whatsapp.svg";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import TrendingCards from "../../components/cards/TrendingCards";
@@ -25,13 +20,8 @@ import { apiConstants } from "../../utils/constants";
 import httpServices from "../../utils/ApiServices";
 import { CustomLoader } from "../../components/customLoader/CustomLoader";
 import { addEmailToClient } from "../../utils/utils";
-import {
-  FacebookShareButton,
-  TwitterShareButton,
-  LinkedinShareButton,
-  PinterestShareButton,
-  WhatsappShareButton,
-} from "react-share";
+import { HashtagAndCatagoriesForMobile } from "../../components/HastagAndCatagories/HastagAndCatagoriesForMobile";
+
 
 const SuccessStoryDetails = () => {
   const { successStoriesDetails } = useSelector((state) => {
@@ -47,6 +37,9 @@ const SuccessStoryDetails = () => {
   const { t } = useTranslation();
 
   const { id } = useParams();
+
+  const lastNumber = id.split("-").pop();
+
   const [trendingData, setTrendingData] = useState([]);
   const [allHashTag, setAllHashTag] = useState([]);
   const [succesStoriesRight1, setSuccesStoriesRight1] = useState([]);
@@ -108,9 +101,9 @@ const SuccessStoryDetails = () => {
   };
 
   useEffect(() => {
-    dispatch(fetchSuccessStoriesDetails(id));
+    dispatch(fetchSuccessStoriesDetails(lastNumber));
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-  }, [dispatch, id, lan]);
+  }, [dispatch, lastNumber, lan , id]);
 
   useEffect(() => {
     getAllSuccessStoryTrendingData(trendingPageLimit, trendingOffset);
@@ -316,53 +309,11 @@ const SuccessStoryDetails = () => {
                   </div>
                   <div className='sk-social-icon sk-mobile-view'>
                     <h6>Share this article</h6>
-                    <ul>
-                      <li>
-                        <FacebookShareButton
-                          url={currentUrl}
-                          title={successStoriesDetails?.title}
-                          imageUrl={successStoriesDetails?.image}
-                        >
-                          <img src={facebookicon} alt='Facebook' />
-                        </FacebookShareButton>
-                      </li>
-                      <li>
-                        <LinkedinShareButton
-                          url={currentUrl}
-                          title={successStoriesDetails?.title}
-                          source='Shekunj'
-                          imageUrl={successStoriesDetails?.image}
-                        >
-                          <img src={linkedinicon} alt='LinkedIn' />
-                        </LinkedinShareButton>
-                      </li>
-                      <li>
-                        <TwitterShareButton
-                          url={currentUrl}
-                          title={successStoriesDetails?.title}
-                          imageUrl={successStoriesDetails?.image}
-                        >
-                          <img src={twittericon} alt='Twitter' />
-                        </TwitterShareButton>
-                      </li>
-                      {/* <li>
-                        <PinterestShareButton
-                          url={currentUrl}
-                          media={successStoriesDetails?.image}
-                        >
-                          <img src={pintresticon} alt='Pinterest' />
-                        </PinterestShareButton>
-                      </li>
-
-                      <li>
-                        <WhatsappShareButton
-                          url={currentUrl}
-                          // media={successStoriesDetails?.image}
-                        >
-                          <img src={whatsapp} alt='Pinterest' />
-                        </WhatsappShareButton>
-                      </li> */}
-                    </ul>
+                    <SocialShare
+                      currentUrl={currentUrl}
+                      title={successStoriesDetails?.title}
+                      image={successStoriesDetails?.image}
+                    />
                   </div>
                 </div>
                 <div className='sk-middleContent-story'>
@@ -385,52 +336,11 @@ const SuccessStoryDetails = () => {
                   <div className='my-4'>
                     <div className='sk-social-icon'>
                       <h6 className='text-left pb-0'>Share this article</h6>
-                      <ul>
-                        <li>
-                          <FacebookShareButton
-                            url={currentUrl}
-                            title={successStoriesDetails?.title}
-                            imageUrl={successStoriesDetails?.image}
-                          >
-                            <img src={facebookicon} alt='Facebook' />
-                          </FacebookShareButton>
-                        </li>
-                        <li>
-                          <LinkedinShareButton
-                            url={currentUrl}
-                            title={successStoriesDetails?.title}
-                            source='Shekunj'
-                            imageUrl={successStoriesDetails?.image}
-                          >
-                            <img src={linkedinicon} alt='LinkedIn' />
-                          </LinkedinShareButton>
-                        </li>
-                        <li>
-                          <TwitterShareButton
-                            url={currentUrl}
-                            title={successStoriesDetails?.title}
-                            imageUrl={successStoriesDetails?.image}
-                          >
-                            <img src={twittericon} alt='Twitter' />
-                          </TwitterShareButton>
-                        </li>
-                        {/* <li>
-                          <PinterestShareButton
-                            url={currentUrl}
-                            media={successStoriesDetails?.image}
-                          >
-                            <img src={pintresticon} alt='Pinterest' />
-                          </PinterestShareButton>
-                        </li> */}
-                        {/* <li>
-                          <WhatsappShareButton
-                            url={currentUrl}
-                            // media={successStoriesDetails?.image}
-                          >
-                            <img src={whatsapp} alt='Pinterest' />
-                          </WhatsappShareButton>
-                        </li> */}
-                      </ul>
+                      <SocialShare
+                        currentUrl={currentUrl}
+                        title={successStoriesDetails?.title}
+                        image={successStoriesDetails?.image}
+                      />
                     </div>
                   </div>
                   <>
@@ -471,6 +381,13 @@ const SuccessStoryDetails = () => {
                     )}
                   </>
                 </div>
+
+                <HashtagAndCatagoriesForMobile
+                    type='hashtag'
+                  image={hash}
+                  title={`Trending Hashtag`}
+                  hashtags={allHashTag}
+                  />
 
                 <div className='title' ref={trendingSectionRef}>
                   <img src={fire} alt='fire' width={28} />

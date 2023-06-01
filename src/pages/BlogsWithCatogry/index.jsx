@@ -15,6 +15,7 @@ import { DateFormat, addEmailToClient } from "../../utils/utils";
 import { CustomLoader } from "../../components/customLoader/CustomLoader";
 import useDeviceDetect from "../../hooks/useDeviceDetect";
 import { NoDataFound } from "../../components/noDataFound/NoDataFound";
+import { HashtagAndCatagoriesForMobile } from "../../components/HastagAndCatagories/HastagAndCatagoriesForMobile";
 
 const BlogWithCatogry = () => {
   const location = useLocation();
@@ -163,6 +164,11 @@ const BlogWithCatogry = () => {
       <Header />
       <section>
         <div className='container Hashtag_container'>
+          <HashtagAndCatagoriesForMobile
+            image={catagorie}
+            title={`Categories`}
+            hashtags={allHashTag}
+          />
           <div className='row'>
             <div className='col-xl-8 col-lg-8 col-md-8 Hashtag_container_cards sk-blog-detail-wa'>
               <h6 className='Hashtag_container_title'>

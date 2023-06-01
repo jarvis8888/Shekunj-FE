@@ -25,7 +25,8 @@ import TrendingCards from "../../components/cards/TrendingCards";
 import hash from "../../assets/images/hashtag.svg";
 import httpServices from "../../utils/ApiServices";
 import { CustomLoader } from "../../components/customLoader/CustomLoader";
-import { addEmailToClient } from "../../utils/utils";
+import { addEmailToClient, addHyphensToLink } from "../../utils/utils";
+import { HashtagAndCatagoriesForMobile } from "../../components/HastagAndCatagories/HastagAndCatagoriesForMobile";
 
 function SuccessStory() {
   const history = useHistory();
@@ -446,7 +447,10 @@ function SuccessStory() {
                               key={index}
                               onClick={() =>
                                 history.push(
-                                  routingConstants.SUCCESS_STORIES + items.id,
+                                  routingConstants.SUCCESS_STORIES +
+                                    addHyphensToLink(items.name) +
+                                    "-" +
+                                    items.id,
                                 )
                               }
                             >
@@ -570,6 +574,13 @@ function SuccessStory() {
                       Load More
                     </button>
                   </div>
+
+                  <HashtagAndCatagoriesForMobile
+                    type='hashtag'
+                    image={hash}
+                    title={`Trending Hashtag`}
+                    hashtags={allHashTag}
+                  />
 
                   <div ref={trendingSectionRef}>
                     <div className='title'>

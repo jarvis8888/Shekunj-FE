@@ -383,3 +383,9 @@ export const formatDateRange = (startDate, endDate) => {
   const html = `<h6>${startMonth}</h6><h3>${startDay}</h3>`;
   return html;
 };
+
+
+export function addHyphensToLink(link) {
+  const decodedLink = decodeURIComponent(link);
+  return decodedLink.replace(/\s/g, '-');
+}

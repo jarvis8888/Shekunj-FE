@@ -85,6 +85,12 @@ const GlobalSearch = () => {
     });
   };
 
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleSearch();
+    }
+  };
+
   const handleCancel = () => {
     setOnSearchInput("");
     history.push({
@@ -126,6 +132,7 @@ const GlobalSearch = () => {
                         name='search'
                         value={onSearchInput}
                         onChange={(e) => setOnSearchInput(e.target.value)}
+                        onKeyDown={handleKeyDown}
                       />
                       {/* {onSearchInput === "" ? (
                         <div className='updown-move'>{placeholder}</div>
