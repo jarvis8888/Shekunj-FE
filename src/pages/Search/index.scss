@@ -17,7 +17,8 @@ section {
   margin-top: 24px;
 }
 .sk-search-sec {
-  background: #fff url(../../assets/images/search-bg.png) no-repeat center center;
+  background: #fff url(../../assets/images/search-bg.png) no-repeat center
+    center;
   background-size: cover;
   padding: 50px 0;
   position: relative;
@@ -25,6 +26,7 @@ section {
 }
 .sk-search-sec .sk-item-box .sk-icon {
   margin-bottom: 15px;
+  cursor: none;
 }
 
 .sk-search-sec .sk-item-box h6,
@@ -42,8 +44,6 @@ section {
   position: relative;
   overflow: hidden;
 }
-
-
 
 .sk-event-slide img {
   width: 100%;
@@ -91,14 +91,14 @@ section {
   border: 0;
 }
 
-.updown-move{
-  animation: move 3s infinite; 
+.updown-move {
+  animation: move 3s infinite;
   position: absolute;
   left: 0;
   top: 0;
   bottom: 0;
   right: auto;
-  font-size:14px;
+  font-size: 14px;
   color: #555;
   height: 50px;
 }
@@ -123,8 +123,6 @@ section {
     transform: translatey(-100%);
   }
 }
-
-
 
 .sk-btn {
   display: inline-block;
@@ -244,15 +242,23 @@ section {
   cursor: pointer;
 }
 
-.sk-event-sec .swiper-autoheight .swiper-wrapper{
+.sk-event-sec .swiper-autoheight .swiper-wrapper {
   align-items: center;
 }
 
-.sk-event-sec:hover{
-  background: linear-gradient(89.98deg, #888888 2.6%, rgba(137, 137, 137, 0.271) 19.79%, rgba(165, 164, 164, 0.238) 26.4%, rgba(198, 198, 198, 0.569) 79.16%, rgba(136, 136, 136, 0.29) 85.9%, #888888 97.14%);
+.sk-event-sec:hover {
+  background: linear-gradient(
+    89.98deg,
+    #888888 2.6%,
+    rgba(137, 137, 137, 0.271) 19.79%,
+    rgba(165, 164, 164, 0.238) 26.4%,
+    rgba(198, 198, 198, 0.569) 79.16%,
+    rgba(136, 136, 136, 0.29) 85.9%,
+    #888888 97.14%
+  );
 
   // background: linear-gradient(
-    
+
   //   89.98deg,
   //   rgba(136, 136, 136, 0.49) 2.6%,
   //   rgba(136, 136, 136, 0.21) 12.1%,
@@ -262,13 +268,21 @@ section {
   //   rgba(136, 136, 136, 0.5) 97.14%
   // );
 }
-.sk-event-sec:hover:before{
+.sk-event-sec:hover:before {
   display: none;
 }
-.sk-event-sec:before{
+.sk-event-sec:before {
   // background: linear-gradient(89.98deg, #888888 2.6%, rgba(137, 137, 137, 0.271) 19.79%, rgba(165, 164, 164, 0.238) 26.4%, rgba(198, 198, 198, 0.569) 79.16%, rgba(136, 136, 136, 0.29) 85.9%, #888888 97.14%);
 
-  background: linear-gradient(89.98deg, #888888 2.6%, rgba(136, 136, 136, 0.28) 19.79%, rgba(255, 255, 255, 0) 26.4%, rgba(255, 255, 255, 0) 79.16%, rgba(136, 136, 136, 0.29) 85.9%, #888888 97.14%);
+  background: linear-gradient(
+    89.98deg,
+    #888888 2.6%,
+    rgba(136, 136, 136, 0.28) 19.79%,
+    rgba(255, 255, 255, 0) 26.4%,
+    rgba(255, 255, 255, 0) 79.16%,
+    rgba(136, 136, 136, 0.29) 85.9%,
+    #888888 97.14%
+  );
   // background: linear-gradient(
   //   89.98deg,
   //   rgb(136 136 136 / 92%) 2.6%,
@@ -451,10 +465,12 @@ section {
   .sk-footer-menu {
     margin-bottom: 15px;
   }
-  .sk-event-sec.sk-slide-arrow .swiper-button-next:after, .sk-event-sec.sk-slide-arrow .swiper-button-prev:after{
+  .sk-event-sec.sk-slide-arrow .swiper-button-next:after,
+  .sk-event-sec.sk-slide-arrow .swiper-button-prev:after {
     font-size: 12px;
   }
-  .sk-event-sec.sk-slide-arrow .swiper-button-next, .sk-event-sec.sk-slide-arrow .swiper-button-prev{
+  .sk-event-sec.sk-slide-arrow .swiper-button-next,
+  .sk-event-sec.sk-slide-arrow .swiper-button-prev {
     width: 36px;
     height: 36px;
   }
@@ -468,14 +484,30 @@ section {
   .sk-title-heading p {
     font-size: 14px;
   }
-  .sk-event-sec{
+  .sk-event-sec {
     padding: 0;
   }
   .sk-event-sec:hover {
-    background: linear-gradient(89.98deg, rgb(136 136 136 / 23%) 2.6%, rgb(136 136 136 / 18%) 19.79%, rgba(255, 255, 255, 0) 26.4%, rgba(255, 255, 255, 0) 79.16%, rgba(136, 136, 136, 0.29) 85.9%, rgb(136 136 136 / 22%) 97.14%)
+    background: linear-gradient(
+      89.98deg,
+      rgb(136 136 136 / 23%) 2.6%,
+      rgb(136 136 136 / 18%) 19.79%,
+      rgba(255, 255, 255, 0) 26.4%,
+      rgba(255, 255, 255, 0) 79.16%,
+      rgba(136, 136, 136, 0.29) 85.9%,
+      rgb(136 136 136 / 22%) 97.14%
+    );
   }
   .sk-event-sec:before {
-    background: linear-gradient(89.98deg, rgb(136 136 136 / 35%) 2.6%, rgba(136, 136, 136, 0.28) 19.79%, rgba(255, 255, 255, 0) 26.4%, rgba(255, 255, 255, 0) 79.16%, rgba(136, 136, 136, 0.29) 85.9%, rgb(136 136 136 / 41%) 97.14%);
+    background: linear-gradient(
+      89.98deg,
+      rgb(136 136 136 / 35%) 2.6%,
+      rgba(136, 136, 136, 0.28) 19.79%,
+      rgba(255, 255, 255, 0) 26.4%,
+      rgba(255, 255, 255, 0) 79.16%,
+      rgba(136, 136, 136, 0.29) 85.9%,
+      rgb(136 136 136 / 41%) 97.14%
+    );
   }
   .sk-category ul {
     overflow: auto;

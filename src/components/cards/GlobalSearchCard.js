@@ -77,7 +77,7 @@ export const GlobalSearchCard = ({
       }
     };
     return data.map((item, index) => (
-      <div className='col-md-3' key={index}>
+      <div className='col-md-3' key={index} style={{ cursor: "pointer" }}>
         <div
           className='sk-card-box'
           onClick={() => history.push(`${getRoute(item.type, item.id)}`)}
@@ -98,7 +98,12 @@ export const GlobalSearchCard = ({
                 </span>
               )}
             </div>
-            <h6 className='sk-card-heading'>{item.title || item.name}</h6>
+            {item?.type === "Blog" ? (
+              <h6 className='sk-card-heading'>{item.title}</h6>
+            ) : (
+              <h6 className='sk-card-heading'>{item.name}</h6>
+            )}
+
             <div
               className='sk-card-description'
               dangerouslySetInnerHTML={{

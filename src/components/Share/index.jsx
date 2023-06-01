@@ -78,7 +78,7 @@ const SocialShare = ({ currentUrl, title, image }) => {
             <img
               src={icons[platform]}
               alt={platform}
-              onClick={props.onClick}
+              onClick={handleInstagramClick}
               style={{ cursor: "pointer" }}
             />
           ) : (

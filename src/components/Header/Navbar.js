@@ -31,8 +31,8 @@ const Navbar = (props) => {
   };
 
   return (
-    <header className="sk-header-bg">
-      <div className="container">
+    <header className='sk-header-bg'>
+      <div className='container'>
         <div className='Navbar'>
           <span className='nav-logo'>
             <img
@@ -53,7 +53,9 @@ const Navbar = (props) => {
             </a>
             <Dropdown title={t("header.heading.3")} className='custom-dropdown'>
               <Dropdown.Item
-                onClick={() => history.push(routingConstants.SUCCESS_CAREER_OPTION)}
+                onClick={() =>
+                  history.push(routingConstants.SUCCESS_CAREER_OPTION)
+                }
                 className={
                   isActive(routingConstants.SUCCESS_CAREER_OPTION) && "active"
                 }
@@ -93,7 +95,9 @@ const Navbar = (props) => {
                 Top Schools
               </Dropdown.Item>
               <Dropdown.Item
-                onClick={() => history.push(routingConstants.GOVERNMENT_SCHEMES)}
+                onClick={() =>
+                  history.push(routingConstants.GOVERNMENT_SCHEMES)
+                }
                 className={
                   isActive(routingConstants.GOVERNMENT_SCHEMES) && "active"
                 }
