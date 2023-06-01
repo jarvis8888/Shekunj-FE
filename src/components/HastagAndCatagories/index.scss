@@ -18,21 +18,27 @@
 
   img {
     width: 28px;
-    h4{
+    h4 {
       margin-bottom: 0;
       font-size: 22px;
       font-style: italic;
     }
   }
 }
-.sk-instagram{
-  background: linear-gradient(0deg, #E09B3D 0.29%, #C74C4D 29.97%, #C21975 59.65%, #7024C4 99.22%);
+.sk-instagram {
+  background: linear-gradient(
+    0deg,
+    #e09b3d 0.29%,
+    #c74c4d 29.97%,
+    #c21975 59.65%,
+    #7024c4 99.22%
+  );
 }
 .SocialMediaIconscontainer .likes {
   padding: 20px 5px 15px;
   gap: 5px;
 }
-.youMayLikeCarousel{
+.youMayLikeCarousel {
   padding: 10px 0 !important;
 }
 .fristAdd {
@@ -52,8 +58,16 @@
   border-bottom: 1px solid #d9d9d9;
   img {
     width: 100%;
-    height:auto;
+    height: auto;
   }
+}
+
+.HashtagAndCatagoriesTitle-mobile {
+  display: none;
+}
+.HashtagAndCatagoriesTitle-mobile::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
 }
 
 .HashtagAndCatagoriesTitle {
@@ -68,9 +82,8 @@
 }
 
 .sk-blogDetails-content {
- 
 }
-.sk-blogS-category{
+.sk-blogS-category {
   padding: 30px 0;
 }
 .hashtage-item {
@@ -80,7 +93,7 @@
   font-size: 14px;
   border: 0.5px solid #d9d9d9;
   border-radius: 8px;
-  padding:7.5px 12px;
+  padding: 7.5px 12px;
   cursor: pointer;
   transition: 0.3s;
 }
@@ -110,14 +123,25 @@
   margin-top: 17px;
 }
 @media screen and (max-width: 800px) {
-.HashtagAndCatagories {
+  .HashtagAndCatagories {
     margin-top: 20px;
   }
-  .HashtagAndCatagories{
+  .HashtagAndCatagories {
     border: 0;
     padding: 0;
   }
-  .hashtage-item{
+  .hashtage-item {
     font-size: 13px;
+  }
+  .HashtagAndCatagoriesTitle {
+    display: none;
+  }
+  .HashtagAndCatagoriesTitle-mobile {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 10px 15px;
+    padding: 0px 0 18px;
+    font-style: italic;
+    overflow: auto;
   }
 }

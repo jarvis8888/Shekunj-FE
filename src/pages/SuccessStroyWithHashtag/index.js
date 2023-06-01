@@ -12,6 +12,7 @@ import { adsList } from "../../store/ads";
 import { CustomLoader } from "../../components/customLoader/CustomLoader";
 import useDeviceDetect from "../../hooks/useDeviceDetect";
 import { addEmailToClient } from "../../utils/utils";
+import { HashtagAndCatagoriesForMobile } from "../../components/HastagAndCatagories/HastagAndCatagoriesForMobile";
 
 const SuccessStroyWithHashtag = () => {
   const location = useLocation();
@@ -187,8 +188,16 @@ const SuccessStroyWithHashtag = () => {
   return (
     <div>
       <Header />
+     
+
       <section className='sk-hashtag-sec'>
         <div className='container'>
+        <HashtagAndCatagoriesForMobile
+        type='hashtag'
+        image={hash}
+        title={`Trending Hashtag`}
+        hashtags={allHashTag}
+      />
           <div className='row'>
             <div className='col-xl-8 col-lg-8 col-md-8'>
               <h4 className='Hashtag_container_title'>

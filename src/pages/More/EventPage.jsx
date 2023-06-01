@@ -48,7 +48,11 @@ import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import httpServices from "../../utils/ApiServices";
-import { addEmailToClient, time_left } from "../../utils/utils";
+import {
+  addEmailToClient,
+  addHyphensToLink,
+  time_left,
+} from "../../utils/utils";
 import { CustomLoader } from "../../components/customLoader/CustomLoader";
 import AddsBanner from "../../components/AddsBanner/AddsBanner";
 import useDeviceDetect from "../../hooks/useDeviceDetect";
@@ -326,8 +330,8 @@ function EventPage() {
                 navigation={true}
                 loop={true}
                 autoplay={{
-                   delay: 2000,
-                   disableOnInteraction: false,
+                  delay: 2000,
+                  disableOnInteraction: false,
                 }}
                 speed={1500}
                 modules={[Navigation, Autoplay]}
@@ -357,7 +361,12 @@ function EventPage() {
                         <div
                           key={index}
                           onClick={() =>
-                            history.push(routingConstants.MORE_EVENT + items.id)
+                            history.push(
+                              routingConstants.MORE_EVENT +
+                                addHyphensToLink(items?.title) +
+                                "-" +
+                                items.id,
+                            )
                           }
                         >
                           <img src={items.image} alt='' />
@@ -428,7 +437,7 @@ function EventPage() {
             </div>
           </div>
           {loading ? (
-            <CustomLoader  />
+            <CustomLoader />
           ) : (
             <div className='row'>
               {dataWithAdds?.length ? (
@@ -442,7 +451,12 @@ function EventPage() {
                           className='col-xl-3 col-lg-4 col-md-6'
                           key={index}
                           onClick={() =>
-                            history.push(routingConstants.MORE_EVENT + items.id)
+                            history.push(
+                              routingConstants.MORE_EVENT +
+                                addHyphensToLink(items?.title) +
+                                "-" +
+                                items.id,
+                            )
                           }
                           style={{ cursor: "pointer" }}
                         >
@@ -506,7 +520,10 @@ function EventPage() {
                                   className='sk-btn-register'
                                   onClick={() =>
                                     history.push(
-                                      routingConstants.MORE_EVENT + items.id,
+                                      routingConstants.MORE_EVENT +
+                                        addHyphensToLink(items?.title) +
+                                        "-" +
+                                        items.id,
                                     )
                                   }
                                 >
@@ -522,7 +539,7 @@ function EventPage() {
                 })
               ) : (
                 <div className='noData'>
-                  <NoDataFound  />
+                  <NoDataFound />
                 </div>
               )}
               {selectedButton == "all" && (

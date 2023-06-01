@@ -182,7 +182,7 @@ function App() {
           path={routingConstants.SEARCH}
           component={GlobalSearchPage}
         />
-        <PrivateRoute
+        <Route
           exact
           path={`${routingConstants.MORE_EVENT}:id`}
           component={EventDetails}
@@ -197,16 +197,14 @@ function App() {
           path={`${routingConstants.MOCKTEST}:id`}
           component={MockTestDetail}
         />
-        <PrivateRoute
+        <Route
           exact
           path={`${routingConstants.MORE_BLOG}:id`}
-          // component={BlogPage}
           component={BlogDetails}
         />
-        <PrivateRoute
+        <Route
           exact
           path={`${routingConstants.SUCCESS_STORIES}:id`}
-          // component={BlogPage}
           component={SuccessStoryDetailPage}
         />
         {/* <PrivateRoute

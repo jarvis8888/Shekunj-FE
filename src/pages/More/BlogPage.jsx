@@ -22,6 +22,7 @@ import httpServices from "../../utils/ApiServices";
 import { CustomLoader } from "../../components/customLoader/CustomLoader";
 import { DateFormat, addEmailToClient } from "../../utils/utils";
 import { NoDataFound } from "../../components/noDataFound/NoDataFound";
+import { HashtagAndCatagoriesForMobile } from "../../components/HastagAndCatagories/HastagAndCatagoriesForMobile";
 
 function BlogPage() {
   const history = useHistory();
@@ -349,6 +350,7 @@ function BlogPage() {
                               time={items.reading_time}
                               date={DateFormat(`${items.created_at}`)}
                               category_name={items.category_name}
+                              key={index}
                             />
                           </>
                         );
@@ -501,6 +503,12 @@ function BlogPage() {
                       }
                     />
                   </div>
+
+                  <HashtagAndCatagoriesForMobile
+                    image={catagorie}
+                    title={"Categories"}
+                    hashtags={blogsCategories}
+                  />
 
                   <div className='title' ref={trendingSectionRef}>
                     <img src={fire} alt='fire' width={28} />
