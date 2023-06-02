@@ -14,12 +14,50 @@ import toasterConfig from "../../utils/toasterCongig";
 import { toast } from "react-toastify";
 
 const SocialShare = ({ currentUrl, title, image }) => {
+  
   const handleInstagramClick = () => {
-    navigator.clipboard.writeText(currentUrl);
-    toast.success("URL copied to clipboard!", toasterConfig);
-    setTimeout(() => {
-      window.open("https://www.instagram.com/", "_blank");
-    }, 2000); // Delay in milliseconds (adjust as needed)
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard
+        .writeText(currentUrl)
+        .then(() => {
+          toast.success("URL copied to clipboard!", toasterConfig);
+          setTimeout(() => {
+            window.open("https://www.instagram.com/", "_blank");
+          }, 2000); // Delay in milliseconds (adjust as needed)
+        })
+        .catch((error) => {
+          console.error("Failed to copy URL to clipboard:", error);
+        });
+    } else if (
+      document.queryCommandSupported &&
+      document.queryCommandSupported("copy")
+    ) {
+      const textArea = document.createElement("textarea");
+      textArea.value = currentUrl;
+      textArea.style.position = "fixed";
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+
+      try {
+        const successful = document.execCommand("copy");
+        const message = successful
+          ? "URL copied to clipboard!"
+          : "Unable to copy URL to clipboard.";
+        toast.success(message, toasterConfig);
+        setTimeout(() => {
+          window.open("https://www.instagram.com/", "_blank");
+        }, 2000); // Delay in milliseconds (adjust as needed)
+      } catch (error) {
+        console.error("Failed to copy URL to clipboard:", error);
+      }
+
+      document.body.removeChild(textArea);
+    } else {
+      console.error(
+        "Clipboard writeText and execCommand functions are not supported in this browser.",
+      );
+    }
   };
 
   // Dynamically set the og:image meta tag
