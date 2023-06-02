@@ -13,6 +13,7 @@ import { CustomLoader } from "../../components/customLoader/CustomLoader";
 import useDeviceDetect from "../../hooks/useDeviceDetect";
 import { addEmailToClient } from "../../utils/utils";
 import { HashtagAndCatagoriesForMobile } from "../../components/HastagAndCatagories/HastagAndCatagoriesForMobile";
+import { NoDataFound } from "../../components/noDataFound/NoDataFound";
 
 const SuccessStroyWithHashtag = () => {
   const location = useLocation();
@@ -188,16 +189,15 @@ const SuccessStroyWithHashtag = () => {
   return (
     <div>
       <Header />
-     
 
       <section className='sk-hashtag-sec'>
         <div className='container'>
-        <HashtagAndCatagoriesForMobile
-        type='hashtag'
-        image={hash}
-        title={`Trending Hashtag`}
-        hashtags={allHashTag}
-      />
+          <HashtagAndCatagoriesForMobile
+            type='hashtag'
+            image={hash}
+            title={`Trending Hashtag`}
+            hashtags={allHashTag}
+          />
           <div className='row'>
             <div className='col-xl-8 col-lg-8 col-md-8'>
               <h4 className='Hashtag_container_title'>
@@ -208,34 +208,40 @@ const SuccessStroyWithHashtag = () => {
                 <CustomLoader />
               ) : (
                 <div className='row'>
-                  {data?.map((items, index) => {
-                    if (items.id === "advertisement") {
-                      return (
-                        <>
-                          {succesStoriesLeft.length > 0 &&
-                            succesStoriesLeftRenderAds()}
-                        </>
-                      );
-                    } else {
-                      return (
-                        <>
-                          <FeaturedCards
-                            image={items.image}
-                            hashtags={
-                              items.hash_tags === null ? [] : items.hash_tags
-                            }
-                            title={items.name}
-                            description={`${items.title}`}
-                            makeHtml={makeHtml}
-                            key={index}
-                            created_at={items.created_at}
-                            reading_time={items.reading_time}
-                            id={items.id}
-                          />
-                        </>
-                      );
-                    }
-                  })}
+                  {data?.length ? (
+                    data?.map((items, index) => {
+                      if (items.id === "advertisement") {
+                        return (
+                          <>
+                            {succesStoriesLeft.length > 0 &&
+                              succesStoriesLeftRenderAds()}
+                          </>
+                        );
+                      } else {
+                        return (
+                          <>
+                            <FeaturedCards
+                              image={items.image}
+                              hashtags={
+                                items.hash_tags === null ? [] : items.hash_tags
+                              }
+                              title={items.name}
+                              description={`${items.title}`}
+                              makeHtml={makeHtml}
+                              key={index}
+                              created_at={items.created_at}
+                              reading_time={items.reading_time}
+                              id={items.id}
+                            />
+                          </>
+                        );
+                      }
+                    })
+                  ) : (
+                    <>
+                      <NoDataFound />
+                    </>
+                  )}
                 </div>
               )}
             </div>
