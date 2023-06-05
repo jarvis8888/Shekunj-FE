@@ -1,26 +1,46 @@
 import React from "react";
 import { Helmet } from "react-helmet-async";
 
-const SEO = (props,{
-  title = ``,
-  description = "",
-  image = "http://ec2-3-7-4-178.ap-south-1.compute.amazonaws.com/static/media/logo.de3c6070.svg",
-  keywords=``,
-  link=''
-}) => {
+const SEO = ({ title, description, image, keywords, link, currentUrl }) => {
   return (
     <>
       <Helmet>
-        <title>{props.title}</title>
-        <meta name='title' content={props.title} />
-        <meta name='description' content={props.description} />
-        <meta property='og:title' content={props.title} />
+        <title>{title}</title>
+        <meta name='title' content={title} />
+        <meta name='description' content={description} />
+        <meta property='og:title' content={title} />
         <meta property='og:image' content={image} />
-        <meta property='og:description' content={props.description} />
-        <meta property='og:url' content={image} />
-        <meta property='og:keywords' content={props.keywords} />
-        <meta name='keywords' content={props.keywords} />
-        <link rel="canonical" href={props.link} />
+        <meta property='og:description' content={description} />
+        {/* <meta property='og:url' content={image} /> */}
+        <meta property='og:keywords' content={keywords} />
+        <meta name='keywords' content={keywords} />
+        <link rel='canonical' href={link} />
+        <meta name='image' property='og:image' content={image} />
+
+        {/* <!-- Open Graph Meta Tags --> */}
+        <meta property='og:title' content={title} />
+        <meta
+          property='og:description'
+          content='Shekunj.com works on women
+      empowerment and skill development by
+      providing free training, job-oriented courses,
+      jobs & internships and career counseling.'
+        />
+        <meta property='og:image' content={image} />
+        <meta property='og:url' content={currentUrl} />
+        <meta property='og:type' content='website' />
+
+        {/* <!-- Twitter Card Meta Tags --> */}
+        <meta name='twitter:card' content='summary_large_image' />
+        <meta name='twitter:title' content={title} />
+        <meta
+          name='twitter:description'
+          content='Shekunj.com works on women
+      empowerment and skill development by
+      providing free training, job-oriented courses,
+      jobs & internships and career counseling.'
+        />
+        <meta name='twitter:image' content={image} />
       </Helmet>
     </>
   );

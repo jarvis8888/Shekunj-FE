@@ -13,6 +13,7 @@ import instagramicon from "../../assets/images/instagram.svg";
 import toasterConfig from "../../utils/toasterCongig";
 import { toast } from "react-toastify";
 import { Helmet } from "react-helmet-async";
+import SEO from "../SEO";
 
 const SocialShare = ({ currentUrl, title, image }) => {
   const handleInstagramClick = () => {
@@ -70,12 +71,14 @@ const SocialShare = ({ currentUrl, title, image }) => {
 
   return (
     <>
-      <Helmet>
-        <meta
-          property='og:image'
-          content={image}
-        />
-      </Helmet>
+      <SEO
+        title={title}
+        keyword='women empowerment organizations, free online courses in india, free career guidance'
+        description='Shekunj.com works for women empowerment by providing free online certification courses, 
+          career guidance, job and internship opportunities across India.'
+        currentUrl={currentUrl}
+        image={image}
+      />
       <ul>
         <li>
           <FacebookShareButton url={currentUrl} quote={title} imageUrl={image}>
