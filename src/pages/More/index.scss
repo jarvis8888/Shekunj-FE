@@ -2,13 +2,14 @@ body {
   overflow-x: hidden;
 }
 
-.sk-event-sec img{ 
+.sk-event-sec img {
   border-radius: 8px;
   filter: drop-shadow(4px 4px 8px rgba(0, 0, 0, 0.25));
   margin: 20px 0;
   width: 100%;
 }
-.sk-event-sec.sk-slide-arrow .swiper-button-next, .sk-event-sec.sk-slide-arrow .swiper-button-prev{
+.sk-event-sec.sk-slide-arrow .swiper-button-next,
+.sk-event-sec.sk-slide-arrow .swiper-button-prev {
   color: #fff;
   border-color: #fff;
   background: #00000017;
@@ -16,15 +17,15 @@ body {
   height: 56px;
   width: 56px;
 }
-.sk-event-sec.sk-slide-arrow .swiper-button-next{
+.sk-event-sec.sk-slide-arrow .swiper-button-next {
   right: 50px;
 }
-.sk-event-sec.sk-slide-arrow .swiper-button-prev{
+.sk-event-sec.sk-slide-arrow .swiper-button-prev {
   left: 50px;
 }
 .event-Carousel .owl-nav:after {
   position: absolute;
-  content: '';
+  content: "";
   right: 0;
   top: 0;
   bottom: 0;
@@ -59,9 +60,9 @@ body {
   height: calc(100% - 30px);
   display: flex;
   align-items: center;
-  background: #F0F0F0;
+  background: #f0f0f0;
   justify-content: center;
-  padding:30px 10px;
+  padding: 30px 10px;
 }
 .global_img {
   margin-top: 100px;
@@ -1354,8 +1355,8 @@ button.want_btn {
         justify-content: center;
         align-items: unset;
         line-height: 50px;
-      
-        &:hover{
+
+        &:hover {
           background: #fff;
           color: #020202;
         }
@@ -1387,15 +1388,13 @@ button.want_btn {
   padding: 10px 0;
 }
 
-
-
 @media screen and (max-width: 480px) {
   .event-Carousel .owl-nav:before {
     background: linear-gradient(90deg, rgb(146 146 146 / 58%), transparent);
     width: 110px;
   }
   .event-Carousel .owl-nav:after {
-    background: linear-gradient(90deg, transparent, rgb(146 146 146 / 58%) );
+    background: linear-gradient(90deg, transparent, rgb(146 146 146 / 58%));
     width: 110px;
   }
   .event-Carousel .owl-nav button span {
@@ -1408,8 +1407,23 @@ button.want_btn {
     line-height: 20px;
     padding: 0 12px;
     line-height: 30px;
-    }
-    .sk-event-sec{
-      padding: 0;
-    }
+  }
+  .sk-event-sec {
+    padding: 0;
+  }
+}
+
+.sk-slide-arrow .swiper-button-next:after,
+.sk-slide-arrow .swiper-button-prev:after {
+  font-size: 16px;
+  font-weight: 600;
+}
+.sk-slide-arrow .swiper-button-next,
+.sk-slide-arrow .swiper-button-prev {
+  border: 1px solid;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  color: #fff;
+  border-color: #fff;
 }
