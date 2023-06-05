@@ -12,9 +12,9 @@ import whatsappicon from "../../assets/images/whatsapp.svg";
 import instagramicon from "../../assets/images/instagram.svg";
 import toasterConfig from "../../utils/toasterCongig";
 import { toast } from "react-toastify";
+import { Helmet } from "react-helmet-async";
 
 const SocialShare = ({ currentUrl, title, image }) => {
-  
   const handleInstagramClick = () => {
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard
@@ -61,44 +61,52 @@ const SocialShare = ({ currentUrl, title, image }) => {
   };
 
   // Dynamically set the og:image meta tag
-  React.useEffect(() => {
-    const metaTag = document.querySelector('meta[property="og:image"]');
-    if (metaTag) {
-      metaTag.setAttribute("content", image);
-    }
-  }, [image]);
+  // React.useEffect(() => {
+  //   const metaTag = document.querySelector('meta[property="og:image"]');
+  //   if (metaTag) {
+  //     metaTag.setAttribute("content", image);
+  //   }
+  // }, [image]);
 
   return (
-    <ul>
-      <li>
-        <FacebookShareButton url={currentUrl} quote={title} imageUrl={image}>
-          <img src={facebookicon} alt='Facebook' />
-        </FacebookShareButton>
-      </li>
-      <li>
-        <LinkedinShareButton
-          url={currentUrl}
-          title={title}
-          summary={title}
-          imageUrl={image}
-        >
-          <img src={linkedinicon} alt='LinkedIn' />
-        </LinkedinShareButton>
-      </li>
-      <li>
-        <TwitterShareButton url={currentUrl} title={title} imageUrl={image}>
-          <img src={twittericon} alt='Twitter' />
-        </TwitterShareButton>
-      </li>
-      <li>
-        <WhatsappShareButton url={currentUrl} title={title} separator=' - '>
-          <img src={whatsappicon} alt='WhatsApp' />
-        </WhatsappShareButton>
-      </li>
-      <li onClick={handleInstagramClick} style={{ cursor: "pointer" }}>
-        <img src={instagramicon} alt='instagramicon' />
-      </li>
-    </ul>
+    <>
+      <Helmet>
+        <meta
+          property='og:image'
+          content={image}
+        />
+      </Helmet>
+      <ul>
+        <li>
+          <FacebookShareButton url={currentUrl} quote={title} imageUrl={image}>
+            <img src={facebookicon} alt='Facebook' />
+          </FacebookShareButton>
+        </li>
+        <li>
+          <LinkedinShareButton
+            url={currentUrl}
+            title={title}
+            summary={title}
+            imageUrl={image}
+          >
+            <img src={linkedinicon} alt='LinkedIn' />
+          </LinkedinShareButton>
+        </li>
+        <li>
+          <TwitterShareButton url={currentUrl} title={title} imageUrl={image}>
+            <img src={twittericon} alt='Twitter' />
+          </TwitterShareButton>
+        </li>
+        <li>
+          <WhatsappShareButton url={currentUrl} title={title} separator=' - '>
+            <img src={whatsappicon} alt='WhatsApp' />
+          </WhatsappShareButton>
+        </li>
+        <li onClick={handleInstagramClick} style={{ cursor: "pointer" }}>
+          <img src={instagramicon} alt='instagramicon' />
+        </li>
+      </ul>
+    </>
   );
 };
 

@@ -57,7 +57,6 @@ const BlogCarousel = ({ images = [] }) => {
           <h2
             style={{
               color: "#020202",
-              fontSize: "1.3rem",
               marginBottom: "15px",
             }}
           >

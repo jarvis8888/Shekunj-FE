@@ -823,6 +823,29 @@
       "title2": "<div>Empowered <span>Women</span>.</div>",
       "description": "At our core, we believe that every woman has a unique story that deserves to be told. These stories are more than just words on a page; they're a celebration of the inspiring achievements of women from all walks of life.",
       "buttonTitle": "View All Success Stories"
+    },
+    "HEADER": {
+      "events": "Events",
+      "blog": "Blog",
+      "FAQ": "FAQ"
+    },
+    "FOOTER": {
+      "Free_Courses": "Free Courses",
+      "Popular_Topics": "Popular Topics",
+      "About_SheKunjs": "About SheKunjs",
+      "Need_Some_Help?": "Need Some Help?",
+      "Online_Mock_Test": "Online Mock Test",
+      "Government_Schemes": "Government Schemes",
+      "Certificate": "Certificate",
+      "Resume_Builder": "Resume Builder",
+      "Guidance": "Guidance",
+      "Jobs": "Jobs",
+      "Contact_Us" : "Contact Us",
+      "Help_Support" : "Help & Support",
+      "Terms_Policy" : "Terms & Policy",
+      "Sitemap" : "Sitemap",
+      "For_Information" : "For Information",
+      "For_Support" : "For Support"
     }
   }
 }

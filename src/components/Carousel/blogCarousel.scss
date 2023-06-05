@@ -29,6 +29,9 @@ section {
     position: absolute;
     bottom: 0;
     background: linear-gradient(180deg, rgba(32, 32, 32, 0) 0%, #202020d1 100%);
+    @media screen and (max-width: 480px){
+      padding: 1rem;
+    }
   }
 
   &__nav {
@@ -40,15 +43,19 @@ section {
     justify-content: center;
     align-items: center;
     z-index: 2;
+    @media screen and (max-width: 480px){
+    top: 0.8rem;
+    right: 1rem;
+    }
   }
 
   &__dot {
     height: 4px;
-    width: 34px;
+    width: 30px;
     padding: 0;
     background: #ffffff;
     border-radius: 4px;
-    margin: 0 0.5rem;
+    margin: 0 0 0 1rem;
     border: none;
     cursor: pointer;
     transition: transform 0.3s ease-in-out;
@@ -64,6 +71,15 @@ section {
 }
 .carousel__content h2 {
   color: #fff !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  font-size: 32px;
+  @media screen and (max-width: 480px){
+    font-size: 24px;
+  }
 }
 .has {
   display: flex;
@@ -96,6 +112,9 @@ section {
   display: inline-block;
   margin-bottom: 5px;
   font-size: 14px;
+  @media screen and (max-width: 480px){
+    margin-bottom: 20px;
+  }
 }
 
 .carousel__arrow {
@@ -113,6 +132,9 @@ section {
   cursor: pointer;
   z-index: 2;
   transition: background-color 0.3s ease-in-out;
+  @media screen and (max-width: 480px) {
+    display: none;
+  }
 
   &:hover {
     background-color: rgba(0, 0, 0, 0.8);

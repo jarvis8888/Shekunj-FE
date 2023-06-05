@@ -5,10 +5,11 @@ import { SocialMedia } from "./SocialMedia";
 import httpServices from "../../utils/ApiServices";
 import { apiConstants, routingConstants } from "../../utils/constants";
 import { useHistory } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export const TopFooter = memo(() => {
   const history = useHistory();
-
+  const { t } = useTranslation();
   const [courseLoader, setCourseLoader] = useState(false);
   const [data, setData] = useState([]);
 
@@ -37,7 +38,7 @@ export const TopFooter = memo(() => {
             <div className='row'>
               <div className='col-xl-3 col-lg-3 col-md-6 col-sm-12'>
                 <div className='sk-footer-menu'>
-                  <h5>Free Courses</h5>
+                  <h5>{t("phase2.FOOTER.Free_Courses")}</h5>
                   <ul>
                     {data?.length
                       ? data
@@ -62,71 +63,78 @@ export const TopFooter = memo(() => {
               </div>
               <div className='col-xl-3 col-lg-3 col-md-6 col-sm-12'>
                 <div className='sk-footer-menu'>
-                  <h5>Popular Topics</h5>
+                  <h5>{t("phase2.FOOTER.Popular_Topics")}</h5>
                   <ul>
                     <li>
-                      <a href='/mock-test/'>Online Mock Test</a>
-                    </li>
-                    <li>
-                      <a href='/government-schemes-in-india'>
-                        Government Schemes
+                      <a href='/mock-test/'>
+                        {t("phase2.FOOTER.Online_Mock_Test")}
                       </a>
                     </li>
                     <li>
-                      <a href='/all-certificate-page/'>Certificate</a>
+                      <a href='/government-schemes-in-india'>
+                        {t("phase2.FOOTER.Government_Schemes")}
+                      </a>
                     </li>
                     <li>
-                      <a href='/resume'>Resume Builder</a>
+                      <a href='/all-certificate-page/'>
+                        {" "}
+                        {t("phase2.FOOTER.Certificate")}
+                      </a>
                     </li>
                     <li>
-                      <a href='/online-counselling/'>Guidance</a>
+                      <a href='/resume'>{t("phase2.FOOTER.Resume_Builder")}</a>
                     </li>
                     <li>
-                      <a href='/jobs'>Jobs</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div className='col-xl-3 col-lg-3 col-md-6 col-sm-12'>
-                <div className='sk-footer-menu'>
-                  <h5>About SheKunjs</h5>
-                  <ul>
-                    <li>
-                      <a href='/about-us'>About Us</a>
+                      <a href='/online-counselling/'>
+                        {t("phase2.FOOTER.Guidance")}
+                      </a>
                     </li>
                     <li>
-                      <a href='/success-stories'>Success Story</a>
-                    </li>
-                    <li>
-                      <a href='/career-options'>Career</a>
-                    </li>
-                    <li>
-                      <a href='/blogs'>Blog</a>
-                    </li>
-                    <li>
-                      <a href='/event'>Events</a>
+                      <a href='/jobs'>{t("phase2.FOOTER.Jobs")}</a>
                     </li>
                   </ul>
                 </div>
               </div>
               <div className='col-xl-3 col-lg-3 col-md-6 col-sm-12'>
                 <div className='sk-footer-menu'>
-                  <h5>Need Some Help?</h5>
+                  <h5>{t("phase2.FOOTER.About_SheKunjs")}</h5>
                   <ul>
                     <li>
-                      <a href='javascript:;'>Contact Us</a>
+                      <a href='/about-us'> {t("header.heading.1")}</a>
                     </li>
                     <li>
-                      <a href='/more-faq'>FAQs</a>
+                      <a href='/success-stories'>{t("header.heading.8")}</a>
                     </li>
                     <li>
-                      <a href='/more-faq'>Help & Support</a>
+                      <a href='/career-options'>{t("header.heading.5")}</a>
                     </li>
                     <li>
-                      <a href='javascript:;'>Terms & Policy</a>
+                      <a href='/blogs'>{t("phase2.HEADER.blog")}</a>
                     </li>
                     <li>
-                      <a href='javascript:;'>Sitemap</a>
+                      <a href='/event'>{t("phase2.HEADER.events")}</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div className='col-xl-3 col-lg-3 col-md-6 col-sm-12'>
+                <div className='sk-footer-menu'>
+                  <h5>{t("phase2.FOOTER.Need_Some_Help?")}</h5>
+                  <ul>
+                    <li>
+                      <a href='javascript:;'>{t("phase2.FOOTER.Contact_Us")}</a>
+                    </li>
+                    <li>
+                      <a href='/more-faq'>{t("phase2.HEADER.FAQ")}</a>
+                    </li>
+                    <li>
+                      <a href='/more-faq'>{t("phase2.FOOTER.Help_Support")}</a>
+                    </li>
+                    <li>
+                      <a href='javascript:;'>{t("phase2.FOOTER.Terms_Policy")}</a>
+                    </li>
+                    <li>
+                      <a href='javascript:;'>{t("phase2.FOOTER.Sitemap")}</a>
                     </li>
                   </ul>
                 </div>

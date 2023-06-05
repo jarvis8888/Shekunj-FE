@@ -9,8 +9,10 @@ import instagramicon from "../../assets/images/instagram.svg";
 import youtubeIcon from "../../assets/images/youtube.svg";
 import instagram from "../../assets/images/instagram.png";
 import MailOutlineRoundedIcon from "@mui/icons-material/MailOutlineRounded";
+import { useTranslation } from "react-i18next";
 
 export const SocialMedia = () => {
+  const { t } = useTranslation();
   return (
     <section className='sk-socialMedia-sec'>
       <div className='container'>
@@ -72,7 +74,7 @@ export const SocialMedia = () => {
           </div>
           <div className='col-xl-3 col-md-4 col-sm-4'>
             <div className='sk-footer-menu'>
-              <h5>For Information</h5>
+              <h5> {t("phase2.FOOTER.For_Information")}</h5>
               <p>
                 <a href='mailto:info@shekunj.com'>
                   <MailOutlineRoundedIcon /> info@shekunj.com
@@ -82,7 +84,7 @@ export const SocialMedia = () => {
           </div>
           <div className='col-xl-3 col-md-4 col-sm-4'>
             <div className='sk-footer-menu'>
-              <h5>For Support</h5>
+              <h5> {t("phase2.FOOTER.For_Support")}</h5>
               <p>
                 <a href='mailto:support@shekunj.com'>
                   <MailOutlineRoundedIcon /> support@shekunj.com

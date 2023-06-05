@@ -805,5 +805,36 @@
       "no_of_questions": "प्रश्नों की संख्या",
       "total_score": "कुल स्कोर"
     }
+  },
+  "phase2": {
+    "SuccessStoryContent": {
+      "title1": "<div>Empowering Stories,</div>",
+      "title2": "<div>Empowered <span>Women</span>.</div>",
+      "description": "At our core, we believe that every woman has a unique story that deserves to be told. These stories are more than just words on a page; they're a celebration of the inspiring achievements of women from all walks of life.",
+      "buttonTitle": "View All Success Stories"
+    },
+    "HEADER": {
+      "events": "आयोजन",
+      "blog": "ब्लॉग",
+      "FAQ": "सामान्य प्रश्न"
+    },
+    "FOOTER": {
+      "Free_Courses": "पाठ्यक्रम",
+      "Popular_Topics": "लोकप्रिय विषय",
+      "About_SheKunjs": "SheKunjs के बारे में",
+      "Need_Some_Help?": "कुछ मदद की जरूरत?",
+      "Online_Mock_Test": "मॉक टेस्ट",
+      "Government_Schemes": "सरकारी योजनाएं",
+      "Certificate": "प्रमाणपत्र",
+      "Resume_Builder": "रिज्यूमे बिल्डर",
+      "Guidance": "सलाह",
+      "Jobs": "नौकरियां",
+      "Contact_Us": "संपर्क करें",
+      "Help_Support": "मदद और समर्थन",
+      "Terms_Policy": "शर्तें और नीति",
+      "Sitemap": "साइट मैप",
+      "For_Information": "जानकारी के लिए",
+      "For_Support": "समर्थन के लिए"
+    }
   }
 }

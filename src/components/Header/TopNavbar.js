@@ -54,19 +54,19 @@ function TopNavbar() {
   }, []);
 
   return (
-    <div className="sk-headerTop-bg">
-      <div className="container">
+    <div className='sk-headerTop-bg'>
+      <div className='container'>
         <div className='header-top'>
-          <nav className="">
+          <nav className=''>
             <ul>
               <li className='mobile'>
-                <a href='/event'>Events</a>
+                <a href='/event'>{t("phase2.HEADER.events")}</a>
               </li>
               <li className='mobile'>
-                <a href='/blogs'>Blog</a>
+                <a href='/blogs'>{t("phase2.HEADER.blog")}</a>
               </li>
               <li className='mobile'>
-                <a href='/more-faq'>FAQ</a>
+                <a href='/more-faq'>{t("phase2.HEADER.FAQ")}</a>
               </li>
               <li>
                 <ChangeLanguageButton />
@@ -93,7 +93,9 @@ function TopNavbar() {
                         className='custom-dropdown'
                       >
                         <Dropdown.Item
-                          onClick={() => history.push(routingConstants.MY_PROFILE)}
+                          onClick={() =>
+                            history.push(routingConstants.MY_PROFILE)
+                          }
                           className={
                             isActive(routingConstants.MY_PROFILE) && "active"
                           }
@@ -101,7 +103,9 @@ function TopNavbar() {
                           {t("headerComponent.menuItem.1")}
                         </Dropdown.Item>
                         <Dropdown.Item
-                          onClick={() => history.push(routingConstants.MY_PROGESS)}
+                          onClick={() =>
+                            history.push(routingConstants.MY_PROGESS)
+                          }
                           className={
                             isActive(routingConstants.MY_PROGESS) && "active"
                           }
@@ -128,7 +132,7 @@ function TopNavbar() {
                 ) : (
                   <>
                     <a href='/login'>
-                      <button type="button" className="sk-header-btn">
+                      <button type='button' className='sk-header-btn'>
                         {t("header.authButton")}
                       </button>
                     </a>
