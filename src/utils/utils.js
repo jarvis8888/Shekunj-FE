@@ -271,7 +271,10 @@ export function time_left(start_date, start_time, end_date, end_time) {
   });
 
   const [month, day, year, time, meridiem] = formatter.format(start).split(" ");
-  return `${day} ${month} ${year} | ${time} ${meridiem.toUpperCase()}`.replace(
+  const [endmonth, endday, endyear, endtime, endmeridiem] = formatter
+    .format(end)
+    .split(" ");
+  return `${day} ${month} ${year} - ${endday} ${endmonth} ${endyear} <div class="event-time">${time} ${meridiem.toUpperCase()}<div/>`.replace(
     /,/g,
     "",
   );
@@ -365,12 +368,12 @@ const getMonthString = (date) => {
     "Nov",
     "Dec",
   ];
-  const monthIndex = parseInt(date.split('-')[1], 10) - 1;
+  const monthIndex = parseInt(date.split("-")[1], 10) - 1;
   return months[monthIndex];
 };
 
 const getDayString = (date) => {
-  const day = parseInt(date.split('-')[2], 10);
+  const day = parseInt(date.split("-")[2], 10);
   return day.toString();
 };
 
@@ -384,8 +387,10 @@ export const formatDateRange = (startDate, endDate) => {
   return html;
 };
 
-
 export function addHyphensToLink(link) {
   const decodedLink = decodeURIComponent(link);
-  return decodedLink.replace(/\s/g, '-');
+  return decodedLink.replace(/\s/g, "-");
 }
+
+export const blockInvalidChar = (e) =>
+  ["e", "E", "+", "-"].includes(e.key) && e.preventDefault();

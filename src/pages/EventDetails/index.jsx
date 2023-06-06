@@ -347,15 +347,16 @@ const EventDetails = () => {
                             <li>
                               {" "}
                               <AccessTimeIcon />{" "}
-                              <span>
-                                {" "}
-                                {time_left(
-                                  eventsDetails?.start_date,
-                                  eventsDetails?.start_time,
-                                  eventsDetails?.end_date,
-                                  eventsDetails?.end_time,
-                                )}
-                              </span>{" "}
+                              <span
+                                dangerouslySetInnerHTML={{
+                                  __html: time_left(
+                                    eventsDetails?.start_date,
+                                    eventsDetails?.start_time,
+                                    eventsDetails?.end_date,
+                                    eventsDetails?.end_time,
+                                  ),
+                                }}
+                              ></span>{" "}
                             </li>
                             <li>
                               {eventsDetails?.mode_of_event === "offline" ? (
