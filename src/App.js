@@ -78,6 +78,41 @@ function App() {
   useEffect(() => {
     window.history.scrollRestoration = "manual";
   }, []);
+  useEffect(() => {
+    const disableTextSelection = (e) => {
+      if (e.target.tagName !== "INPUT" && e.target.tagName !== "TEXTAREA") {
+        e.preventDefault();
+      }
+    };
+
+    const disableCopyCutPaste = (e) => {
+      if (e.target.tagName !== "INPUT" && e.target.tagName !== "TEXTAREA") {
+        e.preventDefault();
+      }
+    };
+
+    const disableDelete = (e) => {
+      if (e.target.tagName !== "INPUT" && e.target.tagName !== "TEXTAREA") {
+        e.preventDefault();
+        return false;
+      }
+    };
+
+    document.addEventListener("copy", disableCopyCutPaste);
+    document.addEventListener("cut", disableCopyCutPaste);
+    document.addEventListener("paste", disableCopyCutPaste);
+    document.addEventListener("keydown", disableDelete);
+    document.addEventListener("selectstart", disableTextSelection);
+
+    return () => {
+      document.removeEventListener("copy", disableCopyCutPaste);
+      document.removeEventListener("cut", disableCopyCutPaste);
+      document.removeEventListener("paste", disableCopyCutPaste);
+      document.removeEventListener("keydown", disableDelete);
+      document.removeEventListener("selectstart", disableTextSelection);
+    };
+  }, []);
+
   return (
     <>
       <Switch>

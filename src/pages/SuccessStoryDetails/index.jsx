@@ -16,12 +16,12 @@ import TrendingCards from "../../components/cards/TrendingCards";
 import fire from "../../assets/images/fire.svg";
 import { HashtagAndCatagories } from "../../components/HastagAndCatagories/Index";
 import hash from "../../assets/images/hashtag.svg";
-import { apiConstants } from "../../utils/constants";
+import { apiConstants, routingConstants } from "../../utils/constants";
 import httpServices from "../../utils/ApiServices";
 import { CustomLoader } from "../../components/customLoader/CustomLoader";
 import { addEmailToClient } from "../../utils/utils";
 import { HashtagAndCatagoriesForMobile } from "../../components/HastagAndCatagories/HastagAndCatagoriesForMobile";
-
+import { useHistory } from "react-router-dom";
 
 const SuccessStoryDetails = () => {
   const { successStoriesDetails } = useSelector((state) => {
@@ -31,6 +31,7 @@ const SuccessStoryDetails = () => {
 
   const dispatch = useDispatch();
   const trendingSectionRef = useRef(null);
+  const history = useHistory();
 
   const { lan } = useSelector((state) => state.languageReducer);
 
@@ -103,7 +104,7 @@ const SuccessStoryDetails = () => {
   useEffect(() => {
     dispatch(fetchSuccessStoriesDetails(lastNumber));
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-  }, [dispatch, lastNumber, lan , id]);
+  }, [dispatch, lastNumber, lan, id]);
 
   useEffect(() => {
     getAllSuccessStoryTrendingData(trendingPageLimit, trendingOffset);
@@ -288,7 +289,17 @@ const SuccessStoryDetails = () => {
                     <div className='sk-storyD-tag'>
                       {successStoriesDetails?.hash_tags?.length
                         ? successStoriesDetails?.hash_tags.map((items) => {
-                            return <span key={items}>{`#${items}`}</span>;
+                            return (
+                              <span
+                                key={items}
+                                onClick={() =>
+                                  history.push(
+                                    `${routingConstants.SUCCESS_STORIES_HASHTAG}?search=${items}`,
+                                    items,
+                                  )
+                                }
+                              >{`#${items}`}</span>
+                            );
                           })
                         : null}
                     </div>
@@ -321,7 +332,14 @@ const SuccessStoryDetails = () => {
                     {successStoriesDetails?.name}
                   </h4>
                   <h5 className='story-sub-tittle'>
-                    {successStoriesDetails?.designation}
+                    {successStoriesDetails &&
+                      successStoriesDetails?.designation}
+                    {successStoriesDetails &&
+                      successStoriesDetails?.designation &&
+                      successStoriesDetails?.company_name &&
+                      ", "}
+                    {successStoriesDetails &&
+                      successStoriesDetails?.company_name}
                   </h5>
                   <h6 className='description'>
                     {successStoriesDetails?.title}
@@ -383,11 +401,11 @@ const SuccessStoryDetails = () => {
                 </div>
 
                 <HashtagAndCatagoriesForMobile
-                    type='hashtag'
+                  type='hashtag'
                   image={hash}
                   title={`Trending Hashtag`}
                   hashtags={allHashTag}
-                  />
+                />
 
                 <div className='title' ref={trendingSectionRef}>
                   <img src={fire} alt='fire' width={28} />

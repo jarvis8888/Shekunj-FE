@@ -498,14 +498,16 @@ function EventPage() {
                                   <li>
                                     {" "}
                                     <AccessTimeIcon />{" "}
-                                    <span>
-                                      {time_left(
-                                        items.start_date,
-                                        items.start_time,
-                                        items.end_date,
-                                        items.end_time,
-                                      )}
-                                    </span>{" "}
+                                    <span
+                                      dangerouslySetInnerHTML={{
+                                        __html: time_left(
+                                          items.start_date,
+                                          items.start_time,
+                                          items.end_date,
+                                          items.end_time,
+                                        ),
+                                      }}
+                                    ></span>{" "}
                                   </li>
                                   <li>
                                     {" "}
@@ -527,7 +529,7 @@ function EventPage() {
                                     )
                                   }
                                 >
-                                  Registration Now
+                                  Register Now
                                 </button>
                               </div>
                             </div>
