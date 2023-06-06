@@ -61,6 +61,20 @@
     height: auto;
   }
 }
+.sk-like-icon {
+  background: #75B94A;
+  color: #fff;
+  border-radius: 50px;
+  width: 28px;
+  height: 28px;
+  display: inline-block;
+  text-align: center;
+  line-height: 28px;
+  margin-right: 8px;
+}
+.sk-like-icon svg{
+  font-size: 19px;
+}
 
 .HashtagAndCatagoriesTitle-mobile {
   display: none;
@@ -73,7 +87,7 @@
 .HashtagAndCatagoriesTitle {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px 15px;
+  gap: 15px 15px;
   padding: 0px 0 18px;
   font-style: italic;
 }
@@ -139,7 +153,7 @@
   .HashtagAndCatagoriesTitle-mobile {
     display: flex;
     flex-wrap: nowrap;
-    gap: 10px 15px;
+    gap: 15px 15px;
     padding: 0px 0 18px;
     font-style: italic;
     overflow: auto;
