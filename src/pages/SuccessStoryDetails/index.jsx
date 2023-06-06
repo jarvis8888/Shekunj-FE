@@ -16,6 +16,7 @@ import TrendingCards from "../../components/cards/TrendingCards";
 import fire from "../../assets/images/fire.svg";
 import { HashtagAndCatagories } from "../../components/HastagAndCatagories/Index";
 import hash from "../../assets/images/hashtag.svg";
+import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import { apiConstants } from "../../utils/constants";
 import httpServices from "../../utils/ApiServices";
 import { CustomLoader } from "../../components/customLoader/CustomLoader";
