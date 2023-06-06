@@ -122,7 +122,7 @@ export const TopFooter = memo(() => {
                   <h5>{t("phase2.FOOTER.Need_Some_Help?")}</h5>
                   <ul>
                     <li>
-                      <a href='javascript:;'>{t("phase2.FOOTER.Contact_Us")}</a>
+                      <a href='/contact-us'>{t("phase2.FOOTER.Contact_Us")}</a>
                     </li>
                     <li>
                       <a href='/more-faq'>{t("phase2.HEADER.FAQ")}</a>
@@ -131,7 +131,9 @@ export const TopFooter = memo(() => {
                       <a href='/more-faq'>{t("phase2.FOOTER.Help_Support")}</a>
                     </li>
                     <li>
-                      <a href='javascript:;'>{t("phase2.FOOTER.Terms_Policy")}</a>
+                      <a href='/privacy-policy'>
+                        {t("phase2.FOOTER.Terms_Policy")}
+                      </a>
                     </li>
                     <li>
                       <a href='javascript:;'>{t("phase2.FOOTER.Sitemap")}</a>

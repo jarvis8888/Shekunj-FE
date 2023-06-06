@@ -18,6 +18,7 @@ import { apiConstants } from "../../utils/constants";
 import httpServices from "../../utils/ApiServices";
 import { toast } from "react-toastify";
 import toasterConfig from "../../utils/toasterCongig";
+import { blockInvalidChar } from "../../utils/utils";
 // import Calendar from "../../../assets/icons/calendar.png";
 function range(start, end) {
   return Array(end - start + 1)
@@ -77,12 +78,20 @@ const GuidancePage = () => {
     guidance_purpose: "",
   };
   const StudentValidationSchema = Yup.object({
-    full_name: Yup.string().required("Full Name is required"),
+    full_name: Yup.string()
+      .trim()
+      .required("Full Name is required")
+      .matches(
+        /^[a-zA-Z\s]+$/,
+        "Full Name should not contain numbers or special characters",
+      ),
     age: Yup.string().required("Age is required"),
     email_address: Yup.string()
       .required(t("login.form1.emailError.required"))
       .email(t("login.form1.emailError.invalid")),
-    mobile_number: Yup.number().positive().required("Number is required"),
+    mobile_number: Yup.string()
+      .matches(/^[0-9]{10}$/, "Number must be 10 digits")
+      .required("Number is required"),
     qualifications: Yup.string().required("Qualifications is required"),
     guidance_purpose: Yup.string().required("Select the purpose"),
   });
@@ -123,12 +132,20 @@ const GuidancePage = () => {
     mobile_number: "",
   };
   const InstituteValidationSchema = Yup.object({
-    institute_name: Yup.string().required("Institute is required"),
+    institute_name: Yup.string()
+      .trim()
+      .required("Institute is required")
+      .matches(
+        /^[a-zA-Z\s]+$/,
+        "Institute Name should not contain numbers or special characters",
+      ),
     students: Yup.number().positive().required("No of students is required"),
     email_address: Yup.string()
       .required(t("login.form1.emailError.required"))
       .email(t("login.form1.emailError.invalid")),
-    mobile_number: Yup.number().positive().required("Number is required"),
+    mobile_number: Yup.string()
+      .matches(/^[0-9]{10}$/, "Number must be 10 digits")
+      .required("Number is required"),
     guidance_purpose: Yup.string().required("Select the purpose"),
   });
   const onInstituteFormSubmit = useFormik({
@@ -145,6 +162,7 @@ const GuidancePage = () => {
           resetForm();
         }
       } catch (error) {
+        console.log(error);
       } finally {
       }
     },
@@ -381,6 +399,7 @@ const GuidancePage = () => {
                                   onBlur={StudentHandleBlur}
                                   onChange={StudentHandleChange}
                                   touched={StudentTouched}
+                                  onKeyDown={blockInvalidChar}
                                   autoComplete='off'
                                 />
                                 {StudentError.mobile_number &&
@@ -525,6 +544,7 @@ const GuidancePage = () => {
                                   onBlur={InstituteHandleBlur}
                                   onChange={InstituteHandleChange}
                                   touched={InstituteTouched}
+                                  onKeyDown={blockInvalidChar}
                                   autoComplete='off'
                                 />
                                 {InstituteError.mobile_number &&

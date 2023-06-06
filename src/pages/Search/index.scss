@@ -70,7 +70,8 @@ section {
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 0;
-  gap: 0px 10px;
+  gap: 0px 5px;
+  justify-content: center;
 }
 .sk-carrers-search .sk-form-group {
   display: flex;
@@ -182,6 +183,7 @@ section {
   display: flex;
   align-items: center;
   gap: 10px;
+  justify-content: center;
 }
 .sk-eventcard-sec .sk-category h6 {
   font-weight: 400;
@@ -386,7 +388,7 @@ section {
   padding: 0;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: start;
 }
 
 .sk-time-education ul li {

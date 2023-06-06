@@ -791,7 +791,7 @@
       "10": "Government Schemes",
       "11": "Events",
       "12": "E-magazine",
-      "13": "Blog"
+      "13": "Article"
     }
   },
   "alert": "After reload your test will end.",
@@ -826,7 +826,7 @@
     },
     "HEADER": {
       "events": "Events",
-      "blog": "Blog",
+      "blog": "Article",
       "FAQ": "FAQ"
     },
     "FOOTER": {
@@ -840,12 +840,12 @@
       "Resume_Builder": "Resume Builder",
       "Guidance": "Guidance",
       "Jobs": "Jobs",
-      "Contact_Us" : "Contact Us",
-      "Help_Support" : "Help & Support",
-      "Terms_Policy" : "Terms & Policy",
-      "Sitemap" : "Sitemap",
-      "For_Information" : "For Information",
-      "For_Support" : "For Support"
+      "Contact_Us": "Contact Us",
+      "Help_Support": "Help & Support",
+      "Terms_Policy": "Terms & Policy",
+      "Sitemap": "Sitemap",
+      "For_Information": "For Information",
+      "For_Support": "For Support"
     }
   }
 }
