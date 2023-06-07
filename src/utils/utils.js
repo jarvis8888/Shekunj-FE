@@ -274,7 +274,7 @@ export function time_left(start_date, start_time, end_date, end_time) {
   const [endmonth, endday, endyear, endtime, endmeridiem] = formatter
     .format(end)
     .split(" ");
-  return `${day} ${month} ${year} - ${endday} ${endmonth} ${endyear} <div class="event-time">${time} ${meridiem.toUpperCase()}<div/>`.replace(
+  return `${day} ${month} ${year} - ${endday} ${endmonth} ${endyear} <div class="event-time">${time} ${meridiem.toUpperCase()} - ${endtime} ${endmeridiem.toUpperCase()}<div/>`.replace(
     /,/g,
     "",
   );

@@ -22,6 +22,7 @@ import { CustomLoader } from "../../components/customLoader/CustomLoader";
 import { addEmailToClient } from "../../utils/utils";
 import { HashtagAndCatagoriesForMobile } from "../../components/HastagAndCatagories/HastagAndCatagoriesForMobile";
 import { useHistory } from "react-router-dom";
+import { WhiteCircularBar } from "../../components/Loader/WhiteCircularBar";
 
 const SuccessStoryDetails = () => {
   const { successStoriesDetails } = useSelector((state) => {
@@ -89,8 +90,8 @@ const SuccessStoryDetails = () => {
         newFeaturedData.push(addObjectData);
 
         setTrendingData((prevFeaturedData) => [
-          ...newFeaturedData,
           ...prevFeaturedData,
+          ...newFeaturedData,
         ]);
       } else {
         setCurrentTrendingData(trending_success_stories);
@@ -411,51 +412,49 @@ const SuccessStoryDetails = () => {
                   <img src={fire} alt='fire' width={28} />
                   <h4>Trending Stories </h4>
                 </div>
-                {trendingLoading ? (
-                  <CustomLoader />
-                ) : (
-                  <div className='row'>
-                    {trendingData?.map((items, index) => {
-                      if (items.id === "advertisement") {
-                        return (
-                          <>
-                            {succesStoriesLeft.length > 0 &&
-                              succesStoriesLeftRenderAds()}
-                          </>
-                        );
-                      } else {
-                        return (
-                          <>
-                            <TrendingCards
-                              image={items.image}
-                              hashtags={
-                                items.hash_tags === null ? [] : items.hash_tags
-                              }
-                              title={items.name}
-                              description={`${items.title}`}
-                              makeHtml={makeHtml}
-                              key={index}
-                              created_at={items.created_at}
-                              id={items.id}
-                            />
-                          </>
-                        );
-                      }
-                    })}
-                  </div>
-                )}
+
+                <div className='row'>
+                  {trendingData?.map((items, index) => {
+                    if (items.id === "advertisement") {
+                      return (
+                        <>
+                          {succesStoriesLeft.length > 0 &&
+                            succesStoriesLeftRenderAds()}
+                        </>
+                      );
+                    } else {
+                      return (
+                        <>
+                          <TrendingCards
+                            image={items.image}
+                            hashtags={
+                              items.hash_tags === null ? [] : items.hash_tags
+                            }
+                            title={items.name}
+                            description={`${items.title}`}
+                            makeHtml={makeHtml}
+                            key={index}
+                            created_at={items.created_at}
+                            id={items.id}
+                          />
+                        </>
+                      );
+                    }
+                  })}
+                </div>
+
                 <div className='sk-blogbottom-border d-flex justify-content-center align-items-center py-4'>
                   <button
                     disabled={currentTrendingData?.results?.length === 0}
                     className='loadMore'
                     onClick={() => {
                       setTrendingOffset(trendingOffset + 6);
-                      trendingSectionRef.current.scrollIntoView({
-                        behavior: "smooth",
-                      });
+                      // trendingSectionRef.current.scrollIntoView({
+                      //   behavior: "smooth",
+                      // });
                     }}
                   >
-                    Load More
+                    {loading ? <WhiteCircularBar /> : `Load More`}
                   </button>
                 </div>
               </div>

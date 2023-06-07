@@ -357,7 +357,7 @@ img {
   .card__button {
     font-size: 14px;
   }
-  .card__button svg{
+  .card__button svg {
     font-size: 20px;
   }
 }
@@ -365,7 +365,7 @@ img {
   .card__button {
     font-size: 12px;
   }
-  .card__bottom span svg{
+  .card__bottom span svg {
     font-size: 14px;
   }
 }
@@ -375,12 +375,16 @@ img {
   }
 }
 
-@media screen and (max-width: 767px){
-  .sk-tradingBlog-card{
+@media screen and (max-width: 767px) {
+  .sk-tradingBlog-card {
     margin-top: 15px;
   }
-  .card__button svg{
+  .card__button svg {
     font-size: 16px;
   }
-  
+}
+
+.card__hashtags span:hover {
+  color: #d3317d;
+  cursor: pointer;
 }

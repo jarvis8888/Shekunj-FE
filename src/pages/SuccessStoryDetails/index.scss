@@ -17,6 +17,19 @@
   padding-top: 5px;
 }
 
+.loadMore {
+  background: #202020;
+  padding: 15px 30px;
+  border-radius: 8px;
+  color: #fff;
+  min-width: 212px;
+  max-width: 212px;
+  font-weight: 600;
+  margin-top: 11.5px;
+  margin-bottom: 10px;
+  display: inline-block;
+}
+
 .sk-storyDetail-sec .sk-storyBanner-img {
   width: 100%;
   // border-radius: 8px;
@@ -40,6 +53,7 @@
   font-size: 14px;
   color: #434242;
   cursor: pointer;
+  margin-right: 10px;
 }
 .sk-storyD-tag span:hover {
   color: #d3317d;

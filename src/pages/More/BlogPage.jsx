@@ -23,6 +23,7 @@ import { CustomLoader } from "../../components/customLoader/CustomLoader";
 import { DateFormat, addEmailToClient } from "../../utils/utils";
 import { NoDataFound } from "../../components/noDataFound/NoDataFound";
 import { HashtagAndCatagoriesForMobile } from "../../components/HastagAndCatagories/HastagAndCatagoriesForMobile";
+import { WhiteCircularBar } from "../../components/Loader/WhiteCircularBar";
 
 function BlogPage() {
   const history = useHistory();
@@ -75,8 +76,8 @@ function BlogPage() {
         }
 
         setLatestBlogs((prevFeaturedData) => [
-          ...newFeaturedData,
           ...prevFeaturedData,
+          ...newFeaturedData,
         ]);
       } else {
         setCurrentBlogData(latest_blogs);
@@ -110,8 +111,8 @@ function BlogPage() {
         }
 
         setTrendingBlogs((prevFeaturedData) => [
-          ...newFeaturedData,
           ...prevFeaturedData,
+          ...newFeaturedData,
         ]);
       } else {
         setCurrentTrendingBlogData(trending_blogs);
@@ -298,11 +299,11 @@ function BlogPage() {
       return; // Do not scroll if button is disabled
     }
 
-    setTimeout(() => {
-      sectionRef.current.scrollIntoView({
-        behavior: "smooth",
-      });
-    }, 10); // Minimal delay for rendering update
+    // setTimeout(() => {
+    //   sectionRef.current.scrollIntoView({
+    //     behavior: "smooth",
+    //   });
+    // }, 10); // Minimal delay for rendering update
 
     setOffset(offset + 5);
   };
@@ -419,48 +420,44 @@ function BlogPage() {
                       <img src={timeicon} alt='time' width={28} />
                       <h4>Latest Blogs</h4>
                     </div>
-                    {loading ? (
-                      <CustomLoader />
-                    ) : (
-                      <div className='row'>
-                        {latestBlogs?.map((items, index) => {
-                          if (items.id === "advertisement") {
-                            return (
-                              <>{blogGrid.length > 0 && blogGridRenderAds()}</>
-                            );
-                          } else {
-                            return (
-                              <>
-                                <div className='col-xl-6 col-md-6 col-lg-6 col-sm-12'>
-                                  <LatestBlogCard
-                                    image={items.image}
-                                    hashtags={items.hash_tags}
-                                    title={items.title}
-                                    description={`${items.about_blog}`}
-                                    makeHtml={makeHtml}
-                                    key={index}
-                                    created_at={DateFormat(
-                                      `${items.created_at}`,
-                                    )}
-                                    reading_time={items.reading_time}
-                                    id={items.id}
-                                    blog_count={items.blog_count}
-                                    category_name={items.category_name}
-                                  />
-                                </div>
-                              </>
-                            );
-                          }
-                        })}
-                      </div>
-                    )}
+
+                    <div className='row'>
+                      {latestBlogs?.map((items, index) => {
+                        if (items.id === "advertisement") {
+                          return (
+                            <>{blogGrid.length > 0 && blogGridRenderAds()}</>
+                          );
+                        } else {
+                          return (
+                            <>
+                              <div className='col-xl-6 col-md-6 col-lg-6 col-sm-12'>
+                                <LatestBlogCard
+                                  image={items.image}
+                                  hashtags={items.hash_tags}
+                                  title={items.title}
+                                  description={`${items.about_blog}`}
+                                  makeHtml={makeHtml}
+                                  key={index}
+                                  created_at={DateFormat(`${items.created_at}`)}
+                                  reading_time={items.reading_time}
+                                  id={items.id}
+                                  blog_count={items.blog_count}
+                                  category_name={items.category_name}
+                                />
+                              </div>
+                            </>
+                          );
+                        }
+                      })}
+                    </div>
+
                     <div className='d-flex justify-content-center align-items-center py-4'>
                       <button
                         className='loadMore'
                         onClick={handleLoadMoreClick}
                         disabled={currentBlogData?.results?.length === 0}
                       >
-                        Explore More
+                        {loading ? <WhiteCircularBar /> : `Explore More`}
                       </button>
                     </div>
                   </div>
@@ -514,47 +511,44 @@ function BlogPage() {
                     <img src={fire} alt='fire' width={28} />
                     <h4>Trending Blogs</h4>
                   </div>
-                  {trendingLoading ? (
-                    <CustomLoader />
-                  ) : (
-                    <>
-                      {" "}
-                      {trendingBlogs?.map((items, index) => {
-                        if (items.id === "advertisement") {
-                          return (
-                            <>{blogLeft.length > 0 && blogLeftRenderAds()}</>
-                          );
-                        } else {
-                          return (
-                            <>
-                              <TrendingBlogsCard2
-                                image={items.image}
-                                title={items.title}
-                                id={items.id}
-                                description={`${items.about_blog}`}
-                                time='5 min'
-                                date={DateFormat(`${items.created_at}`)}
-                                category_name={items.category_name}
-                              />
-                            </>
-                          );
-                        }
-                      })}
-                    </>
-                  )}
+
+                  <>
+                    {" "}
+                    {trendingBlogs?.map((items, index) => {
+                      if (items.id === "advertisement") {
+                        return (
+                          <>{blogLeft.length > 0 && blogLeftRenderAds()}</>
+                        );
+                      } else {
+                        return (
+                          <>
+                            <TrendingBlogsCard2
+                              image={items.image}
+                              title={items.title}
+                              id={items.id}
+                              description={`${items.about_blog}`}
+                              time='5 min'
+                              date={DateFormat(`${items.created_at}`)}
+                              category_name={items.category_name}
+                            />
+                          </>
+                        );
+                      }
+                    })}
+                  </>
 
                   <div className='d-flex justify-content-center align-items-center py-4'>
                     <button
                       className='loadMore'
                       onClick={() => {
                         setTrendingOffset(trendingOffset + 6);
-                        trendingSectionRef.current.scrollIntoView({
-                          behavior: "smooth",
-                        });
+                        // trendingSectionRef.current.scrollIntoView({
+                        //   behavior: "smooth",
+                        // });
                       }}
                       disabled={currentTrendingBlogData?.results?.length === 0}
                     >
-                      Explore More
+                      {trendingLoading ? <WhiteCircularBar /> : `Explore More`}
                     </button>
                   </div>
                 </div>

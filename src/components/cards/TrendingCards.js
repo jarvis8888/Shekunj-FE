@@ -41,7 +41,16 @@ const TrendingCards = (data) => {
         <div className='sk-Blogcard-content'>
           <div className='card__hashtags'>
             {hashtags.map((tag, index) => (
-              <span key={index}>{`#${tag}`}</span>
+              <span
+                key={index}
+                onClick={(event) => {
+                  event.stopPropagation();
+                  history.push(
+                    `${routingConstants.SUCCESS_STORIES_HASHTAG}?search=${tag}`,
+                    tag,
+                  );
+                }}
+              >{`#${tag}`}</span>
             ))}
           </div>
           <h5 className=''>{title}</h5>
