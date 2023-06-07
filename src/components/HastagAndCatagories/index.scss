@@ -4,9 +4,12 @@
   width: 100%;
   padding: 0px 0px 20px;
   position: sticky;
-  top: 20px;
+  top: 100px;
   border-left: 1px solid #d9d9d9;
-  padding-left: 20px;
+  padding-left: 25px;
+}
+.sk-Removeside-space{
+  padding-left: 0;
 }
 .HashtagAndCatagoriesTitle {
   width: 100%;
@@ -35,7 +38,7 @@
   );
 }
 .SocialMediaIconscontainer .likes {
-  padding: 20px 5px 15px;
+  padding: 30px 5px 25px;
   gap: 5px;
 }
 .youMayLikeCarousel {
@@ -157,5 +160,8 @@
     padding: 0px 0 18px;
     font-style: italic;
     overflow: auto;
+  }
+  .sk-Removeside-space{
+    padding-left: 15px;
   }
 }

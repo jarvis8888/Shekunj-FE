@@ -558,7 +558,7 @@ function BlogPage() {
                     </button>
                   </div>
                 </div>
-                <div className='col-xl-4 col-md-6 col-lg-4 col-sm-12'>
+                <div className='col-xl-4 col-md-6 col-lg-4 col-sm-12 sk-Removeside-space'>
                   <HashtagAndCatagories
                     image={catagorie}
                     title={"Categories"}

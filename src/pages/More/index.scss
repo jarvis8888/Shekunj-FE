@@ -1411,6 +1411,12 @@ button.want_btn {
   .sk-event-sec {
     padding: 0;
   }
+  .sk-event-sec.sk-slide-arrow .swiper-button-next {
+    right: 20px;
+  }
+  .sk-event-sec.sk-slide-arrow .swiper-button-prev {
+    left: 20px;
+  }
 }
 
 .sk-slide-arrow .swiper-button-next:after,

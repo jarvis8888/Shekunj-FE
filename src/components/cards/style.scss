@@ -5,6 +5,7 @@ img {
 .card:hover {
   box-shadow: 0px 5px 15px 0px #87154221;
   cursor: pointer;
+  transform: scale(1.03);
 }
 .sk-tagBlog-name {
   background: #2867b2;
@@ -28,10 +29,10 @@ img {
 .sk-treadingBlog-one {
   background: #75b94a;
   color: #fff;
-  padding: 4px 10px;
+  padding: 3px 10px;
   display: inline-block;
   margin-bottom: 5px;
-  font-size: 14px;
+  font-size: 12px;
 }
 
 .sk-Blogcard-content {
@@ -68,7 +69,7 @@ img {
   width: 100%;
 }
 .card {
-  border-radius: 4px;
+  border-radius: 5px;
   display: flex;
   flex-direction: column;
   background: #ffffff;
@@ -79,6 +80,7 @@ img {
   justify-content: space-between;
   height: calc(100% - 30px);
   align-items: stretch;
+  overflow: hidden;
 
   &__image {
     position: relative;
@@ -103,6 +105,10 @@ img {
       color: #555;
       display: flex;
       justify-content: center;
+      transition: all 0.3s;
+      &:hover{
+        color: #d3317d;
+      }
     }
   }
 
@@ -213,27 +219,36 @@ img {
   color: #020202;
 }
 .blog-card {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  margin-bottom: 20px;
-  grid-gap: 15px;
-  gap: 15px;
+  display: flex;
+  margin-bottom: 28px;
+  gap: 17px;
   cursor: pointer;
+  @media screen and (max-width: 768px) {
+    margin-bottom: 15px;
+  }
 
   &__image {
-    flex: 80px 0 0;
     height: auto;
     background-size: cover;
     background-position: center;
     position: relative;
+    flex: 176px 0 0;
+    min-width: 176px;
+    img{
+      object-fit: cover;
+      object-position: center;
+      height: 130px;
+    
     @media screen and (max-width: 768px) {
       display: flex;
       flex-direction: column;
       width: 100%;
       height: auto;
       margin-right: 0;
-      margin-bottom: 1rem;
+      }
+    
     }
+
   }
 
   &__content {
@@ -352,6 +367,12 @@ img {
 }
 .sk-blogDivider-bottom:last-child {
   border-bottom: 0;
+}
+.blog-card:last-child{
+  margin-bottom: 0;
+}
+.blog-card__meta span:last-child{
+  margin-right: 0;
 }
 @media screen and (min-width: 1400px) and (max-width: 3500px) {
   .card__button {

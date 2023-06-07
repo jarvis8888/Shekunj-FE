@@ -357,7 +357,7 @@ const BlogDetails = () => {
                   </div>
                 </div>
               </div>
-              <div className='col-xl-4 col-lg-4 col-md-4'>
+              <div className='col-xl-4 col-lg-4 col-md-4 sk-Removeside-space'>
                 <HashtagAndCatagories
                   image={catagorie}
                   title={`Categories`}

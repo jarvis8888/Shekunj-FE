@@ -633,7 +633,7 @@ function SuccessStory() {
                     </button>
                   </div>
                 </div>
-                <div className='col-xl-4 col-md-4 col-lg-4 col-sm-12 ads'>
+                <div className='col-xl-4 col-md-4 col-lg-4 col-sm-12 ads sk-Removeside-space'>
                   <HashtagAndCatagories
                     type='hashtag'
                     image={hash}
