@@ -59,6 +59,7 @@ import useDeviceDetect from "../../hooks/useDeviceDetect";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { NoDataFound } from "../../components/noDataFound/NoDataFound";
+import { WhiteCircularBar } from "../../components/Loader/WhiteCircularBar";
 
 const useQuery = () => {
   return new URLSearchParams(useLocation().search);
@@ -436,135 +437,134 @@ function EventPage() {
               </div>
             </div>
           </div>
-          {loading ? (
-            <CustomLoader />
-          ) : (
-            <div className='row'>
-              {dataWithAdds?.length ? (
-                dataWithAdds?.map((items, index) => {
-                  if (items.id === "advertisement") {
-                    return <>{eventBoxAds.length > 0 && renderAds()}</>;
-                  } else {
-                    return (
-                      <>
-                        <div
-                          className='col-xl-3 col-lg-4 col-md-6'
-                          key={index}
-                          onClick={() =>
-                            history.push(
-                              routingConstants.MORE_EVENT +
-                                addHyphensToLink(items?.title) +
-                                "-" +
-                                items.id,
-                            )
-                          }
-                          style={{ cursor: "pointer" }}
-                        >
-                          <div className='sk-card-box'>
-                            <div className='sk-card-img'>
-                              <img src={items.image} alt='' />
+
+          <div className='row'>
+            {dataWithAdds?.length ? (
+              dataWithAdds?.map((items, index) => {
+                if (items.id === "advertisement") {
+                  return <>{eventBoxAds.length > 0 && renderAds()}</>;
+                } else {
+                  return (
+                    <>
+                      <div
+                        className='col-xl-3 col-lg-4 col-md-6'
+                        key={index}
+                        onClick={() =>
+                          history.push(
+                            routingConstants.MORE_EVENT +
+                              addHyphensToLink(items?.title) +
+                              "-" +
+                              items.id,
+                          )
+                        }
+                        style={{ cursor: "pointer" }}
+                      >
+                        <div className='sk-card-box'>
+                          <div className='sk-card-img'>
+                            <img src={items.image} alt='' />
+                          </div>
+                          <div className='sk-content-card'>
+                            <div className='sk-time-education'>
+                              <ul>
+                                <li className='sk-chip-tag'>
+                                  {" "}
+                                  <span>{items.genre_name}</span>{" "}
+                                </li>
+                                <li>
+                                  {items.mode_of_event === "offline" ? (
+                                    <>
+                                      {" "}
+                                      <img
+                                        src={offlineicon}
+                                        alt=''
+                                      /> Offline{" "}
+                                    </>
+                                  ) : (
+                                    <>
+                                      {" "}
+                                      <img
+                                        src={onlineicon}
+                                        alt=''
+                                      /> Online{" "}
+                                    </>
+                                  )}
+                                </li>
+                              </ul>
                             </div>
-                            <div className='sk-content-card'>
-                              <div className='sk-time-education'>
-                                <ul>
-                                  <li className='sk-chip-tag'>
-                                    {" "}
-                                    <span>{items.genre_name}</span>{" "}
-                                  </li>
-                                  <li>
-                                    {items.mode_of_event === "offline" ? (
-                                      <>
-                                        {" "}
-                                        <img
-                                          src={offlineicon}
-                                          alt=''
-                                        /> Offline{" "}
-                                      </>
-                                    ) : (
-                                      <>
-                                        {" "}
-                                        <img
-                                          src={onlineicon}
-                                          alt=''
-                                        /> Online{" "}
-                                      </>
-                                    )}
-                                  </li>
-                                </ul>
-                              </div>
-                              <h6 className='sk-card-heading'>{items.title}</h6>
-                              <div className='sk-time-education'>
-                                <ul>
-                                  <li>
-                                    {" "}
-                                    <AccessTimeIcon />{" "}
-                                    <span
-                                      dangerouslySetInnerHTML={{
-                                        __html: time_left(
-                                          items.start_date,
-                                          items.start_time,
-                                          items.end_date,
-                                          items.end_time,
-                                        ),
-                                      }}
-                                    ></span>{" "}
-                                  </li>
-                                  <li>
-                                    {" "}
-                                    <SchoolRoundedIcon />{" "}
-                                    {items.enrold_students} enrolled{" "}
-                                  </li>
-                                </ul>
-                              </div>
-                              <div className='sk-tags-event'>
-                                <button
-                                  type='button'
-                                  className='sk-btn-register'
-                                  onClick={() =>
-                                    history.push(
-                                      routingConstants.MORE_EVENT +
-                                        addHyphensToLink(items?.title) +
-                                        "-" +
-                                        items.id,
-                                    )
-                                  }
-                                >
-                                  Register Now
-                                </button>
-                              </div>
+                            <h6 className='sk-card-heading'>{items.title}</h6>
+                            <div className='sk-time-education'>
+                              <ul>
+                                <li>
+                                  {" "}
+                                  <AccessTimeIcon />{" "}
+                                  <span
+                                    dangerouslySetInnerHTML={{
+                                      __html: time_left(
+                                        items.start_date,
+                                        items.start_time,
+                                        items.end_date,
+                                        items.end_time,
+                                      ),
+                                    }}
+                                  ></span>{" "}
+                                </li>
+                                <li>
+                                  {" "}
+                                  <SchoolRoundedIcon /> {
+                                    items.enrold_students
+                                  }{" "}
+                                  enrolled{" "}
+                                </li>
+                              </ul>
+                            </div>
+                            <div className='sk-tags-event'>
+                              <button
+                                type='button'
+                                className='sk-btn-register'
+                                onClick={() =>
+                                  history.push(
+                                    routingConstants.MORE_EVENT +
+                                      addHyphensToLink(items?.title) +
+                                      "-" +
+                                      items.id,
+                                  )
+                                }
+                              >
+                                Register Now
+                              </button>
                             </div>
                           </div>
                         </div>
-                      </>
-                    );
-                  }
-                })
-              ) : (
-                <div className='noData'>
-                  <NoDataFound />
+                      </div>
+                    </>
+                  );
+                }
+              })
+            ) : (
+              <div className='noData'>
+                <NoDataFound />
+              </div>
+            )}
+            {selectedButton === "all" && (
+              <div className='col-md-12'>
+                <div className='sk-explore-btn'>
+                  <button
+                    disabled={checkEventData?.length === 0}
+                    type=''
+                    onClick={() => {
+                      setCurrentOffset(currentOffset + 8);
+                      // sectionRef.current.scrollIntoView({
+                      //   behavior: "smooth",
+                      // });
+                    }}
+                    className='sk-btn'
+                  >
+                    {loading ? <WhiteCircularBar /> : `Explore More`}
+                  </button>
                 </div>
-              )}
-              {selectedButton == "all" && (
-                <div className='col-md-12'>
-                  <div className='sk-explore-btn'>
-                    <button
-                      disabled={checkEventData?.length === 0}
-                      type=''
-                      onClick={() => {
-                        setCurrentOffset(currentOffset + 8);
-                        sectionRef.current.scrollIntoView({
-                          behavior: "smooth",
-                        });
-                      }}
-                      className='sk-btn'
-                    >
-                      Explore More{" "}
-                    </button>
-                  </div>
-                </div>
-              )}
-            </div>
-          )}
+              </div>
+            )}
+          </div>
         </div>
       </section>
       <section className='sk-bottomAdd-sec'>

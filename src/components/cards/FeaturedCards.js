@@ -43,7 +43,16 @@ const FeaturedCards = (props) => {
         <div className='sk-Blogcard-content'>
           <div className='card__hashtags'>
             {hashtags.map((tag) => (
-              <span key={tag}>{`#${tag}`}</span>
+              <span
+                key={tag}
+                onClick={(event) => {
+                  event.stopPropagation();
+                  history.push(
+                    `${routingConstants.SUCCESS_STORIES_HASHTAG}?search=${tag}`,
+                    tag,
+                  );
+                }}
+              >{`#${tag}`}</span>
             ))}
           </div>
           <h5>{title}</h5>

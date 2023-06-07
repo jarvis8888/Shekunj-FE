@@ -27,6 +27,7 @@ import httpServices from "../../utils/ApiServices";
 import { CustomLoader } from "../../components/customLoader/CustomLoader";
 import { addEmailToClient, addHyphensToLink } from "../../utils/utils";
 import { HashtagAndCatagoriesForMobile } from "../../components/HastagAndCatagories/HastagAndCatagoriesForMobile";
+import { WhiteCircularBar } from "../../components/Loader/WhiteCircularBar";
 
 function SuccessStory() {
   const history = useHistory();
@@ -82,8 +83,8 @@ function SuccessStory() {
         }
 
         setFeaturedData((prevFeaturedData) => [
-          ...newFeaturedData,
           ...prevFeaturedData,
+          ...newFeaturedData,
         ]);
       } else {
         setCurrentFeaturedData(featured_success_stories);
@@ -116,8 +117,8 @@ function SuccessStory() {
         newFeaturedData.push(addObjectData);
 
         setTrendingData((prevFeaturedData) => [
-          ...newFeaturedData,
           ...prevFeaturedData,
+          ...newFeaturedData,
         ]);
       } else {
         setCurrentTrendingData(trending_success_stories);
@@ -368,11 +369,11 @@ function SuccessStory() {
       return; // Do not scroll if button is disabled
     }
 
-    setTimeout(() => {
-      sectionRef.current.scrollIntoView({
-        behavior: "smooth",
-      });
-    }, 10); // Minimal delay for rendering update
+    // setTimeout(() => {
+    //   sectionRef.current.scrollIntoView({
+    //     behavior: "smooth",
+    //   });
+    // }, 10); // Minimal delay for rendering update
 
     setOffset(offset + 5);
   };
@@ -381,11 +382,11 @@ function SuccessStory() {
       return; // Do not scroll if button is disabled
     }
 
-    setTimeout(() => {
-      trendingSectionRef.current.scrollIntoView({
-        behavior: "smooth",
-      });
-    }, 10); // Minimal delay for rendering update
+    // setTimeout(() => {
+    //   trendingSectionRef.current.scrollIntoView({
+    //     behavior: "smooth",
+    //   });
+    // }, 10); // Minimal delay for rendering update
 
     setTrendingOffset(trendingOffset + 6);
   };
@@ -529,49 +530,44 @@ function SuccessStory() {
                     <img src={fire} alt='fire' width={28} />
                     <h4>Featured Stories </h4>
                   </div>
-                  {loading ? (
-                    <CustomLoader />
-                  ) : (
-                    <div className='row'>
-                      {featuredData?.map((items, index) => {
-                        if (items.id === "advertisement") {
-                          return (
-                            <>
-                              {succesStoriesBox.length > 0 &&
-                                succesStoriesBoxRenderAds()}
-                            </>
-                          );
-                        } else {
-                          return (
-                            <>
-                              <FeaturedCards
-                                image={items.image}
-                                hashtags={
-                                  items.hash_tags === null
-                                    ? []
-                                    : items.hash_tags
-                                }
-                                title={items.name}
-                                description={`${items.title}`}
-                                makeHtml={makeHtml}
-                                key={index}
-                                created_at={items.created_at}
-                                reading_time={items.reading_time}
-                                id={items.id}
-                              />
-                            </>
-                          );
-                        }
-                      })}
-                    </div>
-                  )}
+
+                  <div className='row'>
+                    {featuredData?.map((items, index) => {
+                      if (items.id === "advertisement") {
+                        return (
+                          <>
+                            {succesStoriesBox.length > 0 &&
+                              succesStoriesBoxRenderAds()}
+                          </>
+                        );
+                      } else {
+                        return (
+                          <>
+                            <FeaturedCards
+                              image={items.image}
+                              hashtags={
+                                items.hash_tags === null ? [] : items.hash_tags
+                              }
+                              title={items.name}
+                              description={`${items.title}`}
+                              makeHtml={makeHtml}
+                              key={index}
+                              created_at={items.created_at}
+                              reading_time={items.reading_time}
+                              id={items.id}
+                            />
+                          </>
+                        );
+                      }
+                    })}
+                  </div>
                   <div className='sk-blogbottom-border d-flex justify-content-center align-items-center py-4'>
                     <button
                       disabled={currentFeaturedData?.results?.length === 0}
                       className='loadMore'
                       onClick={handleLoadMoreClick}
                     >
-                      Load More
+                      {loading ? <WhiteCircularBar /> : `Load More`}
                     </button>
                   </div>
 
@@ -587,41 +583,38 @@ function SuccessStory() {
                       <img src={fire} alt='fire' width={28} />
                       <h4>Trending Stories </h4>
                     </div>
-                    {trendingLoading ? (
-                      <CustomLoader />
-                    ) : (
-                      <div className='row'>
-                        {trendingData?.map((items, index) => {
-                          if (items.id === "advertisement") {
-                            return (
-                              <>
-                                {succesStoriesLeft.length > 0 &&
-                                  succesStoriesLeftRenderAds()}
-                              </>
-                            );
-                          } else {
-                            return (
-                              <>
-                                <TrendingCards
-                                  image={items.image}
-                                  hashtags={
-                                    items.hash_tags === null
-                                      ? []
-                                      : items.hash_tags
-                                  }
-                                  title={items.name}
-                                  description={`${items.title}`}
-                                  makeHtml={makeHtml}
-                                  key={index}
-                                  created_at={items.created_at}
-                                  id={items.id}
-                                />
-                              </>
-                            );
-                          }
-                        })}
-                      </div>
-                    )}
+
+                    <div className='row'>
+                      {trendingData?.map((items, index) => {
+                        if (items.id === "advertisement") {
+                          return (
+                            <>
+                              {succesStoriesLeft.length > 0 &&
+                                succesStoriesLeftRenderAds()}
+                            </>
+                          );
+                        } else {
+                          return (
+                            <>
+                              <TrendingCards
+                                image={items.image}
+                                hashtags={
+                                  items.hash_tags === null
+                                    ? []
+                                    : items.hash_tags
+                                }
+                                title={items.name}
+                                description={`${items.title}`}
+                                makeHtml={makeHtml}
+                                key={index}
+                                created_at={items.created_at}
+                                id={items.id}
+                              />
+                            </>
+                          );
+                        }
+                      })}
+                    </div>
                   </div>
                   <div className='sk-blogbottom-border d-flex justify-content-center align-items-center py-4'>
                     <button
@@ -629,11 +622,11 @@ function SuccessStory() {
                       className='loadMore'
                       onClick={handleLoadMoreClickOnTrending}
                     >
-                      Load More
+                      {trendingLoading ? <WhiteCircularBar /> : `Load More`}
                     </button>
                   </div>
                 </div>
-                <div className='col-xl-4 col-md-4 col-lg-4 col-sm-12 ads'>
+                <div className='col-xl-4 col-md-4 col-lg-4 col-sm-12 ads sk-Removeside-space'>
                   <HashtagAndCatagories
                     type='hashtag'
                     image={hash}

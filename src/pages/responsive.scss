@@ -875,19 +875,25 @@ ul#menu-40 {
   margin-left: 10px;
 }
 .sk-blog-side p.blog-card__description {
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 3;
   text-overflow: ellipsis;
   white-space: pre-line;
   overflow: hidden;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   margin-bottom: 0px;
-  font-size: 15px;
+  font-size: 18px;
   font-weight: 500;
+  line-height: 25px;
 }
 .sk-blog-detail-wa .blog-card2__meta span img {
   margin-right: 10px;
 }
 ul#menu-40 {
   display: grid;
+}
+@media screen and (max-width: 480px) {
+  .sk-blog-side p.blog-card__description {
+    -webkit-line-clamp: 2;
+  }
 }
