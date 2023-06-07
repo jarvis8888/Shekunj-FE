@@ -12,7 +12,7 @@ body{
 
 header {
   background: $mainColor;
-  box-shadow: 8px 8px 20px 0 #FBF6F8;
+  box-shadow: 0 3px 10px 0 #00000017;
 }
 
 .topbar {
@@ -338,10 +338,7 @@ header {
     visibility: hidden;
     z-index: 999999999;
   }
-  header{
-    box-shadow: none;
-    border-bottom: 1px solid #f8f8f8;
-  }
+
 }
 
 @media screen and (max-width: 767px) {

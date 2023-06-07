@@ -201,6 +201,9 @@ section {
   color: #fff !important;
   border-color: transparent;
 }
+.sk-carrers-search{
+  margin-bottom: 8px;
+}
 .sk-eventcard-sec .sk-category ul li a:hover {
   background: #020202;
   color: #fff !important;
@@ -360,10 +363,10 @@ section {
   height: calc(100% - 30px);
   position: relative;
 }
-// .sk-card-box:hover {
-//   box-shadow: 0px 8px 26px 0px rgba(143, 155, 178, 0.2);
-//   transform: scale(1.03);
-// }
+.sk-card-box:hover {
+  box-shadow: 0px 8px 26px 0px rgba(143, 155, 178, 0.2);
+  transform: scale(1.03);
+}
 .sk-card-img img {
   border-radius: 5px 5px 0 0;
   width: 100%;

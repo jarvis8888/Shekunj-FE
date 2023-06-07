@@ -461,7 +461,7 @@ const EventDetails = () => {
                   </div>
                 </div>
               </div>
-              <div class='col-xl-4 col-md-4'>
+              <div class='col-xl-4 col-md-4 sk-Removeside-space'>
                 <div className='sk-event-sidebar'>
                   <div className='sk-event-form'>
                     <h6>Registration Form</h6>
