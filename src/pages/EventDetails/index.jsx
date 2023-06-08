@@ -380,7 +380,7 @@ const EventDetails = () => {
                         </div>
                       </div>
                       <div className='sk-social-icon sk-desktopSocial-icon'>
-                        <h6>Share this article</h6>
+                        <h6>Share this Event</h6>
                         <SocialShare
                           currentUrl={currentUrl}
                           title={eventsDetails?.title}
@@ -430,7 +430,7 @@ const EventDetails = () => {
                       </ul>
                     </div> */}
                     <div className='sk-social-icon sk-mobileSocial-icon'>
-                      <h6>Share this article</h6>
+                      <h6>Share this Event</h6>
                       <SocialShare
                         currentUrl={currentUrl}
                         title={eventsDetails?.title}

@@ -17,6 +17,7 @@ export const TrendingBlogsCard2 = ({
   date,
   id,
   category_name,
+  color,
 }) => {
   const history = useHistory();
 
@@ -45,7 +46,12 @@ export const TrendingBlogsCard2 = ({
         <div className='col-xl-8 col-lg-6 col-md-6'>
           <div className='sk-tradingBlog-card'>
             <h5 className='blog-card2__title'>{title}</h5>
-            <span className='sk-tagBlog-name'>{category_name}</span>
+            <span
+              className='sk-tagBlog-name'
+              style={{ background: `${color}` }}
+            >
+              {category_name}
+            </span>
             <p
               className='blog-card-description'
               dangerouslySetInnerHTML={{

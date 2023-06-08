@@ -11,11 +11,17 @@ body {
 .sk-event-sec.sk-slide-arrow .swiper-button-next,
 .sk-event-sec.sk-slide-arrow .swiper-button-prev {
   color: #fff;
-  border-color: #fff;
-  background: #00000017;
+  border: 2px solid #fff;
+  background: rgb(0 0 0 / 17%);
   overflow: hidden;
   height: 56px;
   width: 56px;
+  transition: all 0.3s;
+}
+.sk-event-sec.sk-slide-arrow .swiper-button-next:hover,
+.sk-event-sec.sk-slide-arrow .swiper-button-prev:hover {
+  background: #ffff;
+  color: #202020;
 }
 .sk-event-sec.sk-slide-arrow .swiper-button-next {
   right: 50px;

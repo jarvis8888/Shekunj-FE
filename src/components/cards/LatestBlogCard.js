@@ -24,6 +24,7 @@ const LatestBlogCard = (props) => {
     blog_count,
     id,
     category_name,
+    color,
   } = props;
   const history = useHistory();
   return (
@@ -32,13 +33,15 @@ const LatestBlogCard = (props) => {
       key={key}
       onClick={() =>
         history.push(
-          routingConstants.MORE_BLOG + addHyphensToLink(title) + "-" + id ,
+          routingConstants.MORE_BLOG + addHyphensToLink(title) + "-" + id,
         )
       }
     >
       <div className='card__image'>
         <img src={image} alt={title} />
-        <span className='sk-chipTag-blog'>{category_name}</span>
+        <span className='sk-chipTag-blog' style={{ background: `${color}` }}>
+          {category_name}
+        </span>
       </div>
       {/* <div className='card__hashtags'>
         {hashtags.map((tag) => (

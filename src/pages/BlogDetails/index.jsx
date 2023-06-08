@@ -20,7 +20,11 @@ import { HashtagAndCatagories } from "../../components/HastagAndCatagories/Index
 import { apiConstants } from "../../utils/constants";
 import catagorie from "../../assets/images/categoryblog.svg";
 import fire from "../../assets/images/fire.svg";
-import { DateFormat, addEmailToClient } from "../../utils/utils";
+import {
+  DateFormat,
+  addEmailToClient,
+  assignColorToCategory,
+} from "../../utils/utils";
 import { CustomLoader } from "../../components/customLoader/CustomLoader";
 import { HashtagAndCatagoriesForMobile } from "../../components/HastagAndCatagories/HastagAndCatagoriesForMobile";
 
@@ -234,6 +238,10 @@ const BlogDetails = () => {
     return renderAd(ad);
   };
 
+  const namesArray = blogCategories?.map((category) => category.name);
+
+  const getCategoryColor = assignColorToCategory(namesArray);
+
   return (
     <div>
       <SEO title='Sheकुंज - Career' />
@@ -251,12 +259,20 @@ const BlogDetails = () => {
                 <div className='story-bottom'>
                   <div className='hashtags-container'>
                     <div className='sk-bdetail-chip'>
-                      <span>{blogs?.category_name}</span>
+                      <span
+                        style={{
+                          background: `${getCategoryColor(
+                            blogs?.category_name,
+                          )}`,
+                        }}
+                      >
+                        {blogs?.category_name}
+                      </span>
                     </div>
                     <div class='sk-blokTVE-icon'>
                       <span>
                         <AccessTimeIcon />
-                        {DateFormat(`${blogs?.created_at}`)}
+                        {`${blogs?.created_at}`}
                       </span>
                       <span>
                         <MenuBookRoundedIcon /> {blogs?.reading_time}
@@ -336,6 +352,7 @@ const BlogDetails = () => {
                             time={items.reading_time}
                             date={DateFormat(`${items.created_at}`)}
                             category_name={items.category_name}
+                            color={getCategoryColor(items.category_name)}
                           />
                         </>
                       );

@@ -21,9 +21,9 @@ const ComingSoon = () => {
                 </div>
 
                 <p>
-                  Our website is currently undergoing scheduled maintenance.
+                  Our website is currently under construction to enhance your
                 </p>
-                <p>We Should be back shortly. Thank you for your patience</p>
+                <p> browsing experience. We will be back shortly!</p>
                 <div className='sk-notFound-btn'>
                   <button className='sk-btn' onClick={() => history.push(`/`)}>
                     Back to Home <EastRoundedIcon />

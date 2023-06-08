@@ -394,3 +394,36 @@ export function addHyphensToLink(link) {
 
 export const blockInvalidChar = (e) =>
   ["e", "E", "+", "-"].includes(e.key) && e.preventDefault();
+
+const predefinedColors = [
+  "#F8A926",
+  "#75B94A",
+  "#1DA1F2",
+  "#008B8B",
+  "#708090",
+  "#808000",
+  "#800000",
+  "#000080",
+  "#8B4513",
+  "#333333",
+  "#0000AA",
+  "#800080",
+  "#B22222",
+  "#A0522D",
+  "#3CB371",
+  "#D2691E",
+];
+export function assignColorToCategory(
+  categoryData,
+  colorCodes = predefinedColors,
+) {
+  const uniqueCategories = [...new Set(categoryData)];
+  const categoryColorMap = {};
+
+  uniqueCategories.forEach((category, index) => {
+    const colorIndex = index % colorCodes.length;
+    categoryColorMap[category] = colorCodes[colorIndex];
+  });
+
+  return (category) => categoryColorMap[category];
+}

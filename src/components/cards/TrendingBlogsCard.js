@@ -18,7 +18,9 @@ export const TrendingBlogsCard = ({
   id,
   category_name,
   key,
+  color,
 }) => {
+  console.log("🚀 ~ file: TrendingBlogsCard.js:23 ~ color:", color)
   const history = useHistory();
   return (
     <div
@@ -34,7 +36,12 @@ export const TrendingBlogsCard = ({
         <img src={image} alt='images' />
       </div>
       <div className='blog-card__content sk-blog-side'>
-        <span className='sk-treadingBlog-one'>{category_name}</span>
+        <span
+          className='sk-treadingBlog-one'
+          style={{ background: `${color}` }}
+        >
+          {category_name}
+        </span>
         <p className='blog-card__description'>{description}</p>
         <div className='blog-card__meta'>
           <span className='blog-card__time'>

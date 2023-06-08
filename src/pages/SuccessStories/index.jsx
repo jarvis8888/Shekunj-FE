@@ -210,7 +210,7 @@ function SuccessStory() {
         axios.get(`/private_adds/private_add`).then((response) => {
           if (response && response.data.results.length > 0) {
             let filterArray1 = response.data.results.filter((item, index) => {
-              return item.image_type == "success_stories_banner";
+              return item.image_type === "success_stories_banner";
             });
             setStoriesBannerAds(filterArray1);
             let filterArray2 = response.data.results.filter((item, index) => {

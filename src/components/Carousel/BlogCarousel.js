@@ -10,7 +10,7 @@ import { routingConstants } from "../../utils/constants";
 import { useHistory } from "react-router-dom";
 import { DateFormat } from "../../utils/utils";
 
-const BlogCarousel = ({ images = [] }) => {
+const BlogCarousel = ({ images = [], color }) => {
   const history = useHistory();
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -51,7 +51,12 @@ const BlogCarousel = ({ images = [] }) => {
       >
         <img src={`${images[currentIndex]?.image}`} alt='image_blog' />
         <div className='carousel__content'>
-          <h5 className='sk-category-name'>
+          <h5
+            className='sk-category-name'
+            style={{
+              background: `${color(images[currentIndex]?.category_name)}`,
+            }}
+          >
             {images[currentIndex]?.category_name}
           </h5>
           <h2
@@ -65,7 +70,7 @@ const BlogCarousel = ({ images = [] }) => {
           <div className='has'>
             <span style={{ color: "#020202" }}>
               <AccessTimeIcon />
-              {DateFormat(`${images[currentIndex]?.created_at}`)}
+              {`${images[currentIndex]?.created_at}`}
             </span>
             <span style={{ color: "#020202" }}>
               <MenuBookRoundedIcon />
