@@ -53,7 +53,7 @@ export const SocialMedia = () => {
 
                 <li>
                   <a
-                    href='https://in.linkedin.com/showcase/shekunjedu'
+                    href='https://www.instagram.com/shekunj_edu/'
                     target='_blank'
                     rel='noreferrer'
                   >

@@ -13,7 +13,11 @@ import { TrendingBlogsCard2 } from "../../components/cards/TrendingBlogsCard2";
 import catagorie from "../../assets/images/categoryblog.svg";
 import CancelRoundedIcon from "@mui/icons-material/CancelRounded";
 import { routingConstants } from "../../utils/constants";
-import { DateFormat, addEmailToClient } from "../../utils/utils";
+import {
+  DateFormat,
+  addEmailToClient,
+  assignColorToCategory,
+} from "../../utils/utils";
 import { CustomLoader } from "../../components/customLoader/CustomLoader";
 import useDeviceDetect from "../../hooks/useDeviceDetect";
 import { NoDataFound } from "../../components/noDataFound/NoDataFound";
@@ -194,12 +198,16 @@ const SuccessStroyWithHashtag = () => {
     return renderAd(ad);
   };
 
+  const namesArray = allHashTag?.map((category) => category.name);
+
+  const getCategoryColor = assignColorToCategory(namesArray);
+
   return (
     <div>
       <Header />
       <section>
         <div className='container'>
-        <HashtagAndCatagoriesForMobile
+          <HashtagAndCatagoriesForMobile
             image={catagorie}
             title={`Categories`}
             hashtags={allHashTag}
@@ -237,6 +245,7 @@ const SuccessStroyWithHashtag = () => {
                               time={items.reading_time}
                               date={DateFormat(`${items.created_at}`)}
                               category_name={items.category_name}
+                              color={getCategoryColor(items.category_name)}
                             />
                           </>
                         );

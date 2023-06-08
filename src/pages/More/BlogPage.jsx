@@ -20,7 +20,11 @@ import { HashtagAndCatagories } from "../../components/HastagAndCatagories/Index
 import catagorie from "../../assets/images/categoryblog.svg";
 import httpServices from "../../utils/ApiServices";
 import { CustomLoader } from "../../components/customLoader/CustomLoader";
-import { DateFormat, addEmailToClient } from "../../utils/utils";
+import {
+  DateFormat,
+  addEmailToClient,
+  assignColorToCategory,
+} from "../../utils/utils";
 import { NoDataFound } from "../../components/noDataFound/NoDataFound";
 import { HashtagAndCatagoriesForMobile } from "../../components/HastagAndCatagories/HastagAndCatagoriesForMobile";
 import { WhiteCircularBar } from "../../components/Loader/WhiteCircularBar";
@@ -308,6 +312,10 @@ function BlogPage() {
     setOffset(offset + 5);
   };
 
+  const namesArray = blogsCategories?.map((category) => category.name);
+
+  const getCategoryColor = assignColorToCategory(namesArray);
+
   return (
     <div>
       <Header loginPage={true} page='more' subPage='moreblog' />
@@ -335,7 +343,10 @@ function BlogPage() {
               <div className='row'>
                 <div className='col-xl-8 col-md-8 col-lg-8'>
                   <div className='carousel-blog'>
-                    <BlogCarousel images={topTrendingBlogs?.slice(0, 5)} />
+                    <BlogCarousel
+                      images={topTrendingBlogs?.slice(0, 5)}
+                      color={getCategoryColor}
+                    />
                   </div>
                 </div>
                 <div className='col-xl-4 col-md-4 col-lg-4'>
@@ -349,9 +360,10 @@ function BlogPage() {
                               id={items.id}
                               description={items.title}
                               time={items.reading_time}
-                              date={DateFormat(`${items.created_at}`)}
+                              date={`${items.created_at}`}
                               category_name={items.category_name}
                               key={index}
+                              color={getCategoryColor(items.category_name)}
                             />
                           </>
                         );
@@ -438,11 +450,12 @@ function BlogPage() {
                                   description={`${items.about_blog}`}
                                   makeHtml={makeHtml}
                                   key={index}
-                                  created_at={DateFormat(`${items.created_at}`)}
+                                  created_at={`${items.created_at}`}
                                   reading_time={items.reading_time}
                                   id={items.id}
                                   blog_count={items.blog_count}
                                   category_name={items.category_name}
+                                  color={getCategoryColor(items.category_name)}
                                 />
                               </div>
                             </>
@@ -527,9 +540,10 @@ function BlogPage() {
                               title={items.title}
                               id={items.id}
                               description={`${items.about_blog}`}
-                              time='5 min'
-                              date={DateFormat(`${items.created_at}`)}
+                              time={items?.reading_time}
+                              date={`${items.created_at}`}
                               category_name={items.category_name}
+                              color={getCategoryColor(items.category_name)}
                             />
                           </>
                         );

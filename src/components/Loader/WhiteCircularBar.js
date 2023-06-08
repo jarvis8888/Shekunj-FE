@@ -16,7 +16,7 @@ export const WhiteCircularBar = () => {
       classes={{
         root: classes.root,
       }}
-      size={25} // Adjust the size to your desired value
+      size={20} // Adjust the size to your desired value
       thickness={5} // Adjust the thickness of the progress bar
     />
   );

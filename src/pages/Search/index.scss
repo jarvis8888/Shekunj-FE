@@ -201,7 +201,7 @@ section {
   color: #fff !important;
   border-color: transparent;
 }
-.sk-carrers-search{
+.sk-carrers-search {
   margin-bottom: 8px;
 }
 .sk-eventcard-sec .sk-category ul li a:hover {
@@ -251,7 +251,8 @@ section {
   align-items: center;
 }
 
-.sk-event-sec:hover {
+.sk-event-sec {
+  position: relative;
   background: linear-gradient(
     89.98deg,
     #888888 2.6%,
@@ -273,38 +274,38 @@ section {
   //   rgba(136, 136, 136, 0.5) 97.14%
   // );
 }
-.sk-event-sec:hover:before {
-  display: none;
-}
-.sk-event-sec:before {
-  // background: linear-gradient(89.98deg, #888888 2.6%, rgba(137, 137, 137, 0.271) 19.79%, rgba(165, 164, 164, 0.238) 26.4%, rgba(198, 198, 198, 0.569) 79.16%, rgba(136, 136, 136, 0.29) 85.9%, #888888 97.14%);
+// .sk-event-sec:hover:before {
+//   display: none;
+// }
+// .sk-event-sec:before {
+//   // background: linear-gradient(89.98deg, #888888 2.6%, rgba(137, 137, 137, 0.271) 19.79%, rgba(165, 164, 164, 0.238) 26.4%, rgba(198, 198, 198, 0.569) 79.16%, rgba(136, 136, 136, 0.29) 85.9%, #888888 97.14%);
 
-  background: linear-gradient(
-    89.98deg,
-    #888888 2.6%,
-    rgba(136, 136, 136, 0.28) 19.79%,
-    rgba(255, 255, 255, 0) 26.4%,
-    rgba(255, 255, 255, 0) 79.16%,
-    rgba(136, 136, 136, 0.29) 85.9%,
-    #888888 97.14%
-  );
-  // background: linear-gradient(
-  //   89.98deg,
-  //   rgb(136 136 136 / 92%) 2.6%,
-  //   rgba(136, 136, 136, 0.28) 19.79%,
-  //   rgba(255, 255, 255, 0) 26.4%,
-  //   rgba(255, 255, 255, 0) 79.16%,
-  //   rgba(136, 136, 136, 0.29) 85.9%,
-  //   rgb(136 136 136 / 87%) 97.14%
-  // );
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  z-index: 9;
-}
+//   background: linear-gradient(
+//     89.98deg,
+//     #888888 2.6%,
+//     rgba(136, 136, 136, 0.28) 19.79%,
+//     rgba(255, 255, 255, 0) 26.4%,
+//     rgba(255, 255, 255, 0) 79.16%,
+//     rgba(136, 136, 136, 0.29) 85.9%,
+//     #888888 97.14%
+//   );
+//   // background: linear-gradient(
+//   //   89.98deg,
+//   //   rgb(136 136 136 / 92%) 2.6%,
+//   //   rgba(136, 136, 136, 0.28) 19.79%,
+//   //   rgba(255, 255, 255, 0) 26.4%,
+//   //   rgba(255, 255, 255, 0) 79.16%,
+//   //   rgba(136, 136, 136, 0.29) 85.9%,
+//   //   rgb(136 136 136 / 87%) 97.14%
+//   // );
+//   content: "";
+//   position: absolute;
+//   left: 0;
+//   right: 0;
+//   top: 0;
+//   bottom: 0;
+//   z-index: 9;
+// }
 .sk-event-slide {
   position: relative;
   z-index: 9;
