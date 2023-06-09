@@ -89,7 +89,7 @@ export const GlobalSearchCard = ({
             <div className='sk-week-time'>
               {item?.type === "Blog" && (
                 <span>
-                  <AccessTimeIcon /> {DateFormat(`${item.created_at}`)}
+                  <AccessTimeIcon /> {`${item.created_at}`}
                 </span>
               )}
               {item?.type === "Success Story" && (
