@@ -272,7 +272,7 @@ const BlogDetails = () => {
                     <div class='sk-blokTVE-icon'>
                       <span>
                         <AccessTimeIcon />
-                        {`${blogs?.created_at}`}
+                        {DateFormat(`${blogs?.created_at}`)}
                       </span>
                       <span>
                         <MenuBookRoundedIcon /> {blogs?.reading_time}

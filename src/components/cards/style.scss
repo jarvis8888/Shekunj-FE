@@ -26,6 +26,7 @@ img {
   margin: 15px 20px;
   padding: 3px 10px;
 }
+
 .sk-treadingBlog-one {
   // background: #75b94a;
   color: #fff;
@@ -106,7 +107,7 @@ img {
       display: flex;
       justify-content: center;
       transition: all 0.3s;
-      &:hover{
+      &:hover {
         color: #d3317d;
       }
     }
@@ -234,21 +235,19 @@ img {
     position: relative;
     flex: 176px 0 0;
     min-width: 176px;
-    img{
+    img {
       object-fit: cover;
       object-position: center;
-      height: 130px;
-    
-    @media screen and (max-width: 768px) {
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-      height: auto;
-      margin-right: 0;
-      }
-    
-    }
+      height: 120px;
 
+      @media screen and (max-width: 768px) {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: auto;
+        margin-right: 0;
+      }
+    }
   }
 
   &__content {
@@ -368,10 +367,10 @@ img {
 .sk-blogDivider-bottom:last-child {
   border-bottom: 0;
 }
-.blog-card:last-child{
+.blog-card:last-child {
   margin-bottom: 0;
 }
-.blog-card__meta span:last-child{
+.blog-card__meta span:last-child {
   margin-right: 0;
 }
 @media screen and (min-width: 1400px) and (max-width: 3500px) {

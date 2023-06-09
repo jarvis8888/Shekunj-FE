@@ -360,7 +360,7 @@ function BlogPage() {
                               id={items.id}
                               description={items.title}
                               time={items.reading_time}
-                              date={`${items.created_at}`}
+                              date={DateFormat(`${items.created_at}`)}
                               category_name={items.category_name}
                               key={index}
                               color={getCategoryColor(items.category_name)}
@@ -450,7 +450,7 @@ function BlogPage() {
                                   description={`${items.about_blog}`}
                                   makeHtml={makeHtml}
                                   key={index}
-                                  created_at={`${items.created_at}`}
+                                  created_at={DateFormat(`${items.created_at}`)}
                                   reading_time={items.reading_time}
                                   id={items.id}
                                   blog_count={items.blog_count}
@@ -541,7 +541,7 @@ function BlogPage() {
                               id={items.id}
                               description={`${items.about_blog}`}
                               time={items?.reading_time}
-                              date={`${items.created_at}`}
+                              date={DateFormat(`${items.created_at}`)}
                               category_name={items.category_name}
                               color={getCategoryColor(items.category_name)}
                             />
