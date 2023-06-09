@@ -39,6 +39,7 @@ img {
 .sk-Blogcard-content {
   padding: 12px 15px 5px;
 }
+
 .sk-Blogcard-content p {
   overflow: hidden;
   text-overflow: ellipsis;
@@ -407,4 +408,12 @@ img {
 .card__hashtags span:hover {
   color: #d3317d;
   cursor: pointer;
+}
+
+.sk-tradingBlog-card h5 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }

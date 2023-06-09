@@ -81,6 +81,7 @@ function EventPage() {
   const [eventFooterAds, setEventFooterAds] = useState([]);
   const [currentData, setCurrentData] = useState([]);
   const [allEventData, setAllEventData] = useState([]);
+  const [sliderEventData, setAllSliderEventData] = useState([]);
   const [todayTomorrowData, setTodayTomorrowData] = useState([]);
   const [thisWeekData, setThisWeekData] = useState([]);
   const [nextWeekData, setNextWeekData] = useState([]);
@@ -131,7 +132,14 @@ function EventPage() {
 
       setCurrentData(event_list?.results);
       setGenresListData(genres_list);
-
+      //need to change according to backend change
+      setAllSliderEventData((prevFeaturedData) => [
+        ...today_tomorrow,
+        ...this_week,
+        ...next_week,
+        ...prevFeaturedData,
+        ...event_list?.results,
+      ]);
       // Process today_tomorrow data
       const todayTomorrowEventData = today_tomorrow || [];
       const todayTomorrowDataWithAds = addAdvertisementObjects(
@@ -354,7 +362,7 @@ function EventPage() {
                   },
                 }}
               >
-                {allEventData?.map((items, index) => {
+                {sliderEventData?.map((items, index) => {
                   return (
                     <>
                       <SwiperSlide>
