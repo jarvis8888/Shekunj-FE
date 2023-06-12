@@ -24,7 +24,6 @@ body {
   position: relative;
   background-repeat: no-repeat;
   background-size: cover;
-  font-family: SegoeUI_bold;
 }
 
 #myCarousel .carousel_item1 {
@@ -44,7 +43,6 @@ body {
 }
 
 #myCarousel .carousel-item h4 {
-  font-family: "SegoeUI_medium";
   font-style: normal;
   font-weight: normal;
   text-transform: capitalize;
@@ -55,7 +53,6 @@ body {
 }
 
 #myCarousel .carousel-item h5 {
-  font-family: "SegoeUI_medium";
   text-transform: capitalize;
   font-style: normal;
   font-weight: 600;
@@ -67,7 +64,6 @@ body {
 }
 
 #myCarousel .carousel-item h4 span {
-  font-family: SegoeUI_medium;
   font-weight: 300;
   font-size: 18px;
   line-height: 27px;
@@ -76,7 +72,6 @@ body {
 }
 
 #myCarousel .carousel-item p {
-  font-family: SegoeUI_medium;
   font-weight: 300;
   font-size: 18px;
   line-height: 27px;
@@ -85,12 +80,10 @@ body {
 
 .carousel-item.carousel_item1 h2 {
   font-size: 22px;
-  font-family: 'SegoeUI_bold';
   text-transform: capitalize;
 }
 
 #myCarousel .carousel-item .banner_btn {
-  font-family: SegoeUI_medium;
   text-transform: capitalize;
   -webkit-animation-name: fadeInUp;
   animation-name: fadeInUp;
@@ -139,7 +132,7 @@ body {
 }
 
 #myCarousel .slick-next {
-  right: 41px;
+  right: 15px;
 }
 
 #myCarousel .slick-prev,
@@ -161,7 +154,7 @@ body {
 }
 
 #myCarousel .slick-prev {
-  left: 41px;
+  left: 15px;
 }
 
 #myCarousel .slick-prev:before {
@@ -234,7 +227,6 @@ body {
 }
 
 .resume .btn.btn-resume {
-  font-family: SegoeUI_bold;
   font-size: 14px;
   line-height: 21px;
   text-align: center;
@@ -249,7 +241,6 @@ body {
 }
 
 .resume h4 {
-  font-family: SegoeUI_medium;
   text-transform: capitalize;
   font-weight: 500;
   font-size: 36px;
@@ -287,7 +278,6 @@ body {
 }
 
 .job-opprtunity-bg h3 {
-  font-family: "SegoeUI_medium";
   font-weight: 600;
   font-style: normal;
   font-size: 35px;
@@ -306,7 +296,6 @@ body {
 }
 
 .job-opprtunity-bg .btn.btn-job {
-  font-family: "SegoeUI_bold";
   font-weight: 600;
   font-size: 16px;
   line-height: 24px;
@@ -342,7 +331,6 @@ body {
 }
 
 .career_community h1 {
-  font-family: SegoeUI_bold;
   font-weight: bold;
   font-style: normal;
   font-size: 40px;
@@ -352,7 +340,6 @@ body {
 }
 
 .career_community h2 {
-  font-family: SegoeUI_bold;
   font-weight: bold;
   font-style: normal;
   font-size: 34px;
@@ -362,7 +349,6 @@ body {
 }
 
 .career_community p {
-  font-family: "SegoeUI_medium";
   font-weight: normal;
   font-size: 20px;
   line-height: 30px;
@@ -377,7 +363,6 @@ body {
 .btn.btn-start-course {
   background: #ec498a;
   border-radius: 2px;
-  font-family: "SegoeUI_bold";
   font-weight: 600;
   font-size: 14px;
   line-height: 21px;
@@ -414,7 +399,6 @@ body {
 }
 
 .certificate h4 {
-  font-family: "SegoeUI_bold";
   font-weight: bold;
   font-style: normal;
   font-size: 33px;
@@ -423,7 +407,6 @@ body {
 }
 
 .certificate p {
-  font-family: "SegoeUI_medium";
   font-weight: normal;
   font-size: 20px;
   line-height: 30px;
@@ -438,7 +421,6 @@ body {
 }
 
 .highlight_student h3 {
-  font-family: "SegoeUI_bold";
   font-weight: bold;
   font-size: 35px;
   line-height: 50px;
@@ -456,7 +438,6 @@ body {
 }
 
 .highlight_student p {
-  font-family: "SegoeUI_medium";
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
@@ -467,7 +448,6 @@ body {
 .learn_more {
   background: #ec498a;
   border-radius: 2px;
-  font-family: "SegoeUI_bold";
   font-weight: 600;
   font-size: 14px;
   line-height: 42px;
@@ -544,7 +524,6 @@ body {
 }
 
 .tes_box p {
-  font-family: SegoeUI_bold;
   font-style: normal;
   font-weight: 600;
   font-size: 13px !important;
@@ -556,7 +535,6 @@ body {
 }
 
 .tes_box_ankita p {
-  font-family: SegoeUI_bold;
   font-style: normal;
   font-weight: 600;
   font-size: 13px;
@@ -568,7 +546,6 @@ body {
 }
 
 .tes_box h2 {
-  font-family: SegoeUI_bold;
   font-style: normal;
   font-weight: 600;
   font-size: 13px !important;
@@ -578,7 +555,6 @@ body {
 }
 
 .tes_box_ankita h2 {
-  font-family: SegoeUI_bold;
   font-style: normal;
   font-weight: 600;
   font-size: 13px;
@@ -588,7 +564,6 @@ body {
 }
 
 .tes_box h6 {
-  font-family: SegoeUI_bold;
   font-style: normal;
   font-weight: normal;
   font-size: 12px !important;
@@ -598,7 +573,6 @@ body {
 }
 
 .tes_box_ankita h6 {
-  font-family: SegoeUI_bold;
   font-style: normal;
   font-weight: normal;
   font-size: 12px;
@@ -616,7 +590,6 @@ body {
 }
 
 .tes_box2 h2 {
-  font-family: SegoeUI_bold;
   font-style: normal;
   font-weight: 600;
   font-size: 13px;
@@ -685,7 +658,6 @@ body {
 }
 
 .tes_box3 h2 {
-  font-family: SegoeUI_bold;
   font-style: normal;
   font-weight: 600;
   font-size: 13px;
@@ -696,7 +668,6 @@ body {
 }
 
 .tes_box3 h6 {
-  font-family: SegoeUI_bold;
   font-style: normal;
   font-weight: normal;
   font-size: 12px;
@@ -738,7 +709,6 @@ ul.star {
   height: 432px;
   background: #ec498a;
   position: relative;
-  font-family: Sora;
   font-style: normal;
   font-weight: bold;
   font-size: 36px;
@@ -749,7 +719,6 @@ ul.star {
 }
 
 .container.Our_text p {
-  font-family: "SegoeUI_medium";
   font-style: normal;
   font-weight: 600;
   font-size: 20px;
@@ -765,7 +734,6 @@ ul.star {
 }
 
 .container.Our_text h2 {
-  font-family: "SegoeUI_medium";
   font-style: normal;
   font-weight: 600;
   font-size: 40px;
@@ -1082,7 +1050,7 @@ ul.star {
   }
 
   #myCarousel .carousel-item p {
-    font-family: SegoeUI_medium;
+
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -1364,7 +1332,6 @@ ul.star {
 .goverment-schemes {
   text-decoration: none;
   color: white;
-  // font-family: SegoeUI_bold;
   // font-style: normal;
   // font-weight: bold;
   // font-size: 14px;
@@ -1589,7 +1556,6 @@ ul.star {
 }
 
 .mock_test_pop.MuiBox-root h2 {
-  font-family: 'SegoeUI_medium';
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
@@ -1603,7 +1569,6 @@ ul.star {
 .mock_test_pop.MuiBox-root button.btn.btn-info {
   background: #EC498A;
   border: none;
-  font-family: Roboto;
   width: 115px;
   height: 30px;
   font-style: normal;

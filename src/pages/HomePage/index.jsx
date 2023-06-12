@@ -619,7 +619,7 @@ function HomePage() {
           <div className='row justify-content-center'>
             <div className='col-md-12'>
               <h1 data-aos='slide-up'>{t("homePage.community.heading")}</h1>
-              <h2 data-aos='slide-up'>{t("homePage.community.subHeading")}</h2>
+              {/* <h2 data-aos='slide-up'>{t("homePage.community.subHeading")}</h2> */}
               <p data-aos='slide-up'>{t("homePage.community.data")}</p>
 
               <div className='mob_comunity_img'>

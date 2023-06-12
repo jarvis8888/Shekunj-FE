@@ -32,7 +32,7 @@ export const TrendingBlogsCard2 = ({
   return (
     <div className='sk-blogDivider-bottom'>
       <div
-        className='row my-4 align-items-center'
+        className='row my-4'
         onClick={() =>
           history.push(
             routingConstants.MORE_BLOG + addHyphensToLink(title) + "-" + id,
@@ -41,7 +41,7 @@ export const TrendingBlogsCard2 = ({
         style={{ cursor: "pointer" }}
       >
         <div className='col-xl-4 col-lg-6 col-md-6'>
-          <img src={image} />
+          <img src={image} alt='' />
         </div>
         <div className='col-xl-8 col-lg-6 col-md-6'>
           <div className='sk-tradingBlog-card'>
@@ -55,7 +55,7 @@ export const TrendingBlogsCard2 = ({
             <p
               className='blog-card-description'
               dangerouslySetInnerHTML={{
-                __html: makeHtml(`${truncateString(description, 100)}`),
+                __html: makeHtml(`${truncateString(description, 200)}`),
               }}
             />
             <div className='blog-card2__meta'>
