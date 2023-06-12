@@ -22,7 +22,7 @@ input:focus {
 }
 @media screen and (min-device-width: 1400px) and (max-device-width: 1450px) {
   .owl-nav {
-    left: -12% !important;
+    left: -8% !important;
   }
   .owl-theme {
     max-width: 1100px;
