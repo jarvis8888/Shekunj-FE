@@ -82,7 +82,7 @@ export const TopFooter = memo(() => {
                       </a>
                     </li>
                     <li>
-                      <a href='/resume'>{t("phase2.FOOTER.Resume_Builder")}</a>
+                      <a href='/resume-builder'>{t("phase2.FOOTER.Resume_Builder")}</a>
                     </li>
                     <li>
                       <a href='/online-counselling/'>
@@ -109,10 +109,10 @@ export const TopFooter = memo(() => {
                       <a href='/career-options'>{t("header.heading.5")}</a>
                     </li>
                     <li>
-                      <a href='/blogs'>{t("phase2.HEADER.blog")}</a>
+                      <a href='/article'>{t("phase2.HEADER.blog")}</a>
                     </li>
                     <li>
-                      <a href='/event'>{t("phase2.HEADER.events")}</a>
+                      <a href='/events'>{t("phase2.HEADER.events")}</a>
                     </li>
                   </ul>
                 </div>
@@ -125,10 +125,10 @@ export const TopFooter = memo(() => {
                       <a href='/contact-us'>{t("phase2.FOOTER.Contact_Us")}</a>
                     </li>
                     <li>
-                      <a href='/more-faq'>{t("phase2.HEADER.FAQ")}</a>
+                      <a href='/frequently-asked-questions'>{t("phase2.HEADER.FAQ")}</a>
                     </li>
                     <li>
-                      <a href='/more-faq'>{t("phase2.FOOTER.Help_Support")}</a>
+                      <a href='/frequently-asked-questions'>{t("phase2.FOOTER.Help_Support")}</a>
                     </li>
                     <li>
                       <a href='/privacy-policy'>

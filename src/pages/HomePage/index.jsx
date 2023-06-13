@@ -135,7 +135,6 @@ function HomePage() {
   const [image, setImage] = useState("NA");
   const [newImage, setNewImage] = useState([]);
   const detect = useDeviceDetect();
-  
 
   //   const [lat, setLat] = useState(null);
   //   const [lng, setLng] = useState(null);
@@ -190,55 +189,19 @@ function HomePage() {
   // }, [])
   // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Latest Code>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
   useEffect(() => {
-    dispatch(adsList())
-    navigator.geolocation.getCurrentPosition(async function (position, values) {
-      const latitude = position.coords.latitude;
-      const longitude = position.coords.longitude;
+    dispatch(adsList());
+    navigator.geolocation.getCurrentPosition(
+      async function (position, values) {
+        const latitude = position.coords.latitude;
+        const longitude = position.coords.longitude;
 
-      let params = {
-        latitude: latitude.toString(),
-        longitude: longitude.toString(),
-      }
-      axios
-        .get(
-          `/private_adds/private_add?latitude=${latitude}&longitude=${longitude}`,
-        )
-        .then((response) => {
-          if (response && response.data.results.length > 0) {
-            let filterArray1 = response.data.results.filter((item, index) => {
-
-              return item.image_type == "home_position_1";
-
-            });
-            setAdsPosition1(filterArray1);
-            // console.log("filterArray1home_position_1",filterArray1)
-
-            let filterArray2 = response.data.results.filter((item, index) => {
-
-              return item.image_type == "home_position_2";
-
-            });
-            setAdsPosition2(filterArray2);
-            console.log("filterArray1home_position_2", filterArray2)
-
-            let filterArray3 = response.data.results.filter((item, index) => {
-
-              return item.image_type == "home_position_3";
-
-            });
-            setAdsPosition3(filterArray3);
-            // console.log("filterArray1home_position_3",filterArray1)
-
-
-          }
-        })
-    },
-      function (error) {
-        console.error("Error Code = " + error.code + " - " + error.message);
-        // alert("Your location is blocked")    
+        let params = {
+          latitude: latitude.toString(),
+          longitude: longitude.toString(),
+        };
         axios
           .get(
-            `/private_adds/private_add`,
+            `/private_adds/private_add?latitude=${latitude}&longitude=${longitude}`,
           )
           .then((response) => {
             if (response && response.data.results.length > 0) {
@@ -246,25 +209,48 @@ function HomePage() {
                 return item.image_type == "home_position_1";
               });
               setAdsPosition1(filterArray1);
-              // console.log("filterArray1coursebox",filterArray1)
+              // console.log("filterArray1home_position_1",filterArray1)
+
               let filterArray2 = response.data.results.filter((item, index) => {
                 return item.image_type == "home_position_2";
               });
               setAdsPosition2(filterArray2);
-              console.log("filterArray1coursebox", filterArray2)
+              console.log("filterArray1home_position_2", filterArray2);
 
               let filterArray3 = response.data.results.filter((item, index) => {
-
                 return item.image_type == "home_position_3";
-
               });
               setAdsPosition3(filterArray3);
-              // console.log("filterArray1home_position_3",filterArray3)
+              // console.log("filterArray1home_position_3",filterArray1)
             }
-          })
-      }
-    )
-  }, [])
+          });
+      },
+      function (error) {
+        console.error("Error Code = " + error.code + " - " + error.message);
+        // alert("Your location is blocked")
+        axios.get(`/private_adds/private_add`).then((response) => {
+          if (response && response.data.results.length > 0) {
+            let filterArray1 = response.data.results.filter((item, index) => {
+              return item.image_type == "home_position_1";
+            });
+            setAdsPosition1(filterArray1);
+            // console.log("filterArray1coursebox",filterArray1)
+            let filterArray2 = response.data.results.filter((item, index) => {
+              return item.image_type == "home_position_2";
+            });
+            setAdsPosition2(filterArray2);
+            console.log("filterArray1coursebox", filterArray2);
+
+            let filterArray3 = response.data.results.filter((item, index) => {
+              return item.image_type == "home_position_3";
+            });
+            setAdsPosition3(filterArray3);
+            // console.log("filterArray1home_position_3",filterArray3)
+          }
+        });
+      },
+    );
+  }, []);
 
   // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
@@ -430,9 +416,6 @@ function HomePage() {
       {/* google add */}
       <section>
         <div className='container'>
-
-
-
           <div className='row'>
             {adsPosition1.length > 0 && (
               // <div className='col-md-12 ads_home_cover'>
@@ -441,14 +424,22 @@ function HomePage() {
                 onClick={() => addEmail(adsPosition1[0]?.add_email)}
               >
                 <a href={adsPosition1[0]?.url_adds} target='_blank'>
-                  {detect.isMobile ? (
-                    adsPosition1[0]?.image_mobile && (
-                    <img src={ adsPosition1[0]?.image_mobile } alt='Image' className='google_ads_home' />
-                  )) : (
-                    adsPosition1[0]?.image && (
-                    <img src={ adsPosition1[0]?.image} alt='Image' className='google_ads_home' />
-                  ))}
-                </a>                
+                  {detect.isMobile
+                    ? adsPosition1[0]?.image_mobile && (
+                        <img
+                          src={adsPosition1[0]?.image_mobile}
+                          alt='Image'
+                          className='google_ads_home'
+                        />
+                      )
+                    : adsPosition1[0]?.image && (
+                        <img
+                          src={adsPosition1[0]?.image}
+                          alt='Image'
+                          className='google_ads_home'
+                        />
+                      )}
+                </a>
               </div>
             )}
           </div>
@@ -461,12 +452,7 @@ function HomePage() {
           <div className='row'>
             <div className='col-md-7' data-aos='slide-up'>
               <h4>{t("homePage.resume.heading")}</h4>
-              <a
-                rel='noreferrer'
-                href='https://octahire.com/Resume_maker'
-                target='_blank'
-                className='btn btn-resume mt-4'
-              >
+              <a href='resume-builder' className='btn btn-resume mt-4'>
                 {t("homePage.resume.button")}
               </a>
             </div>
@@ -506,24 +492,30 @@ function HomePage() {
       <section>
         <div className='container'>
           <div className='row'>
-
             {adsPosition2.length > 0 && (
               <div
                 className='col-md-12 ads_home_cover'
                 onClick={() => addEmail(adsPosition2[0]?.add_email)}
               >
                 <a href={adsPosition2[0]?.url_adds} target='_blank'>
-                  {detect.isMobile ? (
-                    adsPosition2[0]?.image_mobile && (
-                <img src={adsPosition2[0]?.image_mobile} alt='Image' className='google_ads_home' />
-                  )): (
-                    adsPosition2[0]?.image && (
-                    <img src={adsPosition2[0]?.image} alt='Image' className='google_ads_home' />
-                  ))}
+                  {detect.isMobile
+                    ? adsPosition2[0]?.image_mobile && (
+                        <img
+                          src={adsPosition2[0]?.image_mobile}
+                          alt='Image'
+                          className='google_ads_home'
+                        />
+                      )
+                    : adsPosition2[0]?.image && (
+                        <img
+                          src={adsPosition2[0]?.image}
+                          alt='Image'
+                          className='google_ads_home'
+                        />
+                      )}
                 </a>
               </div>
             )}
-
           </div>
         </div>
       </section>
@@ -538,10 +530,8 @@ function HomePage() {
                   <div className='col-lg-8' data-aos='slide-up'>
                     <h3>{t("homePage.jobopportunity.heading")}</h3>
                     <p>{t("homePage.jobopportunity.subHeading")}</p>
-                    <a
-                      rel='noreferrer'
-                      target='_blank'
-                      href='https://octahire.com/Home/candidate_register'
+                    <a                     
+                      href='/jobs'
                       className='btn btn-job'
                     >
                       {t("homePage.jobopportunity.button")}
@@ -584,19 +574,26 @@ function HomePage() {
             {adsPosition3.length > 0 && (
               // <div className='col-md-12 ads_home_cover'>
 
-
               <div
                 className='col-md-12 ads_home_cover'
                 onClick={() => addEmail(adsPosition3[0]?.add_email)}
               >
                 <a href={adsPosition3[0]?.url_adds} target='_blank'>
-                  {detect.isMobile ? (
-                    adsPosition3[0]?.image_mobile && (
-                      <img src={adsPosition3[0]?.image_mobile} alt='Image' className='google_ads_home' />
-                  )) : (
-                    adsPosition3[0]?.image && (
-                      <img src={adsPosition3[0]?.image} alt='Image' className='google_ads_home' />
-                  ))}
+                  {detect.isMobile
+                    ? adsPosition3[0]?.image_mobile && (
+                        <img
+                          src={adsPosition3[0]?.image_mobile}
+                          alt='Image'
+                          className='google_ads_home'
+                        />
+                      )
+                    : adsPosition3[0]?.image && (
+                        <img
+                          src={adsPosition3[0]?.image}
+                          alt='Image'
+                          className='google_ads_home'
+                        />
+                      )}
                 </a>
               </div>
             )}
@@ -862,7 +859,11 @@ function HomePage() {
                       </ul>
                       <h2>{t("aboutPage.reviewerDetails.reviewerName.1")}</h2>
                       <h6>{t("aboutPage.reviewerDetails.reviewerPost.2")}</h6>
-                      <img className="NikitaSharmaImage img-responsive" src={Nikita} alt='' />
+                      <img
+                        className='NikitaSharmaImage img-responsive'
+                        src={Nikita}
+                        alt=''
+                      />
                     </div>
                   </div>
 
@@ -919,7 +920,11 @@ function HomePage() {
                       </ul>
                       <h2>{t("aboutPage.reviewerDetails.reviewerName.2")}</h2>
                       <h6>{t("aboutPage.reviewerDetails.reviewerPost.1")}</h6>
-                      <img className='AnkitaSharmaImage img-responsive' src={Ankita} alt='' />
+                      <img
+                        className='AnkitaSharmaImage img-responsive'
+                        src={Ankita}
+                        alt=''
+                      />
                     </div>
                   </div>
                 </div>

@@ -60,13 +60,15 @@ function TopNavbar() {
           <nav className=''>
             <ul>
               <li className='mobile'>
-                <a href='/event'>{t("phase2.HEADER.events")}</a>
+                <a href='/events'>{t("phase2.HEADER.events")}</a>
               </li>
               <li className='mobile'>
-                <a href='/blogs'>{t("phase2.HEADER.blog")}</a>
+                <a href='/article'>{t("phase2.HEADER.blog")}</a>
               </li>
               <li className='mobile'>
-                <a href='/more-faq'>{t("phase2.HEADER.FAQ")}</a>
+                <a href='/frequently-asked-questions'>
+                  {t("phase2.HEADER.FAQ")}
+                </a>
               </li>
               <li>
                 <ChangeLanguageButton />
