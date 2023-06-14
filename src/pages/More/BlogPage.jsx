@@ -24,6 +24,7 @@ import {
   DateFormat,
   addEmailToClient,
   assignColorToCategory,
+  removeHtmlTags,
 } from "../../utils/utils";
 import { NoDataFound } from "../../components/noDataFound/NoDataFound";
 import { HashtagAndCatagoriesForMobile } from "../../components/HastagAndCatagories/HastagAndCatagoriesForMobile";
@@ -447,7 +448,7 @@ function BlogPage() {
                                   image={items.image}
                                   hashtags={items.hash_tags}
                                   title={items.title}
-                                  description={`${items.about_blog}`}
+                                  description={`${removeHtmlTags(items.about_blog)}`}
                                   makeHtml={makeHtml}
                                   key={index}
                                   created_at={DateFormat(`${items.created_at}`)}
@@ -539,7 +540,7 @@ function BlogPage() {
                               image={items.image}
                               title={items.title}
                               id={items.id}
-                              description={`${items.about_blog}`}
+                              description={`${removeHtmlTags(items.about_blog)}`}
                               time={items?.reading_time}
                               date={DateFormat(`${items.created_at}`)}
                               category_name={items.category_name}

@@ -55,7 +55,7 @@ export const TrendingBlogsCard2 = ({
             <p
               className='blog-card-description'
               dangerouslySetInnerHTML={{
-                __html: makeHtml(`${truncateString(description, 200)}`),
+                __html: makeHtml(`${description}`),
               }}
             />
             <div className='blog-card2__meta'>

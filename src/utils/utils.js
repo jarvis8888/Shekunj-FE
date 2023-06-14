@@ -428,3 +428,9 @@ export function assignColorToCategory(
 
   return (category) => categoryColorMap[category];
 }
+
+export function removeHtmlTags(htmlString) {
+  // Remove HTML tags and inline styles using regex
+  var cleanText = htmlString.replace(/<[^>]+>|style\s*=\s*"[^"]*"/g, '');
+  return cleanText;
+}
