@@ -109,9 +109,8 @@ img.vert-move {
 .react-datepicker__year-text--in-range:hover {
   background-color: #ff008d !important;
 }
-@media (min-width: 1400px) {
+@media (min-width: 1200px) {
 .container-xxl, .container-xl, .container-lg, .container-md, .container-sm, .container {
   max-width: 1320px !important;
-}
-
+  }
 }

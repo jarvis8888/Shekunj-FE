@@ -8,17 +8,19 @@ import MenuBookRoundedIcon from "@mui/icons-material/MenuBookRounded";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import { routingConstants } from "../../utils/constants";
 import { useHistory } from "react-router-dom";
-import { DateFormat } from "../../utils/utils";
+import { DateFormat, addHyphensToLink } from "../../utils/utils";
 
 const BlogCarousel = ({ images = [], color }) => {
   const history = useHistory();
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const handlePrev = () => {
+  const handlePrev = (event) => {
+    event.stopPropagation();
     setCurrentIndex(currentIndex === 0 ? images.length - 1 : currentIndex - 1);
   };
 
-  const handleNext = () => {
+  const handleNext = (event) => {
+    event.stopPropagation();
     setCurrentIndex(currentIndex === images.length - 1 ? 0 : currentIndex + 1);
   };
 
@@ -32,16 +34,26 @@ const BlogCarousel = ({ images = [], color }) => {
   }, [currentIndex, images]);
 
   return (
-    <div className='carousel'>
+    <div
+      className='carousel'
+      onClick={() =>
+        history.push(
+          routingConstants.MORE_BLOG +
+            addHyphensToLink(images[currentIndex]?.title) +
+            "-" +
+            images[currentIndex]?.id,
+        )
+      }
+    >
       <button
         className='carousel__arrow carousel__arrow__left'
-        onClick={handlePrev}
+        onClick={(event) => handlePrev(event)}
       >
         &lt;
       </button>
       <button
         className='carousel__arrow carousel__arrow__right'
-        onClick={handleNext}
+        onClick={(event) => handleNext(event)}
       >
         &gt;
       </button>
@@ -90,7 +102,10 @@ const BlogCarousel = ({ images = [], color }) => {
             className={`carousel__dot ${
               index === currentIndex ? "active" : ""
             }`}
-            onClick={() => setCurrentIndex(index)}
+            onClick={(event) => {
+              event.stopPropagation();
+              setCurrentIndex(index);
+            }}
           />
         ))}
       </div>

@@ -15,6 +15,7 @@ import {
   DateFormat,
   addEmailToClient,
   assignColorToCategory,
+  removeHtmlTags,
 } from "../../utils/utils";
 import { CustomLoader } from "../../components/customLoader/CustomLoader";
 import useDeviceDetect from "../../hooks/useDeviceDetect";
@@ -201,7 +202,9 @@ const BlogWithCatogry = () => {
                               image={items.image}
                               title={items.title}
                               id={items.id}
-                              description={`${items.about_blog}`}
+                              description={`${removeHtmlTags(
+                                items.about_blog,
+                              )}`}
                               time={items.reading_time}
                               date={DateFormat(`${items.created_at}`)}
                               category_name={items.category_name}

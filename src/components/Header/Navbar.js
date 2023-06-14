@@ -75,7 +75,7 @@ const Navbar = (props) => {
                 {t("headerComponent.menuItem.7")}
               </Dropdown.Item>
             </Dropdown>
-            <a href='/resume' className={isActive("/resume") && "active"}>
+            <a href='/resume-builder' className={isActive("/resume-builder") && "active"}>
               {t("header.heading.4")}
             </a>
             <a href='/jobs' className={isActive("/jobs") && "active"}>
@@ -111,13 +111,13 @@ const Navbar = (props) => {
             >
               {t("header.heading.8")}
             </a>
-            <a href='/event' className='mobile-show'>
+            <a href='/events' className='mobile-show'>
               Events
             </a>
             <a href='/blogs' className='mobile-show'>
               Blog
             </a>
-            <a href='/more-faq' className='mobile-show'>
+            <a href='/frequently-asked-questions' className='mobile-show'>
               FAQ
             </a>
             <span

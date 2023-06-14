@@ -396,21 +396,22 @@ export const blockInvalidChar = (e) =>
   ["e", "E", "+", "-"].includes(e.key) && e.preventDefault();
 
 const predefinedColors = [
-  "#F8A926",
-  "#75B94A",
-  "#1DA1F2",
-  "#008B8B",
-  "#708090",
-  "#808000",
-  "#800000",
-  "#000080",
-  "#8B4513",
-  "#333333",
-  "#0000AA",
-  "#800080",
-  "#B22222",
-  "#A0522D",
+  "#7D1935",
+  "#CD1818",
+  "#FEB322",
+  "#F24C3D",
+  "#538F17",
+  "#F3C316",
+  "#2CBE66",
+  "#4323DC",
+  "#19A7CE",
+  "#2362DC",
+  "#4E89EC",
+  "#810CA8",
+  "#8C47D9",
+  "#CA358E",
   "#3CB371",
+  "#A80C6A",
   "#D2691E",
 ];
 export function assignColorToCategory(
@@ -426,4 +427,10 @@ export function assignColorToCategory(
   });
 
   return (category) => categoryColorMap[category];
+}
+
+export function removeHtmlTags(htmlString) {
+  // Remove HTML tags and inline styles using regex
+  var cleanText = htmlString.replace(/<[^>]+>|style\s*=\s*"[^"]*"/g, '');
+  return cleanText;
 }

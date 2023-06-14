@@ -67,7 +67,7 @@ const LatestBlogCard = (props) => {
         <div
           className='sk-blog-describe'
           dangerouslySetInnerHTML={{
-            __html: makeHtml(`${truncateString(description, 300)}`),
+            __html: makeHtml(`${description}`),
           }}
         />
         <span>
