@@ -64,7 +64,7 @@ const SocialShare = ({ currentUrl, title, image }) => {
         description='Shekunj.com works for women empowerment by providing free online certification courses, 
           career guidance, job and internship opportunities across India.'
         currentUrl={currentUrl}
-        image={image}
+        image={`${image}`}
       />
       <ul>
         <li>

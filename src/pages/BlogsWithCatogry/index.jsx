@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Footer, Header } from "../../components";
 import "./index.scss";
 import httpServices from "../../utils/ApiServices";
-import { useHistory, useLocation } from "react-router-dom";
+import { useHistory, useLocation ,useParams} from "react-router-dom";
 import FeaturedCards from "../../components/cards/FeaturedCards";
 import { HashtagAndCatagories } from "../../components/HastagAndCatagories/Index";
 import hash from "../../assets/images/hashtag.svg";

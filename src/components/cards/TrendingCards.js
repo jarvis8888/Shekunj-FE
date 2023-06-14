@@ -46,7 +46,7 @@ const TrendingCards = (data) => {
                 onClick={(event) => {
                   event.stopPropagation();
                   history.push(
-                    `${routingConstants.SUCCESS_STORIES_HASHTAG}?search=${tag}`,
+                    `${routingConstants.SUCCESS_STORIES_HASHTAG}/${tag}`,
                     tag,
                   );
                 }}

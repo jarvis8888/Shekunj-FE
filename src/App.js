@@ -178,7 +178,7 @@ function App() {
         />
         <Route
           exact
-          path={`${routingConstants.SUCCESS_STORIES_HASHTAG}`}
+          path={`${routingConstants.SUCCESS_STORIES_HASHTAG}/:search`}
           component={SuccessStroyWithHashtag}
         />
 
