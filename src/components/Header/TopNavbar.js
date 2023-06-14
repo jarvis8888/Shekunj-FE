@@ -60,13 +60,22 @@ function TopNavbar() {
           <nav className=''>
             <ul>
               <li className='mobile'>
-                <a href='/events'>{t("phase2.HEADER.events")}</a>
+                <a href='/events' className={isActive("/events") && "active"}>
+                  {t("phase2.HEADER.events")}
+                </a>
               </li>
               <li className='mobile'>
-                <a href='/article'>{t("phase2.HEADER.blog")}</a>
+                <a href='/article' className={isActive("/article") && "active"}>
+                  {t("phase2.HEADER.blog")}
+                </a>
               </li>
               <li className='mobile'>
-                <a href='/frequently-asked-questions'>
+                <a
+                  href='/frequently-asked-questions'
+                  className={
+                    isActive("/frequently-asked-questions") && "active"
+                  }
+                >
                   {t("phase2.HEADER.FAQ")}
                 </a>
               </li>

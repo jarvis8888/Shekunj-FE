@@ -5,16 +5,9 @@ const SEO = ({ title, description, image, keywords, link, currentUrl }) => {
   return (
     <>
       <Helmet>
-        <title>
-          India's Leading Women Empowerment Organization - Shekunj.com
-        </title>
+        <title>{title}</title>
         <meta name='description' content={description} />
-        <meta
-          property='og:title'
-          content={
-            "India's Leading Women Empowerment Organization - Shekunj.com"
-          }
-        />
+        <meta property='og:title' content={title} />
         <meta property='og:image' content={image} />
         <meta
           property='og:description'
@@ -27,7 +20,7 @@ const SEO = ({ title, description, image, keywords, link, currentUrl }) => {
         <meta property='og:keywords' content={keywords} />
         <meta name='keywords' content={keywords} />
         <link rel='canonical' href={link} />
-        <meta name='image' property='og:image' content={image} />
+        <meta property='og:image' content={image} />
 
         {/* <!-- Open Graph Meta Tags --> */}
         <meta

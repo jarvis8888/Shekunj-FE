@@ -7,7 +7,7 @@ const Header = ({ page, subPage }) => {
   return (
     <>
       <TopNavbar />
-      <Navbar />
+      <Navbar />  
     </>
   );
 };

@@ -25,7 +25,7 @@ export const HashtagAndCatagoriesForMobile = (props) => {
                 key={tag.id}
                 onClick={() =>
                   history.push(
-                    `${routingConstants.SUCCESS_STORIES_HASHTAG}?search=${tag.name}`,
+                    `${routingConstants.SUCCESS_STORIES_HASHTAG}/${tag.name}`,
                     tag.name,
                   )
                 }
