@@ -6,7 +6,7 @@ section {
   padding: 50px 0;
 }
 .sk-eventcard-sec {
-  padding: 80px 0 54px;
+  padding: 40px 0;
 }
 .sk-explore-btn .sk-btn {
   border-radius: 8px;
@@ -14,7 +14,7 @@ section {
   padding: 15px 30px;
   min-width: 212px;
   max-width: 212px;
-  margin-top: 24px;
+  margin-top: 20px;
 }
 .sk-search-sec {
   background: #fff url(../../assets/images/search-bg.png) no-repeat center
@@ -230,20 +230,22 @@ section {
   margin-bottom: 50px;
 }
 .sk-title-heading h1 {
-  font-size: calc(1rem + 1.5vw);
-  font-weight: 500;
+  font-size: calc(1.6rem + 1.5vw);
+  font-weight: 600;
   color: #020202;
   font-family: "Poppins", sans-serif;
   text-align: center;
   margin-bottom: 15px;
 }
-
+.sk-title-heading h1 span{
+  color: #d3317d;
+}
 .sk-explore-btn {
   text-align: center;
 }
 .sk-event-sec {
   position: relative;
-  padding: 40px 0;
+  padding: 30px 0;
   cursor: pointer;
 }
 
@@ -329,6 +331,7 @@ section {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 30px 0;
 }
 .sk-bottomAdd-sec img {
   display: block;

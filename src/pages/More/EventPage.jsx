@@ -392,9 +392,9 @@ function EventPage() {
       <section className='sk-card-sec sk-eventcard-sec'>
         <div className='container'>
           <div className='row'>
-            <div className='col-xl-8 col-lg-10 col-md-10 col-sm-12 mx-auto'>
+            <div className='col-xl-9 col-lg-10 col-md-10 col-sm-12 mx-auto'>
               <div className='sk-title-heading'>
-                <h1>Discover SheKunj Events</h1>
+                <h1>Discover Events with <span>SheKunj</span></h1>
                 <p>
                   Our events are designed to inspire, educate, and empower you
                   both personally and professionally. Whether it's a networking
