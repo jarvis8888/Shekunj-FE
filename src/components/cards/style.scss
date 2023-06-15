@@ -233,7 +233,7 @@ img {
 }
 .blog-card {
   display: flex;
-  margin-bottom: 28px;
+  margin-bottom: 23.5px;
   gap: 17px;
   cursor: pointer;
   transition: .3s;
@@ -254,7 +254,7 @@ img {
     img {
       object-fit: cover;
       object-position: center;
-      height: 120px;
+      height: 124px;
 
       @media screen and (max-width: 768px) {
         display: flex;
