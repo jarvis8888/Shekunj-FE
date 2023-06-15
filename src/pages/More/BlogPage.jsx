@@ -29,6 +29,7 @@ import {
 import { NoDataFound } from "../../components/noDataFound/NoDataFound";
 import { HashtagAndCatagoriesForMobile } from "../../components/HastagAndCatagories/HastagAndCatagoriesForMobile";
 import { WhiteCircularBar } from "../../components/Loader/WhiteCircularBar";
+import { withHeaderFooter } from "../../hocs/withHeaderFooter";
 
 function BlogPage() {
   const history = useHistory();
@@ -36,7 +37,7 @@ function BlogPage() {
   const [offset, setOffset] = useState(0);
   const [trendingOffset, setTrendingOffset] = useState(0);
 
-  const pageLimit = 5;
+  const pageLimit = 4;
   const trendingPageLimit = 6;
   const sectionRef = useRef(null);
   const trendingSectionRef = useRef(null);
@@ -310,7 +311,7 @@ function BlogPage() {
     //   });
     // }, 10); // Minimal delay for rendering update
 
-    setOffset(offset + 5);
+    setOffset(offset + 4);
   };
 
   const namesArray = blogsCategories?.map((category) => category.name);
@@ -319,7 +320,6 @@ function BlogPage() {
 
   return (
     <div>
-      <Header loginPage={true} page='more' subPage='moreblog' newDesign />
       <Helmet>
         <title>
           India's Leading Women Empowerment Organization - Shekunj.com
@@ -401,19 +401,19 @@ function BlogPage() {
                             >
                               {detect.isMobile
                                 ? blogBoxAdds[0]?.image_mobile && (
-                                  <img
-                                    src={blogBoxAdds[0]?.image_mobile}
-                                    alt=''
-                                    className='ads_story_cover_img'
-                                  />
-                                )
+                                    <img
+                                      src={blogBoxAdds[0]?.image_mobile}
+                                      alt=''
+                                      className='ads_story_cover_img'
+                                    />
+                                  )
                                 : blogBoxAdds[0]?.image && (
-                                  <img
-                                    src={blogBoxAdds[0]?.image}
-                                    alt=''
-                                    className='ads_story_cover_img'
-                                  />
-                                )}
+                                    <img
+                                      src={blogBoxAdds[0]?.image}
+                                      alt=''
+                                      className='ads_story_cover_img'
+                                    />
+                                  )}
                             </a>
                           </div>
                         )}
@@ -428,7 +428,7 @@ function BlogPage() {
             <div className='container sk-custom-container'>
               <div className='row'>
                 <div className='col-xl-8 col-md-6 col-lg-8'>
-                  <div className="sk-topBottom-space">
+                  <div className='sk-topBottom-space'>
                     <div className='blog-stories'>
                       <div className='title' ref={sectionRef}>
                         <img src={timeicon} alt='time' width={28} />
@@ -449,15 +449,21 @@ function BlogPage() {
                                     image={items.image}
                                     hashtags={items.hash_tags}
                                     title={items.title}
-                                    description={`${removeHtmlTags(items.about_blog)}`}
+                                    description={`${removeHtmlTags(
+                                      items.about_blog,
+                                    )}`}
                                     makeHtml={makeHtml}
                                     key={index}
-                                    created_at={DateFormat(`${items.created_at}`)}
+                                    created_at={DateFormat(
+                                      `${items.created_at}`,
+                                    )}
                                     reading_time={items.reading_time}
                                     id={items.id}
                                     blog_count={items.blog_count}
                                     category_name={items.category_name}
-                                    color={getCategoryColor(items.category_name)}
+                                    color={getCategoryColor(
+                                      items.category_name,
+                                    )}
                                   />
                                 </div>
                               </>
@@ -495,19 +501,19 @@ function BlogPage() {
                                 >
                                   {detect.isMobile
                                     ? blogBoxAdds[0]?.image_mobile && (
-                                      <img
-                                        src={blogBoxAdds[0]?.image_mobile}
-                                        alt=''
-                                        className='ads_story_cover_img'
-                                      />
-                                    )
+                                        <img
+                                          src={blogBoxAdds[0]?.image_mobile}
+                                          alt=''
+                                          className='ads_story_cover_img'
+                                        />
+                                      )
                                     : blogBoxAdds[0]?.image && (
-                                      <img
-                                        src={blogBoxAdds[0]?.image}
-                                        alt=''
-                                        className='ads_story_cover_img'
-                                      />
-                                    )}
+                                        <img
+                                          src={blogBoxAdds[0]?.image}
+                                          alt=''
+                                          className='ads_story_cover_img'
+                                        />
+                                      )}
                                 </a>
                               </div>
                             )}
@@ -538,7 +544,9 @@ function BlogPage() {
                                 image={items.image}
                                 title={items.title}
                                 id={items.id}
-                                description={`${removeHtmlTags(items.about_blog)}`}
+                                description={`${removeHtmlTags(
+                                  items.about_blog,
+                                )}`}
                                 time={items?.reading_time}
                                 date={DateFormat(`${items.created_at}`)}
                                 category_name={items.category_name}
@@ -559,9 +567,15 @@ function BlogPage() {
                           //   behavior: "smooth",
                           // });
                         }}
-                        disabled={currentTrendingBlogData?.results?.length === 0}
+                        disabled={
+                          currentTrendingBlogData?.results?.length === 0
+                        }
                       >
-                        {trendingLoading ? <WhiteCircularBar /> : `Explore More`}
+                        {trendingLoading ? (
+                          <WhiteCircularBar />
+                        ) : (
+                          `Explore More`
+                        )}
                       </button>
                     </div>
                   </div>
@@ -580,10 +594,8 @@ function BlogPage() {
           </section>
         </>
       )}
-
-      <Footer loginPage={false} />
     </div>
   );
 }
 
-export default BlogPage;
+export default withHeaderFooter(BlogPage);

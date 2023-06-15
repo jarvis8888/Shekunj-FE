@@ -7,7 +7,7 @@ import { apiConstants, routingConstants } from "../../utils/constants";
 import { useHistory } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
-export const TopFooter = memo(() => {
+export const TopFooter = memo((props) => {
   const history = useHistory();
   const { t } = useTranslation();
   const [courseLoader, setCourseLoader] = useState(false);
@@ -34,7 +34,11 @@ export const TopFooter = memo(() => {
     <>
       <div className='wrapper'>
         <footer className='footer'>
-          <div className='container'>
+          <div
+            className={`container ${
+              props.newDesign ? "sk-custom-container" : ""
+            }`}
+          >
             <div className='row'>
               <div className='col-xl-3 col-lg-3 col-md-6 col-sm-12'>
                 <div className='sk-footer-menu'>
@@ -82,7 +86,9 @@ export const TopFooter = memo(() => {
                       </a>
                     </li>
                     <li>
-                      <a href='/resume-builder'>{t("phase2.FOOTER.Resume_Builder")}</a>
+                      <a href='/resume-builder'>
+                        {t("phase2.FOOTER.Resume_Builder")}
+                      </a>
                     </li>
                     <li>
                       <a href='/online-counselling/'>
@@ -125,10 +131,14 @@ export const TopFooter = memo(() => {
                       <a href='/contact-us'>{t("phase2.FOOTER.Contact_Us")}</a>
                     </li>
                     <li>
-                      <a href='/frequently-asked-questions'>{t("phase2.HEADER.FAQ")}</a>
+                      <a href='/frequently-asked-questions'>
+                        {t("phase2.HEADER.FAQ")}
+                      </a>
                     </li>
                     <li>
-                      <a href='/frequently-asked-questions'>{t("phase2.FOOTER.Help_Support")}</a>
+                      <a href='/frequently-asked-questions'>
+                        {t("phase2.FOOTER.Help_Support")}
+                      </a>
                     </li>
                     <li>
                       <a href='/privacy-policy'>
@@ -142,10 +152,10 @@ export const TopFooter = memo(() => {
                 </div>
               </div>
             </div>
+            <SocialMedia />
+            <CopyRight />
           </div>
         </footer>
-        <SocialMedia />
-        <CopyRight />
       </div>
     </>
   );

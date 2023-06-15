@@ -19,6 +19,7 @@ import httpServices from "../../utils/ApiServices";
 import { toast } from "react-toastify";
 import toasterConfig from "../../utils/toasterCongig";
 import { blockInvalidChar } from "../../utils/utils";
+import { withHeaderFooter } from "../../hocs/withHeaderFooter";
 // import Calendar from "../../../assets/icons/calendar.png";
 function range(start, end) {
   return Array(end - start + 1)
@@ -183,7 +184,6 @@ const GuidancePage = () => {
   }, []);
   return (
     <div>
-      <Header loginPage={true} page='guidance' subPage='bookCounsller' newDesign />
       <div className='guidance_book noselect'>
         <Helmet>
           <title>
@@ -644,9 +644,8 @@ const GuidancePage = () => {
           </div>
         </section>
       </div>
-      <Footer loginPage={false} />
     </div>
   );
 };
 
-export default GuidancePage;
+export default withHeaderFooter(GuidancePage);

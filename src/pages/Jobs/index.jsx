@@ -1,5 +1,7 @@
 import React from "react";
 import ComingSoon from "../../components/ComingSoon";
+import { withHeaderFooter } from "../../hocs/withHeaderFooter";
+
 
 const index = () => {
   return (
@@ -9,4 +11,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default withHeaderFooter(index);

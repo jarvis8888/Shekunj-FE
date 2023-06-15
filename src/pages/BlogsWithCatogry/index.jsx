@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Footer, Header } from "../../components";
 import "./index.scss";
 import httpServices from "../../utils/ApiServices";
-import { useHistory, useLocation ,useParams} from "react-router-dom";
+import { useHistory, useLocation, useParams } from "react-router-dom";
 import FeaturedCards from "../../components/cards/FeaturedCards";
 import { HashtagAndCatagories } from "../../components/HastagAndCatagories/Index";
 import hash from "../../assets/images/hashtag.svg";
@@ -21,6 +21,7 @@ import { CustomLoader } from "../../components/customLoader/CustomLoader";
 import useDeviceDetect from "../../hooks/useDeviceDetect";
 import { NoDataFound } from "../../components/noDataFound/NoDataFound";
 import { HashtagAndCatagoriesForMobile } from "../../components/HastagAndCatagories/HastagAndCatagoriesForMobile";
+import { withHeaderFooter } from "../../hocs/withHeaderFooter";
 
 const BlogWithCatogry = () => {
   const location = useLocation();
@@ -170,9 +171,8 @@ const BlogWithCatogry = () => {
 
   return (
     <div>
-      <Header />
       <section>
-        <div className='container Hashtag_container'>
+        <div className='container Hashtag_container sk-custom-container'>
           <HashtagAndCatagoriesForMobile
             image={catagorie}
             title={`Categories`}
@@ -180,47 +180,47 @@ const BlogWithCatogry = () => {
           />
           <div className='row'>
             <div className='col-xl-8 col-lg-8 col-md-8 Hashtag_container_cards sk-blog-detail-wa'>
-            <div className="sk-topBottom-space">
-              <h6 className='Hashtag_container_title'>
-                {state ? `${currentSearch}` : "NA"}
-              </h6>
-              {loading ? (
-                <div>
-                  <CustomLoader />
-                </div>
-              ) : (
-                <div className='sk-blogCategory-detail'>
-                  {data?.length ? (
-                    data?.map((items, index) => {
-                      if (items.id === "advertisement") {
-                        return (
-                          <>{blogDetailsBoxAds.length > 0 && renderAds()}</>
-                        );
-                      } else {
-                        return (
-                          <>
-                            <TrendingBlogsCard2
-                              image={items.image}
-                              title={items.title}
-                              id={items.id}
-                              description={`${removeHtmlTags(
-                                items.about_blog,
-                              )}`}
-                              time={items.reading_time}
-                              date={DateFormat(`${items.created_at}`)}
-                              category_name={items.category_name}
-                              color={getCategoryColor(items.category_name)}
-                            />
-                          </>
-                        );
-                      }
-                    })
-                  ) : (
-                    <NoDataFound />
-                  )}
-                </div>
-              )}
-            </div>
+              <div className='sk-topBottom-space'>
+                <h6 className='Hashtag_container_title'>
+                  {state ? `${currentSearch}` : "NA"}
+                </h6>
+                {loading ? (
+                  <div>
+                    <CustomLoader />
+                  </div>
+                ) : (
+                  <div className='sk-blogCategory-detail'>
+                    {data?.length ? (
+                      data?.map((items, index) => {
+                        if (items.id === "advertisement") {
+                          return (
+                            <>{blogDetailsBoxAds.length > 0 && renderAds()}</>
+                          );
+                        } else {
+                          return (
+                            <>
+                              <TrendingBlogsCard2
+                                image={items.image}
+                                title={items.title}
+                                id={items.id}
+                                description={`${removeHtmlTags(
+                                  items.about_blog,
+                                )}`}
+                                time={items.reading_time}
+                                date={DateFormat(`${items.created_at}`)}
+                                category_name={items.category_name}
+                                color={getCategoryColor(items.category_name)}
+                              />
+                            </>
+                          );
+                        }
+                      })
+                    ) : (
+                      <NoDataFound />
+                    )}
+                  </div>
+                )}
+              </div>
             </div>
             <div div className='col-xl-4 col-lg-4 col-md-4 sk-Removeside-space'>
               <HashtagAndCatagories
@@ -235,8 +235,7 @@ const BlogWithCatogry = () => {
           </div>
         </div>
       </section>
-      <Footer />
     </div>
   );
 };
-export default BlogWithCatogry;
+export default withHeaderFooter(BlogWithCatogry);

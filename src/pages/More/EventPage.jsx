@@ -1,13 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Container, Row, Col, Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useLocation, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { routingConstants } from "../../utils/constants";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import PublicIcon from "@mui/icons-material/Public";
 import { Header, Footer } from "../../components";
-import global from "../../assets/images/Success/global.png";
 import "./index.scss";
 import "../HomePage/index.scss";
 import "../Search/index.scss";
@@ -17,34 +13,14 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import SwiperCore, { Autoplay, Navigation } from "swiper";
-// import "../../pages/responsive.scss";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
-import { getAllEvents } from "../../store/events";
-// import Moment from "react-moment";
-import Card from "@mui/material/Card";
-import Grid from "@mui/material/Grid";
-import eventimg1 from "../../assets/images/eventslide1.jpg";
-import eventimg2 from "../../assets/images/eventslide2.jpg";
-import eventimg4 from "../../assets/images/eventimg4.jpg";
 import offlineicon from "../../assets/images/offline-icon.svg";
 import onlineicon from "../../assets/images/onlineicon.svg";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 import SchoolRoundedIcon from "@mui/icons-material/SchoolRounded";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import { adsList } from "../../store/ads";
-import ArrowBackIosNewRoundedIcon from "@mui/icons-material/ArrowBackIosNewRounded";
-import ArrowForwardIosRoundedIcon from "@mui/icons-material/ArrowForwardIosRounded";
-// import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
-import LocalLibraryTwoToneIcon from "@mui/icons-material/LocalLibraryTwoTone";
-import GroupTwoToneIcon from "@mui/icons-material/GroupTwoTone";
 import { Helmet } from "react-helmet-async";
-import { EventsCard } from "../../components/cards/EventsCard";
-import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import httpServices from "../../utils/ApiServices";
@@ -53,13 +29,10 @@ import {
   addHyphensToLink,
   time_left,
 } from "../../utils/utils";
-import { CustomLoader } from "../../components/customLoader/CustomLoader";
-import AddsBanner from "../../components/AddsBanner/AddsBanner";
 import useDeviceDetect from "../../hooks/useDeviceDetect";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { NoDataFound } from "../../components/noDataFound/NoDataFound";
 import { WhiteCircularBar } from "../../components/Loader/WhiteCircularBar";
+import { withHeaderFooter } from "../../hocs/withHeaderFooter";
 
 const useQuery = () => {
   return new URLSearchParams(useLocation().search);
@@ -313,8 +286,6 @@ function EventPage() {
 
   return (
     <div>
-      <Header loginPage={true} page='more' subPage='moreEvent' newDesign />
-
       <Helmet>
         <title>
           India's Leading Women Empowerment Organization - Shekunj.com
@@ -394,7 +365,9 @@ function EventPage() {
           <div className='row'>
             <div className='col-xl-9 col-lg-10 col-md-10 col-sm-12 mx-auto'>
               <div className='sk-title-heading'>
-                <h1>Discover Events with <span>SheKunj</span></h1>
+                <h1>
+                  Discover Events with <span>SheKunj</span>
+                </h1>
                 <p>
                   Our events are designed to inspire, educate, and empower you
                   both personally and professionally. Whether it's a networking
@@ -608,9 +581,8 @@ function EventPage() {
           </div>
         </div>
       </section>
-      <Footer loginPage={false} />
     </div>
   );
 }
 
-export default EventPage;
+export default withHeaderFooter(EventPage);

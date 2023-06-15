@@ -46,6 +46,7 @@ import YouMayLikeCarousel from "../../components/Carousel/YouMayLikeCarousel";
 import { toast } from "react-toastify";
 import toasterConfig from "../../utils/toasterCongig";
 import { CustomLoader } from "../../components/customLoader/CustomLoader";
+import { withHeaderFooter } from "../../hocs/withHeaderFooter";
 
 const Gender = ["Male", "Female", "Others"];
 
@@ -322,7 +323,6 @@ const EventDetails = () => {
 
   return (
     <div>
-      <Header loginPage={true} page='more' newDesign />
       {loading ? (
         <div>
           <CustomLoader />
@@ -332,7 +332,7 @@ const EventDetails = () => {
           <div className='container sk-custom-container'>
             <div className='row'>
               <div className='col-xl-8 col-md-8'>
-                <div className="sk-topBottom-space">
+                <div className='sk-topBottom-space'>
                   <div className='sk-event-imgcontent'>
                     <div className='sk-eventDetails-img'>
                       <img src={eventsDetails?.image} alt='events' />
@@ -363,7 +363,10 @@ const EventDetails = () => {
                                 {eventsDetails?.mode_of_event === "offline" ? (
                                   <>
                                     {" "}
-                                    <img src={offlineicon} alt='' /> Offline{" "}
+                                    <img
+                                      src={offlineicon}
+                                      alt=''
+                                    /> Offline{" "}
                                   </>
                                 ) : (
                                   <>
@@ -644,10 +647,8 @@ const EventDetails = () => {
         </section>
       )}
       {whatsAppModal()}
-
-      <Footer loginPage={false} />
     </div>
   );
 };
 
-export default EventDetails;
+export default withHeaderFooter(EventDetails);

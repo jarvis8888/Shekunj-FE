@@ -14,6 +14,7 @@ import useDeviceDetect from "../../hooks/useDeviceDetect";
 import { addEmailToClient } from "../../utils/utils";
 import { HashtagAndCatagoriesForMobile } from "../../components/HastagAndCatagories/HastagAndCatagoriesForMobile";
 import { NoDataFound } from "../../components/noDataFound/NoDataFound";
+import { withHeaderFooter } from "../../hocs/withHeaderFooter";
 
 const SuccessStroyWithHashtag = () => {
   const location = useLocation();
@@ -189,7 +190,6 @@ const SuccessStroyWithHashtag = () => {
 
   return (
     <div>
-      <Header />
       <section className='sk-hashtag-sec'>
         <div className='container sk-custom-container'>
           <HashtagAndCatagoriesForMobile
@@ -200,10 +200,10 @@ const SuccessStroyWithHashtag = () => {
           />
           <div className='row'>
             <div className='col-xl-8 col-lg-8 col-md-8'>
-             <div className="sk-topBottom-space">
-              <h4 className='Hashtag_container_title'>
-                {search ? `#${search}` : "NA"}
-              </h4>
+              <div className='sk-topBottom-space'>
+                <h4 className='Hashtag_container_title'>
+                  {search ? `#${search}` : "NA"}
+                </h4>
 
                 {loading ? (
                   <CustomLoader />
@@ -224,7 +224,9 @@ const SuccessStroyWithHashtag = () => {
                               <FeaturedCards
                                 image={items.image}
                                 hashtags={
-                                  items.hash_tags === null ? [] : items.hash_tags
+                                  items.hash_tags === null
+                                    ? []
+                                    : items.hash_tags
                                 }
                                 title={items.name}
                                 description={`${items.title}`}
@@ -261,8 +263,7 @@ const SuccessStroyWithHashtag = () => {
           </div>
         </div>
       </section>
-      <Footer />
     </div>
   );
 };
-export default SuccessStroyWithHashtag;
+export default withHeaderFooter(SuccessStroyWithHashtag);

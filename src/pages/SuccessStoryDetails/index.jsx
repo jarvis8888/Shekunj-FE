@@ -23,6 +23,7 @@ import { addEmailToClient } from "../../utils/utils";
 import { HashtagAndCatagoriesForMobile } from "../../components/HastagAndCatagories/HastagAndCatagoriesForMobile";
 import { useHistory } from "react-router-dom";
 import { WhiteCircularBar } from "../../components/Loader/WhiteCircularBar";
+import { withHeaderFooter } from "../../hocs/withHeaderFooter";
 
 const SuccessStoryDetails = () => {
   const { successStoriesDetails } = useSelector((state) => {
@@ -272,7 +273,7 @@ const SuccessStoryDetails = () => {
   return (
     <div>
       <SEO title='Sheकुंज - Career' />
-      <Header loginPage={true} page='story' subPage='moreStory' newDesign />
+
       {loading ? (
         <CustomLoader />
       ) : (
@@ -280,7 +281,7 @@ const SuccessStoryDetails = () => {
           <div className='container sk-custom-container'>
             <div className='row'>
               <div className='col-xl-8 col-lg-8 col-md-8'>
-                <div className="sk-topBottom-space">
+                <div className='sk-topBottom-space'>
                   <img
                     src={successStoriesDetails?.image}
                     alt='Story'
@@ -291,18 +292,18 @@ const SuccessStoryDetails = () => {
                       <div className='sk-storyD-tag'>
                         {successStoriesDetails?.hash_tags?.length
                           ? successStoriesDetails?.hash_tags.map((items) => {
-                            return (
-                              <span
-                                key={items}
-                                onClick={() =>
-                                  history.push(
-                                    `${routingConstants.SUCCESS_STORIES_HASHTAG}?search=${items}`,
-                                    items,
-                                  )
-                                }
-                              >{`#${items}`}</span>
-                            );
-                          })
+                              return (
+                                <span
+                                  key={items}
+                                  onClick={() =>
+                                    history.push(
+                                      `${routingConstants.SUCCESS_STORIES_HASHTAG}?search=${items}`,
+                                      items,
+                                    )
+                                  }
+                                >{`#${items}`}</span>
+                              );
+                            })
                           : null}
                       </div>
                       <div className='sk-blokTVE-icon'>
@@ -349,7 +350,9 @@ const SuccessStoryDetails = () => {
                     <div
                       className=''
                       dangerouslySetInnerHTML={{
-                        __html: makeHtml(`${successStoriesDetails?.description}`),
+                        __html: makeHtml(
+                          `${successStoriesDetails?.description}`,
+                        ),
                       }}
                     />
 
@@ -381,19 +384,19 @@ const SuccessStoryDetails = () => {
                               >
                                 {detect.isMobile
                                   ? storiesBannerAds[0]?.image_mobile && (
-                                    <img
-                                      src={storiesBannerAds[0]?.image_mobile}
-                                      alt=''
-                                    // className='ads_story_cover_img'
-                                    />
-                                  )
+                                      <img
+                                        src={storiesBannerAds[0]?.image_mobile}
+                                        alt=''
+                                        // className='ads_story_cover_img'
+                                      />
+                                    )
                                   : storiesBannerAds[0]?.image && (
-                                    <img
-                                      src={storiesBannerAds[0]?.image}
-                                      alt=''
-                                    // className='ads_story_cover_img'
-                                    />
-                                  )}
+                                      <img
+                                        src={storiesBannerAds[0]?.image}
+                                        alt=''
+                                        // className='ads_story_cover_img'
+                                      />
+                                    )}
                               </a>
                             </div>
                           </div>
@@ -472,9 +475,8 @@ const SuccessStoryDetails = () => {
           </div>
         </section>
       )}
-      <Footer loginPage={false} />
     </div>
   );
 };
 
-export default SuccessStoryDetails;
+export default withHeaderFooter(SuccessStoryDetails);

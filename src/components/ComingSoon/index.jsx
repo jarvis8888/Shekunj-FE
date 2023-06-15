@@ -9,7 +9,6 @@ const ComingSoon = () => {
   const history = useHistory();
   return (
     <div>
-      <Header page='404' newDesign />
       <section className='sk-notFound-sec'>
         <div className='container sk-custom-container'>
           <div className='row align-items-center'>
@@ -39,7 +38,6 @@ const ComingSoon = () => {
           </div>
         </div>
       </section>
-      <Footer />
     </div>
   );
 };

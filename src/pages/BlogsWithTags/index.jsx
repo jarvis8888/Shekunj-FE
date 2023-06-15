@@ -23,6 +23,7 @@ import { CustomLoader } from "../../components/customLoader/CustomLoader";
 import useDeviceDetect from "../../hooks/useDeviceDetect";
 import { NoDataFound } from "../../components/noDataFound/NoDataFound";
 import { HashtagAndCatagoriesForMobile } from "../../components/HastagAndCatagories/HastagAndCatagoriesForMobile";
+import { withHeaderFooter } from "../../hocs/withHeaderFooter";
 
 const SuccessStroyWithHashtag = () => {
   const location = useLocation();
@@ -205,9 +206,8 @@ const SuccessStroyWithHashtag = () => {
 
   return (
     <div>
-      <Header />
       <section>
-        <div className='container'>
+        <div className='container sk-custom-container'>
           <HashtagAndCatagoriesForMobile
             image={catagorie}
             title={`Categories`}
@@ -215,7 +215,7 @@ const SuccessStroyWithHashtag = () => {
           />
           <div className='row'>
             <div className='col-xl-8 col-lg-8 col-md-8 sk-blog-detail-wa'>
-              <div className="sk-topBottom-space">
+              <div className='sk-topBottom-space'>
                 <div className='Hashtag_container_title'>
                   <span className='catagories-search'>
                     {state ? `${currentSearch}` : null}{" "}
@@ -275,8 +275,7 @@ const SuccessStroyWithHashtag = () => {
           </div>
         </div>
       </section>
-      <Footer />
     </div>
   );
 };
-export default SuccessStroyWithHashtag;
+export default withHeaderFooter(SuccessStroyWithHashtag);

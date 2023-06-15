@@ -28,6 +28,7 @@ import {
 } from "../../utils/utils";
 import { CustomLoader } from "../../components/customLoader/CustomLoader";
 import { HashtagAndCatagoriesForMobile } from "../../components/HastagAndCatagories/HastagAndCatagoriesForMobile";
+import { withHeaderFooter } from "../../hocs/withHeaderFooter";
 
 const BlogDetails = () => {
   const history = useHistory();
@@ -246,7 +247,6 @@ const BlogDetails = () => {
   return (
     <div>
       <SEO title='Sheकुंज - Career' />
-      <Header loginPage={true} page='more' subPage='moreblog' newDesign />
       {loading ? (
         <div>
           <CustomLoader />
@@ -256,7 +256,7 @@ const BlogDetails = () => {
           <div className='container sk-custom-container'>
             <div className='row'>
               <div className='col-xl-8 col-lg-8 col-md-8'>
-                <div className="sk-topBottom-space">
+                <div className='sk-topBottom-space'>
                   <img src={blogs?.image} alt='Story' className='img' />
                   <div className='story-bottom'>
                     <div className='hashtags-container'>
@@ -342,7 +342,9 @@ const BlogDetails = () => {
                   <div className='sk-blogMain-inner'>
                     {trendingBlogs?.map((items, index) => {
                       if (items.id === "advertisement") {
-                        return <>{blogLeft.length > 0 && blogLeftRenderAds()}</>;
+                        return (
+                          <>{blogLeft.length > 0 && blogLeftRenderAds()}</>
+                        );
                       } else {
                         return (
                           <>
@@ -350,7 +352,9 @@ const BlogDetails = () => {
                               image={items.image}
                               title={items.title}
                               id={items.id}
-                              description={`${removeHtmlTags(items.about_blog)}`}
+                              description={`${removeHtmlTags(
+                                items.about_blog,
+                              )}`}
                               time={items.reading_time}
                               date={DateFormat(`${items.created_at}`)}
                               category_name={items.category_name}
@@ -369,7 +373,9 @@ const BlogDetails = () => {
                             behavior: "smooth",
                           });
                         }}
-                        disabled={currentTrendingBlogData?.results?.length === 0}
+                        disabled={
+                          currentTrendingBlogData?.results?.length === 0
+                        }
                       >
                         Explore More
                       </button>
@@ -391,9 +397,8 @@ const BlogDetails = () => {
           </div>
         </section>
       )}
-      <Footer loginPage={false} newDesign />
     </div>
   );
 };
 
-export default BlogDetails;
+export default withHeaderFooter(BlogDetails);
