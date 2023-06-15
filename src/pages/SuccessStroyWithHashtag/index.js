@@ -189,9 +189,8 @@ const SuccessStroyWithHashtag = () => {
   return (
     <div>
       <Header />
-
       <section className='sk-hashtag-sec'>
-        <div className='container'>
+        <div className='container sk-custom-container'>
           <HashtagAndCatagoriesForMobile
             type='hashtag'
             image={hash}
@@ -200,50 +199,52 @@ const SuccessStroyWithHashtag = () => {
           />
           <div className='row'>
             <div className='col-xl-8 col-lg-8 col-md-8'>
-              <h4 className='Hashtag_container_title'>
-                {state ? `#${state}` : "NA"}
-              </h4>
+              <div className="sk-topBottom-space">
+                <h4 className='Hashtag_container_title'>
+                  {state ? `#${state}` : "NA"}
+                </h4>
 
-              {loading ? (
-                <CustomLoader />
-              ) : (
-                <div className='row'>
-                  {data?.length ? (
-                    data?.map((items, index) => {
-                      if (items.id === "advertisement") {
-                        return (
-                          <>
-                            {succesStoriesLeft.length > 0 &&
-                              succesStoriesLeftRenderAds()}
-                          </>
-                        );
-                      } else {
-                        return (
-                          <>
-                            <FeaturedCards
-                              image={items.image}
-                              hashtags={
-                                items.hash_tags === null ? [] : items.hash_tags
-                              }
-                              title={items.name}
-                              description={`${items.title}`}
-                              makeHtml={makeHtml}
-                              key={index}
-                              created_at={items.created_at}
-                              reading_time={items.reading_time}
-                              id={items.id}
-                            />
-                          </>
-                        );
-                      }
-                    })
-                  ) : (
-                    <>
-                      <NoDataFound />
-                    </>
-                  )}
-                </div>
-              )}
+                {loading ? (
+                  <CustomLoader />
+                ) : (
+                  <div className='row'>
+                    {data?.length ? (
+                      data?.map((items, index) => {
+                        if (items.id === "advertisement") {
+                          return (
+                            <>
+                              {succesStoriesLeft.length > 0 &&
+                                succesStoriesLeftRenderAds()}
+                            </>
+                          );
+                        } else {
+                          return (
+                            <>
+                              <FeaturedCards
+                                image={items.image}
+                                hashtags={
+                                  items.hash_tags === null ? [] : items.hash_tags
+                                }
+                                title={items.name}
+                                description={`${items.title}`}
+                                makeHtml={makeHtml}
+                                key={index}
+                                created_at={items.created_at}
+                                reading_time={items.reading_time}
+                                id={items.id}
+                              />
+                            </>
+                          );
+                        }
+                      })
+                    ) : (
+                      <>
+                        <NoDataFound />
+                      </>
+                    )}
+                  </div>
+                )}
+              </div>
             </div>
             <div className='col-xl-4 col-lg-4 col-md-4 sk-Removeside-space'>
               <HashtagAndCatagories

@@ -183,7 +183,7 @@ const GuidancePage = () => {
   }, []);
   return (
     <div>
-      <Header loginPage={true} page='guidance' subPage='bookCounsller' />
+      <Header loginPage={true} page='guidance' subPage='bookCounsller' newDesign />
       <div className='guidance_book noselect'>
         <Helmet>
           <title>
@@ -206,7 +206,7 @@ const GuidancePage = () => {
         </Helmet>
         {
           <section className='sk-bookc-sec'>
-            <div className='container'>
+            <div className='container sk-custom-container'>
               <div className='row align-items-center'>
                 <div className='col-md-6 col-xl-9 col-lg-9'>
                   <div className='sk-bookC-content'>
@@ -608,7 +608,7 @@ const GuidancePage = () => {
           </section>
         }
         <section className='sk-bookC-counter'>
-          <div className='container'>
+          <div className='container sk-custom-container '>
             <div className='row'>
               <div className='col-xl-12'>
                 <div className='sk-bookC-contentinner'>

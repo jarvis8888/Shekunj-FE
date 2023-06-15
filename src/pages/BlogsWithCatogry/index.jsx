@@ -180,6 +180,7 @@ const BlogWithCatogry = () => {
           />
           <div className='row'>
             <div className='col-xl-8 col-lg-8 col-md-8 Hashtag_container_cards sk-blog-detail-wa'>
+            <div className="sk-topBottom-space">
               <h6 className='Hashtag_container_title'>
                 {state ? `${currentSearch}` : "NA"}
               </h6>
@@ -219,6 +220,7 @@ const BlogWithCatogry = () => {
                   )}
                 </div>
               )}
+            </div>
             </div>
             <div div className='col-xl-4 col-lg-4 col-md-4 sk-Removeside-space'>
               <HashtagAndCatagories

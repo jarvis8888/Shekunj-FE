@@ -32,7 +32,7 @@ const Navbar = (props) => {
 
   return (
     <header className='sk-header-bg'>
-      <div className='container'>
+      <div className={`container ${props.newDesign ? 'sk-custom-container' : ''}`}>
         <div className='Navbar'>
           <span className='nav-logo'>
             <img
@@ -115,7 +115,7 @@ const Navbar = (props) => {
               Events
             </a>
             <a href='/blogs' className='mobile-show'>
-              Blog
+              Article
             </a>
             <a href='/frequently-asked-questions' className='mobile-show'>
               FAQ

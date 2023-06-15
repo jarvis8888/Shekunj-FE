@@ -109,8 +109,18 @@ img.vert-move {
 .react-datepicker__year-text--in-range:hover {
   background-color: #ff008d !important;
 }
+
+
+.sk-topBottom-space {
+  padding: 40px 0;
+}
 @media (min-width: 1200px) {
-.container-xxl, .container-xl, .container-lg, .container-md, .container-sm, .container {
-  max-width: 1320px !important;
+  .sk-custom-container {
+    max-width: 1320px !important;
+  }
+}
+@media screen and (max-width: 480px) {
+  .sk-topBottom-space {
+    padding: 0;
   }
 }

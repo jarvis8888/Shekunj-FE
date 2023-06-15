@@ -189,7 +189,7 @@ function FaqPage() {
 
   return (
     <div>
-      <Header loginPage={true} page='more' subPage='moreFAQ' />
+      <Header loginPage={true} page='more' subPage='moreFAQ' newDesign />
       <section className='help-container'>
         <div className='container'>
           <div className='row'>
@@ -208,7 +208,7 @@ function FaqPage() {
         </div>
       ) : (
         <section className='faqs-container'>
-          <div className='container'>
+          <div className='container sk-custom-container'>
             <div className='row'>
               <div className='col-xl-2 col-md-3 col-sm-12'>
                 <div className="tabs-container">

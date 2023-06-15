@@ -272,24 +272,25 @@ const SuccessStoryDetails = () => {
   return (
     <div>
       <SEO title='Sheकुंज - Career' />
-      <Header loginPage={true} page='story' subPage='moreStory' />
+      <Header loginPage={true} page='story' subPage='moreStory' newDesign />
       {loading ? (
         <CustomLoader />
       ) : (
         <section className='sk-storyDetail-sec'>
-          <div className='container'>
+          <div className='container sk-custom-container'>
             <div className='row'>
               <div className='col-xl-8 col-lg-8 col-md-8'>
-                <img
-                  src={successStoriesDetails?.image}
-                  alt='Story'
-                  className='sk-storyBanner-img'
-                />
-                <div className='story-bottom'>
-                  <div className='hashtags-container'>
-                    <div className='sk-storyD-tag'>
-                      {successStoriesDetails?.hash_tags?.length
-                        ? successStoriesDetails?.hash_tags.map((items) => {
+                <div className="sk-topBottom-space">
+                  <img
+                    src={successStoriesDetails?.image}
+                    alt='Story'
+                    className='sk-storyBanner-img'
+                  />
+                  <div className='story-bottom'>
+                    <div className='hashtags-container'>
+                      <div className='sk-storyD-tag'>
+                        {successStoriesDetails?.hash_tags?.length
+                          ? successStoriesDetails?.hash_tags.map((items) => {
                             return (
                               <span
                                 key={items}
@@ -302,59 +303,25 @@ const SuccessStoryDetails = () => {
                               >{`#${items}`}</span>
                             );
                           })
-                        : null}
+                          : null}
+                      </div>
+                      <div className='sk-blokTVE-icon'>
+                        <span>
+                          <AccessTimeIcon />
+                          {successStoriesDetails?.created_at}
+                        </span>
+                        <span>
+                          <MenuBookRoundedIcon />
+                          {successStoriesDetails?.reading_time}
+                        </span>
+                        <span>
+                          <VisibilityOutlinedIcon />{" "}
+                          {successStoriesDetails?.ss_count}
+                        </span>
+                      </div>
                     </div>
-                    <div className='sk-blokTVE-icon'>
-                      <span>
-                        <AccessTimeIcon />
-                        {successStoriesDetails?.created_at}
-                      </span>
-                      <span>
-                        <MenuBookRoundedIcon />
-                        {successStoriesDetails?.reading_time}
-                      </span>
-                      <span>
-                        <VisibilityOutlinedIcon />{" "}
-                        {successStoriesDetails?.ss_count}
-                      </span>
-                    </div>
-                  </div>
-                  <div className='sk-social-icon sk-mobile-view'>
-                    <h6>Share this article</h6>
-                    <SocialShare
-                      currentUrl={currentUrl}
-                      title={successStoriesDetails?.title}
-                      image={successStoriesDetails?.image}
-                    />
-                  </div>
-                </div>
-                <div className='sk-middleContent-story'>
-                  <h4 className='story-tittle'>
-                    {successStoriesDetails?.name}
-                  </h4>
-                  <h5 className='story-sub-tittle'>
-                    {successStoriesDetails &&
-                      successStoriesDetails?.designation}
-                    {successStoriesDetails &&
-                      successStoriesDetails?.designation &&
-                      successStoriesDetails?.company_name &&
-                      ", "}
-                    {successStoriesDetails &&
-                      successStoriesDetails?.company_name}
-                  </h5>
-                  <h6 className='description'>
-                    {successStoriesDetails?.title}
-                  </h6>
-                  <div
-                    className=''
-                    dangerouslySetInnerHTML={{
-                      __html: makeHtml(`${successStoriesDetails?.description}`),
-                    }}
-                  />
-
-                  <div className='my-4'>
-                    <div className='sk-social-icon'>
-                      <h6 className='text-left pb-0'>Share this article</h6>
+                    <div className='sk-social-icon sk-mobile-view'>
+                      <h6>Share this article</h6>
                       <SocialShare
                         currentUrl={currentUrl}
                         title={successStoriesDetails?.title}
@@ -362,100 +329,131 @@ const SuccessStoryDetails = () => {
                       />
                     </div>
                   </div>
-                  <>
-                    {storiesBannerAds.length > 0 && (
-                      <div className='row'>
-                        <div
-                          className='col-xl-12'
-                          // className='col-md-12 ads_home_cover '
-                          onClick={() =>
-                            addEmailToClient(storiesBannerAds[0]?.add_email)
-                          }
-                        >
-                          <div className='card'>
-                            <a
-                              href={storiesBannerAds[0]?.url_adds}
-                              target='_blank'
-                              rel='noreferrer'
-                            >
-                              {detect.isMobile
-                                ? storiesBannerAds[0]?.image_mobile && (
+                  <div className='sk-middleContent-story'>
+                    <h4 className='story-tittle'>
+                      {successStoriesDetails?.name}
+                    </h4>
+                    <h5 className='story-sub-tittle'>
+                      {successStoriesDetails &&
+                        successStoriesDetails?.designation}
+                      {successStoriesDetails &&
+                        successStoriesDetails?.designation &&
+                        successStoriesDetails?.company_name &&
+                        ", "}
+                      {successStoriesDetails &&
+                        successStoriesDetails?.company_name}
+                    </h5>
+                    <h6 className='description'>
+                      {successStoriesDetails?.title}
+                    </h6>
+                    <div
+                      className=''
+                      dangerouslySetInnerHTML={{
+                        __html: makeHtml(`${successStoriesDetails?.description}`),
+                      }}
+                    />
+
+                    <div className='my-4'>
+                      <div className='sk-social-icon'>
+                        <h6 className='text-left pb-0'>Share this article</h6>
+                        <SocialShare
+                          currentUrl={currentUrl}
+                          title={successStoriesDetails?.title}
+                          image={successStoriesDetails?.image}
+                        />
+                      </div>
+                    </div>
+                    <>
+                      {storiesBannerAds.length > 0 && (
+                        <div className='row'>
+                          <div
+                            className='col-xl-12'
+                            // className='col-md-12 ads_home_cover '
+                            onClick={() =>
+                              addEmailToClient(storiesBannerAds[0]?.add_email)
+                            }
+                          >
+                            <div className='card'>
+                              <a
+                                href={storiesBannerAds[0]?.url_adds}
+                                target='_blank'
+                                rel='noreferrer'
+                              >
+                                {detect.isMobile
+                                  ? storiesBannerAds[0]?.image_mobile && (
                                     <img
                                       src={storiesBannerAds[0]?.image_mobile}
                                       alt=''
-                                      // className='ads_story_cover_img'
+                                    // className='ads_story_cover_img'
                                     />
                                   )
-                                : storiesBannerAds[0]?.image && (
+                                  : storiesBannerAds[0]?.image && (
                                     <img
                                       src={storiesBannerAds[0]?.image}
                                       alt=''
-                                      // className='ads_story_cover_img'
+                                    // className='ads_story_cover_img'
                                     />
                                   )}
-                            </a>
+                              </a>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    )}
-                  </>
-                </div>
-
-                <HashtagAndCatagoriesForMobile
-                  type='hashtag'
-                  image={hash}
-                  title={`Trending Hashtag`}
-                  hashtags={allHashTag}
-                />
-
-                <div className='title' ref={trendingSectionRef}>
-                  <img src={fire} alt='fire' width={28} />
-                  <h4>Trending Stories </h4>
-                </div>
-
-                <div className='row'>
-                  {trendingData?.map((items, index) => {
-                    if (items.id === "advertisement") {
-                      return (
-                        <>
-                          {succesStoriesLeft.length > 0 &&
-                            succesStoriesLeftRenderAds()}
-                        </>
-                      );
-                    } else {
-                      return (
-                        <>
-                          <TrendingCards
-                            image={items.image}
-                            hashtags={
-                              items.hash_tags === null ? [] : items.hash_tags
-                            }
-                            title={items.name}
-                            description={`${items.title}`}
-                            makeHtml={makeHtml}
-                            key={index}
-                            created_at={items.created_at}
-                            id={items.id}
-                          />
-                        </>
-                      );
-                    }
-                  })}
-                </div>
-
-                <div className='sk-blogbottom-border d-flex justify-content-center align-items-center py-4'>
-                  <button
-                    disabled={currentTrendingData?.results?.length === 0}
-                    className='loadMore'
-                    onClick={() => {
-                      setTrendingOffset(trendingOffset + 6);
-                      // trendingSectionRef.current.scrollIntoView({
-                      //   behavior: "smooth",
-                      // });
-                    }}
-                  >
-                    {loading ? <WhiteCircularBar /> : `Load More`}
-                  </button>
+                      )}
+                    </>
+                  </div>
+                  <HashtagAndCatagoriesForMobile
+                    type='hashtag'
+                    image={hash}
+                    title={`Trending Hashtag`}
+                    hashtags={allHashTag}
+                  />
+                  <div className='title' ref={trendingSectionRef}>
+                    <img src={fire} alt='fire' width={28} />
+                    <h4>Trending Stories </h4>
+                  </div>
+                  <div className='row'>
+                    {trendingData?.map((items, index) => {
+                      if (items.id === "advertisement") {
+                        return (
+                          <>
+                            {succesStoriesLeft.length > 0 &&
+                              succesStoriesLeftRenderAds()}
+                          </>
+                        );
+                      } else {
+                        return (
+                          <>
+                            <TrendingCards
+                              image={items.image}
+                              hashtags={
+                                items.hash_tags === null ? [] : items.hash_tags
+                              }
+                              title={items.name}
+                              description={`${items.title}`}
+                              makeHtml={makeHtml}
+                              key={index}
+                              created_at={items.created_at}
+                              id={items.id}
+                            />
+                          </>
+                        );
+                      }
+                    })}
+                  </div>
+                  <div className='sk-blogbottom-border d-flex justify-content-center align-items-center py-4'>
+                    <button
+                      disabled={currentTrendingData?.results?.length === 0}
+                      className='loadMore'
+                      onClick={() => {
+                        setTrendingOffset(trendingOffset + 6);
+                        // trendingSectionRef.current.scrollIntoView({
+                        //   behavior: "smooth",
+                        // });
+                      }}
+                    >
+                      {loading ? <WhiteCircularBar /> : `Load More`}
+                    </button>
+                  </div>
                 </div>
               </div>
               <div className='col-xl-4 col-lg-4 col-md-4 sk-Removeside-space'>

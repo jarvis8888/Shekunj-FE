@@ -246,132 +246,134 @@ const BlogDetails = () => {
   return (
     <div>
       <SEO title='Sheकुंज - Career' />
-      <Header loginPage={true} page='more' subPage='moreblog' />
+      <Header loginPage={true} page='more' subPage='moreblog' newDesign />
       {loading ? (
         <div>
           <CustomLoader />
         </div>
       ) : (
         <section className='sk-block-details'>
-          <div className='container'>
+          <div className='container sk-custom-container'>
             <div className='row'>
               <div className='col-xl-8 col-lg-8 col-md-8'>
-                <img src={blogs?.image} alt='Story' className='img' />
-                <div className='story-bottom'>
-                  <div className='hashtags-container'>
-                    <div className='sk-bdetail-chip'>
-                      <span
-                        style={{
-                          background: `${getCategoryColor(
-                            blogs?.category_name,
-                          )}`,
+                <div className="sk-topBottom-space">
+                  <img src={blogs?.image} alt='Story' className='img' />
+                  <div className='story-bottom'>
+                    <div className='hashtags-container'>
+                      <div className='sk-bdetail-chip'>
+                        <span
+                          style={{
+                            background: `${getCategoryColor(
+                              blogs?.category_name,
+                            )}`,
+                          }}
+                        >
+                          {blogs?.category_name}
+                        </span>
+                      </div>
+                      <div class='sk-blokTVE-icon'>
+                        <span>
+                          <AccessTimeIcon />
+                          {DateFormat(`${blogs?.created_at}`)}
+                        </span>
+                        <span>
+                          <MenuBookRoundedIcon /> {blogs?.reading_time}
+                        </span>
+                        <span>
+                          <VisibilityOutlinedIcon /> {blogs?.blog_count}
+                        </span>
+                      </div>
+                    </div>
+                    <div className='sk-social-icon sk-mobile-view'>
+                      <h6>Share this article</h6>
+                      <SocialShare
+                        currentUrl={currentUrl}
+                        title={blogs?.title}
+                        image={blogs?.image}
+                      />
+                    </div>
+                  </div>
+                  <h2 className='sk-headingblog-title'>{blogs?.title}</h2>
+                  <div
+                    className='sk-blogDetails-content'
+                    dangerouslySetInnerHTML={{
+                      __html: makeHtml(`${blogs?.about_blog}`),
+                    }}
+                  />
+                  <div className='sk-blogS-category'>
+                    <div className='sk-social-icon pb-3'>
+                      <h6 className='text-left'>Share this article</h6>
+                      <SocialShare
+                        currentUrl={currentUrl}
+                        title={blogs?.title}
+                        image={blogs?.image}
+                      />
+                    </div>
+                    <div className='catagorie_search_container'>
+                      {blogs?.tags?.length
+                        ? blogs?.tags.map((items) => {
+                            return (
+                              <span
+                                key={items}
+                                className='catagorie_search'
+                                onClick={() =>
+                                  history.push(
+                                    `${routingConstants.MORE_BLOG_TAGS}?search=${items}`,
+                                    items,
+                                  )
+                                }
+                              >
+                                {items}
+                              </span>
+                            );
+                          })
+                        : null}
+                    </div>
+                  </div>
+                  <HashtagAndCatagoriesForMobile
+                    image={catagorie}
+                    title={`Categories`}
+                    hashtags={blogCategories}
+                  />
+                  <div className='title' ref={trendingSectionRef}>
+                    <img src={fire} alt='fire' width={28} />
+                    <h4>Trending Blogs</h4>
+                  </div>
+                  <div className='sk-blogMain-inner'>
+                    {trendingBlogs?.map((items, index) => {
+                      if (items.id === "advertisement") {
+                        return <>{blogLeft.length > 0 && blogLeftRenderAds()}</>;
+                      } else {
+                        return (
+                          <>
+                            <TrendingBlogsCard2
+                              image={items.image}
+                              title={items.title}
+                              id={items.id}
+                              description={`${removeHtmlTags(items.about_blog)}`}
+                              time={items.reading_time}
+                              date={DateFormat(`${items.created_at}`)}
+                              category_name={items.category_name}
+                              color={getCategoryColor(items.category_name)}
+                            />
+                          </>
+                        );
+                      }
+                    })}
+                    <div className='d-flex justify-content-center align-items-center py-4'>
+                      <button
+                        className='loadMore'
+                        onClick={() => {
+                          setTrendingOffset(trendingOffset + 6);
+                          trendingSectionRef.current.scrollIntoView({
+                            behavior: "smooth",
+                          });
                         }}
+                        disabled={currentTrendingBlogData?.results?.length === 0}
                       >
-                        {blogs?.category_name}
-                      </span>
+                        Explore More
+                      </button>
                     </div>
-                    <div class='sk-blokTVE-icon'>
-                      <span>
-                        <AccessTimeIcon />
-                        {DateFormat(`${blogs?.created_at}`)}
-                      </span>
-                      <span>
-                        <MenuBookRoundedIcon /> {blogs?.reading_time}
-                      </span>
-                      <span>
-                        <VisibilityOutlinedIcon /> {blogs?.blog_count}
-                      </span>
-                    </div>
-                  </div>
-                  <div className='sk-social-icon sk-mobile-view'>
-                    <h6>Share this article</h6>
-                    <SocialShare
-                      currentUrl={currentUrl}
-                      title={blogs?.title}
-                      image={blogs?.image}
-                    />
-                  </div>
-                </div>
-                <h2 className='sk-headingblog-title'>{blogs?.title}</h2>
-                <div
-                  className='sk-blogDetails-content'
-                  dangerouslySetInnerHTML={{
-                    __html: makeHtml(`${blogs?.about_blog}`),
-                  }}
-                />
-                <div className='sk-blogS-category'>
-                  <div className='sk-social-icon pb-3'>
-                    <h6 className='text-left'>Share this article</h6>
-                    <SocialShare
-                      currentUrl={currentUrl}
-                      title={blogs?.title}
-                      image={blogs?.image}
-                    />
-                  </div>
-                  <div className='catagorie_search_container'>
-                    {blogs?.tags?.length
-                      ? blogs?.tags.map((items) => {
-                          return (
-                            <span
-                              key={items}
-                              className='catagorie_search'
-                              onClick={() =>
-                                history.push(
-                                  `${routingConstants.MORE_BLOG_TAGS}?search=${items}`,
-                                  items,
-                                )
-                              }
-                            >
-                              {items}
-                            </span>
-                          );
-                        })
-                      : null}
-                  </div>
-                </div>
-                <HashtagAndCatagoriesForMobile
-                  image={catagorie}
-                  title={`Categories`}
-                  hashtags={blogCategories}
-                />
-                <div className='title' ref={trendingSectionRef}>
-                  <img src={fire} alt='fire' width={28} />
-                  <h4>Trending Blogs</h4>
-                </div>
-                <div className='sk-blogMain-inner'>
-                  {trendingBlogs?.map((items, index) => {
-                    if (items.id === "advertisement") {
-                      return <>{blogLeft.length > 0 && blogLeftRenderAds()}</>;
-                    } else {
-                      return (
-                        <>
-                          <TrendingBlogsCard2
-                            image={items.image}
-                            title={items.title}
-                            id={items.id}
-                            description={`${removeHtmlTags(items.about_blog)}`}
-                            time={items.reading_time}
-                            date={DateFormat(`${items.created_at}`)}
-                            category_name={items.category_name}
-                            color={getCategoryColor(items.category_name)}
-                          />
-                        </>
-                      );
-                    }
-                  })}
-                  <div className='d-flex justify-content-center align-items-center py-4'>
-                    <button
-                      className='loadMore'
-                      onClick={() => {
-                        setTrendingOffset(trendingOffset + 6);
-                        trendingSectionRef.current.scrollIntoView({
-                          behavior: "smooth",
-                        });
-                      }}
-                      disabled={currentTrendingBlogData?.results?.length === 0}
-                    >
-                      Explore More
-                    </button>
                   </div>
                 </div>
               </div>
@@ -389,7 +391,7 @@ const BlogDetails = () => {
           </div>
         </section>
       )}
-      <Footer loginPage={false} />
+      <Footer loginPage={false} newDesign />
     </div>
   );
 };

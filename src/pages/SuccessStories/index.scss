@@ -6,12 +6,16 @@
   height: 620px;
   background-size: cover;
 }
-.sk-Removeside-space{
-  padding-left: 0;
-}
-section {
-  padding: 50px 0;
-}
+
+  // .sk-Removeside-space{
+  //   border-left: 1px solid #d9d9d9;
+  //   margin-top: -40px;
+  //   padding-top: 40px;
+  // }
+
+// section {
+//   padding: 40px 0;
+// }
 .sk-storyBoxMain-sec .card__bottom {
   border-top: 1px solid #d9d9d9;
   padding-top: 5px;
@@ -832,9 +836,9 @@ button.want_btn {
   .sk-storyHeading-top{
     font-size: 24px;
   }
-  .sk-Removeside-space{
-    padding-left: 15px;
-  }
+  // .sk-Removeside-space{
+  //  border-left: 0;
+  // }
  
 }
 @media screen and (max-width: 480px) {

@@ -313,7 +313,7 @@ function EventPage() {
 
   return (
     <div>
-      <Header loginPage={true} page='more' subPage='moreEvent' />
+      <Header loginPage={true} page='more' subPage='moreEvent' newDesign />
 
       <Helmet>
         <title>
@@ -390,7 +390,7 @@ function EventPage() {
         </div>
       </section>
       <section className='sk-card-sec sk-eventcard-sec'>
-        <div className='container'>
+        <div className='container sk-custom-container'>
           <div className='row'>
             <div className='col-xl-9 col-lg-10 col-md-10 col-sm-12 mx-auto'>
               <div className='sk-title-heading'>
@@ -576,7 +576,7 @@ function EventPage() {
         </div>
       </section>
       <section className='sk-bottomAdd-sec'>
-        <div className='container'>
+        <div className='container sk-custom-container'>
           <div className='row'>
             <div className='col-md-12'>
               <>

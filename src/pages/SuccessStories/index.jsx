@@ -393,7 +393,7 @@ function SuccessStory() {
 
   return (
     <div>
-      <Header loginPage={true} page='story' />
+      <Header loginPage={true} page='story' newDesign />
 
       {pageLoading ? (
         <div>
@@ -402,7 +402,7 @@ function SuccessStory() {
       ) : (
         <>
           <section className='sk-storyMain-sec'>
-            <div className='container'>
+            <div className='container sk-custom-container'>
               <div className='row align-items-center'>
                 <div className='col-xl-6 col-lg-6 col-md-12 col-sm-12'>
                   <div className='sk-story-content'>
@@ -477,7 +477,7 @@ function SuccessStory() {
           </section>
 
           <section className='sk-successStories-sec'>
-            <div className='container'>
+            <div className='container sk-custom-container'>
               <div className='row'>
                 <div className='col-xl-8 col-lg-8 col-md-12 mx-auto'>
                   <AddsBanner
@@ -523,80 +523,28 @@ function SuccessStory() {
           </section>
 
           <section className='sk-storyBoxMain-sec'>
-            <div className='container'>
+            <div className='container sk-custom-container'>
               <div className='row'>
                 <div className='col-xl-8 col-lg-8 col-md-8 featured-stories'>
-                  <div className='title' ref={sectionRef}>
-                    <img src={fire} alt='fire' width={28} />
-                    <h4>Featured Stories </h4>
-                  </div>
-
-                  <div className='row'>
-                    {featuredData?.map((items, index) => {
-                      if (items.id === "advertisement") {
-                        return (
-                          <>
-                            {succesStoriesBox.length > 0 &&
-                              succesStoriesBoxRenderAds()}
-                          </>
-                        );
-                      } else {
-                        return (
-                          <>
-                            <FeaturedCards
-                              image={items.image}
-                              hashtags={
-                                items.hash_tags === null ? [] : items.hash_tags
-                              }
-                              title={items.name}
-                              description={`${items.title}`}
-                              makeHtml={makeHtml}
-                              key={index}
-                              created_at={items.created_at}
-                              reading_time={items.reading_time}
-                              id={items.id}
-                            />
-                          </>
-                        );
-                      }
-                    })}
-                  </div>
-                  <div className='sk-blogbottom-border d-flex justify-content-center align-items-center py-4'>
-                    <button
-                      disabled={currentFeaturedData?.results?.length === 0}
-                      className='loadMore'
-                      onClick={handleLoadMoreClick}
-                    >
-                      {loading ? <WhiteCircularBar /> : `Load More`}
-                    </button>
-                  </div>
-
-                  <HashtagAndCatagoriesForMobile
-                    type='hashtag'
-                    image={hash}
-                    title={`Trending Hashtag`}
-                    hashtags={allHashTag}
-                  />
-
-                  <div ref={trendingSectionRef}>
-                    <div className='title'>
+                  <div className='sk-topBottom-space'>
+                    <div className='title' ref={sectionRef}>
                       <img src={fire} alt='fire' width={28} />
-                      <h4>Trending Stories </h4>
+                      <h4>Featured Stories </h4>
                     </div>
 
                     <div className='row'>
-                      {trendingData?.map((items, index) => {
+                      {featuredData?.map((items, index) => {
                         if (items.id === "advertisement") {
                           return (
                             <>
-                              {succesStoriesLeft.length > 0 &&
-                                succesStoriesLeftRenderAds()}
+                              {succesStoriesBox.length > 0 &&
+                                succesStoriesBoxRenderAds()}
                             </>
                           );
                         } else {
                           return (
                             <>
-                              <TrendingCards
+                              <FeaturedCards
                                 image={items.image}
                                 hashtags={
                                   items.hash_tags === null
@@ -608,6 +556,7 @@ function SuccessStory() {
                                 makeHtml={makeHtml}
                                 key={index}
                                 created_at={items.created_at}
+                                reading_time={items.reading_time}
                                 id={items.id}
                               />
                             </>
@@ -615,15 +564,70 @@ function SuccessStory() {
                         }
                       })}
                     </div>
-                  </div>
-                  <div className='sk-blogbottom-border d-flex justify-content-center align-items-center py-4'>
-                    <button
-                      disabled={currentTrendingData?.results?.length === 0}
-                      className='loadMore'
-                      onClick={handleLoadMoreClickOnTrending}
-                    >
-                      {trendingLoading ? <WhiteCircularBar /> : `Load More`}
-                    </button>
+                    <div className='sk-blogbottom-border d-flex justify-content-center align-items-center py-4'>
+                      <button
+                        disabled={currentFeaturedData?.results?.length === 0}
+                        className='loadMore'
+                        onClick={handleLoadMoreClick}
+                      >
+                        {loading ? <WhiteCircularBar /> : `Load More`}
+                      </button>
+                    </div>
+
+                    <HashtagAndCatagoriesForMobile
+                      type='hashtag'
+                      image={hash}
+                      title={`Trending Hashtag`}
+                      hashtags={allHashTag}
+                    />
+
+                    <div ref={trendingSectionRef}>
+                      <div className='title'>
+                        <img src={fire} alt='fire' width={28} />
+                        <h4>Trending Stories </h4>
+                      </div>
+
+                      <div className='row'>
+                        {trendingData?.map((items, index) => {
+                          if (items.id === "advertisement") {
+                            return (
+                              <>
+                                {succesStoriesLeft.length > 0 &&
+                                  succesStoriesLeftRenderAds()}
+                              </>
+                            );
+                          } else {
+                            return (
+                              <>
+                                <TrendingCards
+                                  image={items.image}
+                                  hashtags={
+                                    items.hash_tags === null
+                                      ? []
+                                      : items.hash_tags
+                                  }
+                                  title={items.name}
+                                  description={`${items.title}`}
+                                  makeHtml={makeHtml}
+                                  key={index}
+                                  created_at={items.created_at}
+                                  id={items.id}
+                                />
+                              </>
+                            );
+                          }
+                        })}
+                      </div>
+                    </div>
+                    <div className='sk-blogbottom-border d-flex justify-content-center align-items-center py-4'>
+                      <button
+                        disabled={currentTrendingData?.results?.length === 0}
+                        className='loadMore'
+                        onClick={handleLoadMoreClickOnTrending}
+                      >
+                        {trendingLoading ? <WhiteCircularBar /> : `Load More`}
+                      </button>
+                    </div>
                   </div>
                 </div>
                 <div className='col-xl-4 col-md-4 col-lg-4 col-sm-12 ads sk-Removeside-space'>
@@ -643,7 +647,7 @@ function SuccessStory() {
         </>
       )}
 
-      <Footer />
+      <Footer newDesign />
     </div>
   );
 }
