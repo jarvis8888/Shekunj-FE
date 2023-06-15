@@ -65,10 +65,17 @@ body {
 .sk-eventBox-adds {
   height: calc(100% - 30px);
   display: flex;
-  align-items: center;
+  flex-wrap: wrap;
+  align-items: start;
   background: #f0f0f0;
-  justify-content: center;
-  padding: 30px 10px;
+  // justify-content: center;
+  padding:15px;
+}
+.sk-ad-title {
+  color: #888;
+  display: inline-block;
+  font-size: 12px;
+  padding-bottom: 15px;
 }
 .sk-eventBox-adds img{
   height: 300px;

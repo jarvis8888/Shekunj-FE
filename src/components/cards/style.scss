@@ -236,6 +236,10 @@ img {
   margin-bottom: 28px;
   gap: 17px;
   cursor: pointer;
+  transition: .3s;
+  &:hover{
+    transform: scale(1.02);
+  }
   @media screen and (max-width: 768px) {
     margin-bottom: 15px;
   }
@@ -380,6 +384,10 @@ p.blog-card-description {
 }
 .sk-blogDivider-bottom {
   border-bottom: 1px solid #d9d9d9;
+  transition: 0.3s;
+}
+.sk-blogDivider-bottom:hover{
+  transform: scale(1.01);
 }
 .sk-blogDivider-bottom:last-child {
   border-bottom: 0;

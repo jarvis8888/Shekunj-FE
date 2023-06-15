@@ -75,10 +75,25 @@ img {
   margin-right: 2px;
 }
 
+
 .sk-details-datetime ul li span {
   display: inline-block;
   vertical-align: middle;
 }
+.sk-topBottom-space .sk-details-datetime ul li{
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.sk-topBottom-space .sk-details-datetime ul li span {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.sk-topBottom-space .sk-details-datetime ul li span .event-time{
+  margin-left: 8px;
+}
+
 
 .sk-details-datetime ul li img {
   margin-right: 2px;
