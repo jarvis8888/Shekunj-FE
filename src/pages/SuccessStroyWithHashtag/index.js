@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Footer, Header } from "../../components";
 import "./index.scss";
 import httpServices from "../../utils/ApiServices";
-import { useHistory, useLocation } from "react-router-dom";
+import { useHistory, useLocation, useParams } from "react-router-dom";
 import FeaturedCards from "../../components/cards/FeaturedCards";
 import { HashtagAndCatagories } from "../../components/HastagAndCatagories/Index";
 import hash from "../../assets/images/hashtag.svg";
@@ -21,6 +21,7 @@ const SuccessStroyWithHashtag = () => {
   const detect = useDeviceDetect();
 
   const { state } = location;
+  const { search } = useParams();
 
   const [data, setData] = useState([]);
   const [allHashTag, setAllHashTag] = useState([]);
@@ -149,10 +150,10 @@ const SuccessStroyWithHashtag = () => {
   }, []);
 
   useEffect(() => {
-    if (state) {
-      getSuccessStroyWithHashtagData(state);
+    if (search) {
+      getSuccessStroyWithHashtagData(search);
     }
-  }, [state]);
+  }, [search]);
 
   const succesStoriesLeftadCount = succesStoriesLeft.length; // Total number of ads
   let adIndex = 0; // Current ad index
@@ -199,10 +200,10 @@ const SuccessStroyWithHashtag = () => {
           />
           <div className='row'>
             <div className='col-xl-8 col-lg-8 col-md-8'>
-              <div className="sk-topBottom-space">
-                <h4 className='Hashtag_container_title'>
-                  {state ? `#${state}` : "NA"}
-                </h4>
+             <div className="sk-topBottom-space">
+              <h4 className='Hashtag_container_title'>
+                {search ? `#${search}` : "NA"}
+              </h4>
 
                 {loading ? (
                   <CustomLoader />

@@ -54,7 +54,7 @@ const SuccessStoryDetails = () => {
   const [trendingOffset, setTrendingOffset] = useState(0);
   const [currentTrendingData, setCurrentTrendingData] = useState([]);
   const detect = useDeviceDetect();
-  const trendingPageLimit = 6;
+  const trendingPageLimit = 12;
 
   const getAllSuccessStoryData = async () => {
     setLoading(true);
@@ -82,7 +82,7 @@ const SuccessStoryDetails = () => {
         const newFeaturedData = [];
 
         for (let i = 0; i < res.length; i++) {
-          if (i % 3 === 0 && i !== 0) {
+          if (i % 6 === 0 && i !== 0) {
             newFeaturedData.push(addObjectData);
           }
           newFeaturedData.push(res[i]);

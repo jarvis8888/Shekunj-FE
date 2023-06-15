@@ -10,7 +10,6 @@ import {
   successStories as fetchSuccessStories,
 } from "../../store/courses/action";
 import { Header, Footer } from "../../components";
-
 import "./index.scss";
 import "../../Styles/global.scss";
 import { useTranslation } from "react-i18next";
@@ -40,8 +39,8 @@ function SuccessStory() {
   const [offset, setOffset] = useState(0);
   const [trendingOffset, setTrendingOffset] = useState(0);
   const [page, setPage] = useState(0);
-  const pageLimit = 5;
-  const trendingPageLimit = 6;
+  const pageLimit = 4;
+  const trendingPageLimit = 12;
 
   const [featuredData, setFeaturedData] = useState([]);
   const [currentFeaturedData, setCurrentFeaturedData] = useState([]);
@@ -109,7 +108,7 @@ function SuccessStory() {
         const newFeaturedData = [];
 
         for (let i = 0; i < res.length; i++) {
-          if (i % 3 === 0 && i !== 0) {
+          if (i % 6 === 0 && i !== 0) {
             newFeaturedData.push(addObjectData);
           }
           newFeaturedData.push(res[i]);
@@ -375,7 +374,7 @@ function SuccessStory() {
     //   });
     // }, 10); // Minimal delay for rendering update
 
-    setOffset(offset + 5);
+    setOffset(offset + 4);
   };
   const handleLoadMoreClickOnTrending = () => {
     if (currentTrendingData?.results?.length === 0) {
