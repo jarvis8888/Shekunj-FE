@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import SchoolRoundedIcon from "@mui/icons-material/SchoolRounded";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
-import { DateFormat, truncateString } from "../../utils/utils";
+import { DateFormat, removeHtmlTags, truncateString } from "../../utils/utils";
 import { useHistory, useLocation } from "react-router-dom";
 import { routingConstants } from "../../utils/constants";
 import { CustomLoader } from "../customLoader/CustomLoader";
@@ -16,7 +16,7 @@ export const GlobalSearchCard = ({
 }) => {
   const [activeTab, setActiveTab] = useState("All"); // initialize activeTab state to "All"
 
-  const data = ["All", "Success Story", "Blog", "Courses", "Mock Test"]; // add "All" to the data array
+  const data = ["All", "Success Story", "Article", "Courses", "Mock Test"]; // add "All" to the data array
 
   const makeHtml = (htmlString) => {
     const htmlNode = document.createElement("div");
@@ -39,8 +39,8 @@ export const GlobalSearchCard = ({
             type: "Success Story",
           })),
         ];
-      case "Blog":
-        return [...BlogData.map((item) => ({ ...item, type: "Blog" }))];
+      case "Article":
+        return [...BlogData.map((item) => ({ ...item, type: "Article" }))];
       case "Courses":
         return [...CousesData.map((item) => ({ ...item, type: "Courses" }))];
       case "Mock Test":
@@ -54,7 +54,7 @@ export const GlobalSearchCard = ({
             ...item,
             type: "Success Story",
           })),
-          ...BlogData.map((item) => ({ ...item, type: "Blog" })),
+          ...BlogData.map((item) => ({ ...item, type: "Article" })),
           ...CousesData.map((item) => ({ ...item, type: "Courses" })),
           ...MockTestData.map((item) => ({ ...item, type: "Mock Test" })),
         ];
@@ -66,8 +66,8 @@ export const GlobalSearchCard = ({
       switch (type) {
         case "Success Story":
           return `/success-stories/${id}`;
-        case "Blog":
-          return `/blogs/${id}`;
+        case "Article":
+          return `/article/${id}`;
         case "Courses":
           return `/courses-details/${id}`;
         case "Mock Test":
@@ -87,7 +87,7 @@ export const GlobalSearchCard = ({
           </div>
           <div className='sk-content-card'>
             <div className='sk-week-time'>
-              {item?.type === "Blog" && (
+              {item?.type === "Article" && (
                 <span>
                   <AccessTimeIcon /> {DateFormat(`${item.created_at}`)}
                 </span>
@@ -98,7 +98,7 @@ export const GlobalSearchCard = ({
                 </span>
               )}
             </div>
-            {item?.type === "Blog" ? (
+            {item?.type === "Article" ? (
               <h6 className='sk-card-heading'>{item.title}</h6>
             ) : (
               <h6 className='sk-card-heading'>{item.name}</h6>
@@ -108,12 +108,12 @@ export const GlobalSearchCard = ({
               className='sk-card-description'
               dangerouslySetInnerHTML={{
                 __html: makeHtml(
-                  `${truncateString(
+                  `${
                     (item?.description && `${item?.description}`) ||
-                      (item?.about_blog && `${item?.about_blog}`) ||
-                      "",
-                    200,
-                  )}`,
+                    (item?.about_blog &&
+                      `${removeHtmlTags(item?.about_blog)}`) ||
+                    ""
+                  }`,
                 ),
               }}
             />

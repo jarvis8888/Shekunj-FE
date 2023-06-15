@@ -279,6 +279,7 @@ function BlogPage() {
   };
 
   const renderAd = (ad) => (
+    <div className="row">
     <div
       key={ad.id}
       onClick={() => addEmailToClient(ad.add_email)}
@@ -291,6 +292,7 @@ function BlogPage() {
             : ad.image && <img src={ad.image} alt='' />}
         </a>
       </div>
+    </div>
     </div>
   );
 

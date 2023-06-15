@@ -268,7 +268,8 @@ function EventPage() {
       className='col-xl-3 col-lg-4 col-md-6'
     >
       <div className='sk-eventBox-adds'>
-        <a href={ad.url_adds} target='_blank' rel='noreferrer'>
+        <span className="sk-ad-title">Advertisement</span>
+        <a href={ad.url_adds} target='_blank' rel='noreferrer' className="mx-auto">
           {detect.isMobile
             ? ad.image_mobile && <img src={ad.image_mobile} alt='' />
             : ad.image && <img src={ad.image} alt='' />}

@@ -32,7 +32,9 @@ const Navbar = (props) => {
 
   return (
     <header className='sk-header-bg'>
-      <div className={`container ${props.newDesign ? 'sk-custom-container' : ''}`}>
+      <div
+        className={`container ${props.newDesign ? "sk-custom-container" : ""}`}
+      >
         <div className='Navbar'>
           <span className='nav-logo'>
             <img
@@ -75,7 +77,10 @@ const Navbar = (props) => {
                 {t("headerComponent.menuItem.7")}
               </Dropdown.Item>
             </Dropdown>
-            <a href='/resume-builder' className={isActive("/resume-builder") && "active"}>
+            <a
+              href='/resume-builder'
+              className={isActive("/resume-builder") && "active"}
+            >
               {t("header.heading.4")}
             </a>
             <a href='/jobs' className={isActive("/jobs") && "active"}>
@@ -114,7 +119,7 @@ const Navbar = (props) => {
             <a href='/events' className='mobile-show'>
               Events
             </a>
-            <a href='/blogs' className='mobile-show'>
+            <a href='/article' className='mobile-show'>
               Article
             </a>
             <a href='/frequently-asked-questions' className='mobile-show'>
