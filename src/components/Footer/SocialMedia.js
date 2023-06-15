@@ -11,10 +11,15 @@ import instagram from "../../assets/images/instagram.png";
 import MailOutlineRoundedIcon from "@mui/icons-material/MailOutlineRounded";
 import { useTranslation } from "react-i18next";
 
-export const SocialMedia = () => {
+export const SocialMedia = (props) => {
   const { t } = useTranslation();
   return (
     <section className='sk-socialMedia-sec'>
+    <div
+            className={`container ${
+              props.newDesign ? "sk-custom-container" : ""
+            }`}
+          >
       <div className='row align-items-center'>
         <div class='col-xl-6 col-md-4 col-sm-4'>
           <div className='sk-social-icon text-left'>
@@ -91,6 +96,7 @@ export const SocialMedia = () => {
             </p>
           </div>
         </div>
+      </div>
       </div>
     </section>
   );

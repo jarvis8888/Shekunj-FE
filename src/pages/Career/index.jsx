@@ -32,6 +32,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import useDeviceDetect from "../../hooks/useDeviceDetect";
 import Pagination from "../../components/Pagination";
 import ComingSoon from "../../components/ComingSoon";
+import { withHeaderFooter } from "../../hocs/withHeaderFooter";
 
 const CareerPage = () => {
   // const [loading, setLoading] = useState(false);
@@ -379,4 +380,4 @@ const CareerPage = () => {
   );
 };
 
-export default CareerPage;
+export default withHeaderFooter(CareerPage);
