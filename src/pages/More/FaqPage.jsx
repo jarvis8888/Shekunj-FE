@@ -18,7 +18,7 @@ import { useTranslation } from "react-i18next";
 import axios from "axios";
 import { getFaq as fetchFaq } from "../../store/faq/action";
 import { adsList } from "../../store/ads";
-import faqsendicon from "../../assets/images/sendfaqicon.svg"
+import faqsendicon from "../../assets/images/sendfaqicon.svg";
 import OpenInFullIcon from "@mui/icons-material/OpenInFull";
 import downArrow_icon from "../../assets/icons/svgs/downArrow.png";
 import add_icon from "../../assets/icons/svgs/exAddPhoto.png";
@@ -31,6 +31,7 @@ import { apiConstants } from "../../utils/constants";
 import { toast } from "react-toastify";
 import toasterConfig from "../../utils/toasterCongig";
 import { CustomLoader } from "../../components/customLoader/CustomLoader";
+import { withHeaderFooter } from "../../hocs/withHeaderFooter";
 
 function FaqPage() {
   const history = useHistory();
@@ -189,7 +190,6 @@ function FaqPage() {
 
   return (
     <div>
-      <Header loginPage={true} page='more' subPage='moreFAQ' />
       <section className='help-container'>
         <div className='container'>
           <div className='row'>
@@ -201,29 +201,29 @@ function FaqPage() {
           </div>
         </div>
       </section>
-
       {loading ? (
         <div>
           <CustomLoader />
         </div>
       ) : (
         <section className='faqs-container'>
-          <div className='container'>
+          <div className='container sk-custom-container'>
             <div className='row'>
               <div className='col-xl-2 col-md-3 col-sm-12'>
-                <div className="tabs-container">
-                <ul>
-                {faqData?.map((tab) => (
-                  <li
-                    key={tab.id}
-                    className={`tab ${activeTab === tab.id ? "active" : ""}`}
-                    onClick={() => handleTabClick(tab.id)}
-                  >
-                    {tab.name}
-                  </li>
-                  
-                ))}
-                </ul>
+                <div className='tabs-container'>
+                  <ul>
+                    {faqData?.map((tab) => (
+                      <li
+                        key={tab.id}
+                        className={`tab ${
+                          activeTab === tab.id ? "active" : ""
+                        }`}
+                        onClick={() => handleTabClick(tab.id)}
+                      >
+                        {tab.name}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </div>
               <div className='col-xl-7 col-md-5 questions-container-wrapper'>
@@ -285,7 +285,8 @@ function FaqPage() {
                         {" "}
                         <span>
                           <img src={faqsendicon} />
-                        </span> Send{" "}
+                        </span>{" "}
+                        Send{" "}
                       </button>
                     </div>
                     {errors.email && (
@@ -321,8 +322,7 @@ function FaqPage() {
           </div>
         </section>
       )}
-      <Footer loginPage={false} />
     </div>
   );
 }
-export default FaqPage;
+export default withHeaderFooter(FaqPage);

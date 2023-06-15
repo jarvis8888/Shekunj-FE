@@ -46,6 +46,7 @@ import YouMayLikeCarousel from "../../components/Carousel/YouMayLikeCarousel";
 import { toast } from "react-toastify";
 import toasterConfig from "../../utils/toasterCongig";
 import { CustomLoader } from "../../components/customLoader/CustomLoader";
+import { withHeaderFooter } from "../../hocs/withHeaderFooter";
 
 const Gender = ["Male", "Female", "Others"];
 
@@ -322,64 +323,117 @@ const EventDetails = () => {
 
   return (
     <div>
-      <Header loginPage={true} page='more' />
       {loading ? (
         <div>
           <CustomLoader />
         </div>
       ) : (
         <section className='sk-eventDetails-sec'>
-          <div className='container'>
+          <div className='container sk-custom-container'>
             <div className='row'>
               <div className='col-xl-8 col-md-8'>
-                <div className='sk-event-imgcontent'>
-                  <div className='sk-eventDetails-img'>
-                    <img src={eventsDetails?.image} alt='events' />
-                  </div>
-                  <div className='sk-eventDetail-content'>
-                    <div className='sk-eventSocial-chiptag'>
-                      <div>
-                        <div className='sk-edetail-chip'>
-                          <span>{eventsDetails?.genre_name}</span>
+                <div className='sk-topBottom-space'>
+                  <div className='sk-event-imgcontent'>
+                    <div className='sk-eventDetails-img'>
+                      <img src={eventsDetails?.image} alt='events' />
+                    </div>
+                    <div className='sk-eventDetail-content'>
+                      <div className='sk-eventSocial-chiptag'>
+                        <div>
+                          <div className='sk-edetail-chip'>
+                            <span>{eventsDetails?.genre_name}</span>
+                          </div>
+                          <div className='sk-details-datetime'>
+                            <ul>
+                              <li>
+                                {" "}
+                                <AccessTimeIcon />{" "}
+                                <span
+                                  dangerouslySetInnerHTML={{
+                                    __html: time_left(
+                                      eventsDetails?.start_date,
+                                      eventsDetails?.start_time,
+                                      eventsDetails?.end_date,
+                                      eventsDetails?.end_time,
+                                    ),
+                                  }}
+                                ></span>{" "}
+                              </li>
+                              <li>
+                                {eventsDetails?.mode_of_event === "offline" ? (
+                                  <>
+                                    {" "}
+                                    <img
+                                      src={offlineicon}
+                                      alt=''
+                                    /> Offline{" "}
+                                  </>
+                                ) : (
+                                  <>
+                                    {" "}
+                                    <img src={onlineicon} alt='' /> Online{" "}
+                                  </>
+                                )}
+                              </li>
+                              <li>
+                                {" "}
+                                <SchoolRoundedIcon />{" "}
+                                {eventsDetails?.enrold_students} enrolled{" "}
+                              </li>
+                            </ul>
+                          </div>
                         </div>
-                        <div className='sk-details-datetime'>
-                          <ul>
-                            <li>
-                              {" "}
-                              <AccessTimeIcon />{" "}
-                              <span
-                                dangerouslySetInnerHTML={{
-                                  __html: time_left(
-                                    eventsDetails?.start_date,
-                                    eventsDetails?.start_time,
-                                    eventsDetails?.end_date,
-                                    eventsDetails?.end_time,
-                                  ),
-                                }}
-                              ></span>{" "}
-                            </li>
-                            <li>
-                              {eventsDetails?.mode_of_event === "offline" ? (
-                                <>
-                                  {" "}
-                                  <img src={offlineicon} alt='' /> Offline{" "}
-                                </>
-                              ) : (
-                                <>
-                                  {" "}
-                                  <img src={onlineicon} alt='' /> Online{" "}
-                                </>
-                              )}
-                            </li>
-                            <li>
-                              {" "}
-                              <SchoolRoundedIcon />{" "}
-                              {eventsDetails?.enrold_students} enrolled{" "}
-                            </li>
-                          </ul>
+                        <div className='sk-social-icon sk-desktopSocial-icon'>
+                          <h6>Share this Event</h6>
+                          <SocialShare
+                            currentUrl={currentUrl}
+                            title={eventsDetails?.title}
+                            image={eventsDetails?.image}
+                          />
                         </div>
                       </div>
-                      <div className='sk-social-icon sk-desktopSocial-icon'>
+
+                      <h2>{eventsDetails?.title}</h2>
+                      <div
+                        className='sk-card-description'
+                        dangerouslySetInnerHTML={{
+                          __html: makeHtml(eventsDetails?.about_event),
+                        }}
+                      />
+                      {/* <div className='sk-work-detail'>
+                        <h4>Workshop Details</h4>
+                        <ul>
+                          <li>
+                            <span>Duration</span> - 60 min
+                          </li>
+                          <li>
+                            <span>Language</span> - English, Hindi
+                          </li>
+                          <li>
+                            <span>Charges</span> - Free
+                          </li>
+                          <li>
+                            <span>Joining Link</span> - https://fsdfgsgs.com
+                          </li>
+                          <li>
+                            <span>Awards</span> - Yes
+                          </li>
+                        </ul>
+                      </div>
+                      <div className='sk-eventImportant-info'>
+                        <h5>
+                          <ErrorRoundedIcon /> Important Information
+                        </h5>
+                        <ul>
+                          <li>Covid 19 Safety Measures</li>
+                          <li>Gates for the event open at 6:00 PM</li>
+                          <li>No Age Limit</li>
+                          <li>
+                            Please carry your booking confirmation email/message
+                          </li>
+                        </ul>
+                      </div> */}
+                      <div className='sk-social-icon sk-mobileSocial-icon'>
                         <h6>Share this Event</h6>
                         <SocialShare
                           currentUrl={currentUrl}
@@ -387,76 +441,27 @@ const EventDetails = () => {
                           image={eventsDetails?.image}
                         />
                       </div>
-                    </div>
-
-                    <h2>{eventsDetails?.title}</h2>
-                    <div
-                      className='sk-card-description'
-                      dangerouslySetInnerHTML={{
-                        __html: makeHtml(eventsDetails?.about_event),
-                      }}
-                    />
-                    {/* <div className='sk-work-detail'>
-                      <h4>Workshop Details</h4>
-                      <ul>
-                        <li>
-                          <span>Duration</span> - 60 min
-                        </li>
-                        <li>
-                          <span>Language</span> - English, Hindi
-                        </li>
-                        <li>
-                          <span>Charges</span> - Free
-                        </li>
-                        <li>
-                          <span>Joining Link</span> - https://fsdfgsgs.com
-                        </li>
-                        <li>
-                          <span>Awards</span> - Yes
-                        </li>
-                      </ul>
-                    </div>
-                    <div className='sk-eventImportant-info'>
-                      <h5>
-                        <ErrorRoundedIcon /> Important Information
-                      </h5>
-                      <ul>
-                        <li>Covid 19 Safety Measures</li>
-                        <li>Gates for the event open at 6:00 PM</li>
-                        <li>No Age Limit</li>
-                        <li>
-                          Please carry your booking confirmation email/message
-                        </li>
-                      </ul>
-                    </div> */}
-                    <div className='sk-social-icon sk-mobileSocial-icon'>
-                      <h6>Share this Event</h6>
-                      <SocialShare
-                        currentUrl={currentUrl}
-                        title={eventsDetails?.title}
-                        image={eventsDetails?.image}
-                      />
-                    </div>
-                    <div className='sk-event-add'>
-                      <a
-                        href={eventDetailsBannerAds[0]?.url_adds}
-                        target='_blank'
-                        rel='noreferrer'
-                      >
-                        {detect.isMobile
-                          ? eventDetailsBannerAds[0]?.image_mobile && (
-                              <img
-                                src={eventDetailsBannerAds[0]?.image_mobile}
-                                alt=''
-                              />
-                            )
-                          : eventDetailsBannerAds[0]?.image && (
-                              <img
-                                src={eventDetailsBannerAds[0]?.image}
-                                alt=''
-                              />
-                            )}
-                      </a>
+                      <div className='sk-event-add'>
+                        <a
+                          href={eventDetailsBannerAds[0]?.url_adds}
+                          target='_blank'
+                          rel='noreferrer'
+                        >
+                          {detect.isMobile
+                            ? eventDetailsBannerAds[0]?.image_mobile && (
+                                <img
+                                  src={eventDetailsBannerAds[0]?.image_mobile}
+                                  alt=''
+                                />
+                              )
+                            : eventDetailsBannerAds[0]?.image && (
+                                <img
+                                  src={eventDetailsBannerAds[0]?.image}
+                                  alt=''
+                                />
+                              )}
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -642,10 +647,8 @@ const EventDetails = () => {
         </section>
       )}
       {whatsAppModal()}
-
-      <Footer loginPage={false} />
     </div>
   );
 };
 
-export default EventDetails;
+export default withHeaderFooter(EventDetails);

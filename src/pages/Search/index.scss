@@ -2,8 +2,11 @@ img {
   max-width: 100%;
   height: auto;
 }
-section {
-  padding: 50px 0;
+// section {
+//   padding: 40px 0;
+// }
+.sk-card-sec{
+  padding: 40px 0 20px;
 }
 .sk-eventcard-sec {
   padding: 40px 0;
@@ -17,10 +20,9 @@ section {
   margin-top: 20px;
 }
 .sk-search-sec {
-  background: #fff url(../../assets/images/search-bg.png) no-repeat center
-    center;
+  background: #fff url(../../assets/images/search-bg.png) no-repeat center center;
   background-size: cover;
-  padding: 50px 0;
+  padding: 40px 0;
   position: relative;
   border-bottom: 1px solid #d9d9d98d;
 }

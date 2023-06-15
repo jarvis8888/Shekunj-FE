@@ -2,10 +2,10 @@ import React from "react";
 
 import { TopFooter } from "./TopFooter";
 
-const Footer = ({ loginPage, subPage }) => {
+const Footer = ({ loginPage, subPage, newDesign = false }) => {
   return (
     <>
-      <TopFooter />
+      <TopFooter newDesign={newDesign} />
     </>
   );
 };

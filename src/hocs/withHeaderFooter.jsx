@@ -5,9 +5,9 @@ export const withHeaderFooter = (WrappedComponent) => {
   const WithHeaderFooter = React.memo((props) => {
     return (
       <>
-        <Header />
+        <Header newDesign />
         <WrappedComponent {...props} />
-        <Footer />
+        <Footer newDesign />
       </>
     );
   });

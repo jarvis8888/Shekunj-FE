@@ -15,7 +15,7 @@ import { isAuthenticated } from "../../utils";
 import { Dropdown } from "rsuite";
 import { useLocation } from "react-router-dom";
 
-function TopNavbar() {
+function TopNavbar(props) {
   const { t } = useTranslation();
   const history = useHistory();
   const dispatch = useDispatch();
@@ -55,7 +55,7 @@ function TopNavbar() {
 
   return (
     <div className='sk-headerTop-bg'>
-      <div className='container'>
+      <div className={`container ${props.newDesign ? 'sk-custom-container' : ''}`}>
         <div className='header-top'>
           <nav className=''>
             <ul>

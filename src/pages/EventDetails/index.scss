@@ -13,9 +13,9 @@ img {
 .sk-eventDetails-img img {
   width: 100%;
 }
-section {
-  padding: 40px 0;
-}
+// section {
+//   padding: 40px 0;
+// }
 .sk-eventDetail-content {
   margin: 30px 0 0;
 }
@@ -215,14 +215,24 @@ section {
   font-size: 18px;
 }
 .sk-event-sidebar {
-  border-left: 1px solid #d9d9d9;
-  padding-left: 15px;
-  // position: sticky;
-  // top: 100px;
+  padding-top: 40px;
+  padding-left: 30px;
 }
-.sk-Removeside-space{
-  padding-left: 0;
+.sk-event-sidebar::before{
+  content: '';
+  position: absolute;
+  left: 15px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  height: 100%;
+  background: #d9d9d9;
 }
+// .sk-Removeside-space{
+//   border-left: 1px solid #d9d9d9;
+//   margin-top: -40px;
+//   padding-top: 40px;
+// }
 .sk-eventForm-filed .sk-icon-set {
   position: absolute;
   left: 10px;
@@ -448,9 +458,9 @@ section {
   display: block;
 }
 @media screen and (max-width: 991px) {
-  .sk-Removeside-space {
-    padding-left: 15px;
-  }
+  // .sk-Removeside-space {
+  //   border-left: 0;
+  // }
 }
 
 
@@ -459,9 +469,9 @@ section {
     grid-gap: 10px;
     margin-bottom: 0;
   }
-  .sk-Removeside-space{
-    padding-left: 15px;
-  }
+  // .sk-Removeside-space{
+  //   border-left: 0;
+  // }
 
   .sk-eventSocial-chiptag {
     flex-wrap: wrap;

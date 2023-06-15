@@ -5,9 +5,11 @@
   grid-template-columns: 70% 30%;
   padding: 20px 30px;
 }
-.sk-Removeside-space{
-  padding-left: 0;
-}
+// .sk-Removeside-space{
+//   border-left: 1px solid #d9d9d9;
+//   margin-top: -40px;
+//   padding-top: 40px;
+// }
 .Hashtag_container_cards {
   border-right: 1px solid #d9d9d9;
 }
@@ -17,9 +19,9 @@
   font-weight: 500;
   font-size: 20px;
 }
-.sk-hashtag-sec{
-  padding: 50px 0;
-}
+// .sk-hashtag-sec{
+//   padding: 40px 0;
+// }
 .sk-hashtag-sec .card__bottom{
   border-top: 1px solid #d9d9d9;
   padding-top: 5px;
@@ -44,9 +46,9 @@
   }
 }
 @media screen and (max-width: 991px) {
-  .sk-Removeside-space{
-    padding-left: 15px;
-  }
+  // .sk-Removeside-space{
+  //   border-left: 0;
+  // }
 }
 
 @media screen and (max-width: 480px) {
