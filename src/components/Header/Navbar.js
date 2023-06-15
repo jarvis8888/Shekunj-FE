@@ -5,7 +5,7 @@ import memuIcon from "../../assets/icons/svgs/memu.png";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import CloseIcon from "@mui/icons-material/Close";
 import globalSreach from "../../assets/icons/svgs/globalSearch.png";
-import logo from "../../assets/images/shekunjlogo.svg";
+import logo from "../../assets/images/logo.svg";
 import searchnavicon from "../../assets/images/searchicon.svg";
 import mobilemenu from "../../assets/images/mobilemenuicon.svg";
 import closemenuicon from "../../assets/images/closecmenu.svg";
