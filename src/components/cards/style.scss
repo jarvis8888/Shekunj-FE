@@ -51,16 +51,27 @@ img {
 .card .card__bottom:last-child {
   margin-right: 0;
 }
+
+// add card title style
 .sk-cardAdd-fix {
   background: #f0f0f0;
   display: flex;
-  justify-content: center;
+  // justify-content: center;
+  flex-wrap: wrap;
   margin: 20px 0 10px;
-  align-items: center;
+  align-items: start;
   border-radius: 4px;
   height: calc(100% - 30px);
-  padding: 20px;
+  padding: 15px;
 }
+.sk-ad-title {
+  display: inline-block;
+  padding-bottom: 15px;
+  font-size: 12px;
+  color: #888;
+}
+// end title style
+
 .card img {
   // display: flex;
   // justify-content: center;
