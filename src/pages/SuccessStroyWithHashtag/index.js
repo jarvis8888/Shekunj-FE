@@ -172,7 +172,8 @@ const SuccessStroyWithHashtag = () => {
       className='col-xl-6 col-lg-6 col-md-12 col-sm-12'
     >
       <div className='sk-cardAdd-fix'>
-        <a href={ad.url_adds} target='_blank' rel='noreferrer'>
+      <span className="sk-ad-title">Advertisement</span>
+        <a href={ad.url_adds} target='_blank' rel='noreferrer' className="mx-auto">
           {detect.isMobile
             ? ad.image_mobile && <img src={ad.image_mobile} alt='' />
             : ad.image && <img src={ad.image} alt='' />}

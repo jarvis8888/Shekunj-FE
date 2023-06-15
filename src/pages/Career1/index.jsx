@@ -411,14 +411,14 @@ const CareerPage1 = () => {
                             className='searchIcon'
                           />
                         </button>
-                        <button  className='closeBtn1' onClick={() => handleResetSearch()}>
+                        <span className='closeBtn1' onClick={() => handleResetSearch()}>
                           <img
                             src={Cross}
                             alt='Image'
                             className='searchclose'
                             
                           />
-                        </button>
+                        </span>
                       </div>
                     </div>
                   </form>
