@@ -7,11 +7,11 @@
   background-size: cover;
 }
 
-  // .sk-Removeside-space{
-  //   border-left: 1px solid #d9d9d9;
-  //   margin-top: -40px;
-  //   padding-top: 40px;
-  // }
+// .sk-Removeside-space{
+//   border-left: 1px solid #d9d9d9;
+//   margin-top: -40px;
+//   padding-top: 40px;
+// }
 
 // section {
 //   padding: 40px 0;
@@ -436,7 +436,7 @@ button.want_btn {
     background-size: 100% 100%;
     background-position: bottom;
   }
-  .sk-storyS-images ul li img{
+  .sk-storyS-images ul li img {
     height: 100px;
   }
 }
@@ -636,7 +636,6 @@ button.want_btn {
   margin-bottom: 50px;
 }
 
-
 .sk-storyHeading-top span {
   color: #d62c79;
   font-weight: 600;
@@ -796,24 +795,24 @@ button.want_btn {
     }
   }
 }
-.sk-storyHeading-top{
-  font-size: 48px;
+.sk-storyHeading-top {
+  font-size: 50px;
   font-weight: 600;
 }
 .sk-story-content p {
   padding-right: 90px;
 }
 @media screen and (min-width: 1399px) and (max-width: 2550) {
-  h1{
-  font-size: 48px;
-  font-weight: 600;
+  h1 {
+    font-size: 50px;
+    font-weight: 600;
   }
 }
-@media screen and (min-width: 320px) and (max-width: 1399px) {
+@media screen and (min-width: 320px) and (max-width: 1199px) {
   h1 {
     font-size: calc(1.8rem + 1vw);
   }
-  .sk-storyHeading-top{
+  .sk-storyHeading-top {
     font-size: 40px;
   }
 }
@@ -829,17 +828,15 @@ button.want_btn {
   .sk-storyMain-sec {
     padding: 30px 0;
   }
-  .sk-story-content p
-  {
+  .sk-story-content p {
     font-size: 14px;
   }
-  .sk-storyHeading-top{
+  .sk-storyHeading-top {
     font-size: 24px;
   }
   // .sk-Removeside-space{
   //  border-left: 0;
   // }
- 
 }
 @media screen and (max-width: 480px) {
   .sk-storyS-images ul {
@@ -849,13 +846,13 @@ button.want_btn {
     width: 100%;
     height: 84px;
   }
-.sk-allStory-btn {
-  margin-bottom: 20px;  
-}
-section{
-  padding: 30px 0;
+  .sk-allStory-btn {
+    margin-bottom: 20px;
   }
-  .sk-blogbottom-border{
+  section {
+    padding: 30px 0;
+  }
+  .sk-blogbottom-border {
     margin-bottom: 20px;
   }
 }
