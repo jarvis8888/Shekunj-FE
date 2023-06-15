@@ -31,11 +31,10 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import useDeviceDetect from "../../hooks/useDeviceDetect";
 import Pagination from "../../components/Pagination";
 
-
 const CareerPage1 = () => {
   const [offset, setOffset] = useState(0);
-  const [flag, setFlag] = useState(true)
-  const pageLimit = 10
+  const [flag, setFlag] = useState(true);
+  const pageLimit = 10;
 
   // useEffect(() => {
   //   setLoading(true);
@@ -53,27 +52,36 @@ const CareerPage1 = () => {
 
   useEffect(() => {
     dispatch(reSetFilterValue());
-    navigator.geolocation.getCurrentPosition(async function (position, values) {
-      const latitude = position.coords.latitude;
-      const longitude = position.coords.longitude;
+    navigator.geolocation.getCurrentPosition(
+      async function (position, values) {
+        const latitude = position.coords.latitude;
+        const longitude = position.coords.longitude;
 
-      let params = {
-        latitude: latitude.toString(),
-        longitude: longitude.toString(),
-      };
-      dispatch(getTopSchools({ filter: false, latitude, longitude, pageLimit, offset }));
-    },
+        let params = {
+          latitude: latitude.toString(),
+          longitude: longitude.toString(),
+        };
+        dispatch(
+          getTopSchools({
+            filter: false,
+            latitude,
+            longitude,
+            pageLimit,
+            offset,
+          }),
+        );
+      },
       function (error) {
         console.error("Error Code = " + error.code + " - " + error.message);
         dispatch(getTopSchools({ filter: false, pageLimit, offset }));
-      }
-    )
+      },
+    );
   }, [, lan]);
 
   const transformImg = (image) => {
     return image ? image : TopSchool;
   };
-  const page_adds = JSON.parse(sessionStorage.getItem('current_adds'))
+  const page_adds = JSON.parse(sessionStorage.getItem("current_adds"));
   const handleCollapse = (id, checked) => {
     dispatch(toggleCollapseValue(id, checked ? false : true, "topSchools"));
   };
@@ -147,7 +155,6 @@ const CareerPage1 = () => {
 
   // }, [dispatch]);
 
-
   // useEffect(() => {
   //   navigator.geolocation.getCurrentPosition(async function (position, values) {
   //     const latitude = position.coords.latitude;
@@ -180,83 +187,64 @@ const CareerPage1 = () => {
   // }, [dispatch]);
 
   // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Latest code below >>>>>>>>>>>>>>>>>>>>>>>>
-  const findAdds=(addslen,len)=>{
-    let x = 0
+  const findAdds = (addslen, len) => {
+    let x = 0;
 
-      let arr = []
-      for (let i = 0; i < len; i++) {
-        let y;
-        if (x + 1 >= addslen) {
-          y = 0
-        } else {
-          y = x + 1;
-        }
-        if (x >= addslen) {
-          x = 0
-          y = 1
-        }
-
-        arr.push([x, y]);
-        if (x + 1 >= addslen) {
-          x = 1
-        } else {
-          x += 2;
-        }
-
+    let arr = [];
+    for (let i = 0; i < len; i++) {
+      let y;
+      if (x + 1 >= addslen) {
+        y = 0;
+      } else {
+        y = x + 1;
       }
-      return arr
-  }
-  useEffect(() => {
-    if (topSchools?.result?.results?.length > 0 && schoolBoxAds.length && flag) {
-      const addslen = schoolBoxAds.length
-      let len = topSchools?.result?.count / pageLimit;
-      len = Math.trunc(len)
-      
-      const adds_arr=findAdds(addslen,len)
-      sessionStorage.setItem('current_adds', JSON.stringify({ addIndex: 0, addsData: adds_arr }));
-      setFlag(false)
+      if (x >= addslen) {
+        x = 0;
+        y = 1;
+      }
+
+      arr.push([x, y]);
+      if (x + 1 >= addslen) {
+        x = 1;
+      } else {
+        x += 2;
+      }
     }
-  }, [topSchools, schoolBoxAds])
+    return arr;
+  };
+  useEffect(() => {
+    if (
+      topSchools?.result?.results?.length > 0 &&
+      schoolBoxAds.length &&
+      flag
+    ) {
+      const addslen = schoolBoxAds.length;
+      let len = topSchools?.result?.count / pageLimit;
+      len = Math.trunc(len);
+
+      const adds_arr = findAdds(addslen, len);
+      sessionStorage.setItem(
+        "current_adds",
+        JSON.stringify({ addIndex: 0, addsData: adds_arr }),
+      );
+      setFlag(false);
+    }
+  }, [topSchools, schoolBoxAds]);
 
   useEffect(() => {
-    dispatch(adsList())
-    navigator.geolocation.getCurrentPosition(async function (position, values) {
-      const latitude = position.coords.latitude;
-      const longitude = position.coords.longitude;
+    dispatch(adsList());
+    navigator.geolocation.getCurrentPosition(
+      async function (position, values) {
+        const latitude = position.coords.latitude;
+        const longitude = position.coords.longitude;
 
-      let params = {
-        latitude: latitude.toString(),
-        longitude: longitude.toString(),
-      }
-      axios
-        .get(
-          `/private_adds/private_add?latitude=${latitude}&longitude=${longitude}`,
-        )
-        .then((response) => {
-          if (response && response.data.results.length > 0) {
-            let filterArray1 = response.data.results.filter((item, index) => {
-
-              return item.image_type == "top_school_box";
-
-            });
-            setSchoolBoxAds(filterArray1);
-            // console.log("filterArray1top_school_box",filterArray1)
-
-            let filterArray2 = response.data.results.filter((item, index) => {
-
-              return item.image_type == "top_school_banner";
-
-            });
-            setSchoolBannerAds(filterArray2);
-          }
-        })
-    },
-      function (error) {
-        console.error("Error Code = " + error.code + " - " + error.message);
-        // alert("Your location is blocked")    
+        let params = {
+          latitude: latitude.toString(),
+          longitude: longitude.toString(),
+        };
         axios
           .get(
-            `/private_adds/private_add`,
+            `/private_adds/private_add?latitude=${latitude}&longitude=${longitude}`,
           )
           .then((response) => {
             if (response && response.data.results.length > 0) {
@@ -264,59 +252,98 @@ const CareerPage1 = () => {
                 return item.image_type == "top_school_box";
               });
               setSchoolBoxAds(filterArray1);
+              // console.log("filterArray1top_school_box",filterArray1)
+
               let filterArray2 = response.data.results.filter((item, index) => {
                 return item.image_type == "top_school_banner";
               });
               setSchoolBannerAds(filterArray2);
             }
-          })
-      }
-    )
-  }, [])
-
-
+          });
+      },
+      function (error) {
+        console.error("Error Code = " + error.code + " - " + error.message);
+        // alert("Your location is blocked")
+        axios.get(`/private_adds/private_add`).then((response) => {
+          if (response && response.data.results.length > 0) {
+            let filterArray1 = response.data.results.filter((item, index) => {
+              return item.image_type == "top_school_box";
+            });
+            setSchoolBoxAds(filterArray1);
+            let filterArray2 = response.data.results.filter((item, index) => {
+              return item.image_type == "top_school_banner";
+            });
+            setSchoolBannerAds(filterArray2);
+          }
+        });
+      },
+    );
+  }, []);
 
   // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
   const [searchInput, setSearchInput] = useState("");
   const SearchFilterHandle = (e) => {
     e.preventDefault();
-    dispatch(getTopSchools({ search: searchInput!==""?`&search=${searchInput}`:"" }));
+    dispatch(
+      getTopSchools({
+        search: searchInput !== "" ? `&search=${searchInput}` : "",
+      }),
+    );
   };
   const handleResetSearch = () => {
-    dispatch(getTopSchools());
     setSearchInput("");
+    dispatch(getTopSchools());
   };
 
   const paginationBack = () => {
     navigator.geolocation.getCurrentPosition(async function (position, values) {
       const latitude = position?.coords?.latitude;
       const longitude = position?.coords?.longitude;
-      dispatch(getTopSchools({ filter: true, latitude, longitude, pageLimit, offset: offset - 10,search :searchInput!==""?`&search=${searchInput}`:""}));
+      dispatch(
+        getTopSchools({
+          filter: true,
+          latitude,
+          longitude,
+          pageLimit,
+          offset: offset - 10,
+          search: searchInput !== "" ? `&search=${searchInput}` : "",
+        }),
+      );
     });
     if (page_adds) {
-
       setTimeout(() => {
-        sessionStorage.setItem('current_adds', JSON.stringify({ ...page_adds, addIndex: page_adds?.addIndex - 1 }))
+        sessionStorage.setItem(
+          "current_adds",
+          JSON.stringify({ ...page_adds, addIndex: page_adds?.addIndex - 1 }),
+        );
       }, 500);
-
     }
     setOffset(offset - 10);
     window.scrollTo(0, 1000);
   };
   const paginationNext = () => {
-
     navigator.geolocation.getCurrentPosition(async function (position, values) {
       const latitude = position?.coords?.latitude;
       const longitude = position?.coords?.longitude;
-      dispatch(getTopSchools({ filter: true, latitude, longitude, pageLimit, offset: offset + 10,search: searchInput!==""?`&search=${searchInput}`:""  }));
+      dispatch(
+        getTopSchools({
+          filter: true,
+          latitude,
+          longitude,
+          pageLimit,
+          offset: offset + 10,
+          search: searchInput !== "" ? `&search=${searchInput}` : "",
+        }),
+      );
     });
     if (page_adds) {
-
       setTimeout(() => {
-        sessionStorage.setItem('current_adds', JSON.stringify({ ...page_adds, addIndex: page_adds?.addIndex + 1 }))
+        sessionStorage.setItem(
+          "current_adds",
+          JSON.stringify({ ...page_adds, addIndex: page_adds?.addIndex + 1 }),
+        );
       }, 500);
-
     }
     setOffset(offset + 10);
     window.scrollTo(0, 1000);
@@ -330,13 +357,22 @@ const CareerPage1 = () => {
   keywords={``} /> */}
 
       <Helmet>
-        <link rel="canonical" href="https://www.shekunj.com/top-schools-in-india/" />
+        <link
+          rel='canonical'
+          href='https://www.shekunj.com/top-schools-in-india/'
+        />
         <title>Find Top Schools in India & Apply - Shekunj.com</title>
-        <meta name="description" content="Give high-quality education to your children.
+        <meta
+          name='description'
+          content='Give high-quality education to your children.
           Find the list of best schools in India and their
-          detailed information."/>
-        <meta name="keywords" content="top schools in india list of best schools best boys schools top schools in mp 
-          boys schools in india girls schools in india"/>
+          detailed information.'
+        />
+        <meta
+          name='keywords'
+          content='top schools in india list of best schools best boys schools top schools in mp 
+          boys schools in india girls schools in india'
+        />
       </Helmet>
 
       <Header loginPage={true} page='career' subPage='schools' />
@@ -356,7 +392,8 @@ const CareerPage1 = () => {
                         src={schoolBannerAds[0]?.image_mobile}
                         alt='Image'
                         className='ads_school'
-                      />)
+                      />
+                    )
                   ) : (
                     <img
                       src={schoolBannerAds[0]?.image}
@@ -364,7 +401,6 @@ const CareerPage1 = () => {
                       className='ads_school'
                     />
                   )}
-
                 </a>
               </div>
             )}
@@ -391,7 +427,7 @@ const CareerPage1 = () => {
               </Col>
               <Col md={6} xs={12}>
                 <div className='input-group searchSection'>
-                  <form >
+                  <form>
                     <div className='d-flex'>
                       <div className='wraper '>
                         <input
@@ -404,19 +440,21 @@ const CareerPage1 = () => {
                         />
                       </div>
                       <div className='d-flex'>
-                        <button onClick={SearchFilterHandle} className='searchBtn1'>
+                        <button
+                          onClick={SearchFilterHandle}
+                          className='searchBtn1'
+                        >
                           <img
                             src={Search}
                             alt='Image'
                             className='searchIcon'
                           />
                         </button>
-                        <span className='closeBtn1' onClick={() => handleResetSearch()}>
+                        <span className='closeBtn1' onClick={handleResetSearch}>
                           <img
                             src={Cross}
                             alt='Image'
                             className='searchclose'
-                            
                           />
                         </span>
                       </div>
@@ -454,7 +492,6 @@ const CareerPage1 = () => {
                   }}
                   offset={offset}
                   limit={pageLimit}
-                  
                 />
               </div>
 
@@ -573,7 +610,6 @@ const CareerPage1 = () => {
                                   <li>
                                     <span>
                                       {t("careerTopColleges.other.13")}{" "}
-
                                     </span>
                                     : {c && c.city}, {c && c.state}
                                   </li>
@@ -618,94 +654,149 @@ const CareerPage1 = () => {
                           </Row>
                         </div>
                         <Row>
-                          {index===3 && schoolBoxAds?.length && (
+                          {index === 3 && schoolBoxAds?.length && (
                             <div
-                            onClick={() =>
-                              addEmail(schoolBoxAds[page_adds?.addsData[page_adds?.addIndex][0]]?.add_email)
-                            }
-                          >
-                            <a
-                              href={schoolBoxAds[page_adds?.addsData[page_adds?.addIndex][0]]?.url_adds}
-                              target='_blank'
+                              onClick={() =>
+                                addEmail(
+                                  schoolBoxAds[
+                                    page_adds?.addsData[page_adds?.addIndex][0]
+                                  ]?.add_email,
+                                )
+                              }
                             >
-                              {detect.isMobile ? (
-                                schoolBoxAds[page_adds?.addsData[page_adds?.addIndex][0]]?.image_mobile && (
-                                  <img
-                                    src={schoolBoxAds[page_adds?.addsData[page_adds?.addIndex][0]]?.image_mobile}
-                                    alt='Image'
-                                    className='ads_school_box'
-                                  />)
-                              ) : (
-                                schoolBoxAds[page_adds?.addsData[page_adds?.addIndex][0]]?.image && (
-                                  <img
-                                    src={schoolBoxAds[page_adds?.addsData[page_adds?.addIndex][0]]?.image}
-                                    alt='Image'
-                                    className='ads_school_box'
-                                  />)
-                              )}
-
-                            </a>
-                          </div>
+                              <a
+                                href={
+                                  schoolBoxAds[
+                                    page_adds?.addsData[page_adds?.addIndex][0]
+                                  ]?.url_adds
+                                }
+                                target='_blank'
+                              >
+                                {detect.isMobile
+                                  ? schoolBoxAds[
+                                      page_adds?.addsData[
+                                        page_adds?.addIndex
+                                      ][0]
+                                    ]?.image_mobile && (
+                                      <img
+                                        src={
+                                          schoolBoxAds[
+                                            page_adds?.addsData[
+                                              page_adds?.addIndex
+                                            ][0]
+                                          ]?.image_mobile
+                                        }
+                                        alt='Image'
+                                        className='ads_school_box'
+                                      />
+                                    )
+                                  : schoolBoxAds[
+                                      page_adds?.addsData[
+                                        page_adds?.addIndex
+                                      ][0]
+                                    ]?.image && (
+                                      <img
+                                        src={
+                                          schoolBoxAds[
+                                            page_adds?.addsData[
+                                              page_adds?.addIndex
+                                            ][0]
+                                          ]?.image
+                                        }
+                                        alt='Image'
+                                        className='ads_school_box'
+                                      />
+                                    )}
+                              </a>
+                            </div>
                           )}
-                          {index===7 &&schoolBoxAds?.length && (
+                          {index === 7 && schoolBoxAds?.length && (
                             <div
-                            onClick={() =>
-                              addEmail(schoolBoxAds[page_adds?.addsData[page_adds?.addIndex][1]]?.add_email)
-                            }
-                          >
-                            <a
-                              href={schoolBoxAds[page_adds?.addsData[page_adds?.addIndex][1]]?.url_adds}
-                              target='_blank'
+                              onClick={() =>
+                                addEmail(
+                                  schoolBoxAds[
+                                    page_adds?.addsData[page_adds?.addIndex][1]
+                                  ]?.add_email,
+                                )
+                              }
                             >
-                              {detect.isMobile ? (
-                                schoolBoxAds[page_adds?.addsData[page_adds?.addIndex][1]]?.image_mobile && (
-                                  <img
-                                    src={schoolBoxAds[page_adds?.addsData[page_adds?.addIndex][1]]?.image_mobile}
-                                    alt='Image'
-                                    className='ads_school_box'
-                                  />)
-                              ) : (
-                                schoolBoxAds[page_adds?.addsData[page_adds?.addIndex][1]]?.image && (
-                                  <img
-                                    src={schoolBoxAds[page_adds?.addsData[page_adds?.addIndex][1]]?.image}
-                                    alt='Image'
-                                    className='ads_school_box'
-                                  />)
-                              )}
-
-                            </a>
-                          </div>
+                              <a
+                                href={
+                                  schoolBoxAds[
+                                    page_adds?.addsData[page_adds?.addIndex][1]
+                                  ]?.url_adds
+                                }
+                                target='_blank'
+                              >
+                                {detect.isMobile
+                                  ? schoolBoxAds[
+                                      page_adds?.addsData[
+                                        page_adds?.addIndex
+                                      ][1]
+                                    ]?.image_mobile && (
+                                      <img
+                                        src={
+                                          schoolBoxAds[
+                                            page_adds?.addsData[
+                                              page_adds?.addIndex
+                                            ][1]
+                                          ]?.image_mobile
+                                        }
+                                        alt='Image'
+                                        className='ads_school_box'
+                                      />
+                                    )
+                                  : schoolBoxAds[
+                                      page_adds?.addsData[
+                                        page_adds?.addIndex
+                                      ][1]
+                                    ]?.image && (
+                                      <img
+                                        src={
+                                          schoolBoxAds[
+                                            page_adds?.addsData[
+                                              page_adds?.addIndex
+                                            ][1]
+                                          ]?.image
+                                        }
+                                        alt='Image'
+                                        className='ads_school_box'
+                                      />
+                                    )}
+                              </a>
+                            </div>
                           )}
                         </Row>
                       </>
                     ),
                 )
               ) : //  (
-                //   <div className='text-center'>{t("common.noDataFound")}</div>
-                // )
-                // <ContentLoader viewBox="0 0 380 70">
-                //   {/* Only SVG shapes */}
-                //   <rect x="0" y="0" rx="5" ry="5" width="70" height="70" />
-                //   <rect x="80" y="17" rx="4" ry="4" width="300" height="13" />
-                //   <rect x="80" y="40" rx="3" ry="3" width="250" height="10" />
-                // </ContentLoader>
-                isLoading ? (
-                  <div>
-                    <h4>Loading...</h4>
-                    <ClipLoader className='loader' color='#ec498a' />
-                  </div>
-                ) : (
-                  <div className='text-center'>{t("common.noDataFound")}</div>
-                )}
+              //   <div className='text-center'>{t("common.noDataFound")}</div>
+              // )
+              // <ContentLoader viewBox="0 0 380 70">
+              //   {/* Only SVG shapes */}
+              //   <rect x="0" y="0" rx="5" ry="5" width="70" height="70" />
+              //   <rect x="80" y="17" rx="4" ry="4" width="300" height="13" />
+              //   <rect x="80" y="40" rx="3" ry="3" width="250" height="10" />
+              // </ContentLoader>
+              isLoading ? (
+                <div>
+                  <h4>Loading...</h4>
+                  <ClipLoader className='loader' color='#ec498a' />
+                </div>
+              ) : (
+                <div className='text-center'>{t("common.noDataFound")}</div>
+              )}
               {topSchools?.result?.count > pageLimit && (
                 <Pagination
                   finalCount={topSchools?.result?.count / pageLimit}
                   nextPage={topSchools?.result?.next ? paginationNext : null}
-                  backPage={topSchools?.result?.previous ? paginationBack : null}
+                  backPage={
+                    topSchools?.result?.previous ? paginationBack : null
+                  }
                 />
               )}
             </Col>
-
           </Row>
         </Container>
         {/* )} */}
