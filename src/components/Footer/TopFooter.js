@@ -152,10 +152,10 @@ export const TopFooter = memo((props) => {
                 </div>
               </div>
             </div>
-            <SocialMedia />
-            <CopyRight />
           </div>
         </footer>
+        <SocialMedia newDesign={props.newDesign} />
+        <CopyRight />
       </div>
     </>
   );
