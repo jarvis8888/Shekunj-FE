@@ -218,7 +218,7 @@ const SuccessStroyWithHashtag = () => {
               <div className='sk-topBottom-space'>
                 <div className='Hashtag_container_title'>
                   <span className='catagories-search'>
-                    {state ? `${currentSearch}` : null}{" "}
+                    {state ? `${state}` : null}{" "}
                     <CancelRoundedIcon
                       onClick={() => history.push(routingConstants.MORE_BLOG)}
                     />

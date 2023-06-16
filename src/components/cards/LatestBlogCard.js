@@ -6,7 +6,11 @@ import eye from "../../assets/icons/svgs/eye.png";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import MenuBookRoundedIcon from "@mui/icons-material/MenuBookRounded";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
-import { addHyphensToLink, truncateString } from "../../utils/utils";
+import {
+  addHyphensToLink,
+  generateSlug,
+  truncateString,
+} from "../../utils/utils";
 import EastRoundedIcon from "@mui/icons-material/EastRounded";
 import { routingConstants } from "../../utils/constants";
 import { useHistory } from "react-router-dom";
@@ -34,9 +38,9 @@ const LatestBlogCard = (props) => {
       onClick={() =>
         history.push(
           routingConstants.MORE_BLOG +
-            category_name.toLowerCase() +
+            generateSlug(category_name) +
             "/" +
-            addHyphensToLink(title) +
+            generateSlug(title) +
             "-" +
             id,
         )
@@ -80,7 +84,12 @@ const LatestBlogCard = (props) => {
             className='card__button'
             onClick={() =>
               history.push(
-                routingConstants.MORE_BLOG + addHyphensToLink(title) + "-" + id,
+                routingConstants.MORE_BLOG +
+                  generateSlug(category_name) +
+                  "/" +
+                  generateSlug(title) +
+                  "-" +
+                  id,
               )
             }
           >

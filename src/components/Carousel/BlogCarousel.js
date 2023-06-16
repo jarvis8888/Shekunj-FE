@@ -8,7 +8,7 @@ import MenuBookRoundedIcon from "@mui/icons-material/MenuBookRounded";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import { routingConstants } from "../../utils/constants";
 import { useHistory } from "react-router-dom";
-import { DateFormat, addHyphensToLink } from "../../utils/utils";
+import { DateFormat, addHyphensToLink, generateSlug } from "../../utils/utils";
 
 const BlogCarousel = ({ images = [], color }) => {
   const history = useHistory();
@@ -39,9 +39,9 @@ const BlogCarousel = ({ images = [], color }) => {
       onClick={() =>
         history.push(
           routingConstants.MORE_BLOG +
-            images[currentIndex]?.category_name.toLowerCase() +
+            generateSlug(images[currentIndex]?.category_name) +
             "/" +
-            addHyphensToLink(images[currentIndex]?.title) +
+            generateSlug(images[currentIndex]?.title) +
             "-" +
             images[currentIndex]?.id,
         )

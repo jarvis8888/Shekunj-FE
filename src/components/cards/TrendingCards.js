@@ -1,7 +1,12 @@
 import React from "react";
 import "./style.scss";
 import time from "../../assets/icons/svgs/time.png";
-import { addHyphensToLink, truncateString } from "../../utils/utils";
+import {
+  addHyphensToLink,
+  generateSlug,
+  removeHtmlTags,
+  truncateString,
+} from "../../utils/utils";
 import { routingConstants } from "../../utils/constants";
 import EastRoundedIcon from "@mui/icons-material/EastRounded";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
@@ -28,10 +33,7 @@ const TrendingCards = (data) => {
         className='card'
         onClick={() =>
           history.push(
-            routingConstants.SUCCESS_STORIES +
-              addHyphensToLink(title) +
-              "-" +
-              id,
+            routingConstants.SUCCESS_STORIES + generateSlug(title) + "-" + id,
           )
         }
       >
@@ -56,7 +58,7 @@ const TrendingCards = (data) => {
           <h5 className=''>{title}</h5>
           <p
             dangerouslySetInnerHTML={{
-              __html: makeHtml(`${truncateString(description, 75)}`),
+              __html: makeHtml(`${removeHtmlTags(description)}`),
             }}
           />
           <div className='card__bottom'>
@@ -69,7 +71,7 @@ const TrendingCards = (data) => {
                 onClick={() =>
                   history.push(
                     routingConstants.SUCCESS_STORIES +
-                      addHyphensToLink(title) +
+                      generateSlug(title) +
                       "-" +
                       id,
                   )

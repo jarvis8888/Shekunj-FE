@@ -7,7 +7,7 @@ import MenuBookRoundedIcon from "@mui/icons-material/MenuBookRounded";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import time_icon from "../../assets/icons/svgs/time.png";
 import book from "../../assets/icons/svgs/book.png";
-import { addHyphensToLink } from "../../utils/utils";
+import { addHyphensToLink, generateSlug } from "../../utils/utils";
 
 export const TrendingBlogsCard = ({
   image,
@@ -28,9 +28,9 @@ export const TrendingBlogsCard = ({
       onClick={() =>
         history.push(
           routingConstants.MORE_BLOG +
-            category_name.toLowerCase() +
+            generateSlug(category_name) +
             "/" +
-            addHyphensToLink(description) +
+            generateSlug(description) +
             "-" +
             id,
         )

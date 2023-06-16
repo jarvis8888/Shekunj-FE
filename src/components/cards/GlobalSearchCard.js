@@ -4,6 +4,7 @@ import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import {
   DateFormat,
   addHyphensToLink,
+  generateSlug,
   removeHtmlTags,
   truncateString,
 } from "../../utils/utils";
@@ -70,9 +71,9 @@ export const GlobalSearchCard = ({
     const getRoute = (type, id, category_name, title) => {
       switch (type) {
         case "Success Story":
-          return `/success-stories/${id}`;
+          return `/success-stories/${generateSlug(title)}-${id}`;
         case "Article":
-          return `/article/${category_name.toLowerCase()}/${addHyphensToLink(
+          return `/article/${category_name.toLowerCase()}/${generateSlug(
             title,
           )}-${id}`;
         case "Courses":

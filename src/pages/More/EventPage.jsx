@@ -27,6 +27,7 @@ import httpServices from "../../utils/ApiServices";
 import {
   addEmailToClient,
   addHyphensToLink,
+  generateSlug,
   time_left,
 } from "../../utils/utils";
 import useDeviceDetect from "../../hooks/useDeviceDetect";
@@ -344,7 +345,7 @@ function EventPage() {
                           onClick={() =>
                             history.push(
                               routingConstants.MORE_EVENT +
-                                addHyphensToLink(items?.title) +
+                              generateSlug(items?.title) +
                                 "-" +
                                 items.id,
                             )
@@ -434,7 +435,7 @@ function EventPage() {
                         onClick={() =>
                           history.push(
                             routingConstants.MORE_EVENT +
-                              addHyphensToLink(items?.title) +
+                            generateSlug(items?.title) +
                               "-" +
                               items.id,
                           )
@@ -506,7 +507,7 @@ function EventPage() {
                                 onClick={() =>
                                   history.push(
                                     routingConstants.MORE_EVENT +
-                                      addHyphensToLink(items?.title) +
+                                    generateSlug(items?.title) +
                                       "-" +
                                       items.id,
                                   )
