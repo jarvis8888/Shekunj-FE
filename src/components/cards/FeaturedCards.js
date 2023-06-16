@@ -5,7 +5,7 @@ import book from "../../assets/icons/svgs/book.png";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import MenuBookRoundedIcon from "@mui/icons-material/MenuBookRounded";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
-import { addHyphensToLink, truncateString } from "../../utils/utils";
+import { addHyphensToLink, generateSlug, truncateString } from "../../utils/utils";
 import { routingConstants } from "../../utils/constants";
 import EastRoundedIcon from "@mui/icons-material/EastRounded";
 import { useHistory } from "react-router-dom";
@@ -31,7 +31,7 @@ const FeaturedCards = (props) => {
         onClick={() =>
           history.push(
             routingConstants.SUCCESS_STORIES +
-              addHyphensToLink(title) +
+            generateSlug(title) +
               "-" +
               id,
           )
@@ -78,7 +78,7 @@ const FeaturedCards = (props) => {
                 onClick={() =>
                   history.push(
                     routingConstants.SUCCESS_STORIES +
-                      addHyphensToLink(title) +
+                    generateSlug(title) +
                       "-" +
                       id,
                   )

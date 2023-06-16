@@ -431,6 +431,17 @@ export function assignColorToCategory(
 
 export function removeHtmlTags(htmlString) {
   // Remove HTML tags and inline styles using regex
-  var cleanText = htmlString.replace(/<[^>]+>|style\s*=\s*"[^"]*"/g, '');
+  var cleanText = htmlString.replace(/<[^>]+>|style\s*=\s*"[^"]*"/g, "");
   return cleanText;
+}
+
+export function generateSlug(title) {
+  const slug = title
+    .toLowerCase() // Convert to lowercase
+    .normalize("NFD") // Normalize diacritic characters
+    .replace(/[\u0300-\u036f]/g, "") // Remove diacritic characters
+    .replace(/[^\w-]+/g, "-") // Replace non-alphanumeric characters with hyphens
+    .replace(/--+/g, "-") // Remove consecutive hyphens
+    .replace(/^-|-$/g, ""); // Remove leading and trailing hyphens
+  return slug;
 }

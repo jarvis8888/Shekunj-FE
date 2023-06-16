@@ -7,7 +7,11 @@ import MenuBookRoundedIcon from "@mui/icons-material/MenuBookRounded";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import { routingConstants } from "../../utils/constants";
 import { useHistory } from "react-router-dom";
-import { addHyphensToLink, truncateString } from "../../utils/utils";
+import {
+  addHyphensToLink,
+  generateSlug,
+  truncateString,
+} from "../../utils/utils";
 
 export const TrendingBlogsCard2 = ({
   image,
@@ -36,9 +40,9 @@ export const TrendingBlogsCard2 = ({
         onClick={() =>
           history.push(
             routingConstants.MORE_BLOG +
-              category_name.toLowerCase() +
+              generateSlug(category_name) +
               "/" +
-              addHyphensToLink(title) +
+              generateSlug(title) +
               "-" +
               id,
           )
