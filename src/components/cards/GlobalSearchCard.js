@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import SchoolRoundedIcon from "@mui/icons-material/SchoolRounded";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
-import { DateFormat, removeHtmlTags, truncateString } from "../../utils/utils";
+import {
+  DateFormat,
+  addHyphensToLink,
+  removeHtmlTags,
+  truncateString,
+} from "../../utils/utils";
 import { useHistory, useLocation } from "react-router-dom";
 import { routingConstants } from "../../utils/constants";
 import { CustomLoader } from "../customLoader/CustomLoader";
@@ -62,12 +67,14 @@ export const GlobalSearchCard = ({
   };
 
   const renderCards = (data, type) => {
-    const getRoute = (type, id) => {
+    const getRoute = (type, id, category_name, title) => {
       switch (type) {
         case "Success Story":
           return `/success-stories/${id}`;
         case "Article":
-          return `/article/${id}`;
+          return `/article/${category_name.toLowerCase()}/${addHyphensToLink(
+            title,
+          )}-${id}`;
         case "Courses":
           return `/courses-details/${id}`;
         case "Mock Test":
@@ -80,7 +87,11 @@ export const GlobalSearchCard = ({
       <div className='col-md-3' key={index} style={{ cursor: "pointer" }}>
         <div
           className='sk-card-box'
-          onClick={() => history.push(`${getRoute(item.type, item.id)}`)}
+          onClick={() =>
+            history.push(
+              `${getRoute(item.type, item.id, item.category_name, item.title)}`,
+            )
+          }
         >
           <div className='sk-card-img'>
             <img src={item.image} alt={item?.type} />

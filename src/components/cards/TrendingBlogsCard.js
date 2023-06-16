@@ -20,14 +20,19 @@ export const TrendingBlogsCard = ({
   key,
   color,
 }) => {
-  console.log("🚀 ~ file: TrendingBlogsCard.js:23 ~ color:", color)
+  console.log("🚀 ~ file: TrendingBlogsCard.js:23 ~ color:", color);
   const history = useHistory();
   return (
     <div
       className='blog-card'
       onClick={() =>
         history.push(
-          routingConstants.MORE_BLOG + addHyphensToLink(description) + "-" + id,
+          routingConstants.MORE_BLOG +
+            category_name.toLowerCase() +
+            "/" +
+            addHyphensToLink(description) +
+            "-" +
+            id,
         )
       }
       style={{ cursor: "pointer" }}

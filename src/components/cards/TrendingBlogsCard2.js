@@ -35,7 +35,12 @@ export const TrendingBlogsCard2 = ({
         className='row my-4'
         onClick={() =>
           history.push(
-            routingConstants.MORE_BLOG + addHyphensToLink(title) + "-" + id,
+            routingConstants.MORE_BLOG +
+              category_name.toLowerCase() +
+              "/" +
+              addHyphensToLink(title) +
+              "-" +
+              id,
           )
         }
         style={{ cursor: "pointer" }}
