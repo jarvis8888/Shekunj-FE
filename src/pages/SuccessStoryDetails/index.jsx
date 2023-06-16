@@ -297,7 +297,7 @@ const SuccessStoryDetails = () => {
                                   key={items}
                                   onClick={() =>
                                     history.push(
-                                      `${routingConstants.SUCCESS_STORIES_HASHTAG}?search=${items}`,
+                                      `${routingConstants.SUCCESS_STORIES_HASHTAG}/${items}`,
                                       items,
                                     )
                                   }

@@ -20,7 +20,6 @@ const SEO = ({ title, description, image, keywords, link, currentUrl }) => {
         <meta property='og:keywords' content={keywords} />
         <meta name='keywords' content={keywords} />
         <link rel='canonical' href={link} />
-        <meta property='og:image' content={image} />
 
         {/* <!-- Open Graph Meta Tags --> */}
         <meta
@@ -36,7 +35,7 @@ const SEO = ({ title, description, image, keywords, link, currentUrl }) => {
       providing free training, job-oriented courses,
       jobs & internships and career counseling.'
         />
-        <meta property='og:image' content={image} />
+
         <meta property='og:url' content={currentUrl} />
         <meta property='og:type' content='website' />
 

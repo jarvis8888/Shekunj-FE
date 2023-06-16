@@ -476,6 +476,10 @@ img {
   // .sk-Removeside-space {
   //   border-left: 0;
   // }
+  .sk-event-sidebar::before
+    {
+      width: 0;
+    }
 }
 
 

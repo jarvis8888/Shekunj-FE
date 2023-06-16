@@ -39,6 +39,8 @@ const BlogCarousel = ({ images = [], color }) => {
       onClick={() =>
         history.push(
           routingConstants.MORE_BLOG +
+            images[currentIndex]?.category_name.toLowerCase() +
+            "/" +
             addHyphensToLink(images[currentIndex]?.title) +
             "-" +
             images[currentIndex]?.id,

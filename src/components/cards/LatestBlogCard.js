@@ -33,7 +33,12 @@ const LatestBlogCard = (props) => {
       key={key}
       onClick={() =>
         history.push(
-          routingConstants.MORE_BLOG + addHyphensToLink(title) + "-" + id,
+          routingConstants.MORE_BLOG +
+            category_name.toLowerCase() +
+            "/" +
+            addHyphensToLink(title) +
+            "-" +
+            id,
         )
       }
     >

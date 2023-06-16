@@ -234,7 +234,7 @@ function App() {
         />
         <Route
           exact
-          path={`${routingConstants.MORE_BLOG}:id`}
+          path={`${routingConstants.MORE_BLOG}:search/:id`}
           component={BlogDetails}
         />
         <Route
