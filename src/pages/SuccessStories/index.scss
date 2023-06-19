@@ -20,7 +20,12 @@
   border-top: 1px solid #d9d9d9;
   padding-top: 5px;
 }
-
+.sk-heading-story h6{
+  margin-bottom: 0;
+  font-weight: 400;
+  color:#888;
+  line-height: 25px;
+}
 .sk-story-eimg {
   position: relative;
 }
@@ -796,7 +801,7 @@ button.want_btn {
   }
 }
 .sk-storyHeading-top {
-  font-size: 50px;
+  font-size: 48px;
   font-weight: 600;
 }
 .sk-story-content p {
@@ -804,7 +809,7 @@ button.want_btn {
 }
 @media screen and (min-width: 1399px) and (max-width: 2550) {
   h1 {
-    font-size: 50px;
+    font-size: 48px;
     font-weight: 600;
   }
 }

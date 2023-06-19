@@ -434,7 +434,7 @@ function BlogPage() {
                   <div className='sk-topBottom-space'>
                     <div className='blog-stories'>
                       <div className='title' ref={sectionRef}>
-                        <img src={timeicon} alt='time' width={28} />
+                        <img src={timeicon} alt='time' width={36} />
                         <h4>Latest Blogs</h4>
                       </div>
 
@@ -530,7 +530,7 @@ function BlogPage() {
                       hashtags={blogsCategories}
                     />
                     <div className='title' ref={trendingSectionRef}>
-                      <img src={fire} alt='fire' width={28} />
+                      <img src={fire} alt='fire' width={36} />
                       <h4>Trending Blogs</h4>
                     </div>
                     <>

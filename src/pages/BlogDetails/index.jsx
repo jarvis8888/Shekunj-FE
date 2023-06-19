@@ -336,7 +336,7 @@ const BlogDetails = () => {
                     hashtags={blogCategories}
                   />
                   <div className='title' ref={trendingSectionRef}>
-                    <img src={fire} alt='fire' width={28} />
+                    <img src={fire} alt='fire' width={36} />
                     <h4>Trending Blogs</h4>
                   </div>
                   <div className='sk-blogMain-inner'>
