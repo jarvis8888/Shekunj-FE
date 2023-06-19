@@ -5,6 +5,8 @@ import useDeviceDetect from "../../hooks/useDeviceDetect";
 import YouMayLikeCarousel from "../Carousel/YouMayLikeCarousel";
 import { useHistory } from "react-router-dom";
 import { routingConstants } from "../../utils/constants";
+import ExpandMoreRoundedIcon from '@mui/icons-material/ExpandMoreRounded';
+import KeyboardArrowUpRoundedIcon from '@mui/icons-material/KeyboardArrowUpRounded';
 import { addEmailToClient } from "../../utils/utils";
 
 export const HashtagAndCatagories = (props) => {
@@ -32,10 +34,7 @@ export const HashtagAndCatagories = (props) => {
         tag.name,
       );
     } else {
-      history.push(
-        `${routingConstants.MORE_BLOG_CATEGORY}?category_id=${tag.name}`,
-        tag.id,
-      );
+      history.push(`${routingConstants.MORE_BLOG}${tag.name.toLowerCase()}`, tag.name);
     }
   };
 
@@ -69,7 +68,9 @@ export const HashtagAndCatagories = (props) => {
             ))}
         {hashtags.length > 3 && (
           <span className='hashtage-item' onClick={handleToggleView}>
-            {showAll ? "View Less" : "View All"}
+            {showAll ? "View Less " : "View All "}
+            {showAll? <KeyboardArrowUpRoundedIcon /> : <ExpandMoreRoundedIcon/> 
+            }
           </span>
         )}
       </div>

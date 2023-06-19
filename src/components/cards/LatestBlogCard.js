@@ -29,6 +29,7 @@ const LatestBlogCard = (props) => {
     id,
     category_name,
     color,
+    slug,
   } = props;
   const history = useHistory();
   return (
@@ -37,12 +38,7 @@ const LatestBlogCard = (props) => {
       key={key}
       onClick={() =>
         history.push(
-          routingConstants.MORE_BLOG +
-            generateSlug(category_name) +
-            "/" +
-            generateSlug(title) +
-            "-" +
-            id,
+          routingConstants.MORE_BLOG + generateSlug(category_name) + "/" + slug,
         )
       }
     >
@@ -87,9 +83,7 @@ const LatestBlogCard = (props) => {
                 routingConstants.MORE_BLOG +
                   generateSlug(category_name) +
                   "/" +
-                  generateSlug(title) +
-                  "-" +
-                  id,
+                  slug,
               )
             }
           >

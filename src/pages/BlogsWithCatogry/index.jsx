@@ -29,6 +29,7 @@ const BlogWithCatogry = () => {
   const detect = useDeviceDetect();
 
   const { state } = location;
+  const { search } = useParams();
 
   const searchParams = new URLSearchParams(location.search);
   const currentSearch = searchParams.get("category_id") || "";
@@ -43,7 +44,7 @@ const BlogWithCatogry = () => {
   const getBlogWithHashtagData = async (search) => {
     setLoading(true);
     try {
-      const url = `more/blogs?category_id=${search}`;
+      const url = `more/blogs?search=${search}`;
       const data = await httpServices.get(url);
       const { filtered_blogs, blog_categories } = data;
       if (filtered_blogs?.length > 0) {
@@ -127,10 +128,10 @@ const BlogWithCatogry = () => {
     );
   }, []);
   useEffect(() => {
-    if (state) {
-      getBlogWithHashtagData(state);
+    if (search) {
+      getBlogWithHashtagData(search);
     }
-  }, [state]);
+  }, [search]);
 
   const adCount = blogDetailsBoxAds.length; // Total number of ads
   let adIndex = 0; // Current ad index
@@ -182,7 +183,9 @@ const BlogWithCatogry = () => {
             <div className='col-xl-8 col-lg-8 col-md-8 Hashtag_container_cards sk-blog-detail-wa'>
               <div className='sk-topBottom-space'>
                 <h6 className='Hashtag_container_title'>
-                  {state ? `${currentSearch}` : "NA"}
+                  {search
+                    ? `${search.charAt(0).toUpperCase()}${search.slice(1)}`
+                    : "NA"}
                 </h6>
                 {loading ? (
                   <div>
@@ -207,9 +210,10 @@ const BlogWithCatogry = () => {
                                   items.about_blog,
                                 )}`}
                                 time={items.reading_time}
-                                date={DateFormat(`${items.created_at}`)}
+                                date={`${items.created_at}`}
                                 category_name={items.category_name}
                                 color={getCategoryColor(items.category_name)}
+                                slug={items.slug}
                               />
                             </>
                           );

@@ -41,7 +41,7 @@ const SuccessStoryDetails = () => {
 
   const { id } = useParams();
 
-  const lastNumber = id.split("-").pop();
+  // const lastNumber = id.split("-").pop();
 
   const [trendingData, setTrendingData] = useState([]);
   const [allHashTag, setAllHashTag] = useState([]);
@@ -104,9 +104,9 @@ const SuccessStoryDetails = () => {
   };
 
   useEffect(() => {
-    dispatch(fetchSuccessStoriesDetails(lastNumber));
+    dispatch(fetchSuccessStoriesDetails(id));
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-  }, [dispatch, lastNumber, lan, id]);
+  }, [dispatch, id, lan]);
 
   useEffect(() => {
     getAllSuccessStoryTrendingData(trendingPageLimit, trendingOffset);
@@ -331,10 +331,10 @@ const SuccessStoryDetails = () => {
                     </div>
                   </div>
                   <div className='sk-middleContent-story'>
-                    <h4 className='story-tittle'>
+                    <h1 className='story-tittle'>
                       {successStoriesDetails?.name}
-                    </h4>
-                    <h5 className='story-sub-tittle'>
+                    </h1>
+                    <h4 className='story-sub-tittle'>
                       {successStoriesDetails &&
                         successStoriesDetails?.designation}
                       {successStoriesDetails &&
@@ -343,7 +343,7 @@ const SuccessStoryDetails = () => {
                         ", "}
                       {successStoriesDetails &&
                         successStoriesDetails?.company_name}
-                    </h5>
+                    </h4>
                     <h6 className='description'>
                       {successStoriesDetails?.title}
                     </h6>
@@ -411,8 +411,11 @@ const SuccessStoryDetails = () => {
                     hashtags={allHashTag}
                   />
                   <div className='title' ref={trendingSectionRef}>
-                    <img src={fire} alt='fire' width={28} />
-                    <h4>Trending Stories </h4>
+                    <img src={fire} alt='fire' width={36} />
+                    <div className="sk-heading-story">
+                      <h4>Trending Stories </h4>
+                      <h6>Read the most popular success stories on SheKunj</h6>
+                    </div>
                   </div>
                   <div className='row'>
                     {trendingData?.map((items, index) => {

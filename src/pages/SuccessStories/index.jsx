@@ -18,6 +18,8 @@ import { adsList } from "../../store/ads";
 import { apiConstants, routingConstants } from "../../utils/constants";
 import AddsBanner from "../../components/AddsBanner/AddsBanner";
 import fire from "../../assets/images/fire.svg";
+import featurestory from "../../assets/images/featurestory.svg";
+
 import FeaturedCards from "../../components/cards/FeaturedCards";
 import { HashtagAndCatagories } from "../../components/HastagAndCatagories/Index";
 import TrendingCards from "../../components/cards/TrendingCards";
@@ -43,7 +45,7 @@ function SuccessStory() {
   const [offset, setOffset] = useState(0);
   const [trendingOffset, setTrendingOffset] = useState(0);
   const [page, setPage] = useState(0);
-  const pageLimit = 4;
+  const pageLimit = 6;
   const trendingPageLimit = 12;
 
   const [featuredData, setFeaturedData] = useState([]);
@@ -80,7 +82,7 @@ function SuccessStory() {
         for (let i = 0; i < res.length; i++) {
           newFeaturedData.push(res[i]);
 
-          if ((i + 1) % 2 === 0) {
+          if ((i + 1) % 2 === 0 && i !== res.length - 1) {
             newFeaturedData.push(addObjectData);
           }
         }
@@ -384,7 +386,7 @@ function SuccessStory() {
     //   });
     // }, 10); // Minimal delay for rendering update
 
-    setOffset(offset + 4);
+    setOffset(offset + 6);
   };
   const handleLoadMoreClickOnTrending = () => {
     if (currentTrendingData?.results?.length === 0) {
@@ -457,10 +459,7 @@ function SuccessStory() {
                               key={index}
                               onClick={() =>
                                 history.push(
-                                  routingConstants.SUCCESS_STORIES +
-                                    generateSlug(items.name) +
-                                    "-" +
-                                    items.id,
+                                  routingConstants.SUCCESS_STORIES + items.slug,
                                 )
                               }
                             >
@@ -537,8 +536,11 @@ function SuccessStory() {
                 <div className='col-xl-8 col-lg-8 col-md-8 featured-stories'>
                   <div className='sk-topBottom-space'>
                     <div className='title' ref={sectionRef}>
-                      <img src={fire} alt='fire' width={28} />
-                      <h4>Featured Stories </h4>
+                      <img src={featurestory} alt='featurestory' width={36} />
+                      <div className="sk-heading-story">
+                        <h4>Featured Stories </h4>
+                        <h6>Recommended stories, articles and interviews on SheKunj</h6>
+                      </div>
                     </div>
 
                     <div className='row'>
@@ -567,6 +569,8 @@ function SuccessStory() {
                                 created_at={items.created_at}
                                 reading_time={items.reading_time}
                                 id={items.id}
+                                slug={items.slug}
+                                ss_count={items.ss_count}
                               />
                             </>
                           );
@@ -592,8 +596,11 @@ function SuccessStory() {
 
                     <div ref={trendingSectionRef}>
                       <div className='title'>
-                        <img src={fire} alt='fire' width={28} />
-                        <h4>Trending Stories </h4>
+                        <img src={fire} alt='fire' width={36} />
+                        <div className="sk-heading-story">
+                          <h4>Trending Stories </h4>
+                          <h6>Read the most popular success stories on SheKunj</h6>
+                        </div>
                       </div>
 
                       <div className='row'>
@@ -621,6 +628,8 @@ function SuccessStory() {
                                   key={index}
                                   created_at={items.created_at}
                                   id={items.id}
+                                  slug={items.slug}
+                                  ss_count={items.ss_count}
                                 />
                               </>
                             );

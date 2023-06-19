@@ -24,6 +24,7 @@ import useDeviceDetect from "../../hooks/useDeviceDetect";
 import { NoDataFound } from "../../components/noDataFound/NoDataFound";
 import { HashtagAndCatagoriesForMobile } from "../../components/HastagAndCatagories/HastagAndCatagoriesForMobile";
 import { withHeaderFooter } from "../../hocs/withHeaderFooter";
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 
 const SuccessStroyWithHashtag = () => {
   const location = useLocation();
@@ -32,6 +33,7 @@ const SuccessStroyWithHashtag = () => {
   const detect = useDeviceDetect();
 
   const { state } = location;
+  const {search} = useParams()
 
   const searchParams = new URLSearchParams(location.search);
   const currentSearch = searchParams.get("search") || "";
@@ -161,10 +163,10 @@ const SuccessStroyWithHashtag = () => {
     );
   }, []);
   useEffect(() => {
-    if (state) {
-      getBlogWithHashtagData(state);
+    if (search) {
+      getBlogWithHashtagData(search);
     }
-  }, [state]);
+  }, [search]);
 
   const adCount = blogDetailsBoxAds.length; // Total number of ads
   let adIndex = 0; // Current ad index
@@ -218,7 +220,7 @@ const SuccessStroyWithHashtag = () => {
               <div className='sk-topBottom-space'>
                 <div className='Hashtag_container_title'>
                   <span className='catagories-search'>
-                    {state ? `${state}` : null}{" "}
+                    {search ? `${search.charAt(0).toUpperCase()}${search.slice(1)}` : null}{" "}
                     <CancelRoundedIcon
                       onClick={() => history.push(routingConstants.MORE_BLOG)}
                     />
@@ -247,9 +249,10 @@ const SuccessStroyWithHashtag = () => {
                                   items.about_blog,
                                 )}`}
                                 time={items.reading_time}
-                                date={DateFormat(`${items.created_at}`)}
+                                date={`${items.created_at}`}
                                 category_name={items.category_name}
                                 color={getCategoryColor(items.category_name)}
+                                slug={items.slug}
                               />
                             </>
                           );

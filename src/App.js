@@ -184,12 +184,12 @@ function App() {
 
         <Route
           exact
-          path={`${routingConstants.MORE_BLOG_CATEGORY}`}
+          path={`${routingConstants.MORE_BLOG_CATEGORY}/:search`}
           component={BlogCategoryPage}
         />
         <Route
           exact
-          path={`${routingConstants.MORE_BLOG_TAGS}`}
+          path={`${routingConstants.MORE_BLOG_TAGS}/:search`}
           component={BlogTagsPage}
         />
         <Route

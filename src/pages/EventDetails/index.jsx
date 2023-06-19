@@ -25,7 +25,7 @@ import GuidanceSelect from "./Select";
 import { apiConstants, routingConstants } from "../../utils/constants";
 import CircleRoundedIcon from "@mui/icons-material/CircleRounded";
 import locationicon from "../../assets/images/location.svg";
-import commonicon  from "../../assets/images/commonicon.svg";
+import commonicon from "../../assets/images/commonicon.svg";
 import eventemailsend from "../../assets/images/eventemailsend.svg";
 import gendericon from "../../assets/images/gendericon.svg";
 import SchoolRoundedIcon from "@mui/icons-material/SchoolRounded";
@@ -211,8 +211,8 @@ const EventDetails = () => {
   };
 
   useEffect(() => {
-    getEventDetailById(lastNumber);
-  }, [lastNumber, lan, id]);
+    getEventDetailById(id);
+  }, [id, lan]);
 
   const handleOpen = (index) => {
     setOpen(true);
@@ -586,7 +586,7 @@ const EventDetails = () => {
                                     }}
                                   />
                                   <span className='sk-icon-set'>
-                                    <img src={commonicon} alt="commonicon" />
+                                    <img src={commonicon} alt='commonicon' />
                                   </span>
                                 </div>
                                 {errors.extra_info_reg && (
