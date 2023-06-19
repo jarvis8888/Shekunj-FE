@@ -43,7 +43,7 @@ const BlogDetails = () => {
   const { id } = useParams();
   // Extract the last number from the id
 
-  const lastNumber = id.split("-").pop();
+  // const lastNumber = id.split("-").pop();
   // const parts = id.split("/");
   // console.log("🚀 ~ file: index.jsx:51 ~ BlogDetails ~ parts:", parts)
   // const lastPart = parts[parts.length - 1];
@@ -66,9 +66,9 @@ const BlogDetails = () => {
   const trendingPageLimit = 6;
 
   useEffect(() => {
-    dispatch(singleBlogDetails(lastNumber));
+    dispatch(singleBlogDetails(id));
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-  }, [dispatch, lastNumber, lan, id]);
+  }, [dispatch, id, lan]);
 
   const fetchData = async () => {
     setLoading(true);
@@ -274,7 +274,7 @@ const BlogDetails = () => {
                       <div class='sk-blokTVE-icon'>
                         <span>
                           <AccessTimeIcon />
-                          {DateFormat(`${blogs?.created_at}`)}
+                          {`${blogs?.created_at}`}
                         </span>
                         <span>
                           <MenuBookRoundedIcon /> {blogs?.reading_time}
@@ -318,7 +318,7 @@ const BlogDetails = () => {
                                 className='catagorie_search'
                                 onClick={() =>
                                   history.push(
-                                    `${routingConstants.MORE_BLOG_TAGS}?search=${items}`,
+                                    `${routingConstants.MORE_BLOG_TAGS}/${items}`,
                                     items,
                                   )
                                 }

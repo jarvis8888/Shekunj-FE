@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import { withHeaderFooter } from "../../hocs/withHeaderFooter";
 import httpServices from "../../utils/ApiServices";
@@ -8,6 +8,7 @@ import searchnavicon from "../../assets/images/searchicon.svg";
 import { GlobalSearchCard } from "../../components/cards/GlobalSearchCard";
 import { Grid } from "rsuite";
 import { useDispatch, useSelector } from "react-redux";
+import { useDebounce } from "../../hooks/useDebounce";
 
 const GlobalSearch = () => {
   const location = useLocation();
@@ -16,6 +17,7 @@ const GlobalSearch = () => {
 
   const searchParams = new URLSearchParams(location.search);
   const currentSearch = searchParams.get("search") || "";
+  const searchInputRef = useRef(null);
 
   const [data, setData] = useState({
     blogs: [],
@@ -24,8 +26,13 @@ const GlobalSearch = () => {
     success_stories: [],
   });
   const [hintData, setHintData] = useState([]);
+  const [autoSuggestionsData, setAutoSuggestionsData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [onSearchInput, setOnSearchInput] = useState("");
+  const [inputFocused, setInputFocused] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState(-1);
+
+  const auto_suggessions = useDebounce(onSearchInput);
 
   const placeholderOptions = useMemo(() => {
     return hintData.map((data) => `Search by ${data.name}`);
@@ -66,6 +73,18 @@ const GlobalSearch = () => {
     }
   };
 
+  const getAutoSuggestionData = async (search) => {
+    try {
+      const url = `more/auto_suggessions?query=${search}`;
+      const data = await httpServices.get(url);
+      const { keyword_list } = data;
+      setAutoSuggestionsData(keyword_list);
+    } catch (error) {
+      console.error(error);
+    } finally {
+    }
+  };
+
   const makeHtml = (htmlString) => {
     const htmlNode = document.createElement("div");
     htmlNode.innerHTML = htmlString;
@@ -76,21 +95,51 @@ const GlobalSearch = () => {
   };
 
   const handleSearch = () => {
-    setOnSearchInput();
+    setAutoSuggestionsData([]);
     const searchParams = new URLSearchParams();
     searchParams.set("search", onSearchInput);
     history.push({
       pathname: location.pathname,
       search: searchParams.toString(),
     });
+    searchInputRef.current.focus();
+  };
+
+  const handleAutoSuggestionClick = (search) => {
+    searchByTags(search);
+    setOnSearchInput(search);
+    setAutoSuggestionsData([]);
+    searchInputRef.current.focus();
+  };
+
+  const handleInputBlur = () => {
+    // Delay clearing the auto-suggestions to allow click events to trigger
+    setTimeout(() => {
+      if (!inputFocused) {
+        setAutoSuggestionsData([]);
+      }
+    }, 200);
   };
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
-      handleSearch();
+      if (selectedIndex !== -1) {
+        handleAutoSuggestionClick(autoSuggestionsData[selectedIndex]);
+      } else {
+        handleSearch();
+      }
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      setSelectedIndex((prevIndex) =>
+        prevIndex > 0 ? prevIndex - 1 : autoSuggestionsData.length - 1,
+      );
+    } else if (e.key === "ArrowDown") {
+      e.preventDefault();
+      setSelectedIndex((prevIndex) =>
+        prevIndex < autoSuggestionsData.length - 1 ? prevIndex + 1 : 0,
+      );
     }
   };
-
   const handleCancel = () => {
     setOnSearchInput("");
     history.push({
@@ -112,6 +161,10 @@ const GlobalSearch = () => {
     getGlobalSearchData(currentSearch);
   }, [currentSearch, lan]);
 
+  useEffect(() => {
+    getAutoSuggestionData(auto_suggessions);
+  }, [auto_suggessions]);
+
   return (
     <div>
       <section className='sk-search-sec'>
@@ -122,10 +175,11 @@ const GlobalSearch = () => {
                 <div className='sk-form'>
                   <div className='sk-form-group'>
                     <span className='sk-icon'>
-                      <img src={searchnavicon} />
+                      <img src={searchnavicon} alt='' />
                     </span>
                     <div className='career_form'>
                       <input
+                        ref={searchInputRef}
                         placeholder={placeholder}
                         hide_label='true'
                         type='search'
@@ -133,6 +187,8 @@ const GlobalSearch = () => {
                         value={onSearchInput}
                         onChange={(e) => setOnSearchInput(e.target.value)}
                         onKeyDown={handleKeyDown}
+                        onFocus={() => setInputFocused(true)}
+                        onBlur={handleInputBlur}
                       />
                       {/* {onSearchInput === "" ? (
                         <div className='updown-move'>{placeholder}</div>
@@ -148,6 +204,20 @@ const GlobalSearch = () => {
                       </button>
                     </div>
                   </div>
+
+                  {inputFocused && onSearchInput !== "" && (
+                    <div>
+                      {autoSuggestionsData?.map((item, index) => (
+                        <li
+                          key={item}
+                          className={index === selectedIndex ? "selected" : ""}
+                          onClick={() => handleAutoSuggestionClick(item)}
+                        >
+                          {item}
+                        </li>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
               <ul>

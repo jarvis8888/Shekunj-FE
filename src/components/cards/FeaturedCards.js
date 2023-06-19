@@ -5,7 +5,11 @@ import book from "../../assets/icons/svgs/book.png";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import MenuBookRoundedIcon from "@mui/icons-material/MenuBookRounded";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
-import { addHyphensToLink, generateSlug, truncateString } from "../../utils/utils";
+import {
+  addHyphensToLink,
+  generateSlug,
+  truncateString,
+} from "../../utils/utils";
 import { routingConstants } from "../../utils/constants";
 import EastRoundedIcon from "@mui/icons-material/EastRounded";
 import { useHistory } from "react-router-dom";
@@ -21,6 +25,8 @@ const FeaturedCards = (props) => {
     reading_time,
     created_at,
     id,
+    slug,
+    ss_count,
   } = props;
   const history = useHistory();
   return (
@@ -28,14 +34,7 @@ const FeaturedCards = (props) => {
       <div
         className='card'
         key={key}
-        onClick={() =>
-          history.push(
-            routingConstants.SUCCESS_STORIES +
-            generateSlug(title) +
-              "-" +
-              id,
-          )
-        }
+        onClick={() => history.push(routingConstants.SUCCESS_STORIES + slug)}
       >
         <div className='card__image'>
           <img src={image} alt={title} />
@@ -68,20 +67,15 @@ const FeaturedCards = (props) => {
               {created_at}
             </span>
             <span>
-              <MenuBookRoundedIcon />
-              {reading_time}
+              <VisibilityOutlinedIcon />
+              {ss_count}
             </span>
 
             <span>
               <button
                 className='card__button'
                 onClick={() =>
-                  history.push(
-                    routingConstants.SUCCESS_STORIES +
-                    generateSlug(title) +
-                      "-" +
-                      id,
-                  )
+                  history.push(routingConstants.SUCCESS_STORIES + slug)
                 }
               >
                 Read More <EastRoundedIcon />

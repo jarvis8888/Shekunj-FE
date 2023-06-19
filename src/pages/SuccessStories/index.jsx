@@ -43,7 +43,7 @@ function SuccessStory() {
   const [offset, setOffset] = useState(0);
   const [trendingOffset, setTrendingOffset] = useState(0);
   const [page, setPage] = useState(0);
-  const pageLimit = 4;
+  const pageLimit = 6;
   const trendingPageLimit = 12;
 
   const [featuredData, setFeaturedData] = useState([]);
@@ -80,7 +80,7 @@ function SuccessStory() {
         for (let i = 0; i < res.length; i++) {
           newFeaturedData.push(res[i]);
 
-          if ((i + 1) % 2 === 0) {
+          if ((i + 1) % 2 === 0 && i !== res.length - 1) {
             newFeaturedData.push(addObjectData);
           }
         }
@@ -384,7 +384,7 @@ function SuccessStory() {
     //   });
     // }, 10); // Minimal delay for rendering update
 
-    setOffset(offset + 4);
+    setOffset(offset + 6);
   };
   const handleLoadMoreClickOnTrending = () => {
     if (currentTrendingData?.results?.length === 0) {
@@ -457,10 +457,7 @@ function SuccessStory() {
                               key={index}
                               onClick={() =>
                                 history.push(
-                                  routingConstants.SUCCESS_STORIES +
-                                    generateSlug(items.name) +
-                                    "-" +
-                                    items.id,
+                                  routingConstants.SUCCESS_STORIES + items.slug,
                                 )
                               }
                             >
@@ -567,6 +564,8 @@ function SuccessStory() {
                                 created_at={items.created_at}
                                 reading_time={items.reading_time}
                                 id={items.id}
+                                slug={items.slug}
+                                ss_count={items.ss_count}
                               />
                             </>
                           );
@@ -621,6 +620,8 @@ function SuccessStory() {
                                   key={index}
                                   created_at={items.created_at}
                                   id={items.id}
+                                  slug={items.slug}
+                                  ss_count={items.ss_count}
                                 />
                               </>
                             );

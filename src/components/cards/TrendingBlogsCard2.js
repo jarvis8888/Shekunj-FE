@@ -22,6 +22,7 @@ export const TrendingBlogsCard2 = ({
   id,
   category_name,
   color,
+  slug,
 }) => {
   const history = useHistory();
 
@@ -42,9 +43,7 @@ export const TrendingBlogsCard2 = ({
             routingConstants.MORE_BLOG +
               generateSlug(category_name) +
               "/" +
-              generateSlug(title) +
-              "-" +
-              id,
+              slug,
           )
         }
         style={{ cursor: "pointer" }}

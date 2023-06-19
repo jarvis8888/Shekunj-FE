@@ -25,17 +25,15 @@ const TrendingCards = (data) => {
     reading_time,
     id,
     created_at,
+    slug,
+    ss_count
   } = data;
   const history = useHistory();
   return (
     <div className='col-xl-4 col-lg-6 col-md-6 col-sm-12'>
       <div
         className='card'
-        onClick={() =>
-          history.push(
-            routingConstants.SUCCESS_STORIES + generateSlug(title) + "-" + id,
-          )
-        }
+        onClick={() => history.push(routingConstants.SUCCESS_STORIES + slug)}
       >
         <div className='card__image'>
           <img src={image} alt={title} />
@@ -63,18 +61,13 @@ const TrendingCards = (data) => {
           />
           <div className='card__bottom'>
             <span>
-              <AccessTimeIcon /> {created_at}
+              <VisibilityOutlinedIcon /> {ss_count}
             </span>
             <span>
               <button
                 className='card__button'
                 onClick={() =>
-                  history.push(
-                    routingConstants.SUCCESS_STORIES +
-                      generateSlug(title) +
-                      "-" +
-                      id,
-                  )
+                  history.push(routingConstants.SUCCESS_STORIES + slug)
                 }
               >
                 Read More <EastRoundedIcon />

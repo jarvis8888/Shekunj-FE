@@ -37,7 +37,7 @@ function BlogPage() {
   const [offset, setOffset] = useState(0);
   const [trendingOffset, setTrendingOffset] = useState(0);
 
-  const pageLimit = 4;
+  const pageLimit = 6;
   const trendingPageLimit = 6;
   const sectionRef = useRef(null);
   const trendingSectionRef = useRef(null);
@@ -76,7 +76,7 @@ function BlogPage() {
         for (let i = 0; i < res.length; i++) {
           newFeaturedData.push(res[i]);
 
-          if ((i + 1) % 2 === 0) {
+          if ((i + 1) % 2 === 0 && i !== res.length - 1) {
             newFeaturedData.push(addObjectData);
           }
         }
@@ -252,8 +252,13 @@ function BlogPage() {
       className='col-xl-6 col-lg-6 col-md-12 col-sm-12'
     >
       <div className='sk-cardAdd-fix'>
-      <span className="sk-ad-title">Advertisement</span>
-        <a href={ad.url_adds} target='_blank' rel='noreferrer' className="mx-auto">
+        <span className='sk-ad-title'>Advertisement</span>
+        <a
+          href={ad.url_adds}
+          target='_blank'
+          rel='noreferrer'
+          className='mx-auto'
+        >
           {detect.isMobile
             ? ad.image_mobile && <img src={ad.image_mobile} alt='' />
             : ad.image && <img src={ad.image} alt='' />}
@@ -279,20 +284,20 @@ function BlogPage() {
   };
 
   const renderAd = (ad) => (
-    <div className="row">
-    <div
-      key={ad.id}
-      onClick={() => addEmailToClient(ad.add_email)}
-      className='col-xl-12'
-    >
-      <div className='card'>
-        <a href={ad.url_adds} target='_blank' rel='noreferrer'>
-          {detect.isMobile
-            ? ad.image_mobile && <img src={ad.image_mobile} alt='' />
-            : ad.image && <img src={ad.image} alt='' />}
-        </a>
+    <div className='row'>
+      <div
+        key={ad.id}
+        onClick={() => addEmailToClient(ad.add_email)}
+        className='col-xl-12'
+      >
+        <div className='card'>
+          <a href={ad.url_adds} target='_blank' rel='noreferrer'>
+            {detect.isMobile
+              ? ad.image_mobile && <img src={ad.image_mobile} alt='' />
+              : ad.image && <img src={ad.image} alt='' />}
+          </a>
+        </div>
       </div>
-    </div>
     </div>
   );
 
@@ -314,7 +319,7 @@ function BlogPage() {
     //   });
     // }, 10); // Minimal delay for rendering update
 
-    setOffset(offset + 4);
+    setOffset(offset + 6);
   };
 
   const namesArray = blogsCategories?.map((category) => category.name);
@@ -364,10 +369,11 @@ function BlogPage() {
                               id={items.id}
                               description={items.title}
                               time={items.reading_time}
-                              date={DateFormat(`${items.created_at}`)}
+                              date={`${items.created_at}`}
                               category_name={items.category_name}
                               key={index}
                               color={getCategoryColor(items.category_name)}
+                              slug={items.slug}
                             />
                           </>
                         );
@@ -457,9 +463,7 @@ function BlogPage() {
                                     )}`}
                                     makeHtml={makeHtml}
                                     key={index}
-                                    created_at={DateFormat(
-                                      `${items.created_at}`,
-                                    )}
+                                    created_at={`${items.created_at}`}
                                     reading_time={items.reading_time}
                                     id={items.id}
                                     blog_count={items.blog_count}
@@ -467,6 +471,7 @@ function BlogPage() {
                                     color={getCategoryColor(
                                       items.category_name,
                                     )}
+                                    slug={items.slug}
                                   />
                                 </div>
                               </>
@@ -551,7 +556,7 @@ function BlogPage() {
                                   items.about_blog,
                                 )}`}
                                 time={items?.reading_time}
-                                date={DateFormat(`${items.created_at}`)}
+                                date={`${items.created_at}`}
                                 category_name={items.category_name}
                                 color={getCategoryColor(items.category_name)}
                               />

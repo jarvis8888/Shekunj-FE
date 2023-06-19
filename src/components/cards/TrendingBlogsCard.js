@@ -19,6 +19,7 @@ export const TrendingBlogsCard = ({
   category_name,
   key,
   color,
+  slug,
 }) => {
   console.log("🚀 ~ file: TrendingBlogsCard.js:23 ~ color:", color);
   const history = useHistory();
@@ -27,12 +28,7 @@ export const TrendingBlogsCard = ({
       className='blog-card'
       onClick={() =>
         history.push(
-          routingConstants.MORE_BLOG +
-            generateSlug(category_name) +
-            "/" +
-            generateSlug(description) +
-            "-" +
-            id,
+          routingConstants.MORE_BLOG + generateSlug(category_name) + "/" + slug,
         )
       }
       style={{ cursor: "pointer" }}

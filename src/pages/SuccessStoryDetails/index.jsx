@@ -41,7 +41,7 @@ const SuccessStoryDetails = () => {
 
   const { id } = useParams();
 
-  const lastNumber = id.split("-").pop();
+  // const lastNumber = id.split("-").pop();
 
   const [trendingData, setTrendingData] = useState([]);
   const [allHashTag, setAllHashTag] = useState([]);
@@ -104,9 +104,9 @@ const SuccessStoryDetails = () => {
   };
 
   useEffect(() => {
-    dispatch(fetchSuccessStoriesDetails(lastNumber));
+    dispatch(fetchSuccessStoriesDetails(id));
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-  }, [dispatch, lastNumber, lan, id]);
+  }, [dispatch, id, lan]);
 
   useEffect(() => {
     getAllSuccessStoryTrendingData(trendingPageLimit, trendingOffset);

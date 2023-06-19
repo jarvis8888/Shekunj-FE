@@ -68,14 +68,12 @@ export const GlobalSearchCard = ({
   };
 
   const renderCards = (data, type) => {
-    const getRoute = (type, id, category_name, title) => {
+    const getRoute = (type, id, category_name, title, slug) => {
       switch (type) {
         case "Success Story":
-          return `/success-stories/${generateSlug(title)}-${id}`;
+          return `/success-stories/${slug}`;
         case "Article":
-          return `/article/${category_name.toLowerCase()}/${generateSlug(
-            title,
-          )}-${id}`;
+          return `/article/${category_name.toLowerCase()}/${slug}`;
         case "Courses":
           return `/courses-details/${id}`;
         case "Mock Test":
@@ -90,7 +88,13 @@ export const GlobalSearchCard = ({
           className='sk-card-box'
           onClick={() =>
             history.push(
-              `${getRoute(item.type, item.id, item.category_name, item.title)}`,
+              `${getRoute(
+                item.type,
+                item.id,
+                item.category_name,
+                item.title,
+                item.slug,
+              )}`,
             )
           }
         >
@@ -101,7 +105,7 @@ export const GlobalSearchCard = ({
             <div className='sk-week-time'>
               {item?.type === "Article" && (
                 <span>
-                  <AccessTimeIcon /> {DateFormat(`${item.created_at}`)}
+                  <AccessTimeIcon /> {`${item.created_at}`}
                 </span>
               )}
               {item?.type === "Success Story" && (

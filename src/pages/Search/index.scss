@@ -5,7 +5,7 @@ img {
 // section {
 //   padding: 40px 0;
 // }
-.sk-card-sec{
+.sk-card-sec {
   padding: 40px 0 20px;
 }
 .sk-eventcard-sec {
@@ -20,7 +20,8 @@ img {
   margin-top: 20px;
 }
 .sk-search-sec {
-  background: #fff url(../../assets/images/search-bg.png) no-repeat center center;
+  background: #fff url(../../assets/images/search-bg.png) no-repeat center
+    center;
   background-size: cover;
   padding: 40px 0;
   position: relative;
@@ -239,7 +240,7 @@ img {
   text-align: center;
   margin-bottom: 15px;
 }
-.sk-title-heading h1 span{
+.sk-title-heading h1 span {
   color: #d3317d;
 }
 .sk-explore-btn {
@@ -568,4 +569,8 @@ img {
   .sk-search-sec input {
     height: 38px;
   }
+}
+
+.selected {
+  background-color: #f0f0f0;
 }

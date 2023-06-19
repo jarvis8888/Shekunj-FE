@@ -41,9 +41,8 @@ const BlogCarousel = ({ images = [], color }) => {
           routingConstants.MORE_BLOG +
             generateSlug(images[currentIndex]?.category_name) +
             "/" +
-            generateSlug(images[currentIndex]?.title) +
-            "-" +
-            images[currentIndex]?.id,
+            generateSlug(images[currentIndex]?.slug) 
+            
         )
       }
     >
@@ -84,7 +83,7 @@ const BlogCarousel = ({ images = [], color }) => {
           <div className='has'>
             <span style={{ color: "#020202" }}>
               <AccessTimeIcon />
-              {DateFormat(`${images[currentIndex]?.created_at}`)}
+              {`${images[currentIndex]?.created_at}`}
             </span>
             <span style={{ color: "#020202" }}>
               <MenuBookRoundedIcon />

@@ -101,19 +101,19 @@ function EventPage() {
         url += `?limit=${8}&offset=${currentOffset}`;
       }
       const { data } = await httpServices.get(url);
-      const { event_list, today_tomorrow, this_week, next_week, genres_list } =
-        data;
+      const {
+        banner_event,
+        event_list,
+        today_tomorrow,
+        this_week,
+        next_week,
+        genres_list,
+      } = data;
 
       setCurrentData(event_list?.results);
       setGenresListData(genres_list);
-      //need to change according to backend change
-      setAllSliderEventData((prevFeaturedData) => [
-        ...today_tomorrow,
-        ...this_week,
-        ...next_week,
-        ...prevFeaturedData,
-        ...event_list?.results,
-      ]);
+
+      setAllSliderEventData(banner_event);
       // Process today_tomorrow data
       const todayTomorrowEventData = today_tomorrow || [];
       const todayTomorrowDataWithAds = addAdvertisementObjects(
@@ -269,8 +269,13 @@ function EventPage() {
       className='col-xl-3 col-lg-4 col-md-6'
     >
       <div className='sk-eventBox-adds'>
-        <span className="sk-ad-title">Advertisement</span>
-        <a href={ad.url_adds} target='_blank' rel='noreferrer' className="mx-auto">
+        <span className='sk-ad-title'>Advertisement</span>
+        <a
+          href={ad.url_adds}
+          target='_blank'
+          rel='noreferrer'
+          className='mx-auto'
+        >
           {detect.isMobile
             ? ad.image_mobile && <img src={ad.image_mobile} alt='' />
             : ad.image && <img src={ad.image} alt='' />}
@@ -344,10 +349,7 @@ function EventPage() {
                           key={index}
                           onClick={() =>
                             history.push(
-                              routingConstants.MORE_EVENT +
-                              generateSlug(items?.title) +
-                                "-" +
-                                items.id,
+                              routingConstants.MORE_EVENT + items?.slug,
                             )
                           }
                         >
@@ -434,10 +436,7 @@ function EventPage() {
                         key={index}
                         onClick={() =>
                           history.push(
-                            routingConstants.MORE_EVENT +
-                            generateSlug(items?.title) +
-                              "-" +
-                              items.id,
+                            routingConstants.MORE_EVENT + items?.slug,
                           )
                         }
                         style={{ cursor: "pointer" }}
@@ -506,10 +505,7 @@ function EventPage() {
                                 className='sk-btn-register'
                                 onClick={() =>
                                   history.push(
-                                    routingConstants.MORE_EVENT +
-                                    generateSlug(items?.title) +
-                                      "-" +
-                                      items.id,
+                                    routingConstants.MORE_EVENT + items?.slug,
                                   )
                                 }
                               >
