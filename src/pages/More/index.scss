@@ -5,8 +5,9 @@ body {
 .sk-event-sec img {
   border-radius: 8px;
   filter: drop-shadow(4px 4px 8px rgba(0, 0, 0, 0.25));
-  margin: 20px 0;
+  margin: 48px 0;
   width: 100%;
+  overflow: hidden;
 }
 .sk-event-sec.sk-slide-arrow .swiper-button-next,
 .sk-event-sec.sk-slide-arrow .swiper-button-prev {

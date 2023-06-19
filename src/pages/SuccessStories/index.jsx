@@ -18,6 +18,8 @@ import { adsList } from "../../store/ads";
 import { apiConstants, routingConstants } from "../../utils/constants";
 import AddsBanner from "../../components/AddsBanner/AddsBanner";
 import fire from "../../assets/images/fire.svg";
+import featurestory from "../../assets/images/featurestory.svg";
+
 import FeaturedCards from "../../components/cards/FeaturedCards";
 import { HashtagAndCatagories } from "../../components/HastagAndCatagories/Index";
 import TrendingCards from "../../components/cards/TrendingCards";
@@ -534,8 +536,11 @@ function SuccessStory() {
                 <div className='col-xl-8 col-lg-8 col-md-8 featured-stories'>
                   <div className='sk-topBottom-space'>
                     <div className='title' ref={sectionRef}>
-                      <img src={fire} alt='fire' width={28} />
-                      <h4>Featured Stories </h4>
+                      <img src={featurestory} alt='featurestory' width={36} />
+                      <div className="sk-heading-story">
+                        <h4>Featured Stories </h4>
+                        <h6>Recommended stories, articles and interviews on SheKunj</h6>
+                      </div>
                     </div>
 
                     <div className='row'>
@@ -591,8 +596,11 @@ function SuccessStory() {
 
                     <div ref={trendingSectionRef}>
                       <div className='title'>
-                        <img src={fire} alt='fire' width={28} />
-                        <h4>Trending Stories </h4>
+                        <img src={fire} alt='fire' width={36} />
+                        <div className="sk-heading-story">
+                          <h4>Trending Stories </h4>
+                          <h6>Read the most popular success stories on SheKunj</h6>
+                        </div>
                       </div>
 
                       <div className='row'>
