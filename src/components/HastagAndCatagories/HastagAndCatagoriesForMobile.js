@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./index.scss";
 
 import useDeviceDetect from "../../hooks/useDeviceDetect";
