@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./index.scss";
 import SocialMediaIcons from "./SocialMediaIcons";
 import useDeviceDetect from "../../hooks/useDeviceDetect";
@@ -19,6 +19,27 @@ export const HashtagAndCatagories = (props) => {
   } = props;
   const detect = useDeviceDetect();
   const history = useHistory();
+  const [showAll, setShowAll] = useState(false);
+
+  const handleToggleView = () => {
+    setShowAll((prevShowAll) => !prevShowAll);
+  };
+
+  const handleClick = (tag) => {
+    if (type === "hashtag") {
+      history.push(
+        `${routingConstants.SUCCESS_STORIES_HASHTAG}/${tag.name}`,
+        tag.name,
+      );
+    } else {
+      history.push(
+        `${routingConstants.MORE_BLOG_CATEGORY}?category_id=${tag.name}`,
+        tag.id,
+      );
+    }
+  };
+
+  const renderedHashtags = showAll ? hashtags : hashtags.slice(0, 3);
 
   return (
     <div className='HashtagAndCatagories'>
@@ -28,34 +49,29 @@ export const HashtagAndCatagories = (props) => {
       </div>
       <div className='HashtagAndCatagoriesTitle'>
         {type === "hashtag"
-          ? hashtags.map((tag) => (
+          ? renderedHashtags.map((tag) => (
               <span
                 className='hashtage-item'
                 key={tag.id}
-                onClick={() =>
-                  history.push(
-                    `${routingConstants.SUCCESS_STORIES_HASHTAG}/${tag.name}`,
-                    tag.name,
-                  )
-                }
+                onClick={() => handleClick(tag)}
               >
                 {type === "hashtag" ? `#${tag?.name}` : tag?.name}
               </span>
             ))
-          : hashtags.map((tag) => (
+          : renderedHashtags.map((tag) => (
               <span
                 className='hashtage-item'
                 key={tag.id}
-                onClick={() =>
-                  history.push(
-                    `${routingConstants.MORE_BLOG_CATEGORY}?category_id=${tag.name}`,
-                    tag.id,
-                  )
-                }
+                onClick={() => handleClick(tag)}
               >
                 {type === "hashtag" ? `${tag?.name}` : tag?.name}
               </span>
             ))}
+        {hashtags.length > 3 && (
+          <span className='hashtage-item' onClick={handleToggleView}>
+            {showAll ? "View Less" : "View All"}
+          </span>
+        )}
       </div>
       <div className='fristAdd'>
         {rightOne.length > 0 && (
