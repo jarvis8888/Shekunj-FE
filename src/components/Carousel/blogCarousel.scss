@@ -17,7 +17,7 @@
     position: relative;
     img {
     width: 100%;
-    // border-radius: 8px;
+    border-radius: 4px;
     }
   }
 
@@ -153,9 +153,6 @@
     padding-bottom: 10px;
   }
   .carousel{
-    border-radius: 0;
-  }
-  .carousel__slide img{
     border-radius: 0;
   }
 }

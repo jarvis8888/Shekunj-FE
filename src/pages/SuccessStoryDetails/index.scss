@@ -620,7 +620,7 @@
     align-items: center;
   }
   .sk-headingblog-title {
-    font-size: calc(1rem + 1.5vw);
+    font-size: 48px;
   }
 
   @media screen and (max-width: 768px) {
@@ -706,5 +706,8 @@
   }
   .sk-middleContent-story p {
     font-size: 14px;
+  }
+  .sk-headingblog-title {
+    font-size: 32px;
   }
 }

@@ -77,7 +77,7 @@ const LatestBlogCard = (props) => {
         />
         <span>
           <button
-            className='card__button'
+            className='card__button sk-blog-btn'
             onClick={() =>
               history.push(
                 routingConstants.MORE_BLOG +
