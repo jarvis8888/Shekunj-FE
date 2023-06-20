@@ -9,6 +9,7 @@ import { singleBlogDetails } from "../../store/blogs/action";
 import "../HomePage/index.scss";
 import "./index.scss";
 import { adsList } from "../../store/ads";
+import discoverblog from "../../assets/images/discoverblog.svg";
 import axios from "axios";
 import useDeviceDetect from "../../hooks/useDeviceDetect";
 import MenuBookRoundedIcon from "@mui/icons-material/MenuBookRounded";
@@ -293,7 +294,7 @@ const BlogDetails = () => {
                       />
                     </div>
                   </div>
-                  <h2 className='sk-headingblog-title'>{blogs?.title}</h2>
+                  <h1 className='sk-headingblog-title'>{blogs?.title}</h1>
                   <div
                     className='sk-blogDetails-content'
                     dangerouslySetInnerHTML={{
@@ -336,8 +337,11 @@ const BlogDetails = () => {
                     hashtags={blogCategories}
                   />
                   <div className='title' ref={trendingSectionRef}>
-                    <img src={fire} alt='fire' width={36} />
-                    <h4>Trending Blogs</h4>
+                      <img src={discoverblog} alt='discoverblog' width={36} />
+                      <div className="sk-heading-story">
+                        <h4>Discover More Articles</h4>
+                        <h6>Explore more articles, news and trends on SheKunj</h6>
+                      </div>
                   </div>
                   <div className='sk-blogMain-inner'>
                     {trendingBlogs?.map((items, index) => {

@@ -845,16 +845,15 @@ img.google_ads_home {
   margin-left: 10px;
 }
 .sk-blog-side p.blog-card__description {
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 2;
   text-overflow: ellipsis;
   white-space: pre-line;
   overflow: hidden;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   margin-bottom: 0px;
-  font-size: 18px;
-  font-weight: 500;
-  line-height: 25px;
+  font-size: 16px;
+  font-weight: 400;
 }
 .sk-blog-detail-wa .blog-card2__meta span img {
   margin-right: 10px;

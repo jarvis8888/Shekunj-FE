@@ -96,7 +96,7 @@ function EventPage() {
     try {
       let url = `more/events`;
       if (genre) {
-        url += `?genre_id=${genre}`;
+        url += `?genre__name=${genre}`;
       } else {
         url += `?limit=${8}&offset=${currentOffset}`;
       }
@@ -158,7 +158,7 @@ function EventPage() {
     setSelectedButton(option);
     setSelectedOption(null);
     const searchParams = new URLSearchParams();
-    searchParams.set("genre_id", "");
+    searchParams.set("genre", "");
     history.push({
       pathname: location.pathname,
       search: searchParams.toString(),
@@ -186,7 +186,7 @@ function EventPage() {
     setSelectedButton(null);
     setCurrentOffset(0);
     const searchParams = new URLSearchParams();
-    searchParams.set("genre_id", option);
+    searchParams.set("genre", option);
     history.push({
       pathname: location.pathname,
       search: searchParams.toString(),
@@ -245,7 +245,7 @@ function EventPage() {
 
   useEffect(() => {
     const params = new URLSearchParams(location.search);
-    const genreParam = params.get("genre_id");
+    const genreParam = params.get("genre");
     setSelectedOption(genreParam);
     if (genreParam) {
       handleGenerOptionClick(genreParam);
@@ -408,9 +408,9 @@ function EventPage() {
                         <>
                           <li key={items.id}>
                             <a
-                              onClick={() => handleGenerOptionClick(items.id)}
+                              onClick={() => handleGenerOptionClick(items.name)}
                               className={
-                                selectedOption == items.id && "active-time"
+                                selectedOption == items.name && "active-time"
                               }
                             >
                               {items.name}

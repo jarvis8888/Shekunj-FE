@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./index.scss";
 import SocialMediaIcons from "./SocialMediaIcons";
+import blogcategoryicon from "../../assets/images/blogcategoryicon.svg";
 import useDeviceDetect from "../../hooks/useDeviceDetect";
 import YouMayLikeCarousel from "../Carousel/YouMayLikeCarousel";
 import { useHistory } from "react-router-dom";
@@ -34,7 +35,7 @@ export const HashtagAndCatagories = (props) => {
         tag.name,
       );
     } else {
-      history.push(`${routingConstants.MORE_BLOG}${tag.name.toLowerCase()}`, tag.name);
+      history.push(`${routingConstants.MORE_BLOG}${tag.name}`, tag.name);
     }
   };
 
@@ -43,7 +44,7 @@ export const HashtagAndCatagories = (props) => {
   return (
     <div className='HashtagAndCatagories'>
       <div className='HashtagAndCatagoriesTitle'>
-        <img src={image} alt='#' />
+        <img src={image} alt='image' />
         <h5>{title}</h5>
       </div>
       <div className='HashtagAndCatagoriesTitle'>

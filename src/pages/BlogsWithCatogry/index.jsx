@@ -44,7 +44,7 @@ const BlogWithCatogry = () => {
   const getBlogWithHashtagData = async (search) => {
     setLoading(true);
     try {
-      const url = `more/blogs?search=${search}`;
+      const url = `more/blogs?category__name=${search}`;
       const data = await httpServices.get(url);
       const { filtered_blogs, blog_categories } = data;
       if (filtered_blogs?.length > 0) {
@@ -182,11 +182,14 @@ const BlogWithCatogry = () => {
           <div className='row'>
             <div className='col-xl-8 col-lg-8 col-md-8 Hashtag_container_cards sk-blog-detail-wa'>
               <div className='sk-topBottom-space'>
-                <h6 className='Hashtag_container_title'>
-                  {search
-                    ? `${search.charAt(0).toUpperCase()}${search.slice(1)}`
-                    : "NA"}
-                </h6>
+                <div className="sk-hashtag-headingtitle">
+                  <h1 className='Hashtag_container_title'>
+                    {search
+                      ? `${search.charAt(0).toUpperCase()}${search.slice(1)}`
+                      : "NA"}
+                  </h1>
+                  <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal.</p>
+                </div>
                 {loading ? (
                   <div>
                     <CustomLoader />
