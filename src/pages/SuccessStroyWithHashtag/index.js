@@ -207,12 +207,14 @@ const SuccessStroyWithHashtag = () => {
           <div className='row'>
             <div className='col-xl-8 col-lg-8 col-md-8'>
               <div className='sk-topBottom-space'>
-                <h4 className='Hashtag_container_title'>
-                  {search
-                    ? `#${search.charAt(0).toUpperCase()}${search.slice(1)}`
-                    : "NA"}
-                </h4>
-
+                <div className="sk-hashtagBorder-tilte">
+                  <h1 className='Hashtag_container_title'>
+                    {search
+                      ? `#${search.charAt(0).toUpperCase()}${search.slice(1)}`
+                      : "NA"}
+                  </h1>
+                  <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal.</p>
+                </div>
                 {loading ? (
                   <CustomLoader />
                 ) : (

@@ -24,6 +24,7 @@ img {
   background-size: cover;
   position: relative;
 }
+
 .sk-searchNew-banner{
   padding: 60px 0;
 }
@@ -76,6 +77,33 @@ img {
   gap: 0px 5px;
   justify-content: center;
 }
+.sk-searchNew-banner .sk-search-list ul {
+  display: inline-block;
+  list-style: none;
+  padding: 40px 20px 20px;
+  max-height: 350px;
+  overflow: auto;
+  width: 100%;
+  background: white;
+  border: 1px solid #d9d9d9;
+  box-shadow: 0px 10px 25.6678161621px 0px #efe5ea;
+  position: absolute;
+  z-index: 1; 
+  left: 0;
+  right: 0;
+  top: 40px;
+  border-radius: 5px 5px 16px 16px;
+}
+.sk-searchIcon-list {
+  max-width: 16px;
+  width: 100%;
+  margin-right: 5px;
+}
+.sk-searchNew-banner .sk-search-list ul li{
+  line-height: 36px;
+  font-size: 14px;
+  cursor: pointer;
+}
 .sk-carrers-search .sk-form-group {
   display: flex;
   align-items: center;
@@ -85,6 +113,8 @@ img {
   border: 1px solid #d9d9d9;
   box-shadow: 0px 6.844750881195068px 25.667816162109375px 0px #efe5ea;
   transition: all 0.3s;
+  position: relative;
+  z-index: 9;
 }
 
 // .sk-carrers-search .sk-form-group span {
@@ -206,6 +236,7 @@ img {
 }
 .sk-carrers-search {
   margin-bottom: 8px;
+  position: relative;
 }
 .sk-eventcard-sec .sk-category ul li a:hover {
   background: #020202;
