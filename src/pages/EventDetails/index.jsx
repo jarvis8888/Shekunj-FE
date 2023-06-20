@@ -396,7 +396,7 @@ const EventDetails = () => {
                         </div>
                       </div>
 
-                      <h2>{eventsDetails?.title}</h2>
+                      <h1>{eventsDetails?.title}</h1>
                       <div
                         className='sk-card-description'
                         dangerouslySetInnerHTML={{

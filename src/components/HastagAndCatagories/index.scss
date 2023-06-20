@@ -1,13 +1,13 @@
 .HashtagAndCatagories {
   display: flex;
   flex-direction: column;
-  padding: 40px 0px 40px 30px
+  padding: 40px 0px 40px 30px;
 }
-.hashtage-item:last-child {
+.hashtage-item-view {
   color: #d3317d;
 }
 .HashtagAndCatagories:before {
-  content: '';
+  content: "";
   position: absolute;
   background: #d9d9d9;
   width: 1px;
@@ -75,7 +75,7 @@
   }
 }
 .sk-like-icon {
-  background: #75B94A;
+  background: #75b94a;
   color: #fff;
   border-radius: 50px;
   width: 28px;
@@ -85,7 +85,7 @@
   line-height: 28px;
   margin-right: 8px;
 }
-.sk-like-icon svg{
+.sk-like-icon svg {
   font-size: 19px;
 }
 
@@ -147,11 +147,11 @@
 .social-media {
   margin-top: 17px;
 }
-@media screen and (max-width:1199px){
+@media screen and (max-width: 1199px) {
   .HashtagAndCatagories {
     padding-left: 0;
   }
-  .HashtagAndCatagories:before {  
+  .HashtagAndCatagories:before {
     display: none;
   }
 }

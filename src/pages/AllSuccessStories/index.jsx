@@ -268,8 +268,8 @@ const AllSuccessStory = () => {
         </div>
       </section>
       <section>
-        {/* Render pagination */}
-        <div className='pagination'>
+        
+        <div className='sk-pagination pagination'>
           <button onClick={previousPage} disabled={currentPage === 1}>
             &lt;
           </button>

@@ -68,7 +68,7 @@ export const HashtagAndCatagories = (props) => {
               </span>
             ))}
         {hashtags.length > 5 && (
-          <span className='hashtage-item' onClick={handleToggleView}>
+          <span className='hashtage-item hashtage-item-view' onClick={handleToggleView}>
             {showAll ? "View Less " : "View All "}
             {showAll ? (
               <KeyboardArrowUpRoundedIcon />

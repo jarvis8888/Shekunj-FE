@@ -234,54 +234,60 @@ const SuccessStroyWithHashtag = () => {
           <div className='row'>
             <div className='col-xl-8 col-lg-8 col-md-8'>
               <div className='sk-topBottom-space'>
-                <h4 className='Hashtag_container_title'>
-                  {search
-                    ? `#${search.charAt(0).toUpperCase()}${search.slice(1)}`
-                    : "NA"}
-                </h4>
+                <div className='sk-hashtagBorder-tilte'>
+                  <h1 className='Hashtag_container_title'>
+                    {search
+                      ? `#${search.charAt(0).toUpperCase()}${search.slice(1)}`
+                      : "NA"}
+                  </h1>
+                  <p>
+                    It is a long established fact that a reader will be
+                    distracted by the readable content of a page when looking at
+                    its layout. The point of using Lorem Ipsum is that it has a
+                    more-or-less normal.
+                  </p>
+                </div>
 
-                {
-                  <div className='row'>
-                    {data?.length ? (
-                      data?.map((items, index) => {
-                        if (items.id === "advertisement") {
-                          return (
-                            <>
-                              {succesStoriesLeft.length > 0 &&
-                                succesStoriesLeftRenderAds()}
-                            </>
-                          );
-                        } else {
-                          return (
-                            <>
-                              <div className='col-xl-6 col-lg-6 col-md-12 col-sm-12'>
-                                <FeaturedCards
-                                  image={items.image}
-                                  hashtags={
-                                    items.hash_tags === null
-                                      ? []
-                                      : items.hash_tags
-                                  }
-                                  title={items.name}
-                                  description={`${items.title}`}
-                                  makeHtml={makeHtml}
-                                  key={index}
-                                  created_at={items.created_at}
-                                  reading_time={items.reading_time}
-                                  id={items.id}
-                                  slug={items.slug}
-                                  ss_count={items.ss_count}
-                                />
-                              </div>
-                            </>
-                          );
-                        }
-                      })
-                    ) : (
-                      <>{null}</>
-                    )}
-                  </div>
-                }
+                <div className='row'>
+                  {data?.length ? (
+                    data?.map((items, index) => {
+                      if (items.id === "advertisement") {
+                        return (
+                          <>
+                            {succesStoriesLeft.length > 0 &&
+                              succesStoriesLeftRenderAds()}
+                          </>
+                        );
+                      } else {
+                        return (
+                          <>
+                            <div className='col-xl-6 col-lg-6 col-md-12 col-sm-12'>
+                              <FeaturedCards
+                                image={items.image}
+                                hashtags={
+                                  items.hash_tags === null
+                                    ? []
+                                    : items.hash_tags
+                                }
+                                title={items.name}
+                                description={`${items.title}`}
+                                makeHtml={makeHtml}
+                                key={index}
+                                created_at={items.created_at}
+                                reading_time={items.reading_time}
+                                id={items.id}
+                                slug={items.slug}
+                                ss_count={items.ss_count}
+                              />
+                            </div>
+                          </>
+                        );
+                      }
+                    })
+                  ) : (
+                    <>{null}</>
+                  )}
+                </div>
               </div>
               <div className='sk-blogbottom-border d-flex justify-content-center align-items-center '>
                 <button
