@@ -33,7 +33,7 @@ const SuccessStroyWithHashtag = () => {
   const detect = useDeviceDetect();
 
   const { state } = location;
-  const {search} = useParams()
+  const { search } = useParams();
 
   const searchParams = new URLSearchParams(location.search);
   const currentSearch = searchParams.get("search") || "";
@@ -211,7 +211,7 @@ const SuccessStroyWithHashtag = () => {
       <section>
         <div className='container sk-custom-container'>
           <HashtagAndCatagoriesForMobile
-            image={catagorie}
+            image={hash}
             title={`Categories`}
             hashtags={allHashTag}
           />
@@ -220,7 +220,9 @@ const SuccessStroyWithHashtag = () => {
               <div className='sk-topBottom-space'>
                 <div className='Hashtag_container_title'>
                   <span className='catagories-search'>
-                    {search ? `${search.charAt(0).toUpperCase()}${search.slice(1)}` : null}{" "}
+                    {search
+                      ? `${search.charAt(0).toUpperCase()}${search.slice(1)}`
+                      : null}{" "}
                     <CancelRoundedIcon
                       onClick={() => history.push(routingConstants.MORE_BLOG)}
                     />
@@ -267,7 +269,7 @@ const SuccessStroyWithHashtag = () => {
             </div>
             <div className='col-xl-4 col-lg-4 col-md-4 sk-Removeside-space'>
               <HashtagAndCatagories
-                image={catagorie}
+                image={hash}
                 title={`Categories`}
                 // addEmail={addEmail}
                 hashtags={allHashTag}

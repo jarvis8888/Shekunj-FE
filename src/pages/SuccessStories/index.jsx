@@ -556,23 +556,25 @@ function SuccessStory() {
                         } else {
                           return (
                             <>
-                              <FeaturedCards
-                                image={items.image}
-                                hashtags={
-                                  items.hash_tags === null
-                                    ? []
-                                    : items.hash_tags
-                                }
-                                title={items.name}
-                                description={`${items.title}`}
-                                makeHtml={makeHtml}
-                                key={index}
-                                created_at={items.created_at}
-                                reading_time={items.reading_time}
-                                id={items.id}
-                                slug={items.slug}
-                                ss_count={items.ss_count}
-                              />
+                              <div className='col-xl-6 col-lg-6 col-md-12 col-sm-12'>
+                                <FeaturedCards
+                                  image={items.image}
+                                  hashtags={
+                                    items.hash_tags === null
+                                      ? []
+                                      : items.hash_tags
+                                  }
+                                  title={items.name}
+                                  description={`${items.title}`}
+                                  makeHtml={makeHtml}
+                                  key={index}
+                                  created_at={items.created_at}
+                                  reading_time={items.reading_time}
+                                  id={items.id}
+                                  slug={items.slug}
+                                  ss_count={items.ss_count}
+                                />
+                              </div>
                             </>
                           );
                         }

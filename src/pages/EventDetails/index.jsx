@@ -376,11 +376,13 @@ const EventDetails = () => {
                                   </>
                                 )}
                               </li>
-                              <li>
-                                {" "}
-                                <SchoolRoundedIcon />{" "}
-                                {eventsDetails?.enrold_students} enrolled{" "}
-                              </li>
+                              {eventsDetails?.want_to_display_enrolled_students && (
+                                <li>
+                                  {" "}
+                                  <SchoolRoundedIcon />{" "}
+                                  {eventsDetails?.enrold_students} enrolled{" "}
+                                </li>
+                              )}
                             </ul>
                           </div>
                         </div>

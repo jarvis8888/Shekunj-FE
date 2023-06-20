@@ -175,20 +175,25 @@ const BlogWithCatogry = () => {
       <section>
         <div className='container Hashtag_container sk-custom-container'>
           <HashtagAndCatagoriesForMobile
-            image={catagorie}
+            image={hash}
             title={`Categories`}
             hashtags={allHashTag}
           />
           <div className='row'>
             <div className='col-xl-8 col-lg-8 col-md-8 Hashtag_container_cards sk-blog-detail-wa'>
               <div className='sk-topBottom-space'>
-                <div className="sk-hashtag-headingtitle">
+                <div className='sk-hashtag-headingtitle'>
                   <h1 className='Hashtag_container_title'>
                     {search
                       ? `${search.charAt(0).toUpperCase()}${search.slice(1)}`
                       : "NA"}
                   </h1>
-                  <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal.</p>
+                  <p>
+                    It is a long established fact that a reader will be
+                    distracted by the readable content of a page when looking at
+                    its layout. The point of using Lorem Ipsum is that it has a
+                    more-or-less normal.
+                  </p>
                 </div>
                 {loading ? (
                   <div>
@@ -231,7 +236,7 @@ const BlogWithCatogry = () => {
             </div>
             <div div className='col-xl-4 col-lg-4 col-md-4 sk-Removeside-space'>
               <HashtagAndCatagories
-                image={catagorie}
+                image={hash}
                 title={`Categories`}
                 // addEmail={addEmail}
                 hashtags={allHashTag}

@@ -36,7 +36,7 @@ export const TrendingBlogsCard = ({
           {category_name}
         </span>
         <p className='blog-card__description'>{description}</p>
-        <div className='blog-card__meta'>
+        {/* <div className='blog-card__meta'>
           <span className='blog-card__time'>
             <AccessTimeIcon />
             {date}
@@ -45,7 +45,7 @@ export const TrendingBlogsCard = ({
             <MenuBookRoundedIcon />
             {time}
           </span>
-        </div>
+        </div> */}
       </div>
     </div>
   );

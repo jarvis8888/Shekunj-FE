@@ -30,6 +30,7 @@ import {
 import { CustomLoader } from "../../components/customLoader/CustomLoader";
 import { HashtagAndCatagoriesForMobile } from "../../components/HastagAndCatagories/HastagAndCatagoriesForMobile";
 import { withHeaderFooter } from "../../hocs/withHeaderFooter";
+import hash from "../../assets/images/hashtag.svg";
 
 const BlogDetails = () => {
   const history = useHistory();
@@ -332,16 +333,16 @@ const BlogDetails = () => {
                     </div>
                   </div>
                   <HashtagAndCatagoriesForMobile
-                    image={catagorie}
+                    image={hash}
                     title={`Categories`}
                     hashtags={blogCategories}
                   />
                   <div className='title' ref={trendingSectionRef}>
-                      <img src={discoverblog} alt='discoverblog' width={36} />
-                      <div className="sk-heading-story">
-                        <h4>Discover More Articles</h4>
-                        <h6>Explore more articles, news and trends on SheKunj</h6>
-                      </div>
+                    <img src={discoverblog} alt='discoverblog' width={36} />
+                    <div className='sk-heading-story'>
+                      <h4>Discover More Articles</h4>
+                      <h6>Explore more articles, news and trends on SheKunj</h6>
+                    </div>
                   </div>
                   <div className='sk-blogMain-inner'>
                     {trendingBlogs?.map((items, index) => {
@@ -389,7 +390,7 @@ const BlogDetails = () => {
               </div>
               <div className='col-xl-4 col-lg-4 col-md-4 sk-Removeside-space'>
                 <HashtagAndCatagories
-                  image={catagorie}
+                  image={hash}
                   title={`Categories`}
                   // addEmail={addEmail}
                   hashtags={blogCategories}
