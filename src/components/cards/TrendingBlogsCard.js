@@ -24,15 +24,7 @@ export const TrendingBlogsCard = ({
   console.log("🚀 ~ file: TrendingBlogsCard.js:23 ~ color:", color);
   const history = useHistory();
   return (
-    <div
-      className='blog-card'
-      onClick={() =>
-        history.push(
-          routingConstants.MORE_BLOG + generateSlug(category_name) + "/" + slug,
-        )
-      }
-      style={{ cursor: "pointer" }}
-    >
+    <div className='blog-card' onClick={() => history.push(routingConstants.MORE_BLOG + generateSlug(category_name) + "/" + slug, )}>
       <div className='blog-card__image new-blog-card'>
         <img src={image} alt='images' />
       </div>

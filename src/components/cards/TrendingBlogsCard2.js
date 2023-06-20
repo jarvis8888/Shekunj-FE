@@ -48,18 +48,18 @@ export const TrendingBlogsCard2 = ({
         }
         style={{ cursor: "pointer" }}
       >
-        <div className='col-xl-4 col-lg-6 col-md-6'>
+        <div className='col-xl-5 col-lg-6 col-md-4'>
           <img src={image} alt='' />
         </div>
-        <div className='col-xl-8 col-lg-6 col-md-6'>
+        <div className='col-xl-7 col-lg-6 col-md-8'>
           <div className='sk-tradingBlog-card'>
-            <h5 className='blog-card2__title'>{title}</h5>
             <span
               className='sk-tagBlog-name'
               style={{ background: `${color}` }}
             >
               {category_name}
             </span>
+            <h5 className='blog-card2__title'>{title}</h5>
             <p
               className='blog-card-description'
               dangerouslySetInnerHTML={{

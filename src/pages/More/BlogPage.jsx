@@ -12,12 +12,15 @@ import useDeviceDetect from "../../hooks/useDeviceDetect";
 import BlogCarousel from "../../components/Carousel/BlogCarousel";
 import AddsBanner from "../../components/AddsBanner/AddsBanner";
 import fire from "../../assets/images/fire.svg";
+import discoverblog from "../../assets/images/discoverblog.svg";
 import timeicon from "../../assets/images/timeicon.svg";
+import latestblog from "../../assets/images/latestblog.svg";
 import { TrendingBlogsCard } from "../../components/cards/TrendingBlogsCard";
 import LatestBlogCard from "../../components/cards/LatestBlogCard";
 import { TrendingBlogsCard2 } from "../../components/cards/TrendingBlogsCard2";
 import { HashtagAndCatagories } from "../../components/HastagAndCatagories/Index";
 import catagorie from "../../assets/images/categoryblog.svg";
+import blogcategoryicon from "../../assets/images/blogcategoryicon.svg";
 import httpServices from "../../utils/ApiServices";
 import { CustomLoader } from "../../components/customLoader/CustomLoader";
 import {
@@ -360,6 +363,14 @@ function BlogPage() {
                 </div>
                 <div className='col-xl-4 col-md-4 col-lg-4'>
                   <div className='sk-blog-sidebar'>
+                    <div className='title mb-4' ref={sectionRef}>
+                      <img src={fire} alt='fire' width={36} />
+                      <div className="sk-heading-story">
+                        <h4>Trending Articles</h4>
+                        <h6>Popular articles, news and trends on SheKunj</h6>
+                      </div>
+                    </div>
+
                     {topTrendingBlogs?.length ? (
                       topTrendingBlogs.slice(0, 3).map((items, index) => {
                         return (
@@ -440,8 +451,11 @@ function BlogPage() {
                   <div className='sk-topBottom-space'>
                     <div className='blog-stories'>
                       <div className='title' ref={sectionRef}>
-                        <img src={timeicon} alt='time' width={36} />
-                        <h4>Latest Blogs</h4>
+                        <img src={latestblog} alt='latestblog' width={36} />
+                        <div className="sk-heading-story">
+                          <h4>Latest Blogs</h4>
+                          <h6>Recommended stories, articles and interviews on SheKunj</h6>
+                        </div>
                       </div>
 
                       <div className='row'>
@@ -535,8 +549,11 @@ function BlogPage() {
                       hashtags={blogsCategories}
                     />
                     <div className='title' ref={trendingSectionRef}>
-                      <img src={fire} alt='fire' width={36} />
-                      <h4>Trending Blogs</h4>
+                      <img src={discoverblog} alt='discoverblog' width={36} />
+                      <div className="sk-heading-story">
+                        <h4>Discover More Articles</h4>
+                        <h6>Explore more articles, news and trends on SheKunj</h6>
+                      </div>
                     </div>
                     <>
                       {" "}
@@ -590,7 +607,7 @@ function BlogPage() {
                 </div>
                 <div className='col-xl-4 col-md-6 col-lg-4 col-sm-12 sk-Removeside-space'>
                   <HashtagAndCatagories
-                    image={catagorie}
+                    image={blogcategoryicon}
                     title={"Categories"}
                     hashtags={blogsCategories}
                     rightOne={blogRight1}
