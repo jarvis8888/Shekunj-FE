@@ -167,7 +167,7 @@ const GlobalSearch = () => {
 
   return (
     <div>
-      <section className='sk-search-sec'>
+      <section className='sk-search-sec sk-searchNew-banner'>
         <div className='container sk-custom-container'>
           <div className='row'>
             <div className='col-md-7 mx-auto'>

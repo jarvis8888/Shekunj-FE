@@ -20,12 +20,12 @@ img {
   margin-top: 20px;
 }
 .sk-search-sec {
-  background: #fff url(../../assets/images/search-bg.png) no-repeat center
-    center;
+  background: url(../../assets/images/searchbg.png) no-repeat center center;
   background-size: cover;
-  padding: 40px 0;
   position: relative;
-  border-bottom: 1px solid #d9d9d98d;
+}
+.sk-searchNew-banner{
+  padding: 60px 0;
 }
 .sk-search-sec .sk-item-box .sk-icon {
   margin-bottom: 15px;
