@@ -559,6 +559,7 @@ function BlogPage() {
                                 date={`${items.created_at}`}
                                 category_name={items.category_name}
                                 color={getCategoryColor(items.category_name)}
+                                slug={items.slug}
                               />
                             </>
                           );

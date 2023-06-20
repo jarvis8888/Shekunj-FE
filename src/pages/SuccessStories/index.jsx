@@ -438,9 +438,7 @@ function SuccessStory() {
                       <button
                         className='sk-allStory-btn'
                         onClick={() =>
-                          sectionRef.current.scrollIntoView({
-                            behavior: "smooth",
-                          })
+                          history.push(routingConstants.ALL_SUCCESS_STORIES)
                         }
                       >
                         {t("phase2.SuccessStoryContent.buttonTitle")}
@@ -537,9 +535,12 @@ function SuccessStory() {
                   <div className='sk-topBottom-space'>
                     <div className='title' ref={sectionRef}>
                       <img src={featurestory} alt='featurestory' width={36} />
-                      <div className="sk-heading-story">
+                      <div className='sk-heading-story'>
                         <h4>Featured Stories </h4>
-                        <h6>Recommended stories, articles and interviews on SheKunj</h6>
+                        <h6>
+                          Recommended stories, articles and interviews on
+                          SheKunj
+                        </h6>
                       </div>
                     </div>
 
@@ -597,9 +598,11 @@ function SuccessStory() {
                     <div ref={trendingSectionRef}>
                       <div className='title'>
                         <img src={fire} alt='fire' width={36} />
-                        <div className="sk-heading-story">
+                        <div className='sk-heading-story'>
                           <h4>Trending Stories </h4>
-                          <h6>Read the most popular success stories on SheKunj</h6>
+                          <h6>
+                            Read the most popular success stories on SheKunj
+                          </h6>
                         </div>
                       </div>
 

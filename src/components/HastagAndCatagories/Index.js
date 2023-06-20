@@ -34,7 +34,7 @@ export const HashtagAndCatagories = (props) => {
         tag.name,
       );
     } else {
-      history.push(`${routingConstants.MORE_BLOG}${tag.name.toLowerCase()}`, tag.name);
+      history.push(`${routingConstants.MORE_BLOG}${tag.name}`, tag.name);
     }
   };
 

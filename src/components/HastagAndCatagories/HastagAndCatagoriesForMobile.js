@@ -11,6 +11,17 @@ export const HashtagAndCatagoriesForMobile = (props) => {
   const detect = useDeviceDetect();
   const history = useHistory();
 
+  const handleClick = (tag) => {
+    if (type === "hashtag") {
+      history.push(
+        `${routingConstants.SUCCESS_STORIES_HASHTAG}/${tag.name}`,
+        tag.name,
+      );
+    } else {
+      history.push(`${routingConstants.MORE_BLOG}${tag.name}`, tag.name);
+    }
+  };
+
   return (
     <div className='HashtagAndCatagories-mobile'>
       <div className='HashtagAndCatagoriesTitle-mobile'>
@@ -23,12 +34,7 @@ export const HashtagAndCatagoriesForMobile = (props) => {
               <span
                 className='hashtage-item'
                 key={tag.id}
-                onClick={() =>
-                  history.push(
-                    `${routingConstants.SUCCESS_STORIES_HASHTAG}/${tag.name}`,
-                    tag.name,
-                  )
-                }
+                onClick={() => handleClick(tag)}
               >
                 {type === "hashtag" ? `#${tag?.name}` : tag?.name}
               </span>
@@ -37,12 +43,7 @@ export const HashtagAndCatagoriesForMobile = (props) => {
               <span
                 className='hashtage-item'
                 key={tag.id}
-                onClick={() =>
-                  history.push(
-                    `${routingConstants.MORE_BLOG_CATEGORY}?category_id=${tag.name}`,
-                    tag.id,
-                  )
-                }
+                onClick={() => handleClick(tag)}
               >
                 {type === "hashtag" ? `${tag?.name}` : tag?.name}
               </span>

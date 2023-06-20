@@ -73,6 +73,7 @@ const BlogTagsPage = React.lazy(() => import("./pages/BlogsWithTags"));
 const GlobalSearchPage = React.lazy(() => import("./pages/Search"));
 const ResumeBUilderPage = React.lazy(() => import("./pages/ResumeBuilder"));
 const JobPage = React.lazy(() => import("./pages/Jobs"));
+const AllSuccessStories = React.lazy(() => import("./pages/AllSuccessStories"));
 
 function App() {
   useEffect(() => {
@@ -171,10 +172,16 @@ function App() {
           path={routingConstants.CERTIFICATE_PAGE}
           component={CertificatePage}
         />
+
         <Route
           exact
           path={routingConstants.SUCCESS_STORIES}
           component={SuccessStories}
+        />
+        <Route
+          exact
+          path={routingConstants.ALL_SUCCESS_STORIES}
+          component={AllSuccessStories}
         />
         <Route
           exact

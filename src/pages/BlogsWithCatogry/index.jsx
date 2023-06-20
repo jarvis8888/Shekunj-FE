@@ -44,7 +44,7 @@ const BlogWithCatogry = () => {
   const getBlogWithHashtagData = async (search) => {
     setLoading(true);
     try {
-      const url = `more/blogs?search=${search}`;
+      const url = `more/blogs?category__name=${search}`;
       const data = await httpServices.get(url);
       const { filtered_blogs, blog_categories } = data;
       if (filtered_blogs?.length > 0) {
