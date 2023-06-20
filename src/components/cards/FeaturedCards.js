@@ -30,58 +30,56 @@ const FeaturedCards = (props) => {
   } = props;
   const history = useHistory();
   return (
-    <div className='col-xl-6 col-lg-6 col-md-12 col-sm-12' key={key}>
-      <div
-        className='card'
-        key={key}
-        onClick={() => history.push(routingConstants.SUCCESS_STORIES + slug)}
-      >
-        <div className='card__image'>
-          <img src={image} alt={title} />
+    <div
+      className='card'
+      key={key}
+      onClick={() => history.push(routingConstants.SUCCESS_STORIES + slug)}
+    >
+      <div className='card__image'>
+        <img src={image} alt={title} />
+      </div>
+      <div className='sk-Blogcard-content'>
+        <div className='card__hashtags'>
+          {hashtags.map((tag) => (
+            <span
+              key={tag}
+              onClick={(event) => {
+                event.stopPropagation();
+                history.push(
+                  `${routingConstants.SUCCESS_STORIES_HASHTAG}/${tag}`,
+                  tag,
+                );
+              }}
+            >{`#${tag}`}</span>
+          ))}
         </div>
-        <div className='sk-Blogcard-content'>
-          <div className='card__hashtags'>
-            {hashtags.map((tag) => (
-              <span
-                key={tag}
-                onClick={(event) => {
-                  event.stopPropagation();
-                  history.push(
-                    `${routingConstants.SUCCESS_STORIES_HASHTAG}/${tag}`,
-                    tag,
-                  );
-                }}
-              >{`#${tag}`}</span>
-            ))}
-          </div>
-          <h5>{title}</h5>
-          <p
-            className=''
-            dangerouslySetInnerHTML={{
-              __html: makeHtml(`${truncateString(description, 100)}`),
-            }}
-          />
-          <div className='card__bottom'>
-            <span>
-              <AccessTimeIcon />
-              {created_at}
-            </span>
-            <span>
-              <VisibilityOutlinedIcon />
-              {ss_count}
-            </span>
+        <h5>{title}</h5>
+        <p
+          className=''
+          dangerouslySetInnerHTML={{
+            __html: makeHtml(`${truncateString(description, 100)}`),
+          }}
+        />
+        <div className='card__bottom'>
+          <span>
+            <AccessTimeIcon />
+            {created_at}
+          </span>
+          <span>
+            <VisibilityOutlinedIcon />
+            {ss_count}
+          </span>
 
-            <span>
-              <button
-                className='card__button'
-                onClick={() =>
-                  history.push(routingConstants.SUCCESS_STORIES + slug)
-                }
-              >
-                Read More <EastRoundedIcon />
-              </button>
-            </span>
-          </div>
+          <span>
+            <button
+              className='card__button'
+              onClick={() =>
+                history.push(routingConstants.SUCCESS_STORIES + slug)
+              }
+            >
+              Read More <EastRoundedIcon />
+            </button>
+          </span>
         </div>
       </div>
     </div>

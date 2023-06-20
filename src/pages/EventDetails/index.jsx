@@ -376,11 +376,13 @@ const EventDetails = () => {
                                   </>
                                 )}
                               </li>
-                              <li>
-                                {" "}
-                                <SchoolRoundedIcon />{" "}
-                                {eventsDetails?.enrold_students} enrolled{" "}
-                              </li>
+                              {eventsDetails?.want_to_display_enrolled_students && (
+                                <li>
+                                  {" "}
+                                  <SchoolRoundedIcon />{" "}
+                                  {eventsDetails?.enrold_students} enrolled{" "}
+                                </li>
+                              )}
                             </ul>
                           </div>
                         </div>
@@ -394,7 +396,7 @@ const EventDetails = () => {
                         </div>
                       </div>
 
-                      <h2>{eventsDetails?.title}</h2>
+                      <h1>{eventsDetails?.title}</h1>
                       <div
                         className='sk-card-description'
                         dangerouslySetInnerHTML={{

@@ -491,13 +491,13 @@ function EventPage() {
                                     }}
                                   ></span>{" "}
                                 </li>
-                                <li>
-                                  {" "}
-                                  <SchoolRoundedIcon /> {
-                                    items.enrold_students
-                                  }{" "}
-                                  enrolled{" "}
-                                </li>
+                                {items?.want_to_display_enrolled_students && (
+                                  <li>
+                                    {" "}
+                                    <SchoolRoundedIcon />{" "}
+                                    {items.enrold_students} enrolled{" "}
+                                  </li>
+                                )}
                               </ul>
                             </div>
                             <div className='sk-tags-event'>

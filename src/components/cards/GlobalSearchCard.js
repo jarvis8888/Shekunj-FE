@@ -170,7 +170,7 @@ export const GlobalSearchCard = ({
 
   return (
     <section className='sk-card-sec'>
-      <div className='container'>
+      <div className='container sk-custom-container'>
         <div className='row'>
           <div className='col-xl-8 mx-auto'>
             <div className='sk-category'>

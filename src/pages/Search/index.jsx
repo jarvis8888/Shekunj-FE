@@ -167,7 +167,7 @@ const GlobalSearch = () => {
 
   return (
     <div>
-      <section className='sk-search-sec'>
+      <section className='sk-search-sec sk-searchNew-banner'>
         <div className='container sk-custom-container'>
           <div className='row'>
             <div className='col-md-7 mx-auto'>
@@ -206,16 +206,18 @@ const GlobalSearch = () => {
                   </div>
 
                   {inputFocused && onSearchInput !== "" && (
-                    <div>
-                      {autoSuggestionsData?.map((item, index) => (
-                        <li
-                          key={item}
-                          className={index === selectedIndex ? "selected" : ""}
-                          onClick={() => handleAutoSuggestionClick(item)}
-                        >
-                          {item}
-                        </li>
-                      ))}
+                    <div className="sk-search-list">
+                      <ul>
+                        {autoSuggestionsData?.map((item, index) => (
+                          <li 
+                            key={item}
+                            className={index === selectedIndex ? "selected" : ""}
+                            onClick={() => handleAutoSuggestionClick(item)}
+                          >
+                             <img src={searchnavicon} alt='searchicon' className="sk-searchIcon-list" /> {item}
+                          </li>
+                        ))}
+                      </ul>
                     </div>
                   )}
                 </div>

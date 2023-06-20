@@ -6,8 +6,8 @@ import useDeviceDetect from "../../hooks/useDeviceDetect";
 import YouMayLikeCarousel from "../Carousel/YouMayLikeCarousel";
 import { useHistory } from "react-router-dom";
 import { routingConstants } from "../../utils/constants";
-import ExpandMoreRoundedIcon from '@mui/icons-material/ExpandMoreRounded';
-import KeyboardArrowUpRoundedIcon from '@mui/icons-material/KeyboardArrowUpRounded';
+import ExpandMoreRoundedIcon from "@mui/icons-material/ExpandMoreRounded";
+import KeyboardArrowUpRoundedIcon from "@mui/icons-material/KeyboardArrowUpRounded";
 import { addEmailToClient } from "../../utils/utils";
 
 export const HashtagAndCatagories = (props) => {
@@ -39,7 +39,7 @@ export const HashtagAndCatagories = (props) => {
     }
   };
 
-  const renderedHashtags = showAll ? hashtags : hashtags.slice(0, 3);
+  const renderedHashtags = showAll ? hashtags : hashtags.slice(0, 5);
 
   return (
     <div className='HashtagAndCatagories'>
@@ -67,11 +67,14 @@ export const HashtagAndCatagories = (props) => {
                 {type === "hashtag" ? `${tag?.name}` : tag?.name}
               </span>
             ))}
-        {hashtags.length > 3 && (
-          <span className='hashtage-item' onClick={handleToggleView}>
+        {hashtags.length > 5 && (
+          <span className='hashtage-item hashtage-item-view' onClick={handleToggleView}>
             {showAll ? "View Less " : "View All "}
-            {showAll? <KeyboardArrowUpRoundedIcon /> : <ExpandMoreRoundedIcon/> 
-            }
+            {showAll ? (
+              <KeyboardArrowUpRoundedIcon />
+            ) : (
+              <ExpandMoreRoundedIcon />
+            )}
           </span>
         )}
       </div>

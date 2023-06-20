@@ -15,6 +15,7 @@ import { addEmailToClient } from "../../utils/utils";
 import { HashtagAndCatagoriesForMobile } from "../../components/HastagAndCatagories/HastagAndCatagoriesForMobile";
 import { NoDataFound } from "../../components/noDataFound/NoDataFound";
 import { withHeaderFooter } from "../../hocs/withHeaderFooter";
+import { WhiteCircularBar } from "../../components/Loader/WhiteCircularBar";
 
 const SuccessStroyWithHashtag = () => {
   const location = useLocation();
@@ -24,21 +25,27 @@ const SuccessStroyWithHashtag = () => {
   const { state } = location;
   const { search } = useParams();
 
+  const { lan } = useSelector((state) => state.languageReducer);
+
   const [data, setData] = useState([]);
   const [allHashTag, setAllHashTag] = useState([]);
   const [loading, setLoading] = useState(false);
   const [succesStoriesRight1, setSuccesStoriesRight1] = useState([]);
   const [succesStoriesRight2, setSuccesStoriesRight2] = useState([]);
   const [succesStoriesLeft, setSuccesStoriesLeft] = useState([]);
+  const [currentFeaturedData, setCurrentFeaturedData] = useState([]);
+  const [searchTerm, setSearchTerm] = useState([]);
+  const [offset, setOffset] = useState(0);
+  const pageLimit = 4;
 
-  const getSuccessStroyWithHashtagData = async (search) => {
+  const getSuccessStroyWithHashtagData = async (limit, offset, search) => {
     setLoading(true);
     try {
-      const url = `course/success-story?search=${search}`;
+      const url = `course/success-story?limit=${limit}&offset=${offset}&search=${search}`;
       const data = await httpServices.get(url);
       const { filtered_data, all_hash_tags } = data;
-      if (filtered_data?.length > 0) {
-        const res = filtered_data ?? [];
+      if (filtered_data?.results?.length > 0) {
+        const res = filtered_data?.results ?? [];
         const addObjectData = { id: "advertisement" };
         const newFeaturedData = [];
 
@@ -48,11 +55,18 @@ const SuccessStroyWithHashtag = () => {
           }
           newFeaturedData.push(res[i]);
         }
-        setData(newFeaturedData);
+        if (res.length % 2 === 0) {
+          newFeaturedData.push(addObjectData);
+        }
+        setData((prevFeaturedData) => [
+          ...prevFeaturedData,
+          ...newFeaturedData,
+        ]);
       } else {
-        setData([]);
+        setCurrentFeaturedData(filtered_data);
       }
       setAllHashTag(all_hash_tags);
+      setSearchTerm(search);
       setLoading(false);
     } catch {
       setLoading(false);
@@ -152,9 +166,15 @@ const SuccessStroyWithHashtag = () => {
 
   useEffect(() => {
     if (search) {
-      getSuccessStroyWithHashtagData(search);
+      if (search === searchTerm) {
+        getSuccessStroyWithHashtagData(pageLimit, offset, search);
+      } else {
+        setData([]); // Clear existing data
+        setCurrentFeaturedData(null); // Clear existing featured data
+        getSuccessStroyWithHashtagData(pageLimit, 0, search);
+      }
     }
-  }, [search]);
+  }, [search, offset, lan]);
 
   const succesStoriesLeftadCount = succesStoriesLeft.length; // Total number of ads
   let adIndex = 0; // Current ad index
@@ -194,6 +214,13 @@ const SuccessStroyWithHashtag = () => {
     return renderAd(ad);
   };
 
+  const handleLoadMoreClick = () => {
+    if (currentFeaturedData?.results?.length === 0) {
+      return;
+    }
+    setOffset(offset + 6);
+  };
+
   return (
     <div>
       <section className='sk-hashtag-sec'>
@@ -207,28 +234,34 @@ const SuccessStroyWithHashtag = () => {
           <div className='row'>
             <div className='col-xl-8 col-lg-8 col-md-8'>
               <div className='sk-topBottom-space'>
-                <h4 className='Hashtag_container_title'>
-                  {search
-                    ? `#${search.charAt(0).toUpperCase()}${search.slice(1)}`
-                    : "NA"}
-                </h4>
+                <div className='sk-hashtagBorder-tilte'>
+                  <h1 className='Hashtag_container_title'>
+                    {search
+                      ? `#${search.charAt(0).toUpperCase()}${search.slice(1)}`
+                      : "NA"}
+                  </h1>
+                  <p>
+                    It is a long established fact that a reader will be
+                    distracted by the readable content of a page when looking at
+                    its layout. The point of using Lorem Ipsum is that it has a
+                    more-or-less normal.
+                  </p>
+                </div>
 
-                {loading ? (
-                  <CustomLoader />
-                ) : (
-                  <div className='row'>
-                    {data?.length ? (
-                      data?.map((items, index) => {
-                        if (items.id === "advertisement") {
-                          return (
-                            <>
-                              {succesStoriesLeft.length > 0 &&
-                                succesStoriesLeftRenderAds()}
-                            </>
-                          );
-                        } else {
-                          return (
-                            <>
+                <div className='row'>
+                  {data?.length ? (
+                    data?.map((items, index) => {
+                      if (items.id === "advertisement") {
+                        return (
+                          <>
+                            {succesStoriesLeft.length > 0 &&
+                              succesStoriesLeftRenderAds()}
+                          </>
+                        );
+                      } else {
+                        return (
+                          <>
+                            <div className='col-xl-6 col-lg-6 col-md-12 col-sm-12'>
                               <FeaturedCards
                                 image={items.image}
                                 hashtags={
@@ -246,17 +279,24 @@ const SuccessStroyWithHashtag = () => {
                                 slug={items.slug}
                                 ss_count={items.ss_count}
                               />
-                            </>
-                          );
-                        }
-                      })
-                    ) : (
-                      <>
-                        <NoDataFound />
-                      </>
-                    )}
-                  </div>
-                )}
+                            </div>
+                          </>
+                        );
+                      }
+                    })
+                  ) : (
+                    <>{null}</>
+                  )}
+                </div>
+              </div>
+              <div className='sk-blogbottom-border d-flex justify-content-center align-items-center '>
+                <button
+                  disabled={currentFeaturedData?.results?.length === 0}
+                  className='loadMore'
+                  onClick={handleLoadMoreClick}
+                >
+                  {loading ? <WhiteCircularBar /> : `Load More`}
+                </button>
               </div>
             </div>
             <div className='col-xl-4 col-lg-4 col-md-4 sk-Removeside-space'>

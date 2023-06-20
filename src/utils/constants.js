@@ -98,6 +98,7 @@ const apiConstants = {
     ONLINE_TEST_CATEGORY_LIST: "/course/online-test-category-list/",
     START_USER_COURSE: "/course/start-user-course/",
     SUCCESS_STORY: "/course/success-story/",
+    ALL_SUCCESS_STORY: "/course/all_success-story/",
     TRENDING_SUCCESS_STORY: "/course/tranding-success-story/",
     USER_COURSE_END_TIME: "/course/user-course-end-time/",
     USER_COURSE_RESULT: "/course/user-course-result/",
