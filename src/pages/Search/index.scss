@@ -103,6 +103,10 @@ img {
   line-height: 36px;
   font-size: 14px;
   cursor: pointer;
+  transition: all 0.3s;
+}
+.sk-searchNew-banner .sk-search-list ul li:hover{
+  color: #d3317d;
 }
 .sk-carrers-search .sk-form-group {
   display: flex;

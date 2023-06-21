@@ -9,6 +9,8 @@ import { addEmailToClient, makeHtml } from "../../utils/utils";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { adsList } from "../../store/ads";
+import EastRoundedIcon from '@mui/icons-material/EastRounded';
+import WestRoundedIcon from '@mui/icons-material/WestRounded';
 import useDeviceDetect from "../../hooks/useDeviceDetect";
 import { CustomLoader } from "../../components/customLoader/CustomLoader";
 
@@ -225,8 +227,8 @@ const AllSuccessStory = () => {
           </div>
         </div>
       </section>
-      <section>
-        <div className='container'>
+      <section className="sk-allstory-sec">
+        <div className='container sk-custom-container'>
           <div className='row'>
             {loading ? (
               <CustomLoader />
@@ -264,32 +266,32 @@ const AllSuccessStory = () => {
                 }
               })
             )}
+            <div className="col-xl-12">
+              <div className='sk-pagination pagination'>
+                <span className="sk-prevnext-btn" onClick={previousPage} disabled={currentPage === 1}>
+                  <WestRoundedIcon />
+                </span>
+                {Array.from({ length: totalPages }).map((_, index) => {
+                  const pageNumber = index + 1;
+                  return (
+                    <button
+                      key={pageNumber}
+                      onClick={() => handleClick(pageNumber)}
+                      className={currentPage === pageNumber ? "active" : ""}
+                    >
+                      {pageNumber}
+                    </button>
+                  );
+                })}
+                <span className="sk-prevnext-btn" onClick={nextPage} disabled={currentPage === totalPages}>
+                  <EastRoundedIcon />
+                </span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
-      <section>
-        
-        <div className='sk-pagination pagination'>
-          <button onClick={previousPage} disabled={currentPage === 1}>
-            &lt;
-          </button>
-          {Array.from({ length: totalPages }).map((_, index) => {
-            const pageNumber = index + 1;
-            return (
-              <button
-                key={pageNumber}
-                onClick={() => handleClick(pageNumber)}
-                className={currentPage === pageNumber ? "active" : ""}
-              >
-                {pageNumber}
-              </button>
-            );
-          })}
-          <button onClick={nextPage} disabled={currentPage === totalPages}>
-            &gt;
-          </button>
-        </div>
-      </section>
+
     </div>
   );
 };

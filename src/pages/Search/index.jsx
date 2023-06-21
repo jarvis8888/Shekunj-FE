@@ -165,6 +165,27 @@ const GlobalSearch = () => {
     getAutoSuggestionData(auto_suggessions);
   }, [auto_suggessions]);
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      // Check if the click event occurred outside of the input and auto-suggestion list
+      if (
+        searchInputRef.current &&
+        !searchInputRef.current.contains(event.target) &&
+        !event.target.classList.contains("sk-searchIcon-list")
+      ) {
+        setInputFocused(false); // Clear auto-suggestion data
+      }
+    };
+
+    // Attach the click event listener to the document
+    document.addEventListener("click", handleClickOutside);
+
+    return () => {
+      // Clean up the event listener when the component unmounts
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
+
   return (
     <div>
       <section className='sk-search-sec sk-searchNew-banner'>
@@ -185,7 +206,10 @@ const GlobalSearch = () => {
                         type='search'
                         name='search'
                         value={onSearchInput}
-                        onChange={(e) => setOnSearchInput(e.target.value)}
+                        onChange={(e) => {
+                          setInputFocused(true);
+                          setOnSearchInput(e.target.value);
+                        }}
                         onKeyDown={handleKeyDown}
                         onFocus={() => setInputFocused(true)}
                         onBlur={handleInputBlur}
@@ -205,21 +229,30 @@ const GlobalSearch = () => {
                     </div>
                   </div>
 
-                  {inputFocused && onSearchInput !== "" && (
-                    <div className="sk-search-list">
-                      <ul>
-                        {autoSuggestionsData?.map((item, index) => (
-                          <li 
-                            key={item}
-                            className={index === selectedIndex ? "selected" : ""}
-                            onClick={() => handleAutoSuggestionClick(item)}
-                          >
-                             <img src={searchnavicon} alt='searchicon' className="sk-searchIcon-list" /> {item}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
+                  {inputFocused &&
+                    onSearchInput !== "" &&
+                    autoSuggestionsData.length > 0 && (
+                      <div className='sk-search-list'>
+                        <ul>
+                          {autoSuggestionsData.map((item, index) => (
+                            <li
+                              key={item}
+                              className={
+                                index === selectedIndex ? "selected" : ""
+                              }
+                              onClick={() => handleAutoSuggestionClick(item)}
+                            >
+                              <img
+                                src={searchnavicon}
+                                alt='searchicon'
+                                className='sk-searchIcon-list'
+                              />{" "}
+                              {item}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
                 </div>
               </div>
               <ul>
