@@ -162,13 +162,14 @@ img {
     span {
       overflow: hidden;
       text-overflow: ellipsis;
-      display: -webkit-box;
+      display:flex;
+      align-items: center;
       -webkit-line-clamp: 1;
       -webkit-box-orient: vertical;
       svg {
         font-size: 18px;
         margin-right: 5px;
-        vertical-align: top;
+        vertical-align: middle;
       }
     }
   }
@@ -432,6 +433,7 @@ p.blog-card-description {
   }
   .card__bottom span svg {
     font-size: 14px;
+    vertical-align: middle;
   }
 }
 @media screen and (min-width: 320px) and (max-width: 1350px) {

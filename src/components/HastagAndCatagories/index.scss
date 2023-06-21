@@ -122,6 +122,9 @@
   cursor: pointer;
   transition: 0.3s;
 }
+.hashtage-item svg{
+  font-size: 21px;
+}
 .hashtage-item:hover {
   box-shadow: 3px 3px 8px 0px #00000026;
 }
