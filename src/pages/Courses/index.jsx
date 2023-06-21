@@ -51,7 +51,7 @@ const Courses = () => {
   const [suggestion, setSuggestion] = useState([]);
   const [disabled, setDisabled] = useState(false);
   const [hasSuggestion, setHasSuggestion] = useState([suggestion].length > 0);
-  const [flag, setFlag] = useState(true)
+  const [flag, setFlag] = useState(true);
 
   const dispatch = useDispatch();
 
@@ -66,32 +66,39 @@ const Courses = () => {
     window.scrollTo(0, 0);
     Aos.init({ duration: 2000 });
   }, []);
-  const page_adds = JSON.parse(sessionStorage.getItem('current_adds'))
+  const page_adds = JSON.parse(sessionStorage.getItem("current_adds"));
 
-  const findAdds=(addslen,len)=>{
-    let x=0;
-    let arr=[]
-    for(let i=0;i<len;i++){
-      if(x>=addslen){
-       x=0
+  const findAdds = (addslen, len) => {
+    let x = 0;
+    let arr = [];
+    for (let i = 0; i < len; i++) {
+      if (x >= addslen) {
+        x = 0;
       }
-     arr.push(x)
-     x++
+      arr.push(x);
+      x++;
     }
-      return arr
-  }
+    return arr;
+  };
   useEffect(() => {
-    if (state?.allCourses?.results?.length > 0 && coursesBoxAds.length && flag) {
-      const addslen = coursesBoxAds.length
+    if (
+      state?.allCourses?.results?.length > 0 &&
+      coursesBoxAds.length &&
+      flag
+    ) {
+      const addslen = coursesBoxAds.length;
       let len = state?.allCourses?.count / pageLimit;
-      len = Math.trunc(len)
-      console.log(len,addslen)
-      
-      const adds_arr=findAdds(addslen,len)
-      sessionStorage.setItem('current_adds', JSON.stringify({ addIndex: 0, addsData: adds_arr }));
-      setFlag(false)
+      len = Math.trunc(len);
+      console.log(len, addslen);
+
+      const adds_arr = findAdds(addslen, len);
+      sessionStorage.setItem(
+        "current_adds",
+        JSON.stringify({ addIndex: 0, addsData: adds_arr }),
+      );
+      setFlag(false);
     }
-  }, [state, coursesBoxAds])
+  }, [state, coursesBoxAds]);
 
   const handleResetFilter = () => {
     if (state?.selectedFilter) {
@@ -111,42 +118,48 @@ const Courses = () => {
   };
 
   const shuffleFun = (obj, index) => {
-
-    let num = Math.floor(Math.random() * (4 - 0) + 0)
-    if (obj?.id === 'advertistment') {
+    let num = Math.floor(Math.random() * (4 - 0) + 0);
+    if (obj?.id === "advertistment") {
       return (
         <>
-          {
-            coursesBoxAds?.length > 0 ?
-              <div className='col-md-6'>
-                <div className='google_add_box box_hov'>
-                  {coursesBoxAds && coursesBoxAds.length > 0 && (
-                    <div className='slide-img'>
-                      <a href={coursesBoxAds[page_adds?.addsData[page_adds?.addIndex]]?.url_adds} target='_blank' rel="noreferrer">
-                        <img
-                          src={coursesBoxAds[page_adds?.addsData[page_adds?.addIndex]]?.image}
-                          alt='Image'
-                          className='google_add_box_img'
-                          style={{ paddingTop: 0 }}
-                        />
-                      </a>
-                      <div className='overlay'></div>
-                    </div>
-                  )}
-                </div>
+          {coursesBoxAds?.length > 0 ? (
+            <div className='col-md-6'>
+              <div className='google_add_box box_hov'>
+                {coursesBoxAds && coursesBoxAds.length > 0 && (
+                  <div className='slide-img'>
+                    <a
+                      href={
+                        coursesBoxAds[page_adds?.addsData[page_adds?.addIndex]]
+                          ?.url_adds
+                      }
+                      target='_blank'
+                      rel='noreferrer'
+                    >
+                      <img
+                        src={
+                          coursesBoxAds[
+                            page_adds?.addsData[page_adds?.addIndex]
+                          ]?.image
+                        }
+                        alt='Image'
+                        className='google_add_box_img'
+                        style={{ paddingTop: 0 }}
+                      />
+                    </a>
+                    <div className='overlay'></div>
+                  </div>
+                )}
               </div>
-              :
-              ""
-          }
+            </div>
+          ) : (
+            ""
+          )}
         </>
-      )
-    }
-    else {
+      );
+    } else {
       return (
         <Link
-          to={
-            routingConstants.COURSE_DETAILS + obj?.id
-          }
+          to={routingConstants.COURSE_DETAILS + obj?.slug}
           className='col-md-6'
           key={obj?.id}
         >
@@ -162,7 +175,7 @@ const Courses = () => {
             </div>
           </div>
         </Link>
-      )
+      );
     }
 
     // }
@@ -206,34 +219,34 @@ const Courses = () => {
     //     </div>
     //   )
     // }
-  }
+  };
   useEffect(() => {
-    checkFunction()
-  }, [state?.allCourses?.results])
+    checkFunction();
+  }, [state?.allCourses?.results]);
 
   const checkFunction = () => {
     let num = Math.floor(Math.random() * (6 - 0) + 0);
     let res = state?.allCourses?.results;
     let dummydata = {
-      "id": 'advertistment'
-    }
+      id: "advertistment",
+    };
     res && res.splice(num, 0, dummydata);
     if (res) {
-      setTempData(res)
+      setTempData(res);
     }
   };
 
   const checkFunction1 = () => {
-    return tempData && tempData.map((obj, index) => {
-      return (
-        <>
-          {/* {Math.floor(Math.random()*(4-0)+ 0) == index && ( */}
-          {
-            shuffleFun(obj, index)
-          }
-          {/* {index % 5 == 4 ? ( */}
+    return (
+      tempData &&
+      tempData.map((obj, index) => {
+        return (
+          <>
+            {/* {Math.floor(Math.random()*(4-0)+ 0) == index && ( */}
+            {shuffleFun(obj, index)}
+            {/* {index % 5 == 4 ? ( */}
 
-          {/* {Math.floor(Math.random()*(4-0)+ 0) == index ? (
+            {/* {Math.floor(Math.random()*(4-0)+ 0) == index ? (
             <>
               <div className='col-md-6'>
                 <div className='google_add_box box_hov'>
@@ -259,9 +272,10 @@ const Courses = () => {
             ""
           )
           } */}
-        </>
-      );
-    });
+          </>
+        );
+      })
+    );
   };
 
   const paginationBack = () => {
@@ -269,7 +283,8 @@ const Courses = () => {
       setCategoryPageCount(categoryPageCount - pageLimit);
       dispatch(
         allCourses(
-          `?category_id=${categoryId}&limit=${pageLimit}&offset=${categoryPageCount - pageLimit
+          `?category_id=${categoryId}&limit=${pageLimit}&offset=${
+            categoryPageCount - pageLimit
           }`,
         ),
       );
@@ -280,8 +295,10 @@ const Courses = () => {
       );
     }
     if (page_adds) {
-      sessionStorage.setItem('current_adds', JSON.stringify({ ...page_adds, addIndex: page_adds?.addIndex - 1 }))
-
+      sessionStorage.setItem(
+        "current_adds",
+        JSON.stringify({ ...page_adds, addIndex: page_adds?.addIndex - 1 }),
+      );
     }
     window.scrollTo(0, 1000);
   };
@@ -290,7 +307,8 @@ const Courses = () => {
       setCategoryPageCount(categoryPageCount + pageLimit);
       dispatch(
         allCourses(
-          `?category_id=${categoryId}&limit=${pageLimit}&offset=${categoryPageCount + pageLimit
+          `?category_id=${categoryId}&limit=${pageLimit}&offset=${
+            categoryPageCount + pageLimit
           }`,
         ),
       );
@@ -301,8 +319,10 @@ const Courses = () => {
       );
     }
     if (page_adds) {
-      sessionStorage.setItem('current_adds', JSON.stringify({ ...page_adds, addIndex: page_adds?.addIndex + 1 }))
-
+      sessionStorage.setItem(
+        "current_adds",
+        JSON.stringify({ ...page_adds, addIndex: page_adds?.addIndex + 1 }),
+      );
     }
     window.scrollTo(0, 1000);
   };
@@ -422,24 +442,27 @@ const Courses = () => {
       /> */}
       <Header loginPage={true} page='courses' />
       <section className='Cors_sec noselect'>
-
         <Helmet>
-
-          <link rel="canonical" href="https://www.shekunj.com/courses/" />
-          <title>Best Free Online Courses
-            & Certifications in India - Shekunj.
-            com</title>
-          <meta name="description" content="Advance your career with the free Online
+          <link rel='canonical' href='https://www.shekunj.com/courses/' />
+          <title>
+            Best Free Online Courses & Certifications in India - Shekunj. com
+          </title>
+          <meta
+            name='description'
+            content='Advance your career with the free Online
   Professional development courses and
   certifications with the most in-demand skills
-  specially curated for women."/>
-          <meta name="keywords" content="free online courses in india
+  specially curated for women.'
+          />
+          <meta
+            name='keywords'
+            content='free online courses in india
   best online certificate programs
   free online courses for girls in india
   online certification courses in india
-  free online courses for women"/>
+  free online courses for women'
+          />
         </Helmet>
-
 
         <div className='container'>
           <div className='row'>
@@ -641,7 +664,11 @@ const Courses = () => {
                     className='col-md-12'
                     onClick={() => addEmail(coursesSideAds[0]?.add_email)}
                   >
-                    <a href={coursesSideAds[0]?.url_adds} target='_blank' rel="noreferrer">
+                    <a
+                      href={coursesSideAds[0]?.url_adds}
+                      target='_blank'
+                      rel='noreferrer'
+                    >
                       <img
                         src={coursesSideAds[0]?.image}
                         alt='Image'
@@ -654,13 +681,12 @@ const Courses = () => {
             </div>
             <div className='col-md-8 col-sm-8'>
               <div className='content_right'>
-                { state?.selectedFilter && (
+                {state?.selectedFilter && (
                   <h3 className='result_head'>
                     {t("coursesPage.other.1.1")} {state?.allCourses?.count || 0}{" "}
                     {t("coursesPage.other.1.2")}
-                  </h3> 
+                  </h3>
                 )}
-                
 
                 <Row>
                   <Col xl={9} lg={8} md={8} xs={12}>
@@ -707,14 +733,13 @@ const Courses = () => {
               </div>
               <div className='filter_right_content'>
                 <div className='row'>
-                  {
-                    tempData && tempData.length > 0 ? (
-                      checkFunction1()
-                    ) : (
-                      <div className='text-center mt-2'>
-                        {t("common.noDataFound")}
-                      </div>
-                    )}
+                  {tempData && tempData.length > 0 ? (
+                    checkFunction1()
+                  ) : (
+                    <div className='text-center mt-2'>
+                      {t("common.noDataFound")}
+                    </div>
+                  )}
                 </div>
                 <div className='paginationDiv'>
                   {state?.allCourses?.count > pageLimit && (

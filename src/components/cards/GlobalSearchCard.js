@@ -75,9 +75,9 @@ export const GlobalSearchCard = ({
         case "Article":
           return `/article/${category_name.toLowerCase()}/${slug}`;
         case "Courses":
-          return `/courses-details/${id}`;
+          return `/courses-details/${slug}`;
         case "Mock Test":
-          return `/mock-test/${id}1`;
+          return `/mock-test/${slug}`;
         default:
           return "";
       }

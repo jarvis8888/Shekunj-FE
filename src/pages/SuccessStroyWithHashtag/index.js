@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Footer, Header } from "../../components";
 import "./index.scss";
 import httpServices from "../../utils/ApiServices";
@@ -34,9 +34,9 @@ const SuccessStroyWithHashtag = () => {
   const [succesStoriesRight2, setSuccesStoriesRight2] = useState([]);
   const [succesStoriesLeft, setSuccesStoriesLeft] = useState([]);
   const [currentFeaturedData, setCurrentFeaturedData] = useState([]);
-  const [searchTerm, setSearchTerm] = useState([]);
   const [offset, setOffset] = useState(0);
   const pageLimit = 4;
+  const searchRef = useRef("");
 
   const getSuccessStroyWithHashtagData = async (limit, offset, search) => {
     setLoading(true);
@@ -58,15 +58,16 @@ const SuccessStroyWithHashtag = () => {
         if (res.length % 2 === 0) {
           newFeaturedData.push(addObjectData);
         }
-        setData((prevFeaturedData) => [
-          ...prevFeaturedData,
-          ...newFeaturedData,
-        ]);
+        if (search !== searchRef.current) {
+          setData(newFeaturedData); // Set new data directly
+        } else {
+          setData((prevData) => [...prevData, ...newFeaturedData]); // Append new data
+        }
       } else {
         setCurrentFeaturedData(filtered_data);
       }
       setAllHashTag(all_hash_tags);
-      setSearchTerm(search);
+
       setLoading(false);
     } catch {
       setLoading(false);
@@ -165,14 +166,14 @@ const SuccessStroyWithHashtag = () => {
   }, []);
 
   useEffect(() => {
-    if (search) {
-      if (search === searchTerm) {
-        getSuccessStroyWithHashtagData(pageLimit, offset, search);
-      } else {
-        setData([]); // Clear existing data
-        setCurrentFeaturedData(null); // Clear existing featured data
-        getSuccessStroyWithHashtagData(pageLimit, 0, search);
-      }
+    if (search && search !== searchRef.current) {
+      setData([]); // Clear existing data
+      setCurrentFeaturedData(null); // Clear existing featured data
+      setOffset(0); // Reset the offset to 0
+      searchRef.current = search; // Update the searchRef
+      getSuccessStroyWithHashtagData(pageLimit, 0, search);
+    } else if (search && search === searchRef.current && offset > 0) {
+      getSuccessStroyWithHashtagData(pageLimit, offset, search);
     }
   }, [search, offset, lan]);
 
@@ -218,7 +219,7 @@ const SuccessStroyWithHashtag = () => {
     if (currentFeaturedData?.results?.length === 0) {
       return;
     }
-    setOffset(offset + 6);
+    setOffset(offset + 4);
   };
 
   return (
@@ -249,44 +250,42 @@ const SuccessStroyWithHashtag = () => {
                 </div>
 
                 <div className='row'>
-                  {data?.length ? (
-                    data?.map((items, index) => {
-                      if (items.id === "advertisement") {
-                        return (
-                          <>
-                            {succesStoriesLeft.length > 0 &&
-                              succesStoriesLeftRenderAds()}
-                          </>
-                        );
-                      } else {
-                        return (
-                          <>
-                            <div className='col-xl-6 col-lg-6 col-md-12 col-sm-12'>
-                              <FeaturedCards
-                                image={items.image}
-                                hashtags={
-                                  items.hash_tags === null
-                                    ? []
-                                    : items.hash_tags
-                                }
-                                title={items.name}
-                                description={`${items.title}`}
-                                makeHtml={makeHtml}
-                                key={index}
-                                created_at={items.created_at}
-                                reading_time={items.reading_time}
-                                id={items.id}
-                                slug={items.slug}
-                                ss_count={items.ss_count}
-                              />
-                            </div>
-                          </>
-                        );
-                      }
-                    })
-                  ) : (
-                    <>{null}</>
-                  )}
+                  {data?.length
+                    ? data?.map((items, index) => {
+                        if (items.id === "advertisement") {
+                          return (
+                            <>
+                              {succesStoriesLeft.length > 0 &&
+                                succesStoriesLeftRenderAds()}
+                            </>
+                          );
+                        } else {
+                          return (
+                            <>
+                              <div className='col-xl-6 col-lg-6 col-md-12 col-sm-12'>
+                                <FeaturedCards
+                                  image={items.image}
+                                  hashtags={
+                                    items.hash_tags === null
+                                      ? []
+                                      : items.hash_tags
+                                  }
+                                  title={items.name}
+                                  description={`${items.title}`}
+                                  makeHtml={makeHtml}
+                                  key={index}
+                                  created_at={items.created_at}
+                                  reading_time={items.reading_time}
+                                  id={items.id}
+                                  slug={items.slug}
+                                  ss_count={items.ss_count}
+                                />
+                              </div>
+                            </>
+                          );
+                        }
+                      })
+                    : null}
                 </div>
               </div>
               <div className='sk-blogbottom-border d-flex justify-content-center align-items-center '>

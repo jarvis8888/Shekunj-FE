@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Footer, Header } from "../../components";
 import "./index.scss";
 import httpServices from "../../utils/ApiServices";
@@ -22,6 +22,7 @@ import useDeviceDetect from "../../hooks/useDeviceDetect";
 import { NoDataFound } from "../../components/noDataFound/NoDataFound";
 import { HashtagAndCatagoriesForMobile } from "../../components/HastagAndCatagories/HastagAndCatagoriesForMobile";
 import { withHeaderFooter } from "../../hocs/withHeaderFooter";
+import { WhiteCircularBar } from "../../components/Loader/WhiteCircularBar";
 
 const BlogWithCatogry = () => {
   const location = useLocation();
@@ -31,6 +32,7 @@ const BlogWithCatogry = () => {
   const { state } = location;
   const { search } = useParams();
 
+  const { lan } = useSelector((state) => state.languageReducer);
   const searchParams = new URLSearchParams(location.search);
   const currentSearch = searchParams.get("category_id") || "";
 
@@ -40,15 +42,20 @@ const BlogWithCatogry = () => {
   const [succesStoriesRight1, setSuccesStoriesRight1] = useState([]);
   const [succesStoriesRight2, setSuccesStoriesRight2] = useState([]);
   const [blogDetailsBoxAds, setBlogDetailsBoxAds] = useState([]);
+  const [currentFeaturedData, setCurrentFeaturedData] = useState([]);
+  const [searchTerm, setSearchTerm] = useState([]);
+  const [offset, setOffset] = useState(0);
+  const pageLimit = 8;
+  const searchRef = useRef("");
 
-  const getBlogWithHashtagData = async (search) => {
+  const getBlogWithHashtagData = async (search, limit, offset) => {
     setLoading(true);
     try {
-      const url = `more/blogs?category__name=${search}`;
+      const url = `more/blogs?category__name=${search}&limit=${limit}&offset=${offset}`;
       const data = await httpServices.get(url);
       const { filtered_blogs, blog_categories } = data;
-      if (filtered_blogs?.length > 0) {
-        const res = filtered_blogs ?? [];
+      if (filtered_blogs?.results?.length > 0) {
+        const res = filtered_blogs?.results ?? [];
         const addObjectData = { id: "advertisement" };
         const newFeaturedData = [];
 
@@ -58,11 +65,16 @@ const BlogWithCatogry = () => {
             newFeaturedData.push(addObjectData);
           }
         }
-        setData(newFeaturedData);
+        if (search !== searchRef.current) {
+          setData(newFeaturedData); // Set new data directly
+        } else {
+          setData((prevData) => [...prevData, ...newFeaturedData]); // Append new data
+        }
       } else {
-        setData([]);
+        setCurrentFeaturedData(filtered_blogs);
       }
       setAllHashTag(blog_categories);
+      setSearchTerm(search);
     } catch (error) {
     } finally {
       setLoading(false);
@@ -128,10 +140,16 @@ const BlogWithCatogry = () => {
     );
   }, []);
   useEffect(() => {
-    if (search) {
-      getBlogWithHashtagData(search);
+    if (search && search !== searchRef.current) {
+      setData([]); // Clear existing data
+      setCurrentFeaturedData(null); // Clear existing featured data
+      setOffset(0); // Reset the offset to 0
+      searchRef.current = search; // Update the searchRef
+      getBlogWithHashtagData(search, pageLimit, 0);
+    } else if (search && search === searchRef.current && offset > 0) {
+      getBlogWithHashtagData(search, pageLimit, offset);
     }
-  }, [search]);
+  }, [search, offset, lan]);
 
   const adCount = blogDetailsBoxAds.length; // Total number of ads
   let adIndex = 0; // Current ad index
@@ -170,6 +188,13 @@ const BlogWithCatogry = () => {
 
   const getCategoryColor = assignColorToCategory(namesArray);
 
+  const handleLoadMoreClick = () => {
+    if (currentFeaturedData?.results?.length === 0) {
+      return;
+    }
+    setOffset(offset + 4);
+  };
+
   return (
     <div>
       <section>
@@ -195,14 +220,10 @@ const BlogWithCatogry = () => {
                     more-or-less normal.
                   </p>
                 </div>
-                {loading ? (
-                  <div>
-                    <CustomLoader />
-                  </div>
-                ) : (
-                  <div className='sk-blogCategory-detail'>
-                    {data?.length ? (
-                      data?.map((items, index) => {
+
+                <div className='sk-blogCategory-detail'>
+                  {data?.length
+                    ? data?.map((items, index) => {
                         if (items.id === "advertisement") {
                           return (
                             <>{blogDetailsBoxAds.length > 0 && renderAds()}</>
@@ -227,11 +248,17 @@ const BlogWithCatogry = () => {
                           );
                         }
                       })
-                    ) : (
-                      <NoDataFound />
-                    )}
-                  </div>
-                )}
+                    : null}
+                </div>
+              </div>
+              <div className='sk-blogbottom-border d-flex justify-content-center align-items-center '>
+                <button
+                  disabled={currentFeaturedData?.results?.length === 0}
+                  className='loadMore'
+                  onClick={handleLoadMoreClick}
+                >
+                  {loading ? <WhiteCircularBar /> : `Load More`}
+                </button>
               </div>
             </div>
             <div div className='col-xl-4 col-lg-4 col-md-4 sk-Removeside-space'>

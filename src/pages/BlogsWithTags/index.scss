@@ -1,8 +1,7 @@
-
 // section{
 //   padding: 40px 0;
 // }
-.blog-card2__meta span{
+.blog-card2__meta span {
   margin-right: 15px;
 }
 .Hashtag_container_title {
@@ -19,5 +18,18 @@
   margin-right: 5px;
   cursor: pointer;
   font-size: 16px;
+  display: inline-block;
+}
+
+.loadMore {
+  background: #202020;
+  padding: 15px 30px;
+  border-radius: 8px;
+  color: #fff;
+  min-width: 212px;
+  max-width: 212px;
+  font-weight: 600;
+  margin-top: 11.5px;
+  margin-bottom: 10px;
   display: inline-block;
 }

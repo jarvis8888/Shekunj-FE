@@ -16,10 +16,10 @@ img {
   text-transform: capitalize;
   margin-bottom: 5px;
 }
-.sk-heading-story h6{
+.sk-heading-story h6 {
   margin-bottom: 0;
   font-weight: 400;
-  color:#888;
+  color: #888;
   line-height: 25px;
 }
 .sk-chipTag-blog {
@@ -235,7 +235,7 @@ img {
   font-size: 28px;
   color: #020202;
 }
-.blog-card:last-child{
+.blog-card:last-child {
   border-bottom: 0;
   margin-bottom: 0;
   padding-bottom: 0;
@@ -247,8 +247,8 @@ img {
   border-bottom: 1px solid #d9d9d9;
   gap: 15px;
   cursor: pointer;
-  transition: .3s;
-  &:hover{
+  transition: 0.3s;
+  &:hover {
     transform: scale(1.02);
   }
   @media screen and (max-width: 768px) {
@@ -356,13 +356,13 @@ img {
 .card__button span {
   border-left: 1px solid #d9d9d9;
 }
-.card .sk-blog-btn{
+.card .sk-blog-btn {
   border: 1px solid #434242;
   border-radius: 8px;
   color: #434242;
   margin-top: 15px;
 }
-.card .sk-blog-btn:hover{
+.card .sk-blog-btn:hover {
   border: 1px solid #d3317d;
 }
 .card__button {
@@ -406,7 +406,7 @@ p.blog-card-description {
   border-bottom: 1px solid #d9d9d9;
   transition: 0.3s;
 }
-.sk-blogDivider-bottom:hover{
+.sk-blogDivider-bottom:hover {
   transform: scale(1.01);
 }
 .sk-blogDivider-bottom:last-child {
@@ -426,7 +426,7 @@ p.blog-card-description {
     font-size: 20px;
   }
 }
-@media screen and (min-width: 320px) and (max-width: 1399px) {
+@media screen and (min-width: 320px) and (max-width: 1360px) {
   .card__button {
     font-size: 12px;
   }

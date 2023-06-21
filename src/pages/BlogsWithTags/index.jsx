@@ -25,6 +25,7 @@ import { NoDataFound } from "../../components/noDataFound/NoDataFound";
 import { HashtagAndCatagoriesForMobile } from "../../components/HastagAndCatagories/HastagAndCatagoriesForMobile";
 import { withHeaderFooter } from "../../hocs/withHeaderFooter";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { WhiteCircularBar } from "../../components/Loader/WhiteCircularBar";
 
 const SuccessStroyWithHashtag = () => {
   const location = useLocation();
@@ -35,6 +36,8 @@ const SuccessStroyWithHashtag = () => {
   const { state } = location;
   const { search } = useParams();
 
+  const { lan } = useSelector((state) => state.languageReducer);
+
   const searchParams = new URLSearchParams(location.search);
   const currentSearch = searchParams.get("search") || "";
 
@@ -44,15 +47,19 @@ const SuccessStroyWithHashtag = () => {
   const [succesStoriesRight1, setSuccesStoriesRight1] = useState([]);
   const [succesStoriesRight2, setSuccesStoriesRight2] = useState([]);
   const [blogDetailsBoxAds, setBlogDetailsBoxAds] = useState([]);
+  const [currentFeaturedData, setCurrentFeaturedData] = useState([]);
+  const [searchTerm, setSearchTerm] = useState([]);
+  const [offset, setOffset] = useState(0);
+  const pageLimit = 8;
 
-  const getBlogWithHashtagData = async (search) => {
+  const getBlogWithHashtagData = async (search, limit, offset) => {
     setLoading(true);
     try {
-      const url = `more/blogs?search=${search}`;
+      const url = `more/blogs?search=${search}&limit=${limit}&offset=${offset}`;
       const data = await httpServices.get(url);
       const { filtered_blogs, blog_categories } = data;
-      if (filtered_blogs?.length > 0) {
-        const res = filtered_blogs ?? [];
+      if (filtered_blogs?.results?.length > 0) {
+        const res = filtered_blogs?.results ?? [];
         const addObjectData = { id: "advertisement" };
         const newFeaturedData = [];
 
@@ -62,11 +69,15 @@ const SuccessStroyWithHashtag = () => {
             newFeaturedData.push(addObjectData);
           }
         }
-        setData(newFeaturedData);
+        setData((prevFeaturedData) => [
+          ...prevFeaturedData,
+          ...newFeaturedData,
+        ]);
       } else {
-        setData([]);
+        setCurrentFeaturedData(filtered_blogs);
       }
       setAllHashTag(blog_categories);
+      setSearchTerm(search);
     } catch (error) {
     } finally {
       setLoading(false);
@@ -164,9 +175,15 @@ const SuccessStroyWithHashtag = () => {
   }, []);
   useEffect(() => {
     if (search) {
-      getBlogWithHashtagData(search);
+      if (search === searchTerm) {
+        getBlogWithHashtagData(search, pageLimit, offset);
+      } else {
+        setData([]); // Clear existing data
+        setCurrentFeaturedData(null); // Clear existing featured data
+        getBlogWithHashtagData(search, pageLimit, 0);
+      }
     }
-  }, [search]);
+  }, [search, offset, lan]);
 
   const adCount = blogDetailsBoxAds.length; // Total number of ads
   let adIndex = 0; // Current ad index
@@ -206,6 +223,13 @@ const SuccessStroyWithHashtag = () => {
 
   const getCategoryColor = assignColorToCategory(namesArray);
 
+  const handleLoadMoreClick = () => {
+    if (currentFeaturedData?.results?.length === 0) {
+      return;
+    }
+    setOffset(offset + 4);
+  };
+
   return (
     <div>
       <section>
@@ -228,14 +252,10 @@ const SuccessStroyWithHashtag = () => {
                     />
                   </span>
                 </div>
-                {loading ? (
-                  <div>
-                    <CustomLoader />
-                  </div>
-                ) : (
-                  <div>
-                    {data?.length ? (
-                      data?.map((items, index) => {
+
+                <div>
+                  {data?.length
+                    ? data?.map((items, index) => {
                         if (items.id === "advertisement") {
                           return (
                             <>{blogDetailsBoxAds.length > 0 && renderAds()}</>
@@ -260,11 +280,17 @@ const SuccessStroyWithHashtag = () => {
                           );
                         }
                       })
-                    ) : (
-                      <NoDataFound />
-                    )}
-                  </div>
-                )}
+                    : null}
+                </div>
+              </div>
+              <div className='sk-blogbottom-border d-flex justify-content-center align-items-center '>
+                <button
+                  disabled={currentFeaturedData?.results?.length === 0}
+                  className='loadMore'
+                  onClick={handleLoadMoreClick}
+                >
+                  {loading ? <WhiteCircularBar /> : `Load More`}
+                </button>
               </div>
             </div>
             <div className='col-xl-4 col-lg-4 col-md-4 sk-Removeside-space'>

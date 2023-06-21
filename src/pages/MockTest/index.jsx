@@ -402,51 +402,36 @@ function MockTest() {
   };
 
   useEffect(() => {
-    checkFunction()
-  }, [guidanceCategory])
+    checkFunction();
+  }, [guidanceCategory]);
 
   const shuffleFun = (gb, index) => {
-    if (gb?.id === 'advertistment') {
+    if (gb?.id === "advertistment") {
       return (
         <>
-          {
-            mockTestBoxAds?.length > 0 ?
-              <Grid
-                Container
-                spacing={2}
-                className='gridContainer flex'
-              >
-                <Col md={1} xl={12}>
-                  <Card className='GuidanceOptionCard '>
-
-                    <div
-                      onClick={() =>
-                        addEmail(mockTestBoxAds[0]?.add_email)
-                      }
-                    >
-                      <a
-                        href={mockTestBoxAds[0]?.url_adds}
-                        target='_blank'
-                      >
-                        <img
-                          src={mockTestBoxAds[0]?.image}
-                          alt='Image'
-                          className='guidanceOptionImageAdd'
-                        />
-                      </a>
-                      <div className='overlay'></div>
-                    </div>
-
-                  </Card>
-                </Col>
-              </Grid>
-              :
-              ""
-          }
+          {mockTestBoxAds?.length > 0 ? (
+            <Grid Container spacing={2} className='gridContainer flex'>
+              <Col md={1} xl={12}>
+                <Card className='GuidanceOptionCard '>
+                  <div onClick={() => addEmail(mockTestBoxAds[0]?.add_email)}>
+                    <a href={mockTestBoxAds[0]?.url_adds} target='_blank'>
+                      <img
+                        src={mockTestBoxAds[0]?.image}
+                        alt='Image'
+                        className='guidanceOptionImageAdd'
+                      />
+                    </a>
+                    <div className='overlay'></div>
+                  </div>
+                </Card>
+              </Col>
+            </Grid>
+          ) : (
+            ""
+          )}
         </>
-      )
-    }
-    else {
+      );
+    } else {
       return (
         <Grid Container spacing={2} className='gridContainer flex'>
           <Col md={1} xl={12}>
@@ -481,7 +466,7 @@ function MockTest() {
                   href={gb && gb.form_link}
                 >
                   <Link
-                    to={routingConstants?.MOCKTEST + gb?.id}
+                    to={routingConstants?.MOCKTEST + gb?.slug}
                     className=''
                     key={gb?.id}
                   >
@@ -492,32 +477,36 @@ function MockTest() {
             </Card>
           </Col>
         </Grid>
-      )
+      );
     }
-  }
+  };
 
   const checkFunction = () => {
     let num = Math.floor(Math.random() * (13 - 0) + 0);
     let res = guidanceCategory;
     let dummydata = {
-      "id": 'advertistment'
-    }
+      id: "advertistment",
+    };
     Object.values(res).splice(num, 0, dummydata);
     if (res) {
-      setTempData(res)
+      setTempData(res);
     }
   };
 
   return (
     <div className='noselect'>
-
-
       <Helmet>
-      <title>Free Online Career Mock Test Series - Shekunj.com</title>
-        <link rel="canonical" href="https://www.shekunj.com/mock-test/" />
-        <meta name="description" content="Practice Free Online Test Series & Mock Tests for Banking, SSC, JEE, 
-          NEET, and other Government and Non-Government Exams and score high marks!"/>
-        <meta name="keywords" content="free online mock test, online career test, online career assessment, test series, free online mock test series,"/>
+        <title>Free Online Career Mock Test Series - Shekunj.com</title>
+        <link rel='canonical' href='https://www.shekunj.com/mock-test/' />
+        <meta
+          name='description'
+          content='Practice Free Online Test Series & Mock Tests for Banking, SSC, JEE, 
+          NEET, and other Government and Non-Government Exams and score high marks!'
+        />
+        <meta
+          name='keywords'
+          content='free online mock test, online career test, online career assessment, test series, free online mock test series,'
+        />
       </Helmet>
 
       <Header loginPage={true} page='guidance' subPage='mockTest' />
@@ -640,9 +629,7 @@ function MockTest() {
                     </Col>
                   </Grid> */}
 
-                  {
-                    shuffleFun(gb, index)
-                  }
+                  {shuffleFun(gb, index)}
 
                   {/* {Math.floor(Math.random() * (12 - 0) + 0) == index ? (
                     <>
