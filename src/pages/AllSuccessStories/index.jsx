@@ -241,7 +241,7 @@ const AllSuccessStory = () => {
           </div>
         </div>
       </section>
-      <section className='sk-allstory-sec'>
+      <section className="sk-storyBoxMain-sec sk-allstory-sec">
         <div className='container sk-custom-container'>
           <div className='row'>
             {loading ? (

@@ -23,10 +23,11 @@ img {
   background: url(../../assets/images/searchbg.png) no-repeat center center;
   background-size: cover;
   position: relative;
+  padding: 40px 0 50px;
 }
 
 .sk-searchNew-banner{
-  padding: 60px 0;
+  padding: 50px 0 40px;
 }
 .sk-search-sec .sk-item-box .sk-icon {
   margin-bottom: 15px;
@@ -424,6 +425,7 @@ img {
   font-size: 12px;
   font-family: "Poppins", sans-serif;
   color: #888;
+  text-transform: capitalize;
 }
 .sk-time-education ul li.sk-onlineofline-tag {
   color: #434242;
