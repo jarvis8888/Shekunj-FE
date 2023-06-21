@@ -683,6 +683,9 @@ button.want_btn {
   border-bottom: 1px solid #d9d9d9 !important;
   margin-bottom: 40px;
 }
+.sk-blogbottom-border:last-child{
+  border-bottom: 0 !important;
+}
 .treading-card-gird {
   width: 90%;
   display: grid;
@@ -742,7 +745,7 @@ button.want_btn {
       justify-content: space-between;
       align-items: center;
       font-size: 0.9rem;
-      color: #999;
+      color: #888;
     }
   }
 }
@@ -790,7 +793,7 @@ button.want_btn {
       justify-content: space-between;
       align-items: center;
       font-size: 0.9rem;
-      color: #999;
+      color: #888;
     }
   }
 }

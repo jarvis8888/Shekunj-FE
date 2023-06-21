@@ -201,7 +201,7 @@ img {
 .sk-category ul li a {
   color: #020202;
   display: inline-block;
-  padding: 10px 20px;
+  padding: 9px 20px;
   border: 1px solid #d9d9d9;
   border-radius: 8px;
   font-family: "Poppins", sans-serif;
@@ -225,8 +225,9 @@ img {
 .sk-eventcard-sec .sk-category h6 {
   font-weight: 400;
   width: 100%;
-  max-width: 60px;
+  max-width: 45px;
   color: #888;
+  font-size: 12px;
 }
 .sk-eventcard-sec .active-time {
   background: #020202;
@@ -422,8 +423,11 @@ img {
 .sk-time-education ul li {
   font-size: 12px;
   font-family: "Poppins", sans-serif;
+  color: #888;
 }
-
+.sk-time-education ul li.sk-onlineofline-tag {
+  color: #434242;
+}
 .sk-time-education ul li img {
   margin-right: 5px;
   vertical-align: top;
