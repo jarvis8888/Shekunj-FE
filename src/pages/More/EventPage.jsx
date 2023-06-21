@@ -17,7 +17,7 @@ import { useTranslation } from "react-i18next";
 import axios from "axios";
 import offlineicon from "../../assets/images/offline-icon.svg";
 import onlineicon from "../../assets/images/onlineicon.svg";
-import SchoolRoundedIcon from "@mui/icons-material/SchoolRounded";
+import SchoolOutlinedIcon from '@mui/icons-material/SchoolOutlined';
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import { adsList } from "../../store/ads";
 import { Helmet } from "react-helmet-async";
@@ -453,7 +453,7 @@ function EventPage() {
                                   {" "}
                                   <span>{items.genre_name}</span>{" "}
                                 </li>
-                                <li>
+                                <li className="sk-onlineofline-tag">
                                   {items.mode_of_event === "offline" ? (
                                     <>
                                       {" "}
@@ -494,7 +494,7 @@ function EventPage() {
                                 {items?.want_to_display_enrolled_students && (
                                   <li>
                                     {" "}
-                                    <SchoolRoundedIcon />{" "}
+                                    <SchoolOutlinedIcon />{" "}
                                     {items.enrold_students} enrolled{" "}
                                   </li>
                                 )}

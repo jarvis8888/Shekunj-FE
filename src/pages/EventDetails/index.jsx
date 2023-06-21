@@ -28,7 +28,7 @@ import locationicon from "../../assets/images/location.svg";
 import commonicon from "../../assets/images/commonicon.svg";
 import eventemailsend from "../../assets/images/eventemailsend.svg";
 import gendericon from "../../assets/images/gendericon.svg";
-import SchoolRoundedIcon from "@mui/icons-material/SchoolRounded";
+import SchoolOutlinedIcon from '@mui/icons-material/SchoolOutlined';
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import onlineicon from "../../assets/images/onlineicon.svg";
 import offlineicon from "../../assets/images/offline-icon.svg";
@@ -379,7 +379,7 @@ const EventDetails = () => {
                               {eventsDetails?.want_to_display_enrolled_students && (
                                 <li>
                                   {" "}
-                                  <SchoolRoundedIcon />{" "}
+                                  <SchoolOutlinedIcon />{" "}
                                   {eventsDetails?.enrold_students} enrolled{" "}
                                 </li>
                               )}

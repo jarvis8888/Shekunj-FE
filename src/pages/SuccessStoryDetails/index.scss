@@ -14,7 +14,26 @@
 .sk-Blogcard-content{
   padding-bottom: 8px !important;
 }
+.sk-shekunjAbout-content h5 {
+  font-weight: 500;
+}
 
+.sk-shekunjAbout-content p {
+  margin-bottom: 0;
+  color: #434242;
+}
+
+.sk-shekunj-about {
+  border-top: 1px solid #d9d9d9;
+  border-bottom: 1px solid #d9d9d9;
+  padding: 21px 0;
+  margin-bottom: 10px;
+  margin-top: 40px;
+}
+
+.sk-shekunjAbout-content p a {
+  color: #ec4a8a;
+}
 .story-sub-tittle:before {
   content: '';
   position: absolute;

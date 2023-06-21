@@ -282,8 +282,7 @@ const SuccessStroyWithHashtag = () => {
                       })
                     : null}
                 </div>
-              </div>
-              <div className='sk-blogbottom-border d-flex justify-content-center align-items-center '>
+                <div className='sk-blogbottom-border d-flex justify-content-center align-items-center '>
                 <button
                   disabled={currentFeaturedData?.results?.length === 0}
                   className='loadMore'
@@ -291,6 +290,7 @@ const SuccessStroyWithHashtag = () => {
                 >
                   {loading ? <WhiteCircularBar /> : `Load More`}
                 </button>
+              </div>
               </div>
             </div>
             <div className='col-xl-4 col-lg-4 col-md-4 sk-Removeside-space'>

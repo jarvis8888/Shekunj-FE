@@ -9,8 +9,8 @@ import { addEmailToClient, makeHtml } from "../../utils/utils";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { adsList } from "../../store/ads";
-import EastRoundedIcon from '@mui/icons-material/EastRounded';
-import WestRoundedIcon from '@mui/icons-material/WestRounded';
+import EastRoundedIcon from "@mui/icons-material/EastRounded";
+import WestRoundedIcon from "@mui/icons-material/WestRounded";
 import useDeviceDetect from "../../hooks/useDeviceDetect";
 import { CustomLoader } from "../../components/customLoader/CustomLoader";
 
@@ -27,6 +27,8 @@ const AllSuccessStory = () => {
   const [succesStoriesBox, setSuccesStoriesBox] = useState([]);
   const [activeTab, setActiveTab] = useState("All");
   const [currentPage, setCurrentPage] = useState(1);
+  const [startPage, setStartPage] = useState(1);
+
   const [offset, setOffset] = useState(0);
   const pageLimit = 7;
 
@@ -71,6 +73,10 @@ const AllSuccessStory = () => {
     if (currentPage < totalPages) {
       setCurrentPage(currentPage + 1);
       setOffset(offset + pageLimit);
+      // setEndPage(endPage + 1);
+    }
+    if (startPage + 1 < totalPages) {
+      setStartPage(startPage + 1);
     }
   };
 
@@ -79,8 +85,16 @@ const AllSuccessStory = () => {
     if (currentPage > 1) {
       setCurrentPage(currentPage - 1);
       setOffset(offset - pageLimit);
+      // setEndPage(endPage - 1);
+    }
+    if (startPage > 1) {
+      setStartPage(startPage - 1);
     }
   };
+
+  const visiblePages = Array.from({ length: 4 })
+    .map((_, index) => startPage + index)
+    .filter((pageNumber) => pageNumber <= totalPages);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -227,7 +241,7 @@ const AllSuccessStory = () => {
           </div>
         </div>
       </section>
-      <section className="sk-allstory-sec">
+      <section className='sk-allstory-sec'>
         <div className='container sk-custom-container'>
           <div className='row'>
             {loading ? (
@@ -266,24 +280,29 @@ const AllSuccessStory = () => {
                 }
               })
             )}
-            <div className="col-xl-12">
+            <div className='col-xl-12'>
               <div className='sk-pagination pagination'>
-                <span className="sk-prevnext-btn" onClick={previousPage} disabled={currentPage === 1}>
+                <span
+                  className='sk-prevnext-btn'
+                  onClick={previousPage}
+                  disabled={startPage === 1}
+                >
                   <WestRoundedIcon />
                 </span>
-                {Array.from({ length: totalPages }).map((_, index) => {
-                  const pageNumber = index + 1;
-                  return (
-                    <button
-                      key={pageNumber}
-                      onClick={() => handleClick(pageNumber)}
-                      className={currentPage === pageNumber ? "active" : ""}
-                    >
-                      {pageNumber}
-                    </button>
-                  );
-                })}
-                <span className="sk-prevnext-btn" onClick={nextPage} disabled={currentPage === totalPages}>
+                {visiblePages.map((pageNumber) => (
+                  <button
+                    key={pageNumber}
+                    onClick={() => handleClick(pageNumber)}
+                    className={currentPage === pageNumber ? "active" : ""}
+                  >
+                    {pageNumber}
+                  </button>
+                ))}
+                <span
+                  className='sk-prevnext-btn'
+                  onClick={nextPage}
+                  disabled={startPage + 3 >= totalPages}
+                >
                   <EastRoundedIcon />
                 </span>
               </div>
@@ -291,7 +310,6 @@ const AllSuccessStory = () => {
           </div>
         </div>
       </section>
-
     </div>
   );
 };

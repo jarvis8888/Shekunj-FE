@@ -16,6 +16,7 @@ import TrendingCards from "../../components/cards/TrendingCards";
 import fire from "../../assets/images/fire.svg";
 import { HashtagAndCatagories } from "../../components/HastagAndCatagories/Index";
 import hash from "../../assets/images/hashtag.svg";
+import logo from "../../assets/images/logo.svg";
 import { apiConstants, routingConstants } from "../../utils/constants";
 import httpServices from "../../utils/ApiServices";
 import { CustomLoader } from "../../components/customLoader/CustomLoader";
@@ -366,6 +367,33 @@ const SuccessStoryDetails = () => {
                         />
                       </div>
                     </div>
+                    <div className='sk-shekunj-about'>
+                      <div className='row align-items-center'>
+                        <div className='col-xl-3 col-lg-4 col-md-4'>
+                          <div className='sk-aboutshekunj-img'>
+                            <img src={logo} alt='logo' />
+                          </div>
+                        </div>
+                        <div className='col-xl-9 col-lg-8 col-md-8'>
+                          <div className='sk-shekunjAbout-content'>
+                            <h5>About Shekunj</h5>
+                            <p>
+                              Shekunj promotes personal growth for women to
+                              achieve their full potential and aims to empower
+                              all the women out there - be they 16 or 60 years
+                              old - through education and guidance. Reach us at{" "}
+                              <a
+                                href='mailto:info@shekunj.com'
+                                target='_blank'
+                                rel='noreferrer'
+                              >
+                                info@shekunj.com
+                              </a>
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                     <>
                       {storiesBannerAds.length > 0 && (
                         <div className='row'>
@@ -412,7 +440,7 @@ const SuccessStoryDetails = () => {
                   />
                   <div className='title' ref={trendingSectionRef}>
                     <img src={fire} alt='fire' width={36} />
-                    <div className="sk-heading-story">
+                    <div className='sk-heading-story'>
                       <h4>Trending Stories </h4>
                       <h6>Read the most popular success stories on SheKunj</h6>
                     </div>
