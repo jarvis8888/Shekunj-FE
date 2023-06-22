@@ -243,6 +243,7 @@ const BlogWithCatogry = () => {
                                 category_name={items.category_name}
                                 color={getCategoryColor(items.category_name)}
                                 slug={items.slug}
+                                blog_count={items.blog_count}
                               />
                             </>
                           );

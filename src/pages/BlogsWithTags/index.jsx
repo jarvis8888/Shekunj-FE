@@ -275,6 +275,7 @@ const SuccessStroyWithHashtag = () => {
                                 category_name={items.category_name}
                                 color={getCategoryColor(items.category_name)}
                                 slug={items.slug}
+                                blog_count={items.blog_count}
                               />
                             </>
                           );
@@ -283,14 +284,14 @@ const SuccessStroyWithHashtag = () => {
                     : null}
                 </div>
                 <div className='sk-blogbottom-border d-flex justify-content-center align-items-center '>
-                <button
-                  disabled={currentFeaturedData?.results?.length === 0}
-                  className='loadMore'
-                  onClick={handleLoadMoreClick}
-                >
-                  {loading ? <WhiteCircularBar /> : `Load More`}
-                </button>
-              </div>
+                  <button
+                    disabled={currentFeaturedData?.results?.length === 0}
+                    className='loadMore'
+                    onClick={handleLoadMoreClick}
+                  >
+                    {loading ? <WhiteCircularBar /> : `Load More`}
+                  </button>
+                </div>
               </div>
             </div>
             <div className='col-xl-4 col-lg-4 col-md-4 sk-Removeside-space'>

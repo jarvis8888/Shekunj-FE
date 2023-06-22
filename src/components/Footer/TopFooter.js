@@ -52,7 +52,7 @@ export const TopFooter = memo((props) => {
                             <li key={item.id}>
                               <a
                                 href={
-                                  routingConstants.COURSE_DETAILS + item?.id
+                                  routingConstants.COURSE_DETAILS + item?.slug
                                 }
                               >
                                 {item.name.length > 20
@@ -146,7 +146,9 @@ export const TopFooter = memo((props) => {
                       </a>
                     </li>
                     <li>
-                      <a href='/sitemap.xml' target="_blank">{t("phase2.FOOTER.Sitemap")}</a>
+                      <a href='/sitemap.xml' target='_blank'>
+                        {t("phase2.FOOTER.Sitemap")}
+                      </a>
                     </li>
                   </ul>
                 </div>

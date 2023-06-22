@@ -23,6 +23,7 @@ export const TrendingBlogsCard2 = ({
   category_name,
   color,
   slug,
+  blog_count
 }) => {
   const history = useHistory();
 
@@ -75,6 +76,10 @@ export const TrendingBlogsCard2 = ({
                 <MenuBookRoundedIcon />
                 {time}
               </span>
+              <span>
+            <VisibilityOutlinedIcon />
+            {blog_count}
+          </span>
             </div>
           </div>
         </div>

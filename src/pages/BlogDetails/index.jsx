@@ -119,8 +119,8 @@ const BlogDetails = () => {
         }
 
         setTrendingBlogs((prevFeaturedData) => [
-          ...newFeaturedData,
           ...prevFeaturedData,
+          ...newFeaturedData,
         ]);
       } else {
         setCurrentTrendingBlogData(trending_blogs);
@@ -371,6 +371,7 @@ const BlogDetails = () => {
                               date={`${items.created_at}`}
                               category_name={items.category_name}
                               color={getCategoryColor(items.category_name)}
+                              blog_count={items.blog_count}
                             />
                           </>
                         );
@@ -381,9 +382,9 @@ const BlogDetails = () => {
                         className='loadMore'
                         onClick={() => {
                           setTrendingOffset(trendingOffset + 6);
-                          trendingSectionRef.current.scrollIntoView({
-                            behavior: "smooth",
-                          });
+                          // trendingSectionRef.current.scrollIntoView({
+                          //   behavior: "smooth",
+                          // });
                         }}
                         disabled={
                           currentTrendingBlogData?.results?.length === 0

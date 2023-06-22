@@ -365,7 +365,7 @@ function BlogPage() {
                   <div className='sk-blog-sidebar'>
                     <div className='title mb-4' ref={sectionRef}>
                       <img src={fire} alt='fire' width={36} />
-                      <div className="sk-heading-story">
+                      <div className='sk-heading-story'>
                         <h4>Trending Articles</h4>
                         <h6>Popular articles, news and trends on SheKunj</h6>
                       </div>
@@ -452,9 +452,12 @@ function BlogPage() {
                     <div className='blog-stories'>
                       <div className='title' ref={sectionRef}>
                         <img src={latestblog} alt='latestblog' width={36} />
-                        <div className="sk-heading-story">
-                          <h4>Latest Blogs</h4>
-                          <h6>Recommended stories, articles and interviews on SheKunj</h6>
+                        <div className='sk-heading-story'>
+                          <h4>Latest Article</h4>
+                          <h6>
+                            Recommended stories, articles and interviews on
+                            SheKunj
+                          </h6>
                         </div>
                       </div>
 
@@ -550,9 +553,11 @@ function BlogPage() {
                     />
                     <div className='title' ref={trendingSectionRef}>
                       <img src={discoverblog} alt='discoverblog' width={36} />
-                      <div className="sk-heading-story">
+                      <div className='sk-heading-story'>
                         <h4>Discover More Articles</h4>
-                        <h6>Explore more articles, news and trends on SheKunj</h6>
+                        <h6>
+                          Explore more articles, news and trends on SheKunj
+                        </h6>
                       </div>
                     </div>
                     <>
@@ -577,6 +582,7 @@ function BlogPage() {
                                 category_name={items.category_name}
                                 color={getCategoryColor(items.category_name)}
                                 slug={items.slug}
+                                blog_count={items.blog_count}
                               />
                             </>
                           );
