@@ -248,7 +248,14 @@ const BlogDetails = () => {
 
   return (
     <div>
-      <SEO title='Sheकुंज - Career' />
+      <SEO
+        title={blogs?.meta_title}
+        description={blogs?.meta_description}
+        keywords={blogs?.meta_keywords}
+        image={blogs?.image}
+        currentUrl={currentUrl}
+        link={blogs?.canonical_tags}
+      />
       {loading ? (
         <div>
           <CustomLoader />

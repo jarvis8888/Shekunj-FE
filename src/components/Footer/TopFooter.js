@@ -146,7 +146,7 @@ export const TopFooter = memo((props) => {
                       </a>
                     </li>
                     <li>
-                      <a href='/sitemap.xml'>{t("phase2.FOOTER.Sitemap")}</a>
+                      <a href='/sitemap.xml' target="_blank">{t("phase2.FOOTER.Sitemap")}</a>
                     </li>
                   </ul>
                 </div>
