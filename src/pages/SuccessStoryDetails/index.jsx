@@ -273,7 +273,14 @@ const SuccessStoryDetails = () => {
   };
   return (
     <div>
-      <SEO title='Sheकुंज - Career' />
+      <SEO
+        title={successStoriesDetails?.meta_title}
+        description={successStoriesDetails?.meta_description}
+        keywords={successStoriesDetails?.meta_keywords}
+        image={successStoriesDetails?.image}
+        currentUrl={currentUrl}
+        link={successStoriesDetails?.canonical_tags}
+      />
 
       {loading ? (
         <CustomLoader />
@@ -285,7 +292,7 @@ const SuccessStoryDetails = () => {
                 <div className='sk-topBottom-space'>
                   <img
                     src={successStoriesDetails?.image}
-                    alt='Story'
+                    alt={successStoriesDetails?.image_alt_tag}
                     className='sk-storyBanner-img'
                   />
                   <div className='story-bottom'>

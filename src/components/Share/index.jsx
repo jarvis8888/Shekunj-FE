@@ -58,14 +58,6 @@ const SocialShare = ({ currentUrl, title, image }) => {
 
   return (
     <>
-      <SEO
-        title={title}
-        keyword='women empowerment organizations, free online courses in india, free career guidance'
-        description='Shekunj.com works for women empowerment by providing free online certification courses, 
-          career guidance, job and internship opportunities across India.'
-        currentUrl={currentUrl}
-        image={`${image}`}
-      />
       <ul>
         <li>
           <FacebookShareButton url={currentUrl} quote={title} imageUrl={image}>

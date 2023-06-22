@@ -28,7 +28,7 @@ import locationicon from "../../assets/images/location.svg";
 import commonicon from "../../assets/images/commonicon.svg";
 import eventemailsend from "../../assets/images/eventemailsend.svg";
 import gendericon from "../../assets/images/gendericon.svg";
-import SchoolOutlinedIcon from '@mui/icons-material/SchoolOutlined';
+import SchoolOutlinedIcon from "@mui/icons-material/SchoolOutlined";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import onlineicon from "../../assets/images/onlineicon.svg";
 import offlineicon from "../../assets/images/offline-icon.svg";
@@ -324,6 +324,13 @@ const EventDetails = () => {
 
   return (
     <div>
+      <SEO
+        title={eventsDetails?.title}
+        // description={eventsDetails?.meta_description}
+        // keywords={eventsDetails?.meta_keywords}
+        image={eventsDetails?.image}
+        currentUrl={currentUrl}
+      />
       {loading ? (
         <div>
           <CustomLoader />
