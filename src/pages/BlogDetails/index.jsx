@@ -361,7 +361,7 @@ const BlogDetails = () => {
                                 items.about_blog,
                               )}`}
                               time={items.reading_time}
-                              date={DateFormat(`${items.created_at}`)}
+                              date={`${items.created_at}`}
                               category_name={items.category_name}
                               color={getCategoryColor(items.category_name)}
                             />
