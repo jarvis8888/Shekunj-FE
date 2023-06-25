@@ -78,15 +78,15 @@
   background: #75b94a;
   color: #fff;
   border-radius: 50px;
-  width: 28px;
-  height: 28px;
+  width: 36px;
+  height: 36px;
   display: inline-block;
   text-align: center;
-  line-height: 28px;
+  line-height: 36px;
   margin-right: 8px;
 }
 .sk-like-icon svg {
-  font-size: 19px;
+  font-size: 21px;
 }
 
 .HashtagAndCatagoriesTitle-mobile {
@@ -122,7 +122,7 @@
   cursor: pointer;
   transition: 0.3s;
 }
-.hashtage-item svg{
+.hashtage-item svg {
   font-size: 21px;
 }
 .hashtage-item:hover {
@@ -133,6 +133,7 @@
   width: 100%;
   display: flex;
   padding: 10px 0;
+  cursor: pointer;
 }
 .likes {
   display: flex;

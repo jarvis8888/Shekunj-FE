@@ -41,6 +41,12 @@ const SocialMediaIcons = React.memo(() => {
       <div
         className='likes'
         style={{ backgroundColor: "#305B94", borderRadius: "4px 0 0 4px" }}
+        onClick={() => {
+          window.open(
+            "https://www.facebook.com/Shekunj-105073495386436",
+            "_blank",
+          );
+        }}
       >
         <i className='fab fa-facebook-f'>
           <img src={fackbook} alt='facebook' />
@@ -48,14 +54,26 @@ const SocialMediaIcons = React.memo(() => {
         <div style={{ color: "#fff" }}>{facebookLikes}</div>
         <div style={{ color: "#fff", fontSize: "12px" }}>Likes</div>
       </div>
-      <div className='likes' style={{ backgroundColor: "#49ABEC" }}>
+      <div
+        className='likes'
+        style={{ backgroundColor: "#49ABEC" }}
+        onClick={() => {
+          window.open("https://twitter.com/SheKunj_edu", "_blank");
+        }}
+      >
         <i className='fab fa-twitter'>
           <img src={twitter} alt='twitter' />
         </i>
         <div style={{ color: "#fff" }}>{twitterLikes}</div>
         <div style={{ color: "#fff", fontSize: "12px" }}>Likes</div>
       </div>
-      <div className='likes' style={{ backgroundColor: "#2867B2" }}>
+      <div
+        className='likes'
+        style={{ backgroundColor: "#2867B2" }}
+        onClick={() => {
+          window.open("https://in.linkedin.com/showcase/shekunjedu", "_blank");
+        }}
+      >
         <i className='fab fa-youtube'>
           <img src={linkedin} alt='youtube' />
         </i>
@@ -65,6 +83,9 @@ const SocialMediaIcons = React.memo(() => {
       <div
         className='likes sk-instagram'
         style={{ backgroundColor: "#305B94", borderRadius: "0 4px 4px 0" }}
+        onClick={() => {
+          window.open("https://www.instagram.com/shekunj_edu/", "_blank");
+        }}
       >
         <i className='fab fa-instagram'>
           <img src={instagram} alt='instagram' />

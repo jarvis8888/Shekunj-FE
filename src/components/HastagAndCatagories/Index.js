@@ -30,12 +30,9 @@ export const HashtagAndCatagories = (props) => {
 
   const handleClick = (tag) => {
     if (type === "hashtag") {
-      history.push(
-        `${routingConstants.SUCCESS_STORIES_HASHTAG}/${tag.name}`,
-        tag.name,
-      );
+      history.push(`${routingConstants.SUCCESS_STORIES_HASHTAG}/${tag}`);
     } else {
-      history.push(`${routingConstants.MORE_BLOG}${tag.name}`, tag.name);
+      history.push(`${routingConstants.MORE_BLOG}${tag}`);
     }
   };
 
@@ -53,7 +50,7 @@ export const HashtagAndCatagories = (props) => {
               <span
                 className='hashtage-item'
                 key={tag.id}
-                onClick={() => handleClick(tag)}
+                onClick={() => handleClick(tag?.slug)}
               >
                 {type === "hashtag" ? `#${tag?.name}` : tag?.name}
               </span>
@@ -62,13 +59,16 @@ export const HashtagAndCatagories = (props) => {
               <span
                 className='hashtage-item'
                 key={tag.id}
-                onClick={() => handleClick(tag)}
+                onClick={() => handleClick(tag?.slug)}
               >
                 {type === "hashtag" ? `${tag?.name}` : tag?.name}
               </span>
             ))}
         {hashtags.length > 5 && (
-          <span className='hashtage-item hashtage-item-view' onClick={handleToggleView}>
+          <span
+            className='hashtage-item hashtage-item-view'
+            onClick={handleToggleView}
+          >
             {showAll ? "View Less " : "View All "}
             {showAll ? (
               <KeyboardArrowUpRoundedIcon />

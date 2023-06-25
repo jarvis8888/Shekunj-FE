@@ -68,12 +68,16 @@ export const GlobalSearchCard = ({
   };
 
   const renderCards = (data, type) => {
-    const getRoute = (type, id, category_name, title, slug) => {
+    const getRoute = (type, id, category_name, title, slug, item) => {
       switch (type) {
-        case "Success Story":
-          return `/success-stories/${slug}`;
+        case "Success Story": {
+          const hashtagNames = item?.hash_tags.map((tag) => tag?.slug);
+          const generatedSlug =
+            generateSlug(hashtagNames.join(" ")) || "no-hashtag";
+          return `/success-stories/${generatedSlug}/${slug}`;
+        }
         case "Article":
-          return `/article/${category_name.toLowerCase()}/${slug}`;
+          return `/article/${category_name?.slug}/${slug}`;
         case "Courses":
           return `/courses-details/${slug}`;
         case "Mock Test":
@@ -82,6 +86,7 @@ export const GlobalSearchCard = ({
           return "";
       }
     };
+
     return data.map((item, index) => (
       <div className='col-md-3' key={index} style={{ cursor: "pointer" }}>
         <div
@@ -91,9 +96,10 @@ export const GlobalSearchCard = ({
               `${getRoute(
                 item.type,
                 item.id,
-                item.category_name,
+                item.category,
                 item.title,
                 item.slug,
+                item,
               )}`,
             )
           }
@@ -116,8 +122,10 @@ export const GlobalSearchCard = ({
             </div>
             {item?.type === "Article" ? (
               <h6 className='sk-card-heading'>{item.title}</h6>
+            ) : item?.type === "Success Story" ? (
+              <h6 className='sk-card-heading'>{`${item?.name} ${item?.last_name}`}</h6>
             ) : (
-              <h6 className='sk-card-heading'>{item.name}</h6>
+              <h6 className='sk-card-heading'>{`${item?.name}`}</h6>
             )}
 
             <div

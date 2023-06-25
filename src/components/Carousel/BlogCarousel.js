@@ -39,10 +39,9 @@ const BlogCarousel = ({ images = [], color }) => {
       onClick={() =>
         history.push(
           routingConstants.MORE_BLOG +
-            generateSlug(images[currentIndex]?.category_name) +
+            generateSlug(images[currentIndex]?.category?.slug) +
             "/" +
-            generateSlug(images[currentIndex]?.slug) 
-            
+            generateSlug(images[currentIndex]?.slug),
         )
       }
     >
@@ -67,10 +66,10 @@ const BlogCarousel = ({ images = [], color }) => {
           <h5
             className='sk-category-name'
             style={{
-              background: `${color(images[currentIndex]?.category_name)}`,
+              background: `${color(images[currentIndex]?.category?.name)}`,
             }}
           >
-            {images[currentIndex]?.category_name}
+            {images[currentIndex]?.category?.name}
           </h5>
           <h2
             style={{

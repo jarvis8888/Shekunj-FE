@@ -117,13 +117,13 @@ const Navbar = (props) => {
               {t("header.heading.8")}
             </a>
             <a href='/events' className='mobile-show'>
-              Events
+              {t("phase2.HEADER.events")}
             </a>
             <a href='/article' className='mobile-show'>
-              Article
+              {t("phase2.HEADER.blog")}
             </a>
             <a href='/frequently-asked-questions' className='mobile-show'>
-              FAQ
+              {t("phase2.HEADER.FAQ")}
             </a>
             <span
               className='sk-mobile-hide'

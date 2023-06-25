@@ -16,14 +16,21 @@ jobs & internships and career counseling.'`,
     <>
       <Helmet>
         <title>{title}</title>
+        <meta
+          prefix='og: http://ogp.me/ns#'
+          property='og:image'
+          content={image}
+        />
         <meta name='description' content={description} />
         <meta property='og:title' content={title} />
-        <meta property='og:image' content={image} />
+        {/* <meta property='og:image' content={image} /> */}
         <meta property='og:description' content={description} />
         {/* <meta property='og:url' content={image} /> */}
         <meta property='og:keywords' content={keywords} />
         <meta name='keywords' content={keywords} />
         <link rel='canonical' href={link} />
+        <meta property='og:image:width' content='300' />
+        <meta property='og:image:height' content='300' />
 
         {/* <!-- Open Graph Meta Tags --> */}
         <meta property='og:description' content={description} />
@@ -36,7 +43,7 @@ jobs & internships and career counseling.'`,
         <meta name='twitter:title' content={title} />
         <meta name='twitter:description' content={description} />
         <meta name='twitter:image' content={image} />
-        <link rel="canonical" href={link} data-rh="true" />
+        <link rel='canonical' href={link} data-rh='true' />
       </Helmet>
     </>
   );

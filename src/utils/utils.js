@@ -436,12 +436,29 @@ export function removeHtmlTags(htmlString) {
 }
 
 export function generateSlug(title) {
-  const slug = title
-    .toLowerCase() // Convert to lowercase
-    .normalize("NFD") // Normalize diacritic characters
-    .replace(/[\u0300-\u036f]/g, "") // Remove diacritic characters
-    .replace(/[^\w-]+/g, "-") // Replace non-alphanumeric characters with hyphens
-    .replace(/--+/g, "-") // Remove consecutive hyphens
-    .replace(/^-|-$/g, ""); // Remove leading and trailing hyphens
-  return slug;
+  const language = localStorage.getItem("i18nextLng") || "en"; // Retrieve language value from localStorage or default to "eng"
+  if (language === "en") {
+    let slug = title
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^\w-]+/g, "-")
+      .replace(/--+/g, "-")
+      .replace(/^-|-$/g, "");
+    return slug;
+  }
+
+  if (language === "hi") {
+    let HindiSlug = title.replace(/\s+/g, "-"); // Replace whitespace with hyphens
+    // Add more transliteration rules for Hindi characters
+    // Remove any remaining non-alphanumeric characters
+    return HindiSlug;
+  }
 }
+
+export const makeHtmlWithStyles = (htmlString) => {
+  const htmlNode = document.createElement("div");
+  htmlNode.innerHTML = htmlString?.replace(/\\/g, "");
+  return htmlNode.innerHTML;
+};
+

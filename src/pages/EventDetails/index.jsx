@@ -42,7 +42,7 @@ import Cookies from "js-cookie";
 import useDeviceDetect from "../../hooks/useDeviceDetect";
 import CloseIcon from "@mui/icons-material/Close";
 import httpServices from "../../utils/ApiServices";
-import { makeHtml, time_left } from "../../utils/utils";
+import { makeHtml, makeHtmlWithStyles, time_left } from "../../utils/utils";
 import YouMayLikeCarousel from "../../components/Carousel/YouMayLikeCarousel";
 import { toast } from "react-toastify";
 import toasterConfig from "../../utils/toasterCongig";
@@ -55,7 +55,7 @@ const EventDetails = () => {
   let a = JSON.parse(localStorage.getItem("login_data"));
   let eventData = JSON.parse(localStorage.getItem("event_data"));
   const { id } = useParams();
-  const lastNumber = id.split("-").pop();
+  // const lastNumber = id.split("-").pop();
   const [open, setOpen] = useState(false);
 
   const currentUrl = window.location.href;
@@ -159,7 +159,7 @@ const EventDetails = () => {
       }
 
       const data = {
-        event_id: lastNumber,
+        event_id: eventsDetails?.id,
         email: email,
         name: fullName,
         last_name: "",
@@ -349,7 +349,7 @@ const EventDetails = () => {
                       <div className='sk-eventSocial-chiptag'>
                         <div>
                           <div className='sk-edetail-chip'>
-                            <span>{eventsDetails?.genre_name}</span>
+                            <span>{eventsDetails?.genre?.name}</span>
                           </div>
                           <div className='sk-details-datetime'>
                             <ul>
@@ -407,7 +407,9 @@ const EventDetails = () => {
                       <div
                         className='sk-card-description'
                         dangerouslySetInnerHTML={{
-                          __html: makeHtml(eventsDetails?.about_event),
+                          __html: makeHtmlWithStyles(
+                            eventsDetails?.about_event,
+                          ),
                         }}
                       />
                       {/* <div className='sk-work-detail'>

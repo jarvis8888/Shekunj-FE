@@ -142,7 +142,12 @@ function App() {
         <Route exact path={routingConstants.TOP_COLLEGES} component={Career} />
         <Route exact path={routingConstants.TOP_SCHOOLS} component={Career1} />
         <Route exact path={routingConstants.MORE_BLOG} component={BlogPage} />
-        <Route exact path={routingConstants.MORE_EVENT} component={EventPage} />
+        <Route
+          exact
+          path={`${routingConstants.MORE_EVENT}`}
+          component={EventPage}
+        />
+
         <Route
           exact
           path={routingConstants.MORE_MAGAZINE}
@@ -226,7 +231,7 @@ function App() {
         />
         <Route
           exact
-          path={`${routingConstants.MORE_EVENT}:id`}
+          path={`${routingConstants.MORE_EVENT_DETAILS}:search/:id`}
           component={EventDetails}
         />
         <PrivateRoute
@@ -246,7 +251,7 @@ function App() {
         />
         <Route
           exact
-          path={`${routingConstants.SUCCESS_STORIES}:id`}
+          path={`${routingConstants.SUCCESS_STORIES}:search/:id`}
           component={SuccessStoryDetailPage}
         />
         {/* <PrivateRoute

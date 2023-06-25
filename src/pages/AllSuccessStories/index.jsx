@@ -13,6 +13,8 @@ import EastRoundedIcon from "@mui/icons-material/EastRounded";
 import WestRoundedIcon from "@mui/icons-material/WestRounded";
 import useDeviceDetect from "../../hooks/useDeviceDetect";
 import { CustomLoader } from "../../components/customLoader/CustomLoader";
+import ExpandMoreRoundedIcon from "@mui/icons-material/ExpandMoreRounded";
+import KeyboardArrowUpRoundedIcon from "@mui/icons-material/KeyboardArrowUpRounded";
 
 const AllSuccessStory = () => {
   const dispatch = useDispatch();
@@ -28,6 +30,7 @@ const AllSuccessStory = () => {
   const [activeTab, setActiveTab] = useState("All");
   const [currentPage, setCurrentPage] = useState(1);
   const [startPage, setStartPage] = useState(1);
+  const [showAll, setShowAll] = useState(false);
 
   const [offset, setOffset] = useState(0);
   const pageLimit = 7;
@@ -191,12 +194,18 @@ const AllSuccessStory = () => {
     return renderBoxAd(ad);
   };
 
+  const handleToggleView = () => {
+    setShowAll((prevShowAll) => !prevShowAll);
+  };
+
+  const renderedHashtags = showAll ? allHashTag : allHashTag.slice(0, 4);
+
   return (
     <div>
       <section className='sk-search-sec'>
         <div className='container sk-custom-container'>
           <div className='row'>
-            <div className='col-xl-10 mx-auto'>
+            <div className='col-xl-11 mx-auto'>
               <div className='sk-content-sec'>
                 <div className='sk-title-heading mb-4'>
                   <h1>
@@ -220,7 +229,7 @@ const AllSuccessStory = () => {
                         All
                       </a>
                     </li>
-                    {allHashTag.map((item) => (
+                    {renderedHashtags.map((item) => (
                       <li key={item}>
                         <a
                           onClick={() => {
@@ -234,6 +243,21 @@ const AllSuccessStory = () => {
                         </a>
                       </li>
                     ))}
+                    {allHashTag.length > 4 && (
+                      <li
+                        className='hashtags-item-view'
+                        onClick={handleToggleView}
+                      >
+                        <a>
+                          {showAll ? "View Less " : "View All "}
+                          {showAll ? (
+                            <KeyboardArrowUpRoundedIcon />
+                          ) : (
+                            <ExpandMoreRoundedIcon />
+                          )}
+                        </a>
+                      </li>
+                    )}
                   </ul>
                 </div>
               </div>
@@ -241,7 +265,7 @@ const AllSuccessStory = () => {
           </div>
         </div>
       </section>
-      <section className="sk-storyBoxMain-sec sk-allstory-sec">
+      <section className='sk-storyBoxMain-sec sk-allstory-sec'>
         <div className='container sk-custom-container'>
           <div className='row'>
             {loading ? (
@@ -266,7 +290,6 @@ const AllSuccessStory = () => {
                           }
                           title={items.name}
                           description={`${items.title}`}
-                          makeHtml={makeHtml}
                           key={index}
                           created_at={items.created_at}
                           reading_time={items.reading_time}
