@@ -21,10 +21,19 @@ export const TrendingBlogsCard = ({
   color,
   slug,
 }) => {
-  console.log("🚀 ~ file: TrendingBlogsCard.js:23 ~ color:", color);
   const history = useHistory();
   return (
-    <div className='blog-card' onClick={() => history.push(routingConstants.MORE_BLOG + generateSlug(category_name) + "/" + slug, )}>
+    <div
+      className='blog-card'
+      onClick={() =>
+        history.push(
+          routingConstants.MORE_BLOG +
+            generateSlug(category_name?.slug) +
+            "/" +
+            slug,
+        )
+      }
+    >
       <div className='blog-card__image new-blog-card'>
         <img src={image} alt='images' />
       </div>
@@ -33,7 +42,7 @@ export const TrendingBlogsCard = ({
           className='sk-treadingBlog-one'
           style={{ background: `${color}` }}
         >
-          {category_name}
+          {category_name?.name}
         </span>
         <p className='blog-card__description'>{description}</p>
         {/* <div className='blog-card__meta'>

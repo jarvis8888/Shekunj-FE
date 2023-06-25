@@ -3,7 +3,6 @@ import { Footer, Header } from "../../components";
 import "./index.scss";
 import httpServices from "../../utils/ApiServices";
 import { useHistory, useLocation, useParams } from "react-router-dom";
-import FeaturedCards from "../../components/cards/FeaturedCards";
 import { HashtagAndCatagories } from "../../components/HastagAndCatagories/Index";
 import hash from "../../assets/images/hashtag.svg";
 import axios from "axios";
@@ -43,7 +42,7 @@ const BlogWithCatogry = () => {
   const [succesStoriesRight2, setSuccesStoriesRight2] = useState([]);
   const [blogDetailsBoxAds, setBlogDetailsBoxAds] = useState([]);
   const [currentFeaturedData, setCurrentFeaturedData] = useState([]);
-  const [searchTerm, setSearchTerm] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState("");
   const [offset, setOffset] = useState(0);
   const pageLimit = 8;
   const searchRef = useRef("");
@@ -51,9 +50,9 @@ const BlogWithCatogry = () => {
   const getBlogWithHashtagData = async (search, limit, offset) => {
     setLoading(true);
     try {
-      const url = `more/blogs?category__name=${search}&limit=${limit}&offset=${offset}`;
+      const url = `more/blogs?category__slug=${search}&limit=${limit}&offset=${offset}`;
       const data = await httpServices.get(url);
-      const { filtered_blogs, blog_categories } = data;
+      const { filtered_blogs, blog_categories, selected_category } = data;
       if (filtered_blogs?.results?.length > 0) {
         const res = filtered_blogs?.results ?? [];
         const addObjectData = { id: "advertisement" };
@@ -74,7 +73,7 @@ const BlogWithCatogry = () => {
         setCurrentFeaturedData(filtered_blogs);
       }
       setAllHashTag(blog_categories);
-      setSearchTerm(search);
+      setSelectedCategory(selected_category);
     } catch (error) {
     } finally {
       setLoading(false);
@@ -209,16 +208,14 @@ const BlogWithCatogry = () => {
               <div className='sk-topBottom-space'>
                 <div className='sk-hashtag-headingtitle'>
                   <h1 className='Hashtag_container_title'>
-                    {search
-                      ? `${search.charAt(0).toUpperCase()}${search.slice(1)}`
-                      : "NA"}
+                    {selectedCategory ? `${selectedCategory}` : "NA"}
                   </h1>
-                  <p>
+                  {/* <p>
                     It is a long established fact that a reader will be
                     distracted by the readable content of a page when looking at
                     its layout. The point of using Lorem Ipsum is that it has a
                     more-or-less normal.
-                  </p>
+                  </p> */}
                 </div>
 
                 <div className='sk-blogCategory-detail'>
@@ -240,8 +237,8 @@ const BlogWithCatogry = () => {
                                 )}`}
                                 time={items.reading_time}
                                 date={`${items.created_at}`}
-                                category_name={items.category_name}
-                                color={getCategoryColor(items.category_name)}
+                                category_name={items.category}
+                                color={getCategoryColor(items.category?.name)}
                                 slug={items.slug}
                                 blog_count={items.blog_count}
                               />

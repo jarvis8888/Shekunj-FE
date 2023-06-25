@@ -34,6 +34,7 @@ const SuccessStroyWithHashtag = () => {
   const [succesStoriesRight2, setSuccesStoriesRight2] = useState([]);
   const [succesStoriesLeft, setSuccesStoriesLeft] = useState([]);
   const [currentFeaturedData, setCurrentFeaturedData] = useState([]);
+  const [selectedTag, setSelectedTag] = useState("");
   const [offset, setOffset] = useState(0);
   const pageLimit = 4;
   const searchRef = useRef("");
@@ -43,7 +44,7 @@ const SuccessStroyWithHashtag = () => {
     try {
       const url = `course/success-story?limit=${limit}&offset=${offset}&search=${search}`;
       const data = await httpServices.get(url);
-      const { filtered_data, all_hash_tags } = data;
+      const { filtered_data, all_hash_tags, selected_tag } = data;
       if (filtered_data?.results?.length > 0) {
         const res = filtered_data?.results ?? [];
         const addObjectData = { id: "advertisement" };
@@ -67,20 +68,12 @@ const SuccessStroyWithHashtag = () => {
         setCurrentFeaturedData(filtered_data);
       }
       setAllHashTag(all_hash_tags);
+      setSelectedTag(selected_tag);
 
       setLoading(false);
     } catch {
       setLoading(false);
     }
-  };
-
-  const makeHtml = (htmlString) => {
-    const htmlNode = document.createElement("div");
-    htmlNode.innerHTML = htmlString;
-    htmlNode.querySelectorAll("*").forEach(function (node) {
-      node.removeAttribute("style");
-    });
-    return htmlNode.innerHTML;
   };
 
   //   navigator.geolocation.getCurrentPosition(async function (position, values) {
@@ -237,16 +230,14 @@ const SuccessStroyWithHashtag = () => {
               <div className='sk-topBottom-space'>
                 <div className='sk-hashtagBorder-tilte'>
                   <h1 className='Hashtag_container_title'>
-                    {search
-                      ? `#${search.charAt(0).toUpperCase()}${search.slice(1)}`
-                      : "NA"}
+                    {selectedTag ? `#${selectedTag}` : "NA"}
                   </h1>
-                  <p>
+                  {/* <p>
                     It is a long established fact that a reader will be
                     distracted by the readable content of a page when looking at
                     its layout. The point of using Lorem Ipsum is that it has a
                     more-or-less normal.
-                  </p>
+                  </p> */}
                 </div>
 
                 <div className='row'>
@@ -270,9 +261,8 @@ const SuccessStroyWithHashtag = () => {
                                       ? []
                                       : items.hash_tags
                                   }
-                                  title={items.name}
+                                  title={`${items.name} ${items.last_name}`}
                                   description={`${items.title}`}
-                                  makeHtml={makeHtml}
                                   key={index}
                                   created_at={items.created_at}
                                   reading_time={items.reading_time}

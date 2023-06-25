@@ -43,8 +43,9 @@ function Carousel(props) {
     }
     if (props.page === carouselConstant.HOMEPAGE) {
       if (divRef.current) {
-        divRef.current.innerHTML = `${carousel.relative(carousel.current()) + 1 || 0
-          }/${totalItems}`;
+        divRef.current.innerHTML = `${
+          carousel.relative(carousel.current()) + 1 || 0
+        }/${totalItems}`;
       }
     }
   };
@@ -55,7 +56,7 @@ function Carousel(props) {
         <p>{props.title1}</p>
         <h2>{props.title2}</h2>
       </div>
-      <div className={!props.set && 'set'}>
+      <div className={!props.set && "set"}>
         {props.page === carouselConstant.HOMEPAGE && (
           <div className='abc_box'>
             <div className='abc' ref={divRef}></div>
@@ -85,11 +86,11 @@ function Carousel(props) {
               nav: true,
             },
             768: {
-              items:  props.page === carouselConstant.COURSE_DETAIL?1:2,
+              items: props.page === carouselConstant.COURSE_DETAIL ? 1 : 2,
               nav: true,
             },
             375: {
-              items:  props.page === carouselConstant.COURSE_DETAIL?1:1.5,
+              items: props.page === carouselConstant.COURSE_DETAIL ? 1 : 1.5,
               nav: true,
               margin: 50,
             },
@@ -121,7 +122,7 @@ function Carousel(props) {
                 }
                 return (
                   <Link
-                    to={routingConstants.COURSE_DETAILS + course?.id}
+                    to={routingConstants.COURSE_DETAILS + course?.slug}
                     className='item'
                     key={ind}
                   >
@@ -143,7 +144,7 @@ function Carousel(props) {
             <>
               {courses?.map((obj, ind) => (
                 <Link
-                  to={routingConstants.COURSE_DETAILS + obj?.id}
+                  to={routingConstants.COURSE_DETAILS + obj?.slug}
                   className='item'
                   key={ind}
                 >

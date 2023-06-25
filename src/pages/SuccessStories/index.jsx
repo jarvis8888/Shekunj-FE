@@ -455,10 +455,32 @@ function SuccessStory() {
                             <li
                               className='sk-scale-animate'
                               key={index}
-                              onClick={() =>
-                                history.push(
-                                  routingConstants.SUCCESS_STORIES + items.slug,
-                                )
+                              onClick={
+                                () => {
+                                  const hashtagNames = items?.hash_tags.map(
+                                    (tag) => tag?.slug,
+                                  );
+                                  const generatedSlug =
+                                    generateSlug(hashtagNames.join(" ")) ||
+                                    "no-hashtag";
+                                  if (items.slug) {
+                                    history.push(
+                                      routingConstants.SUCCESS_STORIES +
+                                        generatedSlug +
+                                        "/" +
+                                        items.slug,
+                                    );
+                                  } else {
+                                    // Handle the case when 'slug' is empty
+                                    // console.log("Slug is empty. Cannot navigate.");
+                                  }
+                                }
+                                // history.push(
+                                //   routingConstants.SUCCESS_STORIES +
+                                //     generateSlug(items?.hash_tags.join(" ")) +
+                                //     "/" +
+                                //     items.slug,
+                                // )
                               }
                             >
                               <div className='sk-story-eimg'>
@@ -468,7 +490,7 @@ function SuccessStory() {
                               <div className='sk-story-econtent'>
                                 <div className='sk-ewoman-title'>
                                   <p>{items.name}</p>
-                                  <h6>{items.company_name}</h6>
+                                  {/* <h6>{items.company_name}</h6> */}
                                 </div>
                               </div>
                             </li>
@@ -564,9 +586,8 @@ function SuccessStory() {
                                       ? []
                                       : items.hash_tags
                                   }
-                                  title={items.name}
+                                  title={`${items.name} ${items.last_name}`}
                                   description={`${items.title}`}
-                                  makeHtml={makeHtml}
                                   key={index}
                                   created_at={items.created_at}
                                   reading_time={items.reading_time}
@@ -627,9 +648,8 @@ function SuccessStory() {
                                       ? []
                                       : items.hash_tags
                                   }
-                                  title={items.name}
+                                  title={`${items.name} ${items.last_name}`}
                                   description={`${items.title}`}
-                                  makeHtml={makeHtml}
                                   key={index}
                                   created_at={items.created_at}
                                   id={items.id}

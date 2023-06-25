@@ -17,7 +17,7 @@ import { useTranslation } from "react-i18next";
 import axios from "axios";
 import offlineicon from "../../assets/images/offline-icon.svg";
 import onlineicon from "../../assets/images/onlineicon.svg";
-import SchoolOutlinedIcon from '@mui/icons-material/SchoolOutlined';
+import SchoolOutlinedIcon from "@mui/icons-material/SchoolOutlined";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import { adsList } from "../../store/ads";
 import { Helmet } from "react-helmet-async";
@@ -34,6 +34,7 @@ import useDeviceDetect from "../../hooks/useDeviceDetect";
 import { NoDataFound } from "../../components/noDataFound/NoDataFound";
 import { WhiteCircularBar } from "../../components/Loader/WhiteCircularBar";
 import { withHeaderFooter } from "../../hocs/withHeaderFooter";
+import { CustomLoader } from "../../components/customLoader/CustomLoader";
 
 const useQuery = () => {
   return new URLSearchParams(useLocation().search);
@@ -64,7 +65,7 @@ function EventPage() {
   const [currentOffset, setCurrentOffset] = useState(0);
   const [loading, setLoading] = useState(false);
   const params = useQuery();
-  const [selectedOption, setSelectedOption] = useState(params.get("genre_id"));
+  const [selectedOption, setSelectedOption] = useState("");
   const [checkEventData, setCheckEventData] = useState([]);
   const [dataWithAdds, setDataWithAdds] = useState([]);
   const history = useHistory();
@@ -72,6 +73,7 @@ function EventPage() {
   const { t } = useTranslation();
   const location = useLocation();
   const detect = useDeviceDetect();
+  const { genre } = useParams();
 
   const addAdvertisementObjects = (eventsData) => {
     const addObjectData = { id: "advertisement" };
@@ -92,11 +94,16 @@ function EventPage() {
   // };
 
   const getAllEVentsData = async (currentOffset, genre) => {
+    console.log("🚀 ~ file: EventPage.jsx:97 ~ getAllEVentsData ~ genre:", genre)
+    console.log(
+      "🚀 ~ file: EventPage.jsx:141 ~ getAllEVentsData ~ currentOffset:",
+      currentOffset,
+    );
     setLoading(true);
     try {
       let url = `more/events`;
       if (genre) {
-        url += `?genre__name=${genre}`;
+        url += `?genre__slug=${genre}`;
       } else {
         url += `?limit=${8}&offset=${currentOffset}`;
       }
@@ -157,12 +164,14 @@ function EventPage() {
   const handleTimeOptionClick = (option) => {
     setSelectedButton(option);
     setSelectedOption(null);
-    const searchParams = new URLSearchParams();
-    searchParams.set("genre", "");
-    history.push({
-      pathname: location.pathname,
-      search: searchParams.toString(),
-    });
+    // const path = "/events";
+    // history.push(path);
+    // const searchParams = new URLSearchParams();
+    // searchParams.set("genre", "");
+    // history.push({
+    //   pathname: location.pathname,
+    //   search: searchParams.toString(),
+    // });
     switch (option) {
       case "todayTomorrow":
         setDataWithAdds(todayTomorrowData);
@@ -184,13 +193,15 @@ function EventPage() {
   const handleGenerOptionClick = (option) => {
     setSelectedOption(option);
     setSelectedButton(null);
-    setCurrentOffset(0);
-    const searchParams = new URLSearchParams();
-    searchParams.set("genre", option);
-    history.push({
-      pathname: location.pathname,
-      search: searchParams.toString(),
-    });
+    // setCurrentOffset(0);
+    // const path = option ? `/events-${option}` : "/events";
+    // history.push(path);
+    // const searchParams = new URLSearchParams();
+    // searchParams.set("genre", option);
+    // history.push({
+    //   pathname: location.pathname,
+    //   search: searchParams.toString(),
+    // });
     getAllEVentsData(0, option);
   };
 
@@ -244,14 +255,16 @@ function EventPage() {
   SwiperCore.use([Autoplay]);
 
   useEffect(() => {
-    const params = new URLSearchParams(location.search);
-    const genreParam = params.get("genre");
-    setSelectedOption(genreParam);
-    if (genreParam) {
-      handleGenerOptionClick(genreParam);
-    } else {
-      getAllEVentsData(currentOffset, null);
-    }
+    // const params = new URLSearchParams(location.search);
+    // const genreParam = params.get("genre");
+    // setSelectedOption(genreParam);
+    // if (genre) {
+    //   handleGenerOptionClick(genre);
+    // }
+    // else {
+    //   getAllEVentsData(currentOffset, null);
+    // }
+    getAllEVentsData(currentOffset, null);
   }, [currentOffset, lan]);
 
   const adCount = eventBoxAds.length;
@@ -350,7 +363,10 @@ function EventPage() {
                           key={index}
                           onClick={() =>
                             history.push(
-                              routingConstants.MORE_EVENT + items?.slug,
+                              routingConstants.MORE_EVENT_DETAILS +
+                                items?.genre?.slug +
+                                "/" +
+                                items?.slug,
                             )
                           }
                         >
@@ -408,9 +424,9 @@ function EventPage() {
                         <>
                           <li key={items.id}>
                             <a
-                              onClick={() => handleGenerOptionClick(items.name)}
+                              onClick={() => handleGenerOptionClick(items.slug)}
                               className={
-                                selectedOption == items.name && "active-time"
+                                selectedOption === items.slug && "active-time"
                               }
                             >
                               {items.name}
@@ -424,127 +440,137 @@ function EventPage() {
             </div>
           </div>
 
-          <div className='row'>
-            {dataWithAdds?.length ? (
-              dataWithAdds?.map((items, index) => {
-                if (items.id === "advertisement") {
-                  return <>{eventBoxAds.length > 0 && renderAds()}</>;
-                } else {
-                  return (
-                    <>
-                      <div
-                        className='col-xl-3 col-lg-4 col-md-6'
-                        key={index}
-                        onClick={() =>
-                          history.push(
-                            routingConstants.MORE_EVENT + items?.slug,
-                          )
-                        }
-                        style={{ cursor: "pointer" }}
-                      >
-                        <div className='sk-card-box'>
-                          <div className='sk-card-img'>
-                            <img src={items.image} alt='' />
-                          </div>
-                          <div className='sk-content-card'>
-                            <div className='sk-time-education'>
-                              <ul>
-                                <li className='sk-chip-tag'>
-                                  {" "}
-                                  <span>{items.genre_name}</span>{" "}
-                                </li>
-                                <li className="sk-onlineofline-tag">
-                                  {items.mode_of_event === "offline" ? (
-                                    <>
-                                      {" "}
-                                      <img
-                                        src={offlineicon}
-                                        alt=''
-                                      /> Offline{" "}
-                                    </>
-                                  ) : (
-                                    <>
-                                      {" "}
-                                      <img
-                                        src={onlineicon}
-                                        alt=''
-                                      /> Online{" "}
-                                    </>
-                                  )}
-                                </li>
-                              </ul>
+          {loading ? (
+            <CustomLoader />
+          ) : (
+            <div className='row'>
+              {dataWithAdds?.length ? (
+                dataWithAdds?.map((items, index) => {
+                  if (items.id === "advertisement") {
+                    return <>{eventBoxAds.length > 0 && renderAds()}</>;
+                  } else {
+                    return (
+                      <>
+                        <div
+                          className='col-xl-3 col-lg-4 col-md-6'
+                          key={index}
+                          onClick={() =>
+                            history.push(
+                              routingConstants.MORE_EVENT_DETAILS +
+                                items?.genre?.slug +
+                                "/" +
+                                items?.slug,
+                            )
+                          }
+                          style={{ cursor: "pointer" }}
+                        >
+                          <div className='sk-card-box'>
+                            <div className='sk-card-img'>
+                              <img src={items.image} alt='' />
                             </div>
-                            <h6 className='sk-card-heading'>{items.title}</h6>
-                            <div className='sk-time-education'>
-                              <ul>
-                                <li>
-                                  {" "}
-                                  <AccessTimeIcon />{" "}
-                                  <span
-                                    dangerouslySetInnerHTML={{
-                                      __html: time_left(
-                                        items.start_date,
-                                        items.start_time,
-                                        items.end_date,
-                                        items.end_time,
-                                      ),
-                                    }}
-                                  ></span>{" "}
-                                </li>
-                                {items?.want_to_display_enrolled_students && (
+                            <div className='sk-content-card'>
+                              <div className='sk-time-education'>
+                                <ul>
+                                  <li className='sk-chip-tag'>
+                                    {" "}
+                                    <span>{items?.genre?.name}</span>{" "}
+                                  </li>
+                                  <li className='sk-onlineofline-tag'>
+                                    {items.mode_of_event === "offline" ? (
+                                      <>
+                                        {" "}
+                                        <img
+                                          src={offlineicon}
+                                          alt=''
+                                        /> Offline{" "}
+                                      </>
+                                    ) : (
+                                      <>
+                                        {" "}
+                                        <img
+                                          src={onlineicon}
+                                          alt=''
+                                        /> Online{" "}
+                                      </>
+                                    )}
+                                  </li>
+                                </ul>
+                              </div>
+                              <h6 className='sk-card-heading'>{items.title}</h6>
+                              <div className='sk-time-education'>
+                                <ul>
                                   <li>
                                     {" "}
-                                    <SchoolOutlinedIcon />{" "}
-                                    {items.enrold_students} enrolled{" "}
+                                    <AccessTimeIcon />{" "}
+                                    <span
+                                      dangerouslySetInnerHTML={{
+                                        __html: time_left(
+                                          items.start_date,
+                                          items.start_time,
+                                          items.end_date,
+                                          items.end_time,
+                                        ),
+                                      }}
+                                    ></span>{" "}
                                   </li>
-                                )}
-                              </ul>
-                            </div>
-                            <div className='sk-tags-event'>
-                              <button
-                                type='button'
-                                className='sk-btn-register'
-                                onClick={() =>
-                                  history.push(
-                                    routingConstants.MORE_EVENT + items?.slug,
-                                  )
-                                }
-                              >
-                                Register Now
-                              </button>
+                                  {items?.want_to_display_enrolled_students && (
+                                    <li>
+                                      {" "}
+                                      <SchoolOutlinedIcon />{" "}
+                                      {items.enrold_students} enrolled{" "}
+                                    </li>
+                                  )}
+                                </ul>
+                              </div>
+                              <div className='sk-tags-event'>
+                                <button
+                                  type='button'
+                                  className='sk-btn-register'
+                                  onClick={() =>
+                                    history.push(
+                                      routingConstants.MORE_EVENT +
+                                        items?.genre?.slug +
+                                        "/" +
+                                        items?.slug,
+                                    )
+                                  }
+                                >
+                                  Register Now
+                                </button>
+                              </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-                    </>
-                  );
-                }
-              })
-            ) : (
-              <div className='noData'>
-                <NoDataFound />
-              </div>
-            )}
-            {selectedButton === "all" && (
-              <div className='col-md-12'>
-                <div className='sk-explore-btn'>
-                  <button
-                    disabled={checkEventData?.length === 0}
-                    type=''
-                    onClick={() => {
-                      setCurrentOffset(currentOffset + 8);
-                      // sectionRef.current.scrollIntoView({
-                      //   behavior: "smooth",
-                      // });
-                    }}
-                    className='sk-btn'
-                  >
-                    {loading ? <WhiteCircularBar /> : `Explore More`}
-                  </button>
+                      </>
+                    );
+                  }
+                })
+              ) : (
+                <div className='noData'>
+                  <NoDataFound />
                 </div>
-              </div>
-            )}
-          </div>
+              )}
+              {selectedButton === "all" && (
+                <div className='col-md-12'>
+                  <div className='sk-explore-btn'>
+                    <button
+                      disabled={checkEventData?.length === 0}
+                      type=''
+                      onClick={() => {
+                        setCurrentOffset(currentOffset + 8);
+                        // sectionRef.current.scrollIntoView({
+                        //   behavior: "smooth",
+                        // });
+                      }}
+                      className='sk-btn'
+                    >
+                      {loading ? <WhiteCircularBar /> : `Explore More`}
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
         </div>
       </section>
       <section className='sk-bottomAdd-sec'>

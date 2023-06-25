@@ -9,6 +9,7 @@ import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import {
   addHyphensToLink,
   generateSlug,
+  makeHtml,
   truncateString,
 } from "../../utils/utils";
 import EastRoundedIcon from "@mui/icons-material/EastRounded";
@@ -21,7 +22,7 @@ const LatestBlogCard = (props) => {
     hashtags = [],
     title,
     description,
-    makeHtml,
+    // makeHtml,
     key,
     reading_time,
     created_at,
@@ -38,14 +39,17 @@ const LatestBlogCard = (props) => {
       key={key}
       onClick={() =>
         history.push(
-          routingConstants.MORE_BLOG + generateSlug(category_name) + "/" + slug,
+          routingConstants.MORE_BLOG +
+            generateSlug(category_name?.slug) +
+            "/" +
+            slug,
         )
       }
     >
       <div className='card__image'>
         <img src={image} alt={title} />
         <span className='sk-chipTag-blog' style={{ background: `${color}` }}>
-          {category_name}
+          {category_name?.name}
         </span>
       </div>
       {/* <div className='card__hashtags'>
@@ -81,7 +85,7 @@ const LatestBlogCard = (props) => {
             onClick={() =>
               history.push(
                 routingConstants.MORE_BLOG +
-                  generateSlug(category_name) +
+                  generateSlug(category_name?.slug) +
                   "/" +
                   slug,
               )

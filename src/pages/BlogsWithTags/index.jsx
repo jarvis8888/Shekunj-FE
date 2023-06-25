@@ -49,6 +49,7 @@ const SuccessStroyWithHashtag = () => {
   const [blogDetailsBoxAds, setBlogDetailsBoxAds] = useState([]);
   const [currentFeaturedData, setCurrentFeaturedData] = useState([]);
   const [searchTerm, setSearchTerm] = useState([]);
+  const [selectedTag, setSelectedTag] = useState("");
   const [offset, setOffset] = useState(0);
   const pageLimit = 8;
 
@@ -57,7 +58,7 @@ const SuccessStroyWithHashtag = () => {
     try {
       const url = `more/blogs?search=${search}&limit=${limit}&offset=${offset}`;
       const data = await httpServices.get(url);
-      const { filtered_blogs, blog_categories } = data;
+      const { filtered_blogs, blog_categories, selected_tag } = data;
       if (filtered_blogs?.results?.length > 0) {
         const res = filtered_blogs?.results ?? [];
         const addObjectData = { id: "advertisement" };
@@ -78,19 +79,11 @@ const SuccessStroyWithHashtag = () => {
       }
       setAllHashTag(blog_categories);
       setSearchTerm(search);
+      setSelectedTag(selected_tag);
     } catch (error) {
     } finally {
       setLoading(false);
     }
-  };
-
-  const makeHtml = (htmlString) => {
-    const htmlNode = document.createElement("div");
-    htmlNode.innerHTML = htmlString;
-    htmlNode.querySelectorAll("*").forEach(function (node) {
-      node.removeAttribute("style");
-    });
-    return htmlNode.innerHTML;
   };
 
   //   navigator.geolocation.getCurrentPosition(async function (position, values) {
@@ -244,9 +237,7 @@ const SuccessStroyWithHashtag = () => {
               <div className='sk-topBottom-space'>
                 <div className='Hashtag_container_title'>
                   <span className='catagories-search'>
-                    {search
-                      ? `${search.charAt(0).toUpperCase()}${search.slice(1)}`
-                      : null}{" "}
+                    {selectedTag ? `${selectedTag}` : null}{" "}
                     <CancelRoundedIcon
                       onClick={() => history.push(routingConstants.MORE_BLOG)}
                     />
@@ -272,8 +263,8 @@ const SuccessStroyWithHashtag = () => {
                                 )}`}
                                 time={items.reading_time}
                                 date={`${items.created_at}`}
-                                category_name={items.category_name}
-                                color={getCategoryColor(items.category_name)}
+                                category_name={items.category}
+                                color={getCategoryColor(items.category?.name)}
                                 slug={items.slug}
                                 blog_count={items.blog_count}
                               />

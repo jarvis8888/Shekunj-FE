@@ -25,6 +25,7 @@ import {
   DateFormat,
   addEmailToClient,
   assignColorToCategory,
+  makeHtmlWithStyles,
   removeHtmlTags,
 } from "../../utils/utils";
 import { CustomLoader } from "../../components/customLoader/CustomLoader";
@@ -201,15 +202,6 @@ const BlogDetails = () => {
     );
   }, []);
 
-  const makeHtml = (htmlString) => {
-    const htmlNode = document.createElement("div");
-    htmlNode.innerHTML = htmlString;
-    htmlNode.querySelectorAll("*").forEach(function (node) {
-      node.removeAttribute("style");
-    });
-    return htmlNode.innerHTML;
-  };
-
   const blogsLeftadCount = blogLeft.length; // Total number of ads
   let blogLeftadIndex = 0; // Current ad index
 
@@ -273,11 +265,11 @@ const BlogDetails = () => {
                         <span
                           style={{
                             background: `${getCategoryColor(
-                              blogs?.category_name,
+                              blogs?.category?.name,
                             )}`,
                           }}
                         >
-                          {blogs?.category_name}
+                          {blogs?.category?.name}
                         </span>
                       </div>
                       <div class='sk-blokTVE-icon'>
@@ -306,7 +298,7 @@ const BlogDetails = () => {
                   <div
                     className='sk-blogDetails-content'
                     dangerouslySetInnerHTML={{
-                      __html: makeHtml(`${blogs?.about_blog}`),
+                      __html: makeHtmlWithStyles(`${blogs?.about_blog}`),
                     }}
                   />
                   <div className='sk-blogS-category'>
@@ -323,16 +315,16 @@ const BlogDetails = () => {
                         ? blogs?.tags.map((items) => {
                             return (
                               <span
-                                key={items}
+                                key={items?.id}
                                 className='catagorie_search'
                                 onClick={() =>
                                   history.push(
-                                    `${routingConstants.MORE_BLOG_TAGS}/${items}`,
+                                    `${routingConstants.MORE_BLOG_TAGS}/${items?.slug}`,
                                     items,
                                   )
                                 }
                               >
-                                {items}
+                                {items?.name}
                               </span>
                             );
                           })
@@ -369,9 +361,10 @@ const BlogDetails = () => {
                               )}`}
                               time={items.reading_time}
                               date={`${items.created_at}`}
-                              category_name={items.category_name}
-                              color={getCategoryColor(items.category_name)}
+                              category_name={items.category}
+                              color={getCategoryColor(items.category?.name)}
                               blog_count={items.blog_count}
+                              slug={items.slug}
                             />
                           </>
                         );

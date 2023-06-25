@@ -232,10 +232,10 @@ function BlogPage() {
 
   const makeHtml = (htmlString) => {
     const htmlNode = document.createElement("div");
-    htmlNode.innerHTML = htmlString;
-    htmlNode.querySelectorAll("*").forEach(function (node) {
-      node.removeAttribute("style");
-    });
+    htmlNode.innerHTML = htmlString.replace(/\\/g, "");
+    // htmlNode.querySelectorAll("*").forEach(function (node) {
+    //   node.removeAttribute("style");
+    // });
     return htmlNode.innerHTML;
   };
 
@@ -381,9 +381,9 @@ function BlogPage() {
                               description={items.title}
                               time={items.reading_time}
                               date={`${items.created_at}`}
-                              category_name={items.category_name}
+                              category_name={items.category}
                               key={index}
-                              color={getCategoryColor(items.category_name)}
+                              color={getCategoryColor(items.category?.name)}
                               slug={items.slug}
                             />
                           </>
@@ -484,9 +484,9 @@ function BlogPage() {
                                     reading_time={items.reading_time}
                                     id={items.id}
                                     blog_count={items.blog_count}
-                                    category_name={items.category_name}
+                                    category_name={items.category}
                                     color={getCategoryColor(
-                                      items.category_name,
+                                      items.category?.name,
                                     )}
                                     slug={items.slug}
                                   />
@@ -579,8 +579,8 @@ function BlogPage() {
                                 )}`}
                                 time={items?.reading_time}
                                 date={`${items.created_at}`}
-                                category_name={items.category_name}
-                                color={getCategoryColor(items.category_name)}
+                                category_name={items.category}
+                                color={getCategoryColor(items.category?.name)}
                                 slug={items.slug}
                                 blog_count={items.blog_count}
                               />

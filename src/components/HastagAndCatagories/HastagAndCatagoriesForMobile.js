@@ -13,12 +13,9 @@ export const HashtagAndCatagoriesForMobile = (props) => {
 
   const handleClick = (tag) => {
     if (type === "hashtag") {
-      history.push(
-        `${routingConstants.SUCCESS_STORIES_HASHTAG}/${tag.name}`,
-        tag.name,
-      );
+      history.push(`${routingConstants.SUCCESS_STORIES_HASHTAG}/${tag}`, tag);
     } else {
-      history.push(`${routingConstants.MORE_BLOG}${tag.name}`, tag.name);
+      history.push(`${routingConstants.MORE_BLOG}${tag}`, tag);
     }
   };
 
@@ -34,7 +31,7 @@ export const HashtagAndCatagoriesForMobile = (props) => {
               <span
                 className='hashtage-item'
                 key={tag.id}
-                onClick={() => handleClick(tag)}
+                onClick={() => handleClick(tag?.slug)}
               >
                 {type === "hashtag" ? `#${tag?.name}` : tag?.name}
               </span>
@@ -43,7 +40,7 @@ export const HashtagAndCatagoriesForMobile = (props) => {
               <span
                 className='hashtage-item'
                 key={tag.id}
-                onClick={() => handleClick(tag)}
+                onClick={() => handleClick(tag?.slug)}
               >
                 {type === "hashtag" ? `${tag?.name}` : tag?.name}
               </span>

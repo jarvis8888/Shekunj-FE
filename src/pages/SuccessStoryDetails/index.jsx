@@ -20,7 +20,7 @@ import logo from "../../assets/images/logo.svg";
 import { apiConstants, routingConstants } from "../../utils/constants";
 import httpServices from "../../utils/ApiServices";
 import { CustomLoader } from "../../components/customLoader/CustomLoader";
-import { addEmailToClient } from "../../utils/utils";
+import { addEmailToClient, makeHtmlWithStyles } from "../../utils/utils";
 import { HashtagAndCatagoriesForMobile } from "../../components/HastagAndCatagories/HastagAndCatagoriesForMobile";
 import { useHistory } from "react-router-dom";
 import { WhiteCircularBar } from "../../components/Loader/WhiteCircularBar";
@@ -229,11 +229,11 @@ const SuccessStoryDetails = () => {
 
   const makeHtml = (htmlString) => {
     const htmlNode = document.createElement("div");
-    htmlNode.innerHTML = htmlString;
-    htmlNode.querySelectorAll("*").forEach(function (node) {
-      node.removeAttribute("style");
-    });
-    return htmlNode.innerHTML;
+    htmlNode.innerHTML = htmlString.replace(/\\/g, "");
+    // htmlNode.querySelectorAll("*").forEach(function (node) {
+    //   node.removeAttribute("style");
+    // });
+    return htmlNode.innerHTML.replace(/\\/g, "");
   };
 
   useEffect(() => {
@@ -299,19 +299,21 @@ const SuccessStoryDetails = () => {
                     <div className='hashtags-container'>
                       <div className='sk-storyD-tag'>
                         {successStoriesDetails?.hash_tags?.length
-                          ? successStoriesDetails?.hash_tags.map((items) => {
-                              return (
-                                <span
-                                  key={items}
-                                  onClick={() =>
-                                    history.push(
-                                      `${routingConstants.SUCCESS_STORIES_HASHTAG}/${items}`,
-                                      items,
-                                    )
-                                  }
-                                >{`#${items}`}</span>
-                              );
-                            })
+                          ? successStoriesDetails?.hash_tags.map(
+                              (items, index) => {
+                                return (
+                                  <span
+                                    key={index}
+                                    onClick={() =>
+                                      history.push(
+                                        `${routingConstants.SUCCESS_STORIES_HASHTAG}/${items?.slug}`,
+                                        items,
+                                      )
+                                    }
+                                  >{`#${items?.name}`}</span>
+                                );
+                              },
+                            )
                           : null}
                       </div>
                       <div className='sk-blokTVE-icon'>
@@ -340,9 +342,10 @@ const SuccessStoryDetails = () => {
                   </div>
                   <div className='sk-middleContent-story'>
                     <h1 className='story-tittle'>
-                      {successStoriesDetails?.name}
+                      {successStoriesDetails?.name}{" "}
+                      <span>{successStoriesDetails?.last_name}</span>
                     </h1>
-                    <h4 className='story-sub-tittle'>
+                    <h2 className='story-sub-tittle'>
                       {successStoriesDetails &&
                         successStoriesDetails?.designation}
                       {successStoriesDetails &&
@@ -351,14 +354,14 @@ const SuccessStoryDetails = () => {
                         ", "}
                       {successStoriesDetails &&
                         successStoriesDetails?.company_name}
-                    </h4>
+                    </h2>
                     <h6 className='description'>
                       {successStoriesDetails?.title}
                     </h6>
                     <div
                       className=''
                       dangerouslySetInnerHTML={{
-                        __html: makeHtml(
+                        __html: makeHtmlWithStyles(
                           `${successStoriesDetails?.description}`,
                         ),
                       }}
@@ -469,12 +472,13 @@ const SuccessStoryDetails = () => {
                               hashtags={
                                 items.hash_tags === null ? [] : items.hash_tags
                               }
-                              title={items.name}
+                              title={`${items.name} ${items.last_name}`}
                               description={`${items.title}`}
-                              makeHtml={makeHtml}
                               key={index}
                               created_at={items.created_at}
                               id={items.id}
+                              slug={items.slug}
+                              ss_count={items.ss_count}
                             />
                           </>
                         );
@@ -492,7 +496,7 @@ const SuccessStoryDetails = () => {
                         // });
                       }}
                     >
-                      {loading ? <WhiteCircularBar /> : `Load More`}
+                      {trendingLoading ? <WhiteCircularBar /> : `Load More`}
                     </button>
                   </div>
                 </div>

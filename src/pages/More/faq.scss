@@ -18,6 +18,11 @@ $secondary-color: #f5f5f5;
     list-style: none;
     padding: 0;
   }
+  p {
+    width: 80%;
+    margin: auto;
+    padding: 15px 0;
+  }
   span {
     color: #d3317d;
   }
@@ -44,25 +49,26 @@ $secondary-color: #f5f5f5;
   padding: 50px 0;
 
   .tabs-container {
-    ul{
+    ul {
       list-style: none;
       padding-left: 0;
-  
-    .tab {
-      cursor: pointer;
-      padding: 15px;
-      border-radius: 4px;
-      margin-bottom: 10px;
-      font-family: "Poppins";
-      font-weight: 400;
-      font-size: 16px;
-      transition: all 0.3s;
-      &.active {
-        background-color: #ffffff;
-        box-shadow: 0px 4px 12px rgba(143, 155, 179, 0.105);
+
+      .tab {
+        cursor: pointer;
+        padding: 15px;
         border-radius: 4px;
+        margin-bottom: 10px;
+        font-family: "Poppins";
+        font-weight: 400;
+        font-size: 16px;
+        transition: all 0.3s;
+        &.active {
+          background-color: #ffffff;
+          box-shadow: 0px 4px 12px rgba(143, 155, 179, 0.105);
+          border-radius: 4px;
+        }
       }
-    }}
+    }
   }
   .questions-container-wrapper {
     width: 50%;
@@ -134,7 +140,7 @@ $secondary-color: #f5f5f5;
       display: flex;
       align-items: center;
     }
-    
+
     input[type="email"] {
       flex: 1;
       border: none;
@@ -144,12 +150,12 @@ $secondary-color: #f5f5f5;
       padding: 12.5px 12px;
       border: 1px solid #d9d9d9;
       border-radius: 8px 0 0px 8px;
-      width:100%;
+      width: 100%;
     }
     .sk-error-message {
       color: #cd3434;
       font-size: 12px;
-  }
+    }
 
     button {
       background-color: #d3317d;
@@ -167,13 +173,13 @@ $secondary-color: #f5f5f5;
       font-size: 14px;
     }
   }
-  .faqs-question-answer p{
+  .faqs-question-answer p {
     margin-bottom: 0;
     font-size: 14px;
     padding-top: 5px;
     padding-left: 10px;
   }
- 
+
   @media (max-width: 786px) {
     width: 100%;
     flex-direction: column;
@@ -197,13 +203,13 @@ $secondary-color: #f5f5f5;
   .faqs-container img {
     width: 100%;
   }
-  .faqs-container .technical-support{
+  .faqs-container .technical-support {
     margin-bottom: 20px;
   }
-  .faqs-container .tabs-container ul li{
+  .faqs-container .tabs-container ul li {
     font-size: 14px;
   }
-  .faqs-container .tabs-container ul{
+  .faqs-container .tabs-container ul {
     display: flex;
     overflow: auto;
     white-space: nowrap;
@@ -213,13 +219,13 @@ $secondary-color: #f5f5f5;
     width: 0px;
     background: transparent;
   }
-  .faqs-container .tabs-container ul .tab{
+  .faqs-container .tabs-container ul .tab {
     padding: 10px;
   }
   .faqs-container .tabs-container ul .tab.active {
     box-shadow: 0px 4px 12px rgb(143 155 179 / 20%);
   }
-  .faqs-container{
+  .faqs-container {
     padding: 30px 0;
     background: #fff;
   }

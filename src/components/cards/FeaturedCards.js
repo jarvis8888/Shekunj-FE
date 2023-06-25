@@ -8,6 +8,7 @@ import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import {
   addHyphensToLink,
   generateSlug,
+  makeHtml,
   truncateString,
 } from "../../utils/utils";
 import { routingConstants } from "../../utils/constants";
@@ -20,7 +21,7 @@ const FeaturedCards = (props) => {
     hashtags = [],
     title,
     description,
-    makeHtml,
+    // makeHtml,
     key,
     reading_time,
     created_at,
@@ -33,24 +34,36 @@ const FeaturedCards = (props) => {
     <div
       className='card'
       key={key}
-      onClick={() => history.push(routingConstants.SUCCESS_STORIES + slug)}
+      onClick={() => {
+        const hashtagNames = hashtags.map((tag) => tag.slug);
+        const generatedSlug =
+          generateSlug(hashtagNames.join(" ")) || "no-hashtag";
+        if (slug) {
+          history.push(
+            routingConstants.SUCCESS_STORIES + generatedSlug + "/" + slug,
+          );
+        } else {
+          // Handle the case when 'slug' is empty
+          console.log("Slug is empty. Cannot navigate.");
+        }
+      }}
     >
       <div className='card__image'>
         <img src={image} alt={title} />
       </div>
       <div className='sk-Blogcard-content'>
         <div className='card__hashtags'>
-          {hashtags.map((tag) => (
+          {hashtags.map((tag, index) => (
             <span
-              key={tag}
+              key={index}
               onClick={(event) => {
                 event.stopPropagation();
                 history.push(
-                  `${routingConstants.SUCCESS_STORIES_HASHTAG}/${tag}`,
+                  `${routingConstants.SUCCESS_STORIES_HASHTAG}/${tag?.slug}`,
                   tag,
                 );
               }}
-            >{`#${tag}`}</span>
+            >{`#${tag?.name}`}</span>
           ))}
         </div>
         <h5>{title}</h5>
@@ -73,9 +86,22 @@ const FeaturedCards = (props) => {
           <span>
             <button
               className='card__button'
-              onClick={() =>
-                history.push(routingConstants.SUCCESS_STORIES + slug)
-              }
+              onClick={() => {
+                const hashtagNames = hashtags.map((tag) => tag?.slug);
+                const generatedSlug =
+                  generateSlug(hashtagNames.join(" ")) || "no-hashtag";
+                if (slug) {
+                  history.push(
+                    routingConstants.SUCCESS_STORIES +
+                      generatedSlug +
+                      "/" +
+                      slug,
+                  );
+                } else {
+                  // Handle the case when 'slug' is empty
+                  // console.log("Slug is empty. Cannot navigate.");
+                }
+              }}
             >
               Read More <EastRoundedIcon />
             </button>

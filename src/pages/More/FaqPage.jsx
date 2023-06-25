@@ -195,8 +195,13 @@ function FaqPage() {
           <div className='row'>
             <div className='col-md-12'>
               <h1>
-                How can we <span>help you</span>
+                Frequently Asked <span>Questions</span>
               </h1>
+              <p>
+                Here's the FAQ section to sort out all of your queries regarding
+                our policies or services, If you cant't find the answer to your
+                questions here, don't hesitate to contact us.
+              </p>
             </div>
           </div>
         </div>

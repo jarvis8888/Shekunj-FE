@@ -10,6 +10,7 @@ import { useHistory } from "react-router-dom";
 import {
   addHyphensToLink,
   generateSlug,
+  makeHtml,
   truncateString,
 } from "../../utils/utils";
 
@@ -23,18 +24,10 @@ export const TrendingBlogsCard2 = ({
   category_name,
   color,
   slug,
-  blog_count
+  blog_count,
 }) => {
   const history = useHistory();
 
-  const makeHtml = (htmlString) => {
-    const htmlNode = document.createElement("div");
-    htmlNode.innerHTML = htmlString;
-    htmlNode.querySelectorAll("*").forEach(function (node) {
-      node.removeAttribute("style");
-    });
-    return htmlNode.innerHTML;
-  };
   return (
     <div className='sk-blogDivider-bottom'>
       <div
@@ -42,7 +35,7 @@ export const TrendingBlogsCard2 = ({
         onClick={() =>
           history.push(
             routingConstants.MORE_BLOG +
-              generateSlug(category_name) +
+              generateSlug(category_name?.slug) +
               "/" +
               slug,
           )
@@ -58,7 +51,7 @@ export const TrendingBlogsCard2 = ({
               className='sk-tagBlog-name'
               style={{ background: `${color}` }}
             >
-              {category_name}
+              {category_name?.name}
             </span>
             <h5 className='blog-card2__title'>{title}</h5>
             <p
@@ -77,9 +70,9 @@ export const TrendingBlogsCard2 = ({
                 {time}
               </span>
               <span>
-            <VisibilityOutlinedIcon />
-            {blog_count}
-          </span>
+                <VisibilityOutlinedIcon />
+                {blog_count}
+              </span>
             </div>
           </div>
         </div>
