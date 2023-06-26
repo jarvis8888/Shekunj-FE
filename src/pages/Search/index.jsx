@@ -4,6 +4,7 @@ import { withHeaderFooter } from "../../hocs/withHeaderFooter";
 import httpServices from "../../utils/ApiServices";
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import "./index.scss";
+import storyimg from "../../assets/images/storyviewall.png";
 import searchnavicon from "../../assets/images/searchicon.svg";
 import { GlobalSearchCard } from "../../components/cards/GlobalSearchCard";
 import { Grid } from "rsuite";
@@ -272,6 +273,9 @@ const GlobalSearch = () => {
               </ul>
             </div>
           </div>
+        </div>
+        <div className="sk-viewall-img">
+          <img src={storyimg} alt="storyimg" />
         </div>
       </section>
       <GlobalSearchCard

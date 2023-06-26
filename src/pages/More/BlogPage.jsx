@@ -554,7 +554,7 @@ function BlogPage() {
                     <div className='title' ref={trendingSectionRef}>
                       <img src={discoverblog} alt='discoverblog' width={36} />
                       <div className='sk-heading-story'>
-                        <h4>Discover More Articles</h4>
+                        <h2 className="mb-0">Discover More Articles</h2>
                         <h6>
                           Explore more articles, news and trends on SheKunj
                         </h6>

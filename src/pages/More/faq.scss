@@ -2,7 +2,8 @@ $primary-color: #ccc;
 $secondary-color: #f5f5f5;
 
 .help-container {
-  background: linear-gradient(90.75deg, #f2d1c7 17.41%, #e7bed4 88.78%);
+  background: url(../../assets/images/faqbannerimg.jpg) no-repeat center center;
+  background-size: cover;
   position: relative;
   text-align: center;
   padding: 50px 0;

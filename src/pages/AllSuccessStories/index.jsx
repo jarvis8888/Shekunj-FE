@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./index.scss";
 import "../Search/index.scss";
+import storyimg from "../../assets/images/storyviewall.png";
 import { withHeaderFooter } from "../../hocs/withHeaderFooter";
 import { apiConstants } from "../../utils/constants";
 import httpServices from "../../utils/ApiServices";
@@ -261,8 +262,11 @@ const AllSuccessStory = () => {
                   </ul>
                 </div>
               </div>
-            </div>
+            </div> 
           </div>
+        </div>
+        <div className="sk-viewall-img">
+          <img src={storyimg} alt="storyimg" />
         </div>
       </section>
       <section className='sk-storyBoxMain-sec sk-allstory-sec'>

@@ -355,9 +355,9 @@ const SuccessStoryDetails = () => {
                       {successStoriesDetails &&
                         successStoriesDetails?.company_name}
                     </h2>
-                    <h6 className='description'>
+                    <h2 className='description'>
                       {successStoriesDetails?.title}
-                    </h6>
+                    </h2>
                     <div
                       className=''
                       dangerouslySetInnerHTML={{
