@@ -52,6 +52,7 @@ img {
   font-size: 16px;
   color: #020202;
   margin-bottom: 15px;
+  text-transform: capitalize;
 }
 
 .sk-details-datetime ul {
@@ -86,6 +87,7 @@ img {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
+  text-transform: capitalize;
 }
 .sk-topBottom-space .sk-details-datetime ul li span {
   display: flex;
@@ -105,6 +107,7 @@ img {
   font-size: calc(1.6rem + 1.5vw);
   font-weight: 600;
   padding-bottom: 10px;
+  text-transform: capitalize;
 }
 .sk-event-add {
   margin: 10px 0 15px;
@@ -208,7 +211,7 @@ img {
   background-image: url("data:image/svg+xml;utf8,<svg fill='gray' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
   background-repeat: no-repeat;
   background-position-x: 96%;
-  background-position-y: 10px;
+  background-position-y: 12px;
 }
 .sk-event-form .sk-eventForm-filed input:focus, .sk-event-form .sk-eventForm-filed select:focus {
   border-color: #fcbdda;
@@ -221,15 +224,15 @@ img {
   background: #75B94A;
   color: #fff;
   border-radius: 50px;
-  width: 28px;
-  height: 28px;
+  width: 36px;
+  height: 36px;
   display: inline-block;
   text-align: center;
-  line-height: 28px;
+  line-height: 36px;
   margin-right: 8px;
 }
 .sk-like-icon svg{
-  font-size: 18px;
+  font-size: 21px;
 }
 .sk-event-sidebar {
   padding-top: 40px;

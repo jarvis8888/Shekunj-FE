@@ -451,8 +451,8 @@ const SuccessStoryDetails = () => {
                   <div className='title' ref={trendingSectionRef}>
                     <img src={fire} alt='fire' width={36} />
                     <div className='sk-heading-story'>
-                      <h4>Trending Stories </h4>
-                      <h6>Read the most popular success stories on SheKunj</h6>
+                      <h2>Trending Stories </h2>
+                      <h3>Read the most popular success stories on SheKunj</h3>
                     </div>
                   </div>
                   <div className='row'>

@@ -366,8 +366,8 @@ function BlogPage() {
                     <div className='title mb-4' ref={sectionRef}>
                       <img src={fire} alt='fire' width={36} />
                       <div className='sk-heading-story'>
-                        <h4>Trending Articles</h4>
-                        <h6>Popular articles, news and trends on SheKunj</h6>
+                        <h2>Trending Articles</h2>
+                        <h3>Popular articles, news and trends on SheKunj</h3>
                       </div>
                     </div>
 
@@ -453,11 +453,11 @@ function BlogPage() {
                       <div className='title' ref={sectionRef}>
                         <img src={latestblog} alt='latestblog' width={36} />
                         <div className='sk-heading-story'>
-                          <h4>Latest Article</h4>
-                          <h6>
+                          <h2>Latest Article</h2>
+                          <h3>
                             Recommended stories, articles and interviews on
                             SheKunj
-                          </h6>
+                          </h3>
                         </div>
                       </div>
 
