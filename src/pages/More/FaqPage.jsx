@@ -6,7 +6,7 @@ import {
   successStories as fetchSuccessStories,
 } from "../../store/courses/action";
 import * as Yup from "yup";
-import { Header, Footer } from "../../components";
+import { Header, Footer, SEO } from "../../components";
 import down1 from "../../assets/icons/down1.png";
 import up from "../../assets/icons/up.png";
 import double_quote from "../../assets/icons/double_quote.png";
@@ -187,147 +187,157 @@ function FaqPage() {
     setFieldTouched,
     isSubmitting,
   } = onSupportFormSubmit;
-
+  const currentUrl = window.location.href;
   return (
-    <div>
-      <section className='help-container'>
-        <div className='container'>
-          <div className='row'>
-            <div className='col-md-12'>
-              <h1>
-                Frequently Asked <span>Questions</span>
-              </h1>
-              <p>
-                Here's the FAQ section to sort out all of your queries regarding
-                our policies or services, If you cant't find the answer to your
-                questions here, don't hesitate to contact us.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-      {loading ? (
-        <div>
-          <CustomLoader />
-        </div>
-      ) : (
-        <section className='faqs-container'>
-          <div className='container sk-custom-container'>
+    <>
+      <SEO
+        title='Sheकुंज - Events'
+        description='Shekunj.com works on women empowerment and skill development by providing free training, job-oriented courses, jobs & internships and career counseling'
+        keywords='women empowerment organizations women empowerment initiative free online courses free career guidance'
+        link={currentUrl}
+        currentUrl={currentUrl}
+      />
+      <div>
+        <section className='help-container'>
+          <div className='container'>
             <div className='row'>
-              <div className='col-xl-2 col-md-3 col-sm-12'>
-                <div className='tabs-container'>
-                  <ul>
-                    {faqData?.map((tab) => (
-                      <li
-                        key={tab.id}
-                        className={`tab ${
-                          activeTab === tab.id ? "active" : ""
-                        }`}
-                        onClick={() => handleTabClick(tab.id)}
-                      >
-                        {tab.name}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-              <div className='col-xl-7 col-md-5 questions-container-wrapper'>
-                <div className='questions-container'>
-                  {faqQuestionsData.filter((q) => q.id === activeTab).length ? (
-                    faqQuestionsData
-                      .filter((q) => q.id === activeTab)
-                      .map((q) => (
-                        <div key={q.id} className='question'>
-                          <div
-                            className='question-header'
-                            onClick={() => toggleQuestion(q.id)}
-                          >
-                            <div
-                              className='question-text'
-                              dangerouslySetInnerHTML={{
-                                __html: makeHtml(q.question),
-                              }}
-                            />
-
-                            <div>
-                              <ExpandMoreRoundedIcon />
-                            </div>
-                          </div>
-                          {expandedQuestions.includes(q.id) && (
-                            <div
-                              className='faqs-question-answer'
-                              dangerouslySetInnerHTML={{
-                                __html: makeHtml(q.answer),
-                              }}
-                            />
-                          )}
-                        </div>
-                      ))
-                  ) : (
-                    <p>No questions available.</p>
-                  )}
-                </div>
-                <div className='technical-support'>
-                  <div>
-                    <div className='technical-title'>Technical Support</div>
-                    <div className='technical-description'>
-                      If you have some additional question, please contact our
-                      Help Desk
-                    </div>
-                  </div>
-                  <form onSubmit={handleSubmit}>
-                    <div class='input-container'>
-                      <input
-                        type='email'
-                        name='email'
-                        placeholder='Email id'
-                        value={values.email}
-                        onChange={handleChange}
-                        touched={touched}
-                        onBlur={handleBlur}
-                      />
-                      <button type='submit'>
-                        {" "}
-                        <span>
-                          <img src={faqsendicon} />
-                        </span>{" "}
-                        Send{" "}
-                      </button>
-                    </div>
-                    {errors.email && (
-                      <div className='sk-error-message'>{errors.email}</div>
-                    )}
-                  </form>
-                </div>
-              </div>
-              <div className='col-xl-3 col-md-4'>
-                <a
-                  href={faqBoxAdds[0]?.url_adds}
-                  target='_blank'
-                  rel='noreferrer'
-                >
-                  {detect.isMobile
-                    ? faqBoxAdds[0]?.image_mobile && (
-                        <img
-                          src={faqBoxAdds[0]?.image_mobile}
-                          alt=''
-                          className='ads_story_cover_img'
-                        />
-                      )
-                    : faqBoxAdds[0]?.image && (
-                        <img
-                          src={faqBoxAdds[0]?.image}
-                          alt=''
-                          className='ads_story_cover_img'
-                        />
-                      )}
-                </a>
+              <div className='col-md-12'>
+                <h1>
+                  Frequently Asked <span>Questions</span>
+                </h1>
+                <p>
+                  Here's the FAQ section to sort out all of your queries
+                  regarding our policies or services, If you cant't find the
+                  answer to your questions here, don't hesitate to contact us.
+                </p>
               </div>
             </div>
           </div>
         </section>
-      )}
-    </div>
+        {loading ? (
+          <div>
+            <CustomLoader />
+          </div>
+        ) : (
+          <section className='faqs-container'>
+            <div className='container sk-custom-container'>
+              <div className='row'>
+                <div className='col-xl-2 col-md-3 col-sm-12'>
+                  <div className='tabs-container'>
+                    <ul>
+                      {faqData?.map((tab) => (
+                        <li
+                          key={tab.id}
+                          className={`tab ${
+                            activeTab === tab.id ? "active" : ""
+                          }`}
+                          onClick={() => handleTabClick(tab.id)}
+                        >
+                          {tab.name}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+                <div className='col-xl-7 col-md-5 questions-container-wrapper'>
+                  <div className='questions-container'>
+                    {faqQuestionsData.filter((q) => q.id === activeTab)
+                      .length ? (
+                      faqQuestionsData
+                        .filter((q) => q.id === activeTab)
+                        .map((q) => (
+                          <div key={q.id} className='question'>
+                            <div
+                              className='question-header'
+                              onClick={() => toggleQuestion(q.id)}
+                            >
+                              <div
+                                className='question-text'
+                                dangerouslySetInnerHTML={{
+                                  __html: makeHtml(q.question),
+                                }}
+                              />
+
+                              <div>
+                                <ExpandMoreRoundedIcon />
+                              </div>
+                            </div>
+                            {expandedQuestions.includes(q.id) && (
+                              <div
+                                className='faqs-question-answer'
+                                dangerouslySetInnerHTML={{
+                                  __html: makeHtml(q.answer),
+                                }}
+                              />
+                            )}
+                          </div>
+                        ))
+                    ) : (
+                      <p>No questions available.</p>
+                    )}
+                  </div>
+                  <div className='technical-support'>
+                    <div>
+                      <div className='technical-title'>Technical Support</div>
+                      <div className='technical-description'>
+                        If you have some additional question, please contact our
+                        Help Desk
+                      </div>
+                    </div>
+                    <form onSubmit={handleSubmit}>
+                      <div class='input-container'>
+                        <input
+                          type='email'
+                          name='email'
+                          placeholder='Email id'
+                          value={values.email}
+                          onChange={handleChange}
+                          touched={touched}
+                          onBlur={handleBlur}
+                        />
+                        <button type='submit'>
+                          {" "}
+                          <span>
+                            <img src={faqsendicon} />
+                          </span>{" "}
+                          Send{" "}
+                        </button>
+                      </div>
+                      {errors.email && (
+                        <div className='sk-error-message'>{errors.email}</div>
+                      )}
+                    </form>
+                  </div>
+                </div>
+                <div className='col-xl-3 col-md-4'>
+                  <a
+                    href={faqBoxAdds[0]?.url_adds}
+                    target='_blank'
+                    rel='noreferrer'
+                  >
+                    {detect.isMobile
+                      ? faqBoxAdds[0]?.image_mobile && (
+                          <img
+                            src={faqBoxAdds[0]?.image_mobile}
+                            alt=''
+                            className='ads_story_cover_img'
+                          />
+                        )
+                      : faqBoxAdds[0]?.image && (
+                          <img
+                            src={faqBoxAdds[0]?.image}
+                            alt=''
+                            className='ads_story_cover_img'
+                          />
+                        )}
+                  </a>
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
+      </div>
+    </>
   );
 }
 export default withHeaderFooter(FaqPage);

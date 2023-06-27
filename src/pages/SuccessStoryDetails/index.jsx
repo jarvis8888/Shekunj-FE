@@ -272,104 +272,75 @@ const SuccessStoryDetails = () => {
     return renderAd(ad);
   };
   return (
-    <div>
+    <>
       <SEO
-        title={successStoriesDetails?.meta_title}
+        title={
+          successStoriesDetails?.meta_title
+            ? successStoriesDetails?.meta_title
+            : successStoriesDetails?.title
+        }
         description={successStoriesDetails?.meta_description}
         keywords={successStoriesDetails?.meta_keywords}
         image={successStoriesDetails?.image}
         currentUrl={currentUrl}
-        link={successStoriesDetails?.canonical_tags}
+        link={
+          successStoriesDetails?.canonical_tags
+            ? successStoriesDetails?.canonical_tags
+            : currentUrl
+        }
       />
-
-      {loading ? (
-        <CustomLoader />
-      ) : (
-        <section className='sk-storyDetail-sec'>
-          <div className='container sk-custom-container'>
-            <div className='row'>
-              <div className='col-xl-8 col-lg-8 col-md-8'>
-                <div className='sk-topBottom-space'>
-                  <img
-                    src={successStoriesDetails?.image}
-                    alt={successStoriesDetails?.image_alt_tag}
-                    className='sk-storyBanner-img'
-                  />
-                  <div className='story-bottom'>
-                    <div className='hashtags-container'>
-                      <div className='sk-storyD-tag'>
-                        {successStoriesDetails?.hash_tags?.length
-                          ? successStoriesDetails?.hash_tags.map(
-                              (items, index) => {
-                                return (
-                                  <span
-                                    key={index}
-                                    onClick={() =>
-                                      history.push(
-                                        `${routingConstants.SUCCESS_STORIES_HASHTAG}/${items?.slug}`,
-                                        items,
-                                      )
-                                    }
-                                  >{`#${items?.name}`}</span>
-                                );
-                              },
-                            )
-                          : null}
-                      </div>
-                      <div className='sk-blokTVE-icon'>
-                        <span>
-                          <AccessTimeIcon />
-                          {successStoriesDetails?.created_at}
-                        </span>
-                        <span>
+      <div>
+        {loading ? (
+          <CustomLoader />
+        ) : (
+          <section className='sk-storyDetail-sec'>
+            <div className='container sk-custom-container'>
+              <div className='row'>
+                <div className='col-xl-8 col-lg-8 col-md-8'>
+                  <div className='sk-topBottom-space'>
+                    <img
+                      src={successStoriesDetails?.image}
+                      alt={successStoriesDetails?.image_alt_tag}
+                      className='sk-storyBanner-img'
+                    />
+                    <div className='story-bottom'>
+                      <div className='hashtags-container'>
+                        <div className='sk-storyD-tag'>
+                          {successStoriesDetails?.hash_tags?.length
+                            ? successStoriesDetails?.hash_tags.map(
+                                (items, index) => {
+                                  return (
+                                    <span
+                                      key={index}
+                                      onClick={() =>
+                                        history.push(
+                                          `${routingConstants.SUCCESS_STORIES_HASHTAG}/${items?.slug}`,
+                                          items,
+                                        )
+                                      }
+                                    >{`#${items?.name}`}</span>
+                                  );
+                                },
+                              )
+                            : null}
+                        </div>
+                        <div className='sk-blokTVE-icon'>
+                          <span>
+                            <AccessTimeIcon />
+                            {successStoriesDetails?.created_at}
+                          </span>
+                          {/* <span>
                           <MenuBookRoundedIcon />
                           {successStoriesDetails?.reading_time}
-                        </span>
-                        <span>
-                          <VisibilityOutlinedIcon />{" "}
-                          {successStoriesDetails?.ss_count}
-                        </span>
+                        </span> */}
+                          <span>
+                            <VisibilityOutlinedIcon />{" "}
+                            {successStoriesDetails?.ss_count}
+                          </span>
+                        </div>
                       </div>
-                    </div>
-                    <div className='sk-social-icon sk-mobile-view'>
-                      <h6>Share this article</h6>
-                      <SocialShare
-                        currentUrl={currentUrl}
-                        title={successStoriesDetails?.title}
-                        image={successStoriesDetails?.image}
-                      />
-                    </div>
-                  </div>
-                  <div className='sk-middleContent-story'>
-                    <h1 className='story-tittle'>
-                      {successStoriesDetails?.name}{" "}
-                      <span>{successStoriesDetails?.last_name}</span>
-                    </h1>
-                    <h2 className='story-sub-tittle'>
-                      {successStoriesDetails &&
-                        successStoriesDetails?.designation}
-                      {successStoriesDetails &&
-                        successStoriesDetails?.designation &&
-                        successStoriesDetails?.company_name &&
-                        ", "}
-                      {successStoriesDetails &&
-                        successStoriesDetails?.company_name}
-                    </h2>
-                    <h2 className='description'>
-                      {successStoriesDetails?.title}
-                    </h2>
-                    <div
-                      className=''
-                      dangerouslySetInnerHTML={{
-                        __html: makeHtmlWithStyles(
-                          `${successStoriesDetails?.description}`,
-                        ),
-                      }}
-                    />
-
-                    <div className='my-4'>
-                      <div className='sk-social-icon'>
-                        <h6 className='text-left pb-0'>Share this article</h6>
+                      <div className='sk-social-icon sk-mobile-view'>
+                        <h6>Share this article</h6>
                         <SocialShare
                           currentUrl={currentUrl}
                           title={successStoriesDetails?.title}
@@ -377,147 +348,192 @@ const SuccessStoryDetails = () => {
                         />
                       </div>
                     </div>
-                    <div className='sk-shekunj-about'>
-                      <div className='row align-items-center'>
-                        <div className='col-xl-3 col-lg-4 col-md-4'>
-                          <div className='sk-aboutshekunj-img'>
-                            <img src={logo} alt='logo' />
-                          </div>
-                        </div>
-                        <div className='col-xl-9 col-lg-8 col-md-8'>
-                          <div className='sk-shekunjAbout-content'>
-                            <h5>About Shekunj</h5>
-                            <p>
-                              Shekunj promotes personal growth for women to
-                              achieve their full potential and aims to empower
-                              all the women out there - be they 16 or 60 years
-                              old - through education and guidance. Reach us at{" "}
-                              <a
-                                href='mailto:info@shekunj.com'
-                                target='_blank'
-                                rel='noreferrer'
-                              >
-                                info@shekunj.com
-                              </a>
-                            </p>
-                          </div>
+                    <div className='sk-middleContent-story'>
+                      <h1 className='story-tittle'>
+                        {successStoriesDetails?.name}{" "}
+                        <span>{successStoriesDetails?.last_name}</span>
+                      </h1>
+                      <h2 className='story-sub-tittle'>
+                        {successStoriesDetails &&
+                          successStoriesDetails?.designation}
+                        {successStoriesDetails &&
+                          successStoriesDetails?.designation &&
+                          successStoriesDetails?.company_name &&
+                          ", "}
+                        {successStoriesDetails &&
+                          successStoriesDetails?.company_name}
+                      </h2>
+                      <h2 className='description'>
+                        {successStoriesDetails?.title}
+                      </h2>
+                      <div
+                        className=''
+                        dangerouslySetInnerHTML={{
+                          __html: makeHtmlWithStyles(
+                            `${successStoriesDetails?.description}`,
+                          ),
+                        }}
+                      />
+
+                      <div className='my-4'>
+                        <div className='sk-social-icon'>
+                          <h6 className='text-left pb-0'>Share this article</h6>
+                          <SocialShare
+                            currentUrl={currentUrl}
+                            title={successStoriesDetails?.title}
+                            image={successStoriesDetails?.image}
+                          />
                         </div>
                       </div>
-                    </div>
-                    <>
-                      {storiesBannerAds.length > 0 && (
-                        <div className='row'>
-                          <div
-                            className='col-xl-12'
-                            // className='col-md-12 ads_home_cover '
-                            onClick={() =>
-                              addEmailToClient(storiesBannerAds[0]?.add_email)
-                            }
-                          >
-                            <div className='card'>
-                              <a
-                                href={storiesBannerAds[0]?.url_adds}
-                                target='_blank'
-                                rel='noreferrer'
-                              >
-                                {detect.isMobile
-                                  ? storiesBannerAds[0]?.image_mobile && (
-                                      <img
-                                        src={storiesBannerAds[0]?.image_mobile}
-                                        alt=''
-                                        // className='ads_story_cover_img'
-                                      />
-                                    )
-                                  : storiesBannerAds[0]?.image && (
-                                      <img
-                                        src={storiesBannerAds[0]?.image}
-                                        alt=''
-                                        // className='ads_story_cover_img'
-                                      />
-                                    )}
-                              </a>
+                      <div className='sk-shekunj-about'>
+                        <div className='row align-items-center'>
+                          <div className='col-xl-3 col-lg-4 col-md-4'>
+                            <div className='sk-aboutshekunj-img'>
+                              <img src={logo} alt='logo' />
+                            </div>
+                          </div>
+                          <div className='col-xl-9 col-lg-8 col-md-8'>
+                            <div className='sk-shekunjAbout-content'>
+                              <h5>About Shekunj</h5>
+                              <p>
+                                Shekunj promotes personal growth for women to
+                                achieve their full potential and aims to empower
+                                all the women out there - be they 16 or 60 years
+                                old - through education and guidance. Reach us
+                                at{" "}
+                                <a
+                                  href='mailto:info@shekunj.com'
+                                  target='_blank'
+                                  rel='noreferrer'
+                                >
+                                  info@shekunj.com
+                                </a>
+                              </p>
                             </div>
                           </div>
                         </div>
-                      )}
-                    </>
+                      </div>
+                      <>
+                        {storiesBannerAds.length > 0 && (
+                          <div className='row'>
+                            <div
+                              className='col-xl-12'
+                              // className='col-md-12 ads_home_cover '
+                              onClick={() =>
+                                addEmailToClient(storiesBannerAds[0]?.add_email)
+                              }
+                            >
+                              <div className='card'>
+                                <a
+                                  href={storiesBannerAds[0]?.url_adds}
+                                  target='_blank'
+                                  rel='noreferrer'
+                                >
+                                  {detect.isMobile
+                                    ? storiesBannerAds[0]?.image_mobile && (
+                                        <img
+                                          src={
+                                            storiesBannerAds[0]?.image_mobile
+                                          }
+                                          alt=''
+                                          // className='ads_story_cover_img'
+                                        />
+                                      )
+                                    : storiesBannerAds[0]?.image && (
+                                        <img
+                                          src={storiesBannerAds[0]?.image}
+                                          alt=''
+                                          // className='ads_story_cover_img'
+                                        />
+                                      )}
+                                </a>
+                              </div>
+                            </div>
+                          </div>
+                        )}
+                      </>
+                    </div>
+                    <HashtagAndCatagoriesForMobile
+                      type='hashtag'
+                      image={hash}
+                      title={`Trending Hashtag`}
+                      hashtags={allHashTag}
+                    />
+                    <div className='title' ref={trendingSectionRef}>
+                      <img src={fire} alt='fire' width={36} />
+                      <div className='sk-heading-story'>
+                        <h4>Trending Stories </h4>
+                        <h6>
+                          Read the most popular success stories on SheKunj
+                        </h6>
+                      </div>
+                    </div>
+                    <div className='row'>
+                      {trendingData?.map((items, index) => {
+                        if (items.id === "advertisement") {
+                          return (
+                            <>
+                              {succesStoriesLeft.length > 0 &&
+                                succesStoriesLeftRenderAds()}
+                            </>
+                          );
+                        } else {
+                          return (
+                            <>
+                              <TrendingCards
+                                image={items.image}
+                                hashtags={
+                                  items.hash_tags === null
+                                    ? []
+                                    : items.hash_tags
+                                }
+                                title={`${items.name} ${items.last_name}`}
+                                description={`${items.title}`}
+                                key={index}
+                                created_at={items.created_at}
+                                id={items.id}
+                                slug={items.slug}
+                                ss_count={items.ss_count}
+                              />
+                            </>
+                          );
+                        }
+                      })}
+                    </div>
+                    <div className='sk-blogbottom-border d-flex justify-content-center align-items-center py-4'>
+                      <button
+                        disabled={currentTrendingData?.results?.length === 0}
+                        className='loadMore'
+                        onClick={() => {
+                          setTrendingOffset(trendingOffset + 6);
+                          // trendingSectionRef.current.scrollIntoView({
+                          //   behavior: "smooth",
+                          // });
+                        }}
+                      >
+                        {trendingLoading ? <WhiteCircularBar /> : `Load More`}
+                      </button>
+                    </div>
                   </div>
-                  <HashtagAndCatagoriesForMobile
+                </div>
+                <div className='col-xl-4 col-lg-4 col-md-4 sk-Removeside-space'>
+                  <HashtagAndCatagories
                     type='hashtag'
                     image={hash}
                     title={`Trending Hashtag`}
+                    firstAdd={succesStoriesRight1}
+                    // addEmail={addEmail}
                     hashtags={allHashTag}
+                    rightOne={succesStoriesRight1}
+                    rightTwo={succesStoriesRight2}
                   />
-                  <div className='title' ref={trendingSectionRef}>
-                    <img src={fire} alt='fire' width={36} />
-                    <div className='sk-heading-story'>
-                      <h4>Trending Stories </h4>
-                      <h6>Read the most popular success stories on SheKunj</h6>
-                    </div>
-                  </div>
-                  <div className='row'>
-                    {trendingData?.map((items, index) => {
-                      if (items.id === "advertisement") {
-                        return (
-                          <>
-                            {succesStoriesLeft.length > 0 &&
-                              succesStoriesLeftRenderAds()}
-                          </>
-                        );
-                      } else {
-                        return (
-                          <>
-                            <TrendingCards
-                              image={items.image}
-                              hashtags={
-                                items.hash_tags === null ? [] : items.hash_tags
-                              }
-                              title={`${items.name} ${items.last_name}`}
-                              description={`${items.title}`}
-                              key={index}
-                              created_at={items.created_at}
-                              id={items.id}
-                              slug={items.slug}
-                              ss_count={items.ss_count}
-                            />
-                          </>
-                        );
-                      }
-                    })}
-                  </div>
-                  <div className='sk-blogbottom-border d-flex justify-content-center align-items-center py-4'>
-                    <button
-                      disabled={currentTrendingData?.results?.length === 0}
-                      className='loadMore'
-                      onClick={() => {
-                        setTrendingOffset(trendingOffset + 6);
-                        // trendingSectionRef.current.scrollIntoView({
-                        //   behavior: "smooth",
-                        // });
-                      }}
-                    >
-                      {trendingLoading ? <WhiteCircularBar /> : `Load More`}
-                    </button>
-                  </div>
                 </div>
               </div>
-              <div className='col-xl-4 col-lg-4 col-md-4 sk-Removeside-space'>
-                <HashtagAndCatagories
-                  type='hashtag'
-                  image={hash}
-                  title={`Trending Hashtag`}
-                  firstAdd={succesStoriesRight1}
-                  // addEmail={addEmail}
-                  hashtags={allHashTag}
-                  rightOne={succesStoriesRight1}
-                  rightTwo={succesStoriesRight2}
-                />
-              </div>
             </div>
-          </div>
-        </section>
-      )}
-    </div>
+          </section>
+        )}
+      </div>
+    </>
   );
 };
 

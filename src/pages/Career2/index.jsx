@@ -29,11 +29,11 @@ const CareerPage2 = () => {
   );
   const { lan } = useSelector((state) => state.languageReducer);
   const [offset, setOffset] = useState(0);
-  const [flag, setFlag] = useState(true)
-  const pageLimit = 10
+  const [flag, setFlag] = useState(true);
+  const pageLimit = 10;
   useEffect(() => {
     dispatch(reSetFilterValue());
-    dispatch(getGovernmentExams(false,pageLimit,offset));
+    dispatch(getGovernmentExams(false, pageLimit, offset));
   }, [lan]);
 
   const transformPrice = (price) => {
@@ -82,44 +82,50 @@ const CareerPage2 = () => {
   // 		});
 
   // }, [])
-  const page_adds = JSON.parse(sessionStorage.getItem('current_adds'))
-  const findAdds=(addslen,len)=>{
-    let x = 0
+  const page_adds = JSON.parse(sessionStorage.getItem("current_adds"));
+  const findAdds = (addslen, len) => {
+    let x = 0;
 
-      let arr = []
-      for (let i = 0; i < len; i++) {
-        let y;
-        if (x + 1 >= addslen) {
-          y = 0
-        } else {
-          y = x + 1;
-        }
-        if (x >= addslen) {
-          x = 0
-          y = 1
-        }
-
-        arr.push([x, y]);
-        if (x + 1 >= addslen) {
-          x = 1
-        } else {
-          x += 2;
-        }
-
+    let arr = [];
+    for (let i = 0; i < len; i++) {
+      let y;
+      if (x + 1 >= addslen) {
+        y = 0;
+      } else {
+        y = x + 1;
       }
-      return arr
-  }
-  useEffect(() => {
-    if (governmentExams?.govt_list?.results?.length > 0 && govBoxAds?.length && flag) {
-      const addslen = govBoxAds?.length
-      let len = governmentExams?.govt_list?.count / pageLimit;
-      len = Math.trunc(len)
-      console.log(len,addslen)
-      const adds_arr=findAdds(addslen,len)
-      sessionStorage.setItem('current_adds', JSON.stringify({ addIndex: 0, addsData: adds_arr}));
-      setFlag(false)
+      if (x >= addslen) {
+        x = 0;
+        y = 1;
+      }
+
+      arr.push([x, y]);
+      if (x + 1 >= addslen) {
+        x = 1;
+      } else {
+        x += 2;
+      }
     }
-  }, [governmentExams, govBoxAds])
+    return arr;
+  };
+  useEffect(() => {
+    if (
+      governmentExams?.govt_list?.results?.length > 0 &&
+      govBoxAds?.length &&
+      flag
+    ) {
+      const addslen = govBoxAds?.length;
+      let len = governmentExams?.govt_list?.count / pageLimit;
+      len = Math.trunc(len);
+      console.log(len, addslen);
+      const adds_arr = findAdds(addslen, len);
+      sessionStorage.setItem(
+        "current_adds",
+        JSON.stringify({ addIndex: 0, addsData: adds_arr }),
+      );
+      setFlag(false);
+    }
+  }, [governmentExams, govBoxAds]);
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(async function (position, values) {
       const latitude = position.coords.latitude;
@@ -292,110 +298,104 @@ const CareerPage2 = () => {
 
   // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
   const paginationBack = () => {
-    dispatch(getGovernmentExams(true,pageLimit,offset));
-    
-    setOffset(offset - 10)
-    if (page_adds) {
-      sessionStorage.setItem('current_adds', JSON.stringify({ ...page_adds, addIndex: page_adds?.addIndex - 1 }))
+    dispatch(getGovernmentExams(true, pageLimit, offset));
 
+    setOffset(offset - 10);
+    if (page_adds) {
+      sessionStorage.setItem(
+        "current_adds",
+        JSON.stringify({ ...page_adds, addIndex: page_adds?.addIndex - 1 }),
+      );
     }
     window.scrollTo(0, 1000);
   };
   const paginationNext = () => {
+    dispatch(getGovernmentExams(true, pageLimit, offset));
 
-   
-    dispatch(getGovernmentExams(true,pageLimit,offset));
-    
     setOffset(offset + 10);
     if (page_adds) {
-      sessionStorage.setItem('current_adds', JSON.stringify({ ...page_adds, addIndex: page_adds?.addIndex + 1 }))
-
+      sessionStorage.setItem(
+        "current_adds",
+        JSON.stringify({ ...page_adds, addIndex: page_adds?.addIndex + 1 }),
+      );
     }
     window.scrollTo(0, 1000);
   };
-  
 
   return (
-    <div>
-      {/* <SEO
-        title={``}
-        description={``}
-        keywords={``}
-      /> */}
+    <>
+      <SEO
+        title='List of Government Schemes in India - Benefits - Shekunj.com'
+        link='https://www.shekunj.com/government-schemes-in-india/'
+        keywords='government policies and Schemes in india government
+      schemes and programs new government schemes in india central government schemes'
+        description='List of Government Schemes: Women Empowerment Schemes, Beti Bachao Beti Padhao, Start Up India Scheme, Bima
+      Yojana, women helpline scheme.'
+      />
 
-      <Helmet>
-        <link rel="canonical" href="https://www.shekunj.com/government-schemes-in-india/" />
-        <title>List of Government Schemes in India - Benefits - Shekunj.com</title>
-        <meta name="description" content="List of Government Schemes: Women Empowerment Schemes, Beti Bachao Beti Padhao, Start Up India Scheme, Bima
-          Yojana, women helpline scheme."/>
-        <meta name="keywords" content="government policies and Schemes in india government
-          schemes and programs new government schemes in india central government schemes"/>
-      </Helmet>
-
-
-      <Header loginPage={true} page='career' subPage='govExams' />
-      <Container>
-        <Row>
-          {govBannerAds.length > 0 && (
-            <div
-              className='col-md-12 ads_gov_cover'
-              onClick={() => addEmail(govBannerAds[0]?.add_email)}
-            >
-              <a href={govBannerAds[0]?.url_adds} target='_blank'>
-                {detect.isMobile ? (
-                  govBannerAds[0]?.image_mobile && (
-                  <img
-                  src={ govBannerAds[0]?.image_mobile }
-                    // src={govBannerAds[0]?.image}
-                    alt='Image'
-                    className='ads_gov'
-                  />)
-                ) : (
-                  govBannerAds[0]?.image && (
-                  <img
-                  src={ govBannerAds[0]?.image}
-                    // src={govBannerAds[0]?.image}
-                    alt='Image'
-                    className='ads_gov'
-                  />)
-                )}
-             
-              </a>
-            </div>
-          )}
-        </Row>
-      </Container>
-
-      <div className='mainDiv_gov'>
+      <div>
+        <Header loginPage={true} page='career' subPage='govExams' />
         <Container>
-          <div className='career_tit noselect'>
-            <h2>{t("careerGovExams.heading.1")}</h2>
-          </div>
           <Row>
-            <Col md={4} xs={12}>
-              <AccordionComponent
-                type='governmentExams'
-                categories={{
-                  name: t("careerGovExams.listItems.1"),
-                  rows: governmentExams?.govt_category || [],
-                }}
-              />
-              <div className='row'>
-                {govtScmSideAdds.length > 0 && (
-                  <div
-                    className='col-md-12'
-                    onClick={() => addEmail(govtScmSideAdds[0]?.add_email)}
-                  >
-                    <a href={govtScmSideAdds[0]?.url_adds} target='_blank'>
-                      <img
-                        src={govtScmSideAdds[0]?.image}
-                        alt='Image'
-                        className='google_add_courses'
-                      />
-                    </a>
-                  </div>
-                )}
-                {/* <div className='row'>
+            {govBannerAds.length > 0 && (
+              <div
+                className='col-md-12 ads_gov_cover'
+                onClick={() => addEmail(govBannerAds[0]?.add_email)}
+              >
+                <a href={govBannerAds[0]?.url_adds} target='_blank'>
+                  {detect.isMobile
+                    ? govBannerAds[0]?.image_mobile && (
+                        <img
+                          src={govBannerAds[0]?.image_mobile}
+                          // src={govBannerAds[0]?.image}
+                          alt='Image'
+                          className='ads_gov'
+                        />
+                      )
+                    : govBannerAds[0]?.image && (
+                        <img
+                          src={govBannerAds[0]?.image}
+                          // src={govBannerAds[0]?.image}
+                          alt='Image'
+                          className='ads_gov'
+                        />
+                      )}
+                </a>
+              </div>
+            )}
+          </Row>
+        </Container>
+
+        <div className='mainDiv_gov'>
+          <Container>
+            <div className='career_tit noselect'>
+              <h2>{t("careerGovExams.heading.1")}</h2>
+            </div>
+            <Row>
+              <Col md={4} xs={12}>
+                <AccordionComponent
+                  type='governmentExams'
+                  categories={{
+                    name: t("careerGovExams.listItems.1"),
+                    rows: governmentExams?.govt_category || [],
+                  }}
+                />
+                <div className='row'>
+                  {govtScmSideAdds.length > 0 && (
+                    <div
+                      className='col-md-12'
+                      onClick={() => addEmail(govtScmSideAdds[0]?.add_email)}
+                    >
+                      <a href={govtScmSideAdds[0]?.url_adds} target='_blank'>
+                        <img
+                          src={govtScmSideAdds[0]?.image}
+                          alt='Image'
+                          className='google_add_courses'
+                        />
+                      </a>
+                    </div>
+                  )}
+                  {/* <div className='row'>
                   <div className='col-md-12'>
                     <img
                       src={govtScmSideAdds[0]?.image}
@@ -404,115 +404,124 @@ const CareerPage2 = () => {
                     />
                   </div>
                 </div> */}
-              </div>
-            </Col>
+                </div>
+              </Col>
 
-            <Col md={8} xs={12}>
-              {governmentExams?.govt_list?.results?.length > 0 ? (
-                governmentExams?.govt_list?.results?.map(
-                  (c, index) =>
-                    c?.name && (
-                      <>
-                        <div
-                          className='career_box noselect'
-                          style={{ height: "auto" }}
-                        >
-                          <Row>
-                            <Col md={3} xs={12}>
-                              <div className='gov_logo_box'>
-                                <Link
-                                  to={
-                                    routingConstants.GOVERNMENT_SCHEMES + c.id
-                                  }
-                                  className='col-md-6'
-                                  key={c?.id}
-                                >
-                                  <div className='career_logo_box'>
-                                    <img
-                                      srcSet={transformImg(c?.logo)}
-                                      alt='...'
-                                      className='career_logo_img img-responsive'
-                                    />
-                                  </div>
-                                </Link>
-                              </div>
-                            </Col>
-                            <Col md={9} xs={12}>
-                              <div className='top_col_content'>
-                                <h3>
+              <Col md={8} xs={12}>
+                {governmentExams?.govt_list?.results?.length > 0 ? (
+                  governmentExams?.govt_list?.results?.map(
+                    (c, index) =>
+                      c?.name && (
+                        <>
+                          <div
+                            className='career_box noselect'
+                            style={{ height: "auto" }}
+                          >
+                            <Row>
+                              <Col md={3} xs={12}>
+                                <div className='gov_logo_box'>
                                   <Link
                                     to={
                                       routingConstants.GOVERNMENT_SCHEMES + c.id
-                                      // c.name.split(" ").join("_")
                                     }
-                                    className=''
+                                    className='col-md-6'
                                     key={c?.id}
                                   >
-                                    {c && c.name}
+                                    <div className='career_logo_box'>
+                                      <img
+                                        srcSet={transformImg(c?.logo)}
+                                        alt='...'
+                                        className='career_logo_img img-responsive'
+                                      />
+                                    </div>
                                   </Link>
-                                </h3>
+                                </div>
+                              </Col>
+                              <Col md={9} xs={12}>
+                                <div className='top_col_content'>
+                                  <h3>
+                                    <Link
+                                      to={
+                                        routingConstants.GOVERNMENT_SCHEMES +
+                                        c.id
+                                        // c.name.split(" ").join("_")
+                                      }
+                                      className=''
+                                      key={c?.id}
+                                    >
+                                      {c && c.name}
+                                    </Link>
+                                  </h3>
 
-                                <ul class='list-inline list-unstyled'>
-                                  {c.state && (
-                                    <li>
-                                      <span>{t("careerGovExams.other.8")}</span>{" "}
-                                      : {c && c.state}
-                                    </li>
-                                  )}
-                                  {c.state && <li>|</li>}
-                                  {c.scheme_level && (
-                                    <li>
-                                      <span>{t("careerGovExams.other.4")}</span>{" "}
-                                      : {c && c.scheme_level}
-                                    </li>
-                                  )}
+                                  <ul class='list-inline list-unstyled'>
+                                    {c.state && (
+                                      <li>
+                                        <span>
+                                          {t("careerGovExams.other.8")}
+                                        </span>{" "}
+                                        : {c && c.state}
+                                      </li>
+                                    )}
+                                    {c.state && <li>|</li>}
+                                    {c.scheme_level && (
+                                      <li>
+                                        <span>
+                                          {t("careerGovExams.other.4")}
+                                        </span>{" "}
+                                        : {c && c.scheme_level}
+                                      </li>
+                                    )}
 
-                                  {c.scheme_level && <li>|</li>}
+                                    {c.scheme_level && <li>|</li>}
 
-                                  {c.age_criteria && (
-                                    <li>
-                                      <span>{t("careerGovExams.other.6")}</span>{" "}
-                                      : {c && c.age_criteria}
-                                    </li>
-                                  )}
-                                </ul>
+                                    {c.age_criteria && (
+                                      <li>
+                                        <span>
+                                          {t("careerGovExams.other.6")}
+                                        </span>{" "}
+                                        : {c && c.age_criteria}
+                                      </li>
+                                    )}
+                                  </ul>
 
-                                <Row>
-                                  {c.whom_this_scheme_for && (
-                                    <Col md={12} xs={12}>
-                                      <span className='gov_scm_heading'>
-                                        {t("careerGovExams.other.5")}
-                                      </span>{" "}
-                                      : {c && c.whom_this_scheme_for}
-                                    </Col>
-                                  )}
-                                  {c.benefits && (
-                                    <Col md={12} xs={12}>
-                                      <span className='gov_scm_heading'>
-                                        {t("careerGovExams.other.7")}
-                                      </span>{" "}
-                                      {/* : {c && c.benefits} */}
-                                      <p style={{ textAlign: "justify" }}>
-                                        <div
-                                          dangerouslySetInnerHTML={{
-                                            __html: `<div>${c && c.benefits.substr(0, 150)
+                                  <Row>
+                                    {c.whom_this_scheme_for && (
+                                      <Col md={12} xs={12}>
+                                        <span className='gov_scm_heading'>
+                                          {t("careerGovExams.other.5")}
+                                        </span>{" "}
+                                        : {c && c.whom_this_scheme_for}
+                                      </Col>
+                                    )}
+                                    {c.benefits && (
+                                      <Col md={12} xs={12}>
+                                        <span className='gov_scm_heading'>
+                                          {t("careerGovExams.other.7")}
+                                        </span>{" "}
+                                        {/* : {c && c.benefits} */}
+                                        <p style={{ textAlign: "justify" }}>
+                                          <div
+                                            dangerouslySetInnerHTML={{
+                                              __html: `<div>${
+                                                c && c.benefits.substr(0, 150)
                                               }</div>`,
-                                          }}
-                                        />
-                                      </p>
-                                      <Link
-                                        to={
-                                          routingConstants.GOVERNMENT_SCHEMES + c.id
-                                          // c.name.split(" ").join("_")
-                                        }
-                                        className='BlogReadMore'
-                                        key={c?.id}
-                                      >
-                                        <h6>Read More...</h6>
-                                      </Link>
-                                    </Col>
-                                  )}
-                                  {/* {c.official_link && (
+                                            }}
+                                          />
+                                        </p>
+                                        <Link
+                                          to={
+                                            routingConstants.GOVERNMENT_SCHEMES +
+                                            c.id
+                                            // c.name.split(" ").join("_")
+                                          }
+                                          className='BlogReadMore'
+                                          key={c?.id}
+                                        >
+                                          <h6>Read More...</h6>
+                                        </Link>
+                                      </Col>
+                                    )}
+                                    {/* {c.official_link && (
                                     <Col md={12} xs={12}>
                                       <span className='gov_scm_heading'>
                                         {t("careerGovExams.other.9")}
@@ -527,77 +536,164 @@ const CareerPage2 = () => {
                                       </Link>
                                     </Col>
                                   )} */}
-                                </Row>
+                                  </Row>
+                                </div>
+                              </Col>
+                            </Row>
+                          </div>
+                          <Row>
+                            {index === 3 && govBoxAds?.length > 0 && (
+                              <div
+                                className='career_box_add'
+                                onClick={() =>
+                                  addEmail(
+                                    govBoxAds[
+                                      page_adds?.addsData[
+                                        page_adds?.addIndex
+                                      ][0]
+                                    ]?.add_email,
+                                  )
+                                }
+                              >
+                                {govBoxAds.length > 0 && (
+                                  <a
+                                    href={
+                                      govBoxAds[
+                                        page_adds?.addsData[
+                                          page_adds?.addIndex
+                                        ][0]
+                                      ]?.url_adds
+                                    }
+                                    target='_blank'
+                                  >
+                                    {detect.isMobile ? (
+                                      govBoxAds[
+                                        page_adds?.addsData[
+                                          page_adds?.addIndex
+                                        ][0]
+                                      ]?.image_mobile && (
+                                        <img
+                                          src={
+                                            govBoxAds[
+                                              page_adds?.addsData[
+                                                page_adds?.addIndex
+                                              ][0]
+                                            ]?.image_mobile
+                                          }
+                                          alt='Image'
+                                          className='ads_gov_box'
+                                        />
+                                      )
+                                    ) : (
+                                      <img
+                                        src={
+                                          govBoxAds[
+                                            page_adds?.addsData[
+                                              page_adds?.addIndex
+                                            ][0]
+                                          ]?.image
+                                        }
+                                        alt='Image'
+                                        className='ads_gov_box'
+                                      />
+                                    )}
+                                  </a>
+                                )}
                               </div>
-                            </Col>
+                            )}
+                            {index === 7 && govBoxAds?.length > 0 && (
+                              <div
+                                className='career_box_add'
+                                onClick={() =>
+                                  addEmail(
+                                    govBoxAds[
+                                      page_adds?.addsData[
+                                        page_adds?.addIndex
+                                      ][1]
+                                    ]?.add_email,
+                                  )
+                                }
+                              >
+                                {govBoxAds.length > 0 && (
+                                  <a
+                                    href={
+                                      govBoxAds[
+                                        page_adds?.addsData[
+                                          page_adds?.addIndex
+                                        ][1]
+                                      ]?.url_adds
+                                    }
+                                    target='_blank'
+                                  >
+                                    {detect.isMobile ? (
+                                      govBoxAds[
+                                        page_adds?.addsData[
+                                          page_adds?.addIndex
+                                        ][1]
+                                      ]?.image_mobile && (
+                                        <img
+                                          src={
+                                            govBoxAds[
+                                              page_adds?.addsData[
+                                                page_adds?.addIndex
+                                              ][1]
+                                            ]?.image_mobile
+                                          }
+                                          alt='Image'
+                                          className='ads_gov_box'
+                                        />
+                                      )
+                                    ) : (
+                                      <img
+                                        src={
+                                          govBoxAds[
+                                            page_adds?.addsData[
+                                              page_adds?.addIndex
+                                            ][1]
+                                          ]?.image
+                                        }
+                                        alt='Image'
+                                        className='ads_gov_box'
+                                      />
+                                    )}
+                                  </a>
+                                )}
+                              </div>
+                            )}
                           </Row>
-                        </div>
-                        <Row>
-                          {index===3 && govBoxAds?.length>0 && 
-                          <div
-                          className='career_box_add'
-                          onClick={() =>
-                            addEmail(govBoxAds[page_adds?.addsData[page_adds?.addIndex][0]]?.add_email)
-                          }
-                        >
-                          {govBoxAds.length > 0 && (
-                            <a href={govBoxAds[page_adds?.addsData[page_adds?.addIndex][0]]?.url_adds} target='_blank'>
-                              { detect.isMobile ? (
-                                govBoxAds[page_adds?.addsData[page_adds?.addIndex][0]]?.image_mobile && (
-                                  <img src={govBoxAds[page_adds?.addsData[page_adds?.addIndex][0]]?.image_mobile} alt='Image' className='ads_gov_box'/>)
-                              ) : (
-                                <img src={govBoxAds[page_adds?.addsData[page_adds?.addIndex][0]]?.image} alt='Image' className='ads_gov_box'/>
-                              )}
-                            </a>
-                          )}
-                        </div>
-                          }
-                           {index===7 && govBoxAds?.length>0 && 
-                          <div
-                          className='career_box_add'
-                          onClick={() =>
-                            addEmail(govBoxAds[page_adds?.addsData[page_adds?.addIndex][1]]?.add_email)
-                          }
-                        >
-                          {govBoxAds.length > 0 && (
-                            <a href={govBoxAds[page_adds?.addsData[page_adds?.addIndex][1]]?.url_adds} target='_blank'>
-                              { detect.isMobile ? (
-                                govBoxAds[page_adds?.addsData[page_adds?.addIndex][1]]?.image_mobile && (
-                                  <img src={govBoxAds[page_adds?.addsData[page_adds?.addIndex][1]]?.image_mobile} alt='Image' className='ads_gov_box'/>)
-                              ) : (
-                                <img src={govBoxAds[page_adds?.addsData[page_adds?.addIndex][1]]?.image} alt='Image' className='ads_gov_box'/>
-                              )}
-                            </a>
-                          )}
-                        </div>
-                          }
-                        </Row>
-                      </>
-                    ),
-                )
-              ) : (
-                <div className='text-center'>{t("common.noDataFound")}</div>
+                        </>
+                      ),
+                  )
+                ) : (
+                  <div className='text-center'>{t("common.noDataFound")}</div>
 
-                //  isLoading ? (
-                // <ClipLoader className="loader" color="#ec498a" />
-                // ):(
-                //   <div className='text-center'>{t("common.noDataFound")}</div>
-                // )
-              )}
-              {governmentExams?.govt_list?.count > pageLimit && (
-                <Pagination
-                  finalCount={governmentExams?.govt_list?.count / pageLimit}
-                  nextPage={governmentExams?.govt_list?.next ? paginationNext : null}
-                  backPage={governmentExams?.govt_list?.previous ? paginationBack : null}
-                />
-              )}
-            </Col>
-          </Row>
-        </Container>
+                  //  isLoading ? (
+                  // <ClipLoader className="loader" color="#ec498a" />
+                  // ):(
+                  //   <div className='text-center'>{t("common.noDataFound")}</div>
+                  // )
+                )}
+                {governmentExams?.govt_list?.count > pageLimit && (
+                  <Pagination
+                    finalCount={governmentExams?.govt_list?.count / pageLimit}
+                    nextPage={
+                      governmentExams?.govt_list?.next ? paginationNext : null
+                    }
+                    backPage={
+                      governmentExams?.govt_list?.previous
+                        ? paginationBack
+                        : null
+                    }
+                  />
+                )}
+              </Col>
+            </Row>
+          </Container>
+        </div>
+
+        <Footer loginPage={false} />
       </div>
-
-      <Footer loginPage={false} />
-    </div>
+    </>
   );
 };
 

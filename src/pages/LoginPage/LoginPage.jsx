@@ -5,12 +5,10 @@ import "../../pages/responsive.scss";
 import "./LoginPage.scss";
 
 function LoginPage() {
-
-  
   return (
     <>
-      <div className="noselect">
-        <SEO title='Sheकुंज - Login' />
+      <SEO title='Sheकुंज - Login' />
+      <div className='noselect'>
         <Header loginPage={true} />
 
         <AuthContent loginPage={true} />

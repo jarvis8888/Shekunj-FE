@@ -60,7 +60,7 @@ function TopNavbar(props) {
           <nav className=''>
             <ul>
               <li className='mobile'>
-                <a href='/events' className={isActive("/events") && "active"}>
+                <a href='/events/all' className={isActive("/events/all") && "active"}>
                   {t("phase2.HEADER.events")}
                 </a>
               </li>

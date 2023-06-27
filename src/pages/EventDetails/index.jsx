@@ -323,96 +323,104 @@ const EventDetails = () => {
   };
 
   return (
-    <div>
+    <>
       <SEO
         title={eventsDetails?.title}
         // description={eventsDetails?.meta_description}
         // keywords={eventsDetails?.meta_keywords}
         image={eventsDetails?.image}
         currentUrl={currentUrl}
+        link={currentUrl}
       />
-      {loading ? (
-        <div>
-          <CustomLoader />
-        </div>
-      ) : (
-        <section className='sk-eventDetails-sec'>
-          <div className='container sk-custom-container'>
-            <div className='row'>
-              <div className='col-xl-8 col-md-8'>
-                <div className='sk-topBottom-space'>
-                  <div className='sk-event-imgcontent'>
-                    <div className='sk-eventDetails-img'>
-                      <img src={eventsDetails?.image} alt='events' />
-                    </div>
-                    <div className='sk-eventDetail-content'>
-                      <div className='sk-eventSocial-chiptag'>
-                        <div>
-                          <div className='sk-edetail-chip'>
-                            <span>{eventsDetails?.genre?.name}</span>
-                          </div>
-                          <div className='sk-details-datetime'>
-                            <ul>
-                              <li>
-                                {" "}
-                                <AccessTimeIcon />{" "}
-                                <span
-                                  dangerouslySetInnerHTML={{
-                                    __html: time_left(
-                                      eventsDetails?.start_date,
-                                      eventsDetails?.start_time,
-                                      eventsDetails?.end_date,
-                                      eventsDetails?.end_time,
-                                    ),
-                                  }}
-                                ></span>{" "}
-                              </li>
-                              <li>
-                                {eventsDetails?.mode_of_event === "offline" ? (
-                                  <>
-                                    {" "}
-                                    <img
-                                      src={offlineicon}
-                                      alt=''
-                                    /> Offline{" "}
-                                  </>
-                                ) : (
-                                  <>
-                                    {" "}
-                                    <img src={onlineicon} alt='' /> Online{" "}
-                                  </>
-                                )}
-                              </li>
-                              {eventsDetails?.want_to_display_enrolled_students && (
+      <div>
+        {loading ? (
+          <div>
+            <CustomLoader />
+          </div>
+        ) : (
+          <section className='sk-eventDetails-sec'>
+            <div className='container sk-custom-container'>
+              <div className='row'>
+                <div className='col-xl-8 col-md-8'>
+                  <div className='sk-topBottom-space'>
+                    <div className='sk-event-imgcontent'>
+                      <div className='sk-eventDetails-img'>
+                        <img src={eventsDetails?.image} alt='events' />
+                      </div>
+                      <div className='sk-eventDetail-content'>
+                        <div className='sk-eventSocial-chiptag'>
+                          <div>
+                            <div className='sk-edetail-chip'>
+                              <span>{eventsDetails?.genre?.name}</span>
+                            </div>
+                            <div className='sk-details-datetime'>
+                              <ul>
                                 <li>
                                   {" "}
-                                  <SchoolOutlinedIcon />{" "}
-                                  {eventsDetails?.enrold_students} enrolled{" "}
+                                  <AccessTimeIcon />{" "}
+                                  <span
+                                    dangerouslySetInnerHTML={{
+                                      __html: time_left(
+                                        eventsDetails?.start_date,
+                                        eventsDetails?.start_time,
+                                        eventsDetails?.end_date,
+                                        eventsDetails?.end_time,
+                                      ),
+                                    }}
+                                  ></span>{" "}
                                 </li>
-                              )}
-                            </ul>
+                                <li>
+                                  {eventsDetails?.mode_of_event ===
+                                  "offline" ? (
+                                    <>
+                                      {" "}
+                                      <img
+                                        src={offlineicon}
+                                        alt=''
+                                      /> Offline{" "}
+                                    </>
+                                  ) : (
+                                    <>
+                                      {" "}
+                                      <img
+                                        src={onlineicon}
+                                        alt=''
+                                      /> Online{" "}
+                                    </>
+                                  )}
+                                </li>
+                                {eventsDetails?.want_to_display_enrolled_students && (
+                                  <li>
+                                    {" "}
+                                    <SchoolOutlinedIcon />{" "}
+                                    {
+                                      eventsDetails?.enrold_students
+                                    } enrolled{" "}
+                                  </li>
+                                )}
+                              </ul>
+                            </div>
+                          </div>
+                          <div className='sk-social-icon sk-desktopSocial-icon'>
+                            <h6>Share this Event</h6>
+                            <SocialShare
+                              currentUrl={currentUrl}
+                              title={eventsDetails?.title}
+                              image={eventsDetails?.image}
+                            />
                           </div>
                         </div>
-                        <div className='sk-social-icon sk-desktopSocial-icon'>
-                          <h6>Share this Event</h6>
-                          <SocialShare
-                            currentUrl={currentUrl}
-                            title={eventsDetails?.title}
-                            image={eventsDetails?.image}
-                          />
-                        </div>
-                      </div>
 
-                      <h1>{eventsDetails?.title}</h1>
-                      <div
-                        className='sk-card-description'
-                        dangerouslySetInnerHTML={{
-                          __html: makeHtmlWithStyles(
-                            eventsDetails?.about_event,
-                          ),
-                        }}
-                      />
-                      {/* <div className='sk-work-detail'>
+                        <h1>{eventsDetails?.title}</h1>
+                        <div
+                          className='sk-card-description'
+                          dangerouslySetInnerHTML={{
+                            __html: makeHtmlWithStyles(
+                              eventsDetails?.about_event,
+                            ),
+                          }}
+                        />
+                        {/* <div className='sk-work-detail'>
                         <h4>Workshop Details</h4>
                         <ul>
                           <li>
@@ -445,203 +453,205 @@ const EventDetails = () => {
                           </li>
                         </ul>
                       </div> */}
-                      <div className='sk-social-icon sk-mobileSocial-icon'>
-                        <h6>Share this Event</h6>
-                        <SocialShare
-                          currentUrl={currentUrl}
-                          title={eventsDetails?.title}
-                          image={eventsDetails?.image}
-                        />
-                      </div>
-                      <div className='sk-event-add'>
-                        <a
-                          href={eventDetailsBannerAds[0]?.url_adds}
-                          target='_blank'
-                          rel='noreferrer'
-                        >
-                          {detect.isMobile
-                            ? eventDetailsBannerAds[0]?.image_mobile && (
-                                <img
-                                  src={eventDetailsBannerAds[0]?.image_mobile}
-                                  alt=''
-                                />
-                              )
-                            : eventDetailsBannerAds[0]?.image && (
-                                <img
-                                  src={eventDetailsBannerAds[0]?.image}
-                                  alt=''
-                                />
-                              )}
-                        </a>
+                        <div className='sk-social-icon sk-mobileSocial-icon'>
+                          <h6>Share this Event</h6>
+                          <SocialShare
+                            currentUrl={currentUrl}
+                            title={eventsDetails?.title}
+                            image={eventsDetails?.image}
+                          />
+                        </div>
+                        <div className='sk-event-add'>
+                          <a
+                            href={eventDetailsBannerAds[0]?.url_adds}
+                            target='_blank'
+                            rel='noreferrer'
+                          >
+                            {detect.isMobile
+                              ? eventDetailsBannerAds[0]?.image_mobile && (
+                                  <img
+                                    src={eventDetailsBannerAds[0]?.image_mobile}
+                                    alt=''
+                                  />
+                                )
+                              : eventDetailsBannerAds[0]?.image && (
+                                  <img
+                                    src={eventDetailsBannerAds[0]?.image}
+                                    alt=''
+                                  />
+                                )}
+                          </a>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class='col-xl-4 col-md-4 sk-Removeside-space'>
-                <div className='sk-event-sidebar'>
-                  <div className='sk-event-form'>
-                    <h6>Registration Form</h6>
-                    <form onSubmit={handleSubmit}>
-                      <div className='sk-eventForm-filed'>
-                        <input
-                          type='text'
-                          name='fullName'
-                          value={values.fullName}
-                          onChange={handleChange}
-                          touched={touched}
-                          onBlur={handleBlur}
-                          className='form-control'
-                          placeholder='Enter Full Name'
-                        />
-                        <span className='sk-icon-set'>
-                          <img src={gendericon} />
-                        </span>
-                      </div>
-                      {errors.fullName && (
-                        <span className='sk-error-message'>
-                          {errors.fullName}
-                        </span>
-                      )}
-                      <div className='sk-eventForm-filed'>
-                        <input
-                          type='email'
-                          name='email'
-                          value={values.email}
-                          onChange={handleChange}
-                          touched={touched}
-                          onBlur={handleBlur}
-                          className='form-control'
-                          placeholder='Email Id'
-                        />
-                        <span className='sk-icon-set'>
-                          <img src={eventemailsend} />
-                        </span>
-                      </div>
-                      {errors.email && (
-                        <span className='sk-error-message'>{errors.email}</span>
-                      )}
-                      <ul>
-                        <div className='sk-eventForm-filed'>
-                          <select
-                            name='gender'
-                            value={values.gender}
-                            onBlur={handleBlur}
-                            onChange={handleChange}
-                            touched={touched}
-                            autoComplete='off'
-                          >
-                            <option>Gender</option>
-                            {Gender.map((Gender) => (
-                              <option key={Gender} value={Gender}>
-                                {Gender}
-                              </option>
-                            ))}
-                          </select>
-                          <span className='sk-icon-set'>
-                            <img src={gendericon} />
-                          </span>
-                          {errors.gender && (
-                            <span className='sk-error-message'>
-                              {errors.gender}
-                            </span>
-                          )}
-                        </div>
+                <div class='col-xl-4 col-md-4 sk-Removeside-space'>
+                  <div className='sk-event-sidebar'>
+                    <div className='sk-event-form'>
+                      <h6>Registration Form</h6>
+                      <form onSubmit={handleSubmit}>
                         <div className='sk-eventForm-filed'>
                           <input
                             type='text'
-                            name='location'
-                            value={values.location}
+                            name='fullName'
+                            value={values.fullName}
                             onChange={handleChange}
                             touched={touched}
                             onBlur={handleBlur}
                             className='form-control'
-                            placeholder='Location'
+                            placeholder='Enter Full Name'
                           />
                           <span className='sk-icon-set'>
-                            <img src={locationicon} />
+                            <img src={gendericon} />
                           </span>
-                          {errors.location && (
-                            <span className='sk-error-message'>
-                              {errors.location}
-                            </span>
-                          )}
                         </div>
-                      </ul>
-
-                      {eventsDetails?.id &&
-                        Object.entries(eventsDetails?.extra_info).map(
-                          (key, index) => {
-                            const propertyName = key[0];
-
-                            return (
-                              <>
-                                <div className='sk-eventForm-filed'>
-                                  <input
-                                    name='extra_info_reg'
-                                    type='text'
-                                    placeholder={propertyName}
-                                    // value={extraInfo[key[0]] || ""}
-                                    autoComplete='off'
-                                    onChange={(e) => {
-                                      const updatedValue = e.target.value;
-                                      if (!extraInfo.hasOwnProperty(key[0])) {
-                                        extraInfo[key[0]] = updatedValue;
-                                      } else {
-                                        extraInfo[key[0]] = updatedValue;
-                                      }
-                                      setExtraInfo((prevExtraInfo) => ({
-                                        ...prevExtraInfo,
-                                        [key[0]]: updatedValue,
-                                      }));
-                                    }}
-                                  />
-                                  <span className='sk-icon-set'>
-                                    <img src={commonicon} alt='commonicon' />
-                                  </span>
-                                </div>
-                                {errors.extra_info_reg && (
-                                  <span className='sk-error-message'>
-                                    {errors.extra_info_reg}
-                                  </span>
-                                )}
-                              </>
-                            );
-                          },
+                        {errors.fullName && (
+                          <span className='sk-error-message'>
+                            {errors.fullName}
+                          </span>
                         )}
-                      <div className='sk-eventForm-filed'>
-                        <button
-                          type='submit'
-                          className='sk-submit-btn'
-                          disabled={isSubmitting}
-                        >
-                          {" "}
-                          Submit
-                        </button>
-                      </div>
-                    </form>
-                  </div>
-                  <div className='sk-add-slidebar'>
-                    <a
-                      href={eventDetailsBoxAds[0]?.url_adds}
-                      target='_blank'
-                      rel='noreferrer'
-                    >
-                      {detect.isMobile
-                        ? eventDetailsBoxAds[0]?.image_mobile && (
-                            <img
-                              src={eventDetailsBoxAds[0]?.image_mobile}
-                              alt=''
+                        <div className='sk-eventForm-filed'>
+                          <input
+                            type='email'
+                            name='email'
+                            value={values.email}
+                            onChange={handleChange}
+                            touched={touched}
+                            onBlur={handleBlur}
+                            className='form-control'
+                            placeholder='Email Id'
+                          />
+                          <span className='sk-icon-set'>
+                            <img src={eventemailsend} />
+                          </span>
+                        </div>
+                        {errors.email && (
+                          <span className='sk-error-message'>
+                            {errors.email}
+                          </span>
+                        )}
+                        <ul>
+                          <div className='sk-eventForm-filed'>
+                            <select
+                              name='gender'
+                              value={values.gender}
+                              onBlur={handleBlur}
+                              onChange={handleChange}
+                              touched={touched}
+                              autoComplete='off'
+                            >
+                              <option>Gender</option>
+                              {Gender.map((Gender) => (
+                                <option key={Gender} value={Gender}>
+                                  {Gender}
+                                </option>
+                              ))}
+                            </select>
+                            <span className='sk-icon-set'>
+                              <img src={gendericon} />
+                            </span>
+                            {errors.gender && (
+                              <span className='sk-error-message'>
+                                {errors.gender}
+                              </span>
+                            )}
+                          </div>
+                          <div className='sk-eventForm-filed'>
+                            <input
+                              type='text'
+                              name='location'
+                              value={values.location}
+                              onChange={handleChange}
+                              touched={touched}
+                              onBlur={handleBlur}
+                              className='form-control'
+                              placeholder='Location'
                             />
-                          )
-                        : eventDetailsBoxAds[0]?.image && (
-                            <img src={eventDetailsBoxAds[0]?.image} alt='' />
+                            <span className='sk-icon-set'>
+                              <img src={locationicon} />
+                            </span>
+                            {errors.location && (
+                              <span className='sk-error-message'>
+                                {errors.location}
+                              </span>
+                            )}
+                          </div>
+                        </ul>
+
+                        {eventsDetails?.id &&
+                          Object.entries(eventsDetails?.extra_info).map(
+                            (key, index) => {
+                              const propertyName = key[0];
+
+                              return (
+                                <>
+                                  <div className='sk-eventForm-filed'>
+                                    <input
+                                      name='extra_info_reg'
+                                      type='text'
+                                      placeholder={propertyName}
+                                      // value={extraInfo[key[0]] || ""}
+                                      autoComplete='off'
+                                      onChange={(e) => {
+                                        const updatedValue = e.target.value;
+                                        if (!extraInfo.hasOwnProperty(key[0])) {
+                                          extraInfo[key[0]] = updatedValue;
+                                        } else {
+                                          extraInfo[key[0]] = updatedValue;
+                                        }
+                                        setExtraInfo((prevExtraInfo) => ({
+                                          ...prevExtraInfo,
+                                          [key[0]]: updatedValue,
+                                        }));
+                                      }}
+                                    />
+                                    <span className='sk-icon-set'>
+                                      <img src={commonicon} alt='commonicon' />
+                                    </span>
+                                  </div>
+                                  {errors.extra_info_reg && (
+                                    <span className='sk-error-message'>
+                                      {errors.extra_info_reg}
+                                    </span>
+                                  )}
+                                </>
+                              );
+                            },
                           )}
-                    </a>
-                  </div>
-                  <div className='sk-like-event'>
-                    <YouMayLikeCarousel />
-                    {/* <h5>
+                        <div className='sk-eventForm-filed'>
+                          <button
+                            type='submit'
+                            className='sk-submit-btn'
+                            disabled={isSubmitting}
+                          >
+                            {" "}
+                            Submit
+                          </button>
+                        </div>
+                      </form>
+                    </div>
+                    <div className='sk-add-slidebar'>
+                      <a
+                        href={eventDetailsBoxAds[0]?.url_adds}
+                        target='_blank'
+                        rel='noreferrer'
+                      >
+                        {detect.isMobile
+                          ? eventDetailsBoxAds[0]?.image_mobile && (
+                              <img
+                                src={eventDetailsBoxAds[0]?.image_mobile}
+                                alt=''
+                              />
+                            )
+                          : eventDetailsBoxAds[0]?.image && (
+                              <img src={eventDetailsBoxAds[0]?.image} alt='' />
+                            )}
+                      </a>
+                    </div>
+                    <div className='sk-like-event'>
+                      <YouMayLikeCarousel />
+                      {/* <h5>
                     <span>
                       <FavoriteBorderIcon />
                     </span>{" "}
@@ -651,15 +661,16 @@ const EventDetails = () => {
                     <img src={eventslideimg} />
                   </div>
                   <h6>10 mistakes to avoid while choosing an Ideal Career</h6> */}
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </section>
-      )}
-      {whatsAppModal()}
-    </div>
+          </section>
+        )}
+        {whatsAppModal()}
+      </div>
+    </>
   );
 };
 

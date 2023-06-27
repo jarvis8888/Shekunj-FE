@@ -41,7 +41,7 @@ const routingConstants = {
   SUCCESS_CAREER_OPTION: "/career-options/",
   SUCCESS_CAREER_TEST: "/success-career-test/",
   SUCCESS_STORIES: "/success-stories/",
-  ALL_SUCCESS_STORIES: "/all-success-stories/",
+  ALL_SUCCESS_STORIES: "/inspiring-stories-of-women/",
   TOP_COLLEGES: "/top-colleges-in-india/",
   TOP_SCHOOLS: "/top-schools-in-india/",
   TOP_SCHOOL: "/top-school/",

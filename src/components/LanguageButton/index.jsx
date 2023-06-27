@@ -4,8 +4,8 @@ import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Fade from "@mui/material/Fade";
-import traslateicon from "../../assets/images/traslateicon.svg"
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import traslateicon from "../../assets/images/traslateicon.svg";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import { makeStyles } from "@mui/styles";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -29,6 +29,10 @@ function ChangeLanguageButton() {
   const [language, setLanguage] = useState(
     localStorage.getItem("i18nextLng") || "en",
   );
+  console.log(
+    "🚀 ~ file: index.jsx:32 ~ ChangeLanguageButton ~ language:",
+    language,
+  );
   const [anchorEl, setAnchorEl] = useState(null);
   const { i18n } = useTranslation();
 
@@ -41,9 +45,13 @@ function ChangeLanguageButton() {
   };
 
   useEffect(() => {
-    localStorage.getItem("i18nextLng") === "en"
-      ? setLanguage("en")
-      : setLanguage("hi");
+    const initialLanguage = localStorage.getItem("i18nextLng");
+    if (initialLanguage === "en" || initialLanguage === "hi") {
+      setLanguage(initialLanguage);
+    } else {
+      setLanguage("en");
+      localStorage.setItem("i18nextLng", "en");
+    }
   }, [lan]);
 
   const changeLanguage = (e, lang) => {
@@ -68,9 +76,9 @@ function ChangeLanguageButton() {
         onClick={handleClick}
         endIcon={<ArrowDropDownIcon />}
       >
-      <span className="mr-2">
-        <img src={traslateicon} />
-      </span>
+        <span className='mr-2'>
+          <img src={traslateicon} />
+        </span>
 
         {language.startsWith("en") ? "English" : "हिन्दी"}
       </Button>

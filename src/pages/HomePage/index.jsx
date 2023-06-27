@@ -55,6 +55,7 @@ import { Box, Modal, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { adsList } from "../../store/ads";
 import useDeviceDetect from "../../hooks/useDeviceDetect";
+import { Helmet } from "react-helmet-async";
 
 const style = {
   position: "absolute",
@@ -278,124 +279,198 @@ function HomePage() {
   };
 
   return (
-    <div>
-      <SEO />
-      <Header loginPage={false} page='home' />
+    <>
+      <Helmet>
+        <meta
+          name='msapplication-TileImage'
+          content='https://shekunj.s3.amazonaws.com/media/success_story_images/shekunj192.png'
+        />
 
-      {/* slider */}
+        <title>
+          India's Leading Women Empowerment Organization - Shekunj.com
+        </title>
+        <meta
+          name='title'
+          content="India's Leading Women Empowerment Organization - Shekunj.com"
+        />
+        <meta
+          property='og:image'
+          itemprop='image'
+          content='https://shekunj.s3.amazonaws.com/media/success_story_images/shekunj192.png'
+        />
+        <meta property='og:site_name' content='Shekunj' />
+        <meta
+          property='og:title'
+          content="India's Leading Women Empowerment Organization - Shekunj.com"
+        />
+        <meta
+          name='description'
+          content='Shekunj.com works on women
+      empowerment and skill development by
+      providing free training, job-oriented courses,
+      jobs & internships and career counseling.'
+        />
 
-      <div id='myCarousel' className='banner_slider mb-5 noselect'>
-        <div className='carousel-inner'>
-          <Slider {...settings}>
-            <div className='carousel-item carousel_item1'>
-              <div className='container'>
-                <div className='row h_set mt-5' data-aos='slide-up'>
-                  <div className='col-md-7 col-12'>
-                    <h4 className='mt-5 pt-lg-5 mb-1'>
-                      {t("homePage.mainSlider.heading.1")}
-                    </h4>
-                    <h5>{t("homePage.mainSlider.heading.4")}</h5>
+        <meta
+          property='og:description'
+          content='Shekunj.com works on women
+      empowerment and skill development by
+      providing free training, job-oriented courses,
+      jobs & internships and career counseling.'
+        />
 
-                    <p className='mb-4 mt-3'>
-                      {" "}
-                      {t("homePage.mainSlider.subHeading.1")}
-                    </p>
-                    <Link to='/courses' className='banner_btn'>
-                      {t("homePage.mainSlider.button.1")}
-                    </Link>
+        <meta property='og:type' content='website' />
+        <meta property='og:url' content='https://www.shekunj.com/' />
+        <meta
+          property='og:title'
+          content="India's Leading Women Empowerment Organization - Shekunj.com"
+        />
+
+        <meta property='og:image:width' content='300' />
+        <meta property='og:image:height' content='300' />
+        <meta
+          prefix='og: http://ogp.me/ns#'
+          property='og:image'
+          content='https://shekunj.s3.amazonaws.com/media/success_story_images/shekunj192.png'
+        />
+
+        <meta property='twitter:card' content='summary_large_image' />
+        <meta property='twitter:url' content='https://www.shekunj.com/' />
+        <meta
+          property='twitter:title'
+          content="India's Leading Women Empowerment Organization - Shekunj.com"
+        />
+        <meta
+          property='twitter:description'
+          content='Shekunj.com works on women
+      empowerment and skill development by
+      providing free training, job-oriented courses,
+      jobs & internships and career counseling.'
+        />
+        <meta
+          property='twitter:image'
+          content='https://shekunj.s3.amazonaws.com/media/success_story_images/shekunj192.png'
+        />
+        <link rel='canonical' href='https://www.shekunj.com/' />
+      </Helmet>
+
+      <div>
+        <Header loginPage={false} page='home' />
+
+        {/* slider */}
+
+        <div id='myCarousel' className='banner_slider mb-5 noselect'>
+          <div className='carousel-inner'>
+            <Slider {...settings}>
+              <div className='carousel-item carousel_item1'>
+                <div className='container'>
+                  <div className='row h_set mt-5' data-aos='slide-up'>
+                    <div className='col-md-7 col-12'>
+                      <h4 className='mt-5 pt-lg-5 mb-1'>
+                        {t("homePage.mainSlider.heading.1")}
+                      </h4>
+                      <h5>{t("homePage.mainSlider.heading.4")}</h5>
+
+                      <p className='mb-4 mt-3'>
+                        {" "}
+                        {t("homePage.mainSlider.subHeading.1")}
+                      </p>
+                      <Link to='/courses' className='banner_btn'>
+                        {t("homePage.mainSlider.button.1")}
+                      </Link>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            <div className='carousel-item carousel_item2'>
-              <div className='container'>
-                <div className='row h_set mt-5'>
-                  <div className='col-md-7 col-12'>
-                    <h4 className='mt-5 pt-lg-5 mb-1' data-aos='zoom-in'>
-                      {t("homePage.mainSlider.heading.2")}
-                    </h4>
-                    <h5>{t("homePage.mainSlider.heading.5")}</h5>
-                    <p className='mb-4 mt-3' data-aos='zoom-in'>
-                      {t("homePage.mainSlider.subHeading.2")}
-                    </p>
-                    <Link
-                      to='/top-colleges-in-india/'
-                      className='banner_btn'
-                      data-aos='zoom-in'
-                    >
-                      {t("homePage.mainSlider.button.5")}
-                    </Link>
+              <div className='carousel-item carousel_item2'>
+                <div className='container'>
+                  <div className='row h_set mt-5'>
+                    <div className='col-md-7 col-12'>
+                      <h4 className='mt-5 pt-lg-5 mb-1' data-aos='zoom-in'>
+                        {t("homePage.mainSlider.heading.2")}
+                      </h4>
+                      <h5>{t("homePage.mainSlider.heading.5")}</h5>
+                      <p className='mb-4 mt-3' data-aos='zoom-in'>
+                        {t("homePage.mainSlider.subHeading.2")}
+                      </p>
+                      <Link
+                        to='/top-colleges-in-india/'
+                        className='banner_btn'
+                        data-aos='zoom-in'
+                      >
+                        {t("homePage.mainSlider.button.5")}
+                      </Link>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            <div className='carousel-item carousel_item3'>
-              <div className='container'>
-                <div className='row h_set mt-5'>
-                  <div className='col-md-7 col-12'>
-                    <h4 className='mt-5 pt-lg-5 mb-1' data-aos='zoom-in'>
-                      {t("homePage.mainSlider.heading.3.3.1")}
-                    </h4>
+              <div className='carousel-item carousel_item3'>
+                <div className='container'>
+                  <div className='row h_set mt-5'>
+                    <div className='col-md-7 col-12'>
+                      <h4 className='mt-5 pt-lg-5 mb-1' data-aos='zoom-in'>
+                        {t("homePage.mainSlider.heading.3.3.1")}
+                      </h4>
 
-                    <h5>{t("homePage.mainSlider.heading.3.3.2")}</h5>
+                      <h5>{t("homePage.mainSlider.heading.3.3.2")}</h5>
 
-                    <p className='mb-4 mt-3' data-aos='zoom-in'>
-                      {t("homePage.mainSlider.subHeading.3")}
-                    </p>
+                      <p className='mb-4 mt-3' data-aos='zoom-in'>
+                        {t("homePage.mainSlider.subHeading.3")}
+                      </p>
 
-                    <Link
-                      to='/online-counselling'
-                      className='banner_btn'
-                      data-aos='zoom-in'
-                    >
-                      {t("homePage.mainSlider.button.4")}
-                    </Link>
+                      <Link
+                        to='/online-counselling'
+                        className='banner_btn'
+                        data-aos='zoom-in'
+                      >
+                        {t("homePage.mainSlider.button.4")}
+                      </Link>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            <div className='carousel-item carousel_item4'>
-              <div className='container'>
-                <div className='row h_set mt-5'>
-                  <div className='col-md-7 col-12 offset-lg-6 offset-md-5'>
-                    <h4 className='mt-5 pt-lg-5 mb-1' data-aos='zoom-in'>
-                      {t("homePage.mainSlider.heading.6.1")}
-                    </h4>
+              <div className='carousel-item carousel_item4'>
+                <div className='container'>
+                  <div className='row h_set mt-5'>
+                    <div className='col-md-7 col-12 offset-lg-6 offset-md-5'>
+                      <h4 className='mt-5 pt-lg-5 mb-1' data-aos='zoom-in'>
+                        {t("homePage.mainSlider.heading.6.1")}
+                      </h4>
 
-                    <h5>{t("homePage.mainSlider.heading.6.2")}</h5>
+                      <h5>{t("homePage.mainSlider.heading.6.2")}</h5>
 
-                    <p className='mb-4 mt-3' data-aos='zoom-in'>
-                      {t("homePage.mainSlider.subHeading.4")}
-                    </p>
+                      <p className='mb-4 mt-3' data-aos='zoom-in'>
+                        {t("homePage.mainSlider.subHeading.4")}
+                      </p>
 
-                    <Link
-                      to='/top-schools-in-india/'
-                      className='banner_btn'
-                      data-aos='zoom-in'
-                    >
-                      {t("homePage.mainSlider.button.6")}
-                    </Link>
+                      <Link
+                        to='/top-schools-in-india/'
+                        className='banner_btn'
+                        data-aos='zoom-in'
+                      >
+                        {t("homePage.mainSlider.button.6")}
+                      </Link>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </Slider>
+            </Slider>
+          </div>
         </div>
-      </div>
 
-      {/* Slider 1 */}
-      <Carousel
-        items={5}
-        page='homePage'
-        title1={t("homePage.carousel1.heading.1")}
-        title2={t("homePage.carousel1.heading.2")}
-        type={constants.carouselConstant.COURSES}
-      />
+        {/* Slider 1 */}
+        <Carousel
+          items={5}
+          page='homePage'
+          title1={t("homePage.carousel1.heading.1")}
+          title2={t("homePage.carousel1.heading.2")}
+          type={constants.carouselConstant.COURSES}
+        />
 
-      {/* <Link to='/courses' style={{ textDecoration: "none" }}>
+        {/* <Link to='/courses' style={{ textDecoration: "none" }}>
       <span>
         <button className='view_test_cate'>
           {t("homePage.mainSlider.button.7")}
@@ -403,205 +478,202 @@ function HomePage() {
       </span>
       </Link> */}
 
-      <div className='courses'>
-        <Link
-          to='/courses'
-          style={{ textDecoration: "none" }}
-          className='view_test_cate'
-        >
-          {t("homePage.mainSlider.button.7")}
-        </Link>
-      </div>
+        <div className='courses'>
+          <Link
+            to='/courses'
+            style={{ textDecoration: "none" }}
+            className='view_test_cate'
+          >
+            {t("homePage.mainSlider.button.7")}
+          </Link>
+        </div>
 
-      {/* google add */}
-      <section>
-        <div className='container'>
-          <div className='row'>
-            {adsPosition1.length > 0 && (
-              // <div className='col-md-12 ads_home_cover'>
-              <div
-                className='col-md-12 ads_home_cover'
-                onClick={() => addEmail(adsPosition1[0]?.add_email)}
-              >
-                <a href={adsPosition1[0]?.url_adds} target='_blank'>
-                  {detect.isMobile
-                    ? adsPosition1[0]?.image_mobile && (
-                        <img
-                          src={adsPosition1[0]?.image_mobile}
-                          alt='Image'
-                          className='google_ads_home'
-                        />
-                      )
-                    : adsPosition1[0]?.image && (
-                        <img
-                          src={adsPosition1[0]?.image}
-                          alt='Image'
-                          className='google_ads_home'
-                        />
-                      )}
+        {/* google add */}
+        <section>
+          <div className='container'>
+            <div className='row'>
+              {adsPosition1.length > 0 && (
+                // <div className='col-md-12 ads_home_cover'>
+                <div
+                  className='col-md-12 ads_home_cover'
+                  onClick={() => addEmail(adsPosition1[0]?.add_email)}
+                >
+                  <a href={adsPosition1[0]?.url_adds} target='_blank'>
+                    {detect.isMobile
+                      ? adsPosition1[0]?.image_mobile && (
+                          <img
+                            src={adsPosition1[0]?.image_mobile}
+                            alt='Image'
+                            className='google_ads_home'
+                          />
+                        )
+                      : adsPosition1[0]?.image && (
+                          <img
+                            src={adsPosition1[0]?.image}
+                            alt='Image'
+                            className='google_ads_home'
+                          />
+                        )}
+                  </a>
+                </div>
+              )}
+            </div>
+          </div>
+        </section>
+
+        {/* resume */}
+        <section className='resume same_padding mt-5 noselect'>
+          <div className='container'>
+            <div className='row'>
+              <div className='col-md-7' data-aos='slide-up'>
+                <h4>{t("homePage.resume.heading")}</h4>
+                <a href='resume-builder' className='btn btn-resume mt-4'>
+                  {t("homePage.resume.button")}
                 </a>
               </div>
-            )}
-          </div>
-        </div>
-      </section>
 
-      {/* resume */}
-      <section className='resume same_padding mt-5 noselect'>
-        <div className='container'>
-          <div className='row'>
-            <div className='col-md-7' data-aos='slide-up'>
-              <h4>{t("homePage.resume.heading")}</h4>
-              <a href='resume-builder' className='btn btn-resume mt-4'>
-                {t("homePage.resume.button")}
-              </a>
-            </div>
-
-            <div className='resumeimg'>
-              <img src={Resume} alt='...' />
+              <div className='resumeimg'>
+                <img src={Resume} alt='...' />
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Slider 2 */}
-      <Carousel
-        items={5}
-        page='homePage'
-        title1={t("homePage.carousel2.heading.1")}
-        title2={t("homePage.carousel2.heading.2")}
-        type={constants.carouselConstant.TEST}
-      />
-      <div className='courses'>
-        <Link
-          to='/mock-test'
-          // to='/mock-test'
-          style={{ textDecoration: "none" }}
-          className='view_test_cate  noselect'
-        >
-          {t("homePage.mainSlider.button.3")}
-        </Link>
-      </div>
-      {/* <Link to='/success-career-test' style={{ textDecoration: "none" }}>
+        {/* Slider 2 */}
+        <Carousel
+          items={5}
+          page='homePage'
+          title1={t("homePage.carousel2.heading.1")}
+          title2={t("homePage.carousel2.heading.2")}
+          type={constants.carouselConstant.TEST}
+        />
+        <div className='courses'>
+          <Link
+            to='/mock-test'
+            // to='/mock-test'
+            style={{ textDecoration: "none" }}
+            className='view_test_cate  noselect'
+          >
+            {t("homePage.mainSlider.button.3")}
+          </Link>
+        </div>
+        {/* <Link to='/success-career-test' style={{ textDecoration: "none" }}>
         <button className='view_test_cate noselect'>
           {t("homePage.mainSlider.button.3")}
         </button>
       </Link> */}
 
-      {/* google add */}
-      <section>
-        <div className='container'>
-          <div className='row'>
-            {adsPosition2.length > 0 && (
-              <div
-                className='col-md-12 ads_home_cover'
-                onClick={() => addEmail(adsPosition2[0]?.add_email)}
-              >
-                <a href={adsPosition2[0]?.url_adds} target='_blank'>
-                  {detect.isMobile
-                    ? adsPosition2[0]?.image_mobile && (
-                        <img
-                          src={adsPosition2[0]?.image_mobile}
-                          alt='Image'
-                          className='google_ads_home'
-                        />
-                      )
-                    : adsPosition2[0]?.image && (
-                        <img
-                          src={adsPosition2[0]?.image}
-                          alt='Image'
-                          className='google_ads_home'
-                        />
-                      )}
-                </a>
-              </div>
-            )}
+        {/* google add */}
+        <section>
+          <div className='container'>
+            <div className='row'>
+              {adsPosition2.length > 0 && (
+                <div
+                  className='col-md-12 ads_home_cover'
+                  onClick={() => addEmail(adsPosition2[0]?.add_email)}
+                >
+                  <a href={adsPosition2[0]?.url_adds} target='_blank'>
+                    {detect.isMobile
+                      ? adsPosition2[0]?.image_mobile && (
+                          <img
+                            src={adsPosition2[0]?.image_mobile}
+                            alt='Image'
+                            className='google_ads_home'
+                          />
+                        )
+                      : adsPosition2[0]?.image && (
+                          <img
+                            src={adsPosition2[0]?.image}
+                            alt='Image'
+                            className='google_ads_home'
+                          />
+                        )}
+                  </a>
+                </div>
+              )}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Job opportunity */}
-      <section className='job-opprtunity same_padding mt-1 noselect'>
-        <div className='container'>
-          <div className='row justify-content-center'>
-            <div className='col-lg-12 col-md-11'>
-              <div className='job-opprtunity-bg'>
-                <div className='row'>
-                  <div className='col-lg-8' data-aos='slide-up'>
-                    <h3>{t("homePage.jobopportunity.heading")}</h3>
-                    <p>{t("homePage.jobopportunity.subHeading")}</p>
-                    <a                     
-                      href='/jobs'
-                      className='btn btn-job'
-                    >
-                      {t("homePage.jobopportunity.button")}
-                    </a>
-                  </div>
+        {/* Job opportunity */}
+        <section className='job-opprtunity same_padding mt-1 noselect'>
+          <div className='container'>
+            <div className='row justify-content-center'>
+              <div className='col-lg-12 col-md-11'>
+                <div className='job-opprtunity-bg'>
+                  <div className='row'>
+                    <div className='col-lg-8' data-aos='slide-up'>
+                      <h3>{t("homePage.jobopportunity.heading")}</h3>
+                      <p>{t("homePage.jobopportunity.subHeading")}</p>
+                      <a href='/jobs' className='btn btn-job'>
+                        {t("homePage.jobopportunity.button")}
+                      </a>
+                    </div>
 
-                  <div className='col-lg-4'>
-                    <div className='jobimg'>
-                      <img src={Girl} alt='...' />
+                    <div className='col-lg-4'>
+                      <div className='jobimg'>
+                        <img src={Girl} alt='...' />
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+        </section>
+
+        <Carousel
+          items={5}
+          page='homePage'
+          title1={t("homePage.carousel3.heading.1")}
+          title2={t("homePage.carousel3.heading.2")}
+          type={constants.carouselConstant.GOVERNMENT_SCHEMES}
+        />
+        <div className='courses'>
+          <Link
+            to='/government-schemes-in-india'
+            style={{ textDecoration: "none" }}
+            className='view_test_cate'
+          >
+            {t("homePage.mainSlider.button.2")}
+          </Link>
         </div>
-      </section>
 
-      <Carousel
-        items={5}
-        page='homePage'
-        title1={t("homePage.carousel3.heading.1")}
-        title2={t("homePage.carousel3.heading.2")}
-        type={constants.carouselConstant.GOVERNMENT_SCHEMES}
-      />
-      <div className='courses'>
-        <Link
-          to='/government-schemes-in-india'
-          style={{ textDecoration: "none" }}
-          className='view_test_cate'
-        >
-          {t("homePage.mainSlider.button.2")}
-        </Link>
-      </div>
+        {/* google add */}
+        <section>
+          <div className='container'>
+            <div className='row'>
+              {adsPosition3.length > 0 && (
+                // <div className='col-md-12 ads_home_cover'>
 
-      {/* google add */}
-      <section>
-        <div className='container'>
-          <div className='row'>
-            {adsPosition3.length > 0 && (
-              // <div className='col-md-12 ads_home_cover'>
-
-              <div
-                className='col-md-12 ads_home_cover'
-                onClick={() => addEmail(adsPosition3[0]?.add_email)}
-              >
-                <a href={adsPosition3[0]?.url_adds} target='_blank'>
-                  {detect.isMobile
-                    ? adsPosition3[0]?.image_mobile && (
-                        <img
-                          src={adsPosition3[0]?.image_mobile}
-                          alt='Image'
-                          className='google_ads_home'
-                        />
-                      )
-                    : adsPosition3[0]?.image && (
-                        <img
-                          src={adsPosition3[0]?.image}
-                          alt='Image'
-                          className='google_ads_home'
-                        />
-                      )}
-                </a>
-              </div>
-            )}
+                <div
+                  className='col-md-12 ads_home_cover'
+                  onClick={() => addEmail(adsPosition3[0]?.add_email)}
+                >
+                  <a href={adsPosition3[0]?.url_adds} target='_blank'>
+                    {detect.isMobile
+                      ? adsPosition3[0]?.image_mobile && (
+                          <img
+                            src={adsPosition3[0]?.image_mobile}
+                            alt='Image'
+                            className='google_ads_home'
+                          />
+                        )
+                      : adsPosition3[0]?.image && (
+                          <img
+                            src={adsPosition3[0]?.image}
+                            alt='Image'
+                            className='google_ads_home'
+                          />
+                        )}
+                  </a>
+                </div>
+              )}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* <Link to='/government-exams' style={{ textDecoration: "none" }}>
+        {/* <Link to='/government-exams' style={{ textDecoration: "none" }}>
         <button
           className='view_test_cate'
           onClick={() => <Redirect to='/government-exams' />}
@@ -610,367 +682,372 @@ function HomePage() {
         </button>
       </Link> */}
 
-      {/* career development */}
-      <section className='career_community same_padding mt-5 noselect'>
-        <div className='container'>
-          <div className='row justify-content-center'>
-            <div className='col-md-12'>
-              <h1 data-aos='slide-up'>{t("homePage.community.heading")}</h1>
-              {/* <h2 data-aos='slide-up'>{t("homePage.community.subHeading")}</h2> */}
-              <p data-aos='slide-up'>{t("homePage.community.data")}</p>
+        {/* career development */}
+        <section className='career_community same_padding mt-5 noselect'>
+          <div className='container'>
+            <div className='row justify-content-center'>
+              <div className='col-md-12'>
+                <h1 data-aos='slide-up'>{t("homePage.community.heading")}</h1>
+                {/* <h2 data-aos='slide-up'>{t("homePage.community.subHeading")}</h2> */}
+                <p data-aos='slide-up'>{t("homePage.community.data")}</p>
 
-              <div className='mob_comunity_img'>
-                <img data-aos='slide-up' src={Community} alt='...' />
+                <div className='mob_comunity_img'>
+                  <img data-aos='slide-up' src={Community} alt='...' />
+                </div>
+
+                <div className='community-img mt-5'>
+                  <div className='community1 communityring'>
+                    <img src={g1} alt='Image' />
+                  </div>
+
+                  <div className='community2 communityring'>
+                    <img src={g2} alt='Image' />
+                  </div>
+
+                  <div className='community3 communityring'>
+                    <img src={g3} alt='Image' />
+                  </div>
+
+                  <div className='community4 communityring'>
+                    <img src={g4} alt='Image' />
+                  </div>
+
+                  <div className='community5 communityring'>
+                    <img src={g5} alt='Image' />
+                  </div>
+
+                  <div className='community6 communityring'>
+                    <img src={g6} alt='Image' />
+                  </div>
+
+                  <div className='community7 communityring'>
+                    <img src={g7} alt='Image' />
+                  </div>
+
+                  <div className='community8 communityring'>
+                    <img src={g8} alt='Image' />
+                  </div>
+
+                  <div className='community9 communityring'>
+                    <img src={g9} alt='Image' />
+                  </div>
+
+                  <div className='community10 communityring'>
+                    <img src={g10} alt='Image' />
+                  </div>
+
+                  <div className='community11 communityring'>
+                    <img src={g11} alt='Image' />
+                  </div>
+
+                  <div className='community12 communityring'>
+                    <img src={g12} alt='Image' />
+                  </div>
+
+                  <div className='community13 communityring'>
+                    <img src={g13} alt='Image' />
+                  </div>
+
+                  <div className='community14 communityring'>
+                    <img src={g14} alt='Image' />
+                  </div>
+
+                  <div className='community15 communityring'>
+                    <img src={g15} alt='Image' />
+                  </div>
+
+                  <div className='community16 communityring'>
+                    <img src={g16} alt='Image' />
+                  </div>
+
+                  <div className='community17 communityring'>
+                    <img src={g17} alt='Image' />
+                  </div>
+
+                  <div className='community18 communityring'>
+                    <img src={g18} alt='Image' />
+                  </div>
+
+                  <div className='community19 communityring'>
+                    <img src={g19} alt='Image' />
+                  </div>
+
+                  <div className='community20 communityring'>
+                    <img src={g20} alt='Image' />
+                  </div>
+                </div>
               </div>
+            </div>
 
-              <div className='community-img mt-5'>
-                <div className='community1 communityring'>
+            <div className='row justify-content-center'>
+              <div className='col-md-4 text-center mt-5'>
+                <Link to='/success-stories' style={{ textDecoration: "none" }}>
+                  <button className='btn btn-start-course' data-aos='slide-up'>
+                    {t("homePage.community.button")}
+                  </button>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div className='career_community noselect'>
+          <div className='container'>
+            <div className='community_block d-md-block d-none'>
+              <div className='career_community'>
+                <div className='community1'>
                   <img src={g1} alt='Image' />
                 </div>
 
-                <div className='community2 communityring'>
+                <div className='community2'>
                   <img src={g2} alt='Image' />
                 </div>
 
-                <div className='community3 communityring'>
+                <div className='community3'>
                   <img src={g3} alt='Image' />
                 </div>
 
-                <div className='community4 communityring'>
+                <div className='community4'>
                   <img src={g4} alt='Image' />
                 </div>
 
-                <div className='community5 communityring'>
+                <div className='community5'>
                   <img src={g5} alt='Image' />
                 </div>
 
-                <div className='community6 communityring'>
+                <div className='community6'>
                   <img src={g6} alt='Image' />
                 </div>
 
-                <div className='community7 communityring'>
+                <div className='community7'>
                   <img src={g7} alt='Image' />
                 </div>
 
-                <div className='community8 communityring'>
+                <div className='community8'>
                   <img src={g8} alt='Image' />
                 </div>
 
-                <div className='community9 communityring'>
+                <div className='community9'>
                   <img src={g9} alt='Image' />
                 </div>
 
-                <div className='community10 communityring'>
+                <div className='community10'>
                   <img src={g10} alt='Image' />
                 </div>
 
-                <div className='community11 communityring'>
+                <div className='community11'>
                   <img src={g11} alt='Image' />
                 </div>
 
-                <div className='community12 communityring'>
+                <div className='community12'>
                   <img src={g12} alt='Image' />
                 </div>
 
-                <div className='community13 communityring'>
+                <div className='community13'>
                   <img src={g13} alt='Image' />
                 </div>
 
-                <div className='community14 communityring'>
+                <div className='community14'>
                   <img src={g14} alt='Image' />
                 </div>
 
-                <div className='community15 communityring'>
+                <div className='community15'>
                   <img src={g15} alt='Image' />
                 </div>
 
-                <div className='community16 communityring'>
+                <div className='community16'>
                   <img src={g16} alt='Image' />
                 </div>
 
-                <div className='community17 communityring'>
+                <div className='community17'>
                   <img src={g17} alt='Image' />
                 </div>
 
-                <div className='community18 communityring'>
+                <div className='community18'>
                   <img src={g18} alt='Image' />
                 </div>
 
-                <div className='community19 communityring'>
+                <div className='community19'>
                   <img src={g19} alt='Image' />
                 </div>
 
-                <div className='community20 communityring'>
+                <div className='community20'>
                   <img src={g20} alt='Image' />
                 </div>
               </div>
             </div>
           </div>
-
-          <div className='row justify-content-center'>
-            <div className='col-md-4 text-center mt-5'>
-              <Link to='/success-stories' style={{ textDecoration: "none" }}>
-                <button className='btn btn-start-course' data-aos='slide-up'>
-                  {t("homePage.community.button")}
-                </button>
-              </Link>
-            </div>
-          </div>
         </div>
-      </section>
-
-      <div className='career_community noselect'>
-        <div className='container'>
-          <div className='community_block d-md-block d-none'>
-            <div className='career_community'>
-              <div className='community1'>
-                <img src={g1} alt='Image' />
+        {/* certificate */}
+        <section className='certificate same_padding noselect'>
+          <div className='container'>
+            <div className='row'>
+              <div className='col-md-6'>
+                <div className='cer_img'>
+                  <img src={certif} alt='' />
+                </div>
               </div>
+              <div className='col-md-6'>
+                <div className='certif_con'>
+                  <h4>
+                    {t("homePage.certificate.heading.1")}{" "}
+                    {/* {t("homePage.certificate.heading.2")} */}
+                  </h4>
 
-              <div className='community2'>
-                <img src={g2} alt='Image' />
-              </div>
-
-              <div className='community3'>
-                <img src={g3} alt='Image' />
-              </div>
-
-              <div className='community4'>
-                <img src={g4} alt='Image' />
-              </div>
-
-              <div className='community5'>
-                <img src={g5} alt='Image' />
-              </div>
-
-              <div className='community6'>
-                <img src={g6} alt='Image' />
-              </div>
-
-              <div className='community7'>
-                <img src={g7} alt='Image' />
-              </div>
-
-              <div className='community8'>
-                <img src={g8} alt='Image' />
-              </div>
-
-              <div className='community9'>
-                <img src={g9} alt='Image' />
-              </div>
-
-              <div className='community10'>
-                <img src={g10} alt='Image' />
-              </div>
-
-              <div className='community11'>
-                <img src={g11} alt='Image' />
-              </div>
-
-              <div className='community12'>
-                <img src={g12} alt='Image' />
-              </div>
-
-              <div className='community13'>
-                <img src={g13} alt='Image' />
-              </div>
-
-              <div className='community14'>
-                <img src={g14} alt='Image' />
-              </div>
-
-              <div className='community15'>
-                <img src={g15} alt='Image' />
-              </div>
-
-              <div className='community16'>
-                <img src={g16} alt='Image' />
-              </div>
-
-              <div className='community17'>
-                <img src={g17} alt='Image' />
-              </div>
-
-              <div className='community18'>
-                <img src={g18} alt='Image' />
-              </div>
-
-              <div className='community19'>
-                <img src={g19} alt='Image' />
-              </div>
-
-              <div className='community20'>
-                <img src={g20} alt='Image' />
+                  <p>{t("homePage.certificate.heading.3")} </p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-      {/* certificate */}
-      <section className='certificate same_padding noselect'>
-        <div className='container'>
-          <div className='row'>
-            <div className='col-md-6'>
-              <div className='cer_img'>
-                <img src={certif} alt='' />
-              </div>
-            </div>
-            <div className='col-md-6'>
-              <div className='certif_con'>
-                <h4>
-                  {t("homePage.certificate.heading.1")}{" "}
-                  {/* {t("homePage.certificate.heading.2")} */}
-                </h4>
+        </section>
 
-                <p>{t("homePage.certificate.heading.3")} </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* highlight students */}
-      <section className='highlight_student same_padding noselect'>
-        <div className='container'>
-          <div className='row'>
-            <div className='col-md-6'>
-              <div className='row'>
-                <div className='col-md-6 col-6'>
-                  <div data-aos='slide-right'>
-                    <div className='tes_box tes-before'>
-                      {/* <img className="NikitaSharmaImage img-responsive" src={Nikita} alt='' /> */}
-                      <p>{t("aboutPage.review.1")}</p>
-                      <ul className='star'>
-                        <li>
-                          <img src={star} alt='' />
-                        </li>
-                        <li>
-                          <img src={star} alt='' />
-                        </li>
-                        <li>
-                          <img src={star} alt='' />
-                        </li>
-                        <li>
-                          <img src={star} alt='' />
-                        </li>
-                        {/* <li>
+        {/* highlight students */}
+        <section className='highlight_student same_padding noselect'>
+          <div className='container'>
+            <div className='row'>
+              <div className='col-md-6'>
+                <div className='row'>
+                  <div className='col-md-6 col-6'>
+                    <div data-aos='slide-right'>
+                      <div className='tes_box tes-before'>
+                        {/* <img className="NikitaSharmaImage img-responsive" src={Nikita} alt='' /> */}
+                        <p>{t("aboutPage.review.1")}</p>
+                        <ul className='star'>
+                          <li>
+                            <img src={star} alt='' />
+                          </li>
+                          <li>
+                            <img src={star} alt='' />
+                          </li>
+                          <li>
+                            <img src={star} alt='' />
+                          </li>
+                          <li>
+                            <img src={star} alt='' />
+                          </li>
+                          {/* <li>
                           <img src={star} alt='' />
                         </li> */}
-                      </ul>
-                      <h2>{t("aboutPage.reviewerDetails.reviewerName.1")}</h2>
-                      <h6>{t("aboutPage.reviewerDetails.reviewerPost.2")}</h6>
-                      <img
-                        className='NikitaSharmaImage img-responsive'
-                        src={Nikita}
-                        alt=''
-                      />
+                        </ul>
+                        <h2>{t("aboutPage.reviewerDetails.reviewerName.1")}</h2>
+                        <h6>{t("aboutPage.reviewerDetails.reviewerPost.2")}</h6>
+                        <img
+                          className='NikitaSharmaImage img-responsive'
+                          src={Nikita}
+                          alt=''
+                        />
+                      </div>
+                    </div>
+
+                    <div className='tes_box2' data-aos='slide-up'>
+                      <h2>{t("aboutPage.review.2")}</h2>
                     </div>
                   </div>
 
-                  <div className='tes_box2' data-aos='slide-up'>
-                    <h2>{t("aboutPage.review.2")}</h2>
-                  </div>
-                </div>
-
-                <div className='col-md-6 col-6'>
-                  <div data-aos='slide-down'>
-                    <div className='tes_box3'>
-                      <h2>4.9</h2>
-                      <ul className='star'>
-                        <li>
-                          <img src={star} alt='' />
-                        </li>
-                        <li>
-                          <img src={star} alt='' />
-                        </li>
-                        <li>
-                          <img src={star} alt='' />
-                        </li>
-                        <li>
-                          <img src={star} alt='' />
-                        </li>
-                        <li>
-                          <img src={half_star} alt='' />
-                        </li>
-                      </ul>
-                      <h6>{t("aboutPage.salesNumber")}</h6>
+                  <div className='col-md-6 col-6'>
+                    <div data-aos='slide-down'>
+                      <div className='tes_box3'>
+                        <h2>4.9</h2>
+                        <ul className='star'>
+                          <li>
+                            <img src={star} alt='' />
+                          </li>
+                          <li>
+                            <img src={star} alt='' />
+                          </li>
+                          <li>
+                            <img src={star} alt='' />
+                          </li>
+                          <li>
+                            <img src={star} alt='' />
+                          </li>
+                          <li>
+                            <img src={half_star} alt='' />
+                          </li>
+                        </ul>
+                        <h6>{t("aboutPage.salesNumber")}</h6>
+                      </div>
                     </div>
-                  </div>
 
-                  <div data-aos='slide-left'>
-                    <div className='tes_box_ankita heg_cha'>
-                      {/* <img className='AnkitaSharmaImage img-responsive' src={Ankita} alt='' /> */}
-                      <p>{t("aboutPage.review.3")}</p>
-                      <ul className='star'>
-                        <li>
-                          <img src={star} alt='' />
-                        </li>
-                        <li>
-                          <img src={star} alt='' />
-                        </li>
-                        <li>
-                          <img src={star} alt='' />
-                        </li>
-                        <li>
-                          <img src={star} alt='' />
-                        </li>
-                        <li>
-                          <img src={star} alt='' />
-                        </li>
-                      </ul>
-                      <h2>{t("aboutPage.reviewerDetails.reviewerName.2")}</h2>
-                      <h6>{t("aboutPage.reviewerDetails.reviewerPost.1")}</h6>
-                      <img
-                        className='AnkitaSharmaImage img-responsive'
-                        src={Ankita}
-                        alt=''
-                      />
+                    <div data-aos='slide-left'>
+                      <div className='tes_box_ankita heg_cha'>
+                        {/* <img className='AnkitaSharmaImage img-responsive' src={Ankita} alt='' /> */}
+                        <p>{t("aboutPage.review.3")}</p>
+                        <ul className='star'>
+                          <li>
+                            <img src={star} alt='' />
+                          </li>
+                          <li>
+                            <img src={star} alt='' />
+                          </li>
+                          <li>
+                            <img src={star} alt='' />
+                          </li>
+                          <li>
+                            <img src={star} alt='' />
+                          </li>
+                          <li>
+                            <img src={star} alt='' />
+                          </li>
+                        </ul>
+                        <h2>{t("aboutPage.reviewerDetails.reviewerName.2")}</h2>
+                        <h6>{t("aboutPage.reviewerDetails.reviewerPost.1")}</h6>
+                        <img
+                          className='AnkitaSharmaImage img-responsive'
+                          src={Ankita}
+                          alt=''
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            <div className='col-md-5 offset-md-1'>
-              <div className='highlig'>
-                <h3 className='mb-3 mt-4'>
-                  {t("homePage.highlightStudents.homeHeading")}
-                </h3>
+              <div className='col-md-5 offset-md-1'>
+                <div className='highlig'>
+                  <h3 className='mb-3 mt-4'>
+                    {t("homePage.highlightStudents.homeHeading")}
+                  </h3>
 
-                <Link to='/courses' data-aos='slide-up' className='learn_more'>
-                  {t("homePage.highlightStudents.homeButton")}
-                </Link>
+                  <Link
+                    to='/courses'
+                    data-aos='slide-up'
+                    className='learn_more'
+                  >
+                    {t("homePage.highlightStudents.homeButton")}
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby='modal-modal-title'
-        aria-describedby='modal-modal-description'
-      >
-        <Box className='mock_test_pop' sx={style}>
-          <img
-            className='close_img'
-            src={x}
-            alt='...'
-            onClick={() => handleClose()}
-          />
-          <img src={desktop} alt='...' />
-          <Typography id='modal-modal-title' variant='h6' component='h2'>
-            {t("deskTopView.heading")}
-          </Typography>
-          <button className='btn btn-info' onClick={() => handleClose()}>
-            {t("deskTopView.button")}
-          </button>
-        </Box>
-      </Modal>
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby='modal-modal-title'
+          aria-describedby='modal-modal-description'
+        >
+          <Box className='mock_test_pop' sx={style}>
+            <img
+              className='close_img'
+              src={x}
+              alt='...'
+              onClick={() => handleClose()}
+            />
+            <img src={desktop} alt='...' />
+            <Typography id='modal-modal-title' variant='h6' component='h2'>
+              {t("deskTopView.heading")}
+            </Typography>
+            <button className='btn btn-info' onClick={() => handleClose()}>
+              {t("deskTopView.button")}
+            </button>
+          </Box>
+        </Modal>
 
-      <Footer loginPage={false} />
-    </div>
+        <Footer loginPage={false} />
+      </div>
+    </>
   );
 }
 

@@ -118,7 +118,7 @@ export const TopFooter = memo((props) => {
                       <a href='/article'>{t("phase2.HEADER.blog")}</a>
                     </li>
                     <li>
-                      <a href='/events'>{t("phase2.HEADER.events")}</a>
+                      <a href='/events/all'>{t("phase2.HEADER.events")}</a>
                     </li>
                   </ul>
                 </div>

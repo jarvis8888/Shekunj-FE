@@ -9,8 +9,9 @@ import "./SignupPage.scss";
 function SignupPage() {
   return (
     <>
+    <SEO title='Sheकुंज - Signup' />
       <div className="noselect">
-        <SEO title='Sheकुंज - Signup' />
+        
         <Header loginPage={true} />
 
         <AuthContent />
