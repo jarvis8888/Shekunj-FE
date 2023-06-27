@@ -3,19 +3,19 @@ import photo from "../../assets/icons/svgs/exphoto.png";
 import httpServices from "../../utils/ApiServices";
 import like_icon from "../../assets/images/likestory.svg";
 import "./YouMayLikeCarousel.scss";
-import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
+import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 
 const YouMayLikeCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [data, setData] = useState([]);
 
   const goToPrevSlide = () => {
-    const index = currentIndex === 0 ? 3 : currentIndex - 1;
+    const index = (currentIndex - 1 + data.length) % data.length;
     setCurrentIndex(index);
   };
 
   const goToNextSlide = () => {
-    const index = currentIndex === 3 ? 0 : currentIndex + 1;
+    const index = (currentIndex + 1) % data.length;
     setCurrentIndex(index);
   };
   const YouMayLikeCarouselData = async () => {
@@ -32,7 +32,10 @@ const YouMayLikeCarousel = () => {
   return (
     <div className='youMayLikeCarousel'>
       <div className='YouMayLikeCarouselCarousel_header'>
-        <span className="sk-like-icon"><FavoriteBorderOutlinedIcon /> </span> You May Like
+        <span className='sk-like-icon'>
+          <FavoriteBorderOutlinedIcon />{" "}
+        </span>{" "}
+        You May Like
       </div>
       <div
         className='YouMayLikeCarouselCarousel__slide'
