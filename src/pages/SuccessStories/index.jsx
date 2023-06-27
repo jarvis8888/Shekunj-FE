@@ -550,11 +550,11 @@ function SuccessStory() {
                       <div className='title' ref={sectionRef}>
                         <img src={featurestory} alt='featurestory' width={36} />
                         <div className='sk-heading-story'>
-                          <h4>Featured Stories </h4>
-                          <h6>
+                          <h2>Featured Stories </h2>
+                          <h3>
                             Recommended stories, articles and interviews on
                             SheKunj
-                          </h6>
+                          </h3>
                         </div>
                       </div>
 
@@ -614,10 +614,10 @@ function SuccessStory() {
                         <div className='title'>
                           <img src={fire} alt='fire' width={36} />
                           <div className='sk-heading-story'>
-                            <h4>Trending Stories </h4>
-                            <h6>
+                            <h2>Trending Stories </h2>
+                            <h3>
                               Read the most popular success stories on SheKunj
-                            </h6>
+                            </h3>
                           </div>
                         </div>
 

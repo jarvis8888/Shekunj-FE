@@ -341,9 +341,9 @@ const BlogDetails = () => {
                       <img src={discoverblog} alt='discoverblog' width={36} />
                       <div className='sk-heading-story'>
                         <h2 className='mb-0'>Discover More Articles</h2>
-                        <h6>
+                        <h3>
                           Explore more articles, news and trends on SheKunj
-                        </h6>
+                        </h3>
                       </div>
                     </div>
                     <div className='sk-blogMain-inner'>
