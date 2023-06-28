@@ -18,6 +18,7 @@
   transition: opacity 0.5s ease-in-out;
   opacity: 1;
   z-index: 1;
+  position: relative;
 }
 
 .YouMayLikeCarouselCarousel__nav {
@@ -32,7 +33,7 @@
 }
 .carousel__dot {
   height: 4px;
-  width: 34px;
+  width: 30px;
   padding: 0;
   background: #ffffff;
   border-radius: 4px;
@@ -46,32 +47,36 @@
   background-color: #ff0080;
 }
 .YouMayLikeCarouselCarousel__button {
-  height: 40px;
-  width: 40px;
+  height: 34px !important;
+  width: 34px !important;
   border: none;
   background: none;
-  font-size: 40px;
+  font-weight: 300;
   color: #ffffff;
   cursor: pointer;
-  // transition: transform 0.3s ease-in-out;
+  background: #0000009a;
+  transition: all 0.3s;
+
+  
   &:hover {
-    background: none;
-  }
+    background: #000000;
+    }
+  
 }
 
 .YouMayLikeCarouselCarousel__button:hover {
-  transform: scale(1.2);
+  background: #000000;
 }
 
 .YouMayLikeCarouselCarousel--left {
   position: absolute;
-  left: 10px;
+  left: 0px;
   bottom: 120px;
 }
 
 .YouMayLikeCarouselCarousel--right {
   position: absolute;
-  right: 10px;
+  right: 0px !important;
   bottom: 120px;
 }
 
@@ -88,7 +93,7 @@
   font-family: "Poppins";
   font-style: normal;
   font-weight: 500;
-  font-size: 20px;
-  line-height: 36px;
-  padding: 5px 0;
+  font-size: 18px;
+  // line-height: 36px;
+  padding: 10px 0;
 }
