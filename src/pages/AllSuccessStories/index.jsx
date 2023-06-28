@@ -317,7 +317,7 @@ const AllSuccessStory = () => {
                             hashtags={
                               items.hash_tags === null ? [] : items.hash_tags
                             }
-                            title={items.name}
+                            title={`${items.name} ${items.last_name}`}
                             description={`${items.title}`}
                             key={index}
                             created_at={items.created_at}

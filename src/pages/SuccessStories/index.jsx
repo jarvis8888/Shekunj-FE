@@ -481,7 +481,7 @@ function SuccessStory() {
                                 </div>
                                 <div className='sk-story-econtent'>
                                   <div className='sk-ewoman-title'>
-                                    <p>{items.name}</p>
+                                    <p>{`${items.name} ${items.last_name}`}</p>
                                     <h6>{items.designation}</h6>
                                   </div>
                                 </div>
