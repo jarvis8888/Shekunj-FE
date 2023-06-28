@@ -19,11 +19,23 @@ img {
   max-width: 212px;
   margin-top: 20px;
 }
+.sk-viewall-img {
+  position: absolute;
+  top: 20px;
+  left: 0px;
+  z-index: 1;
+}
+
+.sk-content-sec {
+  position: relative;
+  z-index: 9;
+  padding: 0 20px;
+}
 .sk-search-sec {
-  background: url(../../assets/images/searchbg.png) no-repeat center center;
+  background: url(../../assets/images/searchbg.jpg) no-repeat center center;
   background-size: cover;
   position: relative;
-  padding: 40px 0 50px;
+  padding: 60px 0 60px;
 }
 
 .sk-searchNew-banner{
@@ -509,6 +521,9 @@ img {
   .sk-event-sec.sk-slide-arrow .swiper-button-prev {
     width: 36px;
     height: 36px;
+  }
+  .sk-viewall-img{
+    opacity: 0.5;
   }
   .sk-event-sec img {
     border-radius: 4px;

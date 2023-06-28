@@ -1,23 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { useHistory } from "react-router-dom";
 import photo from "../../assets/icons/svgs/exphoto.png";
 import httpServices from "../../utils/ApiServices";
 import like_icon from "../../assets/images/likestory.svg";
 import "./YouMayLikeCarousel.scss";
-import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
+import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 
 const YouMayLikeCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [data, setData] = useState([]);
+  const history = useHistory();
 
-  const goToPrevSlide = () => {
-    const index = currentIndex === 0 ? 3 : currentIndex - 1;
-    setCurrentIndex(index);
-  };
-
-  const goToNextSlide = () => {
-    const index = currentIndex === 3 ? 0 : currentIndex + 1;
-    setCurrentIndex(index);
-  };
   const YouMayLikeCarouselData = async () => {
     try {
       const url = "/private_adds/you_may_like";
@@ -29,14 +22,41 @@ const YouMayLikeCarousel = () => {
     YouMayLikeCarouselData();
   }, []);
 
+  const goToPrevSlide = (event) => {
+    event.stopPropagation();
+    const index = (currentIndex - 1 + data.length) % data.length;
+    setCurrentIndex(index);
+  };
+
+  const goToNextSlide = (event) => {
+    event.stopPropagation();
+    const index = (currentIndex + 1) % data.length;
+    setCurrentIndex(index);
+  };
+
+  const handleCarouselClick = () => {
+    const currentData = data[currentIndex];
+    if (currentData && currentData?.url_adds) {
+      window.open(currentData?.url_adds, "_blank");
+    }
+  };
+
+  if (data?.length === 0) {
+    return null; // Don't render anything if there is no data
+  }
+
   return (
     <div className='youMayLikeCarousel'>
       <div className='YouMayLikeCarouselCarousel_header'>
-        <span className="sk-like-icon"><FavoriteBorderOutlinedIcon /> </span> You May Like
+        <span className='sk-like-icon'>
+          <FavoriteBorderOutlinedIcon />{" "}
+        </span>{" "}
+        You May Like
       </div>
       <div
         className='YouMayLikeCarouselCarousel__slide'
         style={{ backgroundImage: `url(${data[currentIndex]?.image})` }}
+        onClick={handleCarouselClick}
       >
         <button
           className='YouMayLikeCarouselCarousel__button YouMayLikeCarouselCarousel--left'
@@ -52,7 +72,10 @@ const YouMayLikeCarousel = () => {
               className={`carousel__dot ${
                 index === currentIndex ? "active1" : ""
               }`}
-              onClick={() => setCurrentIndex(index)}
+              onClick={(event) => {
+                event.stopPropagation();
+                setCurrentIndex(index);
+              }}
             />
           ))}
         </div>

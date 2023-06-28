@@ -16,11 +16,15 @@ img {
   text-transform: capitalize;
   margin-bottom: 5px;
 }
-.sk-heading-story h6 {
+.sk-heading-story h2{
+  margin-bottom: 0;
+}
+.sk-heading-story h3{
   margin-bottom: 0;
   font-weight: 400;
   color: #888;
   line-height: 25px;
+  font-size: 16px;
 }
 .sk-chipTag-blog {
   position: absolute;
@@ -230,8 +234,9 @@ img {
   display: flex;
   align-items: center;
   gap: 10px;
+  margin-bottom: 15px;
 }
-.title h4 {
+.title h2 {
   margin-bottom: 0;
   font-size: 28px;
   color: #020202;

@@ -144,7 +144,7 @@ function App() {
         <Route exact path={routingConstants.MORE_BLOG} component={BlogPage} />
         <Route
           exact
-          path={`${routingConstants.MORE_EVENT}`}
+          path={`${routingConstants.MORE_EVENT}/:genre`}
           component={EventPage}
         />
 
@@ -185,7 +185,7 @@ function App() {
         />
         <Route
           exact
-          path={routingConstants.ALL_SUCCESS_STORIES}
+          path={`${routingConstants.ALL_SUCCESS_STORIES}:hashtag`}
           component={AllSuccessStories}
         />
         <Route

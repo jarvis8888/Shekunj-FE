@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Footer, Header } from "../../components";
+import { Footer, Header, SEO } from "../../components";
 import "./index.scss";
 import httpServices from "../../utils/ApiServices";
 import { useHistory, useLocation, useParams } from "react-router-dom";
@@ -193,86 +193,96 @@ const BlogWithCatogry = () => {
     }
     setOffset(offset + 4);
   };
-
+  const currentUrl = window.location.href;
   return (
-    <div>
-      <section>
-        <div className='container Hashtag_container sk-custom-container'>
-          <HashtagAndCatagoriesForMobile
-            image={hash}
-            title={`Categories`}
-            hashtags={allHashTag}
-          />
-          <div className='row'>
-            <div className='col-xl-8 col-lg-8 col-md-8 Hashtag_container_cards sk-blog-detail-wa'>
-              <div className='sk-topBottom-space'>
-                <div className='sk-hashtag-headingtitle'>
-                  <h1 className='Hashtag_container_title'>
-                    {selectedCategory ? `${selectedCategory}` : "NA"}
-                  </h1>
-                  {/* <p>
+    <>
+      <SEO
+        title={`Sheकुंज - ${search}`}
+        currentUrl={currentUrl}
+        link={currentUrl}
+      />
+      <div>
+        <section>
+          <div className='container Hashtag_container sk-custom-container'>
+            <HashtagAndCatagoriesForMobile
+              image={hash}
+              title={`Categories`}
+              hashtags={allHashTag}
+            />
+            <div className='row'>
+              <div className='col-xl-8 col-lg-8 col-md-8 Hashtag_container_cards sk-blog-detail-wa'>
+                <div className='sk-topBottom-space'>
+                  <div className='sk-hashtag-headingtitle'>
+                    <h1 className='Hashtag_container_title'>
+                      {selectedCategory ? `${selectedCategory}` : "NA"}
+                    </h1>
+                    {/* <p>
                     It is a long established fact that a reader will be
                     distracted by the readable content of a page when looking at
                     its layout. The point of using Lorem Ipsum is that it has a
                     more-or-less normal.
                   </p> */}
-                </div>
+                  </div>
 
-                <div className='sk-blogCategory-detail'>
-                  {data?.length
-                    ? data?.map((items, index) => {
-                        if (items.id === "advertisement") {
-                          return (
-                            <>{blogDetailsBoxAds.length > 0 && renderAds()}</>
-                          );
-                        } else {
-                          return (
-                            <>
-                              <TrendingBlogsCard2
-                                image={items.image}
-                                title={items.title}
-                                id={items.id}
-                                description={`${removeHtmlTags(
-                                  items.about_blog,
-                                )}`}
-                                time={items.reading_time}
-                                date={`${items.created_at}`}
-                                category_name={items.category}
-                                color={getCategoryColor(items.category?.name)}
-                                slug={items.slug}
-                                blog_count={items.blog_count}
-                              />
-                            </>
-                          );
-                        }
-                      })
-                    : null}
+                  <div className='sk-blogCategory-detail'>
+                    {data?.length
+                      ? data?.map((items, index) => {
+                          if (items.id === "advertisement") {
+                            return (
+                              <>{blogDetailsBoxAds.length > 0 && renderAds()}</>
+                            );
+                          } else {
+                            return (
+                              <>
+                                <TrendingBlogsCard2
+                                  image={items.image}
+                                  title={items.title}
+                                  id={items.id}
+                                  description={`${removeHtmlTags(
+                                    items.about_blog,
+                                  )}`}
+                                  time={items.reading_time}
+                                  date={`${items.created_at}`}
+                                  category_name={items.category}
+                                  color={getCategoryColor(items.category?.name)}
+                                  slug={items.slug}
+                                  blog_count={items.blog_count}
+                                />
+                              </>
+                            );
+                          }
+                        })
+                      : null}
+                  </div>
+                </div>
+                <div className='sk-blogbottom-border d-flex justify-content-center align-items-center '>
+                  <button
+                    disabled={currentFeaturedData?.results?.length === 0}
+                    className='loadMore'
+                    onClick={handleLoadMoreClick}
+                  >
+                    {loading ? <WhiteCircularBar /> : `Load More`}
+                  </button>
                 </div>
               </div>
-              <div className='sk-blogbottom-border d-flex justify-content-center align-items-center '>
-                <button
-                  disabled={currentFeaturedData?.results?.length === 0}
-                  className='loadMore'
-                  onClick={handleLoadMoreClick}
-                >
-                  {loading ? <WhiteCircularBar /> : `Load More`}
-                </button>
+              <div
+                div
+                className='col-xl-4 col-lg-4 col-md-4 sk-Removeside-space'
+              >
+                <HashtagAndCatagories
+                  image={hash}
+                  title={`Categories`}
+                  // addEmail={addEmail}
+                  hashtags={allHashTag}
+                  rightOne={succesStoriesRight1}
+                  rightTwo={succesStoriesRight2}
+                />
               </div>
-            </div>
-            <div div className='col-xl-4 col-lg-4 col-md-4 sk-Removeside-space'>
-              <HashtagAndCatagories
-                image={hash}
-                title={`Categories`}
-                // addEmail={addEmail}
-                hashtags={allHashTag}
-                rightOne={succesStoriesRight1}
-                rightTwo={succesStoriesRight2}
-              />
             </div>
           </div>
-        </div>
-      </section>
-    </div>
+        </section>
+      </div>
+    </>
   );
 };
 export default withHeaderFooter(BlogWithCatogry);

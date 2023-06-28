@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useLocation, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { routingConstants } from "../../utils/constants";
-import { Header, Footer } from "../../components";
+import { Header, Footer, SEO } from "../../components";
 import "./index.scss";
 import "../HomePage/index.scss";
 import "../Search/index.scss";
@@ -94,11 +94,6 @@ function EventPage() {
   // };
 
   const getAllEVentsData = async (currentOffset, genre) => {
-    console.log("🚀 ~ file: EventPage.jsx:97 ~ getAllEVentsData ~ genre:", genre)
-    console.log(
-      "🚀 ~ file: EventPage.jsx:141 ~ getAllEVentsData ~ currentOffset:",
-      currentOffset,
-    );
     setLoading(true);
     try {
       let url = `more/events`;
@@ -164,8 +159,8 @@ function EventPage() {
   const handleTimeOptionClick = (option) => {
     setSelectedButton(option);
     setSelectedOption(null);
-    // const path = "/events";
-    // history.push(path);
+    const path = `/events/${option}`;
+    history.push(path);
     // const searchParams = new URLSearchParams();
     // searchParams.set("genre", "");
     // history.push({
@@ -193,9 +188,9 @@ function EventPage() {
   const handleGenerOptionClick = (option) => {
     setSelectedOption(option);
     setSelectedButton(null);
-    // setCurrentOffset(0);
-    // const path = option ? `/events-${option}` : "/events";
-    // history.push(path);
+    setCurrentOffset(0);
+    const path = `/events/${option}`;
+    history.push(path);
     // const searchParams = new URLSearchParams();
     // searchParams.set("genre", option);
     // history.push({
@@ -255,16 +250,26 @@ function EventPage() {
   SwiperCore.use([Autoplay]);
 
   useEffect(() => {
-    // const params = new URLSearchParams(location.search);
-    // const genreParam = params.get("genre");
-    // setSelectedOption(genreParam);
-    // if (genre) {
-    //   handleGenerOptionClick(genre);
-    // }
-    // else {
-    //   getAllEVentsData(currentOffset, null);
-    // }
-    getAllEVentsData(currentOffset, null);
+    const fetchData = async () => {
+      // const params = new URLSearchParams(location.search);
+      // const genreParam = params.get("genre");
+      // setSelectedOption(genreParam);
+      if (
+        genre &&
+        !["all", "thisWeek", "todayTomorrow", "nextWeek"].includes(genre)
+      ) {
+        handleGenerOptionClick(genre);
+      } else if (
+        genre &&
+        ["all", "thisWeek", "todayTomorrow", "nextWeek"].includes(genre)
+      ) {
+        await getAllEVentsData(currentOffset, null);
+        handleTimeOptionClick(genre);
+      }
+      // getAllEVentsData(currentOffset, null);
+    };
+
+    fetchData();
   }, [currentOffset, lan]);
 
   const adCount = eventBoxAds.length;
@@ -303,310 +308,310 @@ function EventPage() {
 
     return renderAd(ad);
   };
-
+  const currentUrl = window.location.href;
   return (
-    <div>
-      <Helmet>
-        <title>
-          India's Leading Women Empowerment Organization - Shekunj.com
-        </title>
-        <link rel='canonical' href='https://www.shekunj.com/event/' />
-        <meta
-          name='description'
-          content='Shekunj.com works on women empowerment and skill development by providing free training, job-oriented courses, jobs & internships and career counseling'
-        />
-        <meta
-          name='keywords'
-          content='women empowerment organizations women empowerment initiative free online courses free career guidance'
-        />
-      </Helmet>
-      <section className='sk-event-sec sk-slide-arrow'>
-        <div className='container-fluid'>
-          <div className='row align-items-center'>
-            <div className='col-xl-12'>
-              <Swiper
-                slidesPerView={4}
-                spaceBetween={24}
-                navigation={true}
-                loop={true}
-                autoplay={{
-                  delay: 2000,
-                  disableOnInteraction: false,
-                }}
-                speed={1500}
-                modules={[Navigation, Autoplay]}
-                breakpoints={{
-                  320: {
-                    slidesPerView: 2,
-                    spaceBetween: 15,
-                    centeredSlides: true,
-                  },
-                  767: {
-                    slidesPerView: 2,
-                    spaceBetween: 15,
-                  },
-                  991: {
-                    slidesPerView: 3,
-                  },
-                  1250: {
-                    slidesPerView: 4,
-                    spaceBetween: 24,
-                  },
-                }}
-              >
-                {sliderEventData?.map((items, index) => {
-                  return (
-                    <>
-                      <SwiperSlide>
-                        {" "}
-                        <div
-                          key={index}
-                          onClick={() =>
-                            history.push(
-                              routingConstants.MORE_EVENT_DETAILS +
-                                items?.genre?.slug +
-                                "/" +
-                                items?.slug,
-                            )
-                          }
-                        >
-                          <img src={items.image} alt='' />
-                        </div>
-                      </SwiperSlide>
-                    </>
-                  );
-                })}
-              </Swiper>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section className='sk-card-sec sk-eventcard-sec'>
-        <div className='container sk-custom-container'>
-          <div className='row'>
-            <div className='col-xl-9 col-lg-10 col-md-10 col-sm-12 mx-auto'>
-              <div className='sk-title-heading'>
-                <h1>
-                  Discover Events with <span>SheKunj</span>
-                </h1>
-                <p>
-                  Our events are designed to inspire, educate, and empower you
-                  both personally and professionally. Whether it's a networking
-                  event, conference, or workshop, we want you to leave feeling
-                  inspired and energized.
-                </p>
-              </div>
-              <div className='sk-category sk-categoryRemove-m' ref={sectionRef}>
-                <h6>Time</h6>
-                <ul>
-                  {options.map((items, index) => {
-                    return (
-                      <li>
-                        <a
-                          onClick={() => handleTimeOptionClick(items.value)}
-                          className={
-                            selectedButton === items.value && "active-time"
-                          }
-                        >
-                          {items.label}
-                        </a>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </div>
-              <div className='sk-category'>
-                <h6>Genre</h6>
-                <ul>
-                  {genresListData.length &&
-                    genresListData.map((items, index) => {
-                      return (
-                        <>
-                          <li key={items.id}>
-                            <a
-                              onClick={() => handleGenerOptionClick(items.slug)}
-                              className={
-                                selectedOption === items.slug && "active-time"
-                              }
-                            >
-                              {items.name}
-                            </a>
-                          </li>
-                        </>
-                      );
-                    })}
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          {loading ? (
-            <CustomLoader />
-          ) : (
-            <div className='row'>
-              {dataWithAdds?.length ? (
-                dataWithAdds?.map((items, index) => {
-                  if (items.id === "advertisement") {
-                    return <>{eventBoxAds.length > 0 && renderAds()}</>;
-                  } else {
+    <>
+      <SEO
+        title='Sheकुंज - Events'
+        description='Shekunj.com works on women empowerment and skill development by providing free training, job-oriented courses, jobs & internships and career counseling'
+        keywords='women empowerment organizations women empowerment initiative free online courses free career guidance'
+        link={currentUrl}
+        currentUrl={currentUrl}
+      />
+      <div>
+        <section className='sk-event-sec sk-slide-arrow'>
+          <div className='container-fluid'>
+            <div className='row align-items-center'>
+              <div className='col-xl-12'>
+                <Swiper
+                  slidesPerView={4}
+                  spaceBetween={24}
+                  navigation={true}
+                  loop={true}
+                  autoplay={{
+                    delay: 2000,
+                    disableOnInteraction: false,
+                  }}
+                  speed={1500}
+                  modules={[Navigation, Autoplay]}
+                  breakpoints={{
+                    320: {
+                      slidesPerView: 2,
+                      spaceBetween: 15,
+                      centeredSlides: true,
+                    },
+                    767: {
+                      slidesPerView: 2,
+                      spaceBetween: 15,
+                    },
+                    991: {
+                      slidesPerView: 3,
+                    },
+                    1250: {
+                      slidesPerView: 4,
+                      spaceBetween: 24,
+                    },
+                  }}
+                >
+                  {sliderEventData?.map((items, index) => {
                     return (
                       <>
-                        <div
-                          className='col-xl-3 col-lg-4 col-md-6'
-                          key={index}
-                          onClick={() =>
-                            history.push(
-                              routingConstants.MORE_EVENT_DETAILS +
-                                items?.genre?.slug +
-                                "/" +
-                                items?.slug,
-                            )
-                          }
-                          style={{ cursor: "pointer" }}
-                        >
-                          <div className='sk-card-box'>
-                            <div className='sk-card-img'>
-                              <img src={items.image} alt='' />
-                            </div>
-                            <div className='sk-content-card'>
-                              <div className='sk-time-education'>
-                                <ul>
-                                  <li className='sk-chip-tag'>
-                                    {" "}
-                                    <span>{items?.genre?.name}</span>{" "}
-                                  </li>
-                                  <li className='sk-onlineofline-tag'>
-                                    {items.mode_of_event === "offline" ? (
-                                      <>
-                                        {" "}
-                                        <img
-                                          src={offlineicon}
-                                          alt=''
-                                        /> Offline{" "}
-                                      </>
-                                    ) : (
-                                      <>
-                                        {" "}
-                                        <img
-                                          src={onlineicon}
-                                          alt=''
-                                        /> Online{" "}
-                                      </>
-                                    )}
-                                  </li>
-                                </ul>
+                        <SwiperSlide>
+                          {" "}
+                          <div
+                            key={index}
+                            onClick={() =>
+                              history.push(
+                                routingConstants.MORE_EVENT_DETAILS +
+                                  items?.genre?.slug +
+                                  "/" +
+                                  items?.slug,
+                              )
+                            }
+                          >
+                            <img src={items.image} alt='' />
+                          </div>
+                        </SwiperSlide>
+                      </>
+                    );
+                  })}
+                </Swiper>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section className='sk-card-sec sk-eventcard-sec'>
+          <div className='container sk-custom-container'>
+            <div className='row'>
+              <div className='col-xl-9 col-lg-10 col-md-10 col-sm-12 mx-auto'>
+                <div className='sk-title-heading'>
+                  <h1>
+                    Discover Events with <span>SheKunj</span>
+                  </h1>
+                  <p>
+                    Our events are designed to inspire, educate, and empower you
+                    both personally and professionally. Whether it's a
+                    networking event, conference, or workshop, we want you to
+                    leave feeling inspired and energized.
+                  </p>
+                </div>
+                <div
+                  className='sk-category sk-categoryRemove-m'
+                  ref={sectionRef}
+                >
+                  <h6>Time</h6>
+                  <ul>
+                    {options.map((items, index) => {
+                      return (
+                        <li>
+                          <a
+                            onClick={() => handleTimeOptionClick(items.value)}
+                            className={
+                              selectedButton === items.value && "active-time"
+                            }
+                          >
+                            {items.label}
+                          </a>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+                <div className='sk-category'>
+                  <h6>Genre</h6>
+                  <ul>
+                    {genresListData.length &&
+                      genresListData.map((items, index) => {
+                        return (
+                          <>
+                            <li key={items.id}>
+                              <a
+                                onClick={() =>
+                                  handleGenerOptionClick(items.slug)
+                                }
+                                className={
+                                  selectedOption === items.slug && "active-time"
+                                }
+                              >
+                                {items.name}
+                              </a>
+                            </li>
+                          </>
+                        );
+                      })}
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            {loading && genre !== "all" ? (
+              <CustomLoader />
+            ) : (
+              <div className='row'>
+                {dataWithAdds?.length ? (
+                  dataWithAdds?.map((items, index) => {
+                    if (items.id === "advertisement") {
+                      return <>{eventBoxAds.length > 0 && renderAds()}</>;
+                    } else {
+                      return (
+                        <>
+                          <div
+                            className='col-xl-3 col-lg-4 col-md-6'
+                            key={index}
+                            onClick={() =>
+                              history.push(
+                                routingConstants.MORE_EVENT_DETAILS +
+                                  items?.genre?.slug +
+                                  "/" +
+                                  items?.slug,
+                              )
+                            }
+                            style={{ cursor: "pointer" }}
+                          >
+                            <div className='sk-card-box'>
+                              <div className='sk-card-img'>
+                                <img src={items.image} alt='' />
                               </div>
-                              <h6 className='sk-card-heading'>{items.title}</h6>
-                              <div className='sk-time-education'>
-                                <ul>
-                                  <li>
-                                    {" "}
-                                    <AccessTimeIcon />{" "}
-                                    <span
-                                      dangerouslySetInnerHTML={{
-                                        __html: time_left(
-                                          items.start_date,
-                                          items.start_time,
-                                          items.end_date,
-                                          items.end_time,
-                                        ),
-                                      }}
-                                    ></span>{" "}
-                                  </li>
-                                  {items?.want_to_display_enrolled_students && (
+                              <div className='sk-content-card'>
+                                <div className='sk-time-education'>
+                                  <ul>
+                                    <li className='sk-chip-tag'>
+                                      {" "}
+                                      <span>{items?.genre?.name}</span>{" "}
+                                    </li>
+                                    <li className='sk-onlineofline-tag'>
+                                      {items.mode_of_event === "offline" ? (
+                                        <>
+                                          {" "}
+                                          <img src={offlineicon} alt='' />{" "}
+                                          Offline{" "}
+                                        </>
+                                      ) : (
+                                        <>
+                                          {" "}
+                                          <img
+                                            src={onlineicon}
+                                            alt=''
+                                          /> Online{" "}
+                                        </>
+                                      )}
+                                    </li>
+                                  </ul>
+                                </div>
+                                <h6 className='sk-card-heading'>
+                                  {items.title}
+                                </h6>
+                                <div className='sk-time-education'>
+                                  <ul>
                                     <li>
                                       {" "}
-                                      <SchoolOutlinedIcon />{" "}
-                                      {items.enrold_students} enrolled{" "}
+                                      <AccessTimeIcon />{" "}
+                                      <span
+                                        dangerouslySetInnerHTML={{
+                                          __html: time_left(
+                                            items.start_date,
+                                            items.start_time,
+                                            items.end_date,
+                                            items.end_time,
+                                          ),
+                                        }}
+                                      ></span>{" "}
                                     </li>
-                                  )}
-                                </ul>
-                              </div>
-                              <div className='sk-tags-event'>
-                                <button
-                                  type='button'
-                                  className='sk-btn-register'
-                                  onClick={() =>
-                                    history.push(
-                                      routingConstants.MORE_EVENT +
-                                        items?.genre?.slug +
-                                        "/" +
-                                        items?.slug,
-                                    )
-                                  }
-                                >
-                                  Register Now
-                                </button>
+                                    {items?.want_to_display_enrolled_students && (
+                                      <li>
+                                        {" "}
+                                        <SchoolOutlinedIcon />{" "}
+                                        {items.enrold_students} enrolled{" "}
+                                      </li>
+                                    )}
+                                  </ul>
+                                </div>
+                                <div className='sk-tags-event'>
+                                  <button
+                                    type='button'
+                                    className='sk-btn-register'
+                                    onClick={() =>
+                                      history.push(
+                                        routingConstants.MORE_EVENT +
+                                          items?.genre?.slug +
+                                          "/" +
+                                          items?.slug,
+                                      )
+                                    }
+                                  >
+                                    Register Now
+                                  </button>
+                                </div>
                               </div>
                             </div>
                           </div>
-                        </div>
-                      </>
-                    );
-                  }
-                })
-              ) : (
-                <div className='noData'>
-                  <NoDataFound />
-                </div>
-              )}
-              {selectedButton === "all" && (
-                <div className='col-md-12'>
-                  <div className='sk-explore-btn'>
-                    <button
-                      disabled={checkEventData?.length === 0}
-                      type=''
-                      onClick={() => {
-                        setCurrentOffset(currentOffset + 8);
-                        // sectionRef.current.scrollIntoView({
-                        //   behavior: "smooth",
-                        // });
-                      }}
-                      className='sk-btn'
-                    >
-                      {loading ? <WhiteCircularBar /> : `Explore More`}
-                    </button>
+                        </>
+                      );
+                    }
+                  })
+                ) : (
+                  <div className='noData'>
+                    <NoDataFound />
                   </div>
-                </div>
-              )}
-            </div>
-          )}
-        </div>
-      </section>
-      <section className='sk-bottomAdd-sec'>
-        <div className='container sk-custom-container'>
-          <div className='row'>
-            <div className='col-md-12'>
-              <>
-                {eventFooterAds.length > 0 && (
-                  <a
-                    href={eventFooterAds[0]?.url_adds}
-                    target='_blank'
-                    rel='noreferrer'
-                  >
-                    {detect.isMobile
-                      ? eventFooterAds[0]?.image_mobile && (
-                          <img
-                            src={eventFooterAds[0]?.image_mobile}
-                            alt=''
-                            // className='ads_story_cover_img'
-                          />
-                        )
-                      : eventFooterAds[0]?.image && (
-                          <img
-                            src={eventFooterAds[0]?.image}
-                            alt=''
-                            // className='ads_story_cover_img'
-                          />
-                        )}
-                  </a>
                 )}
-              </>
+                {selectedButton === "all" && (
+                  <div className='col-md-12'>
+                    <div className='sk-explore-btn'>
+                      <button
+                        disabled={checkEventData?.length === 0}
+                        type=''
+                        onClick={() => {
+                          setCurrentOffset(currentOffset + 8);
+                          // sectionRef.current.scrollIntoView({
+                          //   behavior: "smooth",
+                          // });
+                        }}
+                        className='sk-btn'
+                      >
+                        {loading ? <WhiteCircularBar /> : `Explore More`}
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+        </section>
+        <section className='sk-bottomAdd-sec'>
+          <div className='container sk-custom-container'>
+            <div className='row'>
+              <div className='col-md-12'>
+                <>
+                  {eventFooterAds.length > 0 && (
+                    <a
+                      href={eventFooterAds[0]?.url_adds}
+                      target='_blank'
+                      rel='noreferrer'
+                    >
+                      {detect.isMobile
+                        ? eventFooterAds[0]?.image_mobile && (
+                            <img
+                              src={eventFooterAds[0]?.image_mobile}
+                              alt=''
+                              // className='ads_story_cover_img'
+                            />
+                          )
+                        : eventFooterAds[0]?.image && (
+                            <img
+                              src={eventFooterAds[0]?.image}
+                              alt=''
+                              // className='ads_story_cover_img'
+                            />
+                          )}
+                    </a>
+                  )}
+                </>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
-    </div>
+        </section>
+      </div>
+    </>
   );
 }
 

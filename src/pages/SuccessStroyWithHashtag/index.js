@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Footer, Header } from "../../components";
+import { Footer, Header, SEO } from "../../components";
 import "./index.scss";
 import httpServices from "../../utils/ApiServices";
 import { useHistory, useLocation, useParams } from "react-router-dom";
@@ -214,95 +214,102 @@ const SuccessStroyWithHashtag = () => {
     }
     setOffset(offset + 4);
   };
-
+  const currentUrl = window.location.href;
   return (
-    <div>
-      <section className='sk-hashtag-sec'>
-        <div className='container sk-custom-container'>
-          <HashtagAndCatagoriesForMobile
-            type='hashtag'
-            image={hash}
-            title={`Trending Hashtag`}
-            hashtags={allHashTag}
-          />
-          <div className='row'>
-            <div className='col-xl-8 col-lg-8 col-md-8'>
-              <div className='sk-topBottom-space'>
-                <div className='sk-hashtagBorder-tilte'>
-                  <h1 className='Hashtag_container_title'>
-                    {selectedTag ? `#${selectedTag}` : "NA"}
-                  </h1>
-                  {/* <p>
+    <>
+      <SEO
+        title={`Sheकुंज - ${search}`}
+        currentUrl={currentUrl}
+        link={currentUrl}
+      />
+      <div>
+        <section className='sk-hashtag-sec'>
+          <div className='container sk-custom-container'>
+            <HashtagAndCatagoriesForMobile
+              type='hashtag'
+              image={hash}
+              title={`Trending Hashtag`}
+              hashtags={allHashTag}
+            />
+            <div className='row'>
+              <div className='col-xl-8 col-lg-8 col-md-8'>
+                <div className='sk-topBottom-space'>
+                  <div className='sk-hashtagBorder-tilte'>
+                    <h1 className='Hashtag_container_title'>
+                      {selectedTag ? `#${selectedTag}` : "NA"}
+                    </h1>
+                    {/* <p>
                     It is a long established fact that a reader will be
                     distracted by the readable content of a page when looking at
                     its layout. The point of using Lorem Ipsum is that it has a
                     more-or-less normal.
                   </p> */}
-                </div>
+                  </div>
 
-                <div className='row'>
-                  {data?.length
-                    ? data?.map((items, index) => {
-                        if (items.id === "advertisement") {
-                          return (
-                            <>
-                              {succesStoriesLeft.length > 0 &&
-                                succesStoriesLeftRenderAds()}
-                            </>
-                          );
-                        } else {
-                          return (
-                            <>
-                              <div className='col-xl-6 col-lg-6 col-md-12 col-sm-12'>
-                                <FeaturedCards
-                                  image={items.image}
-                                  hashtags={
-                                    items.hash_tags === null
-                                      ? []
-                                      : items.hash_tags
-                                  }
-                                  title={`${items.name} ${items.last_name}`}
-                                  description={`${items.title}`}
-                                  key={index}
-                                  created_at={items.created_at}
-                                  reading_time={items.reading_time}
-                                  id={items.id}
-                                  slug={items.slug}
-                                  ss_count={items.ss_count}
-                                />
-                              </div>
-                            </>
-                          );
-                        }
-                      })
-                    : null}
+                  <div className='row'>
+                    {data?.length
+                      ? data?.map((items, index) => {
+                          if (items.id === "advertisement") {
+                            return (
+                              <>
+                                {succesStoriesLeft.length > 0 &&
+                                  succesStoriesLeftRenderAds()}
+                              </>
+                            );
+                          } else {
+                            return (
+                              <>
+                                <div className='col-xl-6 col-lg-6 col-md-12 col-sm-12'>
+                                  <FeaturedCards
+                                    image={items.image}
+                                    hashtags={
+                                      items.hash_tags === null
+                                        ? []
+                                        : items.hash_tags
+                                    }
+                                    title={`${items.name} ${items.last_name}`}
+                                    description={`${items.title}`}
+                                    key={index}
+                                    created_at={items.created_at}
+                                    reading_time={items.reading_time}
+                                    id={items.id}
+                                    slug={items.slug}
+                                    ss_count={items.ss_count}
+                                  />
+                                </div>
+                              </>
+                            );
+                          }
+                        })
+                      : null}
+                  </div>
+                </div>
+                <div className='sk-blogbottom-border d-flex justify-content-center align-items-center '>
+                  <button
+                    disabled={currentFeaturedData?.results?.length === 0}
+                    className='loadMore'
+                    onClick={handleLoadMoreClick}
+                  >
+                    {loading ? <WhiteCircularBar /> : `Load More`}
+                  </button>
                 </div>
               </div>
-              <div className='sk-blogbottom-border d-flex justify-content-center align-items-center '>
-                <button
-                  disabled={currentFeaturedData?.results?.length === 0}
-                  className='loadMore'
-                  onClick={handleLoadMoreClick}
-                >
-                  {loading ? <WhiteCircularBar /> : `Load More`}
-                </button>
+              <div className='col-xl-4 col-lg-4 col-md-4 sk-Removeside-space'>
+                <HashtagAndCatagories
+                  type='hashtag'
+                  image={hash}
+                  title={`Trending Hashtag`}
+                  // addEmail={addEmail}
+                  hashtags={allHashTag}
+                  rightOne={succesStoriesRight1}
+                  rightTwo={succesStoriesRight2}
+                />
               </div>
-            </div>
-            <div className='col-xl-4 col-lg-4 col-md-4 sk-Removeside-space'>
-              <HashtagAndCatagories
-                type='hashtag'
-                image={hash}
-                title={`Trending Hashtag`}
-                // addEmail={addEmail}
-                hashtags={allHashTag}
-                rightOne={succesStoriesRight1}
-                rightTwo={succesStoriesRight2}
-              />
             </div>
           </div>
-        </div>
-      </section>
-    </div>
+        </section>
+      </div>
+    </>
   );
 };
 export default withHeaderFooter(SuccessStroyWithHashtag);

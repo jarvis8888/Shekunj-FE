@@ -3,7 +3,7 @@ import "./blogPage.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { apiConstants, routingConstants } from "../../utils/constants";
-import { Header, Footer } from "../../components";
+import { Header, Footer, SEO } from "../../components";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
 import { adsList } from "../../store/ads";
@@ -328,305 +328,301 @@ function BlogPage() {
   const namesArray = blogsCategories?.map((category) => category.name);
 
   const getCategoryColor = assignColorToCategory(namesArray);
-
+  const currentUrl = window.location.href;
   return (
-    <div>
-      <Helmet>
-        <title>
-          India's Leading Women Empowerment Organization - Shekunj.com
-        </title>
-        <link rel='canonical' href='https://www.shekunj.com/blogs/' />
-        <meta
-          name='description'
-          content='Shekunj.com works on women empowerment and skill development by providing free training, job-oriented courses, jobs & internships and career counseling.'
-        />
-        <meta
-          name='keywords'
-          content='women empowerment organizations women empowerment initiative free online courses free career guidance'
-        />
-      </Helmet>
-
-      {pageLoading ? (
-        <CustomLoader />
-      ) : (
-        <>
-          <section className='sk-blogTopbar-sec'>
-            <div className='container sk-custom-container'>
-              <div className='row'>
-                <div className='col-xl-8 col-md-8 col-lg-8'>
-                  <div className='carousel-blog'>
-                    <BlogCarousel
-                      images={topTrendingBlogs?.slice(0, 5)}
-                      color={getCategoryColor}
-                    />
-                  </div>
-                </div>
-                <div className='col-xl-4 col-md-4 col-lg-4'>
-                  <div className='sk-blog-sidebar'>
-                    <div className='title mb-4' ref={sectionRef}>
-                      <img src={fire} alt='fire' width={36} />
-                      <div className='sk-heading-story'>
-                        <h4>Trending Articles</h4>
-                        <h6>Popular articles, news and trends on SheKunj</h6>
-                      </div>
+    <>
+      <SEO
+        title='Sheकुंज - Articles'
+        description='Shekunj.com works on women empowerment and skill development by providing free training, job-oriented courses, jobs & internships and career counseling.'
+        keywords='women empowerment organizations women empowerment initiative free online courses free career guidance'
+        link={currentUrl}
+        currentUrl={currentUrl}
+      />
+      <div>
+        {pageLoading ? (
+          <CustomLoader />
+        ) : (
+          <>
+            <section className='sk-blogTopbar-sec'>
+              <div className='container sk-custom-container'>
+                <div className='row'>
+                  <div className='col-xl-8 col-md-8 col-lg-8'>
+                    <div className='carousel-blog'>
+                      <BlogCarousel
+                        images={topTrendingBlogs?.slice(0, 5)}
+                        color={getCategoryColor}
+                      />
                     </div>
-
-                    {topTrendingBlogs?.length ? (
-                      topTrendingBlogs.slice(0, 3).map((items, index) => {
-                        return (
-                          <>
-                            <TrendingBlogsCard
-                              image={items.image}
-                              id={items.id}
-                              description={items.title}
-                              time={items.reading_time}
-                              date={`${items.created_at}`}
-                              category_name={items.category}
-                              key={index}
-                              color={getCategoryColor(items.category?.name)}
-                              slug={items.slug}
-                            />
-                          </>
-                        );
-                      })
-                    ) : (
-                      <>
-                        <NoDataFound size='small' />
-                      </>
-                    )}
                   </div>
-                </div>
-              </div>
-            </div>
-          </section>
-          <section className='sk-addBg-color'>
-            <div className='container sk-custom-container'>
-              <div className='row'>
-                <div className='col-md-12'>
-                  <AddsBanner
-                    color='#F4F4F4'
-                    children={
-                      <>
-                        {blogBoxAdds.length > 0 && (
-                          <div
-                            className='banner-adds'
-                            onClick={() =>
-                              addEmailToClient(blogBoxAdds[0]?.add_email)
-                            }
-                          >
-                            <a
-                              href={blogBoxAdds[0]?.url_adds}
-                              target='_blank'
-                              rel='noreferrer'
-                            >
-                              {detect.isMobile
-                                ? blogBoxAdds[0]?.image_mobile && (
-                                    <img
-                                      src={blogBoxAdds[0]?.image_mobile}
-                                      alt=''
-                                      className='ads_story_cover_img'
-                                    />
-                                  )
-                                : blogBoxAdds[0]?.image && (
-                                    <img
-                                      src={blogBoxAdds[0]?.image}
-                                      alt=''
-                                      className='ads_story_cover_img'
-                                    />
-                                  )}
-                            </a>
-                          </div>
-                        )}
-                      </>
-                    }
-                  />
-                </div>
-              </div>
-            </div>
-          </section>
-          <section>
-            <div className='container sk-custom-container'>
-              <div className='row'>
-                <div className='col-xl-8 col-md-6 col-lg-8'>
-                  <div className='sk-topBottom-space'>
-                    <div className='blog-stories'>
-                      <div className='title' ref={sectionRef}>
-                        <img src={latestblog} alt='latestblog' width={36} />
+                  <div className='col-xl-4 col-md-4 col-lg-4'>
+                    <div className='sk-blog-sidebar'>
+                      <div className='title mb-4' ref={sectionRef}>
+                        <img src={fire} alt='fire' width={36} />
                         <div className='sk-heading-story'>
-                          <h4>Latest Article</h4>
-                          <h6>
-                            Recommended stories, articles and interviews on
-                            SheKunj
-                          </h6>
+                          <h2>Trending Articles</h2>
+                          <h3>Popular articles, news and trends on SheKunj</h3>
                         </div>
                       </div>
 
-                      <div className='row'>
-                        {latestBlogs?.map((items, index) => {
+                      {topTrendingBlogs?.length ? (
+                        topTrendingBlogs.slice(0, 3).map((items, index) => {
+                          return (
+                            <>
+                              <TrendingBlogsCard
+                                image={items.image}
+                                id={items.id}
+                                description={items.title}
+                                time={items.reading_time}
+                                date={`${items.created_at}`}
+                                category_name={items.category}
+                                key={index}
+                                color={getCategoryColor(items.category?.name)}
+                                slug={items.slug}
+                              />
+                            </>
+                          );
+                        })
+                      ) : (
+                        <>
+                          <NoDataFound size='small' />
+                        </>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <section className='sk-addBg-color'>
+              <div className='container sk-custom-container'>
+                <div className='row'>
+                  <div className='col-md-12'>
+                    <AddsBanner
+                      color='#F4F4F4'
+                      children={
+                        <>
+                          {blogBoxAdds.length > 0 && (
+                            <div
+                              className='banner-adds'
+                              onClick={() =>
+                                addEmailToClient(blogBoxAdds[0]?.add_email)
+                              }
+                            >
+                              <a
+                                href={blogBoxAdds[0]?.url_adds}
+                                target='_blank'
+                                rel='noreferrer'
+                              >
+                                {detect.isMobile
+                                  ? blogBoxAdds[0]?.image_mobile && (
+                                      <img
+                                        src={blogBoxAdds[0]?.image_mobile}
+                                        alt=''
+                                        className='ads_story_cover_img'
+                                      />
+                                    )
+                                  : blogBoxAdds[0]?.image && (
+                                      <img
+                                        src={blogBoxAdds[0]?.image}
+                                        alt=''
+                                        className='ads_story_cover_img'
+                                      />
+                                    )}
+                              </a>
+                            </div>
+                          )}
+                        </>
+                      }
+                    />
+                  </div>
+                </div>
+              </div>
+            </section>
+            <section>
+              <div className='container sk-custom-container'>
+                <div className='row'>
+                  <div className='col-xl-8 col-md-6 col-lg-8'>
+                    <div className='sk-topBottom-space'>
+                      <div className='blog-stories'>
+                        <div className='title' ref={sectionRef}>
+                          <img src={latestblog} alt='latestblog' width={36} />
+                          <div className='sk-heading-story'>
+                            <h2>Latest Article</h2>
+                            <h3>
+                              Recommended stories, articles and interviews on
+                              SheKunj
+                            </h3>
+                          </div>
+                        </div>
+
+                        <div className='row'>
+                          {latestBlogs?.map((items, index) => {
+                            if (items.id === "advertisement") {
+                              return (
+                                <>
+                                  {blogGrid.length > 0 && blogGridRenderAds()}
+                                </>
+                              );
+                            } else {
+                              return (
+                                <>
+                                  <div className='col-xl-6 col-md-6 col-lg-6 col-sm-12'>
+                                    <LatestBlogCard
+                                      image={items.image}
+                                      hashtags={items.hash_tags}
+                                      title={items.title}
+                                      description={`${removeHtmlTags(
+                                        items.about_blog,
+                                      )}`}
+                                      makeHtml={makeHtml}
+                                      key={index}
+                                      created_at={`${items.created_at}`}
+                                      reading_time={items.reading_time}
+                                      id={items.id}
+                                      blog_count={items.blog_count}
+                                      category_name={items.category}
+                                      color={getCategoryColor(
+                                        items.category?.name,
+                                      )}
+                                      slug={items.slug}
+                                    />
+                                  </div>
+                                </>
+                              );
+                            }
+                          })}
+                        </div>
+
+                        <div className='d-flex justify-content-center align-items-center py-4'>
+                          <button
+                            className='loadMore'
+                            onClick={handleLoadMoreClick}
+                            disabled={currentBlogData?.results?.length === 0}
+                          >
+                            {loading ? <WhiteCircularBar /> : `Explore More`}
+                          </button>
+                        </div>
+                      </div>
+                      <div className='pb-4'>
+                        <AddsBanner
+                          color='#F4F4F4'
+                          children={
+                            <>
+                              {blogBoxAdds.length > 0 && (
+                                <div
+                                  className='banner-adds'
+                                  onClick={() =>
+                                    addEmailToClient(blogBoxAdds[0]?.add_email)
+                                  }
+                                >
+                                  <a
+                                    href={blogBoxAdds[0]?.url_adds}
+                                    target='_blank'
+                                    rel='noreferrer'
+                                  >
+                                    {detect.isMobile
+                                      ? blogBoxAdds[0]?.image_mobile && (
+                                          <img
+                                            src={blogBoxAdds[0]?.image_mobile}
+                                            alt=''
+                                            className='ads_story_cover_img'
+                                          />
+                                        )
+                                      : blogBoxAdds[0]?.image && (
+                                          <img
+                                            src={blogBoxAdds[0]?.image}
+                                            alt=''
+                                            className='ads_story_cover_img'
+                                          />
+                                        )}
+                                  </a>
+                                </div>
+                              )}
+                            </>
+                          }
+                        />
+                      </div>
+                      <HashtagAndCatagoriesForMobile
+                        image={catagorie}
+                        title={"Categories"}
+                        hashtags={blogsCategories}
+                      />
+                      <div className='title' ref={trendingSectionRef}>
+                        <img src={discoverblog} alt='discoverblog' width={36} />
+                        <div className='sk-heading-story'>
+                          <h2 className='mb-0'>Discover More Articles</h2>
+                          <h3>
+                            Explore more articles, news and trends on SheKunj
+                          </h3>
+                        </div>
+                      </div>
+                      <>
+                        {" "}
+                        {trendingBlogs?.map((items, index) => {
                           if (items.id === "advertisement") {
                             return (
-                              <>{blogGrid.length > 0 && blogGridRenderAds()}</>
+                              <>{blogLeft.length > 0 && blogLeftRenderAds()}</>
                             );
                           } else {
                             return (
                               <>
-                                <div className='col-xl-6 col-md-6 col-lg-6 col-sm-12'>
-                                  <LatestBlogCard
-                                    image={items.image}
-                                    hashtags={items.hash_tags}
-                                    title={items.title}
-                                    description={`${removeHtmlTags(
-                                      items.about_blog,
-                                    )}`}
-                                    makeHtml={makeHtml}
-                                    key={index}
-                                    created_at={`${items.created_at}`}
-                                    reading_time={items.reading_time}
-                                    id={items.id}
-                                    blog_count={items.blog_count}
-                                    category_name={items.category}
-                                    color={getCategoryColor(
-                                      items.category?.name,
-                                    )}
-                                    slug={items.slug}
-                                  />
-                                </div>
+                                <TrendingBlogsCard2
+                                  image={items.image}
+                                  title={items.title}
+                                  id={items.id}
+                                  description={`${removeHtmlTags(
+                                    items.about_blog,
+                                  )}`}
+                                  time={items?.reading_time}
+                                  date={`${items.created_at}`}
+                                  category_name={items.category}
+                                  color={getCategoryColor(items.category?.name)}
+                                  slug={items.slug}
+                                  blog_count={items.blog_count}
+                                />
                               </>
                             );
                           }
                         })}
-                      </div>
+                      </>
 
                       <div className='d-flex justify-content-center align-items-center py-4'>
                         <button
                           className='loadMore'
-                          onClick={handleLoadMoreClick}
-                          disabled={currentBlogData?.results?.length === 0}
+                          onClick={() => {
+                            setTrendingOffset(trendingOffset + 6);
+                            // trendingSectionRef.current.scrollIntoView({
+                            //   behavior: "smooth",
+                            // });
+                          }}
+                          disabled={
+                            currentTrendingBlogData?.results?.length === 0
+                          }
                         >
-                          {loading ? <WhiteCircularBar /> : `Explore More`}
+                          {trendingLoading ? (
+                            <WhiteCircularBar />
+                          ) : (
+                            `Explore More`
+                          )}
                         </button>
                       </div>
                     </div>
-                    <div className='pb-4'>
-                      <AddsBanner
-                        color='#F4F4F4'
-                        children={
-                          <>
-                            {blogBoxAdds.length > 0 && (
-                              <div
-                                className='banner-adds'
-                                onClick={() =>
-                                  addEmailToClient(blogBoxAdds[0]?.add_email)
-                                }
-                              >
-                                <a
-                                  href={blogBoxAdds[0]?.url_adds}
-                                  target='_blank'
-                                  rel='noreferrer'
-                                >
-                                  {detect.isMobile
-                                    ? blogBoxAdds[0]?.image_mobile && (
-                                        <img
-                                          src={blogBoxAdds[0]?.image_mobile}
-                                          alt=''
-                                          className='ads_story_cover_img'
-                                        />
-                                      )
-                                    : blogBoxAdds[0]?.image && (
-                                        <img
-                                          src={blogBoxAdds[0]?.image}
-                                          alt=''
-                                          className='ads_story_cover_img'
-                                        />
-                                      )}
-                                </a>
-                              </div>
-                            )}
-                          </>
-                        }
-                      />
-                    </div>
-                    <HashtagAndCatagoriesForMobile
-                      image={catagorie}
+                  </div>
+                  <div className='col-xl-4 col-md-6 col-lg-4 col-sm-12 sk-Removeside-space'>
+                    <HashtagAndCatagories
+                      image={blogcategoryicon}
                       title={"Categories"}
                       hashtags={blogsCategories}
+                      rightOne={blogRight1}
+                      rightTwo={blogRight2}
                     />
-                    <div className='title' ref={trendingSectionRef}>
-                      <img src={discoverblog} alt='discoverblog' width={36} />
-                      <div className='sk-heading-story'>
-                        <h4>Discover More Articles</h4>
-                        <h6>
-                          Explore more articles, news and trends on SheKunj
-                        </h6>
-                      </div>
-                    </div>
-                    <>
-                      {" "}
-                      {trendingBlogs?.map((items, index) => {
-                        if (items.id === "advertisement") {
-                          return (
-                            <>{blogLeft.length > 0 && blogLeftRenderAds()}</>
-                          );
-                        } else {
-                          return (
-                            <>
-                              <TrendingBlogsCard2
-                                image={items.image}
-                                title={items.title}
-                                id={items.id}
-                                description={`${removeHtmlTags(
-                                  items.about_blog,
-                                )}`}
-                                time={items?.reading_time}
-                                date={`${items.created_at}`}
-                                category_name={items.category}
-                                color={getCategoryColor(items.category?.name)}
-                                slug={items.slug}
-                                blog_count={items.blog_count}
-                              />
-                            </>
-                          );
-                        }
-                      })}
-                    </>
-
-                    <div className='d-flex justify-content-center align-items-center py-4'>
-                      <button
-                        className='loadMore'
-                        onClick={() => {
-                          setTrendingOffset(trendingOffset + 6);
-                          // trendingSectionRef.current.scrollIntoView({
-                          //   behavior: "smooth",
-                          // });
-                        }}
-                        disabled={
-                          currentTrendingBlogData?.results?.length === 0
-                        }
-                      >
-                        {trendingLoading ? (
-                          <WhiteCircularBar />
-                        ) : (
-                          `Explore More`
-                        )}
-                      </button>
-                    </div>
                   </div>
                 </div>
-                <div className='col-xl-4 col-md-6 col-lg-4 col-sm-12 sk-Removeside-space'>
-                  <HashtagAndCatagories
-                    image={blogcategoryicon}
-                    title={"Categories"}
-                    hashtags={blogsCategories}
-                    rightOne={blogRight1}
-                    rightTwo={blogRight2}
-                  />
-                </div>
               </div>
-            </div>
-          </section>
-        </>
-      )}
-    </div>
+            </section>
+          </>
+        )}
+      </div>
+    </>
   );
 }
 

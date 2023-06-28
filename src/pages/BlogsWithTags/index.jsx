@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Footer, Header } from "../../components";
+import { Footer, Header, SEO } from "../../components";
 import "./index.scss";
 import httpServices from "../../utils/ApiServices";
 import { useHistory, useLocation } from "react-router-dom";
@@ -222,83 +222,90 @@ const SuccessStroyWithHashtag = () => {
     }
     setOffset(offset + 4);
   };
-
+  const currentUrl = window.location.href;
   return (
-    <div>
-      <section>
-        <div className='container sk-custom-container'>
-          <HashtagAndCatagoriesForMobile
-            image={hash}
-            title={`Categories`}
-            hashtags={allHashTag}
-          />
-          <div className='row'>
-            <div className='col-xl-8 col-lg-8 col-md-8 sk-blog-detail-wa'>
-              <div className='sk-topBottom-space'>
-                <div className='Hashtag_container_title'>
-                  <span className='catagories-search'>
-                    {selectedTag ? `${selectedTag}` : null}{" "}
-                    <CancelRoundedIcon
-                      onClick={() => history.push(routingConstants.MORE_BLOG)}
-                    />
-                  </span>
-                </div>
+    <>
+      <SEO
+        title={`Sheकुंज - ${search}`}
+        currentUrl={currentUrl}
+        link={currentUrl}
+      />
+      <div>
+        <section>
+          <div className='container sk-custom-container'>
+            <HashtagAndCatagoriesForMobile
+              image={hash}
+              title={`Categories`}
+              hashtags={allHashTag}
+            />
+            <div className='row'>
+              <div className='col-xl-8 col-lg-8 col-md-8 sk-blog-detail-wa'>
+                <div className='sk-topBottom-space'>
+                  <div className='Hashtag_container_title'>
+                    <span className='catagories-search'>
+                      {selectedTag ? `${selectedTag}` : null}{" "}
+                      <CancelRoundedIcon
+                        onClick={() => history.push(routingConstants.MORE_BLOG)}
+                      />
+                    </span>
+                  </div>
 
-                <div>
-                  {data?.length
-                    ? data?.map((items, index) => {
-                        if (items.id === "advertisement") {
-                          return (
-                            <>{blogDetailsBoxAds.length > 0 && renderAds()}</>
-                          );
-                        } else {
-                          return (
-                            <>
-                              <TrendingBlogsCard2
-                                image={items.image}
-                                title={items.title}
-                                id={items.id}
-                                description={`${removeHtmlTags(
-                                  items.about_blog,
-                                )}`}
-                                time={items.reading_time}
-                                date={`${items.created_at}`}
-                                category_name={items.category}
-                                color={getCategoryColor(items.category?.name)}
-                                slug={items.slug}
-                                blog_count={items.blog_count}
-                              />
-                            </>
-                          );
-                        }
-                      })
-                    : null}
-                </div>
-                <div className='sk-blogbottom-border d-flex justify-content-center align-items-center '>
-                  <button
-                    disabled={currentFeaturedData?.results?.length === 0}
-                    className='loadMore'
-                    onClick={handleLoadMoreClick}
-                  >
-                    {loading ? <WhiteCircularBar /> : `Load More`}
-                  </button>
+                  <div>
+                    {data?.length
+                      ? data?.map((items, index) => {
+                          if (items.id === "advertisement") {
+                            return (
+                              <>{blogDetailsBoxAds.length > 0 && renderAds()}</>
+                            );
+                          } else {
+                            return (
+                              <>
+                                <TrendingBlogsCard2
+                                  image={items.image}
+                                  title={items.title}
+                                  id={items.id}
+                                  description={`${removeHtmlTags(
+                                    items.about_blog,
+                                  )}`}
+                                  time={items.reading_time}
+                                  date={`${items.created_at}`}
+                                  category_name={items.category}
+                                  color={getCategoryColor(items.category?.name)}
+                                  slug={items.slug}
+                                  blog_count={items.blog_count}
+                                />
+                              </>
+                            );
+                          }
+                        })
+                      : null}
+                  </div>
+                  <div className='sk-blogbottom-border d-flex justify-content-center align-items-center '>
+                    <button
+                      disabled={currentFeaturedData?.results?.length === 0}
+                      className='loadMore'
+                      onClick={handleLoadMoreClick}
+                    >
+                      {loading ? <WhiteCircularBar /> : `Load More`}
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className='col-xl-4 col-lg-4 col-md-4 sk-Removeside-space'>
-              <HashtagAndCatagories
-                image={hash}
-                title={`Categories`}
-                // addEmail={addEmail}
-                hashtags={allHashTag}
-                rightOne={succesStoriesRight1}
-                rightTwo={succesStoriesRight2}
-              />
+              <div className='col-xl-4 col-lg-4 col-md-4 sk-Removeside-space'>
+                <HashtagAndCatagories
+                  image={hash}
+                  title={`Categories`}
+                  // addEmail={addEmail}
+                  hashtags={allHashTag}
+                  rightOne={succesStoriesRight1}
+                  rightTwo={succesStoriesRight2}
+                />
+              </div>
             </div>
           </div>
-        </div>
-      </section>
-    </div>
+        </section>
+      </div>
+    </>
   );
 };
 export default withHeaderFooter(SuccessStroyWithHashtag);

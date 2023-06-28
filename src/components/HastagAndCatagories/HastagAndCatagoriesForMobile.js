@@ -23,7 +23,7 @@ export const HashtagAndCatagoriesForMobile = (props) => {
     <div className='HashtagAndCatagories-mobile'>
       <div className='HashtagAndCatagoriesTitle-mobile'>
         <img src={image} alt='#' />
-        <h5>{title}</h5>
+        <h2>{title}</h2>
       </div>
       <div className='HashtagAndCatagoriesTitle-mobile'>
         {type === "hashtag"

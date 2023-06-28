@@ -116,7 +116,7 @@ const Navbar = (props) => {
             >
               {t("header.heading.8")}
             </a>
-            <a href='/events' className='mobile-show'>
+            <a href='/events/all' className='mobile-show'>
               {t("phase2.HEADER.events")}
             </a>
             <a href='/article' className='mobile-show'>

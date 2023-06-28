@@ -9,7 +9,7 @@ import {
   setCollapseSuccessStory,
   successStories as fetchSuccessStories,
 } from "../../store/courses/action";
-import { Header, Footer } from "../../components";
+import { Header, Footer, SEO } from "../../components";
 import "./index.scss";
 import "../../Styles/global.scss";
 import { useTranslation } from "react-i18next";
@@ -30,9 +30,11 @@ import {
   addEmailToClient,
   addHyphensToLink,
   generateSlug,
+  toasterConfig,
 } from "../../utils/utils";
 import { HashtagAndCatagoriesForMobile } from "../../components/HastagAndCatagories/HastagAndCatagoriesForMobile";
 import { WhiteCircularBar } from "../../components/Loader/WhiteCircularBar";
+import { toast } from "react-toastify";
 
 function SuccessStory() {
   const history = useHistory();
@@ -377,15 +379,9 @@ function SuccessStory() {
 
   const handleLoadMoreClick = () => {
     if (currentFeaturedData?.results?.length === 0) {
-      return; // Do not scroll if button is disabled
+      toast.warn("No more data available.", toasterConfig);
+      return; // Prevent further action
     }
-
-    // setTimeout(() => {
-    //   sectionRef.current.scrollIntoView({
-    //     behavior: "smooth",
-    //   });
-    // }, 10); // Minimal delay for rendering update
-
     setOffset(offset + 6);
   };
   const handleLoadMoreClickOnTrending = () => {
@@ -393,70 +389,73 @@ function SuccessStory() {
       return; // Do not scroll if button is disabled
     }
 
-    // setTimeout(() => {
-    //   trendingSectionRef.current.scrollIntoView({
-    //     behavior: "smooth",
-    //   });
-    // }, 10); // Minimal delay for rendering update
-
     setTrendingOffset(trendingOffset + 6);
   };
-
+  const currentUrl = window.location.href;
   return (
-    <div>
-      <Header loginPage={true} page='story' newDesign />
+    <>
+      <SEO
+        title='Sheकुंज - Success Stories'
+        description='Shekunj.com works on women empowerment and skill development by providing free training, job-oriented courses, jobs & internships and career counseling'
+        keywords='women empowerment organizations women empowerment initiative free online courses free career guidance'
+        link={currentUrl}
+        currentUrl={currentUrl}
+      />
+      <div>
+        <Header loginPage={true} page='story' newDesign />
 
-      {pageLoading ? (
-        <div>
-          <CustomLoader />
-        </div>
-      ) : (
-        <>
-          <section className='sk-storyMain-sec'>
-            <div className='container sk-custom-container'>
-              <div className='row align-items-center'>
-                <div className='col-xl-6 col-lg-6 col-md-12 col-sm-12'>
-                  <div className='sk-story-content'>
-                    <h1
-                      className='sk-storyHeading-top'
-                      dangerouslySetInnerHTML={{
-                        __html: makeHtml(
-                          t("phase2.SuccessStoryContent.title1"),
-                        ),
-                      }}
-                    />
-                    <h1
-                      className='sk-storyHeading-top'
-                      dangerouslySetInnerHTML={{
-                        __html: makeHtml(
-                          t("phase2.SuccessStoryContent.title2"),
-                        ),
-                      }}
-                    />
-                    <p>{t("phase2.SuccessStoryContent.description")}</p>
-                    <div className='my-3'>
-                      <button
-                        className='sk-allStory-btn'
-                        onClick={() =>
-                          history.push(routingConstants.ALL_SUCCESS_STORIES)
-                        }
-                      >
-                        {t("phase2.SuccessStoryContent.buttonTitle")}
-                      </button>
+        {pageLoading ? (
+          <div>
+            <CustomLoader />
+          </div>
+        ) : (
+          <>
+            <section className='sk-storyMain-sec'>
+              <div className='container sk-custom-container'>
+                <div className='row align-items-center'>
+                  <div className='col-xl-6 col-lg-6 col-md-12 col-sm-12'>
+                    <div className='sk-story-content'>
+                      <h1
+                        className='sk-storyHeading-top'
+                        dangerouslySetInnerHTML={{
+                          __html: makeHtml(
+                            t("phase2.SuccessStoryContent.title1"),
+                          ),
+                        }}
+                      />
+                      <h1
+                        className='sk-storyHeading-top'
+                        dangerouslySetInnerHTML={{
+                          __html: makeHtml(
+                            t("phase2.SuccessStoryContent.title2"),
+                          ),
+                        }}
+                      />
+                      <p>{t("phase2.SuccessStoryContent.description")}</p>
+                      <div className='my-3'>
+                        <button
+                          className='sk-allStory-btn'
+                          onClick={() =>
+                            history.push(
+                              `${routingConstants.ALL_SUCCESS_STORIES}all`,
+                            )
+                          }
+                        >
+                          {t("phase2.SuccessStoryContent.buttonTitle")}
+                        </button>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div className='col-xl-6 col-lg-6 col-md-12 col-sm-12'>
-                  <div className='sk-storyS-images'>
-                    <ul>
-                      {animationData?.map((items, index) => {
-                        return (
-                          <>
-                            <li
-                              className='sk-scale-animate'
-                              key={index}
-                              onClick={
-                                () => {
+                  <div className='col-xl-6 col-lg-6 col-md-12 col-sm-12'>
+                    <div className='sk-storyS-images'>
+                      <ul>
+                        {animationData?.map((items, index) => {
+                          return (
+                            <>
+                              <li
+                                className='sk-scale-animate'
+                                key={index}
+                                onClick={() => {
                                   const hashtagNames = items?.hash_tags.map(
                                     (tag) => tag?.slug,
                                   );
@@ -474,224 +473,218 @@ function SuccessStory() {
                                     // Handle the case when 'slug' is empty
                                     // console.log("Slug is empty. Cannot navigate.");
                                   }
-                                }
-                                // history.push(
-                                //   routingConstants.SUCCESS_STORIES +
-                                //     generateSlug(items?.hash_tags.join(" ")) +
-                                //     "/" +
-                                //     items.slug,
-                                // )
-                              }
-                            >
-                              <div className='sk-story-eimg'>
-                                <img src={items.image} alt='' />
-                                <span></span>
-                              </div>
-                              <div className='sk-story-econtent'>
-                                <div className='sk-ewoman-title'>
-                                  <p>{items.name}</p>
-                                  {/* <h6>{items.company_name}</h6> */}
+                                }}
+                              >
+                                <div className='sk-story-eimg'>
+                                  <img src={items.image} alt='' />
+                                  <span></span>
                                 </div>
-                              </div>
-                            </li>
-                          </>
-                        );
-                      })}
-                    </ul>
+                                <div className='sk-story-econtent'>
+                                  <div className='sk-ewoman-title'>
+                                    <p>{items.name}</p>
+                                    <h6>{items.designation}</h6>
+                                  </div>
+                                </div>
+                              </li>
+                            </>
+                          );
+                        })}
+                      </ul>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </section>
+            </section>
 
-          <section className='sk-successStories-sec'>
-            <div className='container sk-custom-container'>
-              <div className='row'>
-                <div className='col-xl-8 col-lg-8 col-md-12 mx-auto'>
-                  <AddsBanner
-                    color='#F4F4F4'
-                    children={
-                      <>
-                        {storiesBannerAds.length > 0 && (
-                          <div
-                            className='ads_home_cover '
-                            onClick={() =>
-                              addEmailToClient(storiesBannerAds[0]?.add_email)
-                            }
-                          >
-                            <a
-                              href={storiesBannerAds[0]?.url_adds}
-                              target='_blank'
-                              rel='noreferrer'
+            <section className='sk-successStories-sec'>
+              <div className='container sk-custom-container'>
+                <div className='row'>
+                  <div className='col-xl-8 col-lg-8 col-md-12 mx-auto'>
+                    <AddsBanner
+                      color='#F4F4F4'
+                      children={
+                        <>
+                          {storiesBannerAds.length > 0 && (
+                            <div
+                              className='ads_home_cover '
+                              onClick={() =>
+                                addEmailToClient(storiesBannerAds[0]?.add_email)
+                              }
                             >
-                              {detect.isMobile
-                                ? storiesBannerAds[0]?.image_mobile && (
-                                    <img
-                                      src={storiesBannerAds[0]?.image_mobile}
-                                      alt=''
-                                      className='ads_story_cover_img'
-                                    />
-                                  )
-                                : storiesBannerAds[0]?.image && (
-                                    <img
-                                      src={storiesBannerAds[0]?.image}
-                                      alt=''
-                                      className='ads_story_cover_img'
-                                    />
-                                  )}
-                            </a>
-                          </div>
-                        )}
-                      </>
-                    }
-                  />
+                              <a
+                                href={storiesBannerAds[0]?.url_adds}
+                                target='_blank'
+                                rel='noreferrer'
+                              >
+                                {detect.isMobile
+                                  ? storiesBannerAds[0]?.image_mobile && (
+                                      <img
+                                        src={storiesBannerAds[0]?.image_mobile}
+                                        alt=''
+                                        className='ads_story_cover_img'
+                                      />
+                                    )
+                                  : storiesBannerAds[0]?.image && (
+                                      <img
+                                        src={storiesBannerAds[0]?.image}
+                                        alt=''
+                                        className='ads_story_cover_img'
+                                      />
+                                    )}
+                              </a>
+                            </div>
+                          )}
+                        </>
+                      }
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
-          </section>
+            </section>
 
-          <section className='sk-storyBoxMain-sec'>
-            <div className='container sk-custom-container'>
-              <div className='row'>
-                <div className='col-xl-8 col-lg-8 col-md-8 featured-stories'>
-                  <div className='sk-topBottom-space'>
-                    <div className='title' ref={sectionRef}>
-                      <img src={featurestory} alt='featurestory' width={36} />
-                      <div className='sk-heading-story'>
-                        <h4>Featured Stories </h4>
-                        <h6>
-                          Recommended stories, articles and interviews on
-                          SheKunj
-                        </h6>
-                      </div>
-                    </div>
-
-                    <div className='row'>
-                      {featuredData?.map((items, index) => {
-                        if (items.id === "advertisement") {
-                          return (
-                            <>
-                              {succesStoriesBox.length > 0 &&
-                                succesStoriesBoxRenderAds()}
-                            </>
-                          );
-                        } else {
-                          return (
-                            <>
-                              <div className='col-xl-6 col-lg-6 col-md-12 col-sm-12'>
-                                <FeaturedCards
-                                  image={items.image}
-                                  hashtags={
-                                    items.hash_tags === null
-                                      ? []
-                                      : items.hash_tags
-                                  }
-                                  title={`${items.name} ${items.last_name}`}
-                                  description={`${items.title}`}
-                                  key={index}
-                                  created_at={items.created_at}
-                                  reading_time={items.reading_time}
-                                  id={items.id}
-                                  slug={items.slug}
-                                  ss_count={items.ss_count}
-                                />
-                              </div>
-                            </>
-                          );
-                        }
-                      })}
-                    </div>
-                    <div className='sk-blogbottom-border d-flex justify-content-center align-items-center py-4'>
-                      <button
-                        disabled={currentFeaturedData?.results?.length === 0}
-                        className='loadMore'
-                        onClick={handleLoadMoreClick}
-                      >
-                        {loading ? <WhiteCircularBar /> : `Load More`}
-                      </button>
-                    </div>
-
-                    <HashtagAndCatagoriesForMobile
-                      type='hashtag'
-                      image={hash}
-                      title={`Trending Hashtag`}
-                      hashtags={allHashTag}
-                    />
-
-                    <div ref={trendingSectionRef}>
-                      <div className='title'>
-                        <img src={fire} alt='fire' width={36} />
+            <section className='sk-storyBoxMain-sec'>
+              <div className='container sk-custom-container'>
+                <div className='row'>
+                  <div className='col-xl-8 col-lg-8 col-md-8 featured-stories'>
+                    <div className='sk-topBottom-space'>
+                      <div className='title' ref={sectionRef}>
+                        <img src={featurestory} alt='featurestory' width={36} />
                         <div className='sk-heading-story'>
-                          <h4>Trending Stories </h4>
-                          <h6>
-                            Read the most popular success stories on SheKunj
-                          </h6>
+                          <h2>Featured Stories </h2>
+                          <h3>
+                            Recommended stories, articles and interviews on
+                            SheKunj
+                          </h3>
                         </div>
                       </div>
 
                       <div className='row'>
-                        {trendingData?.map((items, index) => {
+                        {featuredData?.map((items, index) => {
                           if (items.id === "advertisement") {
                             return (
                               <>
-                                {succesStoriesLeft.length > 0 &&
-                                  succesStoriesLeftRenderAds()}
+                                {succesStoriesBox.length > 0 &&
+                                  succesStoriesBoxRenderAds()}
                               </>
                             );
                           } else {
                             return (
                               <>
-                                <TrendingCards
-                                  image={items.image}
-                                  hashtags={
-                                    items.hash_tags === null
-                                      ? []
-                                      : items.hash_tags
-                                  }
-                                  title={`${items.name} ${items.last_name}`}
-                                  description={`${items.title}`}
-                                  key={index}
-                                  created_at={items.created_at}
-                                  id={items.id}
-                                  slug={items.slug}
-                                  ss_count={items.ss_count}
-                                />
+                                <div className='col-xl-6 col-lg-6 col-md-12 col-sm-12'>
+                                  <FeaturedCards
+                                    image={items.image}
+                                    hashtags={
+                                      items.hash_tags === null
+                                        ? []
+                                        : items.hash_tags
+                                    }
+                                    title={`${items.name} ${items.last_name}`}
+                                    description={`${items.title}`}
+                                    key={index}
+                                    created_at={items.created_at}
+                                    reading_time={items.reading_time}
+                                    id={items.id}
+                                    slug={items.slug}
+                                    ss_count={items.ss_count}
+                                  />
+                                </div>
                               </>
                             );
                           }
                         })}
                       </div>
-                    </div>
-                    <div className='sk-blogbottom-border d-flex justify-content-center align-items-center py-4'>
-                      <button
-                        disabled={currentTrendingData?.results?.length === 0}
-                        className='loadMore'
-                        onClick={handleLoadMoreClickOnTrending}
-                      >
-                        {trendingLoading ? <WhiteCircularBar /> : `Load More`}
-                      </button>
+                      <div className='sk-blogbottom-border d-flex justify-content-center align-items-center py-4'>
+                        <button
+                          disabled={currentFeaturedData?.results?.length === 0}
+                          className='loadMore'
+                          onClick={handleLoadMoreClick}
+                        >
+                          {loading ? <WhiteCircularBar /> : `Load More`}
+                        </button>
+                      </div>
+
+                      <HashtagAndCatagoriesForMobile
+                        type='hashtag'
+                        image={hash}
+                        title={`Trending Hashtag`}
+                        hashtags={allHashTag}
+                      />
+
+                      <div ref={trendingSectionRef}>
+                        <div className='title'>
+                          <img src={fire} alt='fire' width={36} />
+                          <div className='sk-heading-story'>
+                            <h2>Trending Stories </h2>
+                            <h3>
+                              Read the most popular success stories on SheKunj
+                            </h3>
+                          </div>
+                        </div>
+
+                        <div className='row'>
+                          {trendingData?.map((items, index) => {
+                            if (items.id === "advertisement") {
+                              return (
+                                <>
+                                  {succesStoriesLeft.length > 0 &&
+                                    succesStoriesLeftRenderAds()}
+                                </>
+                              );
+                            } else {
+                              return (
+                                <>
+                                  <TrendingCards
+                                    image={items.image}
+                                    hashtags={
+                                      items.hash_tags === null
+                                        ? []
+                                        : items.hash_tags
+                                    }
+                                    title={`${items.name} ${items.last_name}`}
+                                    description={`${items.title}`}
+                                    key={index}
+                                    created_at={items.created_at}
+                                    id={items.id}
+                                    slug={items.slug}
+                                    ss_count={items.ss_count}
+                                  />
+                                </>
+                              );
+                            }
+                          })}
+                        </div>
+                      </div>
+                      <div className='sk-blogbottom-border d-flex justify-content-center align-items-center py-4'>
+                        <button
+                          disabled={currentTrendingData?.results?.length === 0}
+                          className='loadMore'
+                          onClick={handleLoadMoreClickOnTrending}
+                        >
+                          {trendingLoading ? <WhiteCircularBar /> : `Load More`}
+                        </button>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div className='col-xl-4 col-md-4 col-lg-4 col-sm-12 ads sk-Removeside-space'>
-                  <HashtagAndCatagories
-                    type='hashtag'
-                    image={hash}
-                    title={`Trending Hashtag`}
-                    // addEmail={addEmail}
-                    hashtags={allHashTag}
-                    rightOne={succesStoriesRight1}
-                    rightTwo={succesStoriesRight2}
-                  />
+                  <div className='col-xl-4 col-md-4 col-lg-4 col-sm-12 ads sk-Removeside-space'>
+                    <HashtagAndCatagories
+                      type='hashtag'
+                      image={hash}
+                      title={`Trending Hashtag`}
+                      // addEmail={addEmail}
+                      hashtags={allHashTag}
+                      rightOne={succesStoriesRight1}
+                      rightTwo={succesStoriesRight2}
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
-          </section>
-        </>
-      )}
+            </section>
+          </>
+        )}
 
-      <Footer newDesign />
-    </div>
+        <Footer newDesign />
+      </div>
+    </>
   );
 }
 

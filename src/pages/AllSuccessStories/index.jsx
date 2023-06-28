@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./index.scss";
 import "../Search/index.scss";
+import storyimg from "../../assets/images/storyviewall.png";
 import { withHeaderFooter } from "../../hocs/withHeaderFooter";
 import { apiConstants } from "../../utils/constants";
 import httpServices from "../../utils/ApiServices";
@@ -11,14 +12,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { adsList } from "../../store/ads";
 import EastRoundedIcon from "@mui/icons-material/EastRounded";
 import WestRoundedIcon from "@mui/icons-material/WestRounded";
+import { useParams, useHistory } from "react-router-dom";
 import useDeviceDetect from "../../hooks/useDeviceDetect";
 import { CustomLoader } from "../../components/customLoader/CustomLoader";
 import ExpandMoreRoundedIcon from "@mui/icons-material/ExpandMoreRounded";
 import KeyboardArrowUpRoundedIcon from "@mui/icons-material/KeyboardArrowUpRounded";
+import { NoDataFound } from "../../components/noDataFound/NoDataFound";
+import { SEO } from "../../components";
 
 const AllSuccessStory = () => {
   const dispatch = useDispatch();
   const detect = useDeviceDetect();
+  const { hashtag } = useParams();
+  const history = useHistory();
 
   const { lan } = useSelector((state) => state.languageReducer);
 
@@ -27,7 +33,7 @@ const AllSuccessStory = () => {
   const [loading, setLoading] = useState(false);
   const [allHashTag, setAllHashTag] = useState([]);
   const [succesStoriesBox, setSuccesStoriesBox] = useState([]);
-  const [activeTab, setActiveTab] = useState("All");
+  const [activeTab, setActiveTab] = useState("all");
   const [currentPage, setCurrentPage] = useState(1);
   const [startPage, setStartPage] = useState(1);
   const [showAll, setShowAll] = useState(false);
@@ -54,6 +60,8 @@ const AllSuccessStory = () => {
           }
         }
         setAllSuccessStoriesData(() => [...newFeaturedData]);
+      } else {
+        setAllSuccessStoriesData([]);
       }
       setAllHashTag(all_hash_tags);
       setPaginationCount(all_success_stories);
@@ -102,10 +110,10 @@ const AllSuccessStory = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        if (activeTab === "All") {
+        if (hashtag === "all") {
           await getAllSuccessStoryData(pageLimit, offset);
         } else {
-          await getAllSuccessStoryData(pageLimit, offset, activeTab);
+          await getAllSuccessStoryData(pageLimit, offset, hashtag);
         }
       } catch (error) {
         // Handle error
@@ -113,7 +121,7 @@ const AllSuccessStory = () => {
     };
 
     fetchData();
-  }, [offset, lan, activeTab]);
+  }, [offset, lan, hashtag]);
 
   useEffect(() => {
     dispatch(adsList());
@@ -197,143 +205,170 @@ const AllSuccessStory = () => {
   const handleToggleView = () => {
     setShowAll((prevShowAll) => !prevShowAll);
   };
+  const handleHashtagOnclick = (option) => {
+    setCurrentPage(1);
+    setOffset(0);
+    setActiveTab(option);
+    const path = `/inspiring-stories-of-women/${option}`;
+    history.push(path);
+  };
+  const handleAllOnclick = (option) => {
+    setActiveTab(option);
+    const path = `/inspiring-stories-of-women/${option}`;
+    history.push(path);
+  };
 
   const renderedHashtags = showAll ? allHashTag : allHashTag.slice(0, 4);
-
+  const currentUrl = window.location.href;
   return (
-    <div>
-      <section className='sk-search-sec'>
-        <div className='container sk-custom-container'>
-          <div className='row'>
-            <div className='col-xl-11 mx-auto'>
-              <div className='sk-content-sec'>
-                <div className='sk-title-heading mb-4'>
-                  <h1>
-                    Inspiring Stories of <span>Women</span>
-                  </h1>
-                  <p>
-                    Success stories at SheKunj focus on sharing captivating
-                    stories of inspiring women, encompassing diverse roles,
-                    including homemakers, athletes, leaders, artists, activists,
-                    professionals, and entrepreneurs, aiming to uplift and
-                    motivate individuals from all walks of life.
-                  </p>
-                </div>
-                <div class='sk-category mb-0'>
-                  <ul>
-                    <li>
-                      <a
-                        onClick={() => setActiveTab("All")}
-                        className={activeTab === "All" && "active-time"}
-                      >
-                        All
-                      </a>
-                    </li>
-                    {renderedHashtags.map((item) => (
-                      <li key={item}>
+    <>
+      <SEO
+        title='Sheकुंज -  Inspiring Stories of Women'
+        link={currentUrl}
+        currentUrl={currentUrl}
+        keywords='women empowerment organizations, free online courses in india, free career guidance'
+        description='Shekunj.com works for women empowerment by providing free online certification courses, 
+      career guidance, job and internship opportunities across India.'
+      />
+
+      <div>
+        <section className='sk-search-sec'>
+          <div className='container sk-custom-container'>
+            <div className='row'>
+              <div className='col-xl-11 mx-auto'>
+                <div className='sk-content-sec'>
+                  <div className='sk-title-heading mb-4'>
+                    <h1>
+                      Inspiring Stories of <span>Women</span>
+                    </h1>
+                    <p>
+                      Success stories at SheKunj focus on sharing captivating
+                      stories of inspiring women, encompassing diverse roles,
+                      including homemakers, athletes, leaders, artists,
+                      activists, professionals, and entrepreneurs, aiming to
+                      uplift and motivate individuals from all walks of life.
+                    </p>
+                  </div>
+                  <div class='sk-category mb-0'>
+                    <ul>
+                      <li>
                         <a
-                          onClick={() => {
-                            setCurrentPage(1);
-                            setOffset(0);
-                            setActiveTab(item.name);
-                          }}
-                          className={activeTab === item.name && "active-time"}
+                          onClick={() => handleAllOnclick("all")}
+                          className={hashtag === "all" && "active-time"}
                         >
-                          {`#${item.name}`}
+                          All
                         </a>
                       </li>
-                    ))}
-                    {allHashTag.length > 4 && (
-                      <li
-                        className='hashtags-item-view'
-                        onClick={handleToggleView}
-                      >
-                        <a>
-                          {showAll ? "View Less " : "View All "}
-                          {showAll ? (
-                            <KeyboardArrowUpRoundedIcon />
-                          ) : (
-                            <ExpandMoreRoundedIcon />
-                          )}
-                        </a>
-                      </li>
-                    )}
-                  </ul>
+                      {renderedHashtags.map((item) => (
+                        <li key={item}>
+                          <a
+                            onClick={() => handleHashtagOnclick(item.slug)}
+                            className={hashtag === item.slug && "active-time"}
+                          >
+                            {`#${item.name}`}
+                          </a>
+                        </li>
+                      ))}
+                      {allHashTag.length > 4 && (
+                        <li
+                          className='hashtags-item-view'
+                          onClick={handleToggleView}
+                        >
+                          <a>
+                            {showAll ? "View Less " : "View All "}
+                            {showAll ? (
+                              <KeyboardArrowUpRoundedIcon />
+                            ) : (
+                              <ExpandMoreRoundedIcon />
+                            )}
+                          </a>
+                        </li>
+                      )}
+                    </ul>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
-      <section className='sk-storyBoxMain-sec sk-allstory-sec'>
-        <div className='container sk-custom-container'>
-          <div className='row'>
-            {loading ? (
-              <CustomLoader />
-            ) : (
-              allSuccessStoriesData?.map((items, index) => {
-                if (items.id === "advertisement") {
-                  return (
-                    <>
-                      {succesStoriesBox.length > 0 &&
-                        succesStoriesBoxRenderAds()}
-                    </>
-                  );
-                } else {
-                  return (
-                    <>
-                      <div className='col-xl-4 col-lg-4 col-md-6 col-sm-6'>
-                        <FeaturedCards
-                          image={items.image}
-                          hashtags={
-                            items.hash_tags === null ? [] : items.hash_tags
-                          }
-                          title={items.name}
-                          description={`${items.title}`}
-                          key={index}
-                          created_at={items.created_at}
-                          reading_time={items.reading_time}
-                          id={items.id}
-                          slug={items.slug}
-                          ss_count={items.ss_count}
-                        />
-                      </div>
-                    </>
-                  );
-                }
-              })
-            )}
-            <div className='col-xl-12'>
-              <div className='sk-pagination pagination'>
-                <span
-                  className='sk-prevnext-btn'
-                  onClick={previousPage}
-                  disabled={startPage === 1}
-                >
-                  <WestRoundedIcon />
-                </span>
-                {visiblePages.map((pageNumber) => (
-                  <button
-                    key={pageNumber}
-                    onClick={() => handleClick(pageNumber)}
-                    className={currentPage === pageNumber ? "active" : ""}
-                  >
-                    {pageNumber}
-                  </button>
-                ))}
-                <span
-                  className='sk-prevnext-btn'
-                  onClick={nextPage}
-                  disabled={startPage + 3 >= totalPages}
-                >
-                  <EastRoundedIcon />
-                </span>
+          <div className='sk-viewall-img'>
+            <img src={storyimg} alt='storyimg' />
+          </div>
+        </section>
+        <section className='sk-storyBoxMain-sec sk-allstory-sec'>
+          <div className='container sk-custom-container'>
+            <div className='row'>
+              {loading ? (
+                <CustomLoader />
+              ) : allSuccessStoriesData.length > 0 ? (
+                allSuccessStoriesData.map((items, index) => {
+                  if (items.id === "advertisement") {
+                    return (
+                      <>
+                        {succesStoriesBox.length > 0 &&
+                          succesStoriesBoxRenderAds()}
+                      </>
+                    );
+                  } else {
+                    return (
+                      <>
+                        <div className='col-xl-4 col-lg-4 col-md-6 col-sm-6'>
+                          <FeaturedCards
+                            image={items.image}
+                            hashtags={
+                              items.hash_tags === null ? [] : items.hash_tags
+                            }
+                            title={items.name}
+                            description={`${items.title}`}
+                            key={index}
+                            created_at={items.created_at}
+                            reading_time={items.reading_time}
+                            id={items.id}
+                            slug={items.slug}
+                            ss_count={items.ss_count}
+                          />
+                        </div>
+                      </>
+                    );
+                  }
+                })
+              ) : (
+                <NoDataFound />
+              )}
+
+              <div className='col-xl-12'>
+                {allSuccessStoriesData.length ? (
+                  <div className='sk-pagination pagination'>
+                    <span
+                      className='sk-prevnext-btn'
+                      onClick={previousPage}
+                      disabled={startPage === 1}
+                    >
+                      <WestRoundedIcon />
+                    </span>
+                    {visiblePages.map((pageNumber) => (
+                      <button
+                        key={pageNumber}
+                        onClick={() => handleClick(pageNumber)}
+                        className={currentPage === pageNumber ? "active" : ""}
+                      >
+                        {pageNumber}
+                      </button>
+                    ))}
+                    <span
+                      className='sk-prevnext-btn'
+                      onClick={nextPage}
+                      disabled={startPage + 3 >= totalPages}
+                    >
+                      <EastRoundedIcon />
+                    </span>
+                  </div>
+                ) : null}
               </div>
             </div>
           </div>
-        </div>
-      </section>
-    </div>
+        </section>
+      </div>
+    </>
   );
 };
 

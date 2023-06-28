@@ -239,171 +239,179 @@ const BlogDetails = () => {
   const getCategoryColor = assignColorToCategory(namesArray);
 
   return (
-    <div>
+    <>
       <SEO
-        title={blogs?.meta_title}
+        title={blogs?.meta_title ? blogs?.meta_title : blogs?.title}
         description={blogs?.meta_description}
         keywords={blogs?.meta_keywords}
         image={blogs?.image}
         currentUrl={currentUrl}
-        link={blogs?.canonical_tags}
+        link={blogs?.canonical_tags ? blogs?.canonical_tags : currentUrl}
       />
-      {loading ? (
-        <div>
-          <CustomLoader />
-        </div>
-      ) : (
-        <section className='sk-block-details'>
-          <div className='container sk-custom-container'>
-            <div className='row'>
-              <div className='col-xl-8 col-lg-8 col-md-8'>
-                <div className='sk-topBottom-space'>
-                  <img src={blogs?.image} alt='Story' className='img' />
-                  <div className='story-bottom'>
-                    <div className='hashtags-container'>
-                      <div className='sk-bdetail-chip'>
-                        <span
-                          style={{
-                            background: `${getCategoryColor(
-                              blogs?.category?.name,
-                            )}`,
-                          }}
-                        >
-                          {blogs?.category?.name}
-                        </span>
+      <div>
+        {loading ? (
+          <div>
+            <CustomLoader />
+          </div>
+        ) : (
+          <section className='sk-block-details'>
+            <div className='container sk-custom-container'>
+              <div className='row'>
+                <div className='col-xl-8 col-lg-8 col-md-8'>
+                  <div className='sk-topBottom-space'>
+                    <img src={blogs?.image} alt='Story' className='img' />
+                    <div className='story-bottom'>
+                      <div className='hashtags-container'>
+                        <div className='sk-bdetail-chip'>
+                          <span
+                            style={{
+                              background: `${getCategoryColor(
+                                blogs?.category?.name,
+                              )}`,
+                            }}
+                          >
+                            {blogs?.category?.name}
+                          </span>
+                        </div>
+                        <div class='sk-blokTVE-icon'>
+                          <span>
+                            <AccessTimeIcon />
+                            {`${blogs?.created_at}`}
+                          </span>
+                          <span>
+                            <MenuBookRoundedIcon /> {blogs?.reading_time}
+                          </span>
+                          <span>
+                            <VisibilityOutlinedIcon /> {blogs?.blog_count}
+                          </span>
+                        </div>
                       </div>
-                      <div class='sk-blokTVE-icon'>
-                        <span>
-                          <AccessTimeIcon />
-                          {`${blogs?.created_at}`}
-                        </span>
-                        <span>
-                          <MenuBookRoundedIcon /> {blogs?.reading_time}
-                        </span>
-                        <span>
-                          <VisibilityOutlinedIcon /> {blogs?.blog_count}
-                        </span>
+                      <div className='sk-social-icon sk-mobile-view'>
+                        <h6>Share this article</h6>
+                        <SocialShare
+                          currentUrl={currentUrl}
+                          title={blogs?.title}
+                          image={blogs?.image}
+                        />
                       </div>
                     </div>
-                    <div className='sk-social-icon sk-mobile-view'>
-                      <h6>Share this article</h6>
-                      <SocialShare
-                        currentUrl={currentUrl}
-                        title={blogs?.title}
-                        image={blogs?.image}
-                      />
+                    <h1 className='sk-headingblog-title'>{blogs?.title}</h1>
+                    <div
+                      className='sk-blogDetails-content'
+                      dangerouslySetInnerHTML={{
+                        __html: makeHtmlWithStyles(`${blogs?.about_blog}`),
+                      }}
+                    />
+                    {/* Hides the backend <h1>  <h2/> for seo <element */}
+                    <h1 style={{ display: "none" }}>{blogs?.h1_name}</h1>
+                    <h2 style={{ display: "none" }}>{blogs?.h2_heading}</h2>
+                    {/* Hides the backend <h1>  <h2/> for seo <element */}
+                    <div className='sk-blogS-category'>
+                      <div className='sk-social-icon pb-3'>
+                        <h6 className='text-left'>Share this article</h6>
+                        <SocialShare
+                          currentUrl={currentUrl}
+                          title={blogs?.title}
+                          image={blogs?.image}
+                        />
+                      </div>
+                      <div className='catagorie_search_container'>
+                        {blogs?.tags?.length
+                          ? blogs?.tags.map((items) => {
+                              return (
+                                <span
+                                  key={items?.id}
+                                  className='catagorie_search'
+                                  onClick={() =>
+                                    history.push(
+                                      `${routingConstants.MORE_BLOG_TAGS}/${items?.slug}`,
+                                      items,
+                                    )
+                                  }
+                                >
+                                  {items?.name}
+                                </span>
+                              );
+                            })
+                          : null}
+                      </div>
                     </div>
-                  </div>
-                  <h1 className='sk-headingblog-title'>{blogs?.title}</h1>
-                  <div
-                    className='sk-blogDetails-content'
-                    dangerouslySetInnerHTML={{
-                      __html: makeHtmlWithStyles(`${blogs?.about_blog}`),
-                    }}
-                  />
-                  <div className='sk-blogS-category'>
-                    <div className='sk-social-icon pb-3'>
-                      <h6 className='text-left'>Share this article</h6>
-                      <SocialShare
-                        currentUrl={currentUrl}
-                        title={blogs?.title}
-                        image={blogs?.image}
-                      />
+                    <HashtagAndCatagoriesForMobile
+                      image={hash}
+                      title={`Categories`}
+                      hashtags={blogCategories}
+                    />
+                    <div className='title' ref={trendingSectionRef}>
+                      <img src={discoverblog} alt='discoverblog' width={36} />
+                      <div className='sk-heading-story'>
+                        <h2 className='mb-0'>Discover More Articles</h2>
+                        <h3>
+                          Explore more articles, news and trends on SheKunj
+                        </h3>
+                      </div>
                     </div>
-                    <div className='catagorie_search_container'>
-                      {blogs?.tags?.length
-                        ? blogs?.tags.map((items) => {
-                            return (
-                              <span
-                                key={items?.id}
-                                className='catagorie_search'
-                                onClick={() =>
-                                  history.push(
-                                    `${routingConstants.MORE_BLOG_TAGS}/${items?.slug}`,
-                                    items,
-                                  )
-                                }
-                              >
-                                {items?.name}
-                              </span>
-                            );
-                          })
-                        : null}
-                    </div>
-                  </div>
-                  <HashtagAndCatagoriesForMobile
-                    image={hash}
-                    title={`Categories`}
-                    hashtags={blogCategories}
-                  />
-                  <div className='title' ref={trendingSectionRef}>
-                    <img src={discoverblog} alt='discoverblog' width={36} />
-                    <div className='sk-heading-story'>
-                      <h4>Discover More Articles</h4>
-                      <h6>Explore more articles, news and trends on SheKunj</h6>
-                    </div>
-                  </div>
-                  <div className='sk-blogMain-inner'>
-                    {trendingBlogs?.map((items, index) => {
-                      if (items.id === "advertisement") {
-                        return (
-                          <>{blogLeft.length > 0 && blogLeftRenderAds()}</>
-                        );
-                      } else {
-                        return (
-                          <>
-                            <TrendingBlogsCard2
-                              image={items.image}
-                              title={items.title}
-                              id={items.id}
-                              description={`${removeHtmlTags(
-                                items.about_blog,
-                              )}`}
-                              time={items.reading_time}
-                              date={`${items.created_at}`}
-                              category_name={items.category}
-                              color={getCategoryColor(items.category?.name)}
-                              blog_count={items.blog_count}
-                              slug={items.slug}
-                            />
-                          </>
-                        );
-                      }
-                    })}
-                    <div className='d-flex justify-content-center align-items-center py-4'>
-                      <button
-                        className='loadMore'
-                        onClick={() => {
-                          setTrendingOffset(trendingOffset + 6);
-                          // trendingSectionRef.current.scrollIntoView({
-                          //   behavior: "smooth",
-                          // });
-                        }}
-                        disabled={
-                          currentTrendingBlogData?.results?.length === 0
+                    <div className='sk-blogMain-inner'>
+                      {trendingBlogs?.map((items, index) => {
+                        if (items.id === "advertisement") {
+                          return (
+                            <>{blogLeft.length > 0 && blogLeftRenderAds()}</>
+                          );
+                        } else {
+                          return (
+                            <>
+                              <TrendingBlogsCard2
+                                image={items.image}
+                                title={items.title}
+                                id={items.id}
+                                description={`${removeHtmlTags(
+                                  items.about_blog,
+                                )}`}
+                                time={items.reading_time}
+                                date={`${items.created_at}`}
+                                category_name={items.category}
+                                color={getCategoryColor(items.category?.name)}
+                                blog_count={items.blog_count}
+                                slug={items.slug}
+                              />
+                            </>
+                          );
                         }
-                      >
-                        Explore More
-                      </button>
+                      })}
+                      <div className='d-flex justify-content-center align-items-center py-4'>
+                        <button
+                          className='loadMore'
+                          onClick={() => {
+                            setTrendingOffset(trendingOffset + 6);
+                            // trendingSectionRef.current.scrollIntoView({
+                            //   behavior: "smooth",
+                            // });
+                          }}
+                          disabled={
+                            currentTrendingBlogData?.results?.length === 0
+                          }
+                        >
+                          Explore More
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div className='col-xl-4 col-lg-4 col-md-4 sk-Removeside-space'>
-                <HashtagAndCatagories
-                  image={hash}
-                  title={`Categories`}
-                  // addEmail={addEmail}
-                  hashtags={blogCategories}
-                  rightOne={succesStoriesRight1}
-                  rightTwo={succesStoriesRight2}
-                />
+                <div className='col-xl-4 col-lg-4 col-md-4 sk-Removeside-space'>
+                  <HashtagAndCatagories
+                    image={hash}
+                    title={`Categories`}
+                    // addEmail={addEmail}
+                    hashtags={blogCategories}
+                    rightOne={succesStoriesRight1}
+                    rightTwo={succesStoriesRight2}
+                  />
+                </div>
               </div>
             </div>
-          </div>
-        </section>
-      )}
-    </div>
+          </section>
+        )}
+      </div>
+    </>
   );
 };
 
