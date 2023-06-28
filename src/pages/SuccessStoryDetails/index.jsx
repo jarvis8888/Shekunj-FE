@@ -367,7 +367,7 @@ const SuccessStoryDetails = () => {
                         {successStoriesDetails?.title}
                       </h2>
                       <div
-                        className=''
+                        className='sk-successStoriesDetails'
                         dangerouslySetInnerHTML={{
                           __html: makeHtmlWithStyles(
                             `${successStoriesDetails?.description}`,
