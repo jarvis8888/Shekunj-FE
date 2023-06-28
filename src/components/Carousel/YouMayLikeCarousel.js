@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState } from "react";
 import { useHistory } from "react-router-dom";
 import photo from "../../assets/icons/svgs/exphoto.png";
 import httpServices from "../../utils/ApiServices";
+import KeyboardArrowLeftRoundedIcon from '@mui/icons-material/KeyboardArrowLeftRounded';
+import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded';
 import like_icon from "../../assets/images/likestory.svg";
 import "./YouMayLikeCarousel.scss";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
@@ -62,7 +64,7 @@ const YouMayLikeCarousel = () => {
           className='YouMayLikeCarouselCarousel__button YouMayLikeCarouselCarousel--left'
           onClick={goToPrevSlide}
         >
-          &#8249;
+          <KeyboardArrowLeftRoundedIcon fontSize="medium" />
         </button>
 
         <div className='YouMayLikeCarouselCarousel__nav'>
@@ -84,7 +86,7 @@ const YouMayLikeCarousel = () => {
           className='YouMayLikeCarouselCarousel__button YouMayLikeCarouselCarousel--right'
           onClick={goToNextSlide}
         >
-          &#8250;
+           <KeyboardArrowRightRoundedIcon fontSize="medium" />
         </button>
       </div>
       <div className='YouMayLikeCarousel__bottom__title'>
