@@ -302,6 +302,10 @@ const BlogDetails = () => {
                         __html: makeHtmlWithStyles(`${blogs?.about_blog}`),
                       }}
                     />
+                    {/* Hides the backend <h1>  <h2/> for seo <element */}
+                    <h1 style={{ display: "none" }}>{blogs?.h1_name}</h1>
+                    <h2 style={{ display: "none" }}>{blogs?.h2_heading}</h2>
+                    {/* Hides the backend <h1>  <h2/> for seo <element */}
                     <div className='sk-blogS-category'>
                       <div className='sk-social-icon pb-3'>
                         <h6 className='text-left'>Share this article</h6>

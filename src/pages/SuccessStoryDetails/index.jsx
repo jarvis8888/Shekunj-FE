@@ -374,6 +374,14 @@ const SuccessStoryDetails = () => {
                           ),
                         }}
                       />
+                      {/* Hides the backend <h1>  <h2/> for seo <element */}
+                      <h1 style={{ display: "none" }}>
+                        {successStoriesDetails?.h1_name}
+                      </h1>
+                      <h2 style={{ display: "none" }}>
+                        {successStoriesDetails?.h2_heading}
+                      </h2>
+                      {/* Hides the backend <h1>  <h2/> for seo <element */}
 
                       <div className='my-4'>
                         <div className='sk-social-icon'>
