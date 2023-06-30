@@ -51,8 +51,28 @@
   border-left: 6px solid #d3317d;
   background-color: #fff8fb;
 }
-.sk-blogDetails-content blockquote p{
+.sk-blogDetails-content blockquote p {
   margin-bottom: 0;
+}
+.sk-blogDetails-content ul {
+  padding: 0;
+  list-style: none;
+}
+
+.sk-blogDetails-content ul li {
+  position: relative;
+  padding-left: 18px;
+}
+
+.sk-blogDetails-content ul li:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 5px;
+  margin: auto;
+  width: 8px;
+  height: 8px;
+  background: #d3317d;
 }
 .sk-block-details {
   .img {

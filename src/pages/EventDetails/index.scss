@@ -453,8 +453,28 @@ img {
   border-left: 6px solid #d3317d;
   background: #fff8fb;
 }
-.sk-card-description blockquote p{
+.sk-card-description blockquote p {
   margin-bottom: 0;
+}
+.sk-card-description ul {
+  padding: 0;
+  list-style: none;
+}
+
+.sk-card-description ul li {
+  position: relative;
+  padding-left: 18px;
+}
+
+.sk-card-description ul li:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 5px;
+  margin: auto;
+  width: 8px;
+  height: 8px;
+  background: #d3317d;
 }
 .css-1lizpae-MuiImageListItemBar-titleWrap {
   padding: 65px 16px;
