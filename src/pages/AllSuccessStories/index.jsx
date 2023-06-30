@@ -38,7 +38,7 @@ const AllSuccessStory = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [startPage, setStartPage] = useState(1);
   const [showAll, setShowAll] = useState(false);
-  const [dynamicBackgroundImage, setDynamicBackgroundImage] = useState(banner);
+  const [dynamicBackgroundImage, setDynamicBackgroundImage] = useState();
 
   const [offset, setOffset] = useState(0);
   const pageLimit = 7;
@@ -241,7 +241,9 @@ const AllSuccessStory = () => {
   const currentUrl = window.location.href;
 
   const styles = {
-    background: `url(${dynamicBackgroundImage}) no-repeat center center`,
+    background: dynamicBackgroundImage
+      ? `url(${dynamicBackgroundImage}) no-repeat center center`
+      : `url(${banner}) no-repeat center center`,
     backgroundSize: "cover",
     position: "relative",
     padding: "60px 0 60px",
@@ -317,7 +319,9 @@ const AllSuccessStory = () => {
             </div>
           </div>
           <div className='sk-viewall-img'>
-            {/* <img src={storyimg} alt='storyimg' /> */}
+            {dynamicBackgroundImage ? null : (
+              <img src={storyimg} alt='storyimg' />
+            )}
           </div>
         </section>
         <section className='sk-storyBoxMain-sec sk-allstory-sec'>

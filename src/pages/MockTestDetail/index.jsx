@@ -83,7 +83,7 @@ function MockTestDetail() {
   const target = useRef(null);
 
   const { id } = useParams();
-  console.log("MockTestIdddd", id);
+
   const history = useHistory();
   const dispatch = useDispatch();
   const detect = useDeviceDetect();
@@ -289,7 +289,7 @@ function MockTestDetail() {
     if (answer) {
       dispatch(
         // postAnswer(data, history, selectedCourseCategoryValue?.id, true),
-        postAnswer(data, history, id, true),
+        postAnswer(data, history, guidanceCategory?.id, true),
       );
       setAnswer("");
     } else {
