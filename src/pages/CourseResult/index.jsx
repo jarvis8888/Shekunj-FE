@@ -10,16 +10,39 @@ import win from "../../assets/images/Courses/win.png";
 import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { testResult } from "../../store/courses/action";
-import { routingConstants } from "../../utils/constants";
+import { apiConstants, routingConstants } from "../../utils/constants";
 import { useTranslation } from "react-i18next";
+import httpServices from "../../utils/ApiServices";
 
 function CourseTest() {
   const { id } = useParams();
   const { t } = useTranslation();
   const dispatch = useDispatch();
+  const [slug, setSlug] = React.useState();
 
   const { result } = useSelector((state) => state.coursesReducer);
   const { lan } = useSelector((state) => state.languageReducer);
+
+  const allCourses = async () => {
+    try {
+      const data = await httpServices.get(
+        `${apiConstants.COURSES.COURSE_LIST}?limit=100`,
+      );
+
+      if (data?.results?.length) {
+        let filterArray1 = data?.results.filter((item, index) => {
+          return item.id == id; //don`t make === because the type checking we dont need
+        });
+        setSlug(filterArray1[0]?.slug);
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+    }
+  };
+  React.useEffect(() => {
+    allCourses();
+  }, [id]);
 
   React.useEffect(() => {
     if (id) {
@@ -150,7 +173,7 @@ function CourseTest() {
                 </button>
               </Link> */}
               {!result?.is_pass && (
-                <Link to={routingConstants.COURSE_DETAILS + id}>
+                <Link to={routingConstants.COURSE_DETAILS + slug}>
                   <button className='get_certif'>
                     {t("coursesPage.coursesResultPage.button.2")}
                   </button>

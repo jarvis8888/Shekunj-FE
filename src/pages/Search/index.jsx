@@ -34,7 +34,7 @@ const GlobalSearch = () => {
   const [onSearchInput, setOnSearchInput] = useState("");
   const [inputFocused, setInputFocused] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(-1);
-  const [dynamicBackgroundImage, setDynamicBackgroundImage] = useState(banner);
+  const [dynamicBackgroundImage, setDynamicBackgroundImage] = useState();
 
   const auto_suggessions = useDebounce(onSearchInput);
 
@@ -297,7 +297,9 @@ const GlobalSearch = () => {
           </div>
         </div>
         <div className='sk-viewall-img'>
-          {/* <img src={storyimg} alt="storyimg" /> */}
+          {dynamicBackgroundImage ? null : (
+            <img src={storyimg} alt='storyimg' />
+          )}
         </div>
       </section>
       <GlobalSearchCard

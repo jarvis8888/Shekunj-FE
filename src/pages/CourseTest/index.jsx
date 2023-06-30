@@ -29,7 +29,7 @@ import {
   testCountSummery,
 } from "../../store/courses/action";
 import { styled } from "@mui/material/styles";
-import { routingConstants } from "../../utils/constants";
+import { apiConstants, routingConstants } from "../../utils/constants";
 import { useTranslation } from "react-i18next";
 
 const IOSSlider = styled(Slider)(({ theme }) => ({
@@ -56,6 +56,8 @@ function CourseTest() {
   const [answer, setAnswer] = React.useState();
   const [showTimer, setShowTimer] = React.useState(false);
   const [timer, setTimer] = React.useState();
+  
+  
 
   const [check1, setCheck1] = React.useState(false);
   const [check2, setCheck2] = React.useState(false);
@@ -72,6 +74,8 @@ function CourseTest() {
   const { question, questionCount, isLoading } = useSelector(
     (state) => state.coursesReducer,
   );
+
+ 
   useEffect(() => {
     setQuestionNumber(questionCount.user_course_test_count + 1);
   }, [questionCount]);
@@ -109,7 +113,7 @@ function CourseTest() {
     };
   }, [dispatch, id]);
 
-  useEffect(()=>{
+  useEffect(() => {
     setShowExitPrompt(true);
     // if(showExitPrompt){
     // setShowExitPrompt(false);
@@ -118,7 +122,7 @@ function CourseTest() {
     //    history.push(routingConstants.CAREER_TEST_RESULT + 16);
     // }
     localStorage.setItem("NeedToRelaod", "YES");
-  },[])
+  }, []);
 
   // useEffect(() => {
   //   window.addEventListener("keydown", (e) => {
@@ -221,7 +225,7 @@ function CourseTest() {
     }
   };
 
-  const handleFinishQuestion = () => {    
+  const handleFinishQuestion = () => {
     setShowExitPrompt(true);
     const data = {
       answer,
@@ -259,7 +263,7 @@ function CourseTest() {
     );
   };
 
-  const handleTestFinished = () => {   
+  const handleTestFinished = () => {
     dispatch(endTest(id));
     toast.error(t("error.other.2"));
     history.push(routingConstants.COURSES_RESULT + id);
