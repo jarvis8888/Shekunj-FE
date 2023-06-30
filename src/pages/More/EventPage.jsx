@@ -483,16 +483,17 @@ function EventPage() {
                                       {items.mode_of_event === "offline" ? (
                                         <>
                                           {" "}
-                                          <img src={offlineicon} alt='' />{" "}
+                                          <span><img src={offlineicon} alt='' /></span> {" "}
                                           Offline{" "}
                                         </>
                                       ) : (
                                         <>
                                           {" "}
+                                          <span>
                                           <img
                                             src={onlineicon}
                                             alt=''
-                                          /> Online{" "}
+                                          /> </span> Online{" "}
                                         </>
                                       )}
                                     </li>

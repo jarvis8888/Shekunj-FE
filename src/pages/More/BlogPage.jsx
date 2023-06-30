@@ -380,7 +380,7 @@ function BlogPage() {
                   <div className='col-xl-4 col-md-4 col-lg-4'>
                     <div className='sk-blog-sidebar'>
                       <div className='title mb-4'>
-                        <img src={fire} alt='fire' width={36} />
+                        <div><img src={fire} alt='fire' width={36} /></div>
                         <div className='sk-heading-story'>
                           <h2>Trending Articles</h2>
                           <h3>Popular articles, news and trends on SheKunj</h3>
@@ -470,7 +470,7 @@ function BlogPage() {
                     <div className='sk-topBottom-space'>
                       <div className='blog-stories'>
                         <div className='title'>
-                          <img src={latestblog} alt='latestblog' width={36} />
+                        <div><img src={latestblog} alt='latestblog' width={36} /></div>
                           <div className='sk-heading-story'>
                             <h2>Latest Article</h2>
                             <h3>
@@ -576,7 +576,7 @@ function BlogPage() {
                         hashtags={blogsCategories}
                       />
                       <div className='title'>
-                        <img src={discoverblog} alt='discoverblog' width={36} />
+                        <div><img src={discoverblog} alt='discoverblog' width={36} /></div>
                         <div className='sk-heading-story'>
                           <h2 className='mb-0'>Discover More Articles</h2>
                           <h3>

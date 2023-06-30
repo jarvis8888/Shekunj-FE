@@ -553,7 +553,7 @@ function SuccessStory() {
                   <div className='col-xl-8 col-lg-8 col-md-8 featured-stories'>
                     <div className='sk-topBottom-space'>
                       <div className='title'>
-                        <img src={featurestory} alt='featurestory' width={36} />
+                        <div><img src={featurestory} alt='featurestory' width={36} /></div>
                         <div className='sk-heading-story'>
                           <h2>Featured Stories </h2>
                           <h3>
@@ -617,7 +617,7 @@ function SuccessStory() {
 
                       <div>
                         <div className='title'>
-                          <img src={fire} alt='fire' width={36} />
+                          <div><img src={fire} alt='fire' width={36} /></div>
                           <div className='sk-heading-story'>
                             <h2>Trending Stories </h2>
                             <h3>

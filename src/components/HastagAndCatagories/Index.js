@@ -41,7 +41,7 @@ export const HashtagAndCatagories = (props) => {
   return (
     <div className='HashtagAndCatagories'>
       <div className='HashtagAndCatagoriesTitle'>
-        <img src={image} alt='image' />
+      <div><img src={image} alt='image' /></div>
         <h2>{title}</h2>
       </div>
       <div className='HashtagAndCatagoriesTitle'>
