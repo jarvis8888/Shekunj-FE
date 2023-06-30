@@ -241,7 +241,9 @@ const AllSuccessStory = () => {
   const currentUrl = window.location.href;
 
   const styles = {
-    background: `url(${dynamicBackgroundImage}) no-repeat center center `,
+    background: dynamicBackgroundImage
+      ? `url(${dynamicBackgroundImage}) no-repeat center center`
+      : `url(${banner}) no-repeat center center`,
     position: "relative",
     padding: "60px 0 60px",
   };
