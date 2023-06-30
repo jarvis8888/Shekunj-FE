@@ -617,7 +617,7 @@ function SuccessStory() {
 
                       <div>
                         <div className='title'>
-                          <img src={fire} alt='fire' width={36} />
+                          <div><img src={fire} alt='fire' width={36} /></div>
                           <div className='sk-heading-story'>
                             <h2>Trending Stories </h2>
                             <h3>
