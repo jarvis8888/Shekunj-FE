@@ -374,18 +374,19 @@ const EventDetails = () => {
                                   "offline" ? (
                                     <>
                                       {" "}
-                                      <img
+                                      <span><img
                                         src={offlineicon}
                                         alt=''
-                                      /> Offline{" "}
+                                      /></span> Offline{" "}
                                     </>
                                   ) : (
                                     <>
                                       {" "}
+                                      <span>
                                       <img
                                         src={onlineicon}
                                         alt=''
-                                      /> Online{" "}
+                                      /></span> Online{" "}
                                     </>
                                   )}
                                 </li>

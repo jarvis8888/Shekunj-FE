@@ -22,7 +22,7 @@ export const HashtagAndCatagoriesForMobile = (props) => {
   return (
     <div className='HashtagAndCatagories-mobile'>
       <div className='HashtagAndCatagoriesTitle-mobile'>
-        <img src={image} alt='#' />
+        <div><img src={image} alt='#' /></div>
         <h2>{title}</h2>
       </div>
       <div className='HashtagAndCatagoriesTitle-mobile'>

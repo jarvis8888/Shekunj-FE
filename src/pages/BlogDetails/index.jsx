@@ -259,7 +259,7 @@ const BlogDetails = () => {
               <div className='row'>
                 <div className='col-xl-8 col-lg-8 col-md-8'>
                   <div className='sk-topBottom-space'>
-                    <img src={blogs?.image} alt='Story' className='img' />
+                  <div><img src={blogs?.image} alt='Story' className='img' /></div>
                     <div className='story-bottom'>
                       <div className='hashtags-container'>
                         <div className='sk-bdetail-chip'>
@@ -342,7 +342,7 @@ const BlogDetails = () => {
                       hashtags={blogCategories}
                     />
                     <div className='title' ref={trendingSectionRef}>
-                      <img src={discoverblog} alt='discoverblog' width={36} />
+                    <div> <img src={discoverblog} alt='discoverblog' width={36} /></div>
                       <div className='sk-heading-story'>
                         <h2 className='mb-0'>Discover More Articles</h2>
                         <h3>

@@ -47,7 +47,7 @@ const LatestBlogCard = (props) => {
       }
     >
       <div className='card__image'>
-        <img src={image} alt={title} />
+        <div><img src={image} alt={title} /></div>
         <span className='sk-chipTag-blog' style={{ background: `${color}` }}>
           {category_name?.name}
         </span>

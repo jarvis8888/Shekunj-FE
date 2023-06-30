@@ -298,11 +298,12 @@ const SuccessStoryDetails = () => {
               <div className='row'>
                 <div className='col-xl-8 col-lg-8 col-md-8'>
                   <div className='sk-topBottom-space'>
-                    <img
+                   <div><img
                       src={successStoriesDetails?.image}
                       alt={successStoriesDetails?.image_alt_tag}
                       className='sk-storyBanner-img'
                     />
+                    </div>
                     <div className='story-bottom'>
                       <div className='hashtags-container'>
                         <div className='sk-storyD-tag'>
@@ -468,7 +469,7 @@ const SuccessStoryDetails = () => {
                       hashtags={allHashTag}
                     />
                     <div className='title' ref={trendingSectionRef}>
-                      <img src={fire} alt='fire' width={36} />
+                      <div><img src={fire} alt='fire' width={36} /></div>
                       <div className='sk-heading-story'>
                         <h2>Trending Stories </h2>
                         <h3>

@@ -48,7 +48,7 @@ const FeaturedCards = (props) => {
       }}
     >
       <div className='card__image'>
-        <img src={image} alt={title} />
+        <div><img src={image} alt={title} /></div>
       </div>
       <div className='sk-Blogcard-content'>
         <div className='card__hashtags'>
