@@ -82,7 +82,7 @@ const BlogCarousel = ({ images = [], color }) => {
           <div className='has'>
             <span style={{ color: "#020202" }}>
               <AccessTimeIcon />
-              {`${images[currentIndex]?.created_at}`}
+              {`${DateFormat(images[currentIndex]?.created_at)}`}
             </span>
             <span style={{ color: "#020202" }}>
               <MenuBookRoundedIcon />

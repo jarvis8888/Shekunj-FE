@@ -423,14 +423,14 @@ function SuccessStory() {
                           ),
                         }}
                       />
-                      <h1
+                      {/* <h1
                         className='sk-storyHeading-top'
                         dangerouslySetInnerHTML={{
                           __html: makeHtml(
                             t("phase2.SuccessStoryContent.title2"),
                           ),
                         }}
-                      />
+                      /> */}
                       <p>{t("phase2.SuccessStoryContent.description")}</p>
                       <div className='my-3'>
                         <button
@@ -460,7 +460,7 @@ function SuccessStory() {
                                     (tag) => tag?.slug,
                                   );
                                   const generatedSlug =
-                                    generateSlug(hashtagNames.join(" ")) ||
+                                    generateSlug(hashtagNames[0]) ||
                                     "no-hashtag";
                                   if (items.slug) {
                                     history.push(
@@ -547,7 +547,7 @@ function SuccessStory() {
                 <div className='row'>
                   <div className='col-xl-8 col-lg-8 col-md-8 featured-stories'>
                     <div className='sk-topBottom-space'>
-                      <div className='title' ref={sectionRef}>
+                      <div className='title'>
                         <img src={featurestory} alt='featurestory' width={36} />
                         <div className='sk-heading-story'>
                           <h2>Featured Stories </h2>
@@ -610,7 +610,7 @@ function SuccessStory() {
                         hashtags={allHashTag}
                       />
 
-                      <div ref={trendingSectionRef}>
+                      <div>
                         <div className='title'>
                           <img src={fire} alt='fire' width={36} />
                           <div className='sk-heading-story'>

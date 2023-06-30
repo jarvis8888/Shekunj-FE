@@ -45,8 +45,13 @@
   vertical-align: text-bottom;
   margin-right: 5px;
 }
-.sk-block-details {
 
+.sk-blogDetails-content blockquote {
+  padding: 10px;
+  border-left: 6px solid #d3317d;
+  background-color: #fff8fb;
+}
+.sk-block-details {
   .img {
     width: 100%;
     border-radius: 0px;
@@ -153,12 +158,11 @@
     }
   }
 
-
   .catagorie_search_container {
     padding: 20px 0 30px;
     border-bottom: 1px solid #d9d9d9;
   }
-  
+
   .catagorie_search {
     padding: 8px 15px;
     background-color: #d9d9d9;
@@ -228,4 +232,3 @@
     font-size: 32px;
   }
 }
-

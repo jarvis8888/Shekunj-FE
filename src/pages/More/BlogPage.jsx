@@ -63,6 +63,8 @@ function BlogPage() {
   const [loading, setLoading] = useState(false);
   const [trendingLoading, setTrendingLoading] = useState(false);
   const [pageLoading, setPageLoading] = useState(true);
+  const [h1Tag, setH1Tag] = useState([]);
+  console.log("🚀 ~ file: BlogPage.jsx:67 ~ BlogPage ~ h1Tag:", h1Tag);
 
   const getAllBlogsData = async (limit, offset) => {
     setLoading(true);
@@ -131,6 +133,22 @@ function BlogPage() {
       setTrendingLoading(false);
     }
   };
+
+  const getH1TagData = async () => {
+    try {
+      const url = `${apiConstants.META_TAGS.GET_META_TAGS}`;
+      const data = await httpServices.get(url);
+
+      if (data?.data?.length > 0) {
+        let filterArray1 = data?.data?.filter((item, index) => {
+          return item.tag_for_page === "article";
+        });
+        setH1Tag(filterArray1);
+      }
+    } catch (error) {
+    } finally {
+    }
+  };
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -158,6 +176,10 @@ function BlogPage() {
 
     fetchTrendingData();
   }, [lan, trendingOffset]);
+
+  useEffect(() => {
+    getH1TagData();
+  }, [lan]);
 
   useEffect(() => {
     dispatch(adsList());
@@ -338,6 +360,7 @@ function BlogPage() {
         link={currentUrl}
         currentUrl={currentUrl}
       />
+      <h1 style={{ display: "none" }}>{h1Tag[0]?.h1}</h1>
       <div>
         {pageLoading ? (
           <CustomLoader />
@@ -356,7 +379,7 @@ function BlogPage() {
                   </div>
                   <div className='col-xl-4 col-md-4 col-lg-4'>
                     <div className='sk-blog-sidebar'>
-                      <div className='title mb-4' ref={sectionRef}>
+                      <div className='title mb-4'>
                         <img src={fire} alt='fire' width={36} />
                         <div className='sk-heading-story'>
                           <h2>Trending Articles</h2>
@@ -373,7 +396,7 @@ function BlogPage() {
                                 id={items.id}
                                 description={items.title}
                                 time={items.reading_time}
-                                date={`${items.created_at}`}
+                                date={`${DateFormat(items.created_at)}`}
                                 category_name={items.category}
                                 key={index}
                                 color={getCategoryColor(items.category?.name)}
@@ -443,7 +466,7 @@ function BlogPage() {
                   <div className='col-xl-8 col-md-6 col-lg-8'>
                     <div className='sk-topBottom-space'>
                       <div className='blog-stories'>
-                        <div className='title' ref={sectionRef}>
+                        <div className='title'>
                           <img src={latestblog} alt='latestblog' width={36} />
                           <div className='sk-heading-story'>
                             <h2>Latest Article</h2>
@@ -475,7 +498,9 @@ function BlogPage() {
                                       )}`}
                                       makeHtml={makeHtml}
                                       key={index}
-                                      created_at={`${items.created_at}`}
+                                      created_at={`${DateFormat(
+                                        items.created_at,
+                                      )}`}
                                       reading_time={items.reading_time}
                                       id={items.id}
                                       blog_count={items.blog_count}
@@ -546,7 +571,7 @@ function BlogPage() {
                         title={"Categories"}
                         hashtags={blogsCategories}
                       />
-                      <div className='title' ref={trendingSectionRef}>
+                      <div className='title'>
                         <img src={discoverblog} alt='discoverblog' width={36} />
                         <div className='sk-heading-story'>
                           <h2 className='mb-0'>Discover More Articles</h2>
@@ -573,7 +598,7 @@ function BlogPage() {
                                     items.about_blog,
                                   )}`}
                                   time={items?.reading_time}
-                                  date={`${items.created_at}`}
+                                  date={`${DateFormat(items.created_at)}`}
                                   category_name={items.category}
                                   color={getCategoryColor(items.category?.name)}
                                   slug={items.slug}
@@ -590,9 +615,6 @@ function BlogPage() {
                           className='loadMore'
                           onClick={() => {
                             setTrendingOffset(trendingOffset + 6);
-                            // trendingSectionRef.current.scrollIntoView({
-                            //   behavior: "smooth",
-                            // });
                           }}
                           disabled={
                             currentTrendingBlogData?.results?.length === 0

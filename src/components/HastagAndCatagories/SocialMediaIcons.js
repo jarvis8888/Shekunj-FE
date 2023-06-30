@@ -7,10 +7,7 @@ import linkedin from "../../assets/images/linkedinsideicon.svg";
 import httpServices from "../../utils/ApiServices";
 
 const SocialMediaIcons = React.memo(() => {
-  const [facebookLikes, setFacebookLikes] = useState("");
-  const [twitterLikes, setTwitterLikes] = useState("");
-  const [instagramLikes, setInstagramLikes] = useState("");
-  const [youtubeLikes, setYoutubeLikes] = useState("");
+  const [data, setData] = useState();
 
   const socialMediaData = async () => {
     try {
@@ -20,11 +17,7 @@ const SocialMediaIcons = React.memo(() => {
       if (response.status_code === 200) {
         const { data } = response;
         if (Array.isArray(data) && data.length > 0) {
-          const { facebook, linkedin, twitter, insta } = data[0];
-          setFacebookLikes(facebook);
-          setTwitterLikes(twitter);
-          setInstagramLikes(insta);
-          setYoutubeLikes(linkedin);
+          setData(data[0]);
         }
       }
     } catch (error) {
@@ -42,56 +35,61 @@ const SocialMediaIcons = React.memo(() => {
         className='likes'
         style={{ backgroundColor: "#305B94", borderRadius: "4px 0 0 4px" }}
         onClick={() => {
-          window.open(
-            "https://www.facebook.com/Shekunj-105073495386436",
-            "_blank",
-          );
+          window.open(data?.facebook_link, "_blank");
         }}
       >
         <i className='fab fa-facebook-f'>
           <img src={fackbook} alt='facebook' />
         </i>
-        <div style={{ color: "#fff" }}>{facebookLikes}</div>
-        <div style={{ color: "#fff", fontSize: "12px" }}>Likes</div>
+        <div style={{ color: "#fff" }}>{data?.facebook}</div>
+        <div style={{ color: "#fff", fontSize: "12px" }}>
+          {data?.facebook_content}
+        </div>
       </div>
       <div
         className='likes'
         style={{ backgroundColor: "#49ABEC" }}
         onClick={() => {
-          window.open("https://twitter.com/SheKunj_edu", "_blank");
+          window.open(data?.twitter_link, "_blank");
         }}
       >
         <i className='fab fa-twitter'>
           <img src={twitter} alt='twitter' />
         </i>
-        <div style={{ color: "#fff" }}>{twitterLikes}</div>
-        <div style={{ color: "#fff", fontSize: "12px" }}>Likes</div>
+        <div style={{ color: "#fff" }}>{data?.twitter}</div>
+        <div style={{ color: "#fff", fontSize: "12px" }}>
+          {data?.twitter_content}
+        </div>
       </div>
       <div
         className='likes'
         style={{ backgroundColor: "#2867B2" }}
         onClick={() => {
-          window.open("https://in.linkedin.com/showcase/shekunjedu", "_blank");
+          window.open(data?.linkedin_link, "_blank");
         }}
       >
         <i className='fab fa-youtube'>
           <img src={linkedin} alt='youtube' />
         </i>
-        <div style={{ color: "#fff" }}>{youtubeLikes}</div>
-        <div style={{ color: "#fff", fontSize: "12px" }}>Likes</div>
+        <div style={{ color: "#fff" }}>{data?.linkedin}</div>
+        <div style={{ color: "#fff", fontSize: "12px" }}>
+          {data?.facebook_content}
+        </div>
       </div>
       <div
         className='likes sk-instagram'
         style={{ backgroundColor: "#305B94", borderRadius: "0 4px 4px 0" }}
         onClick={() => {
-          window.open("https://www.instagram.com/shekunj_edu/", "_blank");
+          window.open(data?.insta_link, "_blank");
         }}
       >
         <i className='fab fa-instagram'>
           <img src={instagram} alt='instagram' />
         </i>
-        <div style={{ color: "#fff" }}>{instagramLikes}</div>
-        <div style={{ color: "#fff", fontSize: "12px" }}>Likes</div>
+        <div style={{ color: "#fff" }}>{data?.insta}</div>
+        <div style={{ color: "#fff", fontSize: "12px" }}>
+          {data?.insta_content}
+        </div>
       </div>
     </div>
   );

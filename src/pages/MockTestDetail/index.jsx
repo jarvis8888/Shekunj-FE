@@ -80,7 +80,7 @@ function MockTestDetail() {
   // const [selectedCourseCategory, setSelectedCourseCategory] = useState(null);
   // const [selectedCourseCategoryValue, setSelectedCourseCategoryValue] =
   //   useState(null);
-  const target = useRef(null)
+  const target = useRef(null);
 
   const { id } = useParams();
   console.log("MockTestIdddd", id);
@@ -91,34 +91,56 @@ function MockTestDetail() {
   const { isLoading, guidanceCategory, testData, countData } = useSelector(
     (state) => state?.guidanceReducer,
   );
+  console.log(
+    "🚀 ~ file: index.jsx:92 ~ MockTestDetail ~ guidanceCategory:",
+    guidanceCategory,
+  );
 
   const progress = Math.round(100 / (countData?.total_career_que || 0)) || 0;
-  const question_history = JSON.parse(localStorage.getItem('question_history'))
+  const question_history = JSON.parse(localStorage.getItem("question_history"));
   useEffect(() => {
     // console.log("testDataMockTest", testData)
-    if(questionNumber!==1){
-      if(question_history?.length>0){
-        const filterHistory=question_history?.filter(his=>his.cat_id===id)
-        if(filterHistory.length>0){
-          filterHistory[0].q_no=questionNumber
-          filterHistory[0].question_id=testData?.id
-          const pos=filterHistory[0].index;
-          question_history[pos]=filterHistory[0];
-          localStorage.setItem('question_history',JSON.stringify(question_history))
-        }else{
-          question_history.push({ q_no:questionNumber, question_id: testData?.id,cat_id:id,index:question_history.length })
-          localStorage.setItem('question_history',JSON.stringify(question_history))
+    if (questionNumber !== 1) {
+      if (question_history?.length > 0) {
+        const filterHistory = question_history?.filter(
+          (his) => his.cat_id === id,
+        );
+        if (filterHistory.length > 0) {
+          filterHistory[0].q_no = questionNumber;
+          filterHistory[0].question_id = testData?.id;
+          const pos = filterHistory[0].index;
+          question_history[pos] = filterHistory[0];
+          localStorage.setItem(
+            "question_history",
+            JSON.stringify(question_history),
+          );
+        } else {
+          question_history.push({
+            q_no: questionNumber,
+            question_id: testData?.id,
+            cat_id: id,
+            index: question_history.length,
+          });
+          localStorage.setItem(
+            "question_history",
+            JSON.stringify(question_history),
+          );
         }
-      }else{
-        localStorage.setItem('question_history', JSON.stringify([{ q_no:questionNumber, question_id: testData?.id,cat_id:id ,index:0}]))  
+      } else {
+        localStorage.setItem(
+          "question_history",
+          JSON.stringify([
+            {
+              q_no: questionNumber,
+              question_id: testData?.id,
+              cat_id: id,
+              index: 0,
+            },
+          ]),
+        );
       }
-      
     }
-    
-   
-  }, [testData])
-  
-
+  }, [testData]);
 
   const { t } = useTranslation();
   const { lan } = useSelector((state) => state.languageReducer);
@@ -141,22 +163,17 @@ function MockTestDetail() {
     // }else{
     //   localStorage.removeItem('question_history')
     // }
-   const filterHistory=question_history?.filter(his=>his.cat_id===id);;
-   if(filterHistory?.length>0){
-    const fetchQuestion=filterHistory[0];
-    setQuestionNumber(fetchQuestion?.q_no)
-    //  if(fetchQuestion?.q_no && fetchQuestion?.cat_id===id){
-      
-    // }else{
-    //   localStorage.removeItem('question_history')
-    // }
-   }
-  }, []);
+    const filterHistory = question_history?.filter((his) => his.cat_id === id);
+    if (filterHistory?.length > 0) {
+      const fetchQuestion = filterHistory[0];
+      setQuestionNumber(fetchQuestion?.q_no);
+      //  if(fetchQuestion?.q_no && fetchQuestion?.cat_id===id){
 
-  useEffect(() => {
-    dispatch(fetchUserCareerTestCount(id));
-    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-  }, [dispatch, id, lan]);
+      // }else{
+      //   localStorage.removeItem('question_history')
+      // }
+    }
+  }, []);
 
   // useEffect(() => {
   //   if (detect.isMobile) {
@@ -329,7 +346,7 @@ function MockTestDetail() {
         setIsTestStarted(true);
         setTestTime((parseInt(counts?.data.career_time, 10) || 0) * 60000);
       }
-      target.current?.scrollIntoView({ behavior: 'smooth' });
+      target.current?.scrollIntoView({ behavior: "smooth" });
     }
   };
 
@@ -391,8 +408,7 @@ function MockTestDetail() {
           ),
         );
       }
-    
-     
+
       setToggle((prev) => !prev);
     } else {
       toast.error(t("error.other.1"), {
@@ -402,7 +418,6 @@ function MockTestDetail() {
   };
 
   const renderTimmer = (value) => {
-
     return (
       <Timer
         initialTime={value}
@@ -416,9 +431,19 @@ function MockTestDetail() {
       >
         {() => (
           <>
-            <Timer.Hours formatValue={(value) => `${((value < 10 ? `0${value} : ` : `${value} : `))}`} />
-            <Timer.Minutes formatValue={(value) => `${(value < 10 ? `0${value} : ` : `${value} : `)}`} />
-            <Timer.Seconds formatValue={(value) => `${(value < 10 ? `0${value}` : value)}`} />
+            <Timer.Hours
+              formatValue={(value) =>
+                `${value < 10 ? `0${value} : ` : `${value} : `}`
+              }
+            />
+            <Timer.Minutes
+              formatValue={(value) =>
+                `${value < 10 ? `0${value} : ` : `${value} : `}`
+              }
+            />
+            <Timer.Seconds
+              formatValue={(value) => `${value < 10 ? `0${value}` : value}`}
+            />
           </>
         )}
       </Timer>
@@ -466,15 +491,17 @@ function MockTestDetail() {
       setCheck4(true);
     }
   };
-  
+
+  useEffect(() => {
+    dispatch(fetchUserCareerTestCount(guidanceCategory?.id));
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  }, [dispatch, guidanceCategory, lan]);
 
   return (
     <div>
       <Header loginPage={true} page='guidance' subPage='careerTest' />
       <Container>
         <div className='maindiv_prog setmain noselect'>
-
-
           <div className='select_test' key={guidanceCategory?.id}>
             {/* <h2>Test Started</h2> */}
 
@@ -522,10 +549,8 @@ function MockTestDetail() {
               <Col md={3} xs={12} className='mt-1'>
                 <button
                   onClick={() => {
-                    handleStartCourse()
-
+                    handleStartCourse();
                   }}
-
                   disabled={isTestStarted}
                 >
                   {isTestStarted
@@ -566,7 +591,7 @@ function MockTestDetail() {
               </p>
             </div>
 
-            <Row >
+            <Row>
               <Col md={8} xs={12}>
                 <div className='que_box noselect'>
                   <h2>{t("allCertificatePage.other.5")}</h2>
@@ -574,7 +599,10 @@ function MockTestDetail() {
                     <Skeleton></Skeleton>
                   ) : (
                     <p>
-                      {questionNumber?.questionNumber ? questionNumber?.questionNumber : questionNumber}. {testData?.question}
+                      {questionNumber?.questionNumber
+                        ? questionNumber?.questionNumber
+                        : questionNumber}
+                      . {testData?.question}
                     </p>
                   )}
                   {testData && (

@@ -43,9 +43,9 @@ const useQuery = () => {
 function EventPage() {
   const options = [
     { label: "All", value: "all" },
-    { label: "Today-Tomorrow", value: "todayTomorrow" },
-    { label: "This Week", value: "thisWeek" },
-    { label: "Next Week", value: "nextWeek" },
+    { label: "Today-Tomorrow", value: "today-tomorrow" },
+    { label: "This Week", value: "this-week" },
+    { label: "Next Week", value: "next-week" },
   ];
 
   const { lan } = useSelector((state) => state.languageReducer);
@@ -168,13 +168,13 @@ function EventPage() {
     //   search: searchParams.toString(),
     // });
     switch (option) {
-      case "todayTomorrow":
+      case "today-tomorrow":
         setDataWithAdds(todayTomorrowData);
         break;
-      case "thisWeek":
+      case "this-week":
         setDataWithAdds(thisWeekData);
         break;
-      case "nextWeek":
+      case "next-week":
         setDataWithAdds(nextWeekData);
         break;
       case "all":
@@ -256,12 +256,12 @@ function EventPage() {
       // setSelectedOption(genreParam);
       if (
         genre &&
-        !["all", "thisWeek", "todayTomorrow", "nextWeek"].includes(genre)
+        !["all", "this-week", "today-tomorrow", "next-week"].includes(genre)
       ) {
         handleGenerOptionClick(genre);
       } else if (
         genre &&
-        ["all", "thisWeek", "todayTomorrow", "nextWeek"].includes(genre)
+        ["all", "this-week", "today-tomorrow", "next-week"].includes(genre)
       ) {
         await getAllEVentsData(currentOffset, null);
         handleTimeOptionClick(genre);

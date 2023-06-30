@@ -321,7 +321,7 @@ const CourseDetails = () => {
               <div className='col-md-5'>
                 <div className='sec2_right'>
                   <Link
-                    to={routingConstants.COURSES_MODULE + id}
+                    to={routingConstants.COURSES_MODULE + course?.id}
                     className='btn btn_str_Cor'
                   >
                     {t("coursesPage.coursesDetailsPage.other.1")}

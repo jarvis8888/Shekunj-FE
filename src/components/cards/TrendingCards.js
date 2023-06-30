@@ -35,8 +35,7 @@ const TrendingCards = (data) => {
         className='card'
         onClick={() => {
           const hashtagNames = hashtags.map((tag) => tag?.slug);
-          const generatedSlug =
-            generateSlug(hashtagNames.join(" ")) || "no-hashtag";
+          const generatedSlug = generateSlug(hashtagNames[0]) || "no-hashtag";
           if (slug) {
             history.push(
               routingConstants.SUCCESS_STORIES + generatedSlug + "/" + slug,
@@ -81,7 +80,7 @@ const TrendingCards = (data) => {
                 onClick={() => {
                   const hashtagNames = hashtags.map((tag) => tag?.slug);
                   const generatedSlug =
-                    generateSlug(hashtagNames.join(" ")) || "no-hashtag";
+                    generateSlug(hashtagNames[0]) || "no-hashtag";
                   if (slug) {
                     history.push(
                       routingConstants.SUCCESS_STORIES +

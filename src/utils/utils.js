@@ -436,24 +436,16 @@ export function removeHtmlTags(htmlString) {
 }
 
 export function generateSlug(title) {
-  const language = localStorage.getItem("i18nextLng") || "en"; // Retrieve language value from localStorage or default to "eng"
-  if (language === "en") {
-    let slug = title
-      .toLowerCase()
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "")
-      .replace(/[^\w-]+/g, "-")
-      .replace(/--+/g, "-")
-      .replace(/^-|-$/g, "");
-    return slug;
-  }
+  // Retrieve language value from localStorage or default to "eng"
 
-  if (language === "hi") {
-    let HindiSlug = title.replace(/\s+/g, "-"); // Replace whitespace with hyphens
-    // Add more transliteration rules for Hindi characters
-    // Remove any remaining non-alphanumeric characters
-    return HindiSlug;
-  }
+  let slug = title
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^\w-]+/g, "-")
+    .replace(/--+/g, "-")
+    .replace(/^-|-$/g, "");
+  return slug;
 }
 
 export const makeHtmlWithStyles = (htmlString) => {
@@ -461,4 +453,3 @@ export const makeHtmlWithStyles = (htmlString) => {
   htmlNode.innerHTML = htmlString?.replace(/\\/g, "");
   return htmlNode.innerHTML;
 };
-

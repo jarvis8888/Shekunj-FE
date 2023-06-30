@@ -819,8 +819,8 @@
   },
   "phase2": {
     "SuccessStoryContent": {
-      "title1": "<div>Empowered <span>Women</span>,",
-      "title2": "</div><div>Empowering Stories.</div>",
+      "title1": "<div>Empowered <span>Women</span>, Empowering Stories. </div>",
+      "title2": "<div>Empowering Stories.</div>",
       "description": "Discover the inspiring stories of women who have overcame countless obstacles to accomplish their goals. From breaking stereotypes to achieving incredible things, these success stories will undoubtedly inspire and move you from within.",
       "buttonTitle": "View All Success Stories"
     },

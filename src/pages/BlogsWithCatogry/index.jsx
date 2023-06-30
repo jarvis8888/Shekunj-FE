@@ -194,6 +194,12 @@ const BlogWithCatogry = () => {
     setOffset(offset + 4);
   };
   const currentUrl = window.location.href;
+
+  // Function to filter and retrieve the description based on slug
+  const getDescriptionBySlug = (slug) => {
+    const filteredHashTag = allHashTag.filter((tag) => tag.slug === slug);
+    return filteredHashTag.length > 0 ? filteredHashTag[0].description : "";
+  };
   return (
     <>
       <SEO
@@ -216,12 +222,7 @@ const BlogWithCatogry = () => {
                     <h1 className='Hashtag_container_title'>
                       {selectedCategory ? `${selectedCategory}` : "NA"}
                     </h1>
-                    {/* <p>
-                    It is a long established fact that a reader will be
-                    distracted by the readable content of a page when looking at
-                    its layout. The point of using Lorem Ipsum is that it has a
-                    more-or-less normal.
-                  </p> */}
+                    <p>{getDescriptionBySlug(search)}</p>
                   </div>
 
                   <div className='sk-blogCategory-detail'>
@@ -242,7 +243,7 @@ const BlogWithCatogry = () => {
                                     items.about_blog,
                                   )}`}
                                   time={items.reading_time}
-                                  date={`${items.created_at}`}
+                                  date={`${DateFormat(items.created_at)}`}
                                   category_name={items.category}
                                   color={getCategoryColor(items.category?.name)}
                                   slug={items.slug}
