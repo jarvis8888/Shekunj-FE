@@ -496,21 +496,26 @@ function SuccessStory() {
               </div>
             </section>
 
-            <section className='sk-successStories-sec'>
+            <section className='sk-successStories-sec sk-addBg-color'>
               <div className='container sk-custom-container'>
                 <div className='row'>
-                  <div className='col-xl-8 col-lg-8 col-md-12 mx-auto'>
+                  <div className='col-xl-12 col-lg-12 col-md-12'>
                     <AddsBanner
                       color='#F4F4F4'
                       children={
                         <>
                           {storiesBannerAds.length > 0 && (
+                            
                             <div
                               className='ads_home_cover '
                               onClick={() =>
                                 addEmailToClient(storiesBannerAds[0]?.add_email)
                               }
                             >
+                             <div className="sk-add-title">
+                                <h6>Advertisement</h6>
+                              </div>
+                             
                               <a
                                 href={storiesBannerAds[0]?.url_adds}
                                 target='_blank'

@@ -47,9 +47,12 @@
 }
 
 .sk-blogDetails-content blockquote {
-  padding: 10px;
+  padding: 20px;
   border-left: 6px solid #d3317d;
   background-color: #fff8fb;
+}
+.sk-blogDetails-content blockquote p{
+  margin-bottom: 0;
 }
 .sk-block-details {
   .img {
