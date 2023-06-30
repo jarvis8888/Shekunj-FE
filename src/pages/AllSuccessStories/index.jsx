@@ -19,6 +19,7 @@ import ExpandMoreRoundedIcon from "@mui/icons-material/ExpandMoreRounded";
 import KeyboardArrowUpRoundedIcon from "@mui/icons-material/KeyboardArrowUpRounded";
 import { NoDataFound } from "../../components/noDataFound/NoDataFound";
 import { SEO } from "../../components";
+import banner from "../../assets/images/searchbg.jpg";
 
 const AllSuccessStory = () => {
   const dispatch = useDispatch();
@@ -37,6 +38,7 @@ const AllSuccessStory = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [startPage, setStartPage] = useState(1);
   const [showAll, setShowAll] = useState(false);
+  const [dynamicBackgroundImage, setDynamicBackgroundImage] = useState(banner);
 
   const [offset, setOffset] = useState(0);
   const pageLimit = 7;
@@ -71,6 +73,20 @@ const AllSuccessStory = () => {
     }
   };
 
+  const getAllBannerData = async () => {
+    try {
+      const url = `${apiConstants.BANNERS.GET_ALL_BANNERS}`;
+      const data = await httpServices.get(url);
+      if (data?.data?.length > 0) {
+        let filterArray1 = data?.data?.filter((item, index) => {
+          return item.image_type === "inspiring-stories-of-women-page";
+        });
+        setDynamicBackgroundImage(filterArray1[0]?.Banner_image);
+      }
+    } catch (error) {
+    } finally {
+    }
+  };
   // Calculate the total number of pages
   const totalPages = Math.ceil(paginationCount?.count / pageLimit);
 
@@ -122,6 +138,9 @@ const AllSuccessStory = () => {
 
     fetchData();
   }, [offset, lan, hashtag]);
+  useEffect(() => {
+    getAllBannerData();
+  }, [lan]);
 
   useEffect(() => {
     dispatch(adsList());
@@ -220,6 +239,13 @@ const AllSuccessStory = () => {
 
   const renderedHashtags = showAll ? allHashTag : allHashTag.slice(0, 4);
   const currentUrl = window.location.href;
+
+  const styles = {
+    background: `url(${dynamicBackgroundImage}) no-repeat center center`,
+    backgroundSize: "cover",
+    position: "relative",
+    padding: "60px 0 60px",
+  };
   return (
     <>
       <SEO
@@ -232,7 +258,7 @@ const AllSuccessStory = () => {
       />
 
       <div>
-        <section className='sk-search-sec'>
+        <section className='sk-search-sec' style={styles}>
           <div className='container sk-custom-container'>
             <div className='row'>
               <div className='col-xl-11 mx-auto'>
@@ -291,7 +317,7 @@ const AllSuccessStory = () => {
             </div>
           </div>
           <div className='sk-viewall-img'>
-            <img src={storyimg} alt='storyimg' />
+            {/* <img src={storyimg} alt='storyimg' /> */}
           </div>
         </section>
         <section className='sk-storyBoxMain-sec sk-allstory-sec'>

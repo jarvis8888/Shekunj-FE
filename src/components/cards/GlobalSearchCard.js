@@ -72,8 +72,7 @@ export const GlobalSearchCard = ({
       switch (type) {
         case "Success Story": {
           const hashtagNames = item?.hash_tags.map((tag) => tag?.slug);
-          const generatedSlug =
-            generateSlug(hashtagNames.join(" ")) || "no-hashtag";
+          const generatedSlug = generateSlug(hashtagNames[0]) || "no-hashtag";
           return `/success-stories/${generatedSlug}/${slug}`;
         }
         case "Article":
@@ -111,7 +110,7 @@ export const GlobalSearchCard = ({
             <div className='sk-week-time'>
               {item?.type === "Article" && (
                 <span>
-                  <AccessTimeIcon /> {`${item.created_at}`}
+                  <AccessTimeIcon /> {`${DateFormat(item.created_at)}`}
                 </span>
               )}
               {item?.type === "Success Story" && (

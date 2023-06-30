@@ -276,7 +276,7 @@ const BlogDetails = () => {
                         <div class='sk-blokTVE-icon'>
                           <span>
                             <AccessTimeIcon />
-                            {`${blogs?.created_at}`}
+                            {`${DateFormat(blogs?.created_at)}`}
                           </span>
                           <span>
                             <MenuBookRoundedIcon /> {blogs?.reading_time}
@@ -303,8 +303,8 @@ const BlogDetails = () => {
                       }}
                     />
                     {/* Hides the backend <h1>  <h2/> for seo <element */}
-                    <h1 style={{ display: "none" }}>{blogs?.h1_name}</h1>
-                    <h2 style={{ display: "none" }}>{blogs?.h2_heading}</h2>
+                    {/* <h1 style={{ display: "none" }}>{blogs?.h1_name}</h1>
+                    <h2 style={{ display: "none" }}>{blogs?.h2_heading}</h2> */}
                     {/* Hides the backend <h1>  <h2/> for seo <element */}
                     <div className='sk-blogS-category'>
                       <div className='sk-social-icon pb-3'>
@@ -367,7 +367,7 @@ const BlogDetails = () => {
                                   items.about_blog,
                                 )}`}
                                 time={items.reading_time}
-                                date={`${items.created_at}`}
+                                date={`${DateFormat(items.created_at)}`}
                                 category_name={items.category}
                                 color={getCategoryColor(items.category?.name)}
                                 blog_count={items.blog_count}

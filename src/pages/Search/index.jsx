@@ -10,6 +10,8 @@ import { GlobalSearchCard } from "../../components/cards/GlobalSearchCard";
 import { Grid } from "rsuite";
 import { useDispatch, useSelector } from "react-redux";
 import { useDebounce } from "../../hooks/useDebounce";
+import banner from "../../assets/images/searchbg.jpg";
+import { apiConstants } from "../../utils/constants";
 
 const GlobalSearch = () => {
   const location = useLocation();
@@ -32,6 +34,7 @@ const GlobalSearch = () => {
   const [onSearchInput, setOnSearchInput] = useState("");
   const [inputFocused, setInputFocused] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(-1);
+  const [dynamicBackgroundImage, setDynamicBackgroundImage] = useState(banner);
 
   const auto_suggessions = useDebounce(onSearchInput);
 
@@ -86,14 +89,24 @@ const GlobalSearch = () => {
     }
   };
 
-  const makeHtml = (htmlString) => {
-    const htmlNode = document.createElement("div");
-    htmlNode.innerHTML = htmlString;
-    htmlNode.querySelectorAll("*").forEach(function (node) {
-      node.removeAttribute("style");
-    });
-    return htmlNode.innerHTML;
+  const getAllBannerData = async () => {
+    try {
+      const url = `${apiConstants.BANNERS.GET_ALL_BANNERS}`;
+      const data = await httpServices.get(url);
+      if (data?.data?.length > 0) {
+        let filterArray1 = data?.data?.filter((item, index) => {
+          return item.image_type === "search-page";
+        });
+        setDynamicBackgroundImage(filterArray1[0]?.Banner_image);
+      }
+    } catch (error) {
+    } finally {
+    }
   };
+
+  useEffect(() => {
+    getAllBannerData();
+  }, [lan]);
 
   const handleSearch = () => {
     setAutoSuggestionsData([]);
@@ -187,9 +200,18 @@ const GlobalSearch = () => {
     };
   }, []);
 
+  const styles = {
+    background: dynamicBackgroundImage
+      ? `url(${dynamicBackgroundImage}) no-repeat center center`
+      : `url(${banner}) no-repeat center center`,
+    backgroundSize: "cover",
+    position: "relative",
+    padding: "60px 0 60px",
+  };
+
   return (
     <div>
-      <section className='sk-search-sec sk-searchNew-banner'>
+      <section className='sk-search-sec sk-searchNew-banner' style={styles}>
         <div className='container sk-custom-container'>
           <div className='row'>
             <div className='col-md-7 mx-auto'>
@@ -274,8 +296,8 @@ const GlobalSearch = () => {
             </div>
           </div>
         </div>
-        <div className="sk-viewall-img">
-          <img src={storyimg} alt="storyimg" />
+        <div className='sk-viewall-img'>
+          {/* <img src={storyimg} alt="storyimg" /> */}
         </div>
       </section>
       <GlobalSearchCard

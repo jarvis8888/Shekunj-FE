@@ -141,6 +141,12 @@ const apiConstants = {
   REVIEWS: {
     ALL_REVIEWS: "/more/reviews/",
   },
+  META_TAGS: {
+    GET_META_TAGS: "/more/meta_tags/",
+  },
+  BANNERS:{
+    GET_ALL_BANNERS:"/more/shekunj_banner/"
+  }
 };
 
 export { carouselConstant, routingConstants, apiConstants };

@@ -78,12 +78,11 @@ img {
   margin-right: 8px;
 }
 
-
 .sk-details-datetime ul li span {
   display: inline-block;
   vertical-align: middle;
 }
-.sk-topBottom-space .sk-details-datetime ul li{
+.sk-topBottom-space .sk-details-datetime ul li {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
@@ -94,10 +93,9 @@ img {
   align-items: center;
   flex-wrap: wrap;
 }
-.sk-topBottom-space .sk-details-datetime ul li span .event-time{
+.sk-topBottom-space .sk-details-datetime ul li span .event-time {
   margin-left: 8px;
 }
-
 
 .sk-details-datetime ul li img {
   margin-right: 5px;
@@ -196,7 +194,8 @@ img {
   grid-gap: 5px 15px;
   margin-bottom: 0;
 }
-.sk-event-form .sk-eventForm-filed input, .sk-event-form .sk-eventForm-filed select {
+.sk-event-form .sk-eventForm-filed input,
+.sk-event-form .sk-eventForm-filed select {
   border: 1px solid #d9d9d9;
   border-radius: 8px;
   height: 50px;
@@ -213,7 +212,8 @@ img {
   background-position-x: 96%;
   background-position-y: 12px;
 }
-.sk-event-form .sk-eventForm-filed input:focus, .sk-event-form .sk-eventForm-filed select:focus {
+.sk-event-form .sk-eventForm-filed input:focus,
+.sk-event-form .sk-eventForm-filed select:focus {
   border-color: #fcbdda;
 }
 .sk-event-form {
@@ -221,7 +221,7 @@ img {
   padding-bottom: 20px;
 }
 .sk-like-icon {
-  background: #75B94A;
+  background: #75b94a;
   color: #fff;
   border-radius: 50px;
   width: 36px;
@@ -231,15 +231,15 @@ img {
   line-height: 36px;
   margin-right: 8px;
 }
-.sk-like-icon svg{
+.sk-like-icon svg {
   font-size: 21px;
 }
 .sk-event-sidebar {
   padding-top: 40px;
   padding-left: 30px;
 }
-.sk-event-sidebar::before{
-  content: '';
+.sk-event-sidebar::before {
+  content: "";
   position: absolute;
   left: 15px;
   top: 0;
@@ -448,6 +448,12 @@ img {
   // margin-top: 20px;
 }
 
+.sk-card-description blockquote {
+  padding: 10px;
+  border-left: 6px solid #d3317d;
+  background-color: #fff8fb;
+}
+
 .css-1lizpae-MuiImageListItemBar-titleWrap {
   padding: 65px 16px;
   color: #fff;
@@ -481,12 +487,10 @@ img {
   // .sk-Removeside-space {
   //   border-left: 0;
   // }
-  .sk-event-sidebar::before
-    {
-      width: 0;
-    }
+  .sk-event-sidebar::before {
+    width: 0;
+  }
 }
-
 
 @media screen and (max-width: 480px) {
   .sk-details-datetime ul {

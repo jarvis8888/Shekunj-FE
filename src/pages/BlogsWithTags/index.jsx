@@ -268,7 +268,7 @@ const SuccessStroyWithHashtag = () => {
                                     items.about_blog,
                                   )}`}
                                   time={items.reading_time}
-                                  date={`${items.created_at}`}
+                                  date={`${DateFormat(items.created_at)}`}
                                   category_name={items.category}
                                   color={getCategoryColor(items.category?.name)}
                                   slug={items.slug}
