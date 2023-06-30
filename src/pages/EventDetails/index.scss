@@ -449,11 +449,13 @@ img {
 }
 
 .sk-card-description blockquote {
-  padding: 10px;
+  padding: 20px;
   border-left: 6px solid #d3317d;
-  background-color: #fff8fb;
+  background: #fff8fb;
 }
-
+.sk-card-description blockquote p{
+  margin-bottom: 0;
+}
 .css-1lizpae-MuiImageListItemBar-titleWrap {
   padding: 65px 16px;
   color: #fff;

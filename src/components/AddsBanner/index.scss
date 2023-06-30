@@ -5,14 +5,15 @@
 .add-banner {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  position: relative;
   }
 }
+
 .rectangle {
   img {
     max-width: 100%;
     height: auto;
-    width: 100%;
   }
 }
 @media screen and (max-width: 767px) {

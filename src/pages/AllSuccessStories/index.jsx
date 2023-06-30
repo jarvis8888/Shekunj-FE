@@ -241,10 +241,10 @@ const AllSuccessStory = () => {
   const currentUrl = window.location.href;
 
   const styles = {
-    background: `url(${dynamicBackgroundImage}) no-repeat center center`,
-    backgroundSize: "cover",
-    position: "relative",
-    padding: "60px 0 60px",
+    background: `url(${dynamicBackgroundImage}) no-repeat center center `,
+    // backgroundSize: 'cover',
+    position: 'relative',
+    padding: '60px 0 60px',
   };
   return (
     <>
