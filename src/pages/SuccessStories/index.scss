@@ -638,7 +638,17 @@ button.want_btn {
   padding: 20px 0 30px;
   margin-bottom: 50px;
 }
-
+.sk-add-title{
+  position: absolute;
+  left: 0;
+  top: 0;
+  h6{
+    font-size: 12px;
+    margin-bottom: 0;
+    font-weight: 400;
+    color: #888;
+  }
+}
 .sk-storyHeading-top span {
   color: #d62c79;
   font-weight: 600;

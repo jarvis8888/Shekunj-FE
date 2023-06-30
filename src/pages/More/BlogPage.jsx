@@ -430,6 +430,9 @@ function BlogPage() {
                                 addEmailToClient(blogBoxAdds[0]?.add_email)
                               }
                             >
+                              <div className="sk-add-title">
+                                <h6>Advertisement</h6>
+                              </div>
                               <a
                                 href={blogBoxAdds[0]?.url_adds}
                                 target='_blank'
@@ -539,6 +542,7 @@ function BlogPage() {
                                     addEmailToClient(blogBoxAdds[0]?.add_email)
                                   }
                                 >
+                                 
                                   <a
                                     href={blogBoxAdds[0]?.url_adds}
                                     target='_blank'
