@@ -159,6 +159,7 @@ function EventPage() {
   const handleTimeOptionClick = (option) => {
     setSelectedButton(option);
     setSelectedOption(null);
+    setCurrentOffset(0);
     const path = `/events/${option}`;
     history.push(path);
     // const searchParams = new URLSearchParams();
@@ -179,7 +180,7 @@ function EventPage() {
         break;
       case "all":
         setSelectedOption(null);
-        getAllEVentsData(0, null);
+        getAllEVentsData(currentOffset, null);
         break;
       default:
         break;
@@ -251,22 +252,16 @@ function EventPage() {
 
   useEffect(() => {
     const fetchData = async () => {
-      // const params = new URLSearchParams(location.search);
-      // const genreParam = params.get("genre");
-      // setSelectedOption(genreParam);
-      if (
-        genre &&
-        !["all", "this-week", "today-tomorrow", "next-week"].includes(genre)
+      if (genre === "all") {
+        await getAllEVentsData(currentOffset, null);
+      } else if (
+        !["this-week", "today-tomorrow", "next-week"].includes(genre)
       ) {
         handleGenerOptionClick(genre);
-      } else if (
-        genre &&
-        ["all", "this-week", "today-tomorrow", "next-week"].includes(genre)
-      ) {
+      } else {
         await getAllEVentsData(currentOffset, null);
         handleTimeOptionClick(genre);
       }
-      // getAllEVentsData(currentOffset, null);
     };
 
     fetchData();
@@ -483,17 +478,18 @@ function EventPage() {
                                       {items.mode_of_event === "offline" ? (
                                         <>
                                           {" "}
-                                          <span><img src={offlineicon} alt='' /></span> {" "}
+                                          <span>
+                                            <img src={offlineicon} alt='' />
+                                          </span>{" "}
                                           Offline{" "}
                                         </>
                                       ) : (
                                         <>
                                           {" "}
                                           <span>
-                                          <img
-                                            src={onlineicon}
-                                            alt=''
-                                          /> </span> Online{" "}
+                                            <img src={onlineicon} alt='' />{" "}
+                                          </span>{" "}
+                                          Online{" "}
                                         </>
                                       )}
                                     </li>
