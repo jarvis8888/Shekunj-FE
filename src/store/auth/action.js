@@ -18,30 +18,58 @@ export const onLogin = (values, history, redirect) => async (dispatch) => {
       payload: { name: res.data.name, email: res.data.email },
     });
     Cookies.set("sheToken", res.data.tokens);
-    if (redirect) {
-      history.push(redirect);
-    } else {
-      history.push(
-        // routingConstants.MY_PROGESS,
-        (history.location.state || history.state.state.from) ?  (history.location.state.from || history.state.state.from) : '/',
-        navigator.geolocation.getCurrentPosition(async function (
-          position,
-          values,
-        ) {
-          const latitude = position.coords.latitude;
-          const longitude = position.coords.longitude;
 
-          let params = {
-            latitude: latitude.toString(),
-            longitude: longitude.toString(),
-          };
-          let result = await httpServices.put(
-            constants.LOCATION + res.data.id + "/",
-            params,
-          );
-        }),
-      );
-    }
+     // Redirect after successful login
+   if (redirect) {
+    history.push(redirect);
+  } else {
+    const from = history.location.state?.from || '/';
+    history.push(from);
+  }
+
+    // Geolocation retrieval and update
+  const getCurrentPosition = () => {
+    return new Promise((resolve, reject) => {
+      navigator.geolocation.getCurrentPosition(resolve, reject);
+    });
+  };
+  const position = await getCurrentPosition();
+  const { latitude, longitude } = position.coords;
+
+  let params = {
+    latitude: latitude.toString(),
+    longitude: longitude.toString(),
+  };
+
+  await httpServices.put(constants.LOCATION + res.data.id + "/", params);
+
+  
+    // if (redirect) {
+    //   history.push(redirect);
+    // } else {
+    //   history.push(
+    //     // routingConstants.MY_PROGESS,
+    //     history.location.state || history.state.state.from
+    //       ? history.location.state.from || history.state.state.from
+    //       : "/",
+    //     navigator.geolocation.getCurrentPosition(async function (
+    //       position,
+    //       values,
+    //     ) {
+    //       const latitude = position.coords.latitude;
+    //       const longitude = position.coords.longitude;
+
+    //       let params = {
+    //         latitude: latitude.toString(),  
+    //         longitude: longitude.toString(),
+    //       };
+    //       let result = await httpServices.put(
+    //         constants.LOCATION + res.data.id + "/",
+    //         params,
+    //       );
+    //     }),
+    //   );
+    // }
   } catch (error) {
     dispatch({ type: authTypes.LOGIN_FAIL });
     if (error && error.status === 500) {
@@ -54,10 +82,13 @@ export const onLogin = (values, history, redirect) => async (dispatch) => {
 
 export const logOut = (history) => async (dispatch) => {
   Cookies.remove("sheToken");
-  localStorage.removeItem('event_data')
-  localStorage.removeItem('login_data')
+  localStorage.removeItem("event_data");
+  localStorage.removeItem("login_data");
   dispatch({ type: authTypes.LOGIN_FAIL });
-  history.push({ pathname: routingConstants.LOGIN, state: {from: history.location?.pathname }});
+  history.push({
+    pathname: routingConstants.LOGIN,
+    state: { from: history.location?.pathname },
+  });
 };
 
 export const onSignup = (values, history) => async (dispatch) => {
@@ -101,8 +132,7 @@ export const registerWithGoogle =
       const res = await httpServices.post(
         constants.REGISTER_WITH_GOOGLE,
         value,
-        navigator.geolocation.getCurrentPosition(function (position) {
-        }),
+        navigator.geolocation.getCurrentPosition(function (position) {}),
       );
       dispatch({
         type: authTypes.LOGIN_FINISH,
@@ -118,7 +148,6 @@ export const registerWithGoogle =
             position,
             value,
           ) {
-
             const latitude = position.coords.latitude;
             const longitude = position.coords.longitude;
 

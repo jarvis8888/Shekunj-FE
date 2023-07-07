@@ -30,7 +30,7 @@ jobs & internships and career counseling.'`,
         <meta name='keywords' content={keywords} />
         <link rel='canonical' href={link} />
         <meta property='og:image:width' content='300' />
-        <meta property='og:image:height' content='300' />
+        <meta property='og:image:height' content='200' />
         <meta property='og:image:secure_url' content={image} />
         {/* <!-- Open Graph Meta Tags --> */}
         <meta property='og:description' content={description} />

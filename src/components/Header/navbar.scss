@@ -2,7 +2,6 @@ body {
   font-family: "Poppins", sans-serif !important;
 }
 .Navbar {
-  
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -10,17 +9,17 @@ body {
   // padding: 10px 0;
   // box-shadow: 0 2px 15px 0px #edd7e175;
 }
-.sk-header-bg{
-    padding: 15px 0;
-    position: sticky;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 99;
+.sk-header-bg {
+  padding: 15px 0;
+  position: sticky;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 99;
 }
 
-.sk-headerTop-bg{
+.sk-headerTop-bg {
   background: #f0f0f0;
 }
 .sk-mobile-hide {
@@ -35,12 +34,15 @@ body {
   padding-bottom: 0;
   line-height: 22.5px;
 }
-.rs-dropdown .rs-btn>.rs-dropdown-toggle-caret {
+.profile .rs-dropdown {
+  position: unset;
+}
+.rs-dropdown .rs-btn > .rs-dropdown-toggle-caret {
   top: 0;
   bottom: 0;
   margin: auto;
 }
-.Navbar .custom-dropdown button:hover{
+.Navbar .custom-dropdown button:hover {
   color: #d3317d !important;
 }
 .Navbar > .nav-items > a {
@@ -57,7 +59,6 @@ body {
 }
 .Navbar > .nav-items > a:hover {
   color: #d3317d;
-
 }
 
 // .Navbar > .nav-items > a::before {
@@ -179,20 +180,19 @@ body {
   max-width: 154px;
   cursor: pointer;
 }
-.header-top button{
+.header-top button {
   color: #020202;
 }
-.header-top .rs-dropdown-toggle-caret{
+.header-top .rs-dropdown-toggle-caret {
   right: 5px;
 }
 .header-top {
   display: flex;
   justify-content: flex-end;
-  // background-color: #f0f0f0;  
+  // background-color: #f0f0f0;
   align-items: center;
   padding: 10px 0px;
   nav {
-   
     ul {
       display: flex;
       list-style: none;
@@ -213,15 +213,15 @@ body {
           font-size: 14px;
 
           &:hover {
-           color:#d3317d;
+            color: #d3317d;
           }
         }
+      }
     }
   }
-}
-.mobile{
-  margin-right: 10px;
-}
+  .mobile {
+    margin-right: 10px;
+  }
   .sk-header-btn {
     background: #d3317d;
     color: #fff;
@@ -238,11 +238,13 @@ body {
   .sk-header-btn:hover {
     background: #020202;
   }
-  .header-top .rs-btn:focus, .header-top .rs-btn:hover {
-    background: transparent;  
+  .header-top .rs-btn:focus,
+  .header-top .rs-btn:hover {
+    background: transparent;
     color: #020202;
-  } 
-  .header-top .rs-dropdown-toggle, .header-top .rs-dropdown-toggle.rs-btn {
+  }
+  .header-top .rs-dropdown-toggle,
+  .header-top .rs-dropdown-toggle.rs-btn {
     background: transparent !important;
     color: #020202;
   }
@@ -270,6 +272,7 @@ body {
 
 .profile {
   display: flex;
+  position: relative;
   img {
     width: 10px;
     height: 10px;
@@ -299,6 +302,7 @@ body {
     margin-left: 0;
     @media (max-width: 991px) {
       font-size: 12px;
+      width: 100%;
     }
     &:hover {
       color: #db5789;
@@ -310,10 +314,11 @@ body {
     &.active {
       background-color: #fff;
       color: #db5789;
+      width: 100%;
     }
   }
 }
-.searchIconSmall{
+.searchIconSmall {
   max-width: 19.5px;
 }
 .mobile-show {
@@ -327,26 +332,26 @@ body {
 }
 
 @media (max-width: 991px) {
-  .header-top nav ul li{
+  .header-top nav ul li {
     margin-left: 0 !important;
   }
-  .sk-headerTop-bg{
+  .sk-headerTop-bg {
     background: #202020;
   }
-  .header-top .custom-dropdown button{
+  .header-top .custom-dropdown button {
     color: #fff;
   }
-  .header-top button{
+  .header-top button {
     color: #fff !important;
     border-color: #434242 !important;
   }
-  .header-top nav ul{
+  .header-top nav ul {
     justify-content: space-between;
   }
-  .header-top nav{
+  .header-top nav {
     width: 100%;
   }
-  .sk-mobile-hide{
+  .sk-mobile-hide {
     display: none;
   }
 }
@@ -361,7 +366,7 @@ body {
   //   padding: 10px 0px;
   //   z-index: 99;
   // }
-  .sk-header-bg{
+  .sk-header-bg {
     // height: 60px;
     position: sticky;
     top: 0;
@@ -371,18 +376,18 @@ body {
     // padding: 10px 0px;
     z-index: 99;
   }
-  .Navbar > .nav-items > a{
+  .Navbar > .nav-items > a {
     font-size: 11px;
     margin-left: 15px;
     margin-right: 15px;
   }
-  .Navbar .custom-dropdown button{
+  .Navbar .custom-dropdown button {
     font-size: 11px;
     padding-left: 15px;
     margin-top: 8px;
     margin-bottom: 8px;
   }
-  .rs-dropdown .rs-btn>.rs-dropdown-toggle-caret {
+  .rs-dropdown .rs-btn > .rs-dropdown-toggle-caret {
     font-size: 10px;
   }
   .header-top {
@@ -391,7 +396,7 @@ body {
     transition: 0.5s;
     z-index: 999;
   }
-  .rs-dropdown-toggle-caret{
+  .rs-dropdown-toggle-caret {
     font-size: 11px;
   }
   .nav-logo img {
