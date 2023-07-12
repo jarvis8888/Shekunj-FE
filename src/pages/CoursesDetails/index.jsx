@@ -187,16 +187,16 @@ const CourseDetails = () => {
                 </div>
                 <div className='mt-2 mb-2'></div>
                 <div className='sec1_con2 con_setSec1'>
-                  <h2>{t("coursesPage.coursesDetailsPage.heading.3")}</h2>
+                  <h2>{("coursesPage.coursesDetailsPage.heading.3")}</h2>
                   <Row>
                     {course?.What_you_will_learn?.map((item) => {
                       return (
                         <Col md={6} xs={12} key={item.id}>
                           <div className='features_box'>
-                            <div>
+                            <div className="sk-features-inner">
                               <img src={Check} alt='' srcSet='' />
                             </div>
-                            <div>
+                            <div className="sk-features-content">
                               <p>{item?.name}</p>
                             </div>
                           </div>
@@ -212,10 +212,10 @@ const CourseDetails = () => {
                   <Row>
                     <Col md={6} xs={12}>
                       <div className='features_box'>
-                        <div>
+                        <div className="sk-features-inner">
                           <img src={monitor} alt='' srcSet='' />
                         </div>
-                        <div>
+                        <div className="sk-features-content">
                           <h6>
                             {t(
                               "coursesPage.coursesDetailsPage.heading.features.1",
@@ -244,10 +244,10 @@ const CourseDetails = () => {
                         </div>
                       </div>
                       <div className='features_box'>
-                        <div>
+                        <div className="sk-features-img">
                           <img src={certificate1} alt='' srcSet='' />
                         </div>
-                        <div>
+                        <div className="sk-features-content">
                           <h6>
                             {t(
                               "coursesPage.coursesDetailsPage.heading.features.3",

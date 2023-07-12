@@ -141,7 +141,7 @@ section.CouDtl_ban .row {
   font-size: 15px;
   line-height: 40px;
   color: #ffffff;
-  width: 365px;
+  // width: 365px;
   height: 56px;
   margin: 0 auto;
   display: block;
@@ -169,7 +169,8 @@ section.CouDtl_ban .row {
   height: auto;
   background: #fff;
   box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.15);
-  padding: 24px 0 24px 27px;
+  // padding: 24px 0 24px 27px;
+  padding: 30px;
 }
 .sec2_right .item {
   width: 260px;
@@ -210,12 +211,16 @@ section.CouDtl_ban .row {
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
-  line-height: 19px;
+  // line-height: 19px;
   text-align: center;
   text-transform: capitalize;
   color: #ec498a;
-  padding: 23px 124px;
-  line-height: 148px;
+  // padding: 23px 124px;
+  padding: 22px;
+  width: 100%;
+  max-width: 100%;
+  display: inline-block;
+  // line-height: 148px;
   text-decoration: none;
   cursor: pointer !important;
 }
