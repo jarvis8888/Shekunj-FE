@@ -354,7 +354,7 @@ const SuccessStoryDetails = () => {
                         {successStoriesDetails?.name}{" "}
                         <span>{successStoriesDetails?.last_name}</span>
                       </h1>
-                      <h2 className='story-sub-tittle'>
+                      <h3 className='story-sub-tittle'>
                         {successStoriesDetails &&
                           successStoriesDetails?.designation}
                         {successStoriesDetails &&
@@ -363,11 +363,12 @@ const SuccessStoryDetails = () => {
                           ", "}
                         {successStoriesDetails &&
                           successStoriesDetails?.company_name}
-                      </h2>
-                      <h3 className='description'>
-                        {successStoriesDetails?.title}
                       </h3>
+                      <h2 className='description'>
+                        {successStoriesDetails?.title}
+                      </h2>
                       <div
+                        
                         className='sk-successStoriesDetails'
                         dangerouslySetInnerHTML={{
                           __html: makeHtmlWithStyles(

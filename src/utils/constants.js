@@ -47,7 +47,7 @@ const routingConstants = {
   TOP_SCHOOL: "/top-school/",
   // MORE_BLOG:  "/more-blog/",
   MORE_EVENT: "/events",
-  MORE_EVENT_DETAILS: "/event-details/",
+  MORE_EVENT_DETAILS: "/events/",
   // MORE_MAGAZINE: "/more-magazine/",
   MORE_MAGAZINE: "/magazine/",
   FAQ: "/frequently-asked-questions/",

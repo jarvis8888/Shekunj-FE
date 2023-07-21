@@ -57,11 +57,9 @@
   background: #0000009a;
   transition: all 0.3s;
 
-  
   &:hover {
     background: #000000;
-    }
-  
+  }
 }
 
 .YouMayLikeCarouselCarousel__button:hover {
@@ -69,12 +67,14 @@
 }
 
 .YouMayLikeCarouselCarousel--left {
+  z-index: 9999;
   position: absolute;
   left: 0px;
   bottom: 120px;
 }
 
 .YouMayLikeCarouselCarousel--right {
+  z-index: 9999;
   position: absolute;
   right: 0px !important;
   bottom: 120px;

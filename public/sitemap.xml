@@ -1,70 +1,117 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset
-  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-    http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"><url>
-  <loc>https://www.shekunj.com/</loc>
-  <lastmod>2022-12-01T13:22:14+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.shekunj.com/login</loc>
-  <lastmod>2022-12-01T13:22:14+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.shekunj.com/about-us</loc>
-  <lastmod>2022-12-01T13:22:14+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.shekunj.com/career-options</loc>
-  <lastmod>2022-12-01T13:22:14+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.shekunj.com/mock-test/</loc>
-  <lastmod>2022-12-01T13:22:14+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.shekunj.com/online-counselling</loc>
-  <lastmod>2022-12-01T13:22:14+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.shekunj.com/success-stories/</loc>
-  <lastmod>2022-12-01T13:22:14+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.shekunj.com/courses</loc>
-  <lastmod>2022-12-01T13:22:14+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.shekunj.com/top-colleges-in-india/</loc>
-  <lastmod>2022-12-01T13:22:14+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.shekunj.com/top-schools-in-india/</loc>
-  <lastmod>2022-12-01T13:22:14+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.shekunj.com/government-schemes-in-india/</loc>
-  <lastmod>2022-12-01T13:22:14+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.shekunj.com/event/</loc>
-  <lastmod>2022-12-01T13:22:14+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.shekunj.com/blogs/</loc>
-  <lastmod>2022-12-01T13:22:14+00:00</lastmod>
-  <priority>0.80</priority>
-</url></urlset>
+    http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+	<url>
+		<loc>https://www.shekunj.com/</loc>
+        <lastmod>2023-07-01T16:33:02+00:00</lastmod>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>https://www.shekunj.com/login</loc>
+		<lastmod>2023-07-01T16:33:02+00:00</lastmod>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>https://www.shekunj.com/career-options/</loc>
+		<lastmod>2023-07-01T16:33:02+00:00</lastmod>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>https://www.shekunj.com/about-us</loc>
+		<lastmod>2023-07-01T16:33:02+00:00</lastmod>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>https://www.shekunj.com/career-options</loc>
+		<lastmod>2022-12-01T13:22:14+00:00</lastmod>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>https://www.shekunj.com/mock-test/</loc>
+		<lastmod>2023-07-01T16:33:02+00:00</lastmod>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>https://www.shekunj.com/online-counselling/</loc>
+		<lastmod>2023-07-01T16:33:02+00:00</lastmod>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>https://www.shekunj.com/success-stories/</loc>
+		<lastmod>2022-12-01T13:22:14+00:00</lastmod>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>https://www.shekunj.com/top-colleges-in-india/</loc>
+		<lastmod>2023-07-01T16:33:02+00:00</lastmod>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>https://www.shekunj.com/top-schools-in-india/</loc>
+		<lastmod>2023-07-01T16:33:02+00:00</lastmod>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>https://www.shekunj.com/government-schemes-in-india/</loc>
+		<lastmod>2023-07-01T16:33:02+00:00</lastmod>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>https://www.shekunj.com/article</loc>
+		<lastmod>2023-07-01T16:33:02+00:00</lastmod>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>https://www.shekunj.com/resume-builder</loc>
+		<lastmod>2023-07-01T16:33:02+00:00</lastmod>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>https://www.shekunj.com/jobs</loc>
+		<lastmod>2023-07-01T16:33:02+00:00</lastmod>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>https://www.shekunj.com/success-stories</loc>
+		<lastmod>2023-07-01T16:33:02+00:00</lastmod>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>https://www.shekunj.com/inspiring-stories-of-women/all</loc>
+		<lastmod>2023-07-01T16:33:02+00:00</lastmod>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>https://www.shekunj.com/search/</loc>
+		<lastmod>2023-07-01T16:33:02+00:00</lastmod>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>https://www.shekunj.com/events/all</loc>
+		<lastmod>2023-07-01T16:33:02+00:00</lastmod>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>https://www.shekunj.com/frequently-asked-questions</loc>
+		<lastmod>2023-07-01T16:33:02+00:00</lastmod>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>https://www.shekunj.com/sign-up</loc>
+		<lastmod>2023-07-01T16:33:02+00:00</lastmod>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>https://www.shekunj.com/contact-us</loc>
+		<lastmod>2023-07-01T16:33:02+00:00</lastmod>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>https://www.shekunj.com/privacy-policy</loc>
+		<lastmod>2023-07-01T16:33:02+00:00</lastmod>
+		<priority>0.80</priority>
+	</url>
+</urlset>

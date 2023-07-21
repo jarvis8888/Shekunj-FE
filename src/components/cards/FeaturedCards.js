@@ -65,7 +65,7 @@ const FeaturedCards = (props) => {
             >{`#${tag?.name}`}</span>
           ))}
         </div>
-        <h5>{title}</h5>
+        <h3>{title}</h3>
         <p
           className=''
           dangerouslySetInnerHTML={{
