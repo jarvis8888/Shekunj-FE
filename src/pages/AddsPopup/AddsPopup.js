@@ -111,10 +111,10 @@ const AddsPopup = (props) => {
         {popupAds.length > 0 && (
           <Modal.Body>
             <div onClick={() => addEmail(popupAds[0]?.add_email)}>
-              <a href={popupAds[0]?.url_adds} target='_blank'>
+              <a href={popupAds[0]?.url_adds} target='_blank' rel='noreferrer'>
                 <img
                   src={popupAds[0]?.image}
-                  alt='Image'
+                  alt='popupAdd'
                   className='pop_up_add modaladimage'
                 />
               </a>

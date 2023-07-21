@@ -31,10 +31,15 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { useDebounce } from "../../hooks/useDebounce";
+import { NoDataFound } from "../../components/noDataFound/NoDataFound";
+import { CustomLoader } from "../../components/customLoader/CustomLoader";
 
 const Courses = () => {
   const { t } = useTranslation();
-  const state = useSelector((state) => state.coursesReducer);
+  const state = useSelector((state) => {
+    return state.coursesReducer;
+  });
   // const {} = useSelector((state) => state.coursesReducer);
   const [isSubSelected, setIsSubSelected] = useState(false);
   const [resetState, setResetState] = useState(false);
@@ -50,10 +55,11 @@ const Courses = () => {
   const [searchInput, setSearchInput] = useState("");
   const [suggestion, setSuggestion] = useState([]);
   const [disabled, setDisabled] = useState(false);
-  const [hasSuggestion, setHasSuggestion] = useState([suggestion].length > 0);
+  const [hasSuggestion, setHasSuggestion] = useState(false);
   const [flag, setFlag] = useState(true);
 
   const dispatch = useDispatch();
+  const debouncedSearchInput = useDebounce(searchInput, 500);
 
   const { lan } = useSelector((state) => state.languageReducer);
   const tempVal = [];
@@ -411,14 +417,16 @@ const Courses = () => {
   };
 
   useEffect(() => {
-    if (searchInput === "") {
+    if (debouncedSearchInput === "") {
       setSuggestion([]);
+      setHasSuggestion(false);
     } else {
       axios.get("/course/suggested_course").then((response) => {
         setSuggestion(response.data.suggested_course);
+        setHasSuggestion(response.data.suggested_course.length > 0);
       });
     }
-  }, [searchInput]);
+  }, [debouncedSearchInput]);
 
   const searchFieldChanged = (e) => {
     const value = e.target.value;
@@ -430,7 +438,8 @@ const Courses = () => {
 
   const suggestionClicked = (suggestion) => {
     setSearchInput(suggestion);
-    setHasSuggestion(null);
+    // setHasSuggestion(null);
+    setHasSuggestion(false); // Set it to false when a suggestion is clicked.
   };
 
   return (
@@ -450,17 +459,17 @@ const Courses = () => {
           <meta
             name='description'
             content='Advance your career with the free Online
-  Professional development courses and
-  certifications with the most in-demand skills
-  specially curated for women.'
+                     Professional development courses and
+                     certifications with the most in-demand skills
+                     specially curated for women.'
           />
           <meta
             name='keywords'
             content='free online courses in india
-  best online certificate programs
-  free online courses for girls in india
-  online certification courses in india
-  free online courses for women'
+                     best online certificate programs
+                     free online courses for girls in india
+                     online certification courses in india
+                     free online courses for women'
           />
         </Helmet>
 
@@ -571,16 +580,20 @@ const Courses = () => {
                           <button type='submit' className='searchBtn1'>
                             <img
                               src={Search}
-                              alt='Image'
+                              alt='search_icon'
                               className='searchIcon'
                               // onClick={() => handleResetSearch()}
                             />
                           </button>
                           <img
                             src={Cross}
-                            alt='Image'
-                            className='searchclose'
-                            onClick={() => handleResetSearch()}
+                            alt='close_icon'
+                            className={`searchclose ${
+                              searchInput ? "" : "disabled"
+                            }`}
+                            onClick={
+                              searchInput ? handleResetSearch : undefined
+                            }
                           />
                         </div>
                       </div>
@@ -733,12 +746,12 @@ const Courses = () => {
               </div>
               <div className='filter_right_content'>
                 <div className='row'>
-                  {tempData && tempData.length > 0 ? (
+                  {state?.isLoading ? (
+                    <CustomLoader />
+                  ) : tempData.length > 0 ? (
                     checkFunction1()
                   ) : (
-                    <div className='text-center mt-2'>
-                      {t("common.noDataFound")}
-                    </div>
+                    <NoDataFound />
                   )}
                 </div>
                 <div className='paginationDiv'>

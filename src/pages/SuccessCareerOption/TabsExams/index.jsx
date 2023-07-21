@@ -57,6 +57,7 @@ function a11yProps(index) {
 
 export default function VerticalTabs() {
   const dispatch = useDispatch();
+  const locationDivRef = useRef(null);
   const [value, setValue] = useState(0);
   const [tabValue, setTabValue] = useState(0);
   const ref = useRef(null);
@@ -111,37 +112,19 @@ export default function VerticalTabs() {
   // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>latest code below >>>>>>>>>>>>>>>>>>>>>
 
   useEffect(() => {
-    dispatch(adsList())
-    navigator.geolocation.getCurrentPosition(async function (position, values) {
-      const latitude = position.coords.latitude;
-      const longitude = position.coords.longitude;
+    dispatch(adsList());
+    navigator.geolocation.getCurrentPosition(
+      async function (position, values) {
+        const latitude = position.coords.latitude;
+        const longitude = position.coords.longitude;
 
-      let params = {
-        latitude: latitude.toString(),
-        longitude: longitude.toString(),
-      }
-      axios
-        .get(
-          `/private_adds/private_add?latitude=${latitude}&longitude=${longitude}`,
-        )
-        .then((response) => {
-          if (response && response.data.results.length > 0) {
-            let filterArray1 = response.data.results.filter((item, index) => {
-
-              return item.image_type == "career_option";
-
-            });
-            setCareerOptionBoxAds(filterArray1);
-            // console.log("filterArray1career_option",filterArray1)
-          }
-        })
-    },
-      function (error) {
-        console.error("Error Code = " + error.code + " - " + error.message);
-        // alert("Your location is blocked")    
+        let params = {
+          latitude: latitude.toString(),
+          longitude: longitude.toString(),
+        };
         axios
           .get(
-            `/private_adds/private_add`,
+            `/private_adds/private_add?latitude=${latitude}&longitude=${longitude}`,
           )
           .then((response) => {
             if (response && response.data.results.length > 0) {
@@ -149,13 +132,25 @@ export default function VerticalTabs() {
                 return item.image_type == "career_option";
               });
               setCareerOptionBoxAds(filterArray1);
-              // console.log("filterArray1coursebox",filterArray1) 
+              // console.log("filterArray1career_option",filterArray1)
             }
-          })
-      }
-    )
-  }, [])
-
+          });
+      },
+      function (error) {
+        console.error("Error Code = " + error.code + " - " + error.message);
+        // alert("Your location is blocked")
+        axios.get(`/private_adds/private_add`).then((response) => {
+          if (response && response.data.results.length > 0) {
+            let filterArray1 = response.data.results.filter((item, index) => {
+              return item.image_type == "career_option";
+            });
+            setCareerOptionBoxAds(filterArray1);
+            // console.log("filterArray1coursebox",filterArray1)
+          }
+        });
+      },
+    );
+  }, []);
 
   const addEmail = (email) => {
     navigator.geolocation.getCurrentPosition(async function (position, values) {
@@ -203,7 +198,7 @@ export default function VerticalTabs() {
     setTabValue(obj);
     dispatch(resetCategoryDetail());
     dispatch(getGuidanceCategoryDetail(id));
-    ref.current?.scrollIntoView({ behavior: 'smooth' });
+    ref.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   const handleFullView = (id) => {
@@ -248,6 +243,21 @@ export default function VerticalTabs() {
     );
   }
 
+  useEffect(() => {
+    // Get the div element using the ref
+    const locationDiv = locationDivRef.current;
+
+    // Check if the div element exists
+    if (locationDiv) {
+      // Get all anchor tags inside the div
+      const anchorTags = locationDiv.getElementsByTagName("a");
+
+      // Loop through all anchor tags and add the target="_blank" attribute
+      for (let i = 0; i < anchorTags.length; i++) {
+        anchorTags[i].setAttribute("target", "_blank");
+      }
+    }
+  }, [categoryDetail]);
 
   return (
     <>
@@ -268,88 +278,89 @@ export default function VerticalTabs() {
               {t("successCareerOption.other.1")}
             </div>
           )}
-          <Col md={8} xs={12} >
-            <TabPanel value={value} index={0} >
+          <Col md={8} xs={12}>
+            <TabPanel value={value} index={0}>
               {/* <Row > */}
-                <Container ref={ref} className="wrap-container">
-                  {/* {showGovtExams && careerOptions && ( */}
-                  {showGovtExams &&
-                    careerOptions &&
-                    guidanceCategoryDetail?.length > 0 &&
-                    guidanceCategoryDetail?.map(
-                      (guidanceCategoryDetail, index) => {
-                        if(guidanceCategoryDetail?.image || guidanceCategoryDetail?.name){
-                          return(
-                            <div
-                                  // ref={ref}
-                                  onClick={() =>
-                                    handleFullView(guidanceCategoryDetail?.id)
-                                  }
-                                  className='tabs_box success_test_responsive'
-                                  key={guidanceCategoryDetail?.id}
-                                >
-                                  <h2>{guidanceCategoryDetail?.name}</h2>
-                                  <img
-                                    src={guidanceCategoryDetail?.image}
-                                    className='GuidanceOptionCardImage'
-                                  ></img>
-                                  <br />
-                                  <button
-                                    onClick={() =>
-                                      handleFullView(guidanceCategoryDetail?.id)
-                                    }
-                                  >
-                                    {t("successCareerOption.button.1")}
-                                  </button>
+              <Container ref={ref} className='wrap-container'>
+                {/* {showGovtExams && careerOptions && ( */}
+                {showGovtExams &&
+                  careerOptions &&
+                  guidanceCategoryDetail?.length > 0 &&
+                  guidanceCategoryDetail?.map(
+                    (guidanceCategoryDetail, index) => {
+                      if (
+                        guidanceCategoryDetail?.image ||
+                        guidanceCategoryDetail?.name
+                      ) {
+                        return (
+                          <div
+                            // ref={ref}
+                            onClick={() =>
+                              handleFullView(guidanceCategoryDetail?.id)
+                            }
+                            className='tabs_box success_test_responsive'
+                            key={guidanceCategoryDetail?.id}
+                          >
+                            <h2>{guidanceCategoryDetail?.name}</h2>
+                            <img
+                              src={guidanceCategoryDetail?.image}
+                              className='GuidanceOptionCardImage'
+                            ></img>
+                            <br />
+                            <button
+                              onClick={() =>
+                                handleFullView(guidanceCategoryDetail?.id)
+                              }
+                            >
+                              {t("successCareerOption.button.1")}
+                            </button>
+                          </div>
+                        );
+                      }
+                      // return (
+                      //   <Row>
 
+                      //     {/* <Col md={6} xs={12}> */}
+                      //     {
+                      //       guidanceCategoryDetail?.image || guidanceCategoryDetail?.name ?
 
-                                </div>
-                          )
-                        }
-                        // return (
-                        //   <Row>
-                            
-                        //     {/* <Col md={6} xs={12}> */}
-                        //     {
-                        //       guidanceCategoryDetail?.image || guidanceCategoryDetail?.name ?
-                                
-                        //         : ""
-                        //     }
+                      //         : ""
+                      //     }
 
-                        //     <br />
-                        //     <div>
-                        //       {index == 0 ? (
-                        //         <div>
-                        //           {careerOptionBoxAds.length > 0 && (
-                        //             // <div className='col-md-12'>
-                        //             <div
-                        //               className='col-md-6 tabs-box'
-                        //               onClick={() => addEmail(careerOptionBoxAds[0]?.add_email)}
-                        //             >
-                        //               <a href={careerOptionBoxAds[0]?.url_adds} target='_blank'>
-                        //                 <img
-                        //                   src={careerOptionBoxAds[0]?.image}
-                        //                   alt='Image'
-                        //                   className='GuidanceOptionCardImageAdd'
-                        //                 />
-                        //               </a>
-                        //             </div>
-                        //           )}
-                        //         </div>
-                        //       ) : (
-                        //         ""
-                        //       )}
-                        //     </div>
-                        //     <br />
-                        //     {/* </Col> */}
-                        //   </Row>
-                        // );
-                      },
-                    )}
+                      //     <br />
+                      //     <div>
+                      //       {index == 0 ? (
+                      //         <div>
+                      //           {careerOptionBoxAds.length > 0 && (
+                      //             // <div className='col-md-12'>
+                      //             <div
+                      //               className='col-md-6 tabs-box'
+                      //               onClick={() => addEmail(careerOptionBoxAds[0]?.add_email)}
+                      //             >
+                      //               <a href={careerOptionBoxAds[0]?.url_adds} target='_blank'>
+                      //                 <img
+                      //                   src={careerOptionBoxAds[0]?.image}
+                      //                   alt='Image'
+                      //                   className='GuidanceOptionCardImageAdd'
+                      //                 />
+                      //               </a>
+                      //             </div>
+                      //           )}
+                      //         </div>
+                      //       ) : (
+                      //         ""
+                      //       )}
+                      //     </div>
+                      //     <br />
+                      //     {/* </Col> */}
+                      //   </Row>
+                      // );
+                    },
+                  )}
 
-                  {/* )} */}
-                  {/* </Row> */}
-                </Container>
+                {/* )} */}
+                {/* </Row> */}
+              </Container>
               {/* </Row> */}
               {/* <>
                                 <div
@@ -393,13 +404,11 @@ export default function VerticalTabs() {
                   </div>
                 )}
      */}
-
             </TabPanel>
 
             {categoryDetail.isVisible &&
               guidanceCategoryDetail?.length > 0 &&
               guidanceCategoryDetail?.map((guidanceCategoryDetail) => {
-
                 if (categoryDetail.id == guidanceCategoryDetail.id) {
                   return (
                     <TabPanel>
@@ -422,6 +431,7 @@ export default function VerticalTabs() {
                         </div>
                         {guidanceCategoryDetail?.description ? (
                           <div
+                            ref={locationDivRef}
                             className='locationdiv'
                             dangerouslySetInnerHTML={{
                               __html: guidanceCategoryDetail?.description,

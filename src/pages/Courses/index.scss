@@ -389,7 +389,6 @@ hr.line {
   .google_add_courses {
     width: 100%;
     padding: 0px !important;
-    ;
   }
 
   .search_box_row {
@@ -433,7 +432,7 @@ hr.line {
   }
 
   .btn-danger:hover {
-    color: #FFF;
+    color: #fff;
     background: #ee5f98;
     border: 2px solid #ee5f98;
   }
@@ -594,7 +593,7 @@ hr.line {
 }
 
 .btn-danger:hover {
-  color: #FFF;
+  color: #fff;
   background: #ee5f98;
   border: 2px solid #ee5f98;
 }
@@ -622,7 +621,10 @@ hr.line {
   height: 40px;
   margin-left: 12px;
 }
-
+.searchclose.disabled {
+  // pointer-events: none;
+  cursor: not-allowed;
+}
 .suggestions {
   // width: 320px;
   max-height: 300px;
@@ -654,13 +656,12 @@ hr.line {
 }
 // KC 30-08-2022
 
-@media screen and (max-width:767px){
-	.searchInput {
+@media screen and (max-width: 767px) {
+  .searchInput {
     width: 230px;
-}
-.course_para a.shekunj_a {
-
-  bottom: 19px;
-  position: relative;
-}
+  }
+  .course_para a.shekunj_a {
+    bottom: 19px;
+    position: relative;
+  }
 }

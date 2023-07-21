@@ -389,7 +389,7 @@ function SuccessStory() {
       return; // Do not scroll if button is disabled
     }
 
-    setTrendingOffset(trendingOffset + 6);
+    setTrendingOffset(trendingOffset + 12);
   };
   const currentUrl = window.location.href;
   return (
