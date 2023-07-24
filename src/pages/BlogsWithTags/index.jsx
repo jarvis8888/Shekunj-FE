@@ -220,7 +220,7 @@ const SuccessStroyWithHashtag = () => {
     if (currentFeaturedData?.results?.length === 0) {
       return;
     }
-    setOffset(offset + 4);
+    setOffset(offset + 8);
   };
   const currentUrl = window.location.href;
   return (

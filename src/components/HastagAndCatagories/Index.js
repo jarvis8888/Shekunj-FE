@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./index.scss";
 import SocialMediaIcons from "./SocialMediaIcons";
 import blogcategoryicon from "../../assets/images/blogcategoryicon.svg";
@@ -38,8 +38,35 @@ export const HashtagAndCatagories = (props) => {
 
   const renderedHashtags = showAll ? hashtags : hashtags.slice(0, 5);
 
+  const [stopPosition, setStopPosition] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const rightColElement = document.getElementById('right-col');
+      // const headerElement = document.querySelector('.header-class');
+      const stickyHeight = rightColElement.offsetHeight;
+      const viewportHeight = window.innerHeight;
+      const headerHeight = 0;
+      const adjustedViewportHeight = viewportHeight - headerHeight;
+      const stop = viewportHeight - stickyHeight;
+
+      if (stickyHeight > adjustedViewportHeight) {
+        setStopPosition(stop);
+      } else {
+        setStopPosition(headerHeight);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    // Clean up the event listener when the component is unmounted
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
-    <div className='HashtagAndCatagories'>
+    <div className='HashtagAndCatagories' id="right-col" style={{ top: `${stopPosition}px` }}>
       <div className='HashtagAndCatagoriesTitle'>
       <div><img src={image} alt='image' /></div>
         <h2>{title}</h2>

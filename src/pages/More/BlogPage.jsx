@@ -64,7 +64,7 @@ function BlogPage() {
   const [trendingLoading, setTrendingLoading] = useState(false);
   const [pageLoading, setPageLoading] = useState(true);
   const [h1Tag, setH1Tag] = useState([]);
-  console.log("🚀 ~ file: BlogPage.jsx:67 ~ BlogPage ~ h1Tag:", h1Tag);
+  
 
   const getAllBlogsData = async (limit, offset) => {
     setLoading(true);

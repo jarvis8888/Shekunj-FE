@@ -1,0 +1,36 @@
+
+.sk-pagination .active{
+    background: #d3317d;
+    color: #fff !important;
+ }
+ .sk-allstory-sec{
+     padding: 20px 0 60px;
+ }
+ .sk-pagination button {
+     background: #fff;
+     box-shadow: 2px 2px 6px rgb(0 0 0 / 12%);
+     border-radius: 2px;
+     margin: 0 5px;
+     font-size: 18px;
+ }
+ .sk-prevnext-btn {
+     display: flex;
+     align-items: center;
+     color: #d9d9d9;
+     cursor: pointer;
+ }
+ .sk-pagination {
+     justify-content: center;
+     margin-top: 30px;
+ }
+ .sk-storyBoxMain-sec .card__bottom {
+     border-top: 1px solid #d9d9d9;
+     padding-top: 8px;
+ }
+ .sk-storyBoxMain-sec .sk-Blogcard-content{
+     padding-bottom: 8px;
+ }
+ 
+ .hashtags-item-view {
+     color: #d3317d;
+   }
