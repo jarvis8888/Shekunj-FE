@@ -30,8 +30,11 @@ import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import useDeviceDetect from "../../hooks/useDeviceDetect";
 import Pagination from "../../components/Pagination";
+import NewPagination from "../../components/Pagination/NewPagination";
 
 const CareerPage1 = () => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const [startPage, setStartPage] = useState(1);
   const [offset, setOffset] = useState(0);
   const [flag, setFlag] = useState(true);
   const pageLimit = 10;
@@ -68,6 +71,7 @@ const CareerPage1 = () => {
             longitude,
             pageLimit,
             offset,
+            search: searchInput !== "" ? `&search=${searchInput}` : "",
           }),
         );
       },
@@ -76,7 +80,8 @@ const CareerPage1 = () => {
         dispatch(getTopSchools({ filter: false, pageLimit, offset }));
       },
     );
-  }, [, lan]);
+    window.scrollTo(0, 0);
+  }, [offset, lan]);
 
   const transformImg = (image) => {
     return image ? image : TopSchool;
@@ -285,6 +290,8 @@ const CareerPage1 = () => {
   const [searchInput, setSearchInput] = useState("");
   const SearchFilterHandle = (e) => {
     e.preventDefault();
+    setCurrentPage(1);
+    setOffset(0);
     dispatch(
       getTopSchools({
         search: searchInput !== "" ? `&search=${searchInput}` : "",
@@ -347,6 +354,42 @@ const CareerPage1 = () => {
     }
     setOffset(offset + 10);
     window.scrollTo(0, 1000);
+  };
+
+  // Calculate the total number of pages
+  const totalPages = Math.ceil(topSchools?.result?.count / pageLimit);
+
+  const visiblePages = Array.from({ length: 5 })
+    .map((_, index) => startPage + index)
+    .filter((pageNumber) => pageNumber <= totalPages);
+
+  // Handle next page click
+  const nextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+      setOffset(offset + pageLimit);
+      // setEndPage(endPage + 1);
+    }
+    if (startPage + 1 < totalPages) {
+      setStartPage(startPage + 1);
+    }
+  };
+
+  // Handle previous page click
+  const previousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+      setOffset(offset - pageLimit);
+      // setEndPage(endPage - 1);
+    }
+    if (startPage > 1) {
+      setStartPage(startPage - 1);
+    }
+  };
+
+  const handleClick = (pageNumber) => {
+    setCurrentPage(pageNumber);
+    setOffset((pageNumber - 1) * pageLimit); // Update the offset based on the clicked page number
   };
 
   return (
@@ -788,13 +831,24 @@ const CareerPage1 = () => {
                 <div className='text-center'>{t("common.noDataFound")}</div>
               )}
               {topSchools?.result?.count > pageLimit && (
-                <Pagination
-                  finalCount={topSchools?.result?.count / pageLimit}
-                  nextPage={topSchools?.result?.next ? paginationNext : null}
-                  backPage={
-                    topSchools?.result?.previous ? paginationBack : null
-                  }
-                />
+                <>
+                  {/* <Pagination
+                    finalCount={topSchools?.result?.count / pageLimit}
+                    nextPage={topSchools?.result?.next ? paginationNext : null}
+                    backPage={
+                      topSchools?.result?.previous ? paginationBack : null
+                    }
+                  /> */}
+
+                  <NewPagination
+                    currentPage={currentPage}
+                    totalPages={totalPages}
+                    visiblePages={visiblePages}
+                    previousPage={previousPage}
+                    nextPage={nextPage}
+                    handleClick={handleClick}
+                  />
+                </>
               )}
             </Col>
           </Row>

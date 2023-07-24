@@ -515,7 +515,7 @@ const SuccessStoryDetails = () => {
                         disabled={currentTrendingData?.results?.length === 0}
                         className='loadMore'
                         onClick={() => {
-                          setTrendingOffset(trendingOffset + 6);
+                          setTrendingOffset(trendingOffset + 12);
                           // trendingSectionRef.current.scrollIntoView({
                           //   behavior: "smooth",
                           // });

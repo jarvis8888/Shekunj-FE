@@ -55,12 +55,17 @@ function TopNavbar(props) {
 
   return (
     <div className='sk-headerTop-bg'>
-      <div className={`container ${props.newDesign ? 'sk-custom-container' : ''}`}>
+      <div
+        className={`container ${props.newDesign ? "sk-custom-container" : ""}`}
+      >
         <div className='header-top'>
           <nav className=''>
             <ul>
               <li className='mobile'>
-                <a href='/events/all' className={isActive("/events/all") && "active"}>
+                <a
+                  href='/events/all'
+                  className={isActive("/events/all") && "active"}
+                >
                   {t("phase2.HEADER.events")}
                 </a>
               </li>
