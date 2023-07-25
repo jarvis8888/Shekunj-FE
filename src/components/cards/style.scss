@@ -459,6 +459,17 @@ p.blog-card-description {
     font-size: 10px;
   }
 }
+@media screen and (max-width: 991px) {
+  .title h2{
+    font-size: 18px;
+  }
+  .sk-blog-sidebar{
+    margin-top: 10px;
+  }
+  .sk-heading-story h3{
+    font-size: 14px;
+  }
+}
 
 @media screen and (max-width: 767px) {
   .sk-tradingBlog-card {

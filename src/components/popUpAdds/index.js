@@ -20,9 +20,9 @@ const PopUpAdds = () => {
     sessionStorage.setItem("rightAddClosed", true);
   };
 
-  const getAllPopUpData = async () => {
+  const getAllPopUpData = async (latitude, longitude) => {
     try {
-      const url = `private_adds/popup_adds/`;
+      const url = `private_adds/popup_adds?latitude=${latitude}&longitude=${longitude}`;
       const res = await httpServices.get(url);
       const { popup_adds } = res;
       let filterArray1 = popup_adds.filter((item, index) => {
@@ -51,7 +51,22 @@ const PopUpAdds = () => {
     }
 
     if (!leftAddClosed || !rightAddClosed) {
-      getAllPopUpData();
+      navigator.geolocation.getCurrentPosition(
+        async function (position) {
+          const latitude = position.coords.latitude;
+          const longitude = position.coords.longitude;
+          getAllPopUpData(latitude, longitude);
+        },
+        function (error) {
+          console.error("Error Code = " + error.code + " - " + error.message);
+          // alert("Your location is blocked")
+
+          // If the location is blocked, you can set default values for latitude and longitude
+          const defaultLatitude = 0;
+          const defaultLongitude = 0;
+          getAllPopUpData(defaultLatitude, defaultLongitude);
+        },
+      );
     }
   }, []);
 

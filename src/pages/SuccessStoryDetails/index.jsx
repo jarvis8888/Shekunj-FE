@@ -296,7 +296,7 @@ const SuccessStoryDetails = () => {
           <section className='sk-storyDetail-sec'>
             <div className='container sk-custom-container'>
               <div className='row'>
-                <div className='col-xl-8 col-lg-8 col-md-8'>
+                <div className='col-xl-8 col-lg-8 col-md-12 col-sm-12'>
                   <div className='sk-topBottom-space'>
                    <div><img
                       src={successStoriesDetails?.image}
@@ -526,7 +526,7 @@ const SuccessStoryDetails = () => {
                     </div>
                   </div>
                 </div>
-                <div className='col-xl-4 col-lg-4 col-md-4 sk-Removeside-space'>
+                <div className='col-xl-4 col-lg-4 col-md-12 col-sm-12 sk-Removeside-space'>
                   <HashtagAndCatagories
                     type='hashtag'
                     image={hash}

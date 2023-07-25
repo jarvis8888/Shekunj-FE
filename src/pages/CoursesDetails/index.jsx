@@ -187,16 +187,16 @@ const CourseDetails = () => {
                 </div>
                 <div className='mt-2 mb-2'></div>
                 <div className='sec1_con2 con_setSec1'>
-                  <h2>{("coursesPage.coursesDetailsPage.heading.3")}</h2>
+                  <h2>{t("coursesPage.coursesDetailsPage.heading.3")}</h2>
                   <Row>
                     {course?.What_you_will_learn?.map((item) => {
                       return (
                         <Col md={6} xs={12} key={item.id}>
                           <div className='features_box'>
-                            <div className="sk-features-inner">
+                            <div className='sk-features-inner'>
                               <img src={Check} alt='' srcSet='' />
                             </div>
-                            <div className="sk-features-content">
+                            <div className='sk-features-content'>
                               <p>{item?.name}</p>
                             </div>
                           </div>
@@ -212,10 +212,10 @@ const CourseDetails = () => {
                   <Row>
                     <Col md={6} xs={12}>
                       <div className='features_box'>
-                        <div className="sk-features-inner">
+                        <div className='sk-features-inner'>
                           <img src={monitor} alt='' srcSet='' />
                         </div>
-                        <div className="sk-features-content">
+                        <div className='sk-features-content'>
                           <h6>
                             {t(
                               "coursesPage.coursesDetailsPage.heading.features.1",
@@ -244,10 +244,10 @@ const CourseDetails = () => {
                         </div>
                       </div>
                       <div className='features_box'>
-                        <div className="sk-features-img">
+                        <div className='sk-features-img'>
                           <img src={certificate1} alt='' srcSet='' />
                         </div>
-                        <div className="sk-features-content">
+                        <div className='sk-features-content'>
                           <h6>
                             {t(
                               "coursesPage.coursesDetailsPage.heading.features.3",
@@ -320,12 +320,25 @@ const CourseDetails = () => {
 
               <div className='col-md-5'>
                 <div className='sec2_right'>
-                  <Link
-                    to={routingConstants.COURSES_MODULE + course?.id}
-                    className='btn btn_str_Cor'
-                  >
-                    {t("coursesPage.coursesDetailsPage.other.1")}
-                  </Link>
+                  {course?.redirection_link
+                    ?.do_you_want_to_redirect_this_course ? (
+                    <a
+                      href={course?.redirection_link?.redirection_link}
+                      target='_blank' 
+                      rel='noopener noreferrer' // Recommended for security reasons
+                      className='btn btn_str_Cor'
+                    >
+                      {t("coursesPage.coursesDetailsPage.other.1")}
+                    </a>
+                  ) : (
+                    <Link
+                      to={routingConstants.COURSES_MODULE + course?.id}
+                      className='btn btn_str_Cor'
+                    >
+                      {t("coursesPage.coursesDetailsPage.other.1")}
+                    </Link>
+                  )}
+
                   <h3 className='similar-coursestext'>
                     {t("coursesPage.coursesDetailsPage.other.2")}
                   </h3>
