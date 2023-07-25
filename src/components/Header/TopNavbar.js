@@ -14,6 +14,7 @@ import Cookies from "js-cookie";
 import { isAuthenticated } from "../../utils";
 import { Dropdown } from "rsuite";
 import { useLocation } from "react-router-dom";
+import { NotificationComponent } from "../notification/NotificationComponent";
 
 function TopNavbar(props) {
   const { t } = useTranslation();
@@ -88,6 +89,9 @@ function TopNavbar(props) {
                 <ChangeLanguageButton />
               </li>
               <li>
+                <NotificationComponent />
+              </li>
+              <li>
                 {isAuth ? (
                   <>
                     <div className='profile'>
@@ -105,6 +109,7 @@ function TopNavbar(props) {
                         />
                       )}
                       <Dropdown
+                        trigger='hover'
                         title={user?.name || t("common.n/a")}
                         className='custom-dropdown'
                       >

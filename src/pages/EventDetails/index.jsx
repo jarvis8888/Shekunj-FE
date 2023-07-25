@@ -325,12 +325,20 @@ const EventDetails = () => {
   return (
     <>
       <SEO
-        title={eventsDetails?.title}
-        // description={eventsDetails?.meta_description}
-        // keywords={eventsDetails?.meta_keywords}
+        title={
+          eventsDetails?.meta_title
+            ? eventsDetails?.meta_title
+            : eventsDetails?.title
+        }
+        description={eventsDetails?.meta_description}
+        keywords={eventsDetails?.meta_keywords}
         image={eventsDetails?.image}
         currentUrl={currentUrl}
-        link={currentUrl}
+        link={
+          eventsDetails?.canonical_tags
+            ? eventsDetails?.canonical_tags
+            : currentUrl
+        }
       />
       <div>
         {loading ? (
@@ -374,19 +382,18 @@ const EventDetails = () => {
                                   "offline" ? (
                                     <>
                                       {" "}
-                                      <span><img
-                                        src={offlineicon}
-                                        alt=''
-                                      /></span> Offline{" "}
+                                      <span>
+                                        <img src={offlineicon} alt='' />
+                                      </span>{" "}
+                                      Offline{" "}
                                     </>
                                   ) : (
                                     <>
                                       {" "}
                                       <span>
-                                      <img
-                                        src={onlineicon}
-                                        alt=''
-                                      /></span> Online{" "}
+                                        <img src={onlineicon} alt='' />
+                                      </span>{" "}
+                                      Online{" "}
                                     </>
                                   )}
                                 </li>
