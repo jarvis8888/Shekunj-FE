@@ -238,7 +238,7 @@ const SuccessStroyWithHashtag = () => {
               hashtags={allHashTag}
             />
             <div className='row'>
-              <div className='col-xl-8 col-lg-8 col-md-8'>
+              <div className='col-xl-8 col-lg-8 col-md-12 col-sm-12'>
                 <div className='sk-topBottom-space'>
                   <div className='sk-hashtagBorder-tilte'>
                     <h1 className='Hashtag_container_title'>
@@ -295,7 +295,7 @@ const SuccessStroyWithHashtag = () => {
                   </button>
                 </div>
               </div>
-              <div className='col-xl-4 col-lg-4 col-md-4 sk-Removeside-space'>
+              <div className='col-xl-4 col-lg-4 col-md-12 col-sm-12 sk-Removeside-space'>
                 <HashtagAndCatagories
                   type='hashtag'
                   image={hash}

@@ -157,6 +157,14 @@ export const HashtagAndCatagories = (props) => {
       <div>
         <YouMayLikeCarousel />
       </div>
+      
+      {
+        type === "hashtag"&&(
+        <div className="sk-hashtagBg-bottom">
+          <p>From Dreams to Reality: </p> <p>Inspiring Success Stories!</p>
+          <button className="sk-viewsatory-btn">View Success Stories</button>
+        </div>)
+      }
     </div>
   );
 };
