@@ -324,7 +324,7 @@ const CourseDetails = () => {
                     ?.do_you_want_to_redirect_this_course ? (
                     <a
                       href={course?.redirection_link?.redirection_link}
-                      target='_blank' 
+                      target='_blank'
                       rel='noopener noreferrer' // Recommended for security reasons
                       className='btn btn_str_Cor'
                     >
@@ -338,6 +338,12 @@ const CourseDetails = () => {
                       {t("coursesPage.coursesDetailsPage.other.1")}
                     </Link>
                   )}
+                  <Link
+                    to={routingConstants.COURSES_TEST + course?.id}
+                    className='btn btn_str_Cor'
+                  >
+                    Give Test
+                  </Link>
 
                   <h3 className='similar-coursestext'>
                     {t("coursesPage.coursesDetailsPage.other.2")}

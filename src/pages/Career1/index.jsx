@@ -31,6 +31,8 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import useDeviceDetect from "../../hooks/useDeviceDetect";
 import Pagination from "../../components/Pagination";
 import NewPagination from "../../components/Pagination/NewPagination";
+import { CustomLoader } from "../../components/customLoader/CustomLoader";
+import { NoDataFound } from "../../components/noDataFound/NoDataFound";
 
 const CareerPage1 = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -428,19 +430,23 @@ const CareerPage1 = () => {
                 className='ads_school_cover'
                 onClick={() => addEmail(schoolBannerAds[0]?.add_email)}
               >
-                <a href={schoolBannerAds[0]?.url_adds} target='_blank'>
+                <a
+                  href={schoolBannerAds[0]?.url_adds}
+                  target='_blank'
+                  rel='noreferrer'
+                >
                   {detect.isMobile ? (
                     schoolBannerAds[0]?.image_mobile && (
                       <img
                         src={schoolBannerAds[0]?.image_mobile}
-                        alt='Image'
+                        alt='schoolBannerAds'
                         className='ads_school'
                       />
                     )
                   ) : (
                     <img
                       src={schoolBannerAds[0]?.image}
-                      alt='Image'
+                      alt='schoolBannerAds'
                       className='ads_school'
                     />
                   )}
@@ -489,14 +495,14 @@ const CareerPage1 = () => {
                         >
                           <img
                             src={Search}
-                            alt='Image'
+                            alt='searchIcon'
                             className='searchIcon'
                           />
                         </button>
                         <span className='closeBtn1' onClick={handleResetSearch}>
                           <img
                             src={Cross}
-                            alt='Image'
+                            alt='searchclose'
                             className='searchclose'
                           />
                         </span>
@@ -602,6 +608,7 @@ const CareerPage1 = () => {
                                     <img
                                       src={transformImg(c?.logo)}
                                       className='career_logo_img'
+                                      alt="career_banner"
                                     />
                                   </div>
                                 </Link>
@@ -714,6 +721,7 @@ const CareerPage1 = () => {
                                   ]?.url_adds
                                 }
                                 target='_blank'
+                                rel='noreferrer'
                               >
                                 {detect.isMobile
                                   ? schoolBoxAds[
@@ -729,7 +737,7 @@ const CareerPage1 = () => {
                                             ][0]
                                           ]?.image_mobile
                                         }
-                                        alt='Image'
+                                        alt='schoolBoxAds'
                                         className='ads_school_box'
                                       />
                                     )
@@ -746,7 +754,7 @@ const CareerPage1 = () => {
                                             ][0]
                                           ]?.image
                                         }
-                                        alt='Image'
+                                        alt='schoolBoxAds'
                                         className='ads_school_box'
                                       />
                                     )}
@@ -770,6 +778,7 @@ const CareerPage1 = () => {
                                   ]?.url_adds
                                 }
                                 target='_blank'
+                                rel='noreferrer'
                               >
                                 {detect.isMobile
                                   ? schoolBoxAds[
@@ -785,7 +794,7 @@ const CareerPage1 = () => {
                                             ][1]
                                           ]?.image_mobile
                                         }
-                                        alt='Image'
+                                        alt='schoolBoxAds'
                                         className='ads_school_box'
                                       />
                                     )
@@ -802,7 +811,7 @@ const CareerPage1 = () => {
                                             ][1]
                                           ]?.image
                                         }
-                                        alt='Image'
+                                        alt='schoolBoxAds'
                                         className='ads_school_box'
                                       />
                                     )}
@@ -823,12 +832,9 @@ const CareerPage1 = () => {
               //   <rect x="80" y="40" rx="3" ry="3" width="250" height="10" />
               // </ContentLoader>
               isLoading ? (
-                <div>
-                  <h4>Loading...</h4>
-                  <ClipLoader className='loader' color='#ec498a' />
-                </div>
+                <CustomLoader />
               ) : (
-                <div className='text-center'>{t("common.noDataFound")}</div>
+                <NoDataFound />
               )}
               {topSchools?.result?.count > pageLimit && (
                 <>
