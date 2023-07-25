@@ -132,7 +132,8 @@ export const GlobalSearchCard = ({
               dangerouslySetInnerHTML={{
                 __html: makeHtml(
                   `${
-                    (item?.description && `${item?.description}`) ||
+                    (item?.description &&
+                      `${removeHtmlTags(item?.description)}`) ||
                     (item?.about_blog &&
                       `${removeHtmlTags(item?.about_blog)}`) ||
                     ""

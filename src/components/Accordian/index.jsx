@@ -429,7 +429,7 @@ export default function AccordionComponent({
               </ul>
               {hasMoreCount(stream?.rows, 3) > 0 && (
                 <div
-                  className='has-more'
+                  className=''
                   onClick={() => setRemainingColleges((prev) => !prev)}
                 >
                   {hasMoreCount(stream?.rows, 3)}{" "}
@@ -460,7 +460,7 @@ export default function AccordionComponent({
               </ul>
               {/* {hasMoreCount(ownership?.rows, 3) > 0 && (
                 <div
-                  className='has-more'
+                  className=''
                   onClick={() => setRemainingCollegeOwnership((prev) => !prev)}
                 >
                   {hasMoreCount(ownership?.rows, 3)}{" "}
@@ -501,7 +501,7 @@ export default function AccordionComponent({
               </ul>
               {hasMoreCount(state?.rows, 3) > 0 && (
                 <div
-                  className='has-more'
+                  className=''
                   onClick={() => setRemainingCollegeState((prev) => !prev)}
                 >
                   {hasMoreCount(state?.rows, 3)}{" "}
@@ -532,7 +532,7 @@ export default function AccordionComponent({
               </ul>
               {hasMoreCount(city?.rows, 3) > 0 && (
                 <div
-                  className='has-more'
+                  className=''
                   onClick={() => setRemainingCollegeCity((prev) => !prev)}
                 >
                   {hasMoreCount(city?.rows, 3)}{" "}
@@ -564,7 +564,7 @@ export default function AccordionComponent({
           </ul>
           {hasMoreCount(states?.rows, 3) > 0 && (
             <div
-              className='has-more'
+              className=''
               onClick={() => setRemainingSchoolsState((prev) => !prev)}
             >
               {hasMoreCount(states?.rows, 3)}{" "}
@@ -589,17 +589,19 @@ export default function AccordionComponent({
                     "cities",
                   )}
             </FormGroup>
+       
+            {hasMoreCount(cities?.rows, 3) > 0 && (
+             
+              <li
+                className='sk-lessshow-more'
+                onClick={() => setRemainingSchoolsCities((prev) => !prev)}
+              >
+                {hasMoreCount(cities?.rows, 3)}{" "}
+                {remainingSchoolsCities ? "Less" : "More"}
+              </li>
+              
+            )}
           </ul>
-          {hasMoreCount(cities?.rows, 3) > 0 && (
-            <div
-              className='has-more'
-              onClick={() => setRemainingSchoolsCities((prev) => !prev)}
-            >
-              {hasMoreCount(cities?.rows, 3)}{" "}
-              {remainingSchoolsCities ? "Less" : "More"}
-            </div>
-          )}
-
           <Typography>{category?.name}</Typography>
           <ul className='pl-0'>
             <RadioGroup name='radio-buttons-group'>
@@ -611,7 +613,7 @@ export default function AccordionComponent({
           </ul>
           {/* {hasMoreCount(category?.rows, 3) > 0 && (
             <div
-              className='has-more'
+              className=''
               onClick={() => setRemainingSchoolsCategory((prev) => !prev)}
             >
               {hasMoreCount(category?.rows, 3)}{" "}
@@ -631,7 +633,7 @@ export default function AccordionComponent({
           </ul>
           {/* {hasMoreCount(ownership?.rows, 3) > 0 && (
             <div
-              className='has-more'
+              className=''
               onClick={() => setRemainingSchoolsOwnership((prev) => !prev)}
             >
               {hasMoreCount(ownership?.rows, 3)}{" "}
@@ -656,7 +658,7 @@ export default function AccordionComponent({
           </ul>
           {/* {hasMoreCount(educationBoard?.rows, 6) > 0 && (
             <div
-              className='has-more'
+              className=''
               onClick={() => setRemainingSchoolEducationBoard((prev) => !prev)}
             >
               {hasMoreCount(educationBoard?.rows, 6)}{" "}
@@ -691,7 +693,7 @@ export default function AccordionComponent({
               </ul>
               {hasMoreCount(categories?.rows, 6) > 0 && (
                 <div
-                  className='has-more'
+                  className=''
                   onClick={() => setRemainingGovtExamsCategory((prev) => !prev)}
                 >
                   {hasMoreCount(categories?.rows, 6)}{" "}

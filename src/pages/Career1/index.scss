@@ -4,13 +4,122 @@
   padding: 40px 0 ;
 }
 .sk-Topmiddle-sec{
-  padding: 40px 0;
+  padding: 40px 0 0;
+}
+.sk-spaceBottom-school{
+  padding-bottom: 20px;
 }
 .sk-storyHeading-top {
   font-size: 48px;
   font-weight: 600;
 }
+.sk-all-school p {
+  margin-bottom: 0;
+}
+.desktop_view_city_selct ul {
+  border-bottom: 1px solid #d9d9d9;
+  padding-bottom: 15px;
+}
+.desktop_view_city_selct ul:last-child{
+  border-bottom: 0;
+}
 
+.sk-rightlist-school {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 0 25px;
+  flex-wrap: wrap;
+}
+.desktop_view_city_selct:before {
+  position: absolute;
+  content: '';
+  right: 0;
+  top: 0;
+  bottom: 0;
+  left: auto;
+  width: 1px;
+  height: 100%;
+  background: #d9d9d9;
+}
+.desktop_view_city_selct p{
+  font-size: 18px;
+  padding-bottom: 15px;
+  font-weight: 500;
+  color: #434242;
+}
+.desktop_view_city_selct {
+  position: relative;
+  height: 100%;
+}
+.sk-resetFilter-bar ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #d9d9d9 !important;
+  padding: 40px 0 35px;
+}
+
+.sk-resetFilter-bar {
+  padding-right: 30px;
+}
+
+.sk-resetFilter-bar ul li {
+  font-size: 18px;
+  font-weight: 500;
+  color: #202020;
+}
+.sk-topSchoolbox-list ul li {
+  position: relative;
+  padding-left: 15px;
+}
+
+.sk-topSchoolbox-list ul li:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin: auto;
+  width: 6px;
+  height: 6px;
+  background: #C6C6C6;
+  border-radius: 50px;
+  bottom: 0;
+}
+.sk-topSchoolbox-list ul li:before:last-child {
+  position: relative;
+}
+.sk-resetFilter-bar ul li span {
+  font-size: 16px;
+  font-weight: 400;
+  color: #d62c79;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+.sk-resetFilter-bar ul li span svg{
+  font-size: 22px;
+}
+.sk-lessshow-more {
+  padding-left: 42px;
+  color: #d62c79;
+}
+.sk-Schooolborder-top {
+  border-top: 1px solid #d9d9e9;
+}
+.sk-all-school p {
+  margin-bottom: 0;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.sk-all-school p span {
+  font-size: 16px;
+  font-weight: 400;
+  color: #888;
+}
 .sk-topSchoolbox-list {
   display: flex;
   align-items: center;
@@ -43,7 +152,9 @@
 .sk-serachTop-school {
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
+  min-width: 280px;
+  flex: 280px 0 0;
+  width: 100%;
 }
 
 .sk-serachTop-school input {
@@ -161,10 +272,14 @@
   align-items: center;
   // margin-bottom: 30px;
 }
-
+.sk-Topview-more a{
+  color:#202020;
+}
+.sk-Topview-more a:hover{
+  color:#ec498a;
+}
 .sk-topSchoolbox-list ul li {
   font-weight: 400;
-  font-size: 14px;
   color: #888;
 }
 .sk-topSchoolbox-list ul li a{
