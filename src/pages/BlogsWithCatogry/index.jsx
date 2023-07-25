@@ -216,7 +216,7 @@ const BlogWithCatogry = () => {
               hashtags={allHashTag}
             />
             <div className='row'>
-              <div className='col-xl-8 col-lg-8 col-md-8 Hashtag_container_cards sk-blog-detail-wa'>
+              <div className='col-xl-8 col-lg-8 col-md-12 col-sm-12 Hashtag_container_cards sk-blog-detail-wa'>
                 <div className='sk-topBottom-space'>
                   <div className='sk-hashtag-headingtitle'>
                     <h1 className='Hashtag_container_title'>
@@ -268,7 +268,7 @@ const BlogWithCatogry = () => {
               </div>
               <div
                 div
-                className='col-xl-4 col-lg-4 col-md-4 sk-Removeside-space'
+                className='col-xl-4 col-lg-4 col-md-12 col-sm-12 sk-Removeside-space'
               >
                 <HashtagAndCatagories
                   image={hash}

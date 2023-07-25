@@ -316,7 +316,7 @@ function SuccessStory() {
     <div
       key={ad.id}
       onClick={() => addEmailToClient(ad.add_email)}
-      className='col-xl-6 col-lg-6 col-md-12 col-sm-12'
+      className='col-xl-6 col-lg-6 col-md-6 col-sm-12'
     >
       <div className='sk-cardAdd-fix'>
         <span className='sk-ad-title'>Advertisement</span>
@@ -550,7 +550,7 @@ function SuccessStory() {
             <section className='sk-storyBoxMain-sec'>
               <div className='container sk-custom-container'>
                 <div className='row'>
-                  <div className='col-xl-8 col-lg-8 col-md-8 featured-stories'>
+                  <div className='col-xl-8 col-lg-8 col-md-12 col-sm-12 featured-stories'>
                     <div className='sk-topBottom-space'>
                       <div className='title'>
                         <div><img src={featurestory} alt='featurestory' width={36} /></div>
@@ -575,7 +575,7 @@ function SuccessStory() {
                           } else {
                             return (
                               <>
-                                <div className='col-xl-6 col-lg-6 col-md-12 col-sm-12'>
+                                <div className='col-xl-6 col-lg-6 col-md-6 col-sm-12'>
                                   <FeaturedCards
                                     image={items.image}
                                     hashtags={
@@ -670,7 +670,7 @@ function SuccessStory() {
                       </div>
                     </div>
                   </div>
-                  <div className='col-xl-4 col-md-4 col-lg-4 col-sm-12 ads sk-Removeside-space'>
+                  <div className='col-xl-4 col-lg-4 col-md-12 col-sm-12 ads sk-Removeside-space'>
                     <HashtagAndCatagories
                       type='hashtag'
                       image={hash}

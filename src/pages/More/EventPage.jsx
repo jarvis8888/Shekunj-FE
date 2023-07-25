@@ -331,19 +331,18 @@ function EventPage() {
                   modules={[Navigation, Autoplay]}
                   breakpoints={{
                     320: {
-                      slidesPerView: 2,
+                      slidesPerView: 2.5,
                       spaceBetween: 15,
-                      centeredSlides: true,
                     },
                     767: {
-                      slidesPerView: 2,
+                      slidesPerView: 3,
                       spaceBetween: 15,
                     },
                     991: {
-                      slidesPerView: 3,
+                      slidesPerView: 3.5,
                     },
                     1250: {
-                      slidesPerView: 4,
+                      slidesPerView: 4.5,
                       spaceBetween: 24,
                     },
                   }}

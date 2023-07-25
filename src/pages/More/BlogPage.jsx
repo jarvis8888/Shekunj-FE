@@ -369,7 +369,7 @@ function BlogPage() {
             <section className='sk-blogTopbar-sec'>
               <div className='container sk-custom-container'>
                 <div className='row'>
-                  <div className='col-xl-8 col-md-8 col-lg-8'>
+                  <div className='col-xl-8 col-lg-8 col-md-12 col-sm-12 animate__animatedcol-md-12 '>
                     <div className='carousel-blog'>
                       <BlogCarousel
                         images={topTrendingBlogs?.slice(0, 5)}
@@ -377,7 +377,7 @@ function BlogPage() {
                       />
                     </div>
                   </div>
-                  <div className='col-xl-4 col-md-4 col-lg-4'>
+                  <div className='col-xl-4 col-lg-4 col-md-12 col-sm-12'>
                     <div className='sk-blog-sidebar'>
                       <div className='title mb-4'>
                         <div><img src={fire} alt='fire' width={36} /></div>
@@ -491,7 +491,7 @@ function BlogPage() {
                             } else {
                               return (
                                 <>
-                                  <div className='col-xl-6 col-md-6 col-lg-6 col-sm-12'>
+                                  <div className='col-xl-6 col-lg-6 col-md-12 col-sm-12'>
                                     <LatestBlogCard
                                       image={items.image}
                                       hashtags={items.hash_tags}
@@ -633,7 +633,7 @@ function BlogPage() {
                       </div>
                     </div>
                   </div>
-                  <div className='col-xl-4 col-md-6 col-lg-4 col-sm-12 sk-Removeside-space'>
+                  <div className='col-xl-4 col-lg-4 col-md-6 col-sm-12 sk-Removeside-space'>
                     <HashtagAndCatagories
                       image={blogcategoryicon}
                       title={"Categories"}

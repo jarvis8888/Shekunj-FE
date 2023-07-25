@@ -349,7 +349,7 @@ const EventDetails = () => {
           <section className='sk-eventDetails-sec'>
             <div className='container sk-custom-container'>
               <div className='row'>
-                <div className='col-xl-8 col-md-8'>
+                <div className='col-xl-8 col-lg-8 col-md-12 col-sm-12'>
                   <div className='sk-topBottom-space'>
                     <div className='sk-event-imgcontent'>
                       <div className='sk-eventDetails-img'>
@@ -494,7 +494,7 @@ const EventDetails = () => {
                     </div>
                   </div>
                 </div>
-                <div class='col-xl-4 col-md-4 sk-Removeside-space'>
+                <div class='col-xl-4 col-lg-8 col-md-12 col-sm-12 sk-Removeside-space'>
                   <div className='sk-event-sidebar'>
                     <div className='sk-event-form'>
                       <h6>Registration Form</h6>

@@ -42,10 +42,10 @@ export const TrendingBlogsCard2 = ({
         }
         style={{ cursor: "pointer" }}
       >
-        <div className='col-xl-5 col-lg-6 col-md-4'>
+        <div className='col-xl-5 col-lg-5 col-md-12'>
           <div><img src={image} alt='' /></div>
         </div>
-        <div className='col-xl-7 col-lg-6 col-md-8'>
+        <div className='col-xl-7 col-lg-7 col-md-12'>
           <div className='sk-tradingBlog-card'>
             <span
               className='sk-tagBlog-name'

@@ -512,6 +512,9 @@ img {
   .sk-event-sidebar::before {
     width: 0;
   }
+  .sk-details-datetime ul {
+    grid-gap:15px;
+  }
 }
 
 @media screen and (max-width: 480px) {
