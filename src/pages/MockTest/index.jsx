@@ -106,6 +106,7 @@ function MockTest() {
   const { isLoading, guidanceCategory, testData, countData } = useSelector(
     (state) => state?.guidanceReducer,
   );
+  console.log(isLoading);
 
   const progress = Math.round(100 / (countData?.total_career_que || 0)) || 0;
 

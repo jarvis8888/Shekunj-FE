@@ -11,13 +11,13 @@ import {
 } from "../../store/career";
 import "../HomePage/index.scss";
 import "./index.scss";
-
+import { withHeaderFooter } from "../../hocs/withHeaderFooter";
 import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
 import TopSchool from "../../assets/images/Career/scl.jpg";
 import logo from "../../assets/icons/filter.png";
 import Cross from "../../assets/icons/cross.png";
-import Search from "../../assets/icons/search1.png";
+import Search from "../../assets/images/search_white_icon.svg";
 import { Link } from "react-router-dom";
 import axios from "axios";
 // import ContentLoader, { Facebook } from 'react-content-loader';
@@ -31,6 +31,8 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import useDeviceDetect from "../../hooks/useDeviceDetect";
 import Pagination from "../../components/Pagination";
 import NewPagination from "../../components/Pagination/NewPagination";
+import { CustomLoader } from "../../components/customLoader/CustomLoader";
+import { NoDataFound } from "../../components/noDataFound/NoDataFound";
 
 const CareerPage1 = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -417,97 +419,53 @@ const CareerPage1 = () => {
           boys schools in india girls schools in india'
         />
       </Helmet>
-
-      <Header loginPage={true} page='career' subPage='schools' />
-
-      <Container>
-        <Row>
-          <div className='col-md-12'>
-            {schoolBannerAds.length > 0 && (
-              <div
-                className='ads_school_cover'
-                onClick={() => addEmail(schoolBannerAds[0]?.add_email)}
-              >
-                <a href={schoolBannerAds[0]?.url_adds} target='_blank'>
-                  {detect.isMobile ? (
-                    schoolBannerAds[0]?.image_mobile && (
+      <section className="sk-topschool-banner">
+        <div className="container sk-custom-container">
+          <div className="row">
+            <div className='col-md-12'>
+              {schoolBannerAds.length > 0 && (
+                <div
+                  className='ads_school_cover'
+                  onClick={() => addEmail(schoolBannerAds[0]?.add_email)}
+                >
+                  <a href={schoolBannerAds[0]?.url_adds} target='_blank'>
+                    {detect.isMobile ? (
+                      schoolBannerAds[0]?.image_mobile && (
+                        <img
+                          src={schoolBannerAds[0]?.image_mobile}
+                          alt='Image'
+                          className='ads_school'
+                        />
+                      )
+                    ) : (
                       <img
-                        src={schoolBannerAds[0]?.image_mobile}
+                        src={schoolBannerAds[0]?.image}
                         alt='Image'
                         className='ads_school'
                       />
-                    )
-                  ) : (
-                    <img
-                      src={schoolBannerAds[0]?.image}
-                      alt='Image'
-                      className='ads_school'
-                    />
-                  )}
-                </a>
-              </div>
-            )}
+                    )}
+                  </a>
+                </div>
+              )}
+            </div>
           </div>
-        </Row>
-      </Container>
-
-      <div className='mainDiv_school'>
-        {/* {loading ? (
-        <div className="loader-container">
-      	  <div className="spinner"></div>
         </div>
-      ) : ( */}
-        <Container>
-          <div className='career_tit noselect'>
-            <Row>
-              <Col md={6} xs={12}>
-                <h2>{t("careerTopSchools.heading.1")}</h2>
+      </section>
+      <section className="sk-Topmiddle-sec">
+        <div className="container sk-custom-container">
+          <div className='noselect'>
+            <div className="row">
+              <Col md={12} xs={12}>
+                <h1 className="sk-storyHeading-top">{t("careerTopSchools.heading.1")}</h1>
                 <p>
                   {t("careerTopSchools.other.12")}{" "}
                   {topSchools?.result?.results?.length || 0}{" "}
                   {t("careerTopSchools.other.11")}
                 </p>
               </Col>
-              <Col md={6} xs={12}>
-                <div className='input-group searchSection'>
-                  <form>
-                    <div className='d-flex'>
-                      <div className='wraper '>
-                        <input
-                          type='text'
-                          onChange={(e) => setSearchInput(e.target.value)}
-                          value={searchInput}
-                          name='searchInput'
-                          class='form-control searchInput'
-                          placeholder='Search here...'
-                        />
-                      </div>
-                      <div className='d-flex'>
-                        <button
-                          onClick={SearchFilterHandle}
-                          className='searchBtn1'
-                        >
-                          <img
-                            src={Search}
-                            alt='Image'
-                            className='searchIcon'
-                          />
-                        </button>
-                        <span className='closeBtn1' onClick={handleResetSearch}>
-                          <img
-                            src={Cross}
-                            alt='Image'
-                            className='searchclose'
-                          />
-                        </span>
-                      </div>
-                    </div>
-                  </form>
-                </div>
-              </Col>
-            </Row>
+            </div>
           </div>
-          <Row>
+          <div className="row">
             <Col md={4} xs={12}>
               <div className='desktop_view_city_selct'>
                 <AccordionComponent
@@ -581,36 +539,60 @@ const CareerPage1 = () => {
             </Col>
 
             <Col md={8} xs={12}>
+              <Row>
+                <Col md={6} xs={12}>
+                  <div className='input-group'>
+                    <form>
+                      <div className='sk-serachTop-school'>
+                        <input
+                          type='text'
+                          onChange={(e) => setSearchInput(e.target.value)}
+                          value={searchInput}
+                          name='searchInput'
+                          class='form-control'
+                          placeholder='Search here...'
+                        />
+                        <button onClick={SearchFilterHandle}
+                          className='sk-searchSchool-filter'
+                        >
+                          <img
+                            src={Search}
+                            alt='Image'
+                            className=''
+                          />
+                        </button>
+
+                        {/* <div className='d-flex'> */}
+
+                        {/* <span className='closeBtn1' onClick={handleResetSearch}>
+                            <img
+                              src={Cross}
+                              alt='Image'
+                              className='searchclose'
+                            />
+                          </span> */}
+                        {/* </div> */}
+                      </div>
+                    </form>
+                  </div>
+                </Col>
+              </Row>
               {topSchools?.result?.results?.length > 0 ? (
                 topSchools?.result?.results?.map(
                   (c, index) =>
                     c?.name && (
                       <>
-                        <div
-                          className='career_box noselect'
-                          style={{ height: "auto" }}
-                        >
-                          <Row>
-                            <Col md={3} xs={12}>
-                              <div className='school_logo_box'>
-                                <Link
-                                  to={routingConstants.TOP_SCHOOL + c.id}
-                                  className='col-md-6'
-                                  key={c?.id}
-                                >
-                                  <div className='career_logo_box'>
-                                    <img
-                                      src={transformImg(c?.logo)}
-                                      className='career_logo_img'
-                                    />
-                                  </div>
+
+                        <Row>
+                          <Col md={12} xs={12}>
+                            <div className="sk-topSchoolbox-list">
+                              <div className='sk-topLeftimg-box'>
+                                <Link to={routingConstants.TOP_SCHOOL + c.id} key={c?.id}>
+                                  <img src={transformImg(c?.logo)} className='' />
                                 </Link>
                               </div>
-                            </Col>
-
-                            <Col md={9} xs={12}>
                               <div className='top_col_content'>
-                                <p style={{ fontSize: 18 }}>
+                                <h3 className="sk-innerContent-design">
                                   <Link
                                     to={routingConstants.TOP_SCHOOL + c.id}
                                     className=''
@@ -618,7 +600,7 @@ const CareerPage1 = () => {
                                   >
                                     {c && c.name}
                                   </Link>
-                                </p>
+                                </h3>
                                 <ul class='list-inline list-unstyled'>
                                   {c.board_type && (
                                     <li>
@@ -658,7 +640,7 @@ const CareerPage1 = () => {
                                   </li>
                                 </ul>
 
-                                <ul className='mt-1'>
+                                <ul>
                                   {c.contact_no && (
                                     <li>
                                       <p>
@@ -693,9 +675,10 @@ const CareerPage1 = () => {
                                   )}
                                 </ul>
                               </div>
-                            </Col>
-                          </Row>
-                        </div>
+                            </div>
+                          </Col>
+                        </Row>
+
                         <Row>
                           {index === 3 && schoolBoxAds?.length && (
                             <div
@@ -714,42 +697,43 @@ const CareerPage1 = () => {
                                   ]?.url_adds
                                 }
                                 target='_blank'
+                                rel='noreferrer'
                               >
                                 {detect.isMobile
                                   ? schoolBoxAds[
-                                      page_adds?.addsData[
-                                        page_adds?.addIndex
-                                      ][0]
-                                    ]?.image_mobile && (
-                                      <img
-                                        src={
-                                          schoolBoxAds[
-                                            page_adds?.addsData[
-                                              page_adds?.addIndex
-                                            ][0]
-                                          ]?.image_mobile
-                                        }
-                                        alt='Image'
-                                        className='ads_school_box'
-                                      />
-                                    )
+                                    page_adds?.addsData[
+                                    page_adds?.addIndex
+                                    ][0]
+                                  ]?.image_mobile && (
+                                    <img
+                                      src={
+                                        schoolBoxAds[
+                                          page_adds?.addsData[
+                                          page_adds?.addIndex
+                                          ][0]
+                                        ]?.image_mobile
+                                      }
+                                      alt='schoolBoxAds'
+                                      className='ads_school_box'
+                                    />
+                                  )
                                   : schoolBoxAds[
-                                      page_adds?.addsData[
-                                        page_adds?.addIndex
-                                      ][0]
-                                    ]?.image && (
-                                      <img
-                                        src={
-                                          schoolBoxAds[
-                                            page_adds?.addsData[
-                                              page_adds?.addIndex
-                                            ][0]
-                                          ]?.image
-                                        }
-                                        alt='Image'
-                                        className='ads_school_box'
-                                      />
-                                    )}
+                                    page_adds?.addsData[
+                                    page_adds?.addIndex
+                                    ][0]
+                                  ]?.image && (
+                                    <img
+                                      src={
+                                        schoolBoxAds[
+                                          page_adds?.addsData[
+                                          page_adds?.addIndex
+                                          ][0]
+                                        ]?.image
+                                      }
+                                      alt='schoolBoxAds'
+                                      className='ads_school_box'
+                                    />
+                                  )}
                               </a>
                             </div>
                           )}
@@ -770,42 +754,43 @@ const CareerPage1 = () => {
                                   ]?.url_adds
                                 }
                                 target='_blank'
+                                rel='noreferrer'
                               >
                                 {detect.isMobile
                                   ? schoolBoxAds[
-                                      page_adds?.addsData[
-                                        page_adds?.addIndex
-                                      ][1]
-                                    ]?.image_mobile && (
-                                      <img
-                                        src={
-                                          schoolBoxAds[
-                                            page_adds?.addsData[
-                                              page_adds?.addIndex
-                                            ][1]
-                                          ]?.image_mobile
-                                        }
-                                        alt='Image'
-                                        className='ads_school_box'
-                                      />
-                                    )
+                                    page_adds?.addsData[
+                                    page_adds?.addIndex
+                                    ][1]
+                                  ]?.image_mobile && (
+                                    <img
+                                      src={
+                                        schoolBoxAds[
+                                          page_adds?.addsData[
+                                          page_adds?.addIndex
+                                          ][1]
+                                        ]?.image_mobile
+                                      }
+                                      alt='schoolBoxAds'
+                                      className='ads_school_box'
+                                    />
+                                  )
                                   : schoolBoxAds[
-                                      page_adds?.addsData[
-                                        page_adds?.addIndex
-                                      ][1]
-                                    ]?.image && (
-                                      <img
-                                        src={
-                                          schoolBoxAds[
-                                            page_adds?.addsData[
-                                              page_adds?.addIndex
-                                            ][1]
-                                          ]?.image
-                                        }
-                                        alt='Image'
-                                        className='ads_school_box'
-                                      />
-                                    )}
+                                    page_adds?.addsData[
+                                    page_adds?.addIndex
+                                    ][1]
+                                  ]?.image && (
+                                    <img
+                                      src={
+                                        schoolBoxAds[
+                                          page_adds?.addsData[
+                                          page_adds?.addIndex
+                                          ][1]
+                                        ]?.image
+                                      }
+                                      alt='schoolBoxAds'
+                                      className='ads_school_box'
+                                    />
+                                  )}
                               </a>
                             </div>
                           )}
@@ -823,12 +808,9 @@ const CareerPage1 = () => {
               //   <rect x="80" y="40" rx="3" ry="3" width="250" height="10" />
               // </ContentLoader>
               isLoading ? (
-                <div>
-                  <h4>Loading...</h4>
-                  <ClipLoader className='loader' color='#ec498a' />
-                </div>
+                <CustomLoader />
               ) : (
-                <div className='text-center'>{t("common.noDataFound")}</div>
+                <NoDataFound />
               )}
               {topSchools?.result?.count > pageLimit && (
                 <>
@@ -851,14 +833,14 @@ const CareerPage1 = () => {
                 </>
               )}
             </Col>
-          </Row>
-        </Container>
-        {/* )} */}
-      </div>
+          </div>
+        </div>
+      </section>
 
-      <Footer loginPage={false} />
     </div>
   );
 };
 
-export default CareerPage1;
+export default withHeaderFooter(CareerPage1);
+
+

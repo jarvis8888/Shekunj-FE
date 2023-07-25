@@ -458,7 +458,7 @@ const CourseModule = () => {
                   <a href={adsCourseModule[0]?.url_adds} target='_blank'>
                     <img
                       src={adsCourseModule[0]?.image}
-                      alt='Image'
+                      alt='adsCourseModule'
                       className='ads_Course_module'
                     />
                   </a>
