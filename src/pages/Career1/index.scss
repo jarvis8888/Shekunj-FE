@@ -13,11 +13,18 @@
   font-weight: 600;
 }
 .sk-all-school p {
-  margin-bottom: 0;
-}
+  margin-bottom: 0;             
+}                 
 .desktop_view_city_selct ul {
   border-bottom: 1px solid #d9d9d9;
   padding-bottom: 15px;
+  max-height:260px;
+  overflow: auto;
+}
+.desktop_view_city_selct .sk-cityschool-remove{
+  border: 0;
+  margin-bottom: 0;
+  padding-bottom: 0;
 }
 .desktop_view_city_selct ul:last-child {
   border-bottom: 0;
@@ -105,6 +112,9 @@
   padding-left: 42px;
   color: #d62c79;
   cursor: pointer;
+  border-bottom: 1px solid #d9d9d9;
+  padding-bottom: 15px;
+  margin-bottom: 20px;
 }
 .sk-Schooolborder-top {
   border-top: 1px solid #d9d9e9;
@@ -143,7 +153,13 @@
 }
 .sk-innerContent-design {
   font-size: 20px;
-  padding-bottom: 5px;
+  margin-bottom: 5px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  -webkit-line-clamp: 1;
+  white-space: pre-wrap;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
 }
 .sk-innerContent-design a {
   color: #202020;
@@ -591,6 +607,13 @@
   }
   .sk-topLeftimg-box {
     flex: 100% 0 0;
+  }
+  .sk-storyHeading-top {
+    font-size: 24px;
+  }
+  .sk-topLeftimg-box img {
+    padding: 10px;
+    max-width: 160px;
   }
 }
 
