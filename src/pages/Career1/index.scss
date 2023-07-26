@@ -173,6 +173,11 @@
 }
 .sk-innerContent-design {
   font-size: 20px;
+  
+}
+.sk-innerContent-design a {
+  color: #202020;
+  text-decoration: none;
   margin-bottom: 5px;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -180,10 +185,6 @@
   white-space: pre-wrap;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-}
-.sk-innerContent-design a {
-  color: #202020;
-  text-decoration: none;
 }
 .sk-serachTop-school {
   display: flex;

@@ -416,7 +416,7 @@ export default function AccordionComponent({
       {type === "colleges" && (
         <>
           <Typography>{stream?.name}</Typography>
-          <ul className='pl-0'>
+          <ul className='sk-cityschool-remove pl-0'>
             <RadioGroup>
               {remainingColleges
                 ? hasMoreCollegeStreamFunction(stream?.rows)
@@ -425,13 +425,14 @@ export default function AccordionComponent({
           </ul>
           {hasMoreCount(stream?.rows, 3) > 0 && (
             <div
-              className=''
+              className='sk-lessshow-more'
               onClick={() => setRemainingColleges((prev) => !prev)}
             >
               {hasMoreCount(stream?.rows, 3)}{" "}
               {remainingColleges ? "Less" : "More"}
             </div>
           )}
+
           <Typography>{ownership?.name}</Typography>
 
           <ul className='pl-0'>
@@ -451,7 +452,7 @@ export default function AccordionComponent({
             </div>
           )} */}
           <Typography>{state?.name}</Typography>
-          <ul className='pl-0'>
+          <ul className='sk-cityschool-remove pl-0'>
             <FormGroup>
               {remainingCollegeState
                 ? hasMoreCountShowFunction(state?.rows, "topCollages", "state")
@@ -464,7 +465,7 @@ export default function AccordionComponent({
           </ul>
           {hasMoreCount(state?.rows, 3) > 0 && (
             <div
-              className=''
+              className='sk-lessshow-more'
               onClick={() => setRemainingCollegeState((prev) => !prev)}
             >
               {hasMoreCount(state?.rows, 3)}{" "}
@@ -473,7 +474,7 @@ export default function AccordionComponent({
           )}
           <Typography>{city?.name}</Typography>
 
-          <ul className='pl-0'>
+          <ul className='sk-cityschool-remove pl-0'>
             {remainingCollegeCity
               ? hasMoreCountShowFunction(city?.rows, "topCollages", "city")
               : hasMoreCountShowFunction(
@@ -484,7 +485,7 @@ export default function AccordionComponent({
           </ul>
           {hasMoreCount(city?.rows, 3) > 0 && (
             <div
-              className='sk-viewall-b'
+              className='sk-lessshow-more'
               onClick={() => setRemainingCollegeCity((prev) => !prev)}
             >
               {hasMoreCount(city?.rows, 3)}{" "}
@@ -496,7 +497,7 @@ export default function AccordionComponent({
       {type === "schools" && (
         <>
           <Typography>{states?.name}</Typography>
-          <ul className='pl-0'>
+          <ul className='sk-cityschool-remove pl-0'>
             {/* <RadioGroup name='radio-buttons-group'> */}
             <FormGroup>
               {/* {remainingSchoolsState
