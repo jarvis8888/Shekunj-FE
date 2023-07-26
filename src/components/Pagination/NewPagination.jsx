@@ -11,6 +11,7 @@ const NewPagination = ({
   nextPage,
   handleClick,
 }) => {
+  console.log("🚀 ~ file: NewPagination.jsx:14 ~ visiblePages:", visiblePages)
   return (
     <div className='sk-pagination pagination'>
       <span

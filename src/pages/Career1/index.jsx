@@ -86,7 +86,7 @@ const CareerPage1 = () => {
       },
     );
     window.scrollTo(0, 0);
-  }, [offset, lan]);
+  }, [lan]);
 
   const transformImg = (image) => {
     return image ? image : TopSchool;
@@ -393,9 +393,35 @@ const CareerPage1 = () => {
   const visiblePages = Array.from({ length: 5 })
     .map((_, index) => startPage + index)
     .filter((pageNumber) => pageNumber <= totalPages);
+  console.log(
+    "🚀 ~ file: index.jsx:396 ~ CareerPage1 ~ visiblePages:",
+    visiblePages,
+  );
 
   // Handle next page click
   const nextPage = () => {
+    navigator.geolocation.getCurrentPosition(async function (position, values) {
+      const latitude = position?.coords?.latitude;
+      const longitude = position?.coords?.longitude;
+      dispatch(
+        getTopSchools({
+          filter: true,
+          latitude,
+          longitude,
+          pageLimit,
+          offset: offset + pageLimit,
+          search: searchInput !== "" ? `&search=${searchInput}` : "",
+        }),
+      );
+    });
+    if (page_adds) {
+      setTimeout(() => {
+        sessionStorage.setItem(
+          "current_adds",
+          JSON.stringify({ ...page_adds, addIndex: page_adds?.addIndex + 1 }),
+        );
+      }, 500);
+    }
     if (currentPage < totalPages) {
       setCurrentPage(currentPage + 1);
       setOffset(offset + pageLimit);
@@ -408,6 +434,28 @@ const CareerPage1 = () => {
 
   // Handle previous page click
   const previousPage = () => {
+    navigator.geolocation.getCurrentPosition(async function (position, values) {
+      const latitude = position?.coords?.latitude;
+      const longitude = position?.coords?.longitude;
+      dispatch(
+        getTopSchools({
+          filter: true,
+          latitude,
+          longitude,
+          pageLimit,
+          offset: offset - pageLimit,
+          search: searchInput !== "" ? `&search=${searchInput}` : "",
+        }),
+      );
+    });
+    if (page_adds) {
+      setTimeout(() => {
+        sessionStorage.setItem(
+          "current_adds",
+          JSON.stringify({ ...page_adds, addIndex: page_adds?.addIndex - 1 }),
+        );
+      }, 500);
+    }
     if (currentPage > 1) {
       setCurrentPage(currentPage - 1);
       setOffset(offset - pageLimit);
@@ -420,7 +468,30 @@ const CareerPage1 = () => {
 
   const handleClick = (pageNumber) => {
     setCurrentPage(pageNumber);
-    setOffset((pageNumber - 1) * pageLimit); // Update the offset based on the clicked page number
+    const newOffset = (pageNumber - 1) * pageLimit;
+    navigator.geolocation.getCurrentPosition(async function (position, values) {
+      const latitude = position?.coords?.latitude;
+      const longitude = position?.coords?.longitude;
+      dispatch(
+        getTopSchools({
+          filter: true,
+          latitude,
+          longitude,
+          pageLimit,
+          offset: (pageNumber - 1) * pageLimit,
+          search: searchInput !== "" ? `&search=${searchInput}` : "",
+        }),
+      );
+    });
+    if (page_adds) {
+      setTimeout(() => {
+        sessionStorage.setItem(
+          "current_adds",
+          JSON.stringify({ ...page_adds, addIndex: page_adds?.addIndex + 1 }),
+        );
+      }, 500);
+    }
+    setOffset(newOffset);
   };
 
   useEffect(() => {
@@ -941,8 +1012,10 @@ const CareerPage1 = () => {
                       currentPage={currentPage}
                       totalPages={totalPages}
                       visiblePages={visiblePages}
-                      previousPage={previousPage}
-                      nextPage={nextPage}
+                      previousPage={
+                        topSchools?.result?.previous ? previousPage : null
+                      }
+                      nextPage={topSchools?.result?.next ? nextPage : null}
                       handleClick={handleClick}
                     />
                   </>
