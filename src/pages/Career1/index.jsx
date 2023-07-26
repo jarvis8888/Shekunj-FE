@@ -393,10 +393,6 @@ const CareerPage1 = () => {
   const visiblePages = Array.from({ length: 5 })
     .map((_, index) => startPage + index)
     .filter((pageNumber) => pageNumber <= totalPages);
-  console.log(
-    "🚀 ~ file: index.jsx:396 ~ CareerPage1 ~ visiblePages:",
-    visiblePages,
-  );
 
   // Handle next page click
   const nextPage = () => {
@@ -519,311 +515,322 @@ const CareerPage1 = () => {
     };
   }, []);
 
+  const currentUrl = window.location.href;
   return (
-    <div>
-      {/* <SEO  title={``}
+    <>
+      <SEO
+        title={`List of Top Schools in India & Apply - Shekunj.com`}
+        link={currentUrl}
+        currentUrl={currentUrl}
+        description='Find list of top Schools and Universities in India along with the courses offered and detailed information.'
+        keywords='top Schools in india top educational institutions in india top Schools in madhya pradesh best universities in india top women Schools in india'
+      />
 
-  description={``}
-  keywords={``} /> */}
-
-      <Helmet>
-        <link
-          rel='canonical'
-          href='https://www.shekunj.com/top-schools-in-india/'
-        />
-        <title>Find Top Schools in India & Apply - Shekunj.com</title>
-        <meta
-          name='description'
-          content='Give high-quality education to your children.
+      <div>
+        <Helmet>
+          <link
+            rel='canonical'
+            href='https://www.shekunj.com/top-schools-in-india/'
+          />
+          <title>Find Top Schools in India & Apply - Shekunj.com</title>
+          <meta
+            name='description'
+            content='Give high-quality education to your children.
           Find the list of best schools in India and their
           detailed information.'
-        />
-        <meta
-          name='keywords'
-          content='top schools in india list of best schools best boys schools top schools in mp 
+          />
+          <meta
+            name='keywords'
+            content='top schools in india list of best schools best boys schools top schools in mp 
           boys schools in india girls schools in india'
-        />
-      </Helmet>
-      <section className='sk-topschool-banner'>
-        <div className='container sk-custom-container'>
-          <div className='row'>
-            <div className='col-md-12'>
-              {schoolBannerAds.length > 0 && (
-                <div
-                  className='ads_school_cover'
-                  onClick={() => addEmail(schoolBannerAds[0]?.add_email)}
-                >
-                  <a href={schoolBannerAds[0]?.url_adds} target='_blank'>
-                    {detect.isMobile ? (
-                      schoolBannerAds[0]?.image_mobile && (
+          />
+        </Helmet>
+        <section className='sk-topschool-banner'>
+          <div className='container sk-custom-container'>
+            <div className='row'>
+              <div className='col-md-12'>
+                {schoolBannerAds.length > 0 && (
+                  <div
+                    className='ads_school_cover'
+                    onClick={() => addEmail(schoolBannerAds[0]?.add_email)}
+                  >
+                    <a href={schoolBannerAds[0]?.url_adds} target='_blank'>
+                      {detect.isMobile ? (
+                        schoolBannerAds[0]?.image_mobile && (
+                          <img
+                            src={schoolBannerAds[0]?.image_mobile}
+                            alt='schoolBannerAds'
+                            className='ads_school'
+                          />
+                        )
+                      ) : (
                         <img
-                          src={schoolBannerAds[0]?.image_mobile}
+                          src={schoolBannerAds[0]?.image}
                           alt='schoolBannerAds'
                           className='ads_school'
                         />
-                      )
-                    ) : (
-                      <img
-                        src={schoolBannerAds[0]?.image}
-                        alt='schoolBannerAds'
-                        className='ads_school'
-                      />
-                    )}
-                  </a>
-                </div>
-              )}
+                      )}
+                    </a>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
-        </div>
-      </section>
-      <section className='sk-Topmiddle-sec'>
-        <div className='container sk-custom-container'>
-          <div className='noselect sk-spaceBottom-school'>
-            <div className='row'>
-              <Col md={12} xs={12}>
-                <h1 className='sk-storyHeading-top'>
-                  {t("careerTopSchools.heading.1")}
-                </h1>
-                {/* <p>
+        </section>
+        <section className='sk-Topmiddle-sec'>
+          <div className='container sk-custom-container'>
+            <div className='noselect sk-spaceBottom-school'>
+              <div className='row'>
+                <Col md={12} xs={12}>
+                  <h1 className='sk-storyHeading-top'>
+                    {t("careerTopSchools.heading.1")}
+                  </h1>
+                  {/* <p>
                   {t("careerTopSchools.other.12")}{" "}
                   {topSchools?.result?.results?.length || 0}{" "}
                   {t("careerTopSchools.other.11")}
                 </p> */}
-                <p>
-                  Contrary to popular belief, Lorem Ipsum is not simply random
-                  text. It has roots in a piece of classical Latin literature
-                  from 45 BC, making it over 2000 years old. Richard McClintock,
-                  a Latin professor at Hampden-Sydney College in Virginia,
-                  looked up one of the more obscure Latin words, consectetur,
-                  from a Lorem Ipsum passage, and going through the cites of the
-                  word in classical literature, discovered the undoubtable
-                  source. Lorem Ipsum comes from sections
-                </p>
-              </Col>
+                  <p>
+                    Contrary to popular belief, Lorem Ipsum is not simply random
+                    text. It has roots in a piece of classical Latin literature
+                    from 45 BC, making it over 2000 years old. Richard
+                    McClintock, a Latin professor at Hampden-Sydney College in
+                    Virginia, looked up one of the more obscure Latin words,
+                    consectetur, from a Lorem Ipsum passage, and going through
+                    the cites of the word in classical literature, discovered
+                    the undoubtable source. Lorem Ipsum comes from sections
+                  </p>
+                </Col>
+              </div>
             </div>
-          </div>
-          <div className='sk-Schooolborder-top'>
-            <div className='row'>
-              <Col md={4} xs={12}>
-                <div
-                  className='desktop_view_city_selct'
-                  id='school-left-col'
-                  style={{ top: `${stopPosition}px` }}
-                >
-                  <div className='sk-resetFilter-bar'>
-                    <ul>
-                      <li>Filter</li>
-                      <li onClick={handleResetSearch}>
-                        <span>
-                          <RestartAltIcon />{" "}
-                          <span className='me-2'>Reset Filter</span>
-                        </span>
-                      </li>
-                    </ul>
+            <div className='sk-Schooolborder-top'>
+              <div className='row'>
+                <Col md={4} xs={12}>
+                  <div
+                    className='desktop_view_city_selct'
+                    id='school-left-col'
+                    style={{ top: `${stopPosition}px` }}
+                  >
+                    <div className='sk-resetFilter-bar'>
+                      <ul>
+                        <li>Filter</li>
+                        <li onClick={handleResetSearch}>
+                          <span>
+                            <RestartAltIcon />{" "}
+                            <span className='me-2'>Reset Filter</span>
+                          </span>
+                        </li>
+                      </ul>
+                    </div>
+
+                    <AccordionComponent
+                      type='schools'
+                      states={{
+                        name: t("careerTopSchools.listItems.1"),
+                        rows: topSchools?.state_list,
+                      }}
+                      cities={{
+                        name: t("careerTopSchools.listItems.3"),
+                        rows: topSchools?.city_list || [],
+                      }}
+                      // ownership={{
+                      //   name: t("careerTopSchools.listItems.5"),
+                      //   rows: topSchools?.school_type || [],
+                      // }}
+                      ownership={ownership}
+                      educationBoard={{
+                        name: t("careerTopSchools.listItems.2"),
+                        rows: topSchools?.board_list || [],
+                      }}
+                      category={{
+                        name: t("careerTopSchools.listItems.4"),
+                        rows: topSchools?.gender_intech,
+                      }}
+                      offset={offset}
+                      limit={pageLimit}
+                    />
                   </div>
 
-                  <AccordionComponent
-                    type='schools'
-                    states={{
-                      name: t("careerTopSchools.listItems.1"),
-                      rows: topSchools?.state_list,
-                    }}
-                    cities={{
-                      name: t("careerTopSchools.listItems.3"),
-                      rows: topSchools?.city_list || [],
-                    }}
-                    // ownership={{
-                    //   name: t("careerTopSchools.listItems.5"),
-                    //   rows: topSchools?.school_type || [],
-                    // }}
-                    ownership={ownership}
-                    educationBoard={{
-                      name: t("careerTopSchools.listItems.2"),
-                      rows: topSchools?.board_list || [],
-                    }}
-                    category={{
-                      name: t("careerTopSchools.listItems.4"),
-                      rows: topSchools?.gender_intech,
-                    }}
-                    offset={offset}
-                    limit={pageLimit}
-                  />
-                </div>
-
-                <div className='mobile_view_city_selct'>
-                  <Accordion>
-                    <AccordionSummary
-                      expandIcon={<ExpandMoreIcon />}
-                      aria-controls='panel1a-content'
-                      id='panel1a-header'
-                    >
-                      <img src={logo} alt='Image' className='filter_city_123' />
-                    </AccordionSummary>
-                    <AccordionDetails>
-                      <Typography>
-                        <AccordionComponent
-                          type='schools'
-                          states={{
-                            name: t("careerTopSchools.listItems.1"),
-                            rows: topSchools?.state_list,
-                          }}
-                          cities={{
-                            name: t("careerTopSchools.listItems.3"),
-                            rows: topSchools?.city_list,
-                          }}
-                          ownership={{
-                            name: t("careerTopSchools.listItems.5"),
-                            rows: topSchools?.school_type,
-                          }}
-                          educationBoard={{
-                            name: t("careerTopSchools.listItems.2"),
-                            rows: topSchools?.board_list || [],
-                          }}
-                          category={{
-                            name: t("careerTopSchools.listItems.4"),
-                            rows: topSchools?.gender_intech,
-                          }}
-                          offset={offset}
-                          limit={pageLimit}
+                  <div className='mobile_view_city_selct'>
+                    <Accordion>
+                      <AccordionSummary
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls='panel1a-content'
+                        id='panel1a-header'
+                      >
+                        <img
+                          src={logo}
+                          alt='Image'
+                          className='filter_city_123'
                         />
-                      </Typography>
-                    </AccordionDetails>
-                  </Accordion>
-                </div>
-              </Col>
-
-              <Col md={8} xs={12}>
-                <Row>
-                  <Col md={12} xs={12}>
-                    <div className='sk-rightlist-school'>
-                      <div className='sk-all-school'>
-                        <p>
-                          All School{" "}
-                          <span>
-                            (
-                            {topSchools?.result?.count > 999
-                              ? "999+"
-                              : topSchools?.result?.count}
-                            )
-                          </span>
-                        </p>
-                      </div>
-                      <form>
-                        <div className='sk-serachTop-school'>
-                          <input
-                            type='text'
-                            onChange={(e) => setSearchInput(e.target.value)}
-                            value={searchInput}
-                            name='searchInput'
-                            class='form-control'
-                            placeholder='Search here...'
+                      </AccordionSummary>
+                      <AccordionDetails>
+                        <Typography>
+                          <AccordionComponent
+                            type='schools'
+                            states={{
+                              name: t("careerTopSchools.listItems.1"),
+                              rows: topSchools?.state_list,
+                            }}
+                            cities={{
+                              name: t("careerTopSchools.listItems.3"),
+                              rows: topSchools?.city_list,
+                            }}
+                            ownership={{
+                              name: t("careerTopSchools.listItems.5"),
+                              rows: topSchools?.school_type,
+                            }}
+                            educationBoard={{
+                              name: t("careerTopSchools.listItems.2"),
+                              rows: topSchools?.board_list || [],
+                            }}
+                            category={{
+                              name: t("careerTopSchools.listItems.4"),
+                              rows: topSchools?.gender_intech,
+                            }}
+                            offset={offset}
+                            limit={pageLimit}
                           />
-                          <button
-                            onClick={SearchFilterHandle}
-                            className='sk-searchSchool-filter'
-                          >
-                            <img src={Search} alt='Search' className='' />
-                          </button>
+                        </Typography>
+                      </AccordionDetails>
+                    </Accordion>
+                  </div>
+                </Col>
 
-                          {/* <div className='d-flex'> */}
+                <Col md={8} xs={12}>
+                  <Row>
+                    <Col md={12} xs={12}>
+                      <div className='sk-rightlist-school'>
+                        <div className='sk-all-school'>
+                          <p>
+                            All School{" "}
+                            <span>
+                              (
+                              {topSchools?.result?.count > 999
+                                ? "999+"
+                                : topSchools?.result?.count}
+                              )
+                            </span>
+                          </p>
+                        </div>
+                        <form>
+                          <div className='sk-serachTop-school'>
+                            <input
+                              type='text'
+                              onChange={(e) => setSearchInput(e.target.value)}
+                              value={searchInput}
+                              name='searchInput'
+                              class='form-control'
+                              placeholder='Search here...'
+                            />
+                            <button
+                              onClick={SearchFilterHandle}
+                              className='sk-searchSchool-filter'
+                            >
+                              <img src={Search} alt='Search' className='' />
+                            </button>
 
-                          {/* <span className='closeBtn1' onClick={handleResetSearch}>
+                            {/* <div className='d-flex'> */}
+
+                            {/* <span className='closeBtn1' onClick={handleResetSearch}>
                               <img
                                 src={Cross}
                                 alt='Image'
                                 className='searchclose'
                               />
                             </span> */}
-                          {/* </div> */}
-                        </div>
-                      </form>
-                    </div>
-                  </Col>
-                </Row>
-                {isLoading ? (
-                  <CustomLoader />
-                ) : topSchools?.result?.results?.length > 0 ? (
-                  topSchools?.result?.results?.map(
-                    (c, index) =>
-                      c?.name && (
-                        <>
-                          <Row>
-                            <Col md={12} xs={12}>
-                              <div className='sk-topSchoolbox-list'>
-                                <div className='sk-topLeftimg-box'>
-                                  <Link
-                                    to={routingConstants.TOP_SCHOOL + c.id}
-                                    key={c?.id}
-                                  >
-                                    <img
-                                      src={transformImg(c?.logo)}
-                                      className=''
-                                      alt='logo'
-                                    />
-                                  </Link>
-                                </div>
-                                <div className='top_col_content'>
-                                  <h3 className='sk-innerContent-design'>
+                            {/* </div> */}
+                          </div>
+                        </form>
+                      </div>
+                    </Col>
+                  </Row>
+                  {isLoading ? (
+                    <CustomLoader />
+                  ) : topSchools?.result?.results?.length > 0 ? (
+                    topSchools?.result?.results?.map(
+                      (c, index) =>
+                        c?.name && (
+                          <>
+                            <Row>
+                              <Col md={12} xs={12}>
+                                <div className='sk-topSchoolbox-list'>
+                                  <div className='sk-topLeftimg-box'>
                                     <Link
                                       to={routingConstants.TOP_SCHOOL + c.id}
-                                      className=''
                                       key={c?.id}
                                     >
-                                      {c && c.name}
+                                      <img
+                                        src={transformImg(c?.logo)}
+                                        className=''
+                                        alt='logo'
+                                      />
                                     </Link>
-                                  </h3>
-                                  <ul class='list-inline list-unstyled'>
-                                    {c.board_type && (
-                                      <li>
-                                        <span>
-                                          {t("careerTopSchools.other.1")}
-                                        </span>{" "}
-                                        : {c && c.board_type?.toUpperCase()}
-                                      </li>
-                                    )}
-                                    {/* {c.board_type && <li>|</li>} */}
+                                  </div>
+                                  <div className='top_col_content'>
+                                    <h3 className='sk-innerContent-design'>
+                                      <Link
+                                        to={routingConstants.TOP_SCHOOL + c.id}
+                                        className=''
+                                        key={c?.id}
+                                      >
+                                        {c && c.name}
+                                      </Link>
+                                    </h3>
+                                    <ul class='list-inline list-unstyled'>
+                                      {c.board_type && (
+                                        <li>
+                                          <span>
+                                            {t("careerTopSchools.other.1")}
+                                          </span>{" "}
+                                          : {c && c.board_type?.toUpperCase()}
+                                        </li>
+                                      )}
+                                      {/* {c.board_type && <li>|</li>} */}
 
-                                    {c.established_year && (
-                                      <li>
-                                        <span>
-                                          {t("careerTopColleges.other.10")}
-                                        </span>{" "}
-                                        : {c && c.established_year}
-                                      </li>
-                                    )}
-                                    {/* {c.established_year && <li>|</li>} */}
-                                    {c.gender_intech && (
-                                      <li>
-                                        <span>
-                                          {t("careerTopSchools.other.10")}
-                                        </span>{" "}
-                                        : {c?.gender_intech.toUpperCase()}
-                                      </li>
-                                    )}
-                                  </ul>
+                                      {c.established_year && (
+                                        <li>
+                                          <span>
+                                            {t("careerTopColleges.other.10")}
+                                          </span>{" "}
+                                          : {c && c.established_year}
+                                        </li>
+                                      )}
+                                      {/* {c.established_year && <li>|</li>} */}
+                                      {c.gender_intech && (
+                                        <li>
+                                          <span>
+                                            {t("careerTopSchools.other.10")}
+                                          </span>{" "}
+                                          : {c?.gender_intech.toUpperCase()}
+                                        </li>
+                                      )}
+                                    </ul>
 
-                                  <ul>
-                                    <li>
-                                      <span>
-                                        {t("careerTopColleges.other.13")}{" "}
-                                      </span>
-                                      : {c && capitalizeFirstLetter(c.city)},{" "}
-                                      {c && capitalizeFirstLetter(c.state)}
-                                    </li>
-                                    {c.school_type && (
+                                    <ul>
                                       <li>
                                         <span>
-                                          {t("careerTopColleges.other.16")}{" "}
+                                          {t("careerTopColleges.other.13")}{" "}
                                         </span>
-                                        :{" "}
-                                        {c &&
-                                          capitalizeFirstLetter(c.school_type)}
+                                        : {c && capitalizeFirstLetter(c.city)},{" "}
+                                        {c && capitalizeFirstLetter(c.state)}
                                       </li>
-                                    )}
-                                  </ul>
+                                      {c.school_type && (
+                                        <li>
+                                          <span>
+                                            {t("careerTopColleges.other.16")}{" "}
+                                          </span>
+                                          :{" "}
+                                          {c &&
+                                            capitalizeFirstLetter(
+                                              c.school_type,
+                                            )}
+                                        </li>
+                                      )}
+                                    </ul>
 
-                                  <ul>
-                                    {/* {c.contact_no && (
+                                    <ul>
+                                      {/* {c.contact_no && (
                                       <li>
                                         <p>
                                           <span>
@@ -834,173 +841,175 @@ const CareerPage1 = () => {
                                       </li>
                                     )} */}
 
-                                    {c.website && (
-                                      <li>
-                                        <span>
-                                          {t("careerTopSchools.other.3")}
-                                        </span>{" "}
-                                        :{" "}
-                                        {/* <Link
+                                      {c.website && (
+                                        <li>
+                                          <span>
+                                            {t("careerTopSchools.other.3")}
+                                          </span>{" "}
+                                          :{" "}
+                                          {/* <Link
                                         to={{ pathname: c?.website }}
                                         target='_blank'
                                         rel='noreferrer'>
                                         {c && c.website}
                                       </Link> */}
-                                        <a
-                                          rel='noreferrer'
-                                          target='_blank'
-                                          href={`https:/${c?.website}`}
-                                        >
-                                          {c && c?.website}
-                                        </a>
-                                      </li>
-                                    )}
-                                  </ul>
-                                  <div className='sk-Topview-more'>
-                                    <a
-                                      href={routingConstants.TOP_SCHOOL + c.id}
-                                    >
-                                      View More
-                                    </a>
+                                          <a
+                                            rel='noreferrer'
+                                            target='_blank'
+                                            href={`https:/${c?.website}`}
+                                          >
+                                            {c && c?.website}
+                                          </a>
+                                        </li>
+                                      )}
+                                    </ul>
+                                    <div className='sk-Topview-more'>
+                                      <a
+                                        href={
+                                          routingConstants.TOP_SCHOOL + c.id
+                                        }
+                                      >
+                                        View More
+                                      </a>
+                                    </div>
                                   </div>
                                 </div>
-                              </div>
-                            </Col>
-                          </Row>
+                              </Col>
+                            </Row>
 
-                          <Row>
-                            {index === 3 && schoolBoxAds?.length && (
-                              <div
-                                onClick={() =>
-                                  addEmail(
-                                    schoolBoxAds[
-                                      page_adds?.addsData[
-                                        page_adds?.addIndex
-                                      ][0]
-                                    ]?.add_email,
-                                  )
-                                }
-                              >
-                                <a
-                                  href={
-                                    schoolBoxAds[
-                                      page_adds?.addsData[
-                                        page_adds?.addIndex
-                                      ][0]
-                                    ]?.url_adds
-                                  }
-                                  target='_blank'
-                                  rel='noreferrer'
-                                >
-                                  {detect.isMobile
-                                    ? schoolBoxAds[
+                            <Row>
+                              {index === 3 && schoolBoxAds?.length && (
+                                <div
+                                  onClick={() =>
+                                    addEmail(
+                                      schoolBoxAds[
                                         page_adds?.addsData[
                                           page_adds?.addIndex
                                         ][0]
-                                      ]?.image_mobile && (
-                                        <img
-                                          src={
-                                            schoolBoxAds[
-                                              page_adds?.addsData[
-                                                page_adds?.addIndex
-                                              ][0]
-                                            ]?.image_mobile
-                                          }
-                                          alt='schoolBoxAds'
-                                          className='ads_school_box'
-                                        />
-                                      )
-                                    : schoolBoxAds[
+                                      ]?.add_email,
+                                    )
+                                  }
+                                >
+                                  <a
+                                    href={
+                                      schoolBoxAds[
                                         page_adds?.addsData[
                                           page_adds?.addIndex
                                         ][0]
-                                      ]?.image && (
-                                        <img
-                                          src={
-                                            schoolBoxAds[
-                                              page_adds?.addsData[
-                                                page_adds?.addIndex
-                                              ][0]
-                                            ]?.image
-                                          }
-                                          alt='schoolBoxAds'
-                                          className='ads_school_box'
-                                        />
-                                      )}
-                                </a>
-                              </div>
-                            )}
-                            {index === 7 && schoolBoxAds?.length && (
-                              <div
-                                onClick={() =>
-                                  addEmail(
-                                    schoolBoxAds[
-                                      page_adds?.addsData[
-                                        page_adds?.addIndex
-                                      ][1]
-                                    ]?.add_email,
-                                  )
-                                }
-                              >
-                                <a
-                                  href={
-                                    schoolBoxAds[
-                                      page_adds?.addsData[
-                                        page_adds?.addIndex
-                                      ][1]
-                                    ]?.url_adds
+                                      ]?.url_adds
+                                    }
+                                    target='_blank'
+                                    rel='noreferrer'
+                                  >
+                                    {detect.isMobile
+                                      ? schoolBoxAds[
+                                          page_adds?.addsData[
+                                            page_adds?.addIndex
+                                          ][0]
+                                        ]?.image_mobile && (
+                                          <img
+                                            src={
+                                              schoolBoxAds[
+                                                page_adds?.addsData[
+                                                  page_adds?.addIndex
+                                                ][0]
+                                              ]?.image_mobile
+                                            }
+                                            alt='schoolBoxAds'
+                                            className='ads_school_box'
+                                          />
+                                        )
+                                      : schoolBoxAds[
+                                          page_adds?.addsData[
+                                            page_adds?.addIndex
+                                          ][0]
+                                        ]?.image && (
+                                          <img
+                                            src={
+                                              schoolBoxAds[
+                                                page_adds?.addsData[
+                                                  page_adds?.addIndex
+                                                ][0]
+                                              ]?.image
+                                            }
+                                            alt='schoolBoxAds'
+                                            className='ads_school_box'
+                                          />
+                                        )}
+                                  </a>
+                                </div>
+                              )}
+                              {index === 7 && schoolBoxAds?.length && (
+                                <div
+                                  onClick={() =>
+                                    addEmail(
+                                      schoolBoxAds[
+                                        page_adds?.addsData[
+                                          page_adds?.addIndex
+                                        ][1]
+                                      ]?.add_email,
+                                    )
                                   }
-                                  target='_blank'
-                                  rel='noreferrer'
                                 >
-                                  {detect.isMobile
-                                    ? schoolBoxAds[
+                                  <a
+                                    href={
+                                      schoolBoxAds[
                                         page_adds?.addsData[
                                           page_adds?.addIndex
                                         ][1]
-                                      ]?.image_mobile && (
-                                        <img
-                                          src={
-                                            schoolBoxAds[
-                                              page_adds?.addsData[
-                                                page_adds?.addIndex
-                                              ][1]
-                                            ]?.image_mobile
-                                          }
-                                          alt='schoolBoxAds'
-                                          className='ads_school_box'
-                                        />
-                                      )
-                                    : schoolBoxAds[
-                                        page_adds?.addsData[
-                                          page_adds?.addIndex
-                                        ][1]
-                                      ]?.image && (
-                                        <img
-                                          src={
-                                            schoolBoxAds[
-                                              page_adds?.addsData[
-                                                page_adds?.addIndex
-                                              ][1]
-                                            ]?.image
-                                          }
-                                          alt='schoolBoxAds'
-                                          className='ads_school_box'
-                                        />
-                                      )}
-                                </a>
-                              </div>
-                            )}
-                          </Row>
-                        </>
-                      ),
-                  )
-                ) : (
-                  <NoDataFound />
-                )}
-                {topSchools?.result?.count > pageLimit && (
-                  <>
-                    {/* <Pagination
+                                      ]?.url_adds
+                                    }
+                                    target='_blank'
+                                    rel='noreferrer'
+                                  >
+                                    {detect.isMobile
+                                      ? schoolBoxAds[
+                                          page_adds?.addsData[
+                                            page_adds?.addIndex
+                                          ][1]
+                                        ]?.image_mobile && (
+                                          <img
+                                            src={
+                                              schoolBoxAds[
+                                                page_adds?.addsData[
+                                                  page_adds?.addIndex
+                                                ][1]
+                                              ]?.image_mobile
+                                            }
+                                            alt='schoolBoxAds'
+                                            className='ads_school_box'
+                                          />
+                                        )
+                                      : schoolBoxAds[
+                                          page_adds?.addsData[
+                                            page_adds?.addIndex
+                                          ][1]
+                                        ]?.image && (
+                                          <img
+                                            src={
+                                              schoolBoxAds[
+                                                page_adds?.addsData[
+                                                  page_adds?.addIndex
+                                                ][1]
+                                              ]?.image
+                                            }
+                                            alt='schoolBoxAds'
+                                            className='ads_school_box'
+                                          />
+                                        )}
+                                  </a>
+                                </div>
+                              )}
+                            </Row>
+                          </>
+                        ),
+                    )
+                  ) : (
+                    <NoDataFound />
+                  )}
+                  {topSchools?.result?.count > pageLimit && (
+                    <>
+                      {/* <Pagination
                     finalCount={topSchools?.result?.count / pageLimit}
                     nextPage={topSchools?.result?.next ? paginationNext : null}
                     backPage={
@@ -1008,24 +1017,25 @@ const CareerPage1 = () => {
                     }
                   /> */}
 
-                    <NewPagination
-                      currentPage={currentPage}
-                      totalPages={totalPages}
-                      visiblePages={visiblePages}
-                      previousPage={
-                        topSchools?.result?.previous ? previousPage : null
-                      }
-                      nextPage={topSchools?.result?.next ? nextPage : null}
-                      handleClick={handleClick}
-                    />
-                  </>
-                )}
-              </Col>
+                      <NewPagination
+                        currentPage={currentPage}
+                        totalPages={totalPages}
+                        visiblePages={visiblePages}
+                        previousPage={
+                          topSchools?.result?.previous ? previousPage : null
+                        }
+                        nextPage={topSchools?.result?.next ? nextPage : null}
+                        handleClick={handleClick}
+                      />
+                    </>
+                  )}
+                </Col>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
-    </div>
+        </section>
+      </div>
+    </>
   );
 };
 
