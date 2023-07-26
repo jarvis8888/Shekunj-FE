@@ -41,6 +41,7 @@ const CareerPage1 = () => {
   const [startPage, setStartPage] = useState(1);
   const [offset, setOffset] = useState(0);
   const [flag, setFlag] = useState(true);
+  const [stopPosition, setStopPosition] = useState(0);
   const pageLimit = 10;
 
   // useEffect(() => {
@@ -422,6 +423,31 @@ const CareerPage1 = () => {
     setOffset((pageNumber - 1) * pageLimit); // Update the offset based on the clicked page number
   };
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const rightColElement = document.getElementById("school-left-col");
+      // const headerElement = document.querySelector('.header-class');
+      const stickyHeight = rightColElement.offsetHeight;
+      const viewportHeight = window.innerHeight;
+      const headerHeight = 0;
+      const adjustedViewportHeight = viewportHeight - headerHeight;
+      const stop = viewportHeight - stickyHeight;
+
+      if (stickyHeight > adjustedViewportHeight) {
+        setStopPosition(stop);
+      } else {
+        setStopPosition(headerHeight);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    // Clean up the event listener when the component is unmounted
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <div>
       {/* <SEO  title={``}
@@ -508,7 +534,11 @@ const CareerPage1 = () => {
           <div className='sk-Schooolborder-top'>
             <div className='row'>
               <Col md={4} xs={12}>
-                <div className='desktop_view_city_selct'>
+                <div
+                  className='desktop_view_city_selct'
+                  id='school-left-col'
+                  style={{ top: `${stopPosition}px` }}
+                >
                   <div className='sk-resetFilter-bar'>
                     <ul>
                       <li>Filter</li>

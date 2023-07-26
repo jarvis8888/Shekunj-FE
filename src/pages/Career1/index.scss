@@ -285,6 +285,11 @@
   color: #888888;
 }
 
+#school-left-col {
+  height: fit-content;
+  position: sticky;
+}
+
 .sk-topSchoolbox-list button {
   background: #ec498a;
   border: 1px solid #ec498a;
