@@ -415,132 +415,82 @@ export default function AccordionComponent({
     <div className='accordion_box_all label_list_radio ul_list_radio_filter'>
       {type === "colleges" && (
         <>
-          <Accordion>
-            <AccordionSummary aria-controls='panel1d-content' id={stream?.name}>
-              <Typography>{stream?.name}</Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <ul className='pl-0'>
-                <RadioGroup>
-                  {remainingColleges
-                    ? hasMoreCollegeStreamFunction(stream?.rows)
-                    : hasMoreCollegeStreamFunction(stream?.rows?.slice(0, 3))}
-                </RadioGroup>
-              </ul>
-              {hasMoreCount(stream?.rows, 3) > 0 && (
-                <div
-                  className=''
-                  onClick={() => setRemainingColleges((prev) => !prev)}
-                >
-                  {hasMoreCount(stream?.rows, 3)}{" "}
-                  {remainingColleges ? "Less" : "More"}
-                </div>
-              )}
-            </AccordionDetails>
-          </Accordion>
-
-          <Accordion>
-            <AccordionSummary
-              aria-controls='panel1d-content'
-              id={ownership?.name}
+          <Typography>{stream?.name}</Typography>
+          <ul className='pl-0'>
+            <RadioGroup>
+              {remainingColleges
+                ? hasMoreCollegeStreamFunction(stream?.rows)
+                : hasMoreCollegeStreamFunction(stream?.rows?.slice(0, 3))}
+            </RadioGroup>
+          </ul>
+          {hasMoreCount(stream?.rows, 3) > 0 && (
+            <div
+              className=''
+              onClick={() => setRemainingColleges((prev) => !prev)}
             >
-              <Typography>{ownership?.name}</Typography>
-            </AccordionSummary>
+              {hasMoreCount(stream?.rows, 3)}{" "}
+              {remainingColleges ? "Less" : "More"}
+            </div>
+          )}
+          <Typography>{ownership?.name}</Typography>
 
-            <AccordionDetails>
-              <ul className='pl-0'>
-                <FormGroup>
-                  {remainingCollegeOwnership
-                    ? hasMoreCollegeOwnerShipFunction(ownership?.rows)
-                    : // : hasMoreCollegeOwnerShipFunction(ownership?.rows?.slice(0, 3))}
-                    hasMoreCollegeOwnerShipFunction(
-                      ownership?.rows?.slice(0, 3),
-                    )}
-                </FormGroup>
-              </ul>
-              {/* {hasMoreCount(ownership?.rows, 3) > 0 && (
-                <div
-                  className=''
-                  onClick={() => setRemainingCollegeOwnership((prev) => !prev)}
-                >
-                  {hasMoreCount(ownership?.rows, 3)}{" "}
-                  {remainingCollegeOwnership ? "Less" : "More"}
-                </div>
-              )} */}
-            </AccordionDetails>
-          </Accordion>
-
-          <Accordion>
-            <AccordionSummary aria-controls='panel1d-content' id={state?.name}>
-              <Typography>{state?.name}</Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <ul className='pl-0'>
-                {/* <RadioGroup name='radio-buttons-group'>
-                  {remainingCollegeState
-                    ? hasMoreCollegeStateFunction(state?.rows)
-                    : hasMoreCollegeStateFunction(state?.rows?.slice(0, 3))}
-                </RadioGroup> */}
-                <FormGroup>
-                  {/* {remainingCollegeState
-                    ? hasMoreCollegeStateFunction(state?.rows)
-                    : hasMoreCollegeStateFunction(state?.rows?.slice(0, 3))} */}
-                  {remainingCollegeState
-                    ? hasMoreCountShowFunction(
-                      state?.rows,
-                      "topCollages",
-                      "state",
-                    )
-                    : hasMoreCountShowFunction(
-                      state?.rows?.slice(0, 6),
-                      "topCollages",
-                      "state",
-                    )}
-                  {/* </RadioGroup> */}
-                </FormGroup>
-              </ul>
-              {hasMoreCount(state?.rows, 3) > 0 && (
-                <div
-                  className=''
-                  onClick={() => setRemainingCollegeState((prev) => !prev)}
-                >
-                  {hasMoreCount(state?.rows, 3)}{" "}
-                  {remainingCollegeState ? "Less" : "More"}
-                </div>
-              )}
-            </AccordionDetails>
-          </Accordion>
-
-          <Accordion>
-            <AccordionSummary aria-controls='panel1d-content' id={city?.name}>
-              <Typography>{city?.name}</Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <ul className='pl-0'>
-                {/* <RadioGroup name='radio-buttons-group'>
-                  {remainingCollegeCity
-                    ? hasMoreCollegeCityFunction(city?.rows)
-                    : hasMoreCollegeCityFunction(city?.rows?.slice(0, 3))}
-                </RadioGroup> */}
-                {remainingCollegeCity
-                  ? hasMoreCountShowFunction(city?.rows, "topCollages", "city")
-                  : hasMoreCountShowFunction(
-                    city?.rows?.slice(0, 6),
+          <ul className='pl-0'>
+            <FormGroup>
+              {remainingCollegeOwnership
+                ? hasMoreCollegeOwnerShipFunction(ownership?.rows)
+                : hasMoreCollegeOwnerShipFunction(ownership?.rows?.slice(0, 3))}
+            </FormGroup>
+          </ul>
+          {/* {hasMoreCount(ownership?.rows, 3) > 0 && (
+            <div
+              className=''
+              onClick={() => setRemainingCollegeOwnership((prev) => !prev)}
+            >
+              {hasMoreCount(ownership?.rows, 3)}{" "}
+              {remainingCollegeOwnership ? "Less" : "More"}
+            </div>
+          )} */}
+          <Typography>{state?.name}</Typography>
+          <ul className='pl-0'>
+            <FormGroup>
+              {remainingCollegeState
+                ? hasMoreCountShowFunction(state?.rows, "topCollages", "state")
+                : hasMoreCountShowFunction(
+                    state?.rows?.slice(0, 6),
                     "topCollages",
-                    "city",
+                    "state",
                   )}
-              </ul>
-              {hasMoreCount(city?.rows, 3) > 0 && (
-                <div
-                  className='sk-viewall-b'
-                  onClick={() => setRemainingCollegeCity((prev) => !prev)}
-                >
-                  {hasMoreCount(city?.rows, 3)}{" "}
-                  {remainingCollegeCity ? "Less" : "More"}
-                </div>
-              )}
-            </AccordionDetails>
-          </Accordion>
+            </FormGroup>
+          </ul>
+          {hasMoreCount(state?.rows, 3) > 0 && (
+            <div
+              className=''
+              onClick={() => setRemainingCollegeState((prev) => !prev)}
+            >
+              {hasMoreCount(state?.rows, 3)}{" "}
+              {remainingCollegeState ? "Less" : "More"}
+            </div>
+          )}
+          <Typography>{city?.name}</Typography>
+
+          <ul className='pl-0'>
+            {remainingCollegeCity
+              ? hasMoreCountShowFunction(city?.rows, "topCollages", "city")
+              : hasMoreCountShowFunction(
+                  city?.rows?.slice(0, 6),
+                  "topCollages",
+                  "city",
+                )}
+          </ul>
+          {hasMoreCount(city?.rows, 3) > 0 && (
+            <div
+              className='sk-viewall-b'
+              onClick={() => setRemainingCollegeCity((prev) => !prev)}
+            >
+              {hasMoreCount(city?.rows, 3)}{" "}
+              {remainingCollegeCity ? "Less" : "More"}
+            </div>
+          )}
         </>
       )}
       {type === "schools" && (
@@ -555,10 +505,10 @@ export default function AccordionComponent({
               {remainingSchoolsState
                 ? hasMoreCountShowFunction(states?.rows, "topSchools", "states")
                 : hasMoreCountShowFunction(
-                  states?.rows?.slice(0, 6),
-                  "topSchools",
-                  "states",
-                )}
+                    states?.rows?.slice(0, 6),
+                    "topSchools",
+                    "states",
+                  )}
               {/* </RadioGroup> */}
             </FormGroup>
           </ul>
@@ -584,23 +534,21 @@ export default function AccordionComponent({
               {remainingSchoolsCities
                 ? hasMoreCountShowFunction(cities?.rows, "topSchools", "cities")
                 : hasMoreCountShowFunction(
-                  cities?.rows?.slice(0, 6),
-                  "topSchools",
-                  "cities",
-                )}
+                    cities?.rows?.slice(0, 6),
+                    "topSchools",
+                    "cities",
+                  )}
             </FormGroup>
-
-            
           </ul>
           {hasMoreCount(cities?.rows, 3) > 0 && (
-              <div
-                className='sk-lessshow-more'
-                onClick={() => setRemainingSchoolsCities((prev) => !prev)}
-              >
-                {/* {hasMoreCount(cities?.rows, 3)}{" "} */}
-                {remainingSchoolsCities ? "view less" : "+View All"}
-              </div>
-            )}
+            <div
+              className='sk-lessshow-more'
+              onClick={() => setRemainingSchoolsCities((prev) => !prev)}
+            >
+              {/* {hasMoreCount(cities?.rows, 3)}{" "} */}
+              {remainingSchoolsCities ? "view less" : "+View All"}
+            </div>
+          )}
           <Typography>{category?.name}</Typography>
           <ul className='pl-0'>
             <RadioGroup name='radio-buttons-group'>
@@ -626,8 +574,8 @@ export default function AccordionComponent({
                 (remainingSchoolsOwnership
                   ? hasMoreSchoolOwnershipFunction(ownership?.rows)
                   : hasMoreSchoolOwnershipFunction(
-                    ownership?.rows?.slice(0, 3),
-                  ))}
+                      ownership?.rows?.slice(0, 3),
+                    ))}
             </FormGroup>
           </ul>
           {/* {hasMoreCount(ownership?.rows, 3) > 0 && (
@@ -644,15 +592,15 @@ export default function AccordionComponent({
             <FormGroup>
               {remainingSchoolEducationBoard
                 ? hasMoreCountShowFunction(
-                  educationBoard?.rows,
-                  "topSchools",
-                  "educationBoard",
-                )
+                    educationBoard?.rows,
+                    "topSchools",
+                    "educationBoard",
+                  )
                 : hasMoreCountShowFunction(
-                  educationBoard?.rows?.slice(0, 6),
-                  "topSchools",
-                  "educationBoard",
-                )}
+                    educationBoard?.rows?.slice(0, 6),
+                    "topSchools",
+                    "educationBoard",
+                  )}
             </FormGroup>
           </ul>
           {/* {hasMoreCount(educationBoard?.rows, 6) > 0 && (
@@ -681,13 +629,13 @@ export default function AccordionComponent({
                   {Array.isArray(categories?.rows) &&
                     (remainingGovtExamsCategory
                       ? hasMoreCountShowFunction(
-                        categories?.rows,
-                        "governmentExam",
-                      )
+                          categories?.rows,
+                          "governmentExam",
+                        )
                       : hasMoreCountShowFunction(
-                        categories?.rows?.slice(0, 6),
-                        "governmentExam",
-                      ))}
+                          categories?.rows?.slice(0, 6),
+                          "governmentExam",
+                        ))}
                 </FormGroup>
               </ul>
               {hasMoreCount(categories?.rows, 6) > 0 && (
