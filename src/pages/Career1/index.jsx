@@ -11,6 +11,7 @@ import {
 } from "../../store/career";
 import "../HomePage/index.scss";
 import "./index.scss";
+import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownRounded";
 import RestartAltIcon from "@mui/icons-material/RestartAlt";
 import { withHeaderFooter } from "../../hocs/withHeaderFooter";
 import { Helmet } from "react-helmet-async";
@@ -603,6 +604,7 @@ const CareerPage1 = () => {
                 </Col>
               </div>
             </div>
+
             <div className='sk-Schooolborder-top'>
               <div className='row'>
                 <Col md={4} xs={12}>
@@ -651,7 +653,7 @@ const CareerPage1 = () => {
                     />
                   </div>
 
-                  <div className='mobile_view_city_selct'>
+                  {/* <div className='mobile_view_city_selct'>
                     <Accordion>
                       <AccordionSummary
                         expandIcon={<ExpandMoreIcon />}
@@ -661,9 +663,28 @@ const CareerPage1 = () => {
                         <img
                           src={logo}
                           alt='Image'
-                          className='filter_city_123'
-                        />
-                      </AccordionSummary>
+                          className='filter_city_123' */}
+                  <div className='mobile_view_city_selct'>
+                    <Accordion>
+                      <div className='sk-resetFilter-bar py-0 px-3'>
+                        <ul className='p-0 m-0'>
+                          <li>Filter</li>
+                          <li onClick={handleResetSearch}>
+                            <span>
+                              <RestartAltIcon />{" "}
+                              <span className='me-2'>Reset Filter</span>
+                            </span>
+                          </li>
+                          <li>
+                            <AccordionSummary
+                              className='p-0'
+                              expandIcon={<KeyboardArrowDownRoundedIcon />}
+                              aria-controls='panel1a-content'
+                              id='panel1a-header'
+                            />
+                          </li>
+                        </ul>
+                      </div>
                       <AccordionDetails>
                         <Typography>
                           <AccordionComponent
