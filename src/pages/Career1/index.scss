@@ -1,12 +1,11 @@
-
-.sk-topschool-banner{
-  background: #F4F4F4;
-  padding: 40px 0 ;
+.sk-topschool-banner {
+  background: #f4f4f4;
+  padding: 40px 0;
 }
-.sk-Topmiddle-sec{
+.sk-Topmiddle-sec {
   padding: 40px 0 0;
 }
-.sk-spaceBottom-school{
+.sk-spaceBottom-school {
   padding-bottom: 20px;
 }
 .sk-storyHeading-top {
@@ -20,7 +19,7 @@
   border-bottom: 1px solid #d9d9d9;
   padding-bottom: 15px;
 }
-.desktop_view_city_selct ul:last-child{
+.desktop_view_city_selct ul:last-child {
   border-bottom: 0;
 }
 
@@ -33,7 +32,7 @@
 }
 .desktop_view_city_selct:before {
   position: absolute;
-  content: '';
+  content: "";
   right: 0;
   top: 0;
   bottom: 0;
@@ -42,7 +41,7 @@
   height: 100%;
   background: #d9d9d9;
 }
-.desktop_view_city_selct p{
+.desktop_view_city_selct p {
   font-size: 18px;
   padding-bottom: 15px;
   font-weight: 500;
@@ -77,14 +76,14 @@
 }
 
 .sk-topSchoolbox-list ul li:before {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   top: 0;
   margin: auto;
   width: 6px;
   height: 6px;
-  background: #C6C6C6;
+  background: #c6c6c6;
   border-radius: 50px;
   bottom: 0;
 }
@@ -99,12 +98,13 @@
   display: flex;
   align-items: center;
 }
-.sk-resetFilter-bar ul li span svg{
+.sk-resetFilter-bar ul li span svg {
   font-size: 22px;
 }
 .sk-lessshow-more {
   padding-left: 42px;
   color: #d62c79;
+  cursor: pointer;
 }
 .sk-Schooolborder-top {
   border-top: 1px solid #d9d9e9;
@@ -145,7 +145,7 @@
   font-size: 20px;
   padding-bottom: 5px;
 }
-.sk-innerContent-design a{
+.sk-innerContent-design a {
   color: #202020;
   text-decoration: none;
 }
@@ -168,11 +168,6 @@
   border-radius: 0px 8px 8px 0;
   padding: 0 15px;
 }
-
-
-
-
-
 
 .mainDiv_school {
   margin-top: 50px;
@@ -207,7 +202,7 @@
   align-items: center;
   display: grid;
   margin-bottom: 30px;
-  border: 1px solid #D9D9D9;
+  border: 1px solid #d9d9d9;
 }
 
 .career_logo_img {
@@ -272,22 +267,22 @@
   align-items: center;
   // margin-bottom: 30px;
 }
-.sk-Topview-more a{
-  color:#202020;
+.sk-Topview-more a {
+  color: #202020;
 }
-.sk-Topview-more a:hover{
-  color:#ec498a;
+.sk-Topview-more a:hover {
+  color: #ec498a;
 }
 .sk-topSchoolbox-list ul li {
   font-weight: 400;
-  color: #888;
+  color: #434242;
 }
-.sk-topSchoolbox-list ul li a{
-  color:#ec498a;
- }
+.sk-topSchoolbox-list ul li a {
+  color: #ec498a;
+}
 
 .sk-topSchoolbox-list ul li span {
-  color: #4f4f4f;
+  color: #888888;
 }
 
 .sk-topSchoolbox-list button {
@@ -423,7 +418,7 @@
 
   .ads_school_box {
     // height: 100px !important;
-   // margin-left: 15px !important;
+    // margin-left: 15px !important;
     margin-bottom: 20px !important;
     width: 92% !important;
   }
@@ -495,7 +490,6 @@
   padding-top: 60px;
 }
 
-
 .search_box_row {
   margin-top: 40px;
 }
@@ -528,7 +522,7 @@
   width: 40px;
   cursor: pointer;
   height: 40px;
-  
+
   // margin-left: 12px;
 }
 
@@ -553,7 +547,7 @@
   margin-left: 15px;
   margin-bottom: 30px;
   width: 96%;
- // object-fit: cover;
+  // object-fit: cover;
 }
 
 // .loader-container {
@@ -586,12 +580,11 @@
 //   }
 // }
 
-@media screen and (max-width:767px) {
-
+@media screen and (max-width: 767px) {
   .top_col_content h2 {
     margin-left: 0px !important;
   }
-  .sk-topLeftimg-box{
+  .sk-topLeftimg-box {
     flex: 100% 0 0;
   }
 }
@@ -603,5 +596,5 @@
 .loader {
   margin-top: 15%;
   margin-left: 50%;
-  color: #ec498a
+  color: #ec498a;
 }

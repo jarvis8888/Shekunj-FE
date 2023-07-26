@@ -1,4 +1,4 @@
-*{
+* {
   font-family: "Poppins", sans-serif !important;
 }
 .accordion_box_all .MuiPaper-root.MuiPaper-elevation {
@@ -16,6 +16,7 @@
   padding: 0px;
   flex-direction: inherit;
 }
+
 .accordion_box_all .MuiAccordionDetails-root {
   border: none;
   padding: 0px 0px 0px 10px;
@@ -85,10 +86,10 @@
   user-select: none;
 }
 
-.MuiRadio-root.MuiRadio-colorPrimary.Mui-checked{
+.MuiRadio-root.MuiRadio-colorPrimary.Mui-checked {
   color: #ec498a;
 }
 
-.MuiFormControlLabel-labelPlacementEnd{
+.MuiFormControlLabel-labelPlacementEnd {
   margin: 0 !important;
 }

@@ -428,7 +428,8 @@
       "12": "Type",
       "13": "Location",
       "14": "Level",
-      "15": "Address"
+      "15": "Address",
+      "16":"Ownership"
     },
     "heading": {
       "1": "Top Colleges in India"

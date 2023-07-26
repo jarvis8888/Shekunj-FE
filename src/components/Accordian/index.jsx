@@ -564,11 +564,11 @@ export default function AccordionComponent({
           </ul>
           {hasMoreCount(states?.rows, 3) > 0 && (
             <div
-              className=''
+              className='sk-lessshow-more'
               onClick={() => setRemainingSchoolsState((prev) => !prev)}
             >
-              {hasMoreCount(states?.rows, 3)}{" "}
-              {remainingSchoolsState ? "Less" : "More"}
+              {/* {hasMoreCount(states?.rows, 3)}{" "} */}
+              {remainingSchoolsState ? "view less" : "+View All"}
             </div>
           )}
 
@@ -577,10 +577,10 @@ export default function AccordionComponent({
           <ul className='pl-0'>
             <FormGroup>
               {/* <RadioGroup name='radio-buttons-group'>
-    {remainingSchoolsCities
-      ? hasMoreSchoolCityFunction(cities?.rows)
-      : hasMoreSchoolCityFunction(cities?.rows?.slice(0, 3))}
-  </RadioGroup> */}
+                {remainingSchoolsCities
+                  ? hasMoreSchoolCityFunction(cities?.rows)
+                  : hasMoreSchoolCityFunction(cities?.rows?.slice(0, 3))}
+              </RadioGroup> */}
               {remainingSchoolsCities
                 ? hasMoreCountShowFunction(cities?.rows, "topSchools", "cities")
                 : hasMoreCountShowFunction(
@@ -589,17 +589,15 @@ export default function AccordionComponent({
                     "cities",
                   )}
             </FormGroup>
-       
+
             {hasMoreCount(cities?.rows, 3) > 0 && (
-             
               <li
                 className='sk-lessshow-more'
                 onClick={() => setRemainingSchoolsCities((prev) => !prev)}
               >
-                {hasMoreCount(cities?.rows, 3)}{" "}
-                {remainingSchoolsCities ? "Less" : "More"}
+                {/* {hasMoreCount(cities?.rows, 3)}{" "} */}
+                {remainingSchoolsCities ? "view less" : "+View All"}
               </li>
-              
             )}
           </ul>
           <Typography>{category?.name}</Typography>
@@ -613,11 +611,11 @@ export default function AccordionComponent({
           </ul>
           {/* {hasMoreCount(category?.rows, 3) > 0 && (
             <div
-              className=''
+              className='sk-lessshow-more'
               onClick={() => setRemainingSchoolsCategory((prev) => !prev)}
             >
               {hasMoreCount(category?.rows, 3)}{" "}
-              {remainingSchoolsCategory ? "Less" : "More"}
+              {remainingSchoolsCategory ? "view less" : "+View All"}
             </div>
           )} */}
           <Typography>{ownership?.name}</Typography>
@@ -633,11 +631,11 @@ export default function AccordionComponent({
           </ul>
           {/* {hasMoreCount(ownership?.rows, 3) > 0 && (
             <div
-              className=''
+              className='sk-lessshow-more'
               onClick={() => setRemainingSchoolsOwnership((prev) => !prev)}
             >
               {hasMoreCount(ownership?.rows, 3)}{" "}
-              {remainingSchoolsOwnership ? "Less" : "More"}
+              {remainingSchoolsOwnership ? "view less" : "+View All"}
             </div>
           )} */}
           <Typography>{educationBoard?.name}</Typography>
@@ -658,11 +656,11 @@ export default function AccordionComponent({
           </ul>
           {/* {hasMoreCount(educationBoard?.rows, 6) > 0 && (
             <div
-              className=''
+              className='sk-lessshow-more'
               onClick={() => setRemainingSchoolEducationBoard((prev) => !prev)}
             >
               {hasMoreCount(educationBoard?.rows, 6)}{" "}
-              {remainingSchoolEducationBoard ? "Less" : "More"}
+              {remainingSchoolEducationBoard ? "view less" : "+View All"}
             </div>
           )} */}
         </>
