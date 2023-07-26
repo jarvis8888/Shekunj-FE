@@ -68,6 +68,8 @@ export default function AccordionComponent({
   offset,
   limit,
 }) {
+  
+
   const dispatch = useDispatch();
   const [remainingColleges, setRemainingColleges] = useState(false);
   const [remainingSchoolsState, setRemainingSchoolsState] = useState(false);
@@ -382,7 +384,7 @@ export default function AccordionComponent({
                 <Checkbox
                   checked={c?.isChecked}
                   onChange={(e) =>
-                    onChangeFilter(c.id, e, "ownership", "ownership")
+                    onChangeFilter(c.id, e, "topCollages", "ownership")
                   }
                 />
               }
@@ -573,7 +575,11 @@ export default function AccordionComponent({
             <FormGroup>
               {Array.isArray(ownership?.rows) &&
                 (remainingSchoolsOwnership
-                  ? hasMoreSchoolOwnershipFunction(ownership?.rows)
+                  ? hasMoreSchoolOwnershipFunction(
+                      ownership?.rows,
+                      "topSchools",
+                      "ownership",
+                    )
                   : hasMoreSchoolOwnershipFunction(
                       ownership?.rows?.slice(0, 3),
                     ))}

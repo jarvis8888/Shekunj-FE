@@ -16,7 +16,7 @@ import TopCollage from "../../assets/images/Career/clg.jpg";
 import Search from "../../assets/images/search_white_icon.svg";
 import "../HomePage/index.scss";
 import "./index.scss";
-import "../Career1/index.scss"
+import "../Career1/index.scss";
 import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownRounded";
 import RestartAltIcon from "@mui/icons-material/RestartAlt";
 import Cross from "../../assets/icons/cross.png";
@@ -39,6 +39,7 @@ import { CustomLoader } from "../../components/customLoader/CustomLoader";
 import { NoDataFound } from "../../components/noDataFound/NoDataFound";
 import { withHeaderFooter } from "../../hocs/withHeaderFooter";
 import NewPagination from "../../components/Pagination/NewPagination";
+import { capitalizeFirstLetter } from "../../utils/utils";
 
 const CareerPage = () => {
   // const [loading, setLoading] = useState(false);
@@ -61,6 +62,7 @@ const CareerPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [startPage, setStartPage] = useState(1);
   const [flag, setFlag] = useState(true);
+  const [stopPosition, setStopPosition] = useState(0);
   const pageLimit = 10;
 
   useEffect(() => {
@@ -317,8 +319,27 @@ const CareerPage = () => {
     );
   };
   const handleResetSearch = () => {
-    dispatch(getTopCollages({ filter: true, search: "" }));
     setSearchInput("");
+    dispatch(reSetFilterValue());
+    navigator.geolocation.getCurrentPosition(
+      async function (position, values) {
+        const latitude = position?.coords?.latitude;
+        const longitude = position?.coords?.longitude;
+        dispatch(
+          getTopCollages({
+            filter: false,
+            latitude,
+            longitude,
+            pageLimit,
+            offset,
+          }),
+        );
+      },
+      function (error) {
+        console.error("Error Code = " + error.code + " - " + error.message);
+        dispatch(getTopCollages(false));
+      },
+    );
   };
   const paginationBack = () => {
     navigator.geolocation.getCurrentPosition(async function (position, values) {
@@ -480,6 +501,31 @@ const CareerPage = () => {
     }
     setOffset(newOffset);
   };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const rightColElement = document.getElementById("college-left-col");
+      // const headerElement = document.querySelector('.header-class');
+      const stickyHeight = rightColElement.offsetHeight;
+      const viewportHeight = window.innerHeight;
+      const headerHeight = 0;
+      const adjustedViewportHeight = viewportHeight - headerHeight;
+      const stop = viewportHeight - stickyHeight;
+
+      if (stickyHeight > adjustedViewportHeight) {
+        setStopPosition(stop);
+      } else {
+        setStopPosition(headerHeight);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    // Clean up the event listener when the component is unmounted
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
   const currentUrl = window.location.href;
   return (
     <>
@@ -507,19 +553,19 @@ const CareerPage = () => {
                     >
                       {detect.isMobile
                         ? collegeBannerAds[0]?.image_mobile && (
-                          <img
-                            src={collegeBannerAds[0]?.image_mobile}
-                            alt='collegeBannerAds'
-                            className=''
-                          />
-                        )
+                            <img
+                              src={collegeBannerAds[0]?.image_mobile}
+                              alt='collegeBannerAds'
+                              className=''
+                            />
+                          )
                         : collegeBannerAds[0]?.image && (
-                          <img
-                            src={collegeBannerAds[0]?.image}
-                            alt='collegeBannerAds'
-                            className=''
-                          />
-                        )}
+                            <img
+                              src={collegeBannerAds[0]?.image}
+                              alt='collegeBannerAds'
+                              className=''
+                            />
+                          )}
                     </a>
                   </div>
                 )}
@@ -533,13 +579,24 @@ const CareerPage = () => {
             <div className='noselect sk-spaceBottom-school'>
               <div className='row'>
                 <Col md={12} xs={12}>
-                  <h1 className='sk-storyHeading-top'>{t("careerTopColleges.heading.1")}</h1>
+                  <h1 className='sk-storyHeading-top'>
+                    {t("careerTopColleges.heading.1")}
+                  </h1>
                   {/* <p>
                     {t("careerTopColleges.other.2")}{" "}
                     {topCollages?.collage_list?.results?.length || 0}{" "}
                     {t("careerTopColleges.other.3")}
                   </p> */}
-                  <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections</p>
+                  <p>
+                    Contrary to popular belief, Lorem Ipsum is not simply random
+                    text. It has roots in a piece of classical Latin literature
+                    from 45 BC, making it over 2000 years old. Richard
+                    McClintock, a Latin professor at Hampden-Sydney College in
+                    Virginia, looked up one of the more obscure Latin words,
+                    consectetur, from a Lorem Ipsum passage, and going through
+                    the cites of the word in classical literature, discovered
+                    the undoubtable source. Lorem Ipsum comes from sections
+                  </p>
                 </Col>
               </div>
             </div>
@@ -547,7 +604,11 @@ const CareerPage = () => {
             <div className='sk-Schooolborder-top'>
               <div className='row'>
                 <Col md={4} xs={12}>
-                  <div className='desktop_view_city_selct'>
+                  <div
+                    className='desktop_view_city_selct'
+                    id='college-left-col'
+                    style={{ top: `${stopPosition}px` }}
+                  >
                     <div className='sk-resetFilter-bar'>
                       <ul>
                         <li>Filter</li>
@@ -614,12 +675,24 @@ const CareerPage = () => {
                   </div>
                 </Col>
 
-                <Col md={8} xs={12} className='top_collages_add_g top_collages_list_filter123'>
+                <Col
+                  md={8}
+                  xs={12}
+                  className='top_collages_add_g top_collages_list_filter123'
+                >
                   <Col md={12} xs={12}>
                     <div className='sk-rightlist-school'>
                       <div className='sk-all-school'>
                         <p>
-                          All Colleges<span> (299)</span>
+                          All Colleges
+                          <span>
+                            {" "}
+                            (
+                            {topCollages?.collage_list?.count > 999
+                              ? "999+"
+                              : topCollages?.collage_list?.count}
+                            )
+                          </span>
                         </p>
                       </div>
                       <form onSubmit={SearchFilterHandle}>
@@ -632,7 +705,10 @@ const CareerPage = () => {
                             class='form-control'
                             placeholder='Search here...'
                           />
-                          <button type='submit' className='sk-searchSchool-filter'>
+                          <button
+                            type='submit'
+                            className='sk-searchSchool-filter'
+                          >
                             <img src={Search} alt='searchIcon' className='' />
                           </button>
                           {/* <img
@@ -657,12 +733,21 @@ const CareerPage = () => {
       	              <div className="spinner"></div>
                       </div>
                       ) : ( */}
-                            <div className='noselect' style={{ height: "auto" }} key={c?.id}>
+                            <div
+                              className='noselect'
+                              style={{ height: "auto" }}
+                              key={c?.id}
+                            >
                               <Row>
                                 <Col md={12} xs={12}>
                                   <div className='sk-topSchoolbox-list'>
                                     <div className='sk-topLeftimg-box'>
-                                      <Link to={routingConstants.TOP_COLLEGES + c.id} key={c?.id}>
+                                      <Link
+                                        to={
+                                          routingConstants.TOP_COLLEGES + c.id
+                                        }
+                                        key={c?.id}
+                                      >
                                         <img
                                           src={transformImg(c?.logo)}
                                           alt='...'
@@ -673,7 +758,9 @@ const CareerPage = () => {
                                     <div className='top_col_content'>
                                       <h3 className='sk-innerContent-design'>
                                         <Link
-                                          to={routingConstants.TOP_COLLEGES + c.id}
+                                          to={
+                                            routingConstants.TOP_COLLEGES + c.id
+                                          }
                                           className=''
                                           key={c?.id}
                                         >
@@ -683,13 +770,14 @@ const CareerPage = () => {
                                       <ul class='list-inline list-unstyled'>
                                         {c.collage_type && (
                                           <li>
-                                            <span
-                                              style={{
-                                                textTransform: "capitalize",
-                                              }}
-                                            >
-                                              {c && c.collage_type}
-                                            </span>
+                                            <span>
+                                              {t("careerTopColleges.other.16")}
+                                            </span>{" "}
+                                            :{" "}
+                                            {c &&
+                                              capitalizeFirstLetter(
+                                                c.collage_type,
+                                              )}
                                           </li>
                                         )}
 
@@ -707,7 +795,9 @@ const CareerPage = () => {
                                             <span>
                                               {t("careerTopColleges.other.12")}
                                             </span>{" "}
-                                            : {c && c.gender_intech}
+                                            :{" "}
+                                            {c &&
+                                              c.gender_intech?.toUpperCase()}
                                           </li>
                                         )}
                                       </ul>
@@ -718,12 +808,13 @@ const CareerPage = () => {
                                             {t("careerTopColleges.other.13")}
                                             {"  "}
                                           </span>
-                                          : {c && c.city} {c && c.state}
+                                          : {c && capitalizeFirstLetter(c.city)}{" "}
+                                          {c && capitalizeFirstLetter(c.state)}
                                         </li>
                                       </ul>
 
                                       <ul>
-                                        {c.contact_no && (
+                                        {/* {c.contact_no && (
                                           <li>
                                             <p>
                                               <span>
@@ -732,7 +823,7 @@ const CareerPage = () => {
                                               : {c && c.contact_no}
                                             </p>
                                           </li>
-                                        )}
+                                        )} */}
 
                                         {c.website && (
                                           <li>
@@ -756,6 +847,15 @@ const CareerPage = () => {
                                           </li>
                                         )}
                                       </ul>
+                                      <div className='sk-Topview-more'>
+                                        <a
+                                          href={
+                                            routingConstants.TOP_COLLEGES + c.id
+                                          }
+                                        >
+                                          View More
+                                        </a>
+                                      </div>
                                     </div>
                                   </div>
                                 </Col>
@@ -771,7 +871,7 @@ const CareerPage = () => {
                                       addEmail(
                                         collegeBoxAds[
                                           page_adds?.addsData[
-                                          page_adds?.addIndex
+                                            page_adds?.addIndex
                                           ][0]
                                         ]?.add_email,
                                       )
@@ -781,7 +881,7 @@ const CareerPage = () => {
                                       href={
                                         collegeBoxAds[
                                           page_adds?.addsData[
-                                          page_adds?.addIndex
+                                            page_adds?.addIndex
                                           ][0]
                                         ]?.url_adds
                                       }
@@ -790,39 +890,39 @@ const CareerPage = () => {
                                     >
                                       {detect.isMobile
                                         ? collegeBoxAds[
-                                          page_adds?.addsData[
-                                          page_adds?.addIndex
-                                          ][0]
-                                        ]?.image_mobile && (
-                                          <img
-                                            src={
-                                              collegeBoxAds[
-                                                page_adds?.addsData[
-                                                page_adds?.addIndex
-                                                ][0]
-                                              ]?.image_mobile
-                                            }
-                                            alt='collegeBoxAds'
-                                            className='college_ads_box'
-                                          />
-                                        )
+                                            page_adds?.addsData[
+                                              page_adds?.addIndex
+                                            ][0]
+                                          ]?.image_mobile && (
+                                            <img
+                                              src={
+                                                collegeBoxAds[
+                                                  page_adds?.addsData[
+                                                    page_adds?.addIndex
+                                                  ][0]
+                                                ]?.image_mobile
+                                              }
+                                              alt='collegeBoxAds'
+                                              className='college_ads_box'
+                                            />
+                                          )
                                         : collegeBoxAds[
-                                          page_adds?.addsData[
-                                          page_adds?.addIndex
-                                          ][0]
-                                        ]?.image && (
-                                          <img
-                                            src={
-                                              collegeBoxAds[
-                                                page_adds?.addsData[
-                                                page_adds?.addIndex
-                                                ][0]
-                                              ]?.image
-                                            }
-                                            alt='collegeBoxAds'
-                                            className='college_ads_box'
-                                          />
-                                        )}
+                                            page_adds?.addsData[
+                                              page_adds?.addIndex
+                                            ][0]
+                                          ]?.image && (
+                                            <img
+                                              src={
+                                                collegeBoxAds[
+                                                  page_adds?.addsData[
+                                                    page_adds?.addIndex
+                                                  ][0]
+                                                ]?.image
+                                              }
+                                              alt='collegeBoxAds'
+                                              className='college_ads_box'
+                                            />
+                                          )}
                                     </a>
                                   </div>
                                 )}
@@ -833,7 +933,7 @@ const CareerPage = () => {
                                       addEmail(
                                         collegeBoxAds[
                                           page_adds?.addsData[
-                                          page_adds?.addIndex
+                                            page_adds?.addIndex
                                           ][1]
                                         ]?.add_email,
                                       )
@@ -843,7 +943,7 @@ const CareerPage = () => {
                                       href={
                                         collegeBoxAds[
                                           page_adds?.addsData[
-                                          page_adds?.addIndex
+                                            page_adds?.addIndex
                                           ][1]
                                         ]?.url_adds
                                       }
@@ -852,39 +952,39 @@ const CareerPage = () => {
                                     >
                                       {detect.isMobile
                                         ? collegeBoxAds[
-                                          page_adds?.addsData[
-                                          page_adds?.addIndex
-                                          ][1]
-                                        ]?.image_mobile && (
-                                          <img
-                                            src={
-                                              collegeBoxAds[
-                                                page_adds?.addsData[
-                                                page_adds?.addIndex
-                                                ][1]
-                                              ]?.image_mobile
-                                            }
-                                            alt='collegeBoxAds'
-                                            className='college_ads_box'
-                                          />
-                                        )
+                                            page_adds?.addsData[
+                                              page_adds?.addIndex
+                                            ][1]
+                                          ]?.image_mobile && (
+                                            <img
+                                              src={
+                                                collegeBoxAds[
+                                                  page_adds?.addsData[
+                                                    page_adds?.addIndex
+                                                  ][1]
+                                                ]?.image_mobile
+                                              }
+                                              alt='collegeBoxAds'
+                                              className='college_ads_box'
+                                            />
+                                          )
                                         : collegeBoxAds[
-                                          page_adds?.addsData[
-                                          page_adds?.addIndex
-                                          ][1]
-                                        ]?.image && (
-                                          <img
-                                            src={
-                                              collegeBoxAds[
-                                                page_adds?.addsData[
-                                                page_adds?.addIndex
-                                                ][1]
-                                              ]?.image
-                                            }
-                                            alt='collegeBoxAds'
-                                            className='college_ads_box'
-                                          />
-                                        )}
+                                            page_adds?.addsData[
+                                              page_adds?.addIndex
+                                            ][1]
+                                          ]?.image && (
+                                            <img
+                                              src={
+                                                collegeBoxAds[
+                                                  page_adds?.addsData[
+                                                    page_adds?.addIndex
+                                                  ][1]
+                                                ]?.image
+                                              }
+                                              alt='collegeBoxAds'
+                                              className='college_ads_box'
+                                            />
+                                          )}
                                     </a>
                                   </div>
                                 )}
@@ -894,27 +994,27 @@ const CareerPage = () => {
                         ),
                     )
                   ) : //  (
-                    //   <div className='text-center'>{t("common.noDataFound")}</div>
-                    // )
-                    //  (
-                    //   <div className="loader-container">
-                    //     <div className="spinner"></div>
-                    //   </div>
-                    // )
+                  //   <div className='text-center'>{t("common.noDataFound")}</div>
+                  // )
+                  //  (
+                  //   <div className="loader-container">
+                  //     <div className="spinner"></div>
+                  //   </div>
+                  // )
 
-                    // (
-                    //   <ContentLoader viewBox="0 0 380 70">
-                    //     {/* Only SVG shapes */}
-                    //     <rect x="0" y="0" rx="5" ry="5" width="70" height="70" />
-                    //     <rect x="80" y="17" rx="4" ry="4" width="300" height="13" />
-                    //     <rect x="80" y="40" rx="3" ry="3" width="250" height="10" />
-                    //   </ContentLoader>
-                    // )
-                    isLoading ? (
-                      <CustomLoader />
-                    ) : (
-                      <NoDataFound />
-                    )}
+                  // (
+                  //   <ContentLoader viewBox="0 0 380 70">
+                  //     {/* Only SVG shapes */}
+                  //     <rect x="0" y="0" rx="5" ry="5" width="70" height="70" />
+                  //     <rect x="80" y="17" rx="4" ry="4" width="300" height="13" />
+                  //     <rect x="80" y="40" rx="3" ry="3" width="250" height="10" />
+                  //   </ContentLoader>
+                  // )
+                  isLoading ? (
+                    <CustomLoader />
+                  ) : (
+                    <NoDataFound />
+                  )}
                   {topCollages?.collage_list?.count > pageLimit && (
                     <>
                       {/* <Pagination
@@ -935,9 +1035,13 @@ const CareerPage = () => {
                         totalPages={totalPages}
                         visiblePages={visiblePages}
                         previousPage={
-                          topCollages?.collage_list?.previous ? previousPage : null
+                          topCollages?.collage_list?.previous
+                            ? previousPage
+                            : null
                         }
-                        nextPage={topCollages?.collage_list?.next ? nextPage : null}
+                        nextPage={
+                          topCollages?.collage_list?.next ? nextPage : null
+                        }
                         handleClick={handleClick}
                       />
                     </>
