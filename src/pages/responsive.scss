@@ -324,11 +324,11 @@
 
   // Sep 15
 
-  .accordion_box_all ul {
-    height: 30px;
-  }
+  // .accordion_box_all ul {
+  //   height: 30px;
+  // }
   .accordion_box_all {
-    margin-bottom: 30px;
+    margin-bottom:0px;
   }
   .accordion_box_all {
     display: block !important;
@@ -351,7 +351,7 @@
   }
   .mobile_view_city_selct {
     display: block !important;
-    margin-bottom: 30px;
+    margin: 20px 0;
   }
   .top_collages_list_filter123 {
     overflow: hidden;
@@ -675,8 +675,8 @@ header.other_head ul li svg {
 }
 .ul_list_radio_filter ul li {
   list-style-type: none;
-  margin: 0;
-  height: 40px;
+  margin: 0 0 10px 0;
+  // height: 40px;
 }
 .college_ads_box {
   // height: 40px !important;

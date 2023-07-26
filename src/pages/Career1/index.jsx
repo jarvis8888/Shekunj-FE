@@ -11,6 +11,7 @@ import {
 } from "../../store/career";
 import "../HomePage/index.scss";
 import "./index.scss";
+import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
 import RestartAltIcon from "@mui/icons-material/RestartAlt";
 import { withHeaderFooter } from "../../hocs/withHeaderFooter";
 import { Helmet } from "react-helmet-async";
@@ -652,13 +653,19 @@ const CareerPage1 = () => {
 
                 <div className='mobile_view_city_selct'>
                   <Accordion>
-                    <AccordionSummary
-                      expandIcon={<ExpandMoreIcon />}
-                      aria-controls='panel1a-content'
-                      id='panel1a-header'
-                    >
-                      <img src={logo} alt='Image' className='filter_city_123' />
-                    </AccordionSummary>
+                    <div className='sk-resetFilter-bar py-0 px-3'>
+                      <ul className="p-0 m-0">
+                        <li>Filter</li>
+                        <li onClick={handleResetSearch}>
+                          <span>
+                            <RestartAltIcon />{" "}
+                            <span className='me-2'>Reset Filter</span>
+                          </span>
+                        </li>
+                        <li><AccordionSummary className="p-0" expandIcon={<KeyboardArrowDownRoundedIcon />} aria-controls='panel1a-content' id='panel1a-header' /></li>
+                      </ul>
+                    </div>
+                    
                     <AccordionDetails>
                       <Typography>
                         <AccordionComponent
@@ -875,7 +882,7 @@ const CareerPage1 = () => {
                                   addEmail(
                                     schoolBoxAds[
                                       page_adds?.addsData[
-                                        page_adds?.addIndex
+                                      page_adds?.addIndex
                                       ][0]
                                     ]?.add_email,
                                   )
@@ -885,7 +892,7 @@ const CareerPage1 = () => {
                                   href={
                                     schoolBoxAds[
                                       page_adds?.addsData[
-                                        page_adds?.addIndex
+                                      page_adds?.addIndex
                                       ][0]
                                     ]?.url_adds
                                   }
@@ -894,39 +901,39 @@ const CareerPage1 = () => {
                                 >
                                   {detect.isMobile
                                     ? schoolBoxAds[
-                                        page_adds?.addsData[
-                                          page_adds?.addIndex
-                                        ][0]
-                                      ]?.image_mobile && (
-                                        <img
-                                          src={
-                                            schoolBoxAds[
-                                              page_adds?.addsData[
-                                                page_adds?.addIndex
-                                              ][0]
-                                            ]?.image_mobile
-                                          }
-                                          alt='schoolBoxAds'
-                                          className='ads_school_box'
-                                        />
-                                      )
+                                      page_adds?.addsData[
+                                      page_adds?.addIndex
+                                      ][0]
+                                    ]?.image_mobile && (
+                                      <img
+                                        src={
+                                          schoolBoxAds[
+                                            page_adds?.addsData[
+                                            page_adds?.addIndex
+                                            ][0]
+                                          ]?.image_mobile
+                                        }
+                                        alt='schoolBoxAds'
+                                        className='ads_school_box'
+                                      />
+                                    )
                                     : schoolBoxAds[
-                                        page_adds?.addsData[
-                                          page_adds?.addIndex
-                                        ][0]
-                                      ]?.image && (
-                                        <img
-                                          src={
-                                            schoolBoxAds[
-                                              page_adds?.addsData[
-                                                page_adds?.addIndex
-                                              ][0]
-                                            ]?.image
-                                          }
-                                          alt='schoolBoxAds'
-                                          className='ads_school_box'
-                                        />
-                                      )}
+                                      page_adds?.addsData[
+                                      page_adds?.addIndex
+                                      ][0]
+                                    ]?.image && (
+                                      <img
+                                        src={
+                                          schoolBoxAds[
+                                            page_adds?.addsData[
+                                            page_adds?.addIndex
+                                            ][0]
+                                          ]?.image
+                                        }
+                                        alt='schoolBoxAds'
+                                        className='ads_school_box'
+                                      />
+                                    )}
                                 </a>
                               </div>
                             )}
@@ -936,7 +943,7 @@ const CareerPage1 = () => {
                                   addEmail(
                                     schoolBoxAds[
                                       page_adds?.addsData[
-                                        page_adds?.addIndex
+                                      page_adds?.addIndex
                                       ][1]
                                     ]?.add_email,
                                   )
@@ -946,7 +953,7 @@ const CareerPage1 = () => {
                                   href={
                                     schoolBoxAds[
                                       page_adds?.addsData[
-                                        page_adds?.addIndex
+                                      page_adds?.addIndex
                                       ][1]
                                     ]?.url_adds
                                   }
@@ -955,39 +962,39 @@ const CareerPage1 = () => {
                                 >
                                   {detect.isMobile
                                     ? schoolBoxAds[
-                                        page_adds?.addsData[
-                                          page_adds?.addIndex
-                                        ][1]
-                                      ]?.image_mobile && (
-                                        <img
-                                          src={
-                                            schoolBoxAds[
-                                              page_adds?.addsData[
-                                                page_adds?.addIndex
-                                              ][1]
-                                            ]?.image_mobile
-                                          }
-                                          alt='schoolBoxAds'
-                                          className='ads_school_box'
-                                        />
-                                      )
+                                      page_adds?.addsData[
+                                      page_adds?.addIndex
+                                      ][1]
+                                    ]?.image_mobile && (
+                                      <img
+                                        src={
+                                          schoolBoxAds[
+                                            page_adds?.addsData[
+                                            page_adds?.addIndex
+                                            ][1]
+                                          ]?.image_mobile
+                                        }
+                                        alt='schoolBoxAds'
+                                        className='ads_school_box'
+                                      />
+                                    )
                                     : schoolBoxAds[
-                                        page_adds?.addsData[
-                                          page_adds?.addIndex
-                                        ][1]
-                                      ]?.image && (
-                                        <img
-                                          src={
-                                            schoolBoxAds[
-                                              page_adds?.addsData[
-                                                page_adds?.addIndex
-                                              ][1]
-                                            ]?.image
-                                          }
-                                          alt='schoolBoxAds'
-                                          className='ads_school_box'
-                                        />
-                                      )}
+                                      page_adds?.addsData[
+                                      page_adds?.addIndex
+                                      ][1]
+                                    ]?.image && (
+                                      <img
+                                        src={
+                                          schoolBoxAds[
+                                            page_adds?.addsData[
+                                            page_adds?.addIndex
+                                            ][1]
+                                          ]?.image
+                                        }
+                                        alt='schoolBoxAds'
+                                        className='ads_school_box'
+                                      />
+                                    )}
                                 </a>
                               </div>
                             )}
