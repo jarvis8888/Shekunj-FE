@@ -1,6 +1,14 @@
+* {
+  font-family: "Poppins", sans-serif !important;
+}
 .accordion_box_all .MuiPaper-root.MuiPaper-elevation {
   border: none;
   box-shadow: none;
+}
+
+.accordion_box_all {
+  padding-right: 30px;
+  padding-top: 30px;
 }
 .accordion_box_all .MuiButtonBase-root.MuiAccordionSummary-root {
   background-color: transparent;
@@ -8,6 +16,7 @@
   padding: 0px;
   flex-direction: inherit;
 }
+
 .accordion_box_all .MuiAccordionDetails-root {
   border: none;
   padding: 0px 0px 0px 10px;
@@ -20,15 +29,16 @@
 .accordion_box_all .MuiAccordionSummary-content .MuiTypography-root {
   font-weight: 600;
   font-size: 16px;
-  line-height: 120%;
+  // line-height: 120%;
   letter-spacing: 0.05em;
   text-transform: capitalize;
-  color: #000000;
+  // color: #000000;
+  color: #202020;
   font-family: "Poppins", sans-serif;
 }
 .accordion_box_all ul li {
   list-style-type: none;
-  margin: 10px 0px 10px;
+  // margin: 10px 0px 10px;
 }
 .accordion_box_all
   ul
@@ -55,14 +65,13 @@
   border-radius: 4.5px;
 }
 .accordion_box_all ul li .MuiCheckbox-root.MuiCheckbox-colorPrimary svg {
-  font-size: 30px;
+  font-size: 28px;
 }
+
 .accordion_box_all ul li .MuiFormControlLabel-label {
-  font-weight: normal;
-  font-size: 18px;
-  line-height: 120%;
   text-transform: capitalize;
-  color: #828282;
+  color: #202020;
+  font-weight: 400;
   font-family: "Poppins", sans-serif;
 }
 .accordion_box_all
@@ -77,6 +86,10 @@
   user-select: none;
 }
 
-.MuiRadio-root.MuiRadio-colorPrimary.Mui-checked{
+.MuiRadio-root.MuiRadio-colorPrimary.Mui-checked {
   color: #ec498a;
+}
+
+.MuiFormControlLabel-labelPlacementEnd {
+  margin: 0 !important;
 }

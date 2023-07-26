@@ -453,3 +453,7 @@ export const makeHtmlWithStyles = (htmlString) => {
   htmlNode.innerHTML = htmlString?.replace(/\\/g, "");
   return htmlNode.innerHTML;
 };
+
+export const capitalizeFirstLetter = (str) => {
+  return str?.charAt(0).toUpperCase() + str?.slice(1);
+};
