@@ -199,7 +199,7 @@ body {
       margin: 0;
       padding: 0;
       align-items: center;
-      flex-wrap: wrap;
+      // flex-wrap: wrap;
       li {
         margin-left: 20px;
 
@@ -228,6 +228,10 @@ body {
     padding: 8.5px 15px;
     border-radius: 2px;
     transition: 0.3s;
+    @media screen and (max-width: 480px) {
+        padding: 8px;
+        font-size: 12px;
+    }
   }
   .header-top nav .custom-dropdownl li {
     margin-left: 0;
@@ -344,6 +348,7 @@ body {
   .header-top button {
     color: #fff !important;
     border-color: #434242 !important;
+    font-size: 12px;
   }
   .header-top nav ul {
     justify-content: space-between;

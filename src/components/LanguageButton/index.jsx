@@ -76,7 +76,7 @@ function ChangeLanguageButton() {
         onClick={handleClick}
         endIcon={<ArrowDropDownIcon />}
       >
-        <span className='mr-2'>
+        <span className='mr-1'>
           <img src={traslateicon} />
         </span>
 
