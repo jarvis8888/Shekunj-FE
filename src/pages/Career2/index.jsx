@@ -24,6 +24,8 @@ import Pagination from "../../components/Pagination";
 import { CustomLoader } from "../../components/customLoader/CustomLoader";
 import { NoDataFound } from "../../components/noDataFound/NoDataFound";
 import NewPagination from "../../components/Pagination/NewPagination";
+import { withHeaderFooter } from "../../hocs/withHeaderFooter";
+
 const CareerPage2 = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
@@ -404,7 +406,6 @@ const CareerPage2 = () => {
       />
 
       <div>
-        <Header loginPage={true} page='career' subPage='govExams' />
         <Container>
           <Row>
             {govBannerAds.length > 0 && (
@@ -786,11 +787,9 @@ const CareerPage2 = () => {
             </Row>
           </Container>
         </div>
-
-        <Footer loginPage={false} />
       </div>
     </>
   );
 };
 
-export default CareerPage2;
+export default withHeaderFooter(CareerPage2);
