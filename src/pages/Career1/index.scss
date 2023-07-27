@@ -179,12 +179,11 @@
   color: #202020;
   text-decoration: none;
   margin-bottom: 5px;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  -webkit-line-clamp: 1;
-  white-space: pre-wrap;
   display: -webkit-box;
+  -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .sk-serachTop-school {
   display: flex;

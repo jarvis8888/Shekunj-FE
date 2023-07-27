@@ -532,7 +532,7 @@ export default function AccordionComponent({
       {type === "schools" && (
         <>
           <Typography>{states?.name}</Typography>
-          <ul className='sk-cityschool-remove pl-0'>
+          <ul className='pl-0'>
             {/* <RadioGroup name='radio-buttons-group'> */}
             <FormGroup>
               {/* {remainingSchoolsState
