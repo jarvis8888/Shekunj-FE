@@ -306,6 +306,7 @@ const CareerPage1 = () => {
   };
   const handleResetSearch = () => {
     setSearchInput("");
+    setCurrentPage(1);
     dispatch(reSetFilterValue());
     navigator.geolocation.getCurrentPosition(
       async function (position, values) {
@@ -322,16 +323,17 @@ const CareerPage1 = () => {
             latitude,
             longitude,
             pageLimit,
-            offset,
+            offset: 0,
             search: searchInput !== "" ? `&search=${searchInput}` : "",
           }),
         );
       },
       function (error) {
         console.error("Error Code = " + error.code + " - " + error.message);
-        dispatch(getTopSchools({ filter: false, pageLimit, offset }));
+        dispatch(getTopSchools({ filter: false, pageLimit, offset: 0 }));
       },
     );
+    setOffset(0);
     // window.scrollTo(0, 0);
   };
 
@@ -397,20 +399,15 @@ const CareerPage1 = () => {
 
   // Handle next page click
   const nextPage = () => {
-    navigator.geolocation.getCurrentPosition(async function (position, values) {
-      const latitude = position?.coords?.latitude;
-      const longitude = position?.coords?.longitude;
-      dispatch(
-        getTopSchools({
-          filter: true,
-          latitude,
-          longitude,
-          pageLimit,
-          offset: offset + pageLimit,
-          search: searchInput !== "" ? `&search=${searchInput}` : "",
-        }),
-      );
-    });
+    dispatch(
+      getTopSchools({
+        filter: true,
+        pageLimit,
+        offset: offset + pageLimit,
+        search: searchInput !== "" ? `&search=${searchInput}` : "",
+      }),
+    );
+
     if (page_adds) {
       setTimeout(() => {
         sessionStorage.setItem(
@@ -431,20 +428,15 @@ const CareerPage1 = () => {
 
   // Handle previous page click
   const previousPage = () => {
-    navigator.geolocation.getCurrentPosition(async function (position, values) {
-      const latitude = position?.coords?.latitude;
-      const longitude = position?.coords?.longitude;
-      dispatch(
-        getTopSchools({
-          filter: true,
-          latitude,
-          longitude,
-          pageLimit,
-          offset: offset - pageLimit,
-          search: searchInput !== "" ? `&search=${searchInput}` : "",
-        }),
-      );
-    });
+    dispatch(
+      getTopSchools({
+        filter: true,
+        pageLimit,
+        offset: offset - pageLimit,
+        search: searchInput !== "" ? `&search=${searchInput}` : "",
+      }),
+    );
+
     if (page_adds) {
       setTimeout(() => {
         sessionStorage.setItem(
@@ -466,20 +458,15 @@ const CareerPage1 = () => {
   const handleClick = (pageNumber) => {
     setCurrentPage(pageNumber);
     const newOffset = (pageNumber - 1) * pageLimit;
-    navigator.geolocation.getCurrentPosition(async function (position, values) {
-      const latitude = position?.coords?.latitude;
-      const longitude = position?.coords?.longitude;
-      dispatch(
-        getTopSchools({
-          filter: true,
-          latitude,
-          longitude,
-          pageLimit,
-          offset: (pageNumber - 1) * pageLimit,
-          search: searchInput !== "" ? `&search=${searchInput}` : "",
-        }),
-      );
-    });
+    dispatch(
+      getTopSchools({
+        filter: true,
+        pageLimit,
+        offset: (pageNumber - 1) * pageLimit,
+        search: searchInput !== "" ? `&search=${searchInput}` : "",
+      }),
+    );
+
     if (page_adds) {
       setTimeout(() => {
         sessionStorage.setItem(
@@ -635,11 +622,11 @@ const CareerPage1 = () => {
                         name: t("careerTopSchools.listItems.3"),
                         rows: topSchools?.city_list || [],
                       }}
-                      // ownership={{
-                      //   name: t("careerTopSchools.listItems.5"),
-                      //   rows: topSchools?.school_type || [],
-                      // }}
-                      ownership={ownership}
+                      ownership={{
+                        name: t("careerTopSchools.listItems.5"),
+                        rows: topSchools?.school_type || [],
+                      }}
+                      // ownership={ownership}
                       educationBoard={{
                         name: t("careerTopSchools.listItems.2"),
                         rows: topSchools?.board_list || [],
@@ -653,17 +640,6 @@ const CareerPage1 = () => {
                     />
                   </div>
 
-                  {/* <div className='mobile_view_city_selct'>
-                    <Accordion>
-                      <AccordionSummary
-                        expandIcon={<ExpandMoreIcon />}
-                        aria-controls='panel1a-content'
-                        id='panel1a-header'
-                      >
-                        <img
-                          src={logo}
-                          alt='Image'
-                          className='filter_city_123' */}
                   <div className='mobile_view_city_selct'>
                     <Accordion>
                       <div className='sk-resetFilter-bar py-0 px-3'>

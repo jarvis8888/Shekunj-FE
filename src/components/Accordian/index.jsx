@@ -98,9 +98,44 @@ export default function AccordionComponent({
     subType,
     pageLimit,
   ) => {
-    navigator.geolocation.getCurrentPosition(async function (position, values) {
-      const latitude = position.coords.latitude;
-      const longitude = position.coords.longitude;
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(
+        async function (position, values) {
+          const latitude = position.coords.latitude;
+          const longitude = position.coords.longitude;
+          dispatch(
+            setFilterValue({
+              id,
+              checked,
+              type,
+              subType,
+              limit,
+              offset,
+              latitude,
+              longitude,
+            }),
+          );
+        },
+        function (error) {
+          // Handle the error if location access is denied or any other geolocation-related error.
+          console.error("Error getting geolocation:", error);
+          dispatch(
+            setFilterValue({
+              id,
+              checked,
+              type,
+              subType,
+              limit,
+              offset,
+              latitude: null, // Provide a fallback value for latitude (null in this case).
+              longitude: null, // Provide a fallback value for longitude (null in this case).
+            }),
+          );
+        },
+      );
+    } else {
+      // Handle the case when geolocation is not supported by the browser.
+      console.error("Geolocation is not supported in this browser.");
       dispatch(
         setFilterValue({
           id,
@@ -109,11 +144,11 @@ export default function AccordionComponent({
           subType,
           limit,
           offset,
-          latitude,
-          longitude,
+          latitude: null, // Provide a fallback value for latitude (null in this case).
+          longitude: null, // Provide a fallback value for longitude (null in this case).
         }),
       );
-    });
+    }
   };
 
   const hasMoreCountShowFunction = (data, category, subCategory) => {
@@ -382,7 +417,7 @@ export default function AccordionComponent({
                 <Checkbox
                   checked={c?.isChecked}
                   onChange={(e) =>
-                    onChangeFilter(c.id, e, "ownership", "ownership")
+                    onChangeFilter(c.id, e, "topCollages", "ownership")
                   }
                 />
               }
@@ -416,7 +451,7 @@ export default function AccordionComponent({
       {type === "colleges" && (
         <>
           <Typography>{stream?.name}</Typography>
-          <ul className='pl-0'>
+          <ul className='sk-cityschool-remove pl-0'>
             <RadioGroup>
               {remainingColleges
                 ? hasMoreCollegeStreamFunction(stream?.rows)
@@ -425,13 +460,14 @@ export default function AccordionComponent({
           </ul>
           {hasMoreCount(stream?.rows, 3) > 0 && (
             <div
-              className=''
+              className='sk-lessshow-more'
               onClick={() => setRemainingColleges((prev) => !prev)}
             >
               {hasMoreCount(stream?.rows, 3)}{" "}
               {remainingColleges ? "Less" : "More"}
             </div>
           )}
+
           <Typography>{ownership?.name}</Typography>
 
           <ul className='pl-0'>
@@ -451,7 +487,7 @@ export default function AccordionComponent({
             </div>
           )} */}
           <Typography>{state?.name}</Typography>
-          <ul className='pl-0'>
+          <ul className='sk-cityschool-remove pl-0'>
             <FormGroup>
               {remainingCollegeState
                 ? hasMoreCountShowFunction(state?.rows, "topCollages", "state")
@@ -464,7 +500,7 @@ export default function AccordionComponent({
           </ul>
           {hasMoreCount(state?.rows, 3) > 0 && (
             <div
-              className=''
+              className='sk-lessshow-more'
               onClick={() => setRemainingCollegeState((prev) => !prev)}
             >
               {hasMoreCount(state?.rows, 3)}{" "}
@@ -473,7 +509,7 @@ export default function AccordionComponent({
           )}
           <Typography>{city?.name}</Typography>
 
-          <ul className='pl-0'>
+          <ul className='sk-cityschool-remove pl-0'>
             {remainingCollegeCity
               ? hasMoreCountShowFunction(city?.rows, "topCollages", "city")
               : hasMoreCountShowFunction(
@@ -484,7 +520,7 @@ export default function AccordionComponent({
           </ul>
           {hasMoreCount(city?.rows, 3) > 0 && (
             <div
-              className='sk-viewall-b'
+              className='sk-lessshow-more'
               onClick={() => setRemainingCollegeCity((prev) => !prev)}
             >
               {hasMoreCount(city?.rows, 3)}{" "}
@@ -496,7 +532,7 @@ export default function AccordionComponent({
       {type === "schools" && (
         <>
           <Typography>{states?.name}</Typography>
-          <ul className='pl-0'>
+          <ul className='sk-cityschool-remove pl-0'>
             {/* <RadioGroup name='radio-buttons-group'> */}
             <FormGroup>
               {/* {remainingSchoolsState
@@ -572,7 +608,11 @@ export default function AccordionComponent({
             <FormGroup>
               {Array.isArray(ownership?.rows) &&
                 (remainingSchoolsOwnership
-                  ? hasMoreSchoolOwnershipFunction(ownership?.rows)
+                  ? hasMoreSchoolOwnershipFunction(
+                      ownership?.rows,
+                      "topSchools",
+                      "ownership",
+                    )
                   : hasMoreSchoolOwnershipFunction(
                       ownership?.rows?.slice(0, 3),
                     ))}

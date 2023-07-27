@@ -13,10 +13,14 @@ import {
   allTopcollegeBySearch,
 } from "../../store/career";
 import TopCollage from "../../assets/images/Career/clg.jpg";
+import Search from "../../assets/images/search_white_icon.svg";
 import "../HomePage/index.scss";
 import "./index.scss";
+import "../Career1/index.scss";
+import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownRounded";
+import RestartAltIcon from "@mui/icons-material/RestartAlt";
 import Cross from "../../assets/icons/cross.png";
-import Search from "../../assets/icons/search1.png";
+// import Search from "../../assets/icons/search1.png";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import test from "../../assets/images/test.jpg";
@@ -35,6 +39,7 @@ import { CustomLoader } from "../../components/customLoader/CustomLoader";
 import { NoDataFound } from "../../components/noDataFound/NoDataFound";
 import { withHeaderFooter } from "../../hocs/withHeaderFooter";
 import NewPagination from "../../components/Pagination/NewPagination";
+import { capitalizeFirstLetter } from "../../utils/utils";
 
 const CareerPage = () => {
   // const [loading, setLoading] = useState(false);
@@ -57,6 +62,7 @@ const CareerPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [startPage, setStartPage] = useState(1);
   const [flag, setFlag] = useState(true);
+  const [stopPosition, setStopPosition] = useState(0);
   const pageLimit = 10;
 
   useEffect(() => {
@@ -108,7 +114,7 @@ const CareerPage = () => {
     rows: topCollages?.city_list || [],
   };
 
-  // const ownership = {
+  // const ownerships = {
   //   name: t("careerTopColleges.listItems.4"),
   //   rows: topCollages?.college_type || [],
   // };
@@ -313,8 +319,29 @@ const CareerPage = () => {
     );
   };
   const handleResetSearch = () => {
-    dispatch(getTopCollages({ filter: true, search: "" }));
     setSearchInput("");
+    setCurrentPage(1);
+    dispatch(reSetFilterValue());
+    navigator.geolocation.getCurrentPosition(
+      async function (position, values) {
+        const latitude = position?.coords?.latitude;
+        const longitude = position?.coords?.longitude;
+        dispatch(
+          getTopCollages({
+            filter: false,
+            latitude,
+            longitude,
+            pageLimit,
+            offset,
+          }),
+        );
+      },
+      function (error) {
+        console.error("Error Code = " + error.code + " - " + error.message);
+        dispatch(getTopCollages(false));
+      },
+    );
+    setOffset(0);
   };
   const paginationBack = () => {
     navigator.geolocation.getCurrentPosition(async function (position, values) {
@@ -385,20 +412,15 @@ const CareerPage = () => {
 
   // Handle next page click
   const nextPage = () => {
-    navigator.geolocation.getCurrentPosition(async function (position, values) {
-      const latitude = position?.coords?.latitude;
-      const longitude = position?.coords?.longitude;
-      dispatch(
-        getTopCollages({
-          filter: true,
-          latitude,
-          longitude,
-          pageLimit,
-          offset: offset + pageLimit,
-          search: searchInput !== "" ? `&search=${searchInput}` : "",
-        }),
-      );
-    });
+    dispatch(
+      getTopCollages({
+        filter: true,
+        pageLimit,
+        offset: offset + pageLimit,
+        search: searchInput !== "" ? `&search=${searchInput}` : "",
+      }),
+    );
+
     if (page_adds) {
       setTimeout(() => {
         sessionStorage.setItem(
@@ -418,20 +440,15 @@ const CareerPage = () => {
   };
   // Handle previous page click
   const previousPage = () => {
-    navigator.geolocation.getCurrentPosition(async function (position, values) {
-      const latitude = position?.coords?.latitude;
-      const longitude = position?.coords?.longitude;
-      dispatch(
-        getTopCollages({
-          filter: true,
-          latitude,
-          longitude,
-          pageLimit,
-          offset: offset - pageLimit,
-          search: searchInput !== "" ? `&search=${searchInput}` : "",
-        }),
-      );
-    });
+    dispatch(
+      getTopCollages({
+        filter: true,
+        pageLimit,
+        offset: offset - pageLimit,
+        search: searchInput !== "" ? `&search=${searchInput}` : "",
+      }),
+    );
+
     if (page_adds) {
       setTimeout(() => {
         sessionStorage.setItem(
@@ -452,20 +469,16 @@ const CareerPage = () => {
   const handleClick = (pageNumber) => {
     setCurrentPage(pageNumber);
     const newOffset = (pageNumber - 1) * pageLimit;
-    navigator.geolocation.getCurrentPosition(async function (position, values) {
-      const latitude = position?.coords?.latitude;
-      const longitude = position?.coords?.longitude;
-      dispatch(
-        getTopCollages({
-          filter: true,
-          latitude,
-          longitude,
-          pageLimit,
-          offset: (pageNumber - 1) * pageLimit,
-          search: searchInput !== "" ? `&search=${searchInput}` : "",
-        }),
-      );
-    });
+
+    dispatch(
+      getTopCollages({
+        filter: true,
+        pageLimit,
+        offset: (pageNumber - 1) * pageLimit,
+        search: searchInput !== "" ? `&search=${searchInput}` : "",
+      }),
+    );
+
     if (page_adds) {
       setTimeout(() => {
         sessionStorage.setItem(
@@ -476,6 +489,31 @@ const CareerPage = () => {
     }
     setOffset(newOffset);
   };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const rightColElement = document.getElementById("college-left-col");
+      // const headerElement = document.querySelector('.header-class');
+      const stickyHeight = rightColElement.offsetHeight;
+      const viewportHeight = window.innerHeight;
+      const headerHeight = 0;
+      const adjustedViewportHeight = viewportHeight - headerHeight;
+      const stop = viewportHeight - stickyHeight;
+
+      if (stickyHeight > adjustedViewportHeight) {
+        setStopPosition(stop);
+      } else {
+        setStopPosition(headerHeight);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    // Clean up the event listener when the component is unmounted
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
   const currentUrl = window.location.href;
   return (
     <>
@@ -487,427 +525,487 @@ const CareerPage = () => {
         keywords='top colleges in india top educational institutions in india top colleges in madhya pradesh best universities in india top women colleges in india'
       />
       <div>
-        <Container>
-          <Row>
-            <div className='col-md-12'>
-              {collegeBannerAds.length > 0 && (
-                <div
-                  className='add_college_cover'
-                  onClick={() => addEmail(collegeBannerAds[0]?.add_email)}
-                >
-                  <a
-                    href={collegeBannerAds[0]?.url_adds}
-                    target='_blank'
-                    rel='noreferrer'
+        <section className='sk-topschool-banner'>
+          <div className='container sk-custom-container'>
+            <div className='row'>
+              <div className='col-md-12'>
+                {collegeBannerAds.length > 0 && (
+                  <div
+                    className='add_college_cover'
+                    onClick={() => addEmail(collegeBannerAds[0]?.add_email)}
                   >
-                    {detect.isMobile
-                      ? collegeBannerAds[0]?.image_mobile && (
-                          <img
-                            src={collegeBannerAds[0]?.image_mobile}
-                            alt='collegeBannerAds'
-                            className=' google_add_college'
-                          />
-                        )
-                      : collegeBannerAds[0]?.image && (
-                          <img
-                            src={collegeBannerAds[0]?.image}
-                            alt='collegeBannerAds'
-                            className=' google_add_college'
-                          />
-                        )}
-                  </a>
-                </div>
-              )}
+                    <a
+                      href={collegeBannerAds[0]?.url_adds}
+                      target='_blank'
+                      rel='noreferrer'
+                    >
+                      {detect.isMobile
+                        ? collegeBannerAds[0]?.image_mobile && (
+                            <img
+                              src={collegeBannerAds[0]?.image_mobile}
+                              alt='collegeBannerAds'
+                              className=''
+                            />
+                          )
+                        : collegeBannerAds[0]?.image && (
+                            <img
+                              src={collegeBannerAds[0]?.image}
+                              alt='collegeBannerAds'
+                              className=''
+                            />
+                          )}
+                    </a>
+                  </div>
+                )}
+              </div>
             </div>
-          </Row>
-        </Container>
+          </div>
+        </section>
 
-        <div className='mainDiv_college'>
-          <Container>
-            <div className='career_tit noselect'>
-              <Row>
-                <Col md={6} xs={12}>
-                  <h1>{t("careerTopColleges.heading.1")}</h1>
-                  <p>
+        <section className='sk-Topmiddle-sec'>
+          <div className='container sk-custom-container'>
+            <div className='noselect sk-spaceBottom-school'>
+              <div className='row'>
+                <Col md={12} xs={12}>
+                  <h1 className='sk-storyHeading-top'>
+                    {t("careerTopColleges.heading.1")}
+                  </h1>
+                  {/* <p>
                     {t("careerTopColleges.other.2")}{" "}
                     {topCollages?.collage_list?.results?.length || 0}{" "}
                     {t("careerTopColleges.other.3")}
+                  </p> */}
+                  <p>
+                    Contrary to popular belief, Lorem Ipsum is not simply random
+                    text. It has roots in a piece of classical Latin literature
+                    from 45 BC, making it over 2000 years old. Richard
+                    McClintock, a Latin professor at Hampden-Sydney College in
+                    Virginia, looked up one of the more obscure Latin words,
+                    consectetur, from a Lorem Ipsum passage, and going through
+                    the cites of the word in classical literature, discovered
+                    the undoubtable source. Lorem Ipsum comes from sections
                   </p>
                 </Col>
-                <Col md={6} xs={12}>
-                  <div className='input-group searchSection'>
-                    <form onSubmit={SearchFilterHandle}>
-                      <div className='d-flex'>
-                        <div className='wraper '>
+              </div>
+            </div>
+
+            <div className='sk-Schooolborder-top'>
+              <div className='row'>
+                <Col md={4} xs={12}>
+                  <div
+                    className='desktop_view_city_selct'
+                    id='college-left-col'
+                    style={{ top: `${stopPosition}px` }}
+                  >
+                    <div className='sk-resetFilter-bar'>
+                      <ul>
+                        <li>Filter</li>
+                        <li onClick={handleResetSearch}>
+                          <span>
+                            <RestartAltIcon />{" "}
+                            <span className='me-2'>Reset Filter</span>
+                          </span>
+                        </li>
+                      </ul>
+                    </div>
+
+                    <AccordionComponent
+                      type='colleges'
+                      //stream={STREAM}
+                      offset={offset}
+                      limit={pageLimit}
+                      stream={courseSector}
+                      ownership={ownership}
+                      state={STATE}
+                      city={CITY}
+                    />
+                  </div>
+
+                  {/* mobile menu */}
+                  <div className='mobile_view_city_selct'>
+                    <Accordion>
+                      <div className='sk-resetFilter-bar py-0 px-3'>
+                        <ul className='p-0 m-0'>
+                          <li>Filter</li>
+                          <li onClick={handleResetSearch}>
+                            <span>
+                              <RestartAltIcon />{" "}
+                              <span className='me-2'>Reset Filter</span>
+                            </span>
+                          </li>
+                          <li>
+                            <AccordionSummary
+                              className='p-0'
+                              expandIcon={<KeyboardArrowDownRoundedIcon />}
+                              aria-controls='panel1a-content'
+                              id='panel1a-header'
+                            />
+                          </li>
+                        </ul>
+                      </div>
+                      <AccordionDetails>
+                        <Typography>
+                          <div>
+                            <AccordionComponent
+                              type='colleges'
+                              //stream={STREAM}
+                              offset={offset}
+                              limit={pageLimit}
+                              stream={courseSector}
+                              ownership={ownership}
+                              state={STATE}
+                              city={CITY}
+                            />
+                          </div>
+                        </Typography>
+                      </AccordionDetails>
+                    </Accordion>
+                  </div>
+                </Col>
+
+                <Col
+                  md={8}
+                  xs={12}
+                  className='top_collages_add_g top_collages_list_filter123'
+                >
+                  <Col md={12} xs={12}>
+                    <div className='sk-rightlist-school'>
+                      <div className='sk-all-school'>
+                        <p>
+                          All Colleges
+                          <span>
+                            {" "}
+                            (
+                            {topCollages?.collage_list?.count > 999
+                              ? "999+"
+                              : topCollages?.collage_list?.count}
+                            )
+                          </span>
+                        </p>
+                      </div>
+                      <form onSubmit={SearchFilterHandle}>
+                        <div className='sk-serachTop-school'>
                           <input
                             type='text'
                             onChange={(e) => setSearchInput(e.target.value)}
                             value={searchInput}
                             name='searchInput'
-                            class='form-control searchInput'
+                            class='form-control'
                             placeholder='Search here...'
                           />
-                        </div>
-                        <div className='d-flex'>
-                          <button type='submit' className='searchBtn1'>
-                            <img
-                              src={Search}
-                              alt='searchIcon'
-                              className='searchIcon'
-                            />
+                          <button
+                            type='submit'
+                            className='sk-searchSchool-filter'
+                          >
+                            <img src={Search} alt='searchIcon' className='' />
                           </button>
-                          <img
-                            src={Cross}
-                            alt='searchclose'
-                            className='searchclose'
-                            onClick={() => handleResetSearch()}
-                          />
+                          {/* <img
+                              src={Cross}
+                              alt='searchclose'
+                              className='searchclose'
+                              onClick={() => handleResetSearch()}
+                            /> */}
                         </div>
-                      </div>
-                    </form>
-                  </div>
-                </Col>
-              </Row>
-            </div>
-
-            <Row>
-              <Col md={4} xs={12}>
-                <div className='desktop_view_city_selct'>
-                  <AccordionComponent
-                    type='colleges'
-                    //stream={STREAM}
-                    offset={offset}
-                    limit={pageLimit}
-                    stream={courseSector}
-                    ownership={ownership}
-                    state={STATE}
-                    city={CITY}
-                  />
-                </div>
-
-                {/* mobile menu */}
-                <div className='mobile_view_city_selct'>
-                  <Accordion>
-                    <AccordionSummary
-                      expandIcon={<ExpandMoreIcon />}
-                      aria-controls='panel1a-content'
-                      id='panel1a-header'
-                    >
-                      <img src={logo} alt='Image' className='filter_city_123' />
-                    </AccordionSummary>
-                    <AccordionDetails>
-                      <Typography>
-                        <div>
-                          <AccordionComponent
-                            type='colleges'
-                            //stream={STREAM}
-                            offset={offset}
-                            limit={pageLimit}
-                            stream={courseSector}
-                            ownership={ownership}
-                            state={STATE}
-                            city={CITY}
-                          />
-                        </div>
-                      </Typography>
-                    </AccordionDetails>
-                  </Accordion>
-                </div>
-              </Col>
-
-              <Col
-                md={8}
-                xs={12}
-                className='top_collages_add_g top_collages_list_filter123'
-              >
-                {topCollages?.collage_list?.results?.length > 0 ? (
-                  topCollages.collage_list?.results?.map(
-                    (c, index) =>
-                      c &&
-                      c.name && (
-                        <>
-                          {/* {console.log("c",c)}
+                      </form>
+                    </div>
+                  </Col>
+                  {topCollages?.collage_list?.results?.length > 0 ? (
+                    topCollages.collage_list?.results?.map(
+                      (c, index) =>
+                        c &&
+                        c.name && (
+                          <>
+                            {/* {console.log("c",c)}
                            {loading ? (
                       <div className="loader-container">
       	              <div className="spinner"></div>
                       </div>
                       ) : ( */}
-
-                          <div
-                            className='career_box noselect'
-                            style={{ height: "auto" }}
-                            key={c?.id}
-                          >
-                            <Row>
-                              <Col md={3} xs={12}>
-                                <div className='college_logo_box'>
-                                  <Link
-                                    to={routingConstants.TOP_COLLEGES + c.id}
-                                    className='col-md-6'
-                                    key={c?.id}
-                                  >
-                                    <div className=' career_logo_box'>
-                                      <img
-                                        src={transformImg(c?.logo)}
-                                        alt='...'
-                                        className='career_logo_img'
-                                      />
+                            <div
+                              className='noselect'
+                              style={{ height: "auto" }}
+                              key={c?.id}
+                            >
+                              <Row>
+                                <Col md={12} xs={12}>
+                                  <div className='sk-topSchoolbox-list'>
+                                    <div className='sk-topLeftimg-box'>
+                                      <Link
+                                        to={
+                                          routingConstants.TOP_COLLEGES + c.id
+                                        }
+                                        key={c?.id}
+                                      >
+                                        <img
+                                          src={transformImg(c?.logo)}
+                                          alt='...'
+                                          className=''
+                                        />
+                                      </Link>
                                     </div>
-                                  </Link>
-                                </div>
-                              </Col>
-
-                              <Col md={9} xs={12}>
-                                <div className='top_col_content'>
-                                  <h3>
-                                    <Link
-                                      to={routingConstants.TOP_COLLEGES + c.id}
-                                      className=''
-                                      key={c?.id}
-                                    >
-                                      {c && c.name}
-                                    </Link>
-                                  </h3>
-                                  <ul class='list-inline list-unstyled'>
-                                    {c.collage_type && (
-                                      <li>
-                                        <span
-                                          style={{
-                                            textTransform: "capitalize",
-                                          }}
+                                    <div className='top_col_content'>
+                                      <h3 className='sk-innerContent-design'>
+                                        <Link
+                                          to={
+                                            routingConstants.TOP_COLLEGES + c.id
+                                          }
+                                          className=''
+                                          key={c?.id}
                                         >
-                                          {c && c.collage_type}
-                                        </span>
-                                      </li>
-                                    )}
+                                          {c && c.name}
+                                        </Link>
+                                      </h3>
+                                      <ul class='list-inline list-unstyled'>
+                                        {c.collage_type && (
+                                          <li>
+                                            <span>
+                                              {t("careerTopColleges.other.16")}
+                                            </span>{" "}
+                                            :{" "}
+                                            {c &&
+                                              capitalizeFirstLetter(
+                                                c.collage_type,
+                                              )}
+                                          </li>
+                                        )}
 
-                                    {c.collage_type && <li>|</li>}
+                                        {c.established_year && (
+                                          <li>
+                                            <span>
+                                              {t("careerTopColleges.other.10")}
+                                            </span>{" "}
+                                            : {c && c.established_year}
+                                          </li>
+                                        )}
 
-                                    {c.established_year && (
-                                      <li>
-                                        <span>
-                                          {t("careerTopColleges.other.10")}
-                                        </span>{" "}
-                                        : {c && c.established_year}
-                                      </li>
-                                    )}
+                                        {c.gender_intech && (
+                                          <li>
+                                            <span>
+                                              {t("careerTopColleges.other.12")}
+                                            </span>{" "}
+                                            :{" "}
+                                            {c &&
+                                              c.gender_intech?.toUpperCase()}
+                                          </li>
+                                        )}
+                                      </ul>
 
-                                    {c.established_year && <li>|</li>}
-                                    {c.gender_intech && (
-                                      <li>
-                                        <span>
-                                          {t("careerTopColleges.other.12")}
-                                        </span>{" "}
-                                        : {c && c.gender_intech}
-                                      </li>
-                                    )}
-                                  </ul>
-
-                                  <ul>
-                                    <li>
-                                      <span>
-                                        {t("careerTopColleges.other.13")}
-                                        {"  "}
-                                      </span>
-                                      : {c && c.city} {c && c.state}
-                                    </li>
-                                  </ul>
-
-                                  <ul className='mt-1'>
-                                    {c.contact_no && (
-                                      <li>
-                                        <p>
+                                      <ul>
+                                        <li>
                                           <span>
-                                            {t("careerTopColleges.other.4")}
-                                          </span>{" "}
-                                          : {c && c.contact_no}
-                                        </p>
-                                      </li>
-                                    )}
+                                            {t("careerTopColleges.other.13")}
+                                            {"  "}
+                                          </span>
+                                          : {c && capitalizeFirstLetter(c.city)}{" "}
+                                          {c && capitalizeFirstLetter(c.state)}
+                                        </li>
+                                      </ul>
 
-                                    {c.website && (
-                                      <li>
-                                        <span>
-                                          {t("careerTopColleges.other.5")}
-                                        </span>
-                                        :{" "}
-                                        {/* <Link
+                                      <ul>
+                                        {/* {c.contact_no && (
+                                          <li>
+                                            <p>
+                                              <span>
+                                                {t("careerTopColleges.other.4")}
+                                              </span>{" "}
+                                              : {c && c.contact_no}
+                                            </p>
+                                          </li>
+                                        )} */}
+
+                                        {c.website && (
+                                          <li>
+                                            <span>
+                                              {t("careerTopColleges.other.5")}
+                                            </span>
+                                            :{" "}
+                                            {/* <Link
                                         to={{ pathname: c?.website }}
                                         target='_blank'
                                         rel='noreferrer'>
                                         {c && c.website}
                                       </Link> */}
+                                            <a
+                                              rel='noreferrer'
+                                              target='_blank'
+                                              href={`https:/${c?.website}`}
+                                            >
+                                              {c && c?.website}
+                                            </a>
+                                          </li>
+                                        )}
+                                      </ul>
+                                      <div className='sk-Topview-more'>
                                         <a
-                                          rel='noreferrer'
-                                          target='_blank'
-                                          href={`https:/${c?.website}`}
+                                          href={
+                                            routingConstants.TOP_COLLEGES + c.id
+                                          }
                                         >
-                                          {c && c?.website}
+                                          View More
                                         </a>
-                                      </li>
-                                    )}
-                                  </ul>
-                                </div>
-                              </Col>
-                            </Row>
-                          </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </Col>
+                              </Row>
+                            </div>
 
-                          {collegeBoxAds.length > 0 && (
-                            <>
-                              {index === 3 && collegeBoxAds.length > 0 && (
-                                <div
-                                  className='top_clg_add_img'
-                                  onClick={() =>
-                                    addEmail(
-                                      collegeBoxAds[
-                                        page_adds?.addsData[
-                                          page_adds?.addIndex
-                                        ][0]
-                                      ]?.add_email,
-                                    )
-                                  }
-                                >
-                                  <a
-                                    href={
-                                      collegeBoxAds[
-                                        page_adds?.addsData[
-                                          page_adds?.addIndex
-                                        ][0]
-                                      ]?.url_adds
-                                    }
-                                    target='_blank'
-                                    rel='noreferrer'
-                                  >
-                                    {detect.isMobile
-                                      ? collegeBoxAds[
+                            {collegeBoxAds.length > 0 && (
+                              <>
+                                {index === 3 && collegeBoxAds.length > 0 && (
+                                  <div
+                                    className='top_clg_add_img'
+                                    onClick={() =>
+                                      addEmail(
+                                        collegeBoxAds[
                                           page_adds?.addsData[
                                             page_adds?.addIndex
                                           ][0]
-                                        ]?.image_mobile && (
-                                          <img
-                                            src={
-                                              collegeBoxAds[
-                                                page_adds?.addsData[
-                                                  page_adds?.addIndex
-                                                ][0]
-                                              ]?.image_mobile
-                                            }
-                                            alt='collegeBoxAds'
-                                            className='college_ads_box'
-                                          />
-                                        )
-                                      : collegeBoxAds[
+                                        ]?.add_email,
+                                      )
+                                    }
+                                  >
+                                    <a
+                                      href={
+                                        collegeBoxAds[
                                           page_adds?.addsData[
                                             page_adds?.addIndex
                                           ][0]
-                                        ]?.image && (
-                                          <img
-                                            src={
-                                              collegeBoxAds[
-                                                page_adds?.addsData[
-                                                  page_adds?.addIndex
-                                                ][0]
-                                              ]?.image
-                                            }
-                                            alt='collegeBoxAds'
-                                            className='college_ads_box'
-                                          />
-                                        )}
-                                  </a>
-                                </div>
-                              )}
-                              {index === 7 && collegeBoxAds.length > 0 && (
-                                <div
-                                  className='top_clg_add_img'
-                                  onClick={() =>
-                                    addEmail(
-                                      collegeBoxAds[
-                                        page_adds?.addsData[
-                                          page_adds?.addIndex
-                                        ][1]
-                                      ]?.add_email,
-                                    )
-                                  }
-                                >
-                                  <a
-                                    href={
-                                      collegeBoxAds[
-                                        page_adds?.addsData[
-                                          page_adds?.addIndex
-                                        ][1]
-                                      ]?.url_adds
+                                        ]?.url_adds
+                                      }
+                                      target='_blank'
+                                      rel='noreferrer'
+                                    >
+                                      {detect.isMobile
+                                        ? collegeBoxAds[
+                                            page_adds?.addsData[
+                                              page_adds?.addIndex
+                                            ][0]
+                                          ]?.image_mobile && (
+                                            <img
+                                              src={
+                                                collegeBoxAds[
+                                                  page_adds?.addsData[
+                                                    page_adds?.addIndex
+                                                  ][0]
+                                                ]?.image_mobile
+                                              }
+                                              alt='collegeBoxAds'
+                                              className='college_ads_box'
+                                            />
+                                          )
+                                        : collegeBoxAds[
+                                            page_adds?.addsData[
+                                              page_adds?.addIndex
+                                            ][0]
+                                          ]?.image && (
+                                            <img
+                                              src={
+                                                collegeBoxAds[
+                                                  page_adds?.addsData[
+                                                    page_adds?.addIndex
+                                                  ][0]
+                                                ]?.image
+                                              }
+                                              alt='collegeBoxAds'
+                                              className='college_ads_box'
+                                            />
+                                          )}
+                                    </a>
+                                  </div>
+                                )}
+                                {index === 7 && collegeBoxAds.length > 0 && (
+                                  <div
+                                    className='top_clg_add_img'
+                                    onClick={() =>
+                                      addEmail(
+                                        collegeBoxAds[
+                                          page_adds?.addsData[
+                                            page_adds?.addIndex
+                                          ][1]
+                                        ]?.add_email,
+                                      )
                                     }
-                                    target='_blank'
-                                    rel='noreferrer'
                                   >
-                                    {detect.isMobile
-                                      ? collegeBoxAds[
+                                    <a
+                                      href={
+                                        collegeBoxAds[
                                           page_adds?.addsData[
                                             page_adds?.addIndex
                                           ][1]
-                                        ]?.image_mobile && (
-                                          <img
-                                            src={
-                                              collegeBoxAds[
-                                                page_adds?.addsData[
-                                                  page_adds?.addIndex
-                                                ][1]
-                                              ]?.image_mobile
-                                            }
-                                            alt='collegeBoxAds'
-                                            className='college_ads_box'
-                                          />
-                                        )
-                                      : collegeBoxAds[
-                                          page_adds?.addsData[
-                                            page_adds?.addIndex
-                                          ][1]
-                                        ]?.image && (
-                                          <img
-                                            src={
-                                              collegeBoxAds[
-                                                page_adds?.addsData[
-                                                  page_adds?.addIndex
-                                                ][1]
-                                              ]?.image
-                                            }
-                                            alt='collegeBoxAds'
-                                            className='college_ads_box'
-                                          />
-                                        )}
-                                  </a>
-                                </div>
-                              )}
-                            </>
-                          )}
-                        </>
-                      ),
-                  )
-                ) : //  (
-                //   <div className='text-center'>{t("common.noDataFound")}</div>
-                // )
-                //  (
-                //   <div className="loader-container">
-                //     <div className="spinner"></div>
-                //   </div>
-                // )
+                                        ]?.url_adds
+                                      }
+                                      target='_blank'
+                                      rel='noreferrer'
+                                    >
+                                      {detect.isMobile
+                                        ? collegeBoxAds[
+                                            page_adds?.addsData[
+                                              page_adds?.addIndex
+                                            ][1]
+                                          ]?.image_mobile && (
+                                            <img
+                                              src={
+                                                collegeBoxAds[
+                                                  page_adds?.addsData[
+                                                    page_adds?.addIndex
+                                                  ][1]
+                                                ]?.image_mobile
+                                              }
+                                              alt='collegeBoxAds'
+                                              className='college_ads_box'
+                                            />
+                                          )
+                                        : collegeBoxAds[
+                                            page_adds?.addsData[
+                                              page_adds?.addIndex
+                                            ][1]
+                                          ]?.image && (
+                                            <img
+                                              src={
+                                                collegeBoxAds[
+                                                  page_adds?.addsData[
+                                                    page_adds?.addIndex
+                                                  ][1]
+                                                ]?.image
+                                              }
+                                              alt='collegeBoxAds'
+                                              className='college_ads_box'
+                                            />
+                                          )}
+                                    </a>
+                                  </div>
+                                )}
+                              </>
+                            )}
+                          </>
+                        ),
+                    )
+                  ) : //  (
+                  //   <div className='text-center'>{t("common.noDataFound")}</div>
+                  // )
+                  //  (
+                  //   <div className="loader-container">
+                  //     <div className="spinner"></div>
+                  //   </div>
+                  // )
 
-                // (
-                //   <ContentLoader viewBox="0 0 380 70">
-                //     {/* Only SVG shapes */}
-                //     <rect x="0" y="0" rx="5" ry="5" width="70" height="70" />
-                //     <rect x="80" y="17" rx="4" ry="4" width="300" height="13" />
-                //     <rect x="80" y="40" rx="3" ry="3" width="250" height="10" />
-                //   </ContentLoader>
-                // )
-                isLoading ? (
-                  <CustomLoader />
-                ) : (
-                  <NoDataFound />
-                )}
-                {topCollages?.collage_list?.count > pageLimit && (
-                  <>
-                    {/* <Pagination
+                  // (
+                  //   <ContentLoader viewBox="0 0 380 70">
+                  //     {/* Only SVG shapes */}
+                  //     <rect x="0" y="0" rx="5" ry="5" width="70" height="70" />
+                  //     <rect x="80" y="17" rx="4" ry="4" width="300" height="13" />
+                  //     <rect x="80" y="40" rx="3" ry="3" width="250" height="10" />
+                  //   </ContentLoader>
+                  // )
+                  isLoading ? (
+                    <CustomLoader />
+                  ) : (
+                    <NoDataFound />
+                  )}
+                  {topCollages?.collage_list?.count > pageLimit && (
+                    <>
+                      {/* <Pagination
                       finalCount={topCollages?.collage_list?.count / pageLimit}
                       nextPage={() => {
                         if (topCollages?.collage_list?.next) {
@@ -920,22 +1018,27 @@ const CareerPage = () => {
                         }
                       }}
                     /> */}
-                    <NewPagination
-                      currentPage={currentPage}
-                      totalPages={totalPages}
-                      visiblePages={visiblePages}
-                      previousPage={
-                        topCollages?.collage_list?.previous ? previousPage : null
-                      }
-                      nextPage={topCollages?.collage_list?.next ? nextPage : null}
-                      handleClick={handleClick}
-                    />
-                  </>
-                )}
-              </Col>
-            </Row>
-          </Container>
-        </div>
+                      <NewPagination
+                        currentPage={currentPage}
+                        totalPages={totalPages}
+                        visiblePages={visiblePages}
+                        previousPage={
+                          topCollages?.collage_list?.previous
+                            ? previousPage
+                            : null
+                        }
+                        nextPage={
+                          topCollages?.collage_list?.next ? nextPage : null
+                        }
+                        handleClick={handleClick}
+                      />
+                    </>
+                  )}
+                </Col>
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
     </>
   );

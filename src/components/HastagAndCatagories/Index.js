@@ -40,9 +40,13 @@ export const HashtagAndCatagories = (props) => {
 
   const [stopPosition, setStopPosition] = useState(0);
 
+  const handleRedirect = () => {
+    window.location.href = "/inspiring-stories-of-women/all";
+  };
+
   useEffect(() => {
     const handleScroll = () => {
-      const rightColElement = document.getElementById('right-col');
+      const rightColElement = document.getElementById("right-col");
       // const headerElement = document.querySelector('.header-class');
       const stickyHeight = rightColElement.offsetHeight;
       const viewportHeight = window.innerHeight;
@@ -57,18 +61,24 @@ export const HashtagAndCatagories = (props) => {
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
 
     // Clean up the event listener when the component is unmounted
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
   return (
-    <div className='HashtagAndCatagories' id="right-col" style={{ top: `${stopPosition}px` }}>
+    <div
+      className='HashtagAndCatagories'
+      id='right-col'
+      style={{ top: `${stopPosition}px` }}
+    >
       <div className='HashtagAndCatagoriesTitle'>
-      <div><img src={image} alt='image' /></div>
+        <div>
+          <img src={image} alt='image' />
+        </div>
         <h2>{title}</h2>
       </div>
       <div className='HashtagAndCatagoriesTitle'>
@@ -157,14 +167,15 @@ export const HashtagAndCatagories = (props) => {
       <div>
         <YouMayLikeCarousel />
       </div>
-      
-      {
-        type === "hashtag"&&(
-        <div className="sk-hashtagBg-bottom">
+
+      {type === "hashtag" && (
+        <div className='sk-hashtagBg-bottom'>
           <p>From Dreams to Reality: </p> <p>Inspiring Success Stories!</p>
-          <button className="sk-viewsatory-btn">View Success Stories</button>
-        </div>)
-      }
+          <button className='sk-viewsatory-btn' onClick={handleRedirect}>
+            View Success Stories
+          </button>
+        </div>
+      )}
     </div>
   );
 };

@@ -15,8 +15,8 @@ const initialOwnership = {
       isChecked: false,
       value: "government",
     },
-  ]
-}
+  ],
+};
 
 const initialCourseSector = {
   name: "Stream",
@@ -182,7 +182,6 @@ const initialCourseSector = {
       name: "Paramedical",
       isChecked: false,
       value: "Paramedical",
-
     },
     {
       id: 28,
@@ -219,7 +218,6 @@ const initialCourseSector = {
       name: "Science",
       isChecked: false,
       value: "Science",
-
     },
     {
       id: 34,
@@ -227,7 +225,6 @@ const initialCourseSector = {
       isChecked: false,
       value: "Social work",
     },
-
   ],
 };
 // const initialOwnership = {
@@ -306,7 +303,6 @@ const initialEducationBoard = {
   ],
 };
 
-
 const initialState = {
   isLoading: false,
   governmentExams: [],
@@ -317,7 +313,7 @@ const initialState = {
   lan: true,
   categoryList: initialCategory,
   educationBoard: initialEducationBoard,
-  ownership: initialOwnership
+  ownership: initialOwnership,
 };
 
 export const careerReducer = (state = initialState, action) => {
@@ -360,7 +356,6 @@ export const careerReducer = (state = initialState, action) => {
         isLoading: false,
         error: action.payload,
       };
-
 
     case coursesTypes.TOP_COLLAGE_SEARCH_REQUEST:
       return {
@@ -414,7 +409,7 @@ export const careerReducer = (state = initialState, action) => {
         isLoading: false,
         governmentExams: data,
       };
-      
+
     case coursesTypes.GOVERNMENT_EXAM_FILTER_RESET:
       return {
         ...state,
@@ -432,10 +427,12 @@ export const careerReducer = (state = initialState, action) => {
         governmentExams: {
           ...state.governmentExams,
           govt_category:
-            Array.isArray(state.governmentExams?.govt_category) && state.governmentExams?.govt_category?.map((r) => ({
-              ...r,
-              isChecked: false,
-            })) || [],
+            (Array.isArray(state.governmentExams?.govt_category) &&
+              state.governmentExams?.govt_category?.map((r) => ({
+                ...r,
+                isChecked: false,
+              }))) ||
+            [],
         },
         topSchools: {
           ...state.governmentExams,
@@ -451,6 +448,11 @@ export const careerReducer = (state = initialState, action) => {
             })) || [],
           city_list:
             state.topSchools?.city_list?.map((r) => ({
+              ...r,
+              isChecked: false,
+            })) || [],
+          school_type:
+            state.topSchools?.school_type?.map((r) => ({
               ...r,
               isChecked: false,
             })) || [],
