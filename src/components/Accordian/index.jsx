@@ -656,39 +656,28 @@ export default function AccordionComponent({
       )}
       {type === "governmentExams" && (
         <>
-          <Accordion>
-            <AccordionSummary
-              aria-controls='panel1d-content'
-              id={categories?.name}
+          <Typography>{categories?.name}</Typography>
+
+          <ul className='pl-0'>
+            <FormGroup>
+              {Array.isArray(categories?.rows) &&
+                (remainingGovtExamsCategory
+                  ? hasMoreCountShowFunction(categories?.rows, "governmentExam")
+                  : hasMoreCountShowFunction(
+                      categories?.rows?.slice(0, 6),
+                      "governmentExam",
+                    ))}
+            </FormGroup>
+          </ul>
+          {hasMoreCount(categories?.rows, 6) > 0 && (
+            <div
+              className=''
+              onClick={() => setRemainingGovtExamsCategory((prev) => !prev)}
             >
-              <Typography>{categories?.name}</Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <ul className='pl-0'>
-                <FormGroup>
-                  {Array.isArray(categories?.rows) &&
-                    (remainingGovtExamsCategory
-                      ? hasMoreCountShowFunction(
-                          categories?.rows,
-                          "governmentExam",
-                        )
-                      : hasMoreCountShowFunction(
-                          categories?.rows?.slice(0, 6),
-                          "governmentExam",
-                        ))}
-                </FormGroup>
-              </ul>
-              {hasMoreCount(categories?.rows, 6) > 0 && (
-                <div
-                  className=''
-                  onClick={() => setRemainingGovtExamsCategory((prev) => !prev)}
-                >
-                  {hasMoreCount(categories?.rows, 6)}{" "}
-                  {remainingGovtExamsCategory ? "Less" : "More"}
-                </div>
-              )}
-            </AccordionDetails>
-          </Accordion>
+              {hasMoreCount(categories?.rows, 6)}{" "}
+              {remainingGovtExamsCategory ? "Less" : "More"}
+            </div>
+          )}
         </>
       )}
     </div>
