@@ -658,7 +658,7 @@ export default function AccordionComponent({
         <>
           <Typography>{categories?.name}</Typography>
 
-          <ul className='pl-0'>
+          <ul className='sk-cityschool-remove pl-0'>
             <FormGroup>
               {Array.isArray(categories?.rows) &&
                 (remainingGovtExamsCategory
@@ -671,7 +671,7 @@ export default function AccordionComponent({
           </ul>
           {hasMoreCount(categories?.rows, 6) > 0 && (
             <div
-              className=''
+              className='sk-lessshow-more'
               onClick={() => setRemainingGovtExamsCategory((prev) => !prev)}
             >
               {hasMoreCount(categories?.rows, 6)}{" "}
