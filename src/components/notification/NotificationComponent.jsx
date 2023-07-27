@@ -10,6 +10,7 @@ import {
   Placeholder,
 } from "rsuite";
 import { getAllNotifications } from "../../store/notifications";
+import NotificationsIcon from '@mui/icons-material/Notifications';
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -47,15 +48,11 @@ export const NotificationComponent = () => {
         <div className='custom-notification-icon'>
           {isNewNotification ? (
             <Badge>
-              <img
-                src={NotificationIcon}
-                alt='Notification Icon'
-                className='bell'
-              />
+              <NotificationsIcon />
             </Badge>
           ) : (
             <div className='custom-notification-icon'>
-              <img src={NotificationIcon} alt='Notification Icon' />
+              <NotificationsIcon />
             </div>
           )}
         </div>
@@ -63,7 +60,7 @@ export const NotificationComponent = () => {
     } else {
       return (
         <div className='custom-notification-icon'>
-          <img src={NotificationIcon} alt='Notification Icon' />
+           <NotificationsIcon />
         </div>
       );
     }

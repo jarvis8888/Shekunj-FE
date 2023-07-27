@@ -1,9 +1,12 @@
 .custom-notification-icon {
   display: inline-flex;
   align-items: center;
-  padding-right: 8px;
+  padding-right: 5px;
+  vertical-align: middle;
 }
-
+.custom-notification-icon svg{
+  font-size: 18px;
+}
 @keyframes bellRing {
   0% {
     transform: rotate(0);
