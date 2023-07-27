@@ -68,8 +68,6 @@ export default function AccordionComponent({
   offset,
   limit,
 }) {
-  
-
   const dispatch = useDispatch();
   const [remainingColleges, setRemainingColleges] = useState(false);
   const [remainingSchoolsState, setRemainingSchoolsState] = useState(false);
@@ -100,9 +98,44 @@ export default function AccordionComponent({
     subType,
     pageLimit,
   ) => {
-    navigator.geolocation.getCurrentPosition(async function (position, values) {
-      const latitude = position.coords.latitude;
-      const longitude = position.coords.longitude;
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(
+        async function (position, values) {
+          const latitude = position.coords.latitude;
+          const longitude = position.coords.longitude;
+          dispatch(
+            setFilterValue({
+              id,
+              checked,
+              type,
+              subType,
+              limit,
+              offset,
+              latitude,
+              longitude,
+            }),
+          );
+        },
+        function (error) {
+          // Handle the error if location access is denied or any other geolocation-related error.
+          console.error("Error getting geolocation:", error);
+          dispatch(
+            setFilterValue({
+              id,
+              checked,
+              type,
+              subType,
+              limit,
+              offset,
+              latitude: null, // Provide a fallback value for latitude (null in this case).
+              longitude: null, // Provide a fallback value for longitude (null in this case).
+            }),
+          );
+        },
+      );
+    } else {
+      // Handle the case when geolocation is not supported by the browser.
+      console.error("Geolocation is not supported in this browser.");
       dispatch(
         setFilterValue({
           id,
@@ -111,11 +144,11 @@ export default function AccordionComponent({
           subType,
           limit,
           offset,
-          latitude,
-          longitude,
+          latitude: null, // Provide a fallback value for latitude (null in this case).
+          longitude: null, // Provide a fallback value for longitude (null in this case).
         }),
       );
-    });
+    }
   };
 
   const hasMoreCountShowFunction = (data, category, subCategory) => {

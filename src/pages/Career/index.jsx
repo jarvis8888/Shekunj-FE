@@ -114,7 +114,7 @@ const CareerPage = () => {
     rows: topCollages?.city_list || [],
   };
 
-  // const ownership = {
+  // const ownerships = {
   //   name: t("careerTopColleges.listItems.4"),
   //   rows: topCollages?.college_type || [],
   // };
@@ -320,6 +320,7 @@ const CareerPage = () => {
   };
   const handleResetSearch = () => {
     setSearchInput("");
+    setCurrentPage(1);
     dispatch(reSetFilterValue());
     navigator.geolocation.getCurrentPosition(
       async function (position, values) {
@@ -340,6 +341,7 @@ const CareerPage = () => {
         dispatch(getTopCollages(false));
       },
     );
+    setOffset(0);
   };
   const paginationBack = () => {
     navigator.geolocation.getCurrentPosition(async function (position, values) {
@@ -410,20 +412,15 @@ const CareerPage = () => {
 
   // Handle next page click
   const nextPage = () => {
-    navigator.geolocation.getCurrentPosition(async function (position, values) {
-      const latitude = position?.coords?.latitude;
-      const longitude = position?.coords?.longitude;
-      dispatch(
-        getTopCollages({
-          filter: true,
-          latitude,
-          longitude,
-          pageLimit,
-          offset: offset + pageLimit,
-          search: searchInput !== "" ? `&search=${searchInput}` : "",
-        }),
-      );
-    });
+    dispatch(
+      getTopCollages({
+        filter: true,
+        pageLimit,
+        offset: offset + pageLimit,
+        search: searchInput !== "" ? `&search=${searchInput}` : "",
+      }),
+    );
+
     if (page_adds) {
       setTimeout(() => {
         sessionStorage.setItem(
@@ -443,20 +440,15 @@ const CareerPage = () => {
   };
   // Handle previous page click
   const previousPage = () => {
-    navigator.geolocation.getCurrentPosition(async function (position, values) {
-      const latitude = position?.coords?.latitude;
-      const longitude = position?.coords?.longitude;
-      dispatch(
-        getTopCollages({
-          filter: true,
-          latitude,
-          longitude,
-          pageLimit,
-          offset: offset - pageLimit,
-          search: searchInput !== "" ? `&search=${searchInput}` : "",
-        }),
-      );
-    });
+    dispatch(
+      getTopCollages({
+        filter: true,
+        pageLimit,
+        offset: offset - pageLimit,
+        search: searchInput !== "" ? `&search=${searchInput}` : "",
+      }),
+    );
+
     if (page_adds) {
       setTimeout(() => {
         sessionStorage.setItem(
@@ -477,20 +469,16 @@ const CareerPage = () => {
   const handleClick = (pageNumber) => {
     setCurrentPage(pageNumber);
     const newOffset = (pageNumber - 1) * pageLimit;
-    navigator.geolocation.getCurrentPosition(async function (position, values) {
-      const latitude = position?.coords?.latitude;
-      const longitude = position?.coords?.longitude;
-      dispatch(
-        getTopCollages({
-          filter: true,
-          latitude,
-          longitude,
-          pageLimit,
-          offset: (pageNumber - 1) * pageLimit,
-          search: searchInput !== "" ? `&search=${searchInput}` : "",
-        }),
-      );
-    });
+
+    dispatch(
+      getTopCollages({
+        filter: true,
+        pageLimit,
+        offset: (pageNumber - 1) * pageLimit,
+        search: searchInput !== "" ? `&search=${searchInput}` : "",
+      }),
+    );
+
     if (page_adds) {
       setTimeout(() => {
         sessionStorage.setItem(
