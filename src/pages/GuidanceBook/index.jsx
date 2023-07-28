@@ -206,7 +206,7 @@ const GuidancePage = () => {
                     <div className='sk-bookC-content'>
                       <h6>Get Free Online Counselling Session</h6>
                       <h2>From Finest Counsellors.</h2>
-                      <div className='sk-toggle-btn'>
+                      {/* <div className='sk-toggle-btn'>
                         <span
                           className={`${
                             activeTab === "Student" && "sk-toggle-active"
@@ -261,7 +261,7 @@ const GuidancePage = () => {
                           </svg>
                           institute
                         </span>
-                      </div>
+                      </div> */}
                       <div
                         className='sk-bookTab-sec'
                         ref={targetSectionRef}
@@ -601,7 +601,7 @@ const GuidancePage = () => {
               </div>
             </section>
           }
-          <section className='sk-bookC-counter'>
+          {/* <section className='sk-bookC-counter'>
             <div className='container sk-custom-container '>
               <div className='row'>
                 <div className='col-xl-12'>
@@ -636,7 +636,7 @@ const GuidancePage = () => {
                 </div>
               </div>
             </div>
-          </section>
+          </section> */}
         </div>
       </div>
     </>
