@@ -3,7 +3,14 @@ import Footer from "../../components/Footer";
 import Header from "../../components/Header";
 import EastSharpIcon from "@mui/icons-material/EastSharp";
 import Book_img from "../../assets/images/Guidance/Book_img.png";
-import bookcounsellor from "../../assets/images/Bookcoun.png";
+import bookcounsellor from "../../assets/images/animationbanner.png";
+import usericon from "../../assets/images/usericon.svg";
+import emailidicon from "../../assets/images/emailicon.svg";
+import wnoicon from "../../assets/images/wicon.svg";
+import qualificationsicon from "../../assets/images/qualificationicon.svg";
+import purposeicon from "../../assets/images/purpuseicon.svg";
+import dobicon from "../../assets/images/calendaricon.svg";
+
 import CountUp from "react-countup";
 import "./index.scss";
 import "../LoginPage/LoginForm/LoginTabs/index.scss";
@@ -202,10 +209,12 @@ const GuidancePage = () => {
             <section className='sk-bookc-sec'>
               <div className='container sk-custom-container'>
                 <div className='row align-items-center'>
-                  <div className='col-md-6 col-xl-9 col-lg-9'>
+                  <div className='col-md-6 col-xl-6 col-lg-6'>
                     <div className='sk-bookC-content'>
-                      <h6>Get Free Online Counselling Session</h6>
-                      <h2>From Finest Counsellors.</h2>
+                      <div className="mb-4">  
+                        <h6>Get Free Online Counselling Session</h6>
+                        <h3>From Finest Counsellors.</h3>
+                      </div>
                       {/* <div className='sk-toggle-btn'>
                         <span
                           className={`${
@@ -269,14 +278,13 @@ const GuidancePage = () => {
                       >
                         {activeTab === "Student" ? (
                           <form onSubmit={StudentHandleSubmit}>
-                            <div className='form-inline sk-inline-field'>
+                            <div className='sk-inline-field'>
                               <ul>
                                 <li>
-                                  <label>Hey, My name is </label>
                                   <input
                                     type='text'
                                     id=''
-                                    placeholder='Full Name'
+                                    placeholder='Enter Full Name*'
                                     name='full_name'
                                     value={StudentValue.full_name}
                                     onBlur={StudentHandleBlur}
@@ -284,7 +292,7 @@ const GuidancePage = () => {
                                     touched={StudentTouched}
                                     autoComplete='off'
                                   />
-                                  <label>,</label>
+                                  <span><img src={usericon} /></span>
                                   {StudentError.full_name &&
                                     StudentTouched.full_name && (
                                       <div className='sk-form-error'>
@@ -293,7 +301,66 @@ const GuidancePage = () => {
                                     )}
                                 </li>
                                 <li>
-                                  <label>I am</label>
+                                  <input
+                                    type='text'
+                                    id=''
+                                    placeholder='Enter Last Name*'
+                                    name='full_name'
+                                    value={StudentValue.full_name}
+                                    onBlur={StudentHandleBlur}
+                                    onChange={StudentHandleChange}
+                                    touched={StudentTouched}
+                                    autoComplete='off'
+                                  />
+                                  <span><img src={usericon} /></span>
+                                  {StudentError.full_name &&
+                                    StudentTouched.full_name && (
+                                      <div className='sk-form-error'>
+                                        {StudentError.full_name}
+                                      </div>
+                                    )}
+                                </li>
+                                <li>
+                                  <input
+                                    type='email'
+                                    placeholder='Email Id*'
+                                    name='email_address'
+                                    value={StudentValue.email_address}
+                                    onBlur={StudentHandleBlur}
+                                    onChange={StudentHandleChange}
+                                    touched={StudentTouched}
+                                    autoComplete='off'
+                                  />
+                                  <span><img src={emailidicon} /></span>
+                                  {StudentError.email_address &&
+                                    StudentTouched.email_address && (
+                                      <div className='sk-form-error'>
+                                        {StudentError.email_address}
+                                      </div>
+                                    )}
+                                </li>
+                                <li>
+                                  <input
+                                    type='number'
+                                    placeholder='Whatsapp Number'
+                                    id='mobile_number'
+                                    name='mobile_number'
+                                    value={StudentValue.mobile_number}
+                                    onBlur={StudentHandleBlur}
+                                    onChange={StudentHandleChange}
+                                    touched={StudentTouched}
+                                    onKeyDown={blockInvalidChar}
+                                    autoComplete='off'
+                                  />
+                                  <span><img src={wnoicon} /></span>
+                                  {StudentError.mobile_number &&
+                                    StudentTouched.mobile_number && (
+                                      <div className='sk-form-error'>
+                                        {StudentError.mobile_number}
+                                      </div>
+                                    )}
+                                </li>
+                                <li>
                                   <select
                                     id='age'
                                     name='age'
@@ -310,19 +377,14 @@ const GuidancePage = () => {
                                       </option>
                                     ))}
                                   </select>
-                                  <label>year old and</label>
+                                  <span><img src={dobicon} /></span>
                                   {StudentError.age && StudentTouched.age && (
                                     <div className='sk-form-error'>
                                       {StudentError.age}
                                     </div>
                                   )}
                                 </li>
-                              </ul>
-                            </div>
-                            <div className='form-inline sk-inline-field'>
-                              <ul>
                                 <li>
-                                  <label>My last qualifications </label>
                                   <select
                                     id='qualifications'
                                     name='qualifications'
@@ -342,6 +404,7 @@ const GuidancePage = () => {
                                       </option>
                                     ))}
                                   </select>
+                                  <span><img src={qualificationsicon} /></span>
                                   {StudentError.qualifications &&
                                     StudentTouched.qualifications && (
                                       <div className='sk-form-error'>
@@ -350,7 +413,6 @@ const GuidancePage = () => {
                                     )}
                                 </li>
                                 <li>
-                                  <label>I am looking for </label>
                                   <select
                                     id='guidance_purpose'
                                     name='guidance_purpose'
@@ -370,7 +432,7 @@ const GuidancePage = () => {
                                       </option>
                                     ))}
                                   </select>
-                                  <label>.</label>
+                                  <span><img src={purposeicon} /></span>
                                   {StudentError.guidance_purpose &&
                                     StudentTouched.guidance_purpose && (
                                       <div className='sk-form-error'>
@@ -378,12 +440,7 @@ const GuidancePage = () => {
                                       </div>
                                     )}
                                 </li>
-                              </ul>
-                            </div>
-                            <div className='form-inline sk-inline-field'>
-                              <ul>
                                 <li>
-                                  <label>You can call me on </label>
                                   <input
                                     type='number'
                                     placeholder='Mobile Number'
@@ -403,26 +460,6 @@ const GuidancePage = () => {
                                       </div>
                                     )}
                                 </li>
-                                <li>
-                                  <label>or call me at </label>
-                                  <input
-                                    type='email'
-                                    placeholder='Enter Id'
-                                    name='email_address'
-                                    value={StudentValue.email_address}
-                                    onBlur={StudentHandleBlur}
-                                    onChange={StudentHandleChange}
-                                    touched={StudentTouched}
-                                    autoComplete='off'
-                                  />
-                                  <label>.</label>
-                                  {StudentError.email_address &&
-                                    StudentTouched.email_address && (
-                                      <div className='sk-form-error'>
-                                        {StudentError.email_address}
-                                      </div>
-                                    )}
-                                </li>
                               </ul>
                             </div>
                             <div className='sk-sendMain-btn'>
@@ -433,11 +470,11 @@ const GuidancePage = () => {
                               >
                                 {StudentIsSubmitting ? (
                                   <>
-                                    Sending... <EastSharpIcon />
+                                    Submit
                                   </>
                                 ) : (
                                   <>
-                                    Send Enquiry <EastSharpIcon />
+                                    Submit
                                   </>
                                 )}
                               </button>
@@ -445,7 +482,7 @@ const GuidancePage = () => {
                           </form>
                         ) : (
                           <form onSubmit={InstituteHandleSubmit}>
-                            <div className='form-inline sk-inline-field'>
+                            <div className='sk-inline-field'>
                               <ul>
                                 <li>
                                   <label>Hey, This is </label>
@@ -492,7 +529,7 @@ const GuidancePage = () => {
                                 </li>
                               </ul>
                             </div>
-                            <div className='form-inline sk-inline-field'>
+                            <div className='sk-inline-field'>
                               <ul>
                                 <li>
                                   <label>We are looking for</label>
@@ -525,7 +562,7 @@ const GuidancePage = () => {
                                 </li>
                               </ul>
                             </div>
-                            <div className='form-inline sk-inline-field'>
+                            <div className='sk-inline-field'>
                               <ul>
                                 <li>
                                   <label>You can call me on </label>
@@ -592,7 +629,7 @@ const GuidancePage = () => {
                       </div>
                     </div>
                   </div>
-                  <div className='col-md-6 col-xl-3 col-lg-3'>
+                  <div className='col-md-6 col-xl-6 col-lg-6'>
                     <div className='sk-bookC-img'>
                       <img src={bookcounsellor} alt='' />
                     </div>
