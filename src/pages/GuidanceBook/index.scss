@@ -402,14 +402,15 @@ img.edit_icon_guidance {
 }
 
 .sk-bookc-sec {
-  background: linear-gradient(90.75deg, #f2d1c7 17.41%, #e7bed4 88.78%);
-  // padding: 60px 0;
+  background: url(../../assets/images/bookcounsellorbg.jpg) center center;
+  background-size: cover;
+  padding: 30px 0;
 }
 .sk-bookTab-sec .sk-inline-field {
   margin-top: 10px;
   margin-bottom: 30px;
 }
-.sk-bookTab-sec .sk-inline-field .form-inline label{
+.sk-bookTab-sec .sk-inline-field label{
   display: inline-block;
 } 
 .sk-bookTab-sec .sk-inline-field label {
@@ -419,28 +420,38 @@ img.edit_icon_guidance {
   padding-left: 4px;
   display: inline-block;
 }
-.sk-bookTab-sec .sk-inline-field input,
-.form-inline.sk-inline-field select {
-  background: transparent;
-  border-bottom: 1px dashed rgba(32, 32, 32, 0.2);
-  font-size: 14px;
-  border-top: 0;
-  border-left: 0;
-  border-right: 0;
+.sk-bookTab-sec .sk-inline-field ul li{
+  position: relative;
 }
-.sk-bookTab-sec ul{
+.sk-bookTab-sec .sk-inline-field ul li span {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 10px;
+  margin: auto;
+}
+.sk-bookTab-sec .sk-inline-field input, .sk-inline-field select {
+  background: rgba(255, 255, 255, 0.3);
+  border: 1.5px solid #fff;
+  padding: 12px 15px 12px 40px;
+  width: 100%;
+  border-radius: 8px;
+  position: relative;
+  color: #888;
+}
+.sk-bookTab-sec ul {
   list-style: none;
   padding-left: 0;
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   margin-bottom: 0;
+  grid-gap: 30px 20px;
 }
-
 .sk-bookTab-sec .sk-inline-field input:focus {
   background: transparent !important;
 }
 .form-inline.sk-inline-field select {
-  color: #777;
+  color: #888;
 }
 .form-inline.sk-inline-field select:focus {
   background: transparent;
@@ -449,13 +460,14 @@ img.edit_icon_guidance {
   color: #fff;
   border-radius: 8px;
   font-weight: 600;
-  width: fit-content;
+  width: 100%;
+  max-width: 250px;
   height: 50px;
 }
 .sk-bookC-content h6 {
   font-size: 16px;
   font-weight: 400;
-  color: #000000;
+  color: #434242;
   position: relative;
 }
 .sk-bookTab-sec .sk-inline-field span{
@@ -471,10 +483,9 @@ img.edit_icon_guidance {
 
 .sk-sendMain-btn {
   margin-top: 30px;
+  text-align: center;
 }
-.sk-bookC-content {
-  padding: 30px 0;
-}
+
 .sk-sendMain-btn button svg {
   margin-left: 20px;
 }
@@ -513,6 +524,8 @@ img.edit_icon_guidance {
   font-weight: 400;
   font-size: 12px;
   color: #c93636;
+  position: absolute;
+  margin-top: 3px;
 }
 .sk-bookC-img img {
   max-width: 100%;
@@ -576,8 +589,5 @@ img.edit_icon_guidance {
   }
   .sk-bookC-counter{
     padding: 30px 0;
-  }
-  .sk-bookC-img img {
-    padding: 30px 30px 0px;
   }
 }
