@@ -27,6 +27,7 @@ import httpServices from "../../utils/ApiServices";
 import {
   addEmailToClient,
   addHyphensToLink,
+  formatTimeRangeOnCard,
   generateSlug,
   time_left,
 } from "../../utils/utils";
@@ -500,26 +501,39 @@ function EventPage() {
                                 <div className='sk-time-education'>
                                   <ul>
                                     <li>
-                                      {" "}
-                                      <AccessTimeIcon />{" "}
+                                      <AccessTimeIcon />
                                       <span
                                         dangerouslySetInnerHTML={{
-                                          __html: time_left(
+                                          __html: formatTimeRangeOnCard(
+                                            items.start_date,
+                                            items.start_time,
+                                            items.end_date,
+                                            items.end_time,
+                                            true,
+                                          ),
+                                        }}
+                                      ></span>
+                                    </li>
+                                    <li>
+                                      <AccessTimeIcon />
+                                      <span
+                                        dangerouslySetInnerHTML={{
+                                          __html: formatTimeRangeOnCard(
                                             items.start_date,
                                             items.start_time,
                                             items.end_date,
                                             items.end_time,
                                           ),
                                         }}
-                                      ></span>{" "}
+                                      ></span>
                                     </li>
-                                    {items?.want_to_display_enrolled_students && (
+                                    {/* {items?.want_to_display_enrolled_students && (
                                       <li>
                                         {" "}
                                         <SchoolOutlinedIcon />{" "}
                                         {items.enrold_students} enrolled{" "}
                                       </li>
-                                    )}
+                                    )} */}
                                   </ul>
                                 </div>
                                 <div className='sk-tags-event'>
