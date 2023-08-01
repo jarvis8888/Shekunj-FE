@@ -317,13 +317,14 @@ const GuidancePage = () => {
                               <li>
                                 <select
                                   id='gender'
+                                  className="sk-custom-select"
                                   name='gender'
                                   value={StudentValue.gender}
                                   onBlur={StudentHandleBlur}
                                   onChange={StudentHandleChange}
                                   touched={StudentTouched.gender}
                                   autoComplete='off'
-                                  className="sk-filed-select"
+                                
                                 >
                                   <option>Gender*</option>
                                   {GenderCategory.map((gender) => (
@@ -384,7 +385,8 @@ const GuidancePage = () => {
                               </li>
 
                               <li>
-                                <select
+                                <select 
+                                  className="sk-custom-select"
                                   id='qualifications'
                                   name='qualifications'
                                   value={StudentValue.qualifications}
@@ -443,6 +445,7 @@ const GuidancePage = () => {
                               </li>
                               <li>
                                 <select
+                                  className="sk-custom-select"
                                   id='guidance_purpose'
                                   name='guidance_purpose'
                                   value={StudentValue.guidance_purpose}
