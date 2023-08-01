@@ -75,15 +75,22 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   top: 0;
   width: auto;
 }
-// input[type="date"]::before{
-//   color: #999;
-//   content: attr(placeholder);
-//   margin-right: 122px; 
-// }
-// input[type="date"]:focus::before {
-//   content: "" !important;
-//   display: none;
-// }
+
+input[type="date"]::before{
+  color: #888;
+  content: attr(placeholder);
+}
+input[type="date"]:focus::before {
+  content: '' !important;
+  display: none !important;
+}
+
+input[type="date"]:in-range::-webkit-datetime-edit-year-field,
+input[type="date"]:in-range::-webkit-datetime-edit-month-field,
+input[type="date"]:in-range::-webkit-datetime-edit-day-field,
+input[type="date"]:in-range::-webkit-datetime-edit-text {
+  color: transparent;
+}
 
 .sk-bookC-contentinner ul {
   padding: 0;
@@ -451,8 +458,7 @@ img.edit_icon_guidance {
   left: 10px;
   margin: auto;
 }
-.sk-bookTab-sec .sk-inline-field input,
-.sk-inline-field select {
+ .sk-bookTab-sec .sk-inline-field input,  .sk-bookTab-sec .sk-inline-field select {
   background: rgba(255, 255, 255, 0.3);
   border: 1.5px solid #fff;
   padding: 12px 15px 12px 40px;
@@ -460,7 +466,18 @@ img.edit_icon_guidance {
   border-radius: 8px;
   position: relative;
   color: #888;
+  height: 50px;
 }
+.sk-bookTab-sec .sk-inline-field  select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  // background: transparent;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='gray' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+  background-repeat: no-repeat;
+  background-position-x: 96%;
+  background-position-y: 12px;
+}
+
 .sk-bookTab-sec ul {
   list-style: none;
   padding-left: 0;

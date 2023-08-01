@@ -7,6 +7,7 @@ import { Header, Footer, SEO } from "../../components";
 import "./index.scss";
 import "../HomePage/index.scss";
 import "../Search/index.scss";
+import calendarDateicon from "../../assets/images/calendareventicon.svg"
 // import Swiper core and required modules
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -27,6 +28,7 @@ import httpServices from "../../utils/ApiServices";
 import {
   addEmailToClient,
   addHyphensToLink,
+  calendarDate,
   formatTimeRangeOnCard,
   generateSlug,
   time_left,
@@ -501,7 +503,7 @@ function EventPage() {
                                 <div className='sk-time-education'>
                                   <ul>
                                     <li>
-                                      <AccessTimeIcon />
+                                      <img src={calendarDateicon} />
                                       <span
                                         dangerouslySetInnerHTML={{
                                           __html: formatTimeRangeOnCard(
