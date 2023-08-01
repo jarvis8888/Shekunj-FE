@@ -342,7 +342,7 @@ const GuidancePage = () => {
                                   type='date'
                                   id='date_of_birth'
                                   name='date_of_birth'
-                                  placeholder='DOB'
+                                  placeholder={StudentValue.date_of_birth == "" ? "DOB":"" }
                                   value={StudentValue.date_of_birth}
                                   onBlur={StudentHandleBlur}
                                   onChange={StudentHandleChange}

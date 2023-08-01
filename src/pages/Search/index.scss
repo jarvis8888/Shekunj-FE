@@ -380,10 +380,10 @@ img {
 }
 .sk-tags-event {
   position: absolute;
-  bottom: 15px;
+  bottom: 12px;
   left: 0;
   right: 0;
-  margin: auto 15px;
+  margin: auto 12px;
 }
 .sk-time-education ul li:last-child {
   // text-align: right;
@@ -439,12 +439,13 @@ img {
   font-family: "Poppins", sans-serif;
   color: #888;
   text-transform: capitalize;
+  letter-spacing: -0.5px;
 }
 .sk-time-education ul li.sk-onlineofline-tag {
   color: #434242;
 }
 .sk-time-education ul li img {
-  margin-right: 5px;
+  margin-right: 3px;
   vertical-align: top;
 }
 .sk-time-education ul li svg {
@@ -478,7 +479,7 @@ img {
   -webkit-box-orient: vertical;
 }
 .sk-content-card {
-  padding: 15px;
+  padding: 15px 12px;
 }
 .sk-content-card .sk-card-description {
   font-size: 15px;

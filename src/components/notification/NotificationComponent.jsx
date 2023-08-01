@@ -110,7 +110,7 @@ export const NotificationComponent = () => {
             </Badge>
           </Drawer.Actions>
         </Drawer.Header>
-        <Drawer.Body>
+        <Drawer.Body className="sk-right-notification">
           {notifications && notifications["Notifications "]?.length > 0 ? (
             <ul className='notification-list'>
               {notifications["Notifications "].map((notification, index) => (
