@@ -457,3 +457,38 @@ export const makeHtmlWithStyles = (htmlString) => {
 export const capitalizeFirstLetter = (str) => {
   return str?.charAt(0).toUpperCase() + str?.slice(1);
 };
+
+
+export function formatTimeRangeOnCard(start_date, start_time, end_date, end_time, includeDate = false) {
+  if (!start_date || !start_time || !end_date || !end_time) {
+    return "";
+  }
+
+  const start = new Date(start_date + " " + start_time);
+  const end = new Date(end_date + " " + end_time);
+  const delta = end - new Date();
+  const days = Math.floor(delta / (24 * 60 * 60 * 1000));
+  const hours = Math.floor((delta % (24 * 60 * 60 * 1000)) / (60 * 60 * 1000));
+  const minutes = Math.floor((delta % (60 * 60 * 1000)) / (60 * 1000));
+  const seconds = Math.floor((delta % (60 * 1000)) / 1000);
+
+  const formatter = new Intl.DateTimeFormat("en", {
+    day: "numeric",
+    month: "short",
+    year: "2-digit",
+    hour: "numeric",
+    minute: "numeric",
+    hour12: true,
+  });
+
+  const [month, day, year, time, meridiem] = formatter.format(start).split(" ");
+  const [endmonth, endday, endyear, endtime, endmeridiem] = formatter
+    .format(end)
+    .split(" ");
+
+  if (includeDate) {
+    return `${day} ${month} ${year} - ${endday} ${endmonth} ${endyear}`.replace(/,/g, "");
+  } else {
+    return `${time} ${meridiem.toUpperCase()} - ${endtime} ${endmeridiem.toUpperCase()}`.replace(/,/g, "");
+  }
+}

@@ -63,6 +63,28 @@
   background-color: transparent;
 }
 
+input[type="date"]::-webkit-calendar-picker-indicator {
+  background: transparent;
+  bottom: 0;
+  color: transparent;
+  cursor: pointer;
+  height: auto;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: auto;
+}
+// input[type="date"]::before{
+//   color: #999;
+//   content: attr(placeholder);
+//   margin-right: 122px; 
+// }
+// input[type="date"]:focus::before {
+//   content: "" !important;
+//   display: none;
+// }
+
 .sk-bookC-contentinner ul {
   padding: 0;
   list-style: none;
@@ -70,7 +92,7 @@
   grid-template-columns: repeat(4, 1fr);
   text-align: center;
   margin-bottom: 0;
-  gap: 15px
+  gap: 15px;
 }
 
 .sk-bookC-counter {
@@ -86,7 +108,7 @@
 .sk-bookC-contentinner ul li h3 {
   color: #ec4a8a;
   font-weight: 500;
-  font-size: 36px
+  font-size: 36px;
 }
 .sk-bookC-contentinner ul li p {
   font-size: 18px;
@@ -296,7 +318,6 @@ img.edit_icon_guidance {
     color: #5f6377 !important;
   }
 
-
   .guidance_book .col-md-5.col-12 {
     order: 2;
   }
@@ -402,16 +423,17 @@ img.edit_icon_guidance {
 }
 
 .sk-bookc-sec {
-  background: linear-gradient(90.75deg, #f2d1c7 17.41%, #e7bed4 88.78%);
-  // padding: 60px 0;
+  background: url(../../assets/images/bookcounsellorbg.jpg) center center;
+  background-size: cover;
+  padding: 30px 0;
 }
 .sk-bookTab-sec .sk-inline-field {
   margin-top: 10px;
   margin-bottom: 30px;
 }
-.sk-bookTab-sec .sk-inline-field .form-inline label{
+.sk-bookTab-sec .sk-inline-field label {
   display: inline-block;
-} 
+}
 .sk-bookTab-sec .sk-inline-field label {
   font-size: 16px;
   font-weight: 400;
@@ -419,28 +441,39 @@ img.edit_icon_guidance {
   padding-left: 4px;
   display: inline-block;
 }
-.sk-bookTab-sec .sk-inline-field input,
-.form-inline.sk-inline-field select {
-  background: transparent;
-  border-bottom: 1px dashed rgba(32, 32, 32, 0.2);
-  font-size: 14px;
-  border-top: 0;
-  border-left: 0;
-  border-right: 0;
+.sk-bookTab-sec .sk-inline-field ul li {
+  position: relative;
 }
-.sk-bookTab-sec ul{
+.sk-bookTab-sec .sk-inline-field ul li span {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 10px;
+  margin: auto;
+}
+.sk-bookTab-sec .sk-inline-field input,
+.sk-inline-field select {
+  background: rgba(255, 255, 255, 0.3);
+  border: 1.5px solid #fff;
+  padding: 12px 15px 12px 40px;
+  width: 100%;
+  border-radius: 8px;
+  position: relative;
+  color: #888;
+}
+.sk-bookTab-sec ul {
   list-style: none;
   padding-left: 0;
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   margin-bottom: 0;
+  grid-gap: 30px 20px;
 }
-
 .sk-bookTab-sec .sk-inline-field input:focus {
   background: transparent !important;
 }
 .form-inline.sk-inline-field select {
-  color: #777;
+  color: #888;
 }
 .form-inline.sk-inline-field select:focus {
   background: transparent;
@@ -449,16 +482,17 @@ img.edit_icon_guidance {
   color: #fff;
   border-radius: 8px;
   font-weight: 600;
-  width: fit-content;
+  width: 100%;
+  max-width: 250px;
   height: 50px;
 }
 .sk-bookC-content h6 {
   font-size: 16px;
   font-weight: 400;
-  color: #000000;
+  color: #434242;
   position: relative;
 }
-.sk-bookTab-sec .sk-inline-field span{
+.sk-bookTab-sec .sk-inline-field span {
   display: flex;
   flex-wrap: wrap;
 }
@@ -471,10 +505,9 @@ img.edit_icon_guidance {
 
 .sk-sendMain-btn {
   margin-top: 30px;
+  text-align: center;
 }
-.sk-bookC-content {
-  padding: 30px 0;
-}
+
 .sk-sendMain-btn button svg {
   margin-left: 20px;
 }
@@ -513,6 +546,8 @@ img.edit_icon_guidance {
   font-weight: 400;
   font-size: 12px;
   color: #c93636;
+  position: absolute;
+  margin-top: 3px;
 }
 .sk-bookC-img img {
   max-width: 100%;
@@ -528,7 +563,7 @@ img.edit_icon_guidance {
   }
 }
 @media screen and (min-width: 768px) and (max-width: 991px) {
-  .sk-bookTab-sec ul{
+  .sk-bookTab-sec ul {
     gap: 15px;
     grid-template-columns: repeat(1, 1fr);
     margin-bottom: 15;
@@ -536,48 +571,46 @@ img.edit_icon_guidance {
 }
 
 @media screen and (max-width: 767px) {
-  .sk-bookTab-sec ul{
+  .sk-bookTab-sec ul {
     gap: 15px;
     grid-template-columns: repeat(1, 1fr);
   }
   .sk-bookC-contentinner ul {
     grid-template-columns: repeat(2, 1fr);
-    gap:10px;
+    gap: 10px;
   }
-  .sk-bookc-sec{
+  .sk-bookc-sec {
     padding: 30px 0;
   }
-  .sk-bookC-content{
-    padding-top: 0; 
+  .sk-bookC-content {
+    padding-top: 0;
   }
   .sk-bookC-contentinner ul li {
     padding: 0px 5px 0px;
   }
-  .sk-bookTab-sec .sk-inline-field{
+  .sk-bookTab-sec .sk-inline-field {
     margin-bottom: 15px;
   }
-  .sk-bookC-content h2{
+  .sk-bookC-content h2 {
     font-size: 24px;
   }
   .sk-bookC-content h6 {
     font-size: 14px;
   }
-  .sk-bookTab-sec .sk-inline-field label{
+  .sk-bookTab-sec .sk-inline-field label {
     font-size: 14px;
   }
-  .sk-bookTab-sec .sk-inline-field input, .form-inline.sk-inline-field select{
+  .sk-bookTab-sec .sk-inline-field input,
+  .form-inline.sk-inline-field select {
     font-size: 13px;
   }
-  .sk-bookC-contentinner ul li h3{
+  .sk-bookC-contentinner ul li h3 {
     font-size: 24px;
   }
-  .sk-bookC-contentinner ul li p{
+  .sk-bookC-contentinner ul li p {
     font-size: 12px;
   }
-  .sk-bookC-counter{
+  .sk-bookC-counter {
     padding: 30px 0;
-  }
-  .sk-bookC-img img {
-    padding: 30px 30px 0px;
   }
 }

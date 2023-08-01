@@ -289,8 +289,7 @@ const Courses = () => {
       setCategoryPageCount(categoryPageCount - pageLimit);
       dispatch(
         allCourses(
-          `?category_id=${categoryId}&limit=${pageLimit}&offset=${
-            categoryPageCount - pageLimit
+          `?category_id=${categoryId}&limit=${pageLimit}&offset=${categoryPageCount - pageLimit
           }`,
         ),
       );
@@ -313,8 +312,7 @@ const Courses = () => {
       setCategoryPageCount(categoryPageCount + pageLimit);
       dispatch(
         allCourses(
-          `?category_id=${categoryId}&limit=${pageLimit}&offset=${
-            categoryPageCount + pageLimit
+          `?category_id=${categoryId}&limit=${pageLimit}&offset=${categoryPageCount + pageLimit
           }`,
         ),
       );
@@ -472,7 +470,6 @@ const Courses = () => {
                      free online courses for women'
           />
         </Helmet>
-
         <div className='container'>
           <div className='row'>
             <div className='col-lg-7 col-md-9'>
@@ -582,15 +579,14 @@ const Courses = () => {
                               src={Search}
                               alt='search_icon'
                               className='searchIcon'
-                              // onClick={() => handleResetSearch()}
+                            // onClick={() => handleResetSearch()}
                             />
                           </button>
                           <img
                             src={Cross}
                             alt='close_icon'
-                            className={`searchclose ${
-                              searchInput ? "" : "disabled"
-                            }`}
+                            className={`searchclose ${searchInput ? "" : "disabled"
+                              }`}
                             onClick={
                               searchInput ? handleResetSearch : undefined
                             }

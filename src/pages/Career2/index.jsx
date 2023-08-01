@@ -38,6 +38,7 @@ const CareerPage2 = () => {
   const [flag, setFlag] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [startPage, setStartPage] = useState(1);
+  const [stopPosition, setStopPosition] = useState(0);
   const pageLimit = 10;
   useEffect(() => {
     dispatch(reSetFilterValue());
@@ -394,7 +395,30 @@ const CareerPage2 = () => {
     }
     setOffset(newOffset);
   };
+  useEffect(() => {
+    const handleScroll = () => {
+      const rightColElement = document.getElementById("gov-left-col");
+      // const headerElement = document.querySelector('.header-class');
+      const stickyHeight = rightColElement.offsetHeight;
+      const viewportHeight = window.innerHeight;
+      const headerHeight = 0;
+      const adjustedViewportHeight = viewportHeight - headerHeight;
+      const stop = viewportHeight - stickyHeight;
 
+      if (stickyHeight > adjustedViewportHeight) {
+        setStopPosition(stop);
+      } else {
+        setStopPosition(headerHeight);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    // Clean up the event listener when the component is unmounted
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
   return (
     <>
       <SEO
@@ -451,7 +475,8 @@ const CareerPage2 = () => {
               </div>
               <div className="row">
                 <Col md={4} xs={12}>
-                  <div className="desktop_view_city_selct">
+                  <div className="desktop_view_city_selct"  id='gov-left-col'
+                    style={{ top: `${stopPosition}px` }}>
                   <AccordionComponent
                     type='governmentExams'
                     categories={{

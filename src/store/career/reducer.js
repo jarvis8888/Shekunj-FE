@@ -414,16 +414,16 @@ export const careerReducer = (state = initialState, action) => {
       return {
         ...state,
         isLoading: false,
-        // topCollages: {
-        //   ...state.topCollages?.collage_stream_list,
-        //   collage_stream_list: state.topCollages?.collage_stream_list?.map(
-        //     (r) =>
-        //       ({
-        //         ...r,
-        //         isChecked: false,
-        //       } || []),
-        //   ),
-        // },
+        topCollages: {
+          ...state.topCollages?.state_list,
+          collage_stream_list: state.topCollages?.state_list?.map(
+            (r) =>
+              ({
+                ...r,
+                isChecked: false,
+              } || []),
+          ),
+        },
         governmentExams: {
           ...state.governmentExams,
           govt_category:
@@ -478,13 +478,13 @@ export const careerReducer = (state = initialState, action) => {
             isChecked: false,
           })),
         },
-        // ownership: {
-        //   ...initialOwnership,
-        //   rows: initialOwnership.rows.map((r) => ({
-        //     ...r,
-        //     isChecked: false,
-        //   })),
-        // },
+        ownership: {
+          ...initialOwnership,
+          rows: initialOwnership.rows.map((r) => ({
+            ...r,
+            isChecked: false,
+          })),
+        },
       };
 
     default:
