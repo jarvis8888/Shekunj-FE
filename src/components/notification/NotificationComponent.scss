@@ -4,7 +4,7 @@
   padding-right: 5px;
   vertical-align: middle;
 }
-.custom-notification-icon svg{
+.custom-notification-icon svg {
   font-size: 18px;
 }
 @keyframes bellRing {
@@ -28,7 +28,7 @@
 .bell {
   transform-origin: top center;
   animation-name: bellRing;
-  animation-duration: 0.5s;
+  animation-duration: 0.8s;
   animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
 }
@@ -98,5 +98,9 @@
 
 .sk-right-notification ul li:hover a {
   color: #d3317d;
-  
+}
+
+.sk-right-notification p {
+  text-align: center;
+  padding: 20px;
 }
