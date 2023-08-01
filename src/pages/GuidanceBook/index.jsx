@@ -218,7 +218,7 @@ const GuidancePage = () => {
                         <h3>From Finest Counsellors.</h3>
                       </div>
 
-                      <div className='sk-bookTab-sec' tabIndex='-1'>
+                      <div className='sk-bookTab-sec'>
                         <form onSubmit={StudentHandleSubmit}>
                           <div className='sk-inline-field'>
                             <ul>
@@ -342,7 +342,7 @@ const GuidancePage = () => {
                                   type='date'
                                   id='date_of_birth'
                                   name='date_of_birth'
-                                  placeholder='DOB'
+                                  placeholder={StudentValue.date_of_birth == "" ? "DOB":"" }
                                   value={StudentValue.date_of_birth}
                                   onBlur={StudentHandleBlur}
                                   onChange={StudentHandleChange}

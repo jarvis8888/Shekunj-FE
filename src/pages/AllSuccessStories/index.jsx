@@ -39,9 +39,30 @@ const AllSuccessStory = () => {
   const [startPage, setStartPage] = useState(1);
   const [showAll, setShowAll] = useState(false);
   const [dynamicBackgroundImage, setDynamicBackgroundImage] = useState();
+  const [h2Tag, setH2Tag] = useState([]);
 
   const [offset, setOffset] = useState(0);
   const pageLimit = 7;
+
+  const getH1TagData = async () => {
+    try {
+      const url = `${apiConstants.META_TAGS.GET_META_TAGS}`;
+      const data = await httpServices.get(url);
+
+      if (data?.data?.length > 0) {
+        let filterArray1 = data?.data?.filter((item, index) => {
+          return item.tag_for_page === "all_success_story";
+        });
+        setH2Tag(filterArray1);
+      }
+    } catch (error) {
+    } finally {
+    }
+  };
+
+  useEffect(() => {
+    getH1TagData();
+  }, [lan]);
 
   const getAllSuccessStoryData = async (limit, offset, search = "") => {
     setLoading(true);
@@ -259,6 +280,7 @@ const AllSuccessStory = () => {
       />
 
       <div>
+        <h2 style={{ display: "none" }}>{h2Tag[0]?.h2}</h2>
         <section className='sk-search-sec' style={styles}>
           <div className='container sk-custom-container'>
             <div className='row'>
