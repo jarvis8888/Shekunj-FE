@@ -451,13 +451,14 @@ img.edit_icon_guidance {
 .sk-bookTab-sec .sk-inline-field ul li {
   position: relative;
 }
-.sk-bookTab-sec .sk-inline-field ul li span {
+.sk-bookTab-sec .sk-inline-field ul li .sk-filed-icon {
   position: absolute;
-  top: 0;
+  top: 12px;
   bottom: 0;
   left: 10px;
   margin: auto;
 }
+
  .sk-bookTab-sec .sk-inline-field input,  .sk-bookTab-sec .sk-inline-field select {
   background: rgba(255, 255, 255, 0.3);
   border: 1.5px solid #fff;
@@ -509,10 +510,10 @@ img.edit_icon_guidance {
   color: #434242;
   position: relative;
 }
-.sk-bookTab-sec .sk-inline-field span {
-  display: flex;
-  flex-wrap: wrap;
-}
+// .sk-bookTab-sec .sk-inline-field .sk-filed-icon {
+//   display: flex;
+//   flex-wrap: wrap;
+// }
 .sk-bookC-content h2 {
   font-size: 32px;
   font-weight: 500;
@@ -563,7 +564,7 @@ img.edit_icon_guidance {
   font-weight: 400;
   font-size: 12px;
   color: #c93636;
-  position: absolute;
+  position: realtive;
   margin-top: 3px;
 }
 .sk-bookC-img img {

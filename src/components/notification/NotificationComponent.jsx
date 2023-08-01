@@ -119,7 +119,7 @@ export const NotificationComponent = () => {
                     href={`/${notification?.url}`}
                     className='notification-link'
                   >
-                    {notification?.title || "New Notification"}
+                    {notification?.title}
                   </a>
                 </li>
               ))}

@@ -238,7 +238,7 @@ const GuidancePage = () => {
                                   touched={StudentTouched}
                                   autoComplete='off'
                                 />
-                                <span>
+                                <span className="sk-filed-icon">
                                   <img src={usericon} alt='usericon' />
                                 </span>
                                 {StudentError.first_name &&
@@ -260,7 +260,7 @@ const GuidancePage = () => {
                                   touched={StudentTouched}
                                   autoComplete='off'
                                 />
-                                <span>
+                                <span className="sk-filed-icon">
                                   <img src={usericon} alt='usericon' />
                                 </span>
                                 {StudentError.last_name &&
@@ -281,7 +281,7 @@ const GuidancePage = () => {
                                   touched={StudentTouched}
                                   autoComplete='off'
                                 />
-                                <span>
+                                <span className="sk-filed-icon">
                                   <img src={emailidicon} alt='emailidicon' />
                                 </span>
                                 {StudentError.email_address &&
@@ -304,7 +304,7 @@ const GuidancePage = () => {
                                   onKeyDown={blockInvalidChar}
                                   autoComplete='off'
                                 />
-                                <span>
+                                <span className="sk-filed-icon">
                                   <img src={wnoicon} alt='wnoicon' />
                                 </span>
                                 {StudentError.mobile_number &&
@@ -331,7 +331,7 @@ const GuidancePage = () => {
                                     </option>
                                   ))}
                                 </select>
-                                <span>
+                                <span className="sk-filed-icon">
                                   <img src={usericon} alt='gendericon' />
                                 </span>
                                 {StudentError.gender &&
@@ -368,7 +368,7 @@ const GuidancePage = () => {
                                   autoComplete='off'
                                   // dateFormat='yyyy-MM-dd'
                                 />
-                                <span>
+                                <span className="sk-filed-icon"> 
                                   <img src={dobicon} alt='calendar' />
                                 </span>
                                 {StudentError.date_of_birth &&
@@ -399,7 +399,7 @@ const GuidancePage = () => {
                                     </option>
                                   ))}
                                 </select>
-                                <span>
+                                <span className="sk-filed-icon">
                                   <img
                                     src={qualificationsicon}
                                     alt='qualificationsicon'
@@ -424,7 +424,7 @@ const GuidancePage = () => {
                                   touched={StudentTouched.institute_name}
                                   autoComplete='off'
                                 />
-                                <span>
+                                <span className="sk-filed-icon">
                                   <img
                                     src={qualificationsicon}
                                     alt='qualificationsicon'
@@ -457,7 +457,7 @@ const GuidancePage = () => {
                                     </option>
                                   ))}
                                 </select>
-                                <span>
+                                <span className="sk-filed-icon">
                                   <img src={purposeicon} alt='purposeicon' />
                                 </span>
                                 {StudentError.guidance_purpose &&
@@ -480,7 +480,7 @@ const GuidancePage = () => {
                                   onKeyDown={blockInvalidChar}
                                   autoComplete='off'
                                 />
-                                <span>
+                                <span className="sk-filed-icon">
                                   <img src={purposeicon} alt='purposeicon' />
                                 </span>
                                 {StudentError.message &&

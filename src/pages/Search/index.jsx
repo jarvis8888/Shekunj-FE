@@ -235,6 +235,7 @@ const GlobalSearch = () => {
                         onKeyDown={handleKeyDown}
                         onFocus={() => setInputFocused(true)}
                         onBlur={handleInputBlur}
+                        autoComplete='off'
                       />
                       {/* {onSearchInput === "" ? (
                         <div className='updown-move'>{placeholder}</div>
