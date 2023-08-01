@@ -28,6 +28,8 @@ import toasterConfig from "../../utils/toasterCongig";
 import { blockInvalidChar } from "../../utils/utils";
 import { withHeaderFooter } from "../../hocs/withHeaderFooter";
 import { SEO } from "../../components";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 // import Calendar from "../../../assets/icons/calendar.png";
 function range(start, end) {
   return Array(end - start + 1)
@@ -82,23 +84,24 @@ const GuidancePage = () => {
     guidance_purpose: "",
     institute_name: "",
     message: "",
+    gender: "",
   };
   const StudentValidationSchema = Yup.object({
     first_name: Yup.string()
       .trim()
-      .required("Full Name is required")
+      .required("Frist Name is required")
       .matches(
         /^[a-zA-Z\s]+$/,
         "Full Name should not contain numbers or special characters",
       ),
     last_name: Yup.string()
       .trim()
-      .required("Full Name is required")
+      .required("Last Name is required")
       .matches(
         /^[a-zA-Z\s]+$/,
         "Full Name should not contain numbers or special characters",
       ),
-    date_of_birth: Yup.string().required("Age is required"),
+    date_of_birth: Yup.string().required("DOB is required"),
     email_address: Yup.string()
       .required(t("login.form1.emailError.required"))
       .email(t("login.form1.emailError.invalid")),
@@ -107,8 +110,9 @@ const GuidancePage = () => {
       .required("Number is required"),
     qualifications: Yup.string().required("Qualifications is required"),
     guidance_purpose: Yup.string().required("Select the purpose"),
-    institute_name: Yup.string().trim().required("Institute Name is required"),
+    institute_name: Yup.string().trim(),
     message: Yup.string().trim(),
+    gender: Yup.string().required("Gender is required"),
   });
   const onStudentFormSubmit = useFormik({
     initialValues: StudentInitialValues,
@@ -290,7 +294,7 @@ const GuidancePage = () => {
                               <li>
                                 <input
                                   type='number'
-                                  placeholder='Whatsapp Number'
+                                  placeholder='Whatsapp Number*'
                                   id='mobile_number'
                                   name='mobile_number'
                                   value={StudentValue.mobile_number}
@@ -320,7 +324,7 @@ const GuidancePage = () => {
                                   touched={StudentTouched.gender}
                                   autoComplete='off'
                                 >
-                                  <option>Gender</option>
+                                  <option>Gender*</option>
                                   {GenderCategory.map((gender) => (
                                     <option key={gender} value={gender}>
                                       {gender}
@@ -338,15 +342,31 @@ const GuidancePage = () => {
                                   )}
                               </li>
                               <li>
-                                <input
-                                  type='date'
+                                <DatePicker
+                                  selected={
+                                    StudentValue.date_of_birth
+                                      ? new Date(StudentValue.date_of_birth)
+                                      : null
+                                  }
                                   id='date_of_birth'
                                   name='date_of_birth'
-                                  placeholder={StudentValue.date_of_birth == "" ? "DOB":"" }
-                                  value={StudentValue.date_of_birth}
+                                  placeholderText={
+                                    StudentValue.date_of_birth === ""
+                                      ? "DOB*"
+                                      : ""
+                                  }
                                   onBlur={StudentHandleBlur}
-                                  onChange={StudentHandleChange}
+                                  onChange={(date) => {
+                                    const formattedDate = date
+                                      ? date.toISOString().split("T")[0]
+                                      : "";
+                                    onStudentFormSubmit.setFieldValue(
+                                      "date_of_birth",
+                                      formattedDate,
+                                    );
+                                  }}
                                   autoComplete='off'
+                                  // dateFormat='yyyy-MM-dd'
                                 />
                                 <span>
                                   <img src={dobicon} alt='calendar' />
@@ -358,6 +378,7 @@ const GuidancePage = () => {
                                     </div>
                                   )}
                               </li>
+
                               <li>
                                 <select
                                   id='qualifications'
@@ -368,7 +389,7 @@ const GuidancePage = () => {
                                   touched={StudentTouched}
                                   autoComplete='off'
                                 >
-                                  <option>Qualification</option>
+                                  <option>Qualification*</option>
                                   {highEducation.map((highEducation) => (
                                     <option
                                       key={highEducation}
@@ -395,7 +416,7 @@ const GuidancePage = () => {
                                 <input
                                   type='text'
                                   id='institute_name'
-                                  placeholder='Institute Name*'
+                                  placeholder='Institute Name'
                                   name='institute_name'
                                   value={StudentValue.institute_name}
                                   onBlur={StudentHandleBlur}
@@ -426,7 +447,7 @@ const GuidancePage = () => {
                                   touched={StudentTouched}
                                   autoComplete='off'
                                 >
-                                  <option>Select Purpose</option>
+                                  <option>Select Purpose*</option>
                                   {GuidancePurpose.map((GuidancePurpose) => (
                                     <option
                                       key={GuidancePurpose}
