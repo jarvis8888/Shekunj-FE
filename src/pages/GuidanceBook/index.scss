@@ -63,34 +63,34 @@
   background-color: transparent;
 }
 
-input[type="date"]::-webkit-calendar-picker-indicator {
-  background: transparent;
-  bottom: 0;
-  color: transparent;
-  cursor: pointer;
-  height: auto;
-  left: 0;
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: auto;
-}
+// input[type="date"]::-webkit-calendar-picker-indicator {
+//   background: transparent;
+//   bottom: 0;
+//   color: transparent;
+//   cursor: pointer;
+//   height: auto;
+//   left: 0;
+//   position: absolute;
+//   right: 0;
+//   top: 0;
+//   width: auto;
+// }
 
-input[type="date"]::before{
-  color: #888;
-  content: attr(placeholder);
-}
-input[type="date"]:focus::before {
-  content: '' !important;
-  display: none !important;
-}
+// input[type="date"]::before{
+//   color: #888;
+//   content: attr(placeholder);
+// }
+// input[type="date"]:focus::before {
+//   content: '' !important;
+//   display: none !important;
+// }
 
-input[type="date"]:in-range::-webkit-datetime-edit-year-field,
-input[type="date"]:in-range::-webkit-datetime-edit-month-field,
-input[type="date"]:in-range::-webkit-datetime-edit-day-field,
-input[type="date"]:in-range::-webkit-datetime-edit-text {
-  color: transparent;
-}
+// input[type="date"]:in-range::-webkit-datetime-edit-year-field,
+// input[type="date"]:in-range::-webkit-datetime-edit-month-field,
+// input[type="date"]:in-range::-webkit-datetime-edit-day-field,
+// input[type="date"]:in-range::-webkit-datetime-edit-text {
+//   color: transparent;
+// }
 
 .sk-bookC-contentinner ul {
   padding: 0;
