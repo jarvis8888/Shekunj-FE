@@ -15,6 +15,11 @@
   color: #323232;
 }
 
+#gov-left-col {
+  height: fit-content;
+  position: sticky;
+}
+
 .BlogReadMore {
   font-family: "Poppins", sans-serif;
   // color: #de488b;
@@ -22,9 +27,8 @@
   padding: 5px 0;
   text-align: start;
   text-decoration: none;
-
 }
-.BlogReadMore:hover{
+.BlogReadMore:hover {
   text-decoration: none;
 }
 
