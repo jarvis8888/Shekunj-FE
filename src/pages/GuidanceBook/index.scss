@@ -459,7 +459,7 @@ img.edit_icon_guidance {
   margin: auto;
 }
 
- .sk-bookTab-sec .sk-inline-field input,  .sk-bookTab-sec .sk-inline-field select {
+ .sk-bookTab-sec .sk-inline-field input,  .sk-bookTab-sec .sk-inline-field .sk-custom-select{
   background: rgba(255, 255, 255, 0.3);
   border: 1.5px solid #fff;
   padding: 12px 15px 12px 40px;
@@ -469,7 +469,7 @@ img.edit_icon_guidance {
   color: #888;
   height: 50px;
 }
-.sk-bookTab-sec .sk-inline-field  select {
+.sk-bookTab-sec .sk-inline-field .sk-custom-select {
   -webkit-appearance: none;
   -moz-appearance: none;
   // background: transparent;
@@ -490,10 +490,10 @@ img.edit_icon_guidance {
 .sk-bookTab-sec .sk-inline-field input:focus {
   background: transparent !important;
 }
-.form-inline.sk-inline-field select {
+.form-inline.sk-inline-field .sk-custom-select {
   color: #888;
 }
-.form-inline.sk-inline-field select:focus {
+.form-inline.sk-inline-field .sk-custom-select:focus {
   background: transparent;
 }
 .sk-bookTab-sec .sk-btn-submit {
@@ -576,7 +576,7 @@ img.edit_icon_guidance {
     font-size: 14px;
   }
   .sk-bookTab-sec .sk-inline-field input,
-  .form-inline.sk-inline-field select {
+  .form-inline.sk-inline-field .sk-custom-select {
     font-size: 13px;
   }
 }
