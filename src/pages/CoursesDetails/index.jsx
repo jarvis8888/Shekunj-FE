@@ -338,12 +338,12 @@ const CourseDetails = () => {
                       {t("coursesPage.coursesDetailsPage.other.1")}
                     </Link>
                   )}
-                  <Link
+                  {/* <Link
                     to={routingConstants.COURSES_TEST + course?.id}
                     className='btn btn_str_Cor'
                   >
                     Give Test
-                  </Link>
+                  </Link> */}
 
                   <h3 className='similar-coursestext'>
                     {t("coursesPage.coursesDetailsPage.other.2")}
