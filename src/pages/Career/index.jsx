@@ -575,7 +575,7 @@ const CareerPage = () => {
                     {topCollages?.collage_list?.results?.length || 0}{" "}
                     {t("careerTopColleges.other.3")}
                   </p> */}
-                  <p>
+                  {/* <p>
                     Contrary to popular belief, Lorem Ipsum is not simply random
                     text. It has roots in a piece of classical Latin literature
                     from 45 BC, making it over 2000 years old. Richard
@@ -584,7 +584,7 @@ const CareerPage = () => {
                     consectetur, from a Lorem Ipsum passage, and going through
                     the cites of the word in classical literature, discovered
                     the undoubtable source. Lorem Ipsum comes from sections
-                  </p>
+                  </p> */}
                 </Col>
               </div>
             </div>
@@ -756,7 +756,7 @@ const CareerPage = () => {
                                         </Link>
                                       </h3>
                                       <ul class='list-inline list-unstyled'>
-                                        {c.collage_type && (
+                                        {/* {c.collage_type && (
                                           <li>
                                             <span>
                                               {t("careerTopColleges.other.16")}
@@ -767,7 +767,7 @@ const CareerPage = () => {
                                                 c.collage_type,
                                               )}
                                           </li>
-                                        )}
+                                        )} */}
 
                                         {c.established_year && (
                                           <li>
@@ -799,6 +799,18 @@ const CareerPage = () => {
                                           : {c && capitalizeFirstLetter(c.city)}{" "}
                                           {c && capitalizeFirstLetter(c.state)}
                                         </li>
+                                        {c.collage_type && (
+                                          <li>
+                                            <span>
+                                              {t("careerTopColleges.other.16")}
+                                            </span>{" "}
+                                            :{" "}
+                                            {c &&
+                                              capitalizeFirstLetter(
+                                                c.collage_type,
+                                              )}
+                                          </li>
+                                        )}
                                       </ul>
 
                                       <ul>

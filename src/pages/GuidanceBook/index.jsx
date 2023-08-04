@@ -483,7 +483,6 @@ const GuidancePage = () => {
                                   onBlur={StudentHandleBlur}
                                   onChange={StudentHandleChange}
                                   touched={StudentTouched}
-                                  onKeyDown={blockInvalidChar}
                                   autoComplete='off'
                                 />
                                 <span className='sk-filed-icon'>

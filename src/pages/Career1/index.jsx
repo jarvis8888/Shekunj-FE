@@ -578,7 +578,7 @@ const CareerPage1 = () => {
                   {topSchools?.result?.results?.length || 0}{" "}
                   {t("careerTopSchools.other.11")}
                 </p> */}
-                  <p>
+                  {/* <p>
                     Contrary to popular belief, Lorem Ipsum is not simply random
                     text. It has roots in a piece of classical Latin literature
                     from 45 BC, making it over 2000 years old. Richard
@@ -587,7 +587,7 @@ const CareerPage1 = () => {
                     consectetur, from a Lorem Ipsum passage, and going through
                     the cites of the word in classical literature, discovered
                     the undoubtable source. Lorem Ipsum comes from sections
-                  </p>
+                  </p> */}
                 </Col>
               </div>
             </div>
