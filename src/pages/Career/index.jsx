@@ -12,7 +12,9 @@ import {
   toggleCollapseValue,
   allTopcollegeBySearch,
 } from "../../store/career";
-import TopCollage from "../../assets/images/Career/clg.jpg";
+// import TopCollage from "../../assets/images/Career/clg.jpg";
+import TopCollage from "../../assets/images/Career/scl.jpg";
+
 import Search from "../../assets/images/search_white_icon.svg";
 import "../HomePage/index.scss";
 import "./index.scss";
