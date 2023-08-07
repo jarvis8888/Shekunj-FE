@@ -123,7 +123,7 @@ export const NotificationComponent = () => {
                     {notification?.title}
                   </a>
                   <span className='notification-time'>
-                    {getTimeDifferenceString(notification?.created_at)}
+                    {notification?.created_at && getTimeDifferenceString(notification?.created_at)}
                   </span>
                 </li>
               ))}

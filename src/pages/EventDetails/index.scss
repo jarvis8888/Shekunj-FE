@@ -203,6 +203,10 @@ img {
   padding-left: 40px;
   width: 100%;
 }
+#event-col {
+  height: fit-content;
+  position: sticky;
+}
 .sk-event-form .sk-eventForm-filed select {
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -513,7 +517,7 @@ img {
     width: 0;
   }
   .sk-details-datetime ul {
-    grid-gap:15px;
+    grid-gap: 15px;
   }
 }
 

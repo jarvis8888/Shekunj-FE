@@ -72,6 +72,8 @@ const EventDetails = () => {
   const [eventDetailsBannerAds, setEventDetailsBannerAds] = useState([]);
   const [loading, setLoading] = useState(false);
   const [extraInfo, setExtraInfo] = useState([]);
+  const [stopPosition, setStopPosition] = useState(0);
+
 
   //states
 
@@ -322,6 +324,31 @@ const EventDetails = () => {
     }
   };
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const rightColElement = document.getElementById("event-col");
+      // const headerElement = document.querySelector('.header-class');
+      const stickyHeight = rightColElement.offsetHeight;
+      const viewportHeight = window.innerHeight;
+      const headerHeight = 0;
+      const adjustedViewportHeight = viewportHeight - headerHeight;
+      const stop = viewportHeight - stickyHeight;
+
+      if (stickyHeight > adjustedViewportHeight) {
+        setStopPosition(stop);
+      } else {
+        setStopPosition(headerHeight);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    // Clean up the event listener when the component is unmounted
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <>
       <SEO
@@ -494,7 +521,8 @@ const EventDetails = () => {
                     </div>
                   </div>
                 </div>
-                <div class='col-xl-4 col-lg-8 col-md-12 col-sm-12 sk-Removeside-space'>
+                <div class='col-xl-4 col-lg-8 col-md-12 col-sm-12 sk-Removeside-space'  id='event-col'
+      style={{ top: `${stopPosition}px` }}>
                   <div className='sk-event-sidebar'>
                     <div className='sk-event-form'>
                       <h6>Registration Form</h6>
