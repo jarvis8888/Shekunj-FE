@@ -13,6 +13,7 @@ import { getAllNotifications } from "../../store/notifications";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { getTimeDifferenceString } from "../../utils/utils";
 
 export const NotificationComponent = () => {
   const dispatch = useDispatch();
@@ -121,6 +122,9 @@ export const NotificationComponent = () => {
                   >
                     {notification?.title}
                   </a>
+                  <span className='notification-time'>
+                    {notification?.created_at && getTimeDifferenceString(notification?.created_at)}
+                  </span>
                 </li>
               ))}
             </ul>

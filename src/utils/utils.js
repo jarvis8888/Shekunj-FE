@@ -492,3 +492,29 @@ export function formatTimeRangeOnCard(start_date, start_time, end_date, end_time
     return `${time} ${meridiem.toUpperCase()} - ${endtime} ${endmeridiem.toUpperCase()}`.replace(/,/g, "");
   }
 }
+
+
+export function getTimeDifferenceString(dateTime) {
+  const now = new Date();
+  const createdAt = new Date(dateTime);
+
+  const timeDifferenceInSeconds = Math.floor((now - createdAt) / 1000);
+
+  if (timeDifferenceInSeconds < 60) {
+    return "a minute ago";
+  } else if (timeDifferenceInSeconds < 3600) {
+    const minutes = Math.floor(timeDifferenceInSeconds / 60);
+    return `${minutes} minutes ago`;
+  } else if (timeDifferenceInSeconds < 86400) {
+    const hours = Math.floor(timeDifferenceInSeconds / 3600);
+    return `${hours} hours ago`;
+  } else if (timeDifferenceInSeconds < 2592000) {
+    const days = Math.floor(timeDifferenceInSeconds / 86400);
+    return `${days} days ago`;
+  } else if (timeDifferenceInSeconds < 31536000) {
+    const months = Math.floor(timeDifferenceInSeconds / 2592000);
+    return `${months} months ago`;
+  } else {
+    return createdAt.toLocaleDateString(); // Show the full date if more than a year ago
+  }
+}
