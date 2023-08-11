@@ -202,7 +202,18 @@
 .sk-serachTop-school input:focus{
   border-color: #fe9ec9;
 }
-
+.sk-add-title{
+  position: absolute;
+  left: 0;
+  top: 0;
+  h6{
+    font-size: 12px;
+    margin-bottom: 0;
+    font-weight: 400;
+    color: #888;
+    line-height: 14px;
+  }
+}
 .sk-serachTop-school button {
   height: 48px;
   border-radius: 0px 8px 8px 0;
