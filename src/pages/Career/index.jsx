@@ -536,6 +536,7 @@ const CareerPage = () => {
                     className='add_college_cover'
                     onClick={() => addEmail(collegeBannerAds[0]?.add_email)}
                   >
+                  <div class="sk-add-title"><h6>Advertisement</h6></div>
                     <a
                       href={collegeBannerAds[0]?.url_adds}
                       target='_blank'
