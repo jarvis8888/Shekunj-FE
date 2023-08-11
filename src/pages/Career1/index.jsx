@@ -324,7 +324,7 @@ const CareerPage1 = () => {
             longitude,
             pageLimit,
             offset: 0,
-            search: searchInput !== "" ? `&search=${searchInput}` : "",
+            search: "",
           }),
         );
       },
