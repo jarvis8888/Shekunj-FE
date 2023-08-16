@@ -324,7 +324,7 @@ const CareerPage1 = () => {
             longitude,
             pageLimit,
             offset: 0,
-            search: searchInput !== "" ? `&search=${searchInput}` : "",
+            search: "",
           }),
         );
       },
@@ -542,6 +542,7 @@ const CareerPage1 = () => {
                     className='ads_school_cover'
                     onClick={() => addEmail(schoolBannerAds[0]?.add_email)}
                   >
+                  <div class="sk-add-title"><h6>Advertisement</h6></div>
                     <a href={schoolBannerAds[0]?.url_adds} target='_blank'>
                       {detect.isMobile ? (
                         schoolBannerAds[0]?.image_mobile && (

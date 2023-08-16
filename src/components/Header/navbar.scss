@@ -229,8 +229,12 @@ body {
     border-radius: 2px;
     transition: 0.3s;
     @media screen and (max-width: 480px) {
-        padding: 8px;
-        font-size: 12px;
+      padding: 8px;
+      font-size: 12px;
+    }
+    @media screen and (max-width: 360px) {
+      padding: 8px 5px;
+      font-size: 10px;
     }
   }
   .header-top nav .custom-dropdownl li {
@@ -277,6 +281,7 @@ body {
 .profile {
   display: flex;
   position: relative;
+  align-items: center;
   img {
     width: 10px;
     height: 10px;
@@ -336,31 +341,6 @@ body {
   }
 }
 
-@media (max-width: 991px) {
-  .header-top nav ul li {
-    margin-left: 0 !important;
-  }
-  .sk-headerTop-bg {
-    background: #202020;
-  }
-  .header-top .custom-dropdown button {
-    color: #fff;
-  }
-  .header-top button {
-    color: #fff !important;
-    border-color: #434242 !important;
-    font-size: 12px;
-  }
-  .header-top nav ul {
-    justify-content: space-between;
-  }
-  .header-top nav {
-    width: 100%;
-  }
-  .sk-mobile-hide {
-    display: none;
-  }
-}
 @media screen and (max-width: 1250px) {
   // .Navbar{
   //   height: 60px;
@@ -407,5 +387,42 @@ body {
   }
   .nav-logo img {
     max-width: 120px;
+  }
+}
+
+@media (max-width: 991px) {
+  .header-top nav ul li {
+    margin-left: 0 !important;
+  }
+  .sk-headerTop-bg {
+    background: #202020;
+  }
+  .header-top .custom-dropdown button {
+    color: #fff;
+  }
+  .header-top button {
+    color: #fff !important;
+    border-color: #434242 !important;
+    font-size: 12px !important;
+  }
+  .header-top nav ul {
+    justify-content: space-between;
+  }
+  .header-top nav {
+    width: 100%;
+  }
+  .sk-mobile-hide {
+    display: none;
+  }
+}
+@media screen and (max-width: 360px) {
+  .header-top button {
+    font-size: 10px !important;
+  }
+  .custom-notification-icon {
+    padding-right: 2px !important;
+  }
+  .custom-notification-icon svg {
+    font-size: 14px !important;
   }
 }

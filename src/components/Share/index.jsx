@@ -86,7 +86,7 @@ const SocialShare = ({ currentUrl, title, image }) => {
         </li>
         <li>
           <a
-            href='https://www.instagram.com/shekunj_edu/'
+            href='https://www.instagram.com/shekunj.talk/'
             target='_blank'
             rel='noreferrer'
           >
