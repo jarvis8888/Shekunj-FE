@@ -229,8 +229,8 @@ body {
     border-radius: 2px;
     transition: 0.3s;
     @media screen and (max-width: 480px) {
-        padding: 8px;
-        font-size: 12px;
+      padding: 8px;
+      font-size: 12px;
     }
     @media screen and (max-width: 360px) {
       padding: 8px 5px;
@@ -281,6 +281,7 @@ body {
 .profile {
   display: flex;
   position: relative;
+  align-items: center;
   img {
     width: 10px;
     height: 10px;
@@ -414,15 +415,14 @@ body {
     display: none;
   }
 }
-@media screen and (max-width:360px) {
-  .header-top button{
+@media screen and (max-width: 360px) {
+  .header-top button {
     font-size: 10px !important;
   }
-  .custom-notification-icon{
+  .custom-notification-icon {
     padding-right: 2px !important;
   }
-  .custom-notification-icon svg{
+  .custom-notification-icon svg {
     font-size: 14px !important;
   }
 }
-
