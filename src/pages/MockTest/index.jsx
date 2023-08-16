@@ -7,6 +7,9 @@ import { useTranslation } from "react-i18next";
 import Timer from "react-compound-timer";
 import useExitPrompt from "../../hooks/useExitPromt";
 import Cross from "../../assets/icons/cross.png";
+import mockimgb from "../../assets/images/mockbanner.png";
+import boderarrow from "../../assets/images/borderarrow.png";
+
 import Search from "../../assets/icons/search1.png";
 import { Helmet } from "react-helmet-async";
 import {
@@ -46,6 +49,7 @@ import timeIcon from "../../assets/images/Courses/time.png";
 import "./index.scss";
 import "../CoursesModule/index.scss";
 import { adsList } from "../../store/ads";
+import { withHeaderFooter } from "../../hocs/withHeaderFooter";
 
 const IOSSlider = styled(Slider)(({ theme }) => ({
   color: theme.palette.mode === "dark" ? "#3880ff" : "#3880ff",
@@ -413,7 +417,7 @@ function MockTest() {
           {mockTestBoxAds?.length > 0 ? (
             <Grid Container spacing={2} className='gridContainer flex'>
               <Col md={1} xl={12}>
-                <Card className='GuidanceOptionCard '>
+                <Card className='GuidanceOptionCard'>
                   <div onClick={() => addEmail(mockTestBoxAds[0]?.add_email)}>
                     <a href={mockTestBoxAds[0]?.url_adds} target='_blank'>
                       <img
@@ -510,25 +514,34 @@ function MockTest() {
         />
       </Helmet>
 
-      <Header loginPage={true} page='guidance' subPage='mockTest' />
-      <div className='SuccStory_banner'>
+      <div className='SuccStory_banner_mock'>
         {" "}
-        <Container>
-          <Row>
-            <Col md={1}>
+        <div className="container sk-custom-container">
+          <div className="row">
+            <div className="col-md-6" data-aos='slide-up'>
+              <div className="sk-mockContent-box">
               <div className='global_img'>
                 <img src={global} alt='' className='vert-move' />
               </div>
-            </Col>
-            <Col md={6} data-aos='slide-up'>
-              <h2> {t("Shekunj Online Test..")}</h2>
-              <p> Have a look how SheKunj has played an important role</p>
-            </Col>
-          </Row>
-        </Container>
+              <div className="">
+                <h2> {t("Shekunj Online Test..")}</h2>
+                <p> Have a look how SheKunj has played an important role</p>
+              </div>
+              </div>
+            </div>
+            <div className="col-md-6">
+            <div className="sk-mockImg-box">
+              <img src={mockimgb} alt="mock test image" />
+            </div>
+            </div>
+          </div>
+          <span className="borarrow">
+            <img src={boderarrow} alt="bimage" />
+          </span>
+        </div>
       </div>
       <div className='Div_Mock_Title'>
-        <Container>
+        <div className="container sk-custom-container">
           <div className='mock_test_tit noselect'>
             <Row>
               <Col md={6} xs={12}>
@@ -574,10 +587,11 @@ function MockTest() {
               </Col>
             </Row>
           </div>
-        </Container>
+        </div>
       </div>
       {/* <Container class="event_responsive13"> */}
-      <Container>
+      <div className="container sk-custom-container">
+      <div className="row">
         <div class='event_responsive13'>
           {/* {guidanceCategory?.length > 0 &&
             guidanceCategory?.map((gb, index) => { */}
@@ -705,10 +719,12 @@ function MockTest() {
               );
             })}
         </div>
-      </Container>
-      <Footer loginPage={false} />
+        </div>
+      </div>
     </div>
   );
 }
 
-export default MockTest;
+export default withHeaderFooter(MockTest);
+
+
