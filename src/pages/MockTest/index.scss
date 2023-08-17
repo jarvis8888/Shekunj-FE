@@ -1,12 +1,50 @@
-.SuccStory_banner {
-  background-image: url("../../assets/images/Success/sus_banner.jpg");
-  background-repeat: no-repeat;
-  width: 100% !important;
-  height: 620px !important;
+.SuccStory_banner_mock {
+  // background-image: url("../../assets/images/Success/sus_banner.jpg");
+  // background-repeat: no-repeat;
+  // width: 100% !important;
+  // height: 620px !important;
   // height:698px !important;
-  background-size: cover;
+  // background-size: cover;
+}
+// .SuccStory_banner_mock {
+//   background: #f953c6;  /* fallback for old browsers */
+//   background: -webkit-linear-gradient(to right, #b91d73, #f953c6);  /* Chrome 10-25, Safari 5.1-6 */
+//   background: linear-gradient(to right, #b91d73, #f953c6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+//   padding-top: 60px;
+// }
+.sk-custom-container {
+  position: relative;
+}
+.sk-mockImg-box{
+  position: relative;
+  z-index: 9;
+}
+.borarrow {
+  position: absolute;
+  bottom: 60px;
+  right: 30%;
+  z-index: 0;
+}
+.SuccStory_banner_mock {
+  background: #ba5077;
+  background: linear-gradient(119deg, #a73a62, #cb5e88, #a73a62);
+  padding-top: 50px;
+}
+.sk-mockContent-box {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  column-gap: 15px;
+  margin-top: 40px;
+  /* flex-wrap: wrap; */
 }
 
+.global_img {
+  margin-right: 10px;
+}
+.sk-mockImg-box {
+  text-align: right;
+}
 .que_box {
   border: 1px solid #e3e4eb;
   padding: 37px 58px;
@@ -351,11 +389,10 @@ p#col_grey {
 .mock_test_tit h2 {
   font-family: Poppins;
   font-style: normal;
-  font-weight: bold;
+  font-weight: 600;
   font-size: 40px;
   line-height: 52px;
   color: #323232;
-  margin-left: 45px;
 }
 
 .mock_test_tit p {
@@ -368,14 +405,19 @@ p#col_grey {
 }
 
 .searchSection_mock {
-  margin-left: 75px;
-  margin-top: 15px;
+  // margin-left: 75px;
+  // margin-top: 15px;
+  justify-content: end;
 }
 
 .searchInput_mock {
   width: 340px !important;
 }
-
+@media screen and (min-width: 767px) and (max-width:991px){
+  .borarrow{
+    opacity: 0.3;
+  }
+}
 
 @media screen and (min-device-width: 50px) and (max-device-width: 767px) {
 
@@ -385,13 +427,10 @@ p#col_grey {
     margin-right: 20px !important;
   }
 
-  .global_img {
-    margin-top: 43px !important;
+ 
+  .sk-mockContent-box{
+    margin-top: 0;
   }
-  .global_img img {
-    max-width: 40% !important;
-  }
-
   .SuccStory_banner h2 {
     margin: 0;
     font-size: 24px !important;
@@ -402,7 +441,10 @@ p#col_grey {
     font-size: 16px !important;
     margin-top: 15px !important;
   }
-
+  .SuccStory_banner_mock p {
+    font-size: 16px !important;
+    margin-top: 15px !important;
+  }
   .suc_box {
     margin-top: 40px !important;
   }
@@ -462,10 +504,6 @@ p#col_grey {
     display: inline-block;
     align-items: center;
     justify-items: center;
-    margin-left: 1px !important;
-    padding: 0px !important;
-    // margin-bottom: 20px !important;
-    margin-top: 30px !important;
   }
   .css-1oqqzyl-MuiContainer-root {
     justify-items: flex-start;
@@ -570,6 +608,7 @@ p#col_grey {
     color: #ec498a;
     text-align: center;
     text-decoration: #ec498a;
+    box-shadow: none;
   }
   
   a {
@@ -593,9 +632,7 @@ p#col_grey {
   //   margin-right: 20px !important;
   // }
 
-  .global_img {
-    margin-top: 43px;
-  }
+ 
 
   .global_img img {
     max-width: 40%;
@@ -743,7 +780,7 @@ p#col_grey {
 }
 .searchIcon_mock {
   cursor: pointer;
-  width: 50%;
+
 }
 .searchclose_mock{
   width: 40px;
@@ -751,19 +788,17 @@ p#col_grey {
   height: 40px;
   margin-left: 12px;
 }
-.searchSection_mock {
-  margin-left: 20px;
-  margin-top: 15px;
-}
+// .searchSection_mock {
+//   margin-left: 20px;
+//   margin-top: 15px;
+// }
 
-.SuccStory_banner h2 {
+.SuccStory_banner_mock h2 {
   font-family: "Poppins", sans-serif;
   font-style: normal;
-  font-weight: bold;
-  font-size: 31px;
-  line-height: 130%;
+  font-weight: 600;
+  font-size: 32px;
   color: #ffffff;
-  margin-top: 80px;
   margin-bottom: 15px;
   text-transform: capitalize;
 }
@@ -772,14 +807,17 @@ p#col_grey {
 //   color: #fff;
 //   font-size: 55px;
 // }
-.global_img {
-  margin-top: 100px;
-}
+
 
 .global_img img {
   max-width: 100%;
 }
 
+.SuccStory_banner_mock p {
+  font-family: "Poppins", sans-serif;
+  font-size: 24px;
+  color: #ffffff;
+}
 .SuccStory_banner p {
   font-family: "Poppins", sans-serif;
   font-style: normal;
@@ -800,9 +838,7 @@ p.sucess_first_p {
   display: inline-block;
   align-items: center;
   justify-items: center;
-  padding: 10px;
-  margin-left: 20px;
-  margin-top: 20px;
+  margin-bottom: 30px;
 }
 
 .limited-text-mock-test {
@@ -818,10 +854,10 @@ p.sucess_first_p {
 }
 
 .GuidanceOptionCard {
-  width: 18rem;
+  width: 18.5rem;
   // height: 25rem;
   // margin-top: 30px;
-  box-shadow: 0 7px 30px -10px rgba(3, 3, 3, 0.5);
+  box-shadow: 0 5px 16px 0px rgb(13 21 66 / 15%);
 }
 
 .GuidanceOptionCardAdd img {

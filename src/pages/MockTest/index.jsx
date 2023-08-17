@@ -7,6 +7,9 @@ import { useTranslation } from "react-i18next";
 import Timer from "react-compound-timer";
 import useExitPrompt from "../../hooks/useExitPromt";
 import Cross from "../../assets/icons/cross.png";
+import mockimgb from "../../assets/images/mockbanner.png";
+import boderarrow from "../../assets/images/borderarrow.png";
+
 import Search from "../../assets/icons/search1.png";
 import { Helmet } from "react-helmet-async";
 import {
@@ -46,6 +49,9 @@ import timeIcon from "../../assets/images/Courses/time.png";
 import "./index.scss";
 import "../CoursesModule/index.scss";
 import { adsList } from "../../store/ads";
+import { withHeaderFooter } from "../../hocs/withHeaderFooter";
+import { CustomLoader } from "../../components/customLoader/CustomLoader";
+import { NoDataFound } from "../../components/noDataFound/NoDataFound";
 
 const IOSSlider = styled(Slider)(({ theme }) => ({
   color: theme.palette.mode === "dark" ? "#3880ff" : "#3880ff",
@@ -106,7 +112,6 @@ function MockTest() {
   const { isLoading, guidanceCategory, testData, countData } = useSelector(
     (state) => state?.guidanceReducer,
   );
-  console.log(isLoading);
 
   const progress = Math.round(100 / (countData?.total_career_que || 0)) || 0;
 
@@ -413,12 +418,12 @@ function MockTest() {
           {mockTestBoxAds?.length > 0 ? (
             <Grid Container spacing={2} className='gridContainer flex'>
               <Col md={1} xl={12}>
-                <Card className='GuidanceOptionCard '>
+                <Card className='GuidanceOptionCard'>
                   <div onClick={() => addEmail(mockTestBoxAds[0]?.add_email)}>
                     <a href={mockTestBoxAds[0]?.url_adds} target='_blank'>
                       <img
                         src={mockTestBoxAds[0]?.image}
-                        alt='Image'
+                        alt='mockTestBoxAds'
                         className='guidanceOptionImageAdd'
                       />
                     </a>
@@ -510,25 +515,34 @@ function MockTest() {
         />
       </Helmet>
 
-      <Header loginPage={true} page='guidance' subPage='mockTest' />
-      <div className='SuccStory_banner'>
+      <div className='SuccStory_banner_mock'>
         {" "}
-        <Container>
-          <Row>
-            <Col md={1}>
-              <div className='global_img'>
-                <img src={global} alt='' className='vert-move' />
+        <div className='container sk-custom-container'>
+          <div className='row'>
+            <div className='col-md-6' data-aos='slide-up'>
+              <div className='sk-mockContent-box'>
+                <div className='global_img'>
+                  <img src={global} alt='' className='vert-move' />
+                </div>
+                <div className=''>
+                  <h2> {t("Shekunj Online Test..")}</h2>
+                  <p> Have a look how SheKunj has played an important role</p>
+                </div>
               </div>
-            </Col>
-            <Col md={6} data-aos='slide-up'>
-              <h2> {t("Shekunj Online Test..")}</h2>
-              <p> Have a look how SheKunj has played an important role</p>
-            </Col>
-          </Row>
-        </Container>
+            </div>
+            <div className='col-md-6'>
+              <div className='sk-mockImg-box'>
+                <img src={mockimgb} alt='mock_test_image' />
+              </div>
+            </div>
+          </div>
+          <span className='borarrow'>
+            <img src={boderarrow} alt='bimage' />
+          </span>
+        </div>
       </div>
       <div className='Div_Mock_Title'>
-        <Container>
+        <div className='container sk-custom-container'>
           <div className='mock_test_tit noselect'>
             <Row>
               <Col md={6} xs={12}>
@@ -557,13 +571,13 @@ function MockTest() {
                         <button type='submit' className='searchBtn1_mock'>
                           <img
                             src={Search}
-                            alt='Image'
+                            alt='Search'
                             className='searchIcon_mock'
                           />
                         </button>
                         <img
                           src={Cross}
-                          alt='Image'
+                          alt='Cross'
                           className='searchclose_mock'
                           onClick={() => handleResetSearch()}
                         />
@@ -574,18 +588,21 @@ function MockTest() {
               </Col>
             </Row>
           </div>
-        </Container>
+        </div>
       </div>
       {/* <Container class="event_responsive13"> */}
-      <Container>
-        <div class='event_responsive13'>
-          {/* {guidanceCategory?.length > 0 &&
+      <div className='container sk-custom-container'>
+        <div className='row'>
+          <div class='event_responsive13'>
+            {/* {guidanceCategory?.length > 0 &&
             guidanceCategory?.map((gb, index) => { */}
-          {tempData?.length > 0 &&
-            tempData?.map((gb, index) => {
-              return (
-                <>
-                  {/* <Grid Container spacing={2} className='gridContainer flex'>
+            {isLoading ? (
+              <CustomLoader />
+            ) : tempData?.length > 0 ? (
+              tempData?.map((gb, index) => {
+                return (
+                  <>
+                    {/* <Grid Container spacing={2} className='gridContainer flex'>
                     <Col md={1} xl={12}>
                       <Card className='GuidanceOptionCard noselect'>
                         <CardMedia
@@ -630,9 +647,9 @@ function MockTest() {
                     </Col>
                   </Grid> */}
 
-                  {shuffleFun(gb, index)}
+                    {shuffleFun(gb, index)}
 
-                  {/* {Math.floor(Math.random() * (12 - 0) + 0) == index ? (
+                    {/* {Math.floor(Math.random() * (12 - 0) + 0) == index ? (
                     <>
                       <Grid
                         Container
@@ -701,14 +718,17 @@ function MockTest() {
                       )}
                     </>
                   )} */}
-                </>
-              );
-            })}
+                  </>
+                );
+              })
+            ) : (
+              <NoDataFound />
+            )}
+          </div>
         </div>
-      </Container>
-      <Footer loginPage={false} />
+      </div>
     </div>
   );
 }
 
-export default MockTest;
+export default withHeaderFooter(MockTest);
