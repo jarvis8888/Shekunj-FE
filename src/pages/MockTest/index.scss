@@ -444,6 +444,11 @@ p#col_grey {
     opacity: 0.3;
   }
 }
+@media screen and (max-width: 991px) {
+  .searchInput_mock{
+    min-width:auto;
+  }
+}
 
 @media screen and (min-device-width: 50px) and (max-device-width: 767px) {
   .SuccStory_banner {
@@ -767,7 +772,7 @@ p#col_grey {
   }
 
   .searchInput_mock {
-    width: 240px !important;
+    width: auto !important;
   }
   .mock_test_tit h2 {
     font-size: 24px;
@@ -790,6 +795,7 @@ p#col_grey {
     margin-left: 0px;
   }
 }
+
 .searchBtn1_mock {
   border: none;
   background: #ec498a;
