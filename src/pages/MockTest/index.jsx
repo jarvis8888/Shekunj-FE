@@ -7,10 +7,11 @@ import { useTranslation } from "react-i18next";
 import Timer from "react-compound-timer";
 import useExitPrompt from "../../hooks/useExitPromt";
 import Cross from "../../assets/icons/cross.png";
+import Search from "../../assets/images/search_white_icon.svg";
 import mockimgb from "../../assets/images/mockbanner.png";
 import boderarrow from "../../assets/images/borderarrow.png";
 
-import Search from "../../assets/icons/search1.png";
+// import Search from "../../assets/icons/search1.png";
 import { Helmet } from "react-helmet-async";
 import {
   Autocomplete,
@@ -416,9 +417,9 @@ function MockTest() {
       return (
         <>
           {mockTestBoxAds?.length > 0 ? (
-            <Grid Container spacing={2} className='gridContainer flex'>
-              <Col md={1} xl={12}>
-                <Card className='GuidanceOptionCard'>
+            <div className='container'>
+              <div className='row'>
+                <div className='col-md-3'>
                   <div onClick={() => addEmail(mockTestBoxAds[0]?.add_email)}>
                     <a href={mockTestBoxAds[0]?.url_adds} target='_blank'>
                       <img
@@ -429,9 +430,9 @@ function MockTest() {
                     </a>
                     <div className='overlay'></div>
                   </div>
-                </Card>
-              </Col>
-            </Grid>
+                </div>
+              </div>
+            </div>
           ) : (
             ""
           )}
@@ -439,50 +440,48 @@ function MockTest() {
       );
     } else {
       return (
-        <Grid Container spacing={2} className='gridContainer flex'>
-          <Col md={1} xl={12}>
-            <Card className='GuidanceOptionCard noselect'>
-              <CardMedia
-                className='guidanceOptionImage'
-                component='img'
-                image={gb?.image}
-                alt='image'
-              />
-              <CardContent>
-                <Typography
-                  variant='h6'
-                  className='guidanceOptionTitle limited-text-mock-test'
-                  fullWidth
-                >
-                  {gb?.name}
-                </Typography>
-              </CardContent>
+        <div className='col-xl-3 col-lg-4 col-md-4 col-sm-6'>
+          <div className='sk-mtask-box'>
+            <CardMedia
+              className='guidanceOptionImage'
+              component='img'
+              image={gb?.image}
+              alt='image'
+            />
+            <CardContent>
               <Typography
-                sx={{ mb: 1.5 }}
-                className='guidanceOptionTitle2'
-                color='text.secondary'
+                variant='h6'
+                className='guidanceOptionTitle limited-text-mock-test'
                 fullWidth
               >
-                {t(`mockTest.total_time`)}: {gb?.career_test_time}
+                {gb?.name}
               </Typography>
-              <CardActions className='actions'>
-                <Button
-                  size='small'
-                  variant='contained'
-                  href={gb && gb.form_link}
+            </CardContent>
+            <Typography
+              sx={{ mb: 1.5 }}
+              className='guidanceOptionTitle2'
+              color='text.secondary'
+              fullWidth
+            >
+              {t(`mockTest.total_time`)}: {gb?.career_test_time}
+            </Typography>
+            <CardActions className='actions'>
+              <Button
+                size='small'
+                variant='contained'
+                href={gb && gb.form_link}
+              >
+                <Link
+                  to={routingConstants?.MOCKTEST + gb?.slug}
+                  className=''
+                  key={gb?.id}
                 >
-                  <Link
-                    to={routingConstants?.MOCKTEST + gb?.slug}
-                    className=''
-                    key={gb?.id}
-                  >
-                    {t(`mockTest.take_test`)}
-                  </Link>
-                </Button>
-              </CardActions>
-            </Card>
-          </Col>
-        </Grid>
+                  {t(`mockTest.take_test`)}
+                </Link>
+              </Button>
+            </CardActions>
+          </div>
+        </div>
       );
     }
   };
@@ -565,10 +564,15 @@ function MockTest() {
                           name='searchInput'
                           class='form-control searchInput_mock'
                           placeholder='Search here...'
+                          autoComplete='off'
                         />
                       </div>
                       <div className='d-flex mocktest_submit1'>
-                        <button type='submit' className='searchBtn1_mock'>
+                        <button
+                          type='submit'
+                          className='searchBtn1_mock'
+                          disabled={searchInput === ""}
+                        >
                           <img
                             src={Search}
                             alt='Search'
@@ -593,16 +597,15 @@ function MockTest() {
       {/* <Container class="event_responsive13"> */}
       <div className='container sk-custom-container'>
         <div className='row'>
-          <div class='event_responsive13'>
-            {/* {guidanceCategory?.length > 0 &&
+          {/* {guidanceCategory?.length > 0 &&
             guidanceCategory?.map((gb, index) => { */}
-            {isLoading ? (
-              <CustomLoader />
-            ) : tempData?.length > 0 ? (
-              tempData?.map((gb, index) => {
-                return (
-                  <>
-                    {/* <Grid Container spacing={2} className='gridContainer flex'>
+          {isLoading ? (
+            <CustomLoader />
+          ) : tempData?.length > 0 ? (
+            tempData?.map((gb, index) => {
+              return (
+                <>
+                  {/* <Grid Container spacing={2} className='gridContainer flex'>
                     <Col md={1} xl={12}>
                       <Card className='GuidanceOptionCard noselect'>
                         <CardMedia
@@ -647,9 +650,9 @@ function MockTest() {
                     </Col>
                   </Grid> */}
 
-                    {shuffleFun(gb, index)}
+                  {shuffleFun(gb, index)}
 
-                    {/* {Math.floor(Math.random() * (12 - 0) + 0) == index ? (
+                  {/* {Math.floor(Math.random() * (12 - 0) + 0) == index ? (
                     <>
                       <Grid
                         Container
@@ -718,13 +721,14 @@ function MockTest() {
                       )}
                     </>
                   )} */}
-                  </>
-                );
-              })
-            ) : (
+                </>
+              );
+            })
+          ) : (
+            <div className='py-5 mx-auto'>
               <NoDataFound />
-            )}
-          </div>
+            </div>
+          )}
         </div>
       </div>
     </div>
