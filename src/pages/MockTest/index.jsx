@@ -417,8 +417,8 @@ function MockTest() {
       return (
         <>
           {mockTestBoxAds?.length > 0 ? (
-            <div className="container">
-              <div className="row">
+            <div className='container'>
+              <div className='row'>
                 <div className='col-md-3'>
                   <div onClick={() => addEmail(mockTestBoxAds[0]?.add_email)}>
                     <a href={mockTestBoxAds[0]?.url_adds} target='_blank'>
@@ -440,9 +440,8 @@ function MockTest() {
       );
     } else {
       return (
-     
         <div className='col-xl-3 col-lg-4 col-md-4 col-sm-6'>
-          <div className="sk-mtask-box">
+          <div className='sk-mtask-box'>
             <CardMedia
               className='guidanceOptionImage'
               component='img'
@@ -483,7 +482,6 @@ function MockTest() {
             </CardActions>
           </div>
         </div>
-      
       );
     }
   };
@@ -566,10 +564,15 @@ function MockTest() {
                           name='searchInput'
                           class='form-control searchInput_mock'
                           placeholder='Search here...'
+                          autoComplete='off'
                         />
                       </div>
                       <div className='d-flex mocktest_submit1'>
-                        <button type='submit' className='searchBtn1_mock'>
+                        <button
+                          type='submit'
+                          className='searchBtn1_mock'
+                          disabled={searchInput === ""}
+                        >
                           <img
                             src={Search}
                             alt='Search'
@@ -594,16 +597,15 @@ function MockTest() {
       {/* <Container class="event_responsive13"> */}
       <div className='container sk-custom-container'>
         <div className='row'>
-          
-            {/* {guidanceCategory?.length > 0 &&
+          {/* {guidanceCategory?.length > 0 &&
             guidanceCategory?.map((gb, index) => { */}
-            {isLoading ? (
-              <CustomLoader />
-            ) : tempData?.length > 0 ? (
-              tempData?.map((gb, index) => {
-                return (
-                  <>
-                    {/* <Grid Container spacing={2} className='gridContainer flex'>
+          {isLoading ? (
+            <CustomLoader />
+          ) : tempData?.length > 0 ? (
+            tempData?.map((gb, index) => {
+              return (
+                <>
+                  {/* <Grid Container spacing={2} className='gridContainer flex'>
                     <Col md={1} xl={12}>
                       <Card className='GuidanceOptionCard noselect'>
                         <CardMedia
@@ -648,9 +650,9 @@ function MockTest() {
                     </Col>
                   </Grid> */}
 
-                    {shuffleFun(gb, index)}
+                  {shuffleFun(gb, index)}
 
-                    {/* {Math.floor(Math.random() * (12 - 0) + 0) == index ? (
+                  {/* {Math.floor(Math.random() * (12 - 0) + 0) == index ? (
                     <>
                       <Grid
                         Container
@@ -719,14 +721,16 @@ function MockTest() {
                       )}
                     </>
                   )} */}
-                  </>
-                );
-              })
-            ) : (
+                </>
+              );
+            })
+          ) : (
+            <div className='py-5 mx-auto'>
               <NoDataFound />
-            )}
-          </div>
+            </div>
+          )}
         </div>
+      </div>
     </div>
   );
 }

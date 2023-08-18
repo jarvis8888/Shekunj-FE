@@ -427,13 +427,13 @@ p#col_grey {
   justify-content: end;
 }
 .searchInput_mock {
-  max-width: 280px !important;
+  max-width: 280px;
   width: 100%;
   min-width: 280px;
   height: 50px;
   border-radius: 4px 0 0px 4px;
 }
-.searchInput_mock:focus{
+.searchInput_mock:focus {
   border-color: #ec498a;
 }
 // .searchInput_mock {
@@ -445,8 +445,9 @@ p#col_grey {
   }
 }
 @media screen and (max-width: 991px) {
-  .searchInput_mock{
-    min-width:auto;
+  .searchInput_mock {
+    min-width: auto;
+    max-width: 188px;
   }
 }
 
@@ -456,10 +457,10 @@ p#col_grey {
     height: 698px !important;
     margin-right: 20px !important;
   }
-  .searchSection_mock{
+  .searchSection_mock {
     justify-content: start;
   }
-  .mock_test_tit h2{
+  .mock_test_tit h2 {
     font-size: 24px;
   }
   .sk-mockContent-box {
@@ -928,7 +929,7 @@ p.sucess_first_p {
   text-overflow: ellipsis;
   display: -webkit-box !important;
   -webkit-line-clamp: 2;
-  line-height: 26px;
+  // line-height: 26px;
   -webkit-box-orient: vertical;
   white-space: normal;
 }
@@ -960,7 +961,7 @@ p.sucess_first_p {
   box-shadow: none;
   transition: 0.3s;
 }
-.sk-mtask-box .actions Button a{
+.sk-mtask-box .actions Button a {
   color: #fff;
   transition: 0.3s;
 }
