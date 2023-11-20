@@ -27,6 +27,7 @@ import CircleRoundedIcon from "@mui/icons-material/CircleRounded";
 import locationicon from "../../assets/images/location.svg";
 import commonicon from "../../assets/images/commonicon.svg";
 import eventemailsend from "../../assets/images/eventemailsend.svg";
+import call from "../../assets/icons/call.svg";
 import gendericon from "../../assets/images/gendericon.svg";
 import SchoolOutlinedIcon from "@mui/icons-material/SchoolOutlined";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
@@ -73,7 +74,6 @@ const EventDetails = () => {
   const [loading, setLoading] = useState(false);
   const [extraInfo, setExtraInfo] = useState([]);
   const [stopPosition, setStopPosition] = useState(0);
-
 
   //states
 
@@ -138,6 +138,7 @@ const EventDetails = () => {
     email: eventData == null ? localData?.email : eventData?.email || "",
     gender: "",
     location: "",
+    contact: "",
   };
   const validationSchema = Yup.object({
     fullName: Yup.string().required("Full Name is required"),
@@ -146,12 +147,15 @@ const EventDetails = () => {
       .required("Email is required"),
     gender: Yup.string().required("Select Gender"),
     location: Yup.string().required("Location is required"),
+    contact: Yup.string()
+      .matches(/^\+?[0-9]{8,15}$/, "Invalid phone number")
+      .required("Number is required"),
   });
   const onRegistrationFormSubmit = useFormik({
     initialValues: initialValues,
     validationSchema: validationSchema,
     onSubmit: async (values, { resetForm }) => {
-      const { fullName, email, gender, location } = values;
+      const { fullName, email, gender, location, contact } = values;
 
       const extraInfoReg = {}; // Initialize the extra_info_reg object
 
@@ -166,7 +170,7 @@ const EventDetails = () => {
         name: fullName,
         last_name: "",
         city: location,
-        contact: "",
+        contact: contact,
         gender: gender,
         extra_info_reg: extraInfoReg,
       };
@@ -257,9 +261,9 @@ const EventDetails = () => {
                 Checkout our other events
               </Typography>
               <div className='ModalLinkEvent'>
-                <Link to={routingConstants.MORE_EVENT}>
+                <a href='/events/all'>
                   <strong>Lets have a look... Shekunj Events!</strong>
-                </Link>
+                </a>
               </div>
             </div>
             <div className='ModalBottomEvent'>
@@ -307,9 +311,9 @@ const EventDetails = () => {
                 Checkout our other events
               </Typography>
               <div className='ModalLinkEvent'>
-                <Link to={routingConstants.MORE_EVENT}>
+                <a href='/events/all'>
                   <strong>Lets have a look... Shekunj Events!</strong>
-                </Link>
+                </a>
               </div>
             </div>
             <div className='ModalBottomEvent'>
@@ -521,8 +525,11 @@ const EventDetails = () => {
                     </div>
                   </div>
                 </div>
-                <div class='col-xl-4 col-lg-8 col-md-12 col-sm-12 sk-Removeside-space'  id='event-col'
-      style={{ top: `${stopPosition}px` }}>
+                <div
+                  class='col-xl-4 col-lg-8 col-md-12 col-sm-12 sk-Removeside-space'
+                  id='event-col'
+                  style={{ top: `${stopPosition}px` }}
+                >
                   <div className='sk-event-sidebar'>
                     <div className='sk-event-form'>
                       <h6>Registration Form</h6>
@@ -539,7 +546,7 @@ const EventDetails = () => {
                             placeholder='Enter Full Name'
                           />
                           <span className='sk-icon-set'>
-                            <img src={gendericon} />
+                            <img src={gendericon} alt='' />
                           </span>
                         </div>
                         {errors.fullName && (
@@ -565,6 +572,26 @@ const EventDetails = () => {
                         {errors.email && (
                           <span className='sk-error-message'>
                             {errors.email}
+                          </span>
+                        )}
+                        <div className='sk-eventForm-filed'>
+                          <input
+                            type='number'
+                            name='contact'
+                            value={values.contact}
+                            onChange={handleChange}
+                            touched={touched}
+                            onBlur={handleBlur}
+                            className='form-control'
+                            placeholder='Contact'
+                          />
+                          <span className='sk-icon-set'>
+                            <img src={call} alt='' />
+                          </span>
+                        </div>
+                        {errors.contact && (
+                          <span className='sk-error-message'>
+                            {errors.contact}
                           </span>
                         )}
                         <ul>

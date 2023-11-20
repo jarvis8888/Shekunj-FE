@@ -69,6 +69,11 @@ export default function VerticalTabs() {
   const { careerOptions, guidanceCategoryDetail, isLoading } = useSelector(
     (state) => state.guidanceReducer,
   );
+  console.log(
+    "🚀 ~ file: index.jsx:70 ~ careerOptions:",
+    guidanceCategoryDetail,
+  );
+
   const [careerOptionBoxAds, setCareerOptionBoxAds] = useState([]);
   const [image, setImage] = useState("NA");
   const [adds, setAdds] = useState([]);
@@ -228,15 +233,13 @@ export default function VerticalTabs() {
           sx={{ borderRight: 1, borderColor: "divider" }}
         >
           {careerOptions?.map((g, i) => (
-            <>
-              <Tab
-                key={g?.id}
-                label={g?.name}
-                onClick={() => handleExamChange(i, g?.id)}
-                iconPosition='start'
-                {...a11yProps(1)}
-              />
-            </>
+            <Tab
+              key={g?.id}
+              label={g?.name}
+              onClick={() => handleExamChange(i, g?.id)}
+              iconPosition='start'
+              {...a11yProps(1)}
+            />
           ))}
         </Tabs>
       </Col>
@@ -278,10 +281,10 @@ export default function VerticalTabs() {
               {t("successCareerOption.other.1")}
             </div>
           )}
-          <Col md={8} xs={12}>
+          <Col md={8} xs={12} ref={ref}>
             <TabPanel value={value} index={0}>
               {/* <Row > */}
-              <Container ref={ref} className='wrap-container'>
+              <Container className='wrap-container'>
                 {/* {showGovtExams && careerOptions && ( */}
                 {showGovtExams &&
                   careerOptions &&

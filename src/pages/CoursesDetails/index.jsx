@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   getSimilarCourses,
   singleCourseDetails,
+  startCourse,
 } from "../../store/courses/action";
 import { Container, Row, Col } from "react-bootstrap";
 import Check from "../../assets/icons/check1.png";
@@ -29,6 +30,7 @@ const CourseDetails = () => {
   const { lan } = useSelector((state) => state.languageReducer);
 
   const { t } = useTranslation();
+
   useEffect(() => {
     dispatch(singleCourseDetails(id));
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
@@ -138,6 +140,33 @@ const CourseDetails = () => {
       },
     );
   }, []);
+
+  const checkCourseComplete = async (id) => {
+    let retryCount = 0;
+    const maxRetries = 3;
+
+    const makeRequest = async () => {
+      try {
+        const res = await axios.get(`course/start-user-course/${id}?page=${1}`);
+        if (res) {
+          console.log(`worked`);
+          const redirectTo = `${routingConstants.COURSES_TEST}${id}`;
+          window.location.assign(new URL(redirectTo, window.location.origin));
+        }
+      } catch (error) {
+        retryCount++;
+        if (retryCount < maxRetries) {
+          console.log(`Retrying... Attempt ${retryCount} of ${maxRetries}`);
+          await makeRequest();
+        } else {
+          console.log(`Max retry limit reached. Cannot proceed further.`);
+        }
+      }
+    };
+
+    await makeRequest();
+  };
+
   const currentUrl = window.location.href;
   return (
     <>
@@ -338,12 +367,12 @@ const CourseDetails = () => {
                       {t("coursesPage.coursesDetailsPage.other.1")}
                     </Link>
                   )}
-                  {/* <Link
-                    to={routingConstants.COURSES_TEST + course?.id}
+                  {/* <a
                     className='btn btn_str_Cor'
+                    onClick={() => checkCourseComplete(course?.id)}
                   >
                     Give Test
-                  </Link> */}
+                  </a> */}
 
                   <h3 className='similar-coursestext'>
                     {t("coursesPage.coursesDetailsPage.other.2")}

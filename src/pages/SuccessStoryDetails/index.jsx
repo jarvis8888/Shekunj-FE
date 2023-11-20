@@ -298,11 +298,12 @@ const SuccessStoryDetails = () => {
               <div className='row'>
                 <div className='col-xl-8 col-lg-8 col-md-12 col-sm-12'>
                   <div className='sk-topBottom-space'>
-                   <div><img
-                      src={successStoriesDetails?.image}
-                      alt={successStoriesDetails?.image_alt_tag}
-                      className='sk-storyBanner-img'
-                    />
+                    <div>
+                      <img
+                        src={successStoriesDetails?.image}
+                        alt={successStoriesDetails?.image_alt_tag}
+                        className='sk-storyBanner-img'
+                      />
                     </div>
                     <div className='story-bottom'>
                       <div className='hashtags-container'>
@@ -341,7 +342,7 @@ const SuccessStoryDetails = () => {
                         </div>
                       </div>
                       <div className='sk-social-icon sk-mobile-view'>
-                        <h6>Share this article</h6>
+                        <h6>Share this Story</h6>
                         <SocialShare
                           currentUrl={currentUrl}
                           title={successStoriesDetails?.title}
@@ -368,7 +369,6 @@ const SuccessStoryDetails = () => {
                         {successStoriesDetails?.title}
                       </h2>
                       <div
-                        
                         className='sk-successStoriesDetails'
                         dangerouslySetInnerHTML={{
                           __html: makeHtmlWithStyles(
@@ -470,7 +470,9 @@ const SuccessStoryDetails = () => {
                       hashtags={allHashTag}
                     />
                     <div className='title' ref={trendingSectionRef}>
-                      <div><img src={fire} alt='fire' width={36} /></div>
+                      <div>
+                        <img src={fire} alt='fire' width={36} />
+                      </div>
                       <div className='sk-heading-story'>
                         <h2>Trending Stories </h2>
                         <h3>
