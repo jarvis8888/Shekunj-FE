@@ -231,6 +231,7 @@ const CareerPage = () => {
             let filterArray1 = response.data.results.filter((item, index) => {
               return item.image_type == "top_college_box";
             });
+            setCollegeBoxAds(filterArray1);
 
             // sessionStorage.setItem('current_adds', JSON.stringify([0, 1]));
             let filterArray2 = response.data.results.filter((item, index) => {
@@ -536,7 +537,9 @@ const CareerPage = () => {
                     className='add_college_cover'
                     onClick={() => addEmail(collegeBannerAds[0]?.add_email)}
                   >
-                  <div class="sk-add-title"><h6>Advertisement</h6></div>
+                    <div class='sk-add-title'>
+                      <h6>Advertisement</h6>
+                    </div>
                     <a
                       href={collegeBannerAds[0]?.url_adds}
                       target='_blank'

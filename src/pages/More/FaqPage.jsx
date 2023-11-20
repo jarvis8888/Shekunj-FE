@@ -191,7 +191,7 @@ function FaqPage() {
   return (
     <>
       <SEO
-        title='Sheकुंज - Events'
+        title='Sheकुंज - FAQ'
         description='Shekunj.com works on women empowerment and skill development by providing free training, job-oriented courses, jobs & internships and career counseling'
         keywords='women empowerment organizations women empowerment initiative free online courses free career guidance'
         link={currentUrl}

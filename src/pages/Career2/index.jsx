@@ -134,6 +134,7 @@ const CareerPage2 = () => {
       setFlag(false);
     }
   }, [governmentExams, govBoxAds]);
+
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(async function (position, values) {
       const latitude = position.coords.latitude;
@@ -273,6 +274,13 @@ const CareerPage2 = () => {
           )
           .then((response) => {
             if (response && response.data.results.length > 0) {
+              let filterArray = response.data.results.filter((item, index) => {
+                return item.image_type == "govt_scm_cover";
+              });
+              let findImage =
+                filterArray.length > 0 ? filterArray[0].image : "NA";
+              setImage(findImage);
+              setGovBannerAds(filterArray);
               let filterArray1 = response.data.results.filter((item, index) => {
                 return item.image_type == "govt_scm_box";
               });
@@ -290,6 +298,13 @@ const CareerPage2 = () => {
         // alert("Your location is blocked")
         axios.get(`/private_adds/private_add`).then((response) => {
           if (response && response.data.results.length > 0) {
+            let filterArray = response.data.results.filter((item, index) => {
+              return item.image_type == "govt_scm_cover";
+            });
+            let findImage =
+              filterArray.length > 0 ? filterArray[0].image : "NA";
+            setImage(findImage);
+            setGovBannerAds(filterArray);
             let filterArray1 = response.data.results.filter((item, index) => {
               return item.image_type == "govt_scm_box";
             });

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./index.scss";
 import fackbook from "../../assets/images/facebooksideicon.svg";
-import twitter from "../../assets/images/twittersideicon.svg";
+import twitter from "../../assets/icons/twitterIcon.svg";
 import instagram from "../../assets/images/Instagramsideicon.svg";
 import linkedin from "../../assets/images/linkedinsideicon.svg";
 import httpServices from "../../utils/ApiServices";
@@ -41,10 +41,10 @@ const SocialMediaIcons = React.memo(() => {
         <i className='fab fa-facebook-f'>
           <img src={fackbook} alt='facebook' />
         </i>
-        <div style={{ color: "#fff" }}>{data?.facebook}</div>
+        {/* <div style={{ color: "#fff" }}>{data?.facebook}</div>
         <div style={{ color: "#fff", fontSize: "12px" }}>
           {data?.facebook_content}
-        </div>
+        </div> */}
       </div>
       <div
         className='likes'
@@ -56,10 +56,10 @@ const SocialMediaIcons = React.memo(() => {
         <i className='fab fa-twitter'>
           <img src={twitter} alt='twitter' />
         </i>
-        <div style={{ color: "#fff" }}>{data?.twitter}</div>
+        {/* <div style={{ color: "#fff" }}>{data?.twitter}</div>
         <div style={{ color: "#fff", fontSize: "12px" }}>
           {data?.twitter_content}
-        </div>
+        </div> */}
       </div>
       <div
         className='likes'
@@ -71,10 +71,10 @@ const SocialMediaIcons = React.memo(() => {
         <i className='fab fa-youtube'>
           <img src={linkedin} alt='youtube' />
         </i>
-        <div style={{ color: "#fff" }}>{data?.linkedin}</div>
+        {/* <div style={{ color: "#fff" }}>{data?.linkedin}</div>
         <div style={{ color: "#fff", fontSize: "12px" }}>
           {data?.facebook_content}
-        </div>
+        </div> */}
       </div>
       <div
         className='likes sk-instagram'
@@ -86,10 +86,10 @@ const SocialMediaIcons = React.memo(() => {
         <i className='fab fa-instagram'>
           <img src={instagram} alt='instagram' />
         </i>
-        <div style={{ color: "#fff" }}>{data?.insta}</div>
+        {/* <div style={{ color: "#fff" }}>{data?.insta}</div>
         <div style={{ color: "#fff", fontSize: "12px" }}>
           {data?.insta_content}
-        </div>
+        </div> */}
       </div>
     </div>
   );

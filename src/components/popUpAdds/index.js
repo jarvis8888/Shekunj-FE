@@ -7,12 +7,13 @@ const PopUpAdds = () => {
   const detect = useDeviceDetect();
 
   const [leftAddIsVisible, setLeftAddIsVisible] = useState(true);
-  const [rightAddIsVisible, setRightAddIsVisible] = useState(true);
+  const [rightAddIsVisible, setRightAddIsVisible] = useState(false);
   const [leftData, setLeftData] = useState([]);
   const [rightData, setRightData] = useState([]);
 
   const leftHandleClose = () => {
     setLeftAddIsVisible(false);
+    setRightAddIsVisible(true); // Show right add when left add is closed
     sessionStorage.setItem("leftAddClosed", true);
   };
   const rightHandleClose = () => {

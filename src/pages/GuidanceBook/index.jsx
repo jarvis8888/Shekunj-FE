@@ -230,7 +230,7 @@ const GuidancePage = () => {
                                 <input
                                   type='text'
                                   id=''
-                                  placeholder='Enter Full Name*'
+                                  placeholder='Enter Frist Name*'
                                   name='first_name'
                                   value={StudentValue.first_name}
                                   onBlur={StudentHandleBlur}
