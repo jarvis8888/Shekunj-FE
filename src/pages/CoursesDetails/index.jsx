@@ -147,11 +147,11 @@ const CourseDetails = () => {
 
     const makeRequest = async () => {
       try {
-        const res = await axios.get(`course/start-user-course/${id}?page=${1}`);
+        const res = await axios.get(`course/start-user-course/${id}?page=${1}&progress=${100}`);
         if (res) {
           console.log(`worked`);
           const redirectTo = `${routingConstants.COURSES_TEST}${id}`;
-          window.location.assign(new URL(redirectTo, window.location.origin));
+          // window.location.assign(new URL(redirectTo, window.location.origin));
         }
       } catch (error) {
         retryCount++;
@@ -367,12 +367,12 @@ const CourseDetails = () => {
                       {t("coursesPage.coursesDetailsPage.other.1")}
                     </Link>
                   )}
-                  {/* <a
+                  <a
                     className='btn btn_str_Cor'
                     onClick={() => checkCourseComplete(course?.id)}
                   >
                     Give Test
-                  </a> */}
+                  </a>
 
                   <h3 className='similar-coursestext'>
                     {t("coursesPage.coursesDetailsPage.other.2")}

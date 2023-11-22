@@ -372,7 +372,7 @@ function BlogPage() {
                   <div className='col-xl-8 col-lg-8 col-md-12 col-sm-12 animate__animatedcol-md-12 '>
                     <div className='carousel-blog'>
                       <BlogCarousel
-                        images={topTrendingBlogs?.slice(0, 5)}
+                        images={topTrendingBlogs?.slice(0, 8)}
                         color={getCategoryColor}
                       />
                     </div>
