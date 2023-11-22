@@ -92,6 +92,7 @@ function MockTest() {
   const [adds, setAdds] = useState([]);
   const [searchInput, setSearchInput] = useState("");
   const [tempData, setTempData] = useState([]);
+  console.log("🚀 ~ file: index.jsx:95 ~ tempData:", tempData)
 
   const history = useHistory();
   const dispatch = useDispatch();
@@ -408,12 +409,8 @@ function MockTest() {
     }
   };
 
-  useEffect(() => {
-    checkFunction();
-  }, [guidanceCategory]);
-
   const shuffleFun = (gb, index) => {
-    if (gb?.id === "advertistment") {
+    if (gb?.id === "advertisement") {
       return (
         <>
           {mockTestBoxAds?.length > 0 ? (
@@ -486,17 +483,33 @@ function MockTest() {
     }
   };
 
+  // const checkFunction = () => {
+  //   let num = Math.floor(Math.random() * (13 - 0) + 0);
+  //   let res = guidanceCategory;
+  //   let dummydata = {
+  //     id: "advertistment",
+  //   };
+  //   Object.values(res).splice(num, 0, dummydata);
+  //   if (res) {
+  //     setTempData(res);
+  //   }
+  // };
+
   const checkFunction = () => {
     let num = Math.floor(Math.random() * (13 - 0) + 0);
-    let res = guidanceCategory;
+    let res = [...guidanceCategory]; // Creating a new array
     let dummydata = {
-      id: "advertistment",
+      id: "advertisement",
     };
-    Object.values(res).splice(num, 0, dummydata);
-    if (res) {
-      setTempData(res);
-    }
+
+    res.splice(num, 0, dummydata); // Inserting the dummydata at the random index
+
+    setTempData(res); // Updating state with the modified array
   };
+
+  useEffect(() => {
+    checkFunction();
+  }, [guidanceCategory]);
 
   return (
     <div className='noselect'>
