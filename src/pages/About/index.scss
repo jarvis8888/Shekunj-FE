@@ -93,7 +93,7 @@ section.about_testim {
   border-radius: 10px;
   width: 100%;
   height: 453px;
-  padding: 30px 70px;
+  padding: 10px 70px;
   margin: 0 50px;
 }
 
@@ -140,7 +140,6 @@ section.about_testim {
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1280px) {
-
   .about_Con h2,
   .our_his h2 {
     font-size: 30px;
@@ -263,16 +262,13 @@ section.about_testim {
   }
 }
 
-@media screen and (max-width:767px) {
+@media screen and (max-width: 767px) {
   .google_ads_home {
     // margin: 5px 0px !important;
     // height: 150px !important;
     // width: 100% !important;
     // object-fit: contain;
   }
-
-
-
 }
 
 .NikitaSharmaImage {

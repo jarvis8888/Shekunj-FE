@@ -279,7 +279,7 @@ const AboutusPage = () => {
                 <div className='our_his'>
                   <h2>{t("homePage.highlightStudents.aboutHeading")}</h2>
                   <h5>{t("homePage.highlightStudents.1")}</h5>
-                  <p className='mb-5'>
+                  <p className='mb-3'>
                     {t("homePage.highlightStudents.aboutDescription")}
                   </p>
                   <Link to='/success-stories'>

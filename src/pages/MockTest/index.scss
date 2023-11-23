@@ -19,7 +19,21 @@
   overflow: hidden;
   transition: 0.3s;
 }
-
+.sk-ad-title {
+  display: inline-block;
+  padding-bottom: 15px;
+  font-size: 12px;
+  color: #888;
+}
+.mocktest-add {
+  border-radius: 8px;
+  background: #f0f0f0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: start;
+  height: calc(100% - 30px);
+  padding: 15px;
+}
 .sk-mtask-box:hover {
   transform: scale(1.03);
 }

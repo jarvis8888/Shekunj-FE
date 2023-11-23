@@ -40,7 +40,8 @@
 .que_num {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  gap: 5px;
+  // justify-content: space-between;
 }
 .que_status h2 {
   font-family: Poppins;

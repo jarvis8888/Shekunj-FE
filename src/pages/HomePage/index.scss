@@ -447,17 +447,18 @@ body {
 
 .learn_more {
   background: #ec498a;
-  border-radius: 2px;
+  border-radius: 4px;
   font-weight: 600;
   font-size: 14px;
   line-height: 42px;
   color: #ffffff;
   height: 44px;
-  width: 160px;
+  max-width: 180px;
   transition-duration: 1s !important;
   transition-timing-function: linear !important;
   display: inline-block;
   text-align: center;
+  width: 100%;
 }
 
 .learn_more:hover {
@@ -1050,7 +1051,6 @@ ul.star {
   }
 
   #myCarousel .carousel-item p {
-
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -1270,7 +1270,6 @@ ul.star {
     margin: 0;
   }
 
-
   .tes_box2 {
     width: 100%;
   }
@@ -1321,7 +1320,6 @@ ul.star {
   .google_add {
     width: 100%;
     padding: 0px !important;
-    ;
   }
 
   .same_padding {
@@ -1418,7 +1416,6 @@ ul.star {
 }
 
 @media screen and (min-device-width: 50px) and (max-device-width: 767px) {
-
   #myCarousel .carousel-item .banner_btn {
     padding: 17px 10px;
   }
@@ -1429,7 +1426,6 @@ ul.star {
     // width: 100% !important;
     // object-fit: contain;
   }
-
 }
 
 @media screen and (min-device-width: 768px) and (max-device-width: 1024px) {
@@ -1469,7 +1465,6 @@ ul.star {
     margin-top: -20px;
   }
 
-
   .certificate {
     background-image: none;
   }
@@ -1505,7 +1500,6 @@ ul.star {
 }
 
 @media screen and (max-width: 768px) {
-
   // .job-opprtunity-bg .jobimg {
   //   display: none;
   // }
@@ -1531,7 +1525,7 @@ ul.star {
   }
 }
 
-@media screen and (min-width:1024px) and (max-width:1300px) {
+@media screen and (min-width: 1024px) and (max-width: 1300px) {
   .resume .resumeimg {
     right: 45px;
     bottom: 0px;
@@ -1546,7 +1540,7 @@ ul.star {
 }
 
 .mock_test_pop.MuiBox-root {
-  background: #FFFFFF;
+  background: #ffffff;
   border-radius: 10px;
   width: 80%;
   height: 230px;
@@ -1567,7 +1561,7 @@ ul.star {
 }
 
 .mock_test_pop.MuiBox-root button.btn.btn-info {
-  background: #EC498A;
+  background: #ec498a;
   border: none;
   width: 115px;
   height: 30px;
@@ -1577,7 +1571,7 @@ ul.star {
   line-height: 15px;
   text-align: center;
   text-transform: capitalize;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 .mock_test_pop.MuiBox-root img.close_img {
