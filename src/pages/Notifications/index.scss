@@ -3,72 +3,71 @@ body {
 }
 
 .navbar-custom {
-    background-color: #ec498a;
-    color: #ffffff !important;
-    justify-content: center;
-  }
-  
-  .navbar-custom h2 {
-    text-align: center !important;
-  }
-  .c-heading-6 {
-    font-family: "Poppins", sans-serif;
-    font-size: 20px;
-    color: #000000;
-    padding: 10px 0;
-    // line-height: 1.1em;
-    display: inline-block;
-    word-wrap: break-word;
-    overflow: hidden;
-    -webkit-text-stroke-width: thin;
-    width: 83%;
-    margin-bottom: 20px;
-    margin-left: 5%;
-  }
-  
-  .card-text {
-    margin: 0 0 10px 0;
-    font-family: "Poppins", sans-serif;
-    font-size: 14px;
-    font-weight: 300 !important;
-    color: #3d3c3c;
-  }
-  
-  .text-muted {
-    font-family: "Poppins", sans-serif;
-  }
-  
-  .c-button {
-    font-family: "Poppins", sans-serif;
-    max-width: 80% !important;
-    width: 6% !important;
-    height: 45px !important;
-    color: white !important;
-    background: #ec498a !important;
-    border: 1px solid #ec498a !important;
-    box-sizing: border-box;
-    border-radius: 2px !important;
-    text-align: center !important;
-    padding-top: 9px !important;
-    padding-bottom:5px !important;
-    padding-left: 3px !important;
-    padding-right: 3px !important;
-    font-weight: bold !important;
-    margin-left: 6% !important;
-    margin-bottom: 30px !important;
-  }
-
-  .css-h4y409-MuiList-root {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    position: relative;
-    padding-top: 30px;
-    padding-bottom: 16px;
+  background-color: #ec498a;
+  color: #ffffff !important;
+  justify-content: center;
 }
 
-@media screen and (min-device-width:50px) and (max-device-width:767px) {
+.navbar-custom h2 {
+  text-align: center !important;
+}
+.c-heading-6 {
+  font-family: "Poppins", sans-serif;
+  font-size: 20px;
+  color: #000000;
+  padding: 10px 0;
+  // line-height: 1.1em;
+  display: inline-block;
+  word-wrap: break-word;
+  overflow: hidden;
+  -webkit-text-stroke-width: thin;
+  width: 83%;
+  margin-bottom: 20px;
+  margin-left: 5%;
+}
 
+.card-text {
+  margin: 0 0 10px 0;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  font-weight: 300 !important;
+  color: #3d3c3c;
+}
+
+.text-muted {
+  font-family: "Poppins", sans-serif;
+}
+
+.c-button {
+  font-family: "Poppins", sans-serif;
+  max-width: 120px !important;
+  width: 100% !important;
+  height: 45px !important;
+  color: white !important;
+  background: #ec498a !important;
+  border: 1px solid #ec498a !important;
+  box-sizing: border-box;
+  border-radius: 4px !important;
+  text-align: center !important;
+  padding-top: 9px !important;
+  padding-bottom: 5px !important;
+  padding-left: 3px !important;
+  padding-right: 3px !important;
+  font-weight: bold !important;
+  margin-left: 6% !important;
+  margin-bottom: 30px !important;
+}
+
+.css-h4y409-MuiList-root {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  padding-top: 30px;
+  padding-bottom: 16px;
+}
+
+@media screen and (min-device-width: 50px) and (max-device-width: 767px) {
   body {
     overflow-x: hidden;
   }
@@ -80,25 +79,25 @@ body {
     position: relative;
     padding-top: 30px;
     padding-bottom: 16px;
-}
-// .c-button {
-//   font-family: "Poppins", sans-serif;
-//   max-width: 80% !important;
-//   width: 35% !important;
-//   height: 50px !important;
-//   color: white;
-//   background-color: #ec498a;
-//   // background-color: #0078d4;
-//   // padding: 0 10px 0 5px;
-//   text-align: center;
-//   padding-top: 10px !important;
-//   padding-bottom:5px !important ;
-//   padding-left: 3px !important;
-//   padding-right: 3px !important;
-//   font-weight: bold;
-//   margin-left: 6%;
-//   margin-bottom: 30px;
-// }
+  }
+  // .c-button {
+  //   font-family: "Poppins", sans-serif;
+  //   max-width: 80% !important;
+  //   width: 35% !important;
+  //   height: 50px !important;
+  //   color: white;
+  //   background-color: #ec498a;
+  //   // background-color: #0078d4;
+  //   // padding: 0 10px 0 5px;
+  //   text-align: center;
+  //   padding-top: 10px !important;
+  //   padding-bottom:5px !important ;
+  //   padding-left: 3px !important;
+  //   padding-right: 3px !important;
+  //   font-weight: bold;
+  //   margin-left: 6%;
+  //   margin-bottom: 30px;
+  // }
   .c-heading-6 {
     font-family: "Poppins", sans-serif;
     font-size: 20px;
@@ -116,10 +115,10 @@ body {
     height: 100% !important;
     margin-left: 5%;
   }
-  .icon_favorite{
+  .icon_favorite {
     display: block;
     margin-bottom: 10px;
-    height:100%;
+    height: 100%;
   }
   .card-text {
     margin: 0 0 10px 0;
@@ -128,11 +127,11 @@ body {
     font-weight: 300 !important;
     color: #3d3c3c;
   }
-  
+
   .text-muted {
     font-family: "Poppins", sans-serif;
   }
-  
+
   .c-button {
     background: #ec498a;
     border: 1px solid #ec498a;
@@ -146,21 +145,19 @@ body {
     color: #ffffff;
     transition: 0.25s ease;
     transition-timing-function: linear;
-  font-family: "Poppins", sans-serif;
-  max-width: 80% !important;
-  width: 30% !important;
-  height: 45px !important;
-  padding-top: 10px !important;
-  padding-bottom:3px !important ;
-  padding-left: 1px !important;
-  padding-right: 1px !important;
-  font-weight: bold;
-  margin-left: 10% !important;
-  margin-bottom: 30px;
+    font-family: "Poppins", sans-serif;
+    max-width: 80% !important;
+    width: 30% !important;
+    height: 45px !important;
+    padding-top: 10px !important;
+    padding-bottom: 3px !important ;
+    padding-left: 1px !important;
+    padding-right: 1px !important;
+    font-weight: bold;
+    margin-left: 10% !important;
+    margin-bottom: 30px;
   }
-  .h3 span{
+  .h3 span {
     display: inline-block;
-    } 
-
+  }
 }
-

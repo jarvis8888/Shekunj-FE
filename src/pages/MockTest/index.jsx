@@ -92,7 +92,7 @@ function MockTest() {
   const [adds, setAdds] = useState([]);
   const [searchInput, setSearchInput] = useState("");
   const [tempData, setTempData] = useState([]);
-  console.log("🚀 ~ file: index.jsx:95 ~ tempData:", tempData)
+  console.log("🚀 ~ file: index.jsx:95 ~ tempData:", tempData);
 
   const history = useHistory();
   const dispatch = useDispatch();
@@ -414,20 +414,20 @@ function MockTest() {
       return (
         <>
           {mockTestBoxAds?.length > 0 ? (
-            <div className='container'>
-              <div className='row'>
-                <div className='col-md-3'>
-                  <div onClick={() => addEmail(mockTestBoxAds[0]?.add_email)}>
-                    <a href={mockTestBoxAds[0]?.url_adds} target='_blank'>
-                      <img
-                        src={mockTestBoxAds[0]?.image}
-                        alt='mockTestBoxAds'
-                        className='guidanceOptionImageAdd'
-                      />
-                    </a>
-                    <div className='overlay'></div>
-                  </div>
-                </div>
+            <div className='col-xl-3 col-lg-4 col-md-4 col-sm-6'>
+              <div
+                className='mocktest-add'
+                onClick={() => addEmail(mockTestBoxAds[0]?.add_email)}
+              >
+                <span className='sk-ad-title'>Advertisement</span>
+                <a href={mockTestBoxAds[0]?.url_adds} target='_blank'>
+                  <img
+                    src={mockTestBoxAds[0]?.image}
+                    alt='mockTestBoxAds'
+                    className='guidanceOptionImageAdd'
+                  />
+                </a>
+                <div className='overlay'></div>
               </div>
             </div>
           ) : (
