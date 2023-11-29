@@ -12,7 +12,7 @@ body {
 .sk-header-bg {
   padding: 15px 0;
   position: sticky;
-  top: 0;
+  top: 58px;
   bottom: 0;
   left: 0;
   right: 0;
@@ -21,6 +21,9 @@ body {
 
 .sk-headerTop-bg {
   background: #f0f0f0;
+  position: sticky;
+  top: 0;
+  z-index: 999;
 }
 .sk-mobile-hide {
   margin-left: 15px;
@@ -396,6 +399,9 @@ body {
   }
   .sk-headerTop-bg {
     background: #202020;
+    position: sticky;
+    top: 0;
+    z-index: 999;
   }
   .header-top .custom-dropdown button {
     color: #fff;

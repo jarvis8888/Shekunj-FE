@@ -439,44 +439,44 @@ function MockTest() {
       return (
         <div className='col-xl-3 col-lg-4 col-md-4 col-sm-6'>
           <div className='sk-mtask-box'>
-            <CardMedia
-              className='guidanceOptionImage'
-              component='img'
-              image={gb?.image}
-              alt='image'
-            />
-            <CardContent>
+            <Link
+              to={routingConstants?.MOCKTEST + gb?.slug}
+              className=''
+              key={gb?.id}
+            >
+              <CardMedia
+                className='guidanceOptionImage'
+                component='img'
+                image={gb?.image}
+                alt='image'
+              />
+              <CardContent>
+                <Typography
+                  variant='h6'
+                  className='guidanceOptionTitle limited-text-mock-test'
+                  fullWidth
+                >
+                  {gb?.name}
+                </Typography>
+              </CardContent>
               <Typography
-                variant='h6'
-                className='guidanceOptionTitle limited-text-mock-test'
+                sx={{ mb: 1.5 }}
+                className='guidanceOptionTitle2'
+                color='text.secondary'
                 fullWidth
               >
-                {gb?.name}
+                {t(`mockTest.total_time`)}: {gb?.career_test_time}
               </Typography>
-            </CardContent>
-            <Typography
-              sx={{ mb: 1.5 }}
-              className='guidanceOptionTitle2'
-              color='text.secondary'
-              fullWidth
-            >
-              {t(`mockTest.total_time`)}: {gb?.career_test_time}
-            </Typography>
-            <CardActions className='actions'>
-              <Button
-                size='small'
-                variant='contained'
-                href={gb && gb.form_link}
-              >
-                <Link
-                  to={routingConstants?.MOCKTEST + gb?.slug}
-                  className=''
-                  key={gb?.id}
+              <CardActions className='actions'>
+                <Button
+                  size='small'
+                  variant='contained'
+                  href={gb && gb.form_link}
                 >
                   {t(`mockTest.take_test`)}
-                </Link>
-              </Button>
-            </CardActions>
+                </Button>
+              </CardActions>
+            </Link>
           </div>
         </div>
       );

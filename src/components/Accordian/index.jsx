@@ -149,6 +149,7 @@ export default function AccordionComponent({
         }),
       );
     }
+    window.scrollTo(0, 300);
   };
 
   const hasMoreCountShowFunction = (data, category, subCategory) => {

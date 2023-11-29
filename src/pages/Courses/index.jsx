@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Aos from "aos";
@@ -37,6 +37,7 @@ import { CustomLoader } from "../../components/customLoader/CustomLoader";
 
 const Courses = () => {
   const { t } = useTranslation();
+  const scrollRef = useRef(null);
   const state = useSelector((state) => {
     return state.coursesReducer;
   });
@@ -57,6 +58,15 @@ const Courses = () => {
   const [disabled, setDisabled] = useState(false);
   const [hasSuggestion, setHasSuggestion] = useState(false);
   const [flag, setFlag] = useState(true);
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
 
   const dispatch = useDispatch();
   const debouncedSearchInput = useDebounce(searchInput, 500);
@@ -147,7 +157,7 @@ const Courses = () => {
                             page_adds?.addsData[page_adds?.addIndex]
                           ]?.image
                         }
-                        alt='Image'
+                        alt='add'
                         className='google_add_box_img'
                         style={{ paddingTop: 0 }}
                       />
@@ -226,6 +236,7 @@ const Courses = () => {
     //   )
     // }
   };
+
   useEffect(() => {
     checkFunction();
   }, [state?.allCourses?.results]);
@@ -442,6 +453,23 @@ const Courses = () => {
     setHasSuggestion(false); // Set it to false when a suggestion is clicked.
   };
 
+  const scrollToElement = (ref, offset = 0) => {
+    if (ref.current) {
+      const headerHeight = 130; // Replace this value with your actual header height
+      const elementPosition = ref.current.getBoundingClientRect().top;
+      const scrollPosition = elementPosition - headerHeight + offset;
+
+      window.scrollTo({
+        top: scrollPosition,
+        behavior: "smooth",
+      });
+    }
+  };
+
+  useEffect(() => {
+    scrollToElement(scrollRef, 0);
+  }, []);
+
   return (
     <div>
       {/* <SEO
@@ -530,7 +558,7 @@ const Courses = () => {
       </section>
 
       <section className='Srch_sec mb-5 noselect'>
-        <div className='container'>
+        <div className='container' ref={scrollRef}>
           <Row>
             <Col md={12} xs={12}>
               <div className='course_para'>
@@ -610,7 +638,12 @@ const Courses = () => {
               </h5>
 
               <div className='mobile_view_city_selct'>
-                <Accordion>
+                <Accordion
+                  expanded={isHovered}
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
+                  elevation={isHovered ? 3 : 0}
+                >
                   <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
                     aria-controls='panel1a-content'
@@ -640,7 +673,12 @@ const Courses = () => {
               </div>
 
               <div className='desktop_view_city_selct'>
-                <Accordion>
+                <Accordion
+                  expanded={isHovered}
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
+                  elevation={isHovered ? 3 : 0}
+                >
                   <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
                     aria-controls='panel1a-content'

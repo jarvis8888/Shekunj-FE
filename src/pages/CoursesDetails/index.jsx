@@ -151,7 +151,7 @@ const CourseDetails = () => {
         if (res) {
           console.log(`worked`);
           const redirectTo = `${routingConstants.COURSES_TEST}${id}`;
-          // window.location.assign(new URL(redirectTo, window.location.origin));
+          window.location.assign(new URL(redirectTo, window.location.origin));
         }
       } catch (error) {
         retryCount++;

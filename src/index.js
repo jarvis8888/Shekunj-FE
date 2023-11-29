@@ -19,6 +19,7 @@ import "./assets/i18n/i18n";
 // import '@react-pdf-viewer/core/lib/styles/index.css';
 import "rsuite/dist/rsuite-no-reset.min.css";
 import PopUpAdds from "./components/popUpAdds";
+import { PageNavigationListener } from "./utils/utils";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -29,6 +30,7 @@ ReactDOM.render(
             <HelmetProvider>
               <App />
               <ScrollToTop />
+              <PageNavigationListener />
               <PopUpAdds />
             </HelmetProvider>
             <ToastContainer

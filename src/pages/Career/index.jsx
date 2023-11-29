@@ -440,6 +440,7 @@ const CareerPage = () => {
     if (startPage + 1 < totalPages) {
       setStartPage(startPage + 1);
     }
+    window.scrollTo(0, 300);
   };
   // Handle previous page click
   const previousPage = () => {
@@ -468,6 +469,7 @@ const CareerPage = () => {
     if (startPage > 1) {
       setStartPage(startPage - 1);
     }
+    window.scrollTo(0, 300);
   };
   const handleClick = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -491,6 +493,7 @@ const CareerPage = () => {
       }, 500);
     }
     setOffset(newOffset);
+    window.scrollTo(0, 300);
   };
 
   useEffect(() => {
@@ -538,7 +541,7 @@ const CareerPage = () => {
                     onClick={() => addEmail(collegeBannerAds[0]?.add_email)}
                   >
                     <div class='sk-add-title'>
-                      <h6>Advertisement</h6>
+                      {!detect.isMobile && <h6>Advertisement</h6>}
                     </div>
                     <a
                       href={collegeBannerAds[0]?.url_adds}

@@ -5,6 +5,8 @@ import { toast } from "react-toastify";
 import i18njs from "../assets/i18n/i18n";
 import { routingConstants } from "./constants";
 import axios from "axios";
+import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
 
 export const toasterConfig = {
   position: "top-right",
@@ -458,8 +460,13 @@ export const capitalizeFirstLetter = (str) => {
   return str?.charAt(0).toUpperCase() + str?.slice(1);
 };
 
-
-export function formatTimeRangeOnCard(start_date, start_time, end_date, end_time, includeDate = false) {
+export function formatTimeRangeOnCard(
+  start_date,
+  start_time,
+  end_date,
+  end_time,
+  includeDate = false,
+) {
   if (!start_date || !start_time || !end_date || !end_time) {
     return "";
   }
@@ -487,11 +494,57 @@ export function formatTimeRangeOnCard(start_date, start_time, end_date, end_time
     .split(" ");
 
   if (includeDate) {
-    return `${day} ${month} ${year} - ${endday} ${endmonth} ${endyear}`.replace(/,/g, "");
+    return `${day} ${month} ${year} - ${endday} ${endmonth} ${endyear}`.replace(
+      /,/g,
+      "",
+    );
   } else {
-    return `${time} ${meridiem.toUpperCase()} - ${endtime} ${endmeridiem.toUpperCase()}`.replace(/,/g, "");
+    return `${time} ${meridiem.toUpperCase()} - ${endtime} ${endmeridiem.toUpperCase()}`.replace(
+      /,/g,
+      "",
+    );
   }
 }
+
+// export function formatTimeRangeOnCard(
+//   start_date,
+//   start_time,
+//   end_date,
+//   end_time,
+//   includeDate = false,
+// ) {
+//   if (!start_date || !start_time || !end_date || !end_time) {
+//     return "";
+//   }
+
+//   const start = new Date(start_date + " " + start_time);
+//   const end = new Date(end_date + " " + end_time);
+
+//   const formatter = new Intl.DateTimeFormat("en", {
+//     day: "numeric",
+//     month: "short",
+//     year: "2-digit",
+//     hour: "numeric",
+//     minute: "numeric",
+//     hour12: true,
+//   });
+
+//   const formattedStartDate = formatter.format(start);
+//   const formattedEndDate = formatter.format(end);
+
+//   if (start.toDateString() === end.toDateString()) {
+//     return includeDate
+//       ? formattedStartDate.replace(/,/g, "")
+//       : `${formattedStartDate.split(",")[1]}`.replace(/,/g, "");
+//   } else {
+//     return includeDate
+//       ? `${formattedStartDate} - ${formattedEndDate}`.replace(/,/g, "")
+//       : `${formattedStartDate} - ${formattedEndDate.split(",")[1]}`.replace(
+//           /,/g,
+//           "",
+//         );
+//   }
+// }
 
 
 export function getTimeDifferenceString(dateTime) {
@@ -517,4 +570,14 @@ export function getTimeDifferenceString(dateTime) {
   } else {
     return createdAt.toLocaleDateString(); // Show the full date if more than a year ago
   }
+}
+
+export function PageNavigationListener() {
+  const location = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
+
+  return null;
 }
