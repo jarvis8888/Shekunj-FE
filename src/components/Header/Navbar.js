@@ -53,7 +53,11 @@ const Navbar = (props) => {
             <a href='/courses' className={isActive("/courses") && "active"}>
               {t("header.heading.2")}
             </a>
-            <Dropdown title={t("header.heading.3")} className='custom-dropdown'>
+            <Dropdown
+              title={t("header.heading.3")}
+              className='custom-dropdown'
+              trigger='hover'
+            >
               <Dropdown.Item
                 onClick={() =>
                   history.push(routingConstants.SUCCESS_CAREER_OPTION)
@@ -86,7 +90,11 @@ const Navbar = (props) => {
             <a href='/jobs' className={isActive("/jobs") && "active"}>
               {t("header.heading.6")}
             </a>
-            <Dropdown title={t("header.heading.5")} className='custom-dropdown'>
+            <Dropdown
+              title={t("header.heading.5")}
+              className='custom-dropdown'
+              trigger='hover'
+            >
               <Dropdown.Item
                 onClick={() => history.push(routingConstants.TOP_COLLEGES)}
                 className={isActive(routingConstants.TOP_COLLEGES) && "active"}

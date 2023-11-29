@@ -424,6 +424,7 @@ const CareerPage1 = () => {
     if (startPage + 1 < totalPages) {
       setStartPage(startPage + 1);
     }
+    window.scrollTo(0, 300);
   };
 
   // Handle previous page click
@@ -453,6 +454,7 @@ const CareerPage1 = () => {
     if (startPage > 1) {
       setStartPage(startPage - 1);
     }
+    window.scrollTo(0, 300);
   };
 
   const handleClick = (pageNumber) => {
@@ -476,6 +478,7 @@ const CareerPage1 = () => {
       }, 500);
     }
     setOffset(newOffset);
+    window.scrollTo(0, 300);
   };
 
   useEffect(() => {
@@ -542,7 +545,9 @@ const CareerPage1 = () => {
                     className='ads_school_cover'
                     onClick={() => addEmail(schoolBannerAds[0]?.add_email)}
                   >
-                  <div class="sk-add-title"><h6>Advertisement</h6></div>
+                    <div class='sk-add-title'>
+                      {!detect.isMobile && <h6>Advertisement</h6>}
+                    </div>
                     <a href={schoolBannerAds[0]?.url_adds} target='_blank'>
                       {detect.isMobile ? (
                         schoolBannerAds[0]?.image_mobile && (

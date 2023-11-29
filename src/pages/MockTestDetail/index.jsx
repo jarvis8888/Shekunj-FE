@@ -506,7 +506,7 @@ function MockTestDetail() {
             {/* <h2>Test Started</h2> */}
 
             <Row>
-              <Col md={8} xs={12}>
+              <Col md={8} xs={12} className='mx-auto'>
                 <div className='deatil_box'>
                   <img
                     src={guidanceCategory && guidanceCategory?.image}
@@ -546,7 +546,7 @@ function MockTestDetail() {
             </Row>
 
             <Row>
-              <Col md={3} xs={12} className='mt-1'>
+              <Col md={3} xs={12} className='mt-1 mx-auto'>
                 <button
                   onClick={() => {
                     handleStartCourse();
