@@ -494,6 +494,12 @@ export function formatTimeRangeOnCard(
     .split(" ");
 
   if (includeDate) {
+    const startDate = `${day} ${month} ${year}`;
+    const endDate = `${endday} ${endmonth} ${endyear}`;
+
+    if (startDate === endDate) {
+      return `${day} ${month} ${year}`.replace(/,/g, "");
+    }
     return `${day} ${month} ${year} - ${endday} ${endmonth} ${endyear}`.replace(
       /,/g,
       "",
@@ -545,7 +551,6 @@ export function formatTimeRangeOnCard(
 //         );
 //   }
 // }
-
 
 export function getTimeDifferenceString(dateTime) {
   const now = new Date();

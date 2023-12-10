@@ -6,74 +6,92 @@ import axios from "axios";
 import { useTranslation } from "react-i18next";
 import { Link, Redirect, useHistory, useLocation } from "react-router-dom";
 import { constants } from "../../utils";
+import WorkspacePremiumSharpIcon from "@mui/icons-material/WorkspacePremiumSharp";
 import { Header, Footer, Carousel, SEO } from "../../components";
-
+// import SlideContent from "./SlideContent";
 import "animate.css";
 import "aos/dist/aos.css";
-import "../../../node_modules/slick-carousel/slick/slick.css";
-import "../../../node_modules/slick-carousel/slick/slick-theme.css";
-
-import "../../pages/responsive.scss";
-import "../../pages/responsive.scss";
+import SchoolRoundedIcon from "@mui/icons-material/SchoolRounded";
+import AccessTimeIcon from "@mui/icons-material/AccessTime";
+// import Swiper core and required modules
+import SwiperCore, {
+  Autoplay,
+  Navigation,
+  Pagination,
+  EffectFade,
+} from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+// import "../../pages/responsive.scss";
+import quatesicon from "../../assets/images/quate.svg";
+import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
+import GradeRoundedIcon from "@mui/icons-material/GradeRounded";
+import testmonailimg from "../../assets/images/testmonial.png";
+import agricultureicon from "../../assets/images/agriculture.svg";
+import vectorimg from "../../assets/images/storyvector.svg";
+import vectorimg1 from "../../assets/images/storyvector1.svg";
+import firstslidebanner from "../../assets/images/happystudentbanner.png";
+import successstoryimg from "../../assets/images/storysuccess.png";
+// import "../More/blogPage.scss";
 import "./index.scss";
-
-import add from "../../assets/images/add.png";
-import x from "../../assets/images/Career/x.png";
-import desktop from "../../assets/icons/desktop.png";
-import Resume from "../../assets/images/resume.png";
-import Girl from "../../assets/images/job1.png";
-import Community from "../../assets/images/community.png";
-// import Nikita from "../../assets/images/testimonial/1.png";
-// import Priya from "../../assets/images/testimonial/2.png";
-import Nikita from "../../assets/images/Nikita-Sharma.png";
-import Ankita from "../../assets/images/Ankita-Sharma.png";
-import star from "../../assets/images/Star 2.png";
-import half_star from "../../assets/images/half_star.svg";
-import certif from "../../assets/images/mob_certif.jpg";
-import g1 from "../../assets/images/1.png";
-import g2 from "../../assets/images/2.png";
-import g3 from "../../assets/images/3.png";
-import g4 from "../../assets/images/4.png";
-import g5 from "../../assets/images/5.png";
-import g6 from "../../assets/images/6.png";
-import g7 from "../../assets/images/7.png";
-import g8 from "../../assets/images/8.png";
-import g9 from "../../assets/images/9.png";
-import g10 from "../../assets/images/10.png";
-import g11 from "../../assets/images/11.png";
-import g12 from "../../assets/images/12.png";
-import g13 from "../../assets/images/13.png";
-import g14 from "../../assets/images/14.png";
-import g15 from "../../assets/images/15.png";
-import g16 from "../../assets/images/16.png";
-import g17 from "../../assets/images/17.png";
-import g18 from "../../assets/images/18.png";
-import g19 from "../../assets/images/19.png";
-import g20 from "../../assets/images/20.png";
+import arrowbicon from "../../assets/images/arrowicon.svg";
+import EastRoundedIcon from "@mui/icons-material/EastRounded";
+import begainimg from "../../assets/images/skillgirl.png";
+import addbannerhome from "../../assets/images/homeaddbanner.png";
+import mocktesttimg from "../../assets/images/mocktest.png";
+import google from "../../assets/images/google-icon.svg";
+import trustpilot from "../../assets/images/trustpilot-logo.svg";
+import glassdrop from "../../assets/images/glassdrop.svg";
+import MenuBookRoundedIcon from "@mui/icons-material/MenuBookRounded";
+import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
+import cousreimg from "../../assets/images/courseimg.png";
 import { Box, Modal, Typography } from "@mui/material";
 // import { useDispatch, useSelector } from "react-redux";
 import { useDispatch, useSelector } from "react-redux";
 import { adsList } from "../../store/ads";
 import useDeviceDetect from "../../hooks/useDeviceDetect";
-import { Helmet } from "react-helmet-async";
-
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 400,
-  bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
-  p: 4,
-};
+import {
+  DateFormat,
+  addEmailToClient,
+  formatDateRange,
+  formatTimeRange,
+  generateSlug,
+  truncateString,
+} from "../../utils/utils";
+import httpServices from "../../utils/ApiServices";
+import { apiConstants, routingConstants } from "../../utils/constants";
+import { CustomLoader } from "../../components/customLoader/CustomLoader";
+import { NoDataFound } from "../../components/noDataFound/NoDataFound";
+import LatestBlogCard from "../../components/cards/LatestBlogCard";
 
 function HomePage() {
   const dispatch = useDispatch();
   const history = useHistory();
+  const detect = useDeviceDetect();
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
+  const { lan } = useSelector((state) => state.languageReducer);
+  const [adsPosition1, setAdsPosition1] = useState([]);
+  const [adsPosition2, setAdsPosition2] = useState([]);
+  const [adsPosition3, setAdsPosition3] = useState([]);
+  const [adsPosition4, setAdsPosition4] = useState([]);
+  const [courseData, setCourseData] = useState([]);
+  const [mockData, setMockData] = useState([]);
+  const [successData, setSuccessData] = useState([]);
+  const [govtData, setGovtData] = useState([]);
+  const [eventsData, setEventsData] = useState([]);
+  const [blogsData, setBlogsData] = useState([]);
+  const [testimonialData, setTestimonialData] = useState([]);
+  const [reviewsData, setReviewsData] = useState([]);
+  const [categoryList, setCategoryList] = useState([]);
+  const [categoryName, setCategoryName] = useState(null);
+  const [courseLoader, setCourseLoader] = useState(false);
+  const [activeTab, setActiveTab] = useState();
+  const [googleActiveTab, setGoogleActiveTab] = useState("");
+  const [loading, setLoading] = useState(true);
+
   const handleClose = () => {
     setOpen(false);
     history.push("/");
@@ -86,43 +104,7 @@ function HomePage() {
     return React.useMemo(() => new URLSearchParams(search), [search]);
   }
   let query = useQuery();
-
   const redirect = query.get("redirect");
-
-  const settings = {
-    dots: false,
-    speed: 500,
-    autoplay: true,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    infinite: true,
-
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          dots: true,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  };
-
   useEffect(() => {
     Aos.init({ duration: 2000 });
     if (redirect) {
@@ -130,65 +112,39 @@ function HomePage() {
     }
   }, [redirect]);
 
-  const [adsPosition1, setAdsPosition1] = useState([]);
-  const [adsPosition2, setAdsPosition2] = useState([]);
-  const [adsPosition3, setAdsPosition3] = useState([]);
-  const [image, setImage] = useState("NA");
-  const [newImage, setNewImage] = useState([]);
-  const detect = useDeviceDetect();
+  const makeHtml = (htmlString) => {
+    const htmlNode = document.createElement("div");
+    htmlNode.innerHTML = htmlString;
+    htmlNode.querySelectorAll("*").forEach(function (node) {
+      node.removeAttribute("style");
+    });
+    return htmlNode.innerHTML;
+  };
 
-  //   const [lat, setLat] = useState(null);
-  //   const [lng, setLng] = useState(null);
-  //   const [status, setStatus] = useState(null);
+  const navigation = {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  };
 
-  //   const getLocation = () => {
-  //     if (!navigator.geolocation) {
-  //         setStatus('Geolocation is not supported by your browser');
-  //     } else {
-  //         setStatus('Locating...');
-  //         navigator.geolocation.getCurrentPosition((position) => {
-  //             setStatus(null);
-  //             setLat(position.coords.latitude);
-  //             setLng(position.coords.longitude);
-  //         });
-  //     }
-  // }
-  // console.log('longlat',lng,lat)
+  const pagination = {
+    clickable: true,
+    renderBullet: function (index, className) {
+      let num = index + 1;
+      return `<span class=${className}>${0 + [num]}</span>`;
+    },
+  };
+  SwiperCore.use([Autoplay]);
 
-  // useEffect(() => {
-  //     getLocation();
-  //     if (lat && lng !== null) {
-  //         axios.post(`/location?latitude=${lat}&longitude=${lng}`)
-  //             .then((response) => {
-  //                 console.log(response)
-  //             });
-  //     }
-  // }, [lat, lng]);
+  const openTab = (tabName) => {
+    setGoogleActiveTab(tabName);
+  };
 
-  // useEffect(() => {
-  // 	axios.get('/private_adds/private_add?image_type=home_position_1')
-  // 		.then((response) => {
-  // 			setAdsPosition1(response.data.results);
-  // 		});
-  // }, [])
-
-  // useEffect(() => {
-  // 	axios.get('/private_adds/private_add')
-  // 		.then((response) => {
-
-  //       if(response.data.results.length > 0)
-
-  //       {
-  //        let filterArray = response.data.results.filter((item,index)=>{
-  //           return item.image_type == "home_position_1"
-  //         })
-  //         let findImage = filterArray.length>0 ? filterArray[0].image : "NA"
-  //         setImage(findImage)
-  //         setAdsPosition1(filterArray)
-  //           }
-  // 		});
-  // }, [])
-  // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Latest Code>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  const handleWriteReview = () => {
+    window.open(
+      "https://www.google.com/maps/place/SheKunj+%7C+India%27s+Leading+Women+Empowerment+Organization/@22.7469274,75.891115,17z/data=!4m8!3m7!1s0x3962fde887718c3f:0x5493aa5072c50c99!8m2!3d22.7469274!4d75.8936899!9m1!1b1!16s%2Fg%2F11sjlpmgl6?entry=ttu",
+      "_blank",
+    );
+  };
   useEffect(() => {
     dispatch(adsList());
     navigator.geolocation.getCurrentPosition(
@@ -207,22 +163,17 @@ function HomePage() {
           .then((response) => {
             if (response && response.data.results.length > 0) {
               let filterArray1 = response.data.results.filter((item, index) => {
-                return item.image_type == "home_position_1";
+                return item.image_type === "home_position_1";
               });
               setAdsPosition1(filterArray1);
-              // console.log("filterArray1home_position_1",filterArray1)
-
               let filterArray2 = response.data.results.filter((item, index) => {
-                return item.image_type == "home_position_2";
+                return item.image_type === "home_position_2";
               });
               setAdsPosition2(filterArray2);
-              console.log("filterArray1home_position_2", filterArray2);
-
               let filterArray3 = response.data.results.filter((item, index) => {
-                return item.image_type == "home_position_3";
+                return item.image_type === "home_position_3";
               });
               setAdsPosition3(filterArray3);
-              // console.log("filterArray1home_position_3",filterArray1)
             }
           });
       },
@@ -232,822 +183,1561 @@ function HomePage() {
         axios.get(`/private_adds/private_add`).then((response) => {
           if (response && response.data.results.length > 0) {
             let filterArray1 = response.data.results.filter((item, index) => {
-              return item.image_type == "home_position_1";
+              return item.image_type === "home_position_1";
             });
             setAdsPosition1(filterArray1);
-            // console.log("filterArray1coursebox",filterArray1)
             let filterArray2 = response.data.results.filter((item, index) => {
-              return item.image_type == "home_position_2";
+              return item.image_type === "home_position_2";
             });
             setAdsPosition2(filterArray2);
-            console.log("filterArray1coursebox", filterArray2);
-
             let filterArray3 = response.data.results.filter((item, index) => {
-              return item.image_type == "home_position_3";
+              return item.image_type === "home_position_3";
             });
             setAdsPosition3(filterArray3);
-            // console.log("filterArray1home_position_3",filterArray3)
           }
         });
       },
     );
   }, []);
 
-  // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  const getCategoryList = async () => {
+    try {
+      const res = await httpServices.get(apiConstants.COURSES.CATEGORY_LIST);
+      setCategoryList(res?.results);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
-  const addEmail = (email) => {
-    navigator.geolocation.getCurrentPosition(async function (position, values) {
-      const latitude = position.coords.latitude;
-      const longitude = position.coords.longitude;
+  const allHomeCourses = async () => {
+    try {
+      const res = await httpServices.get(apiConstants.COURSES.HOME);
+      const popularCareerTests = res?.data?.popular_career_test
+        ? res?.data?.popular_career_test?.map((c) => ({
+            ...c,
+            image: c.image ? c?.image : httpServices.noImage,
+          }))
+        : [];
 
-      let params = {
-        latitude: latitude.toString(),
-        longitude: longitude.toString(),
+      setMockData(popularCareerTests);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const allCourses = async (filter) => {
+    setCourseLoader(true);
+    try {
+      const res = await httpServices.get(
+        filter
+          ? `${apiConstants.COURSES.COURSE_LIST}` + `?category_id=${filter}`
+          : `${apiConstants.COURSES.COURSE_LIST}?limit=40`,
+      );
+      const courses = {
+        ...res,
+        results: res?.results
+          ? res?.results?.map((c) => ({
+              ...c,
+              image: c.image ? c?.image : httpServices.noImage,
+            }))
+          : [],
       };
-      axios
-        .post("/private_adds/click_add/", {
-          // add_email:`${adds[0]?.add_email}`
-          add_email: email,
-          latitude: params.latitude.toString(),
-          longitude: params.longitude.toString(),
-        })
-        .then((response) => {
-          // setAdds(response.data.results);
-          console.log("addEmailresponse", response);
-        });
+      setCourseData(courses?.results);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setCourseLoader(false);
+    }
+  };
+
+  const getAllSuccessStoryData = async () => {
+    try {
+      const url = `${
+        apiConstants.COURSES.SUCCESS_STORY
+      }?limit=${6}&offset=${0}`;
+      const data = await httpServices.get(url);
+      const { featured_success_stories } = data;
+      setSuccessData(featured_success_stories?.results);
+    } catch (error) {
+    } finally {
+    }
+  };
+
+  const getAllGovtCatagoriesData = async () => {
+    try {
+      const url = `${apiConstants.CAREER.GOVERNMENT_SCHEMES}`;
+      const data = await httpServices.get(url);
+      const { govt_category } = data;
+      setGovtData(govt_category);
+    } catch (error) {
+    } finally {
+    }
+  };
+
+  const getAllEVentsData = async () => {
+    try {
+      let url = `more/events?limit=${20}&offset=${0}`;
+      const { data } = await httpServices.get(url);
+      const { event_list, today_tomorrow, this_week, next_week, genres_list } =
+        data;
+      const setEventsDataUnique = Array.from(
+        new Set([...today_tomorrow, ...this_week, ...next_week]),
+      );
+
+      const filteredData = setEventsDataUnique.reduce((accumulator, item) => {
+        if (!accumulator.find((existingItem) => existingItem.id === item.id)) {
+          accumulator.push(item);
+        }
+        return accumulator;
+      }, []);
+      setEventsData(filteredData);
+    } catch (error) {
+      // handle error
+    } finally {
+    }
+  };
+
+  const getAllBlogsData = async () => {
+    try {
+      const url = `${
+        apiConstants.ALL_BLOGS.TRENDING_BLOGS
+      }?limit=${10}&offset=${0}`;
+      const data = await httpServices.get(url);
+      const { trending_blogs } = data;
+      setBlogsData(trending_blogs?.results);
+    } catch (error) {
+    } finally {
+    }
+  };
+
+  const getAllReviewsData = async () => {
+    try {
+      const url = `${apiConstants.REVIEWS.ALL_REVIEWS}`;
+      const data = await httpServices.get(url);
+      const { reviews_list, reviews_on } = data;
+      setTestimonialData(reviews_list);
+      setReviewsData(reviews_on);
+      setGoogleActiveTab(reviews_on[0]?.title);
+    } catch (error) {
+    } finally {
+    }
+  };
+
+  const handleCategoryOptionClick = (option) => {
+    setCategoryName(option);
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        await Promise.all([
+          getCategoryList(),
+          allHomeCourses(),
+          getAllSuccessStoryData(),
+          getAllGovtCatagoriesData(),
+          getAllEVentsData(),
+          getAllBlogsData(),
+          getAllReviewsData(),
+        ]);
+        setLoading(false);
+      } catch (error) {
+        // Handle error
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [lan]);
+
+  useEffect(() => {
+    allCourses(categoryName);
+  }, [categoryName, lan]);
+
+  const renderReviewTabs = () => {
+    return reviewsData.map((item) => {
+      const rating = Math.floor(item.over_all_rating); // Convert the rating to an integer
+      const googleRatingStars = Array.from({ length: rating }, (_, index) => (
+        <a href=''>
+          <GradeRoundedIcon key={index} />
+        </a>
+      ));
+      return (
+        <div
+          id={item.title}
+          className={`tab-content ${
+            googleActiveTab === item.title ? "active" : ""
+          }`}
+          key={item.id}
+        >
+          <div className='sk-review-main'>
+            <div className='sk-rating-overall'>
+              <h5>Overall Rating</h5>
+              <div>
+                <span className='sk-view-no'>{item.over_all_rating}</span>
+                <span className='sk-review-home'>{googleRatingStars}</span>
+                <span className='sk-view-rating'>
+                  {item.no_of_review} reviews
+                </span>
+              </div>
+            </div>
+            <div className='sk-button-write'>
+              <button className='sk-btn' onClick={handleWriteReview}>
+                Write a Review
+              </button>
+            </div>
+          </div>
+        </div>
+      );
     });
   };
 
   return (
-    <>
-      <Helmet>
-        <meta
-          name='msapplication-TileImage'
-          content='https://shekunj.s3.amazonaws.com/media/success_story_images/shekunj192.png'
-        />
+    <div>
+      <SEO />
+      <Header loginPage={false} page='home' />
 
-        <title>
-          India's Leading Women Empowerment Organization - Shekunj.com
-        </title>
-        <meta
-          name='title'
-          content="India's Leading Women Empowerment Organization - Shekunj.com"
-        />
-        <meta
-          property='og:image'
-          itemprop='image'
-          content='https://shekunj.s3.amazonaws.com/media/success_story_images/shekunj192.png'
-        />
-        <meta property='og:site_name' content='Shekunj' />
-        <meta
-          property='og:title'
-          content="India's Leading Women Empowerment Organization - Shekunj.com"
-        />
-        <meta
-          name='description'
-          content='Shekunj.com works on women
-      empowerment and skill development by
-      providing free training, job-oriented courses,
-      jobs & internships and career counseling.'
-        />
-
-        <meta
-          property='og:description'
-          content='Shekunj.com works on women
-      empowerment and skill development by
-      providing free training, job-oriented courses,
-      jobs & internships and career counseling.'
-        />
-
-        <meta property='og:type' content='website' />
-        <meta property='og:url' content='https://www.shekunj.com/' />
-        <meta
-          property='og:title'
-          content="India's Leading Women Empowerment Organization - Shekunj.com"
-        />
-
-        <meta property='og:image:width' content='300' />
-        <meta property='og:image:height' content='300' />
-        <meta
-          prefix='og: http://ogp.me/ns#'
-          property='og:image'
-          content='https://shekunj.s3.amazonaws.com/media/success_story_images/shekunj192.png'
-        />
-
-        <meta property='twitter:card' content='summary_large_image' />
-        <meta property='twitter:url' content='https://www.shekunj.com/' />
-        <meta
-          property='twitter:title'
-          content="India's Leading Women Empowerment Organization - Shekunj.com"
-        />
-        <meta
-          property='twitter:description'
-          content='Shekunj.com works on women
-      empowerment and skill development by
-      providing free training, job-oriented courses,
-      jobs & internships and career counseling.'
-        />
-        <meta
-          property='twitter:image'
-          content='https://shekunj.s3.amazonaws.com/media/success_story_images/shekunj192.png'
-        />
-        <link rel='canonical' href='https://www.shekunj.com/' />
-      </Helmet>
-
-      <div>
-        <Header loginPage={false} page='home' />
-
-        {/* slider */}
-
-        <div id='myCarousel' className='banner_slider mb-5 noselect'>
-          <div className='carousel-inner'>
-            <Slider {...settings}>
-              <div className='carousel-item carousel_item1'>
-                <div className='container'>
-                  <div className='row h_set mt-5' data-aos='slide-up'>
-                    <div className='col-md-7 col-12'>
-                      <h4 className='mt-5 pt-lg-5 mb-1'>
-                        {t("homePage.mainSlider.heading.1")}
-                      </h4>
-                      <h5>{t("homePage.mainSlider.heading.4")}</h5>
-
-                      <p className='mb-4 mt-3'>
-                        {" "}
-                        {t("homePage.mainSlider.subHeading.1")}
-                      </p>
-                      <Link to='/courses' className='banner_btn'>
-                        {t("homePage.mainSlider.button.1")}
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className='carousel-item carousel_item2'>
-                <div className='container'>
-                  <div className='row h_set mt-5'>
-                    <div className='col-md-7 col-12'>
-                      <h4 className='mt-5 pt-lg-5 mb-1' data-aos='zoom-in'>
-                        {t("homePage.mainSlider.heading.2")}
-                      </h4>
-                      <h5>{t("homePage.mainSlider.heading.5")}</h5>
-                      <p className='mb-4 mt-3' data-aos='zoom-in'>
-                        {t("homePage.mainSlider.subHeading.2")}
-                      </p>
-                      <Link
-                        to='/top-colleges-in-india/'
-                        className='banner_btn'
-                        data-aos='zoom-in'
-                      >
-                        {t("homePage.mainSlider.button.5")}
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className='carousel-item carousel_item3'>
-                <div className='container'>
-                  <div className='row h_set mt-5'>
-                    <div className='col-md-7 col-12'>
-                      <h4 className='mt-5 pt-lg-5 mb-1' data-aos='zoom-in'>
-                        {t("homePage.mainSlider.heading.3.3.1")}
-                      </h4>
-
-                      <h5>{t("homePage.mainSlider.heading.3.3.2")}</h5>
-
-                      <p className='mb-4 mt-3' data-aos='zoom-in'>
-                        {t("homePage.mainSlider.subHeading.3")}
-                      </p>
-
-                      <Link
-                        to='/online-counselling'
-                        className='banner_btn'
-                        data-aos='zoom-in'
-                      >
-                        {t("homePage.mainSlider.button.4")}
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className='carousel-item carousel_item4'>
-                <div className='container'>
-                  <div className='row h_set mt-5'>
-                    <div className='col-md-7 col-12 offset-lg-6 offset-md-5'>
-                      <h4 className='mt-5 pt-lg-5 mb-1' data-aos='zoom-in'>
-                        {t("homePage.mainSlider.heading.6.1")}
-                      </h4>
-
-                      <h5>{t("homePage.mainSlider.heading.6.2")}</h5>
-
-                      <p className='mb-4 mt-3' data-aos='zoom-in'>
-                        {t("homePage.mainSlider.subHeading.4")}
-                      </p>
-
-                      <Link
-                        to='/top-schools-in-india/'
-                        className='banner_btn'
-                        data-aos='zoom-in'
-                      >
-                        {t("homePage.mainSlider.button.6")}
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </Slider>
-          </div>
+      {loading ? (
+        <div>
+          <CustomLoader />
         </div>
+      ) : (
+        <>
+          <section className='sk-homeBanner-sec'>
+            <div className='container'>
+              <div className='row'>
+                <div className='col-md-12'>
+                  <Swiper
+                    modules={[Navigation, Pagination, Autoplay]}
+                    slidesPerView={1}
+                    simulateTouch={true}
+                    effect={"fade"}
+                    speed={1500}
+                    autoplay={{ delay: 3000 }}
+                    navigation={navigation}
+                    pagination={pagination}
+                    onSwiper={(swiper) => console.log(swiper)}
+                    onSlideChange={() => console.log("slide change")}
+                  >
+                    <SwiperSlide>
+                      <div className='row align-items-center'>
+                        <div className='col-xl-8 col-lg-8 col-md-8'>
+                          <div className='sh-bannerContent-top'>
+                            <h1>
+                              {t("homePage.mainSlider.heading.1")}{" "}
+                              {t("homePage.mainSlider.heading.4")}
+                            </h1>
+                            <p>{t("homePage.mainSlider.subHeading.1")}</p>
+                            <div className='sk-thireChangescolor-btn'>
+                              <button
+                                className='sk-loadMore'
+                                type='button'
+                                onClick={() =>
+                                  history.push(routingConstants.COURSES)
+                                }
+                              >
+                                {t("homePage.mainSlider.button.1")}
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                        <div className='col-xl-4 col-lg-4 col-md-4'>
+                          <div className='sk-imageBanner'>
+                            <img src={firstslidebanner} alt='' />
+                          </div>
+                        </div>
+                      </div>
+                    </SwiperSlide>
+                    <SwiperSlide>
+                      <div className='row align-items-center'>
+                        <div className='col-md-8'>
+                          <div className='sh-bannerContent-top'>
+                            <h1>
+                              {t("homePage.mainSlider.heading.2")}{" "}
+                              {t("homePage.mainSlider.heading.5")}
+                            </h1>
+                            <p>{t("homePage.mainSlider.subHeading.2")}</p>
+                            <div className='sk-thireChangescolor-btn'>
+                              <button
+                                className='sk-loadMore'
+                                type='button'
+                                onClick={() =>
+                                  history.push(routingConstants.TOP_COLLEGES)
+                                }
+                              >
+                                {t("homePage.mainSlider.button.5")}
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                        <div className='col-md-4'>
+                          <img src={firstslidebanner} alt='' />
+                        </div>
+                      </div>
+                    </SwiperSlide>
+                    <SwiperSlide>
+                      <div className='row align-items-center'>
+                        <div className='col-md-8'>
+                          <div className='sh-bannerContent-top'>
+                            <h1>
+                              {" "}
+                              {t("homePage.mainSlider.heading.3.3.1")}{" "}
+                              {t("homePage.mainSlider.heading.3.3.2")}
+                            </h1>
+                            <p>{t("homePage.mainSlider.subHeading.3")}</p>
+                            <div className='sk-thireChangescolor-btn'>
+                              <button
+                                className='sk-loadMore'
+                                type='button'
+                                onClick={() =>
+                                  history.push(routingConstants.GUIDANCE_BOOK)
+                                }
+                              >
+                                {t("homePage.mainSlider.button.4")}
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                        <div className='col-md-4'>
+                          <img src={firstslidebanner} />
+                        </div>
+                      </div>
+                    </SwiperSlide>
+                    <SwiperSlide>
+                      <div className='row align-items-center'>
+                        <div className='col-md-8'>
+                          <div className='sh-bannerContent-top'>
+                            <h1>
+                              {" "}
+                              {t("homePage.mainSlider.heading.6.1")}{" "}
+                              {t("homePage.mainSlider.heading.6.2")}
+                            </h1>
+                            <p> {t("homePage.mainSlider.subHeading.4")}</p>
+                            <div className='sk-thireChangescolor-btn'>
+                              <button
+                                className='sk-loadMore'
+                                type='button'
+                                onClick={() =>
+                                  history.push(routingConstants.TOP_SCHOOLS)
+                                }
+                              >
+                                {t("homePage.mainSlider.button.6")}
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                        <div className='col-md-4'>
+                          <img src={firstslidebanner} alt='' />
+                        </div>
+                      </div>
+                    </SwiperSlide>
+                    <div className='sk-banner-navigate'>
+                      <div className='swiper-button-next'>
+                        <span>NEXT</span>
+                      </div>
+                      <div className='swiper-button-prev'>
+                        <span>PREV</span>
+                      </div>
+                    </div>
+                  </Swiper>
+                </div>
+              </div>
+            </div>
+          </section>
 
-        {/* Slider 1 */}
-        <Carousel
-          items={5}
-          page='homePage'
-          title1={t("homePage.carousel1.heading.1")}
-          title2={t("homePage.carousel1.heading.2")}
-          type={constants.carouselConstant.COURSES}
-        />
+          <section className='sk-course-sec sk-slide-arrow sk-bg-color'>
+            <div className='container'>
+              <div className='row'>
+                <div className='col-xl-8 col-md-10 mx-auto'>
+                  <div className='sk-heading-title'>
+                    <h2>Courses In India</h2>
+                    <p>
+                      Courses focused on building strong foundational skills for
+                      career growth
+                    </p>
+                    <div className='sk-tabBtn-home'>
+                      <ul>
+                        {categoryList.map((items, index) => {
+                          return (
+                            <>
+                              <li key={index}>
+                                <a
+                                  onClick={() => {
+                                    handleCategoryOptionClick(items.id);
+                                    setActiveTab(items.id);
+                                  }}
+                                  className={
+                                    activeTab === items.id && "active-time"
+                                  }
+                                >
+                                  {items.name}
+                                </a>
+                              </li>
+                            </>
+                          );
+                        })}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
-        {/* <Link to='/courses' style={{ textDecoration: "none" }}>
-      <span>
-        <button className='view_test_cate'>
-          {t("homePage.mainSlider.button.7")}
-        </button>
-      </span>
-      </Link> */}
+              <div className='row'>
+                <div className='col-xl-12'>
+                  <Swiper
+                    modules={[Navigation, Autoplay]}
+                    slidesPerView={4}
+                    spaceBetween={30}
+                    // centeredSlides={true}
+                    navigation={true}
+                    speed={1500}
+                    autoHeight={true}
+                    autoplay={{ delay: 3000 }}
+                    className='sk-mySwiper-slide'
+                    breakpoints={{
+                      0: {
+                        slidesPerView: 1.5,
+                        spaceBetween: 15,
+                      },
+                      767: {
+                        slidesPerView: 2,
+                        spaceBetween: 15,
+                      },
+                      991: {
+                        slidesPerView: 3,
+                      },
+                      1199: {
+                        slidesPerView: 4,
+                      },
+                      1250: {
+                        slidesPerView: 4,
+                      },
+                      1920: {
+                        slidesPerView: 4,
+                      },
+                    }}
+                  >
+                    {courseLoader ? (
+                      <CustomLoader />
+                    ) : courseData?.length ? (
+                      courseData?.map((items, index) => {
+                        console.log(
+                          "🚀 ~ file: index.jsx:622 ~ courseData?.map ~ items:",
+                          items,
+                        );
+                        return (
+                          <>
+                            <SwiperSlide>
+                              <div className='sk-course-box' key={index}>
+                                <div className='sk-inner-box'>
+                                  <div className='sk-course-img'>
+                                    <img src={items?.image} alt='cousreimg' />
+                                    {items?.has_certificate ? (
+                                      <>
+                                        <div className='sk-certificate-box'>
+                                          <WorkspacePremiumSharpIcon />{" "}
+                                          Certificate
+                                        </div>
+                                      </>
+                                    ) : null}
+                                  </div>
+                                  <div className='sk-course-content'>
+                                    <div className='sk-category-describe'>
+                                      <span className='sk-smallBox-heading'>
+                                        {items?.category_name}
+                                      </span>
+                                      <h6>{items?.name}</h6>
+                                      <p
+                                        className='sk-smallBox-description'
+                                        dangerouslySetInnerHTML={{
+                                          __html: makeHtml(
+                                            `${truncateString(
+                                              items?.description,
+                                              100,
+                                            )}`,
+                                          ),
+                                        }}
+                                      />
+                                    </div>
+                                    <div className='sk-time-education'>
+                                      <ul>
+                                        <li>
+                                          <AccessTimeIcon />{" "}
+                                          <span>{items?.reading_time}</span>{" "}
+                                        </li>
+                                        <li>
+                                          <SchoolRoundedIcon /> {items?.enrold}{" "}
+                                          enrolled{" "}
+                                        </li>
+                                      </ul>
+                                    </div>
+                                    <div className='sk-courseboth-btn'>
+                                      <button
+                                        className='sk-course-btn'
+                                        onClick={() =>
+                                          history.push(
+                                            routingConstants.COURSE_DETAILS +
+                                              items?.slug,
+                                          )
+                                        }
+                                      >
+                                        More Info
+                                      </button>
+                                      <button
+                                        className='sk-course-btn sk-courseBg-color'
+                                        onClick={() =>
+                                          history.push(
+                                            routingConstants.COURSES_MODULE +
+                                              items?.id,
+                                          )
+                                        }
+                                      >
+                                        Start Learning
+                                      </button>
+                                    </div>
+                                  </div>
+                                </div>
 
-        <div className='courses'>
-          <Link
-            to='/courses'
-            style={{ textDecoration: "none" }}
-            className='view_test_cate'
-          >
-            {t("homePage.mainSlider.button.7")}
-          </Link>
-        </div>
+                                <div className='sk-innerHover-box'>
+                                  <div className='sk-course-content'>
+                                    <div className='sk-category-describe'>
+                                      <span className='sk-smallBox-heading'>
+                                        {items?.category_name}
+                                      </span>
+                                      <h6>{items?.name}</h6>
+                                      <p
+                                        className='sk-smallBox-description'
+                                        dangerouslySetInnerHTML={{
+                                          __html: makeHtml(
+                                            `${truncateString(
+                                              items?.description,
+                                              100,
+                                            )}`,
+                                          ),
+                                        }}
+                                      />
+                                    </div>
+                                    <div className='sk-time-education'>
+                                      <ul>
+                                        <li>
+                                          <AccessTimeIcon />{" "}
+                                          <span>{items?.reading_time}</span>{" "}
+                                        </li>
+                                        <li>
+                                          <SchoolRoundedIcon /> {items?.enrold}{" "}
+                                          enrolled{" "}
+                                        </li>
+                                      </ul>
+                                    </div>
+                                    <div className='sk-content-point'>
+                                      <h6>What you will learn</h6>
+                                      <ul>
+                                        {items?.What_you_will_learn?.length
+                                          ? items?.What_you_will_learn.map(
+                                              (list, index) => {
+                                                return (
+                                                  <li key={index}>
+                                                    {list?.name}
+                                                  </li>
+                                                );
+                                              },
+                                            )
+                                          : null}
+                                      </ul>
+                                    </div>
+                                    <div className='sk-courseboth-btn'>
+                                      <button
+                                        className='sk-course-btn'
+                                        onClick={() =>
+                                          history.push(
+                                            routingConstants.COURSE_DETAILS +
+                                              items?.slug,
+                                          )
+                                        }
+                                      >
+                                        More Info
+                                      </button>
+                                      <button
+                                        className='sk-course-btn sk-courseBg-color'
+                                        onClick={() =>
+                                          history.push(
+                                            routingConstants.COURSES_MODULE +
+                                              items?.id,
+                                          )
+                                        }
+                                      >
+                                        Start Learning
+                                      </button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </SwiperSlide>
+                          </>
+                        );
+                      })
+                    ) : (
+                      <>
+                        <NoDataFound size='small' />
+                      </>
+                    )}
+                  </Swiper>
+                </div>
+                <div className='col-xl-12'>
+                  <div className='sk-testCourse-btn'>
+                    <button
+                      className='sk-loadMore'
+                      onClick={() => history.push(routingConstants.COURSES)}
+                    >
+                      Explore More Courses
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
 
-        {/* google add */}
-        <section>
-          <div className='container'>
-            <div className='row'>
-              {adsPosition1.length > 0 && (
-                // <div className='col-md-12 ads_home_cover'>
-                <div
-                  className='col-md-12 ads_home_cover'
-                  onClick={() => addEmail(adsPosition1[0]?.add_email)}
-                >
-                  <a href={adsPosition1[0]?.url_adds} target='_blank'>
-                    {detect.isMobile
-                      ? adsPosition1[0]?.image_mobile && (
-                          <img
-                            src={adsPosition1[0]?.image_mobile}
-                            alt='Image'
-                            className='google_ads_home'
-                          />
-                        )
-                      : adsPosition1[0]?.image && (
-                          <img
-                            src={adsPosition1[0]?.image}
-                            alt='Image'
-                            className='google_ads_home'
-                          />
+          <section className='sk-addHome-sec'>
+            <div className='container'>
+              <div className='row'>
+                <div className='col-xl-9 mx-auto'>
+                  <div className='text-center'>
+                    {
+                      <>
+                        {adsPosition1.length > 0 && (
+                          <div
+                            className='ads_home_cover '
+                            onClick={() =>
+                              addEmailToClient(adsPosition1[0]?.add_email)
+                            }
+                          >
+                            <a
+                              href={adsPosition1[0]?.url_adds}
+                              target='_blank'
+                              rel='noreferrer'
+                            >
+                              {detect.isMobile
+                                ? adsPosition1[0]?.image_mobile && (
+                                    <img
+                                      src={adsPosition1[0]?.image_mobile}
+                                      alt=''
+                                      className='ads_story_cover_img'
+                                    />
+                                  )
+                                : adsPosition1[0]?.image && (
+                                    <img
+                                      src={adsPosition1[0]?.image}
+                                      alt=''
+                                      className='ads_story_cover_img'
+                                    />
+                                  )}
+                            </a>
+                          </div>
                         )}
-                  </a>
+                      </>
+                    }
+                  </div>
                 </div>
-              )}
-            </div>
-          </div>
-        </section>
-
-        {/* resume */}
-        <section className='resume same_padding mt-5 noselect'>
-          <div className='container'>
-            <div className='row'>
-              <div className='col-md-7' data-aos='slide-up'>
-                <h4>{t("homePage.resume.heading")}</h4>
-                <a href='resume-builder' className='btn btn-resume mt-4'>
-                  {t("homePage.resume.button")}
-                </a>
-              </div>
-
-              <div className='resumeimg'>
-                <img src={Resume} alt='...' />
               </div>
             </div>
-          </div>
-        </section>
+          </section>
 
-        {/* Slider 2 */}
-        <Carousel
-          items={5}
-          page='homePage'
-          title1={t("homePage.carousel2.heading.1")}
-          title2={t("homePage.carousel2.heading.2")}
-          type={constants.carouselConstant.TEST}
-        />
-        <div className='courses'>
-          <Link
-            to='/mock-test'
-            // to='/mock-test'
-            style={{ textDecoration: "none" }}
-            className='view_test_cate  noselect'
-          >
-            {t("homePage.mainSlider.button.3")}
-          </Link>
-        </div>
-        {/* <Link to='/success-career-test' style={{ textDecoration: "none" }}>
-        <button className='view_test_cate noselect'>
-          {t("homePage.mainSlider.button.3")}
-        </button>
-      </Link> */}
-
-        {/* google add */}
-        <section>
-          <div className='container'>
-            <div className='row'>
-              {adsPosition2.length > 0 && (
-                <div
-                  className='col-md-12 ads_home_cover'
-                  onClick={() => addEmail(adsPosition2[0]?.add_email)}
-                >
-                  <a href={adsPosition2[0]?.url_adds} target='_blank'>
-                    {detect.isMobile
-                      ? adsPosition2[0]?.image_mobile && (
-                          <img
-                            src={adsPosition2[0]?.image_mobile}
-                            alt='Image'
-                            className='google_ads_home'
-                          />
-                        )
-                      : adsPosition2[0]?.image && (
-                          <img
-                            src={adsPosition2[0]?.image}
-                            alt='Image'
-                            className='google_ads_home'
-                          />
-                        )}
-                  </a>
+          <section className='sk-begain-sec'>
+            <div class='container'>
+              <div className='row'>
+                <div className='col-md-6 mx-auto'>
+                  <div className='sk-heading-title'>
+                    <h2>Not Sure Where To Begin?</h2>
+                    <p>What is your mail goal on SheKunj’s</p>
+                  </div>
                 </div>
-              )}
-            </div>
-          </div>
-        </section>
+              </div>
+              <div class='row'>
+                <div class='col-md-4'>
+                  <div
+                    class='sk-begain-box'
+                    onClick={() => history.push(routingConstants.GUIDANCE_BOOK)}
+                  >
+                    <div class='sk-begain-content'>
+                      <h6>I want to</h6>
+                      <h5>
+                        Upskill <EastRoundedIcon />{" "}
+                      </h5>
+                    </div>
+                    <div class='sk-begain-img'>
+                      <img src={begainimg} />
+                    </div>
+                  </div>
+                </div>
 
-        {/* Job opportunity */}
-        <section className='job-opprtunity same_padding mt-1 noselect'>
-          <div className='container'>
-            <div className='row justify-content-center'>
-              <div className='col-lg-12 col-md-11'>
-                <div className='job-opprtunity-bg'>
-                  <div className='row'>
-                    <div className='col-lg-8' data-aos='slide-up'>
-                      <h3>{t("homePage.jobopportunity.heading")}</h3>
-                      <p>{t("homePage.jobopportunity.subHeading")}</p>
-                      <a href='/jobs' className='btn btn-job'>
-                        {t("homePage.jobopportunity.button")}
+                <div class='col-md-4'>
+                  <div
+                    class='sk-begain-box'
+                    onClick={() => history.push(routingConstants.GUIDANCE_BOOK)}
+                  >
+                    <div class='sk-begain-content'>
+                      <h6>I want to</h6>
+                      <h5>
+                        Change Career <EastRoundedIcon />{" "}
+                      </h5>
+                    </div>
+                    <div class='sk-begain-img'>
+                      <img src={begainimg} />
+                    </div>
+                  </div>
+                </div>
+
+                <div class='col-md-4'>
+                  <div
+                    class='sk-begain-box'
+                    onClick={() => history.push(routingConstants.GUIDANCE_BOOK)}
+                  >
+                    <div class='sk-begain-content'>
+                      <h6>I want to crack</h6>
+                      <h5>
+                        Government Exam <EastRoundedIcon />{" "}
+                      </h5>
+                    </div>
+                    <div class='sk-begain-img'>
+                      <img src={begainimg} />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section className='sk-mockTest-sec sk-slide-arrow'>
+            <div className='container'>
+              <div className='row'>
+                <div className='col-md-6 mx-auto'>
+                  <div className='sk-heading-title'>
+                    <h2>Online Mock Test</h2>
+                    <p>
+                      Courses focused on building strong foundational skills for
+                      career growth
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className='row'>
+                <div className='col-xl-12'>
+                  <Swiper
+                    modules={[Navigation, Autoplay]}
+                    slidesPerView={4}
+                    spaceBetween={30}
+                    // centeredSlides={true}
+                    speed={1500}
+                    autoplay={{ delay: 3000 }}
+                    navigation={true}
+                    className='sk-mockSwiper'
+                    breakpoints={{
+                      0: {
+                        slidesPerView: 1.5,
+                        spaceBetween: 15,
+                      },
+                      767: {
+                        slidesPerView: 2,
+                        spaceBetween: 15,
+                      },
+                      991: {
+                        slidesPerView: 3,
+                      },
+                      1199: {
+                        slidesPerView: 4,
+                      },
+                      1250: {
+                        slidesPerView: 4,
+                      },
+                      1920: {
+                        slidesPerView: 4,
+                      },
+                    }}
+                  >
+                    {mockData?.length ? (
+                      mockData?.map((items, index) => {
+                        return (
+                          <>
+                            <SwiperSlide>
+                              <div className='sk-course-box'>
+                                <div classNam='sk-inner-box'>
+                                  <div className='sk-course-img'>
+                                    <img src={items?.image} alt='' />
+                                  </div>
+                                  <div className='sk-course-content'>
+                                    <span className='sk-smallBox-heading'>
+                                      Government
+                                    </span>
+                                    <h6>{items?.name}</h6>
+                                    <div className='sk-time-education'>
+                                      <ul>
+                                        <li>
+                                          <AccessTimeIcon />{" "}
+                                          <span>
+                                            {items?.career_test_time} Minutes
+                                          </span>{" "}
+                                        </li>
+                                        <li>
+                                          <SchoolRoundedIcon />{" "}
+                                          {items?.enrolled} enrolled{" "}
+                                        </li>
+                                      </ul>
+                                    </div>
+                                    <div className='sk-courseboth-btn'>
+                                      <button
+                                        className='sk-course-btn sk-courseBg-color'
+                                        onClick={() =>
+                                          history.push(
+                                            routingConstants.MOCKTEST +
+                                              items?.slug,
+                                          )
+                                        }
+                                      >
+                                        Attempt
+                                      </button>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div className='sk-innerHover-box'>
+                                  <div className='sk-course-content'>
+                                    <span className='sk-smallBox-heading'>
+                                      Government
+                                    </span>
+                                    <h6>{items?.name}</h6>
+                                    <div className='sk-time-education'>
+                                      <ul>
+                                        <li>
+                                          <AccessTimeIcon />{" "}
+                                          <span>
+                                            {items?.career_test_time} Minutes
+                                          </span>{" "}
+                                        </li>
+                                        <li>
+                                          <SchoolRoundedIcon />{" "}
+                                          {items?.enrolled} enrolled{" "}
+                                        </li>
+                                      </ul>
+                                    </div>
+                                    <div className='sk-number-q'>
+                                      <ul>
+                                        <li>No. Question</li>
+                                        <li>{items?.no_of_questions}</li>
+                                        <li>Total Score</li>
+                                        <li>{items?.total_score}</li>
+                                        <li>languages</li>
+                                        <li> Hindi, English</li>
+                                      </ul>
+                                    </div>
+                                    <div className='sk-courseboth-btn'>
+                                      <button
+                                        className='sk-course-btn sk-courseBg-color'
+                                        onClick={() =>
+                                          history.push(
+                                            routingConstants.MOCKTEST +
+                                              items?.slug,
+                                          )
+                                        }
+                                      >
+                                        Attempt
+                                      </button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </SwiperSlide>
+                          </>
+                        );
+                      })
+                    ) : (
+                      <>
+                        <NoDataFound size='small' />
+                      </>
+                    )}
+                  </Swiper>
+                </div>
+                <div className='col-xl-12'>
+                  <div className='sk-testCourse-btn'>
+                    <button
+                      className='sk-loadMore'
+                      onClick={() => history.push(routingConstants.MOCKTEST)}
+                    >
+                      Explore More Test
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section className='sk-changeBothhire-sec'>
+            <div className='sk-hire-container'>
+              <div className='sk-hireStory-box'>
+                <div className='sk-hireSotory-innerbox'>
+                  <h2>Seeking for a Chance and a Change?</h2>
+                  <p>
+                    Go nowhere. We here at Shekunj offer the best job
+                    opportunities from the best companies. Find a job and move
+                    towards your bright future.
+                  </p>
+                  <div className='sk-hireChanges-btn'>
+                    <a
+                      href='https://octahire.com/Home/candidate_register'
+                      target='_blank'
+                      rel='noreferrer'
+                    >
+                      <button className='sk-loadMore'>
+                        View All Job Opportunities
+                      </button>
+                    </a>
+                  </div>
+                </div>
+                <div className='sk-vectorImg-inner'>
+                  <img src={vectorimg} />
+                </div>
+              </div>
+              <div className='sk-hireInner-box'>
+                <div className='sk-hireStory-box'>
+                  <div className='sk-hireSotory-innerbox sk-woman-story'>
+                    <h2>Get hired for your dream job!</h2>
+                    <p>
+                      Land your dream job by designing a perfect resume in a
+                      print-ready <br /> format
+                    </p>
+                    <div className='sk-thireChangescolor-btn'>
+                      <a
+                        href='https://octahire.com/Home/candidate_register'
+                        target='_blank'
+                        rel='noreferrer'
+                      >
+                        <button className='sk-loadMore'>
+                          Create Your CV Now
+                        </button>
                       </a>
                     </div>
-
-                    <div className='col-lg-4'>
-                      <div className='jobimg'>
-                        <img src={Girl} alt='...' />
-                      </div>
-                    </div>
+                  </div>
+                  <div className='sk-vectorImg-inner'>
+                    <img src={vectorimg1} />
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
 
-        <Carousel
-          items={5}
-          page='homePage'
-          title1={t("homePage.carousel3.heading.1")}
-          title2={t("homePage.carousel3.heading.2")}
-          type={constants.carouselConstant.GOVERNMENT_SCHEMES}
-        />
-        <div className='courses'>
-          <Link
-            to='/government-schemes-in-india'
-            style={{ textDecoration: "none" }}
-            className='view_test_cate'
-          >
-            {t("homePage.mainSlider.button.2")}
-          </Link>
-        </div>
-
-        {/* google add */}
-        <section>
-          <div className='container'>
-            <div className='row'>
-              {adsPosition3.length > 0 && (
-                // <div className='col-md-12 ads_home_cover'>
-
-                <div
-                  className='col-md-12 ads_home_cover'
-                  onClick={() => addEmail(adsPosition3[0]?.add_email)}
-                >
-                  <a href={adsPosition3[0]?.url_adds} target='_blank'>
-                    {detect.isMobile
-                      ? adsPosition3[0]?.image_mobile && (
-                          <img
-                            src={adsPosition3[0]?.image_mobile}
-                            alt='Image'
-                            className='google_ads_home'
-                          />
-                        )
-                      : adsPosition3[0]?.image && (
-                          <img
-                            src={adsPosition3[0]?.image}
-                            alt='Image'
-                            className='google_ads_home'
-                          />
+          <section className='sk-addHome-sec'>
+            <div className='container'>
+              <div className='row'>
+                <div className='col-xl-10 mx-auto'>
+                  <div className='text-center'>
+                    {
+                      <>
+                        {adsPosition2.length > 0 && (
+                          <div
+                            className='ads_home_cover '
+                            onClick={() =>
+                              addEmailToClient(adsPosition2[0]?.add_email)
+                            }
+                          >
+                            <a
+                              href={adsPosition2[0]?.url_adds}
+                              target='_blank'
+                              rel='noreferrer'
+                            >
+                              {detect.isMobile
+                                ? adsPosition2[0]?.image_mobile && (
+                                    <img
+                                      src={adsPosition2[0]?.image_mobile}
+                                      alt=''
+                                      className='ads_story_cover_img'
+                                    />
+                                  )
+                                : adsPosition2[0]?.image && (
+                                    <img
+                                      src={adsPosition2[0]?.image}
+                                      alt=''
+                                      className='ads_story_cover_img'
+                                    />
+                                  )}
+                            </a>
+                          </div>
                         )}
-                  </a>
-                </div>
-              )}
-            </div>
-          </div>
-        </section>
-
-        {/* <Link to='/government-exams' style={{ textDecoration: "none" }}>
-        <button
-          className='view_test_cate'
-          onClick={() => <Redirect to='/government-exams' />}
-        >
-          {t("homePage.mainSlider.button.2")}
-        </button>
-      </Link> */}
-
-        {/* career development */}
-        <section className='career_community same_padding mt-5 noselect'>
-          <div className='container'>
-            <div className='row justify-content-center'>
-              <div className='col-md-12'>
-                <h1 data-aos='slide-up'>{t("homePage.community.heading")}</h1>
-                {/* <h2 data-aos='slide-up'>{t("homePage.community.subHeading")}</h2> */}
-                <p data-aos='slide-up'>{t("homePage.community.data")}</p>
-
-                <div className='mob_comunity_img'>
-                  <img data-aos='slide-up' src={Community} alt='...' />
-                </div>
-
-                <div className='community-img mt-5'>
-                  <div className='community1 communityring'>
-                    <img src={g1} alt='Image' />
-                  </div>
-
-                  <div className='community2 communityring'>
-                    <img src={g2} alt='Image' />
-                  </div>
-
-                  <div className='community3 communityring'>
-                    <img src={g3} alt='Image' />
-                  </div>
-
-                  <div className='community4 communityring'>
-                    <img src={g4} alt='Image' />
-                  </div>
-
-                  <div className='community5 communityring'>
-                    <img src={g5} alt='Image' />
-                  </div>
-
-                  <div className='community6 communityring'>
-                    <img src={g6} alt='Image' />
-                  </div>
-
-                  <div className='community7 communityring'>
-                    <img src={g7} alt='Image' />
-                  </div>
-
-                  <div className='community8 communityring'>
-                    <img src={g8} alt='Image' />
-                  </div>
-
-                  <div className='community9 communityring'>
-                    <img src={g9} alt='Image' />
-                  </div>
-
-                  <div className='community10 communityring'>
-                    <img src={g10} alt='Image' />
-                  </div>
-
-                  <div className='community11 communityring'>
-                    <img src={g11} alt='Image' />
-                  </div>
-
-                  <div className='community12 communityring'>
-                    <img src={g12} alt='Image' />
-                  </div>
-
-                  <div className='community13 communityring'>
-                    <img src={g13} alt='Image' />
-                  </div>
-
-                  <div className='community14 communityring'>
-                    <img src={g14} alt='Image' />
-                  </div>
-
-                  <div className='community15 communityring'>
-                    <img src={g15} alt='Image' />
-                  </div>
-
-                  <div className='community16 communityring'>
-                    <img src={g16} alt='Image' />
-                  </div>
-
-                  <div className='community17 communityring'>
-                    <img src={g17} alt='Image' />
-                  </div>
-
-                  <div className='community18 communityring'>
-                    <img src={g18} alt='Image' />
-                  </div>
-
-                  <div className='community19 communityring'>
-                    <img src={g19} alt='Image' />
-                  </div>
-
-                  <div className='community20 communityring'>
-                    <img src={g20} alt='Image' />
+                      </>
+                    }
                   </div>
                 </div>
               </div>
             </div>
+          </section>
 
-            <div className='row justify-content-center'>
-              <div className='col-md-4 text-center mt-5'>
-                <Link to='/success-stories' style={{ textDecoration: "none" }}>
-                  <button className='btn btn-start-course' data-aos='slide-up'>
-                    {t("homePage.community.button")}
-                  </button>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <div className='career_community noselect'>
-          <div className='container'>
-            <div className='community_block d-md-block d-none'>
-              <div className='career_community'>
-                <div className='community1'>
-                  <img src={g1} alt='Image' />
+          <section className='sk-scheme-sec sk-bg-color'>
+            <div className='container'>
+              <div className='row'>
+                <div className='col-xl-12'>
+                  <div className='sk-heading-title'>
+                    <h2>Government Scheme</h2>
+                    <p>
+                      Courses focused on building strong foundational skills for
+                      career growth
+                    </p>
+                  </div>
+                  <div className='sk-gScheme-box'>
+                    {govtData?.length ? (
+                      <ul>
+                        {govtData?.map((items, index) => {
+                          return (
+                            <li
+                              key={index}
+                              onClick={() =>
+                                history.push(
+                                  routingConstants.GOVERNMENT_SCHEMES,
+                                )
+                              }
+                            >
+                              <h5 className='sk-gScheme-title'>
+                                {items?.schemes_count} Schemes
+                              </h5>
+                              <h4 className='sk-gScheme-heading'>
+                                {items?.name}
+                              </h4>
+                              <div className='sk-readmore-story'>
+                                <button
+                                  className='sk-storyRead-more'
+                                  onClick={() =>
+                                    history.push(
+                                      routingConstants.GOVERNMENT_SCHEMES,
+                                    )
+                                  }
+                                >
+                                  View All <EastRoundedIcon />
+                                </button>
+                              </div>
+                              <span>
+                                {items?.logo && (
+                                  <img
+                                    src={items?.logo}
+                                    alt='agricultureicon'
+                                  />
+                                )}
+                              </span>
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    ) : (
+                      <NoDataFound size='small' />
+                    )}
+                  </div>
                 </div>
 
-                <div className='community2'>
-                  <img src={g2} alt='Image' />
-                </div>
-
-                <div className='community3'>
-                  <img src={g3} alt='Image' />
-                </div>
-
-                <div className='community4'>
-                  <img src={g4} alt='Image' />
-                </div>
-
-                <div className='community5'>
-                  <img src={g5} alt='Image' />
-                </div>
-
-                <div className='community6'>
-                  <img src={g6} alt='Image' />
-                </div>
-
-                <div className='community7'>
-                  <img src={g7} alt='Image' />
-                </div>
-
-                <div className='community8'>
-                  <img src={g8} alt='Image' />
-                </div>
-
-                <div className='community9'>
-                  <img src={g9} alt='Image' />
-                </div>
-
-                <div className='community10'>
-                  <img src={g10} alt='Image' />
-                </div>
-
-                <div className='community11'>
-                  <img src={g11} alt='Image' />
-                </div>
-
-                <div className='community12'>
-                  <img src={g12} alt='Image' />
-                </div>
-
-                <div className='community13'>
-                  <img src={g13} alt='Image' />
-                </div>
-
-                <div className='community14'>
-                  <img src={g14} alt='Image' />
-                </div>
-
-                <div className='community15'>
-                  <img src={g15} alt='Image' />
-                </div>
-
-                <div className='community16'>
-                  <img src={g16} alt='Image' />
-                </div>
-
-                <div className='community17'>
-                  <img src={g17} alt='Image' />
-                </div>
-
-                <div className='community18'>
-                  <img src={g18} alt='Image' />
-                </div>
-
-                <div className='community19'>
-                  <img src={g19} alt='Image' />
-                </div>
-
-                <div className='community20'>
-                  <img src={g20} alt='Image' />
+                <div className='col-xl-12'>
+                  <div className='sk-testCourse-btn'>
+                    <button
+                      className='sk-loadMore'
+                      onClick={() =>
+                        history.push(routingConstants.GOVERNMENT_SCHEMES)
+                      }
+                    >
+                      Explore More Scheme
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-        {/* certificate */}
-        <section className='certificate same_padding noselect'>
-          <div className='container'>
-            <div className='row'>
-              <div className='col-md-6'>
-                <div className='cer_img'>
-                  <img src={certif} alt='' />
-                </div>
-              </div>
-              <div className='col-md-6'>
-                <div className='certif_con'>
-                  <h4>
-                    {t("homePage.certificate.heading.1")}{" "}
-                    {/* {t("homePage.certificate.heading.2")} */}
-                  </h4>
+          </section>
 
-                  <p>{t("homePage.certificate.heading.3")} </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* highlight students */}
-        <section className='highlight_student same_padding noselect'>
-          <div className='container'>
-            <div className='row'>
-              <div className='col-md-6'>
-                <div className='row'>
-                  <div className='col-md-6 col-6'>
-                    <div data-aos='slide-right'>
-                      <div className='tes_box tes-before'>
-                        {/* <img className="NikitaSharmaImage img-responsive" src={Nikita} alt='' /> */}
-                        <p>{t("aboutPage.review.1")}</p>
-                        <ul className='star'>
-                          <li>
-                            <img src={star} alt='' />
-                          </li>
-                          <li>
-                            <img src={star} alt='' />
-                          </li>
-                          <li>
-                            <img src={star} alt='' />
-                          </li>
-                          <li>
-                            <img src={star} alt='' />
-                          </li>
-                          {/* <li>
-                          <img src={star} alt='' />
-                        </li> */}
-                        </ul>
-                        <h2>{t("aboutPage.reviewerDetails.reviewerName.1")}</h2>
-                        <h6>{t("aboutPage.reviewerDetails.reviewerPost.2")}</h6>
-                        <img
-                          className='NikitaSharmaImage img-responsive'
-                          src={Nikita}
-                          alt=''
-                        />
-                      </div>
+          <section className='sk-blogHome-sec'>
+            <div className='container'>
+              <div className='row'>
+                <div className='col-xl-4'>
+                  <div className='sk-blogSidebar-event'>
+                    <div className='sk-blogHeadinghome-title'>
+                      <h3>Upcoming Event</h3>
                     </div>
+                    <div className='sk-eventDatetime-detail'>
+                      <ul>
+                        {eventsData?.length ? (
+                          eventsData?.map((items, index) => {
+                            return (
+                              <>
+                                <li
+                                  key={index}
+                                  onClick={() =>
+                                    history.push(
+                                      routingConstants.MORE_EVENT_DETAILS +
+                                        items?.genre?.slug +
+                                        "/" +
+                                        items?.slug,
+                                    )
+                                  }
+                                >
+                                  <div
+                                    className='sk-eventDate'
+                                    dangerouslySetInnerHTML={{
+                                      __html: makeHtml(
+                                        formatDateRange(
+                                          items.start_date,
+                                          items.end_date,
+                                        ),
+                                      ),
+                                    }}
+                                  />
 
-                    <div className='tes_box2' data-aos='slide-up'>
-                      <h2>{t("aboutPage.review.2")}</h2>
-                    </div>
-                  </div>
-
-                  <div className='col-md-6 col-6'>
-                    <div data-aos='slide-down'>
-                      <div className='tes_box3'>
-                        <h2>4.9</h2>
-                        <ul className='star'>
-                          <li>
-                            <img src={star} alt='' />
-                          </li>
-                          <li>
-                            <img src={star} alt='' />
-                          </li>
-                          <li>
-                            <img src={star} alt='' />
-                          </li>
-                          <li>
-                            <img src={star} alt='' />
-                          </li>
-                          <li>
-                            <img src={half_star} alt='' />
-                          </li>
-                        </ul>
-                        <h6>{t("aboutPage.salesNumber")}</h6>
-                      </div>
-                    </div>
-
-                    <div data-aos='slide-left'>
-                      <div className='tes_box_ankita heg_cha'>
-                        {/* <img className='AnkitaSharmaImage img-responsive' src={Ankita} alt='' /> */}
-                        <p>{t("aboutPage.review.3")}</p>
-                        <ul className='star'>
-                          <li>
-                            <img src={star} alt='' />
-                          </li>
-                          <li>
-                            <img src={star} alt='' />
-                          </li>
-                          <li>
-                            <img src={star} alt='' />
-                          </li>
-                          <li>
-                            <img src={star} alt='' />
-                          </li>
-                          <li>
-                            <img src={star} alt='' />
-                          </li>
-                        </ul>
-                        <h2>{t("aboutPage.reviewerDetails.reviewerName.2")}</h2>
-                        <h6>{t("aboutPage.reviewerDetails.reviewerPost.1")}</h6>
-                        <img
-                          className='AnkitaSharmaImage img-responsive'
-                          src={Ankita}
-                          alt=''
-                        />
+                                  <div className='sk-eventTime-detail'>
+                                    <h6>
+                                      {formatTimeRange(
+                                        items.start_time,
+                                        items.end_time,
+                                      )}
+                                    </h6>
+                                    <h4>{items?.title}</h4>
+                                  </div>
+                                </li>
+                              </>
+                            );
+                          })
+                        ) : (
+                          <>
+                            <NoDataFound size='small' />
+                          </>
+                        )}
+                      </ul>
+                      <div className='sk-readmore-story text-right mt-2'>
+                        <button
+                          className='sk-storyRead-more'
+                          onClick={() =>
+                            history.push(routingConstants.MORE_EVENT + "/all")
+                          }
+                        >
+                          View All <EastRoundedIcon />
+                        </button>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-
-              <div className='col-md-5 offset-md-1'>
-                <div className='highlig'>
-                  <h3 className='mb-3 mt-4'>
-                    {t("homePage.highlightStudents.homeHeading")}
-                  </h3>
-
-                  <Link
-                    to='/courses'
-                    data-aos='slide-up'
-                    className='learn_more'
-                  >
-                    {t("homePage.highlightStudents.homeButton")}
-                  </Link>
+                <div className='col-xl-8'>
+                  <div className='sk-blog-slider sk-slide-arrow'>
+                    <div className='sk-blogHeadinghome-title'>
+                      <h3>Blog</h3>
+                    </div>
+                    <div className='sk-blogSlider-home'>
+                      <Swiper
+                        modules={[Navigation, Autoplay]}
+                        slidesPerView={4}
+                        spaceBetween={24}
+                        // centeredSlides={true}
+                        navigation={true}
+                        speed={1500}
+                        autoHeight={true}
+                        autoplay={{ delay: 3000 }}
+                        className='sk-mySwiper-slide'
+                        breakpoints={{
+                          0: {
+                            slidesPerView: 1,
+                            spaceBetween: 10,
+                          },
+                          767: {
+                            slidesPerView: 2,
+                            spaceBetween: 10,
+                          },
+                          991: {
+                            slidesPerView: 2,
+                          },
+                          1199: {
+                            slidesPerView: 2,
+                          },
+                          1250: {
+                            slidesPerView: 2,
+                          },
+                          1920: {
+                            slidesPerView: 2,
+                          },
+                        }}
+                      >
+                        {courseLoader ? (
+                          <CustomLoader />
+                        ) : blogsData?.length ? (
+                          blogsData?.map((items, index) => {
+                            return (
+                              <>
+                                <SwiperSlide>
+                                  <LatestBlogCard
+                                    image={items.image}
+                                    hashtags={items.hash_tags}
+                                    title={items.title}
+                                    description={truncateString(
+                                      `${items.about_blog}`,
+                                      200,
+                                    )}
+                                    makeHtml={makeHtml}
+                                    key={index}
+                                    created_at={DateFormat(
+                                      `${items.created_at}`,
+                                    )}
+                                    reading_time={items.reading_time}
+                                    id={items.id}
+                                    blog_count={items.blog_count}
+                                    category_name={items.category}
+                                    slug={items.slug}
+                                  />
+                                </SwiperSlide>
+                              </>
+                            );
+                          })
+                        ) : (
+                          <>
+                            <NoDataFound size='small' />
+                          </>
+                        )}
+                      </Swiper>
+                    </div>
+                  </div>
+                </div>
+                <div className='col-xl-12 mx-auto'>
+                  <div className='text-center pt-4'>
+                    {
+                      <>
+                        {adsPosition3.length > 0 && (
+                          <div
+                            className='ads_home_cover '
+                            onClick={() =>
+                              addEmailToClient(adsPosition3[0]?.add_email)
+                            }
+                          >
+                            <a
+                              href={adsPosition3[0]?.url_adds}
+                              target='_blank'
+                              rel='noreferrer'
+                            >
+                              {detect.isMobile
+                                ? adsPosition3[0]?.image_mobile && (
+                                    <img
+                                      src={adsPosition3[0]?.image_mobile}
+                                      alt=''
+                                      className='ads_story_cover_img'
+                                    />
+                                  )
+                                : adsPosition3[0]?.image && (
+                                    <img
+                                      src={adsPosition3[0]?.image}
+                                      alt=''
+                                      className='ads_story_cover_img'
+                                    />
+                                  )}
+                            </a>
+                          </div>
+                        )}
+                      </>
+                    }
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
 
-        <Modal
-          open={open}
-          onClose={handleClose}
-          aria-labelledby='modal-modal-title'
-          aria-describedby='modal-modal-description'
-        >
-          <Box className='mock_test_pop' sx={style}>
-            <img
-              className='close_img'
-              src={x}
-              alt='...'
-              onClick={() => handleClose()}
-            />
-            <img src={desktop} alt='...' />
-            <Typography id='modal-modal-title' variant='h6' component='h2'>
-              {t("deskTopView.heading")}
-            </Typography>
-            <button className='btn btn-info' onClick={() => handleClose()}>
-              {t("deskTopView.button")}
-            </button>
-          </Box>
-        </Modal>
+          <section className='sk-homeStory-sec sk-bg-color'>
+            <div className='container'>
+              <div className='row'>
+                <div className='col-xl-6 col-lg-6 col-md-8 col-sm-12 mx-auto'>
+                  <div className='sk-heading-title'>
+                    <h2>Success Story</h2>
+                    <p>Real Stories of Real Women Around the World. Hear it.</p>
+                  </div>
+                </div>
+              </div>
+              <div className='row'>
+                <div className='col-xl-9 col-md-10 col-sm-12 mx-auto'>
+                  <div className='sk-success-story'>
+                    <Swiper
+                      spaceBetween={30}
+                      speed={1500}
+                      autoplay={{ delay: 3000 }}
+                      pagination={{
+                        clickable: true,
+                      }}
+                      modules={[Pagination]}
+                      className='sk-swiperSuccess-story'
+                    >
+                      {successData?.length ? (
+                        successData?.slice(0, 6).map((items, index) => {
+                          return (
+                            <>
+                              <SwiperSlide>
+                                <div
+                                  className='sk-story-testmonial'
+                                  onClick={
+                                    () => {
+                                      const hashtagNames =
+                                        items?.hash_tags?.map(
+                                          (tag) => tag.slug,
+                                        );
+                                      const generatedSlug =
+                                        generateSlug(hashtagNames[0]) ||
+                                        "no-hashtag";
+                                      if (items?.slug) {
+                                        history.push(
+                                          routingConstants.SUCCESS_STORIES +
+                                            generatedSlug +
+                                            "/" +
+                                            items?.slug,
+                                        );
+                                      } else {
+                                        // Handle the case when 'slug' is empty
+                                        console.log(
+                                          "Slug is empty. Cannot navigate.",
+                                        );
+                                      }
+                                    }
+                                    // history.push(
+                                    //   routingConstants.SUCCESS_STORIES +
+                                    //     items?.id,
+                                    // )
+                                  }
+                                >
+                                  <div className='sk-story-content'>
+                                    <img src={items?.image} alt='' />
+                                  </div>
+                                  <div className='sk-story-content'>
+                                    <h4>{items?.title}</h4>
+                                    <div className='sk-bottom-box'>
+                                      <div className='sk-storySuccess-testmonial'>
+                                        <span>
+                                          <AccessTimeIcon />
+                                          {items.created_at}
+                                        </span>
+                                        <span>
+                                          <MenuBookRoundedIcon />
+                                          {items.reading_time}
+                                        </span>
+                                        <span>
+                                          <VisibilityOutlinedIcon />
+                                          {items?.ss_count}
+                                        </span>
+                                      </div>
+                                      <div className='sk-readmore-story'>
+                                        <button
+                                          className='sk-storyRead-more'
+                                          onClick={
+                                            () => {
+                                              const hashtagNames =
+                                                items?.hash_tags?.map(
+                                                  (tag) => tag.slug,
+                                                );
+                                              const generatedSlug =
+                                                generateSlug(hashtagNames[0]) ||
+                                                "no-hashtag";
+                                              if (items?.slug) {
+                                                history.push(
+                                                  routingConstants.SUCCESS_STORIES +
+                                                    generatedSlug +
+                                                    "/" +
+                                                    items?.slug,
+                                                );
+                                              } else {
+                                                // Handle the case when 'slug' is empty
+                                                console.log(
+                                                  "Slug is empty. Cannot navigate.",
+                                                );
+                                              }
+                                            }
+                                            // history.push(
+                                            //   routingConstants.SUCCESS_STORIES +
+                                            //     items?.id,
+                                            // )
+                                          }
+                                        >
+                                          Read More <EastRoundedIcon />
+                                        </button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </SwiperSlide>
+                            </>
+                          );
+                        })
+                      ) : (
+                        <>
+                          <NoDataFound size='small' />
+                        </>
+                      )}
+                    </Swiper>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
 
-        <Footer loginPage={false} />
-      </div>
-    </>
+          <section className='sk-testmonail-sec sk-homeStory-sec sk-slide-arrow'>
+            <div className='container'>
+              <div className='row'>
+                <div className='col-xl-12'>
+                  <div className='sk-heading-title mb-0'>
+                    <h2>
+                      Why our students{" "}
+                      <span className='sk-favorite-icon'>
+                        L <FavoriteRoundedIcon /> VE{" "}
+                      </span>{" "}
+                      us?
+                    </h2>
+                    <p className='mb-0'>Hear itfrom our Alumni</p>
+                  </div>
+                </div>
+                <div className='col-xl-12'>
+                  <div className='sk-success-story'>
+                    <Swiper
+                      pagination={{
+                        clickable: true,
+                      }}
+                      modules={[Navigation, Pagination, Autoplay]}
+                      slidesPerView={3}
+                      spaceBetween={30}
+                      // centeredSlides={true}
+                      speed={1500}
+                      autoplay={{ delay: 3000 }}
+                      navigation={true}
+                      className='sk-mockSwiper'
+                      breakpoints={{
+                        0: {
+                          slidesPerView: 1.5,
+                          spaceBetween: 15,
+                        },
+                        767: {
+                          slidesPerView: 2,
+                          spaceBetween: 15,
+                        },
+                        991: {
+                          slidesPerView: 3,
+                        },
+                        1199: {
+                          slidesPerView: 3,
+                        },
+                        1250: {
+                          slidesPerView: 3,
+                        },
+                        1920: {
+                          slidesPerView: 3,
+                        },
+                      }}
+                    >
+                      <>
+                        {testimonialData?.length
+                          ? testimonialData?.map((items, index) => {
+                              const ratingStars = [];
+                              for (let i = 0; i < items?.rating; i++) {
+                                ratingStars.push(<GradeRoundedIcon key={i} />);
+                              }
+                              return (
+                                <>
+                                  <SwiperSlide>
+                                    <div className='sk-studentlove-box'>
+                                      <p>{items?.description}</p>
+                                      <div className='sk-userReview-box'>
+                                        <span>
+                                          <img src={items?.image} alt='' />
+                                        </span>
+                                        <span>
+                                          <h5>{items?.name}</h5>
+                                          <h6>{items?.job_title}</h6>
+                                          <span className='sk-review-home'>
+                                            {ratingStars.map((star, index) => (
+                                              <a key={index}>{star}</a>
+                                            ))}
+                                          </span>
+                                        </span>
+                                      </div>
+                                      <span className='sk-qoutesicon'>
+                                        <img src={quatesicon} />
+                                      </span>
+                                    </div>
+                                  </SwiperSlide>
+                                </>
+                              );
+                            })
+                          : null}
+                      </>
+                    </Swiper>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <div className='container'>
+              <div className='row'>
+                <div className='col-md-12'>
+                  <div className='tabs'>
+                    {reviewsData.map((item) => {
+                      return (
+                        <>
+                          <button
+                            className={`tab-link ${
+                              googleActiveTab === item.title ? "active" : ""
+                            }`}
+                            onClick={() => openTab(item.title)}
+                            key={item.id}
+                          >
+                            <img src={item.image} alt={item.title} />
+                          </button>
+                        </>
+                      );
+                    })}
+                  </div>
+                  {renderReviewTabs()}
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section className='sk-addHome-sec'>
+            <div className='container'>
+              <div className='row'>
+                <div className='col-xl-12 mx-auto'>
+                  <div className='text-center'>
+                    {
+                      <>
+                        {adsPosition1.length > 0 && (
+                          <div
+                            className='ads_home_cover '
+                            onClick={() =>
+                              addEmailToClient(adsPosition1[0]?.add_email)
+                            }
+                          >
+                            <a
+                              href={adsPosition1[0]?.url_adds}
+                              target='_blank'
+                              rel='noreferrer'
+                            >
+                              {detect.isMobile
+                                ? adsPosition1[0]?.image_mobile && (
+                                    <img
+                                      src={adsPosition1[0]?.image_mobile}
+                                      alt=''
+                                      className='ads_story_cover_img'
+                                    />
+                                  )
+                                : adsPosition1[0]?.image && (
+                                    <img
+                                      src={adsPosition1[0]?.image}
+                                      alt=''
+                                      className='ads_story_cover_img'
+                                    />
+                                  )}
+                            </a>
+                          </div>
+                        )}
+                      </>
+                    }
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </>
+      )}
+
+      {/* slider */}
+
+      <Footer loginPage={false} />
+    </div>
   );
 }
 

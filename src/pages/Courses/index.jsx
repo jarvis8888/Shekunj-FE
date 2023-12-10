@@ -78,10 +78,10 @@ const Courses = () => {
     // dispatch(allCourses(`?limit=${pageLimit}`));
   }, [dispatch, pageLimit, lan]);
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-    Aos.init({ duration: 2000 });
-  }, []);
+  // useEffect(() => {
+  //   window.scrollTo(0, 0);
+  //   Aos.init({ duration: 2000 });
+  // }, []);
   const page_adds = JSON.parse(sessionStorage.getItem("current_adds"));
 
   const findAdds = (addslen, len) => {
@@ -317,7 +317,7 @@ const Courses = () => {
         JSON.stringify({ ...page_adds, addIndex: page_adds?.addIndex - 1 }),
       );
     }
-    window.scrollTo(0, 1000);
+    window.scrollTo(0, 500);
   };
   const paginationNext = () => {
     if (categoryId) {
@@ -341,7 +341,7 @@ const Courses = () => {
         JSON.stringify({ ...page_adds, addIndex: page_adds?.addIndex + 1 }),
       );
     }
-    window.scrollTo(0, 1000);
+    window.scrollTo(0, 500);
   };
 
   const addEmail = (email) => {
