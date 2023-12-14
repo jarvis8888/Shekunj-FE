@@ -207,22 +207,35 @@ function HomePage() {
           .then((response) => {
             if (response && response.data.results.length > 0) {
               let filterArray1 = response.data.results.filter((item, index) => {
-                return item.image_type == "home_position_1";
+                return (
+                  Array.isArray(item.image_type) &&
+                  item.image_type.some(
+                    (type) => type.image_type === "home_position_1",
+                  )
+                );
               });
               setAdsPosition1(filterArray1);
               // console.log("filterArray1home_position_1",filterArray1)
 
               let filterArray2 = response.data.results.filter((item, index) => {
-                return item.image_type == "home_position_2";
+                return (
+                  Array.isArray(item.image_type) &&
+                  item.image_type.some(
+                    (type) => type.image_type === "home_position_2",
+                  )
+                );
               });
               setAdsPosition2(filterArray2);
-              console.log("filterArray1home_position_2", filterArray2);
 
               let filterArray3 = response.data.results.filter((item, index) => {
-                return item.image_type == "home_position_3";
+                return (
+                  Array.isArray(item.image_type) &&
+                  item.image_type.some(
+                    (type) => type.image_type === "home_position_3",
+                  )
+                );
               });
               setAdsPosition3(filterArray3);
-              // console.log("filterArray1home_position_3",filterArray1)
             }
           });
       },
@@ -232,21 +245,33 @@ function HomePage() {
         axios.get(`/private_adds/private_add`).then((response) => {
           if (response && response.data.results.length > 0) {
             let filterArray1 = response.data.results.filter((item, index) => {
-              return item.image_type == "home_position_1";
+              return (
+                Array.isArray(item.image_type) &&
+                item.image_type.some(
+                  (type) => type.image_type === "home_position_1",
+                )
+              );
             });
             setAdsPosition1(filterArray1);
-            // console.log("filterArray1coursebox",filterArray1)
             let filterArray2 = response.data.results.filter((item, index) => {
-              return item.image_type == "home_position_2";
+              return (
+                Array.isArray(item.image_type) &&
+                item.image_type.some(
+                  (type) => type.image_type === "home_position_2",
+                )
+              );
             });
             setAdsPosition2(filterArray2);
-            console.log("filterArray1coursebox", filterArray2);
 
             let filterArray3 = response.data.results.filter((item, index) => {
-              return item.image_type == "home_position_3";
+              return (
+                Array.isArray(item.image_type) &&
+                item.image_type.some(
+                  (type) => type.image_type === "home_position_3",
+                )
+              );
             });
             setAdsPosition3(filterArray3);
-            // console.log("filterArray1home_position_3",filterArray3)
           }
         });
       },

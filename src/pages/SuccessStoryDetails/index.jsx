@@ -131,12 +131,22 @@ const SuccessStoryDetails = () => {
           .then((response) => {
             if (response && response.data.results.length > 0) {
               let filterArray2 = response.data.results.filter((item, index) => {
-                return item.image_type === "success_stories_right1";
+                return (
+                  Array.isArray(item.image_type) &&
+                  item.image_type.some(
+                    (type) => type.image_type === "success_stories_right1",
+                  )
+                );
               });
 
               setSuccesStoriesRight1(filterArray2);
               let filterArray3 = response.data.results.filter((item, index) => {
-                return item.image_type === "success_stories_right2";
+                return (
+                  Array.isArray(item.image_type) &&
+                  item.image_type.some(
+                    (type) => type.image_type === "success_stories_right2",
+                  )
+                );
               });
 
               setSuccesStoriesRight2(filterArray3);
@@ -176,21 +186,41 @@ const SuccessStoryDetails = () => {
           .then((response) => {
             if (response && response.data.results.length > 0) {
               let filterArray2 = response.data.results.filter((item, index) => {
-                return item.image_type === "success_stories_right1";
+                return (
+                  Array.isArray(item.image_type) &&
+                  item.image_type.some(
+                    (type) => type.image_type === "success_stories_right1",
+                  )
+                );
               });
 
               setSuccesStoriesRight1(filterArray2);
               let filterArray3 = response.data.results.filter((item, index) => {
-                return item.image_type === "success_stories_right2";
+                return (
+                  Array.isArray(item.image_type) &&
+                  item.image_type.some(
+                    (type) => type.image_type === "success_stories_right2",
+                  )
+                );
               });
 
               setSuccesStoriesRight2(filterArray3);
               let filterArray1 = response.data.results.filter((item, index) => {
-                return item.image_type == "success_stories_banner";
+                return (
+                  Array.isArray(item.image_type) &&
+                  item.image_type.some(
+                    (type) => type.image_type === "success_stories_banner",
+                  )
+                );
               });
               setStoriesBannerAds(filterArray1);
               let filterArray4 = response.data.results.filter((item, index) => {
-                return item.image_type === "success_stories_left";
+                return (
+                  Array.isArray(item.image_type) &&
+                  item.image_type.some(
+                    (type) => type.image_type === "success_stories_left",
+                  )
+                );
               });
 
               setSuccesStoriesLeft(filterArray4);
@@ -203,21 +233,41 @@ const SuccessStoryDetails = () => {
         axios.get(`/private_adds/private_add`).then((response) => {
           if (response && response.data.results.length > 0) {
             let filterArray2 = response.data.results.filter((item, index) => {
-              return item.image_type === "success_stories_right1";
+              return (
+                Array.isArray(item.image_type) &&
+                item.image_type.some(
+                  (type) => type.image_type === "success_stories_right1",
+                )
+              );
             });
 
             setSuccesStoriesRight1(filterArray2);
             let filterArray3 = response.data.results.filter((item, index) => {
-              return item.image_type === "success_stories_right2";
+              return (
+                Array.isArray(item.image_type) &&
+                item.image_type.some(
+                  (type) => type.image_type === "success_stories_right2",
+                )
+              );
             });
 
             setSuccesStoriesRight2(filterArray3);
             let filterArray1 = response.data.results.filter((item, index) => {
-              return item.image_type == "success_stories_banner";
+              return (
+                Array.isArray(item.image_type) &&
+                item.image_type.some(
+                  (type) => type.image_type === "success_stories_banner",
+                )
+              );
             });
             setStoriesBannerAds(filterArray1);
             let filterArray4 = response.data.results.filter((item, index) => {
-              return item.image_type === "success_stories_left";
+              return (
+                Array.isArray(item.image_type) &&
+                item.image_type.some(
+                  (type) => type.image_type === "success_stories_left",
+                )
+              );
             });
 
             setSuccesStoriesLeft(filterArray4);

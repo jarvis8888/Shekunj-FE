@@ -48,7 +48,7 @@ const SocialMediaIcons = React.memo(() => {
       </div>
       <div
         className='likes'
-        style={{ backgroundColor: "#49ABEC" }}
+        style={{ backgroundColor: "#000" }}
         onClick={() => {
           window.open(data?.twitter_link, "_blank");
         }}

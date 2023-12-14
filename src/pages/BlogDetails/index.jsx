@@ -157,19 +157,40 @@ const BlogDetails = () => {
           .then((response) => {
             if (response && response.data.results.length > 0) {
               let filterArray1 = response.data.results.filter((item, index) => {
-                return item.image_type === "blog_index";
+                return (
+                  Array.isArray(item.image_type) &&
+                  item.image_type.some(
+                    (type) => type.image_type === "blog_index",
+                  )
+                );
               });
+
               setBlogDetailsBoxAds(filterArray1);
               let filterArray2 = response.data.results.filter((item, index) => {
-                return item.image_type === "blog_index_right1";
+                return (
+                  Array.isArray(item.image_type) &&
+                  item.image_type.some(
+                    (type) => type.image_type === "blog_index_right1",
+                  )
+                );
               });
               setSuccesStoriesRight1(filterArray2);
               let filterArray3 = response.data.results.filter((item, index) => {
-                return item.image_type === "blog_index_right2";
+                return (
+                  Array.isArray(item.image_type) &&
+                  item.image_type.some(
+                    (type) => type.image_type === "blog_index_right2",
+                  )
+                );
               });
               setSuccesStoriesRight2(filterArray3);
               let filterArray4 = response.data.results.filter((item, index) => {
-                return item.image_type === "blog_index_left";
+                return (
+                  Array.isArray(item.image_type) &&
+                  item.image_type.some(
+                    (type) => type.image_type === "blog_index_left",
+                  )
+                );
               });
               setBolgLeft(filterArray4);
             }
@@ -181,19 +202,37 @@ const BlogDetails = () => {
         axios.get(`/private_adds/private_add`).then((response) => {
           if (response && response.data.results.length > 0) {
             let filterArray1 = response.data.results.filter((item, index) => {
-              return item.image_type === "blog_index";
+              return (
+                Array.isArray(item.image_type) &&
+                item.image_type.some((type) => type.image_type === "blog_index")
+              );
             });
             setBlogDetailsBoxAds(filterArray1);
             let filterArray2 = response.data.results.filter((item, index) => {
-              return item.image_type === "blog_index_right1";
+              return (
+                Array.isArray(item.image_type) &&
+                item.image_type.some(
+                  (type) => type.image_type === "blog_index_right1",
+                )
+              );
             });
             setSuccesStoriesRight1(filterArray2);
             let filterArray3 = response.data.results.filter((item, index) => {
-              return item.image_type === "blog_index_right2";
+              return (
+                Array.isArray(item.image_type) &&
+                item.image_type.some(
+                  (type) => type.image_type === "blog_index_right2",
+                )
+              );
             });
             setSuccesStoriesRight2(filterArray3);
             let filterArray4 = response.data.results.filter((item, index) => {
-              return item.image_type === "blog_index_left";
+              return (
+                Array.isArray(item.image_type) &&
+                item.image_type.some(
+                  (type) => type.image_type === "blog_index_left",
+                )
+              );
             });
             setBolgLeft(filterArray4);
           }
@@ -259,7 +298,9 @@ const BlogDetails = () => {
               <div className='row'>
                 <div className='col-xl-8 col-lg-8 col-md-12 col-sm-12'>
                   <div className='sk-topBottom-space'>
-                  <div><img src={blogs?.image} alt='Story' className='img' /></div>
+                    <div>
+                      <img src={blogs?.image} alt='Story' className='img' />
+                    </div>
                     <div className='story-bottom'>
                       <div className='hashtags-container'>
                         <div className='sk-bdetail-chip'>
@@ -342,7 +383,10 @@ const BlogDetails = () => {
                       hashtags={blogCategories}
                     />
                     <div className='title' ref={trendingSectionRef}>
-                    <div> <img src={discoverblog} alt='discoverblog' width={36} /></div>
+                      <div>
+                        {" "}
+                        <img src={discoverblog} alt='discoverblog' width={36} />
+                      </div>
                       <div className='sk-heading-story'>
                         <h2 className='mb-0'>Discover More Articles</h2>
                         <h3>

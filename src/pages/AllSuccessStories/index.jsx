@@ -181,7 +181,12 @@ const AllSuccessStory = () => {
           .then((response) => {
             if (response && response.data.results.length > 0) {
               let filterArray5 = response.data.results.filter((item, index) => {
-                return item.image_type === "success_stories_box";
+                return (
+                  Array.isArray(item.image_type) &&
+                  item.image_type.some(
+                    (type) => type.image_type === "success_stories_box",
+                  )
+                );
               });
 
               setSuccesStoriesBox(filterArray5);
@@ -194,7 +199,12 @@ const AllSuccessStory = () => {
         axios.get(`/private_adds/private_add`).then((response) => {
           if (response && response.data.results.length > 0) {
             let filterArray5 = response.data.results.filter((item, index) => {
-              return item.image_type === "success_stories_box";
+              return (
+                Array.isArray(item.image_type) &&
+                item.image_type.some(
+                  (type) => type.image_type === "success_stories_box",
+                )
+              );
             });
 
             setSuccesStoriesBox(filterArray5);

@@ -31,6 +31,10 @@ const SuccessStroyWithHashtag = () => {
   const [allHashTag, setAllHashTag] = useState([]);
   const [loading, setLoading] = useState(false);
   const [succesStoriesRight1, setSuccesStoriesRight1] = useState([]);
+  console.log(
+    "🚀 ~ file: index.js:34 ~ SuccessStroyWithHashtag ~ succesStoriesRight1:",
+    succesStoriesRight1,
+  );
   const [succesStoriesRight2, setSuccesStoriesRight2] = useState([]);
   const [succesStoriesLeft, setSuccesStoriesLeft] = useState([]);
   const [currentFeaturedData, setCurrentFeaturedData] = useState([]);
@@ -115,17 +119,32 @@ const SuccessStroyWithHashtag = () => {
           .then((response) => {
             if (response && response.data.results.length > 0) {
               let filterArray2 = response.data.results.filter((item, index) => {
-                return item.image_type === "success_stories_right1";
+                return (
+                  Array.isArray(item.image_type) &&
+                  item.image_type.some(
+                    (type) => type.image_type === "success_stories_right1",
+                  )
+                );
               });
 
               setSuccesStoriesRight1(filterArray2);
               let filterArray3 = response.data.results.filter((item, index) => {
-                return item.image_type === "success_stories_right2";
+                return (
+                  Array.isArray(item.image_type) &&
+                  item.image_type.some(
+                    (type) => type.image_type === "success_stories_right2",
+                  )
+                );
               });
 
               setSuccesStoriesRight2(filterArray3);
               let filterArray4 = response.data.results.filter((item, index) => {
-                return item.image_type === "success_stories_box";
+                return (
+                  Array.isArray(item.image_type) &&
+                  item.image_type.some(
+                    (type) => type.image_type === "success_stories_box",
+                  )
+                );
               });
 
               setSuccesStoriesLeft(filterArray4);
@@ -138,17 +157,32 @@ const SuccessStroyWithHashtag = () => {
         axios.get(`/private_adds/private_add`).then((response) => {
           if (response && response.data.results.length > 0) {
             let filterArray2 = response.data.results.filter((item, index) => {
-              return item.image_type === "success_stories_right1";
+              return (
+                Array.isArray(item.image_type) &&
+                item.image_type.some(
+                  (type) => type.image_type === "success_stories_right1",
+                )
+              );
             });
 
             setSuccesStoriesRight1(filterArray2);
             let filterArray3 = response.data.results.filter((item, index) => {
-              return item.image_type === "success_stories_right2";
+              return (
+                Array.isArray(item.image_type) &&
+                item.image_type.some(
+                  (type) => type.image_type === "success_stories_right2",
+                )
+              );
             });
 
             setSuccesStoriesRight2(filterArray3);
             let filterArray4 = response.data.results.filter((item, index) => {
-              return item.image_type === "success_stories_box";
+              return (
+                Array.isArray(item.image_type) &&
+                item.image_type.some(
+                  (type) => type.image_type === "success_stories_box",
+                )
+              );
             });
 
             setSuccesStoriesLeft(filterArray4);

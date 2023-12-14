@@ -118,7 +118,12 @@ const CourseDetails = () => {
           .then((response) => {
             if (response && response.data.results.length > 0) {
               let filterArray1 = response.data.results.filter((item, index) => {
-                return item.image_type == "course_detail";
+                return (
+                  Array.isArray(item.image_type) &&
+                  item.image_type.some(
+                    (type) => type.image_type === "course_detail",
+                  )
+                );
               });
               setCourseDetailAds(filterArray1);
               // console.log("filterArray1course_detail",filterArray1)
@@ -131,7 +136,12 @@ const CourseDetails = () => {
         axios.get(`/private_adds/private_add`).then((response) => {
           if (response && response.data.results.length > 0) {
             let filterArray1 = response.data.results.filter((item, index) => {
-              return item.image_type == "course_detail";
+              return (
+                Array.isArray(item.image_type) &&
+                item.image_type.some(
+                  (type) => type.image_type === "course_detail",
+                )
+              );
             });
             setCourseDetailAds(filterArray1);
             // console.log("filterArray1coursebox",filterArray1)
@@ -147,7 +157,9 @@ const CourseDetails = () => {
 
     const makeRequest = async () => {
       try {
-        const res = await axios.get(`course/start-user-course/${id}?page=${1}&progress=${100}`);
+        const res = await axios.get(
+          `course/start-user-course/${id}?page=${1}&progress=${100}`,
+        );
         if (res) {
           console.log(`worked`);
           const redirectTo = `${routingConstants.COURSES_TEST}${id}`;
@@ -371,7 +383,7 @@ const CourseDetails = () => {
                     className='btn btn_str_Cor'
                     onClick={() => checkCourseComplete(course?.id)}
                   >
-                    Give Test
+                    Give Test / Get Certified
                   </a>
 
                   <h3 className='similar-coursestext'>

@@ -78,10 +78,10 @@ const Courses = () => {
     // dispatch(allCourses(`?limit=${pageLimit}`));
   }, [dispatch, pageLimit, lan]);
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-    Aos.init({ duration: 2000 });
-  }, []);
+  // useEffect(() => {
+  //   window.scrollTo(0, 0);
+  //   Aos.init({ duration: 2000 });
+  // }, []);
   const page_adds = JSON.parse(sessionStorage.getItem("current_adds"));
 
   const findAdds = (addslen, len) => {
@@ -317,7 +317,7 @@ const Courses = () => {
         JSON.stringify({ ...page_adds, addIndex: page_adds?.addIndex - 1 }),
       );
     }
-    window.scrollTo(0, 1000);
+    window.scrollTo(0, 500);
   };
   const paginationNext = () => {
     if (categoryId) {
@@ -341,7 +341,7 @@ const Courses = () => {
         JSON.stringify({ ...page_adds, addIndex: page_adds?.addIndex + 1 }),
       );
     }
-    window.scrollTo(0, 1000);
+    window.scrollTo(0, 500);
   };
 
   const addEmail = (email) => {
@@ -385,14 +385,24 @@ const Courses = () => {
           .then((response) => {
             if (response && response.data.results.length > 0) {
               let filterArray1 = response.data.results.filter((item, index) => {
-                return item.image_type == "courses_box";
+                return (
+                  Array.isArray(item.image_type) &&
+                  item.image_type.some(
+                    (type) => type.image_type === "courses_box",
+                  )
+                );
               });
               setCoursesBoxAds(filterArray1);
 
               // console.log("filterArray1courses_box", filterArray1)
 
               let filterArray2 = response.data.results.filter((item, index) => {
-                return item.image_type == "courses_side_ads";
+                return (
+                  Array.isArray(item.image_type) &&
+                  item.image_type.some(
+                    (type) => type.image_type === "courses_side_ads",
+                  )
+                );
               });
               setCoursesSideAds(filterArray2);
             }
@@ -403,12 +413,22 @@ const Courses = () => {
         axios.get(`/private_adds/private_add`).then((response) => {
           if (response && response.data.results.length > 0) {
             let filterArray1 = response.data.results.filter((item, index) => {
-              return item.image_type == "courses_box";
+              return (
+                Array.isArray(item.image_type) &&
+                item.image_type.some(
+                  (type) => type.image_type === "courses_box",
+                )
+              );
             });
             setCoursesBoxAds(filterArray1);
             // console.log("filterArray1coursebox",filterArray1)
             let filterArray2 = response.data.results.filter((item, index) => {
-              return item.image_type == "courses_side_ads";
+              return (
+                Array.isArray(item.image_type) &&
+                item.image_type.some(
+                  (type) => type.image_type === "courses_side_ads",
+                )
+              );
             });
             setCoursesSideAds(filterArray2);
           }

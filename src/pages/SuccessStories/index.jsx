@@ -185,26 +185,51 @@ function SuccessStory() {
           .then((response) => {
             if (response && response.data.results.length > 0) {
               let filterArray1 = response.data.results.filter((item, index) => {
-                return item.image_type == "success_stories_banner";
+                return (
+                  Array.isArray(item.image_type) &&
+                  item.image_type.some(
+                    (type) => type.image_type === "success_stories_banner",
+                  )
+                );
               });
               setStoriesBannerAds(filterArray1);
               let filterArray2 = response.data.results.filter((item, index) => {
-                return item.image_type === "success_stories_right1";
+                return (
+                  Array.isArray(item.image_type) &&
+                  item.image_type.some(
+                    (type) => type.image_type === "success_stories_right1",
+                  )
+                );
               });
 
               setSuccesStoriesRight1(filterArray2);
               let filterArray3 = response.data.results.filter((item, index) => {
-                return item.image_type === "success_stories_right2";
+                return (
+                  Array.isArray(item.image_type) &&
+                  item.image_type.some(
+                    (type) => type.image_type === "success_stories_right2",
+                  )
+                );
               });
 
               setSuccesStoriesRight2(filterArray3);
               let filterArray4 = response.data.results.filter((item, index) => {
-                return item.image_type === "success_stories_left";
+                return (
+                  Array.isArray(item.image_type) &&
+                  item.image_type.some(
+                    (type) => type.image_type === "success_stories_left",
+                  )
+                );
               });
 
               setSuccesStoriesLeft(filterArray4);
               let filterArray5 = response.data.results.filter((item, index) => {
-                return item.image_type === "success_stories_box";
+                return (
+                  Array.isArray(item.image_type) &&
+                  item.image_type.some(
+                    (type) => type.image_type === "success_stories_box",
+                  )
+                );
               });
 
               setSuccesStoriesBox(filterArray5);
@@ -217,26 +242,51 @@ function SuccessStory() {
         axios.get(`/private_adds/private_add`).then((response) => {
           if (response && response.data.results.length > 0) {
             let filterArray1 = response.data.results.filter((item, index) => {
-              return item.image_type === "success_stories_banner";
+              return (
+                Array.isArray(item.image_type) &&
+                item.image_type.some(
+                  (type) => type.image_type === "success_stories_banner",
+                )
+              );
             });
             setStoriesBannerAds(filterArray1);
             let filterArray2 = response.data.results.filter((item, index) => {
-              return item.image_type === "success_stories_right1";
+              return (
+                Array.isArray(item.image_type) &&
+                item.image_type.some(
+                  (type) => type.image_type === "success_stories_right1",
+                )
+              );
             });
 
             setSuccesStoriesRight1(filterArray2);
             let filterArray3 = response.data.results.filter((item, index) => {
-              return item.image_type === "success_stories_right2";
+              return (
+                Array.isArray(item.image_type) &&
+                item.image_type.some(
+                  (type) => type.image_type === "success_stories_right2",
+                )
+              );
             });
 
             setSuccesStoriesRight2(filterArray3);
             let filterArray4 = response.data.results.filter((item, index) => {
-              return item.image_type === "success_stories_left";
+              return (
+                Array.isArray(item.image_type) &&
+                item.image_type.some(
+                  (type) => type.image_type === "success_stories_left",
+                )
+              );
             });
 
             setSuccesStoriesLeft(filterArray4);
             let filterArray5 = response.data.results.filter((item, index) => {
-              return item.image_type === "success_stories_box";
+              return (
+                Array.isArray(item.image_type) &&
+                item.image_type.some(
+                  (type) => type.image_type === "success_stories_box",
+                )
+              );
             });
 
             setSuccesStoriesBox(filterArray5);
@@ -505,17 +555,16 @@ function SuccessStory() {
                       children={
                         <>
                           {storiesBannerAds.length > 0 && (
-                            
                             <div
                               className='ads_home_cover '
                               onClick={() =>
                                 addEmailToClient(storiesBannerAds[0]?.add_email)
                               }
                             >
-                             <div className="sk-add-title">
+                              <div className='sk-add-title'>
                                 <h6>Advertisement</h6>
                               </div>
-                             
+
                               <a
                                 href={storiesBannerAds[0]?.url_adds}
                                 target='_blank'
@@ -553,7 +602,13 @@ function SuccessStory() {
                   <div className='col-xl-8 col-lg-8 col-md-12 col-sm-12 featured-stories'>
                     <div className='sk-topBottom-space'>
                       <div className='title'>
-                        <div><img src={featurestory} alt='featurestory' width={36} /></div>
+                        <div>
+                          <img
+                            src={featurestory}
+                            alt='featurestory'
+                            width={36}
+                          />
+                        </div>
                         <div className='sk-heading-story'>
                           <h2>Featured Stories </h2>
                           <h3>
@@ -617,7 +672,9 @@ function SuccessStory() {
 
                       <div>
                         <div className='title'>
-                          <div><img src={fire} alt='fire' width={36} /></div>
+                          <div>
+                            <img src={fire} alt='fire' width={36} />
+                          </div>
                           <div className='sk-heading-story'>
                             <h2>Trending Stories </h2>
                             <h3>

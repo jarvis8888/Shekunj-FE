@@ -92,7 +92,6 @@ function MockTest() {
   const [adds, setAdds] = useState([]);
   const [searchInput, setSearchInput] = useState("");
   const [tempData, setTempData] = useState([]);
-  console.log("🚀 ~ file: index.jsx:95 ~ tempData:", tempData);
 
   const history = useHistory();
   const dispatch = useDispatch();
@@ -135,7 +134,12 @@ function MockTest() {
           .then((response) => {
             if (response && response.data.results.length > 0) {
               let filterArray1 = response.data.results.filter((item, index) => {
-                return item.image_type == "mock_test";
+                return (
+                  Array.isArray(item.image_type) &&
+                  item.image_type.some(
+                    (type) => type.image_type === "mock_test",
+                  )
+                );
               });
               setMockTestBoxAds(filterArray1);
               // console.log("filterArray1mock_test",filterArray1)
@@ -147,7 +151,10 @@ function MockTest() {
         axios.get(`/private_adds/private_add`).then((response) => {
           if (response && response.data.results.length > 0) {
             let filterArray1 = response.data.results.filter((item, index) => {
-              return item.image_type == "mock_test";
+              return (
+                Array.isArray(item.image_type) &&
+                item.image_type.some((type) => type.image_type === "mock_test")
+              );
             });
             setMockTestBoxAds(filterArray1);
             // console.log("filterArray1coursebox",filterArray1)

@@ -211,13 +211,23 @@ const CareerPage = () => {
           .then((response) => {
             if (response && response.data.results.length > 0) {
               let filterArray1 = response.data.results.filter((item, index) => {
-                return item.image_type == "top_college_box";
+                return (
+                  Array.isArray(item.image_type) &&
+                  item.image_type.some(
+                    (type) => type.image_type === "top_college_box",
+                  )
+                );
               });
               setCollegeBoxAds(filterArray1);
 
               // console.log("filterArray1top_college_box",filterArray1)
               let filterArray2 = response.data.results.filter((item, index) => {
-                return item.image_type == "top_college_banner";
+                return (
+                  Array.isArray(item.image_type) &&
+                  item.image_type.some(
+                    (type) => type.image_type === "top_college_banner",
+                  )
+                );
               });
               setCollegeBannerAds(filterArray2);
             }
@@ -229,13 +239,23 @@ const CareerPage = () => {
         axios.get(`/private_adds/private_add`).then((response) => {
           if (response && response.data.results.length > 0) {
             let filterArray1 = response.data.results.filter((item, index) => {
-              return item.image_type == "top_college_box";
+              return (
+                Array.isArray(item.image_type) &&
+                item.image_type.some(
+                  (type) => type.image_type === "top_college_box",
+                )
+              );
             });
             setCollegeBoxAds(filterArray1);
 
             // sessionStorage.setItem('current_adds', JSON.stringify([0, 1]));
             let filterArray2 = response.data.results.filter((item, index) => {
-              return item.image_type == "top_college_banner";
+              return (
+                Array.isArray(item.image_type) &&
+                item.image_type.some(
+                  (type) => type.image_type === "top_college_banner",
+                )
+              );
             });
             setCollegeBannerAds(filterArray2);
           }

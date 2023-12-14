@@ -60,7 +60,7 @@ const AddsPopup = (props) => {
         .catch((error) => {
           // setMessage("No data found");
           console.log(error);
-      })
+        });
     });
   };
 
@@ -80,7 +80,10 @@ const AddsPopup = (props) => {
         .then((response) => {
           if (response.data.results.length > 0) {
             let filterArray = response.data.results.filter((item, index) => {
-              return item.image_type == "popup_ads";
+              return (
+                Array.isArray(item.image_type) &&
+                item.image_type.some((type) => type.image_type === "popup_ads")
+              );
             });
             let findImage =
               filterArray.length > 0 ? filterArray[0].image : "NA";
@@ -91,7 +94,7 @@ const AddsPopup = (props) => {
         .catch((error) => {
           // setMessage("No data found");
           console.log(error);
-      })
+        });
     });
     dispatch(adsList());
   }, [dispatch]);

@@ -111,7 +111,7 @@ const GuidancePage = () => {
     qualifications: Yup.string().required("Qualifications is required"),
     guidance_purpose: Yup.string().required("Select the purpose"),
     institute_name: Yup.string().trim(),
-    message: Yup.string().trim(),
+    message: Yup.string().trim().required("Message is required"),
     gender: Yup.string().required("Gender is required"),
   });
   const onStudentFormSubmit = useFormik({

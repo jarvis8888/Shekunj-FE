@@ -151,7 +151,12 @@ const CareerPage2 = () => {
         .then((response) => {
           if (response.data.results.length > 0) {
             let filterArray = response.data.results.filter((item, index) => {
-              return item.image_type == "govt_scm_cover";
+              return (
+                Array.isArray(item.image_type) &&
+                item.image_type.some(
+                  (type) => type.image_type === "govt_scm_cover",
+                )
+              ); 
             });
             let findImage =
               filterArray.length > 0 ? filterArray[0].image : "NA";
@@ -275,19 +280,34 @@ const CareerPage2 = () => {
           .then((response) => {
             if (response && response.data.results.length > 0) {
               let filterArray = response.data.results.filter((item, index) => {
-                return item.image_type == "govt_scm_cover";
+                return (
+                  Array.isArray(item.image_type) &&
+                  item.image_type.some(
+                    (type) => type.image_type === "govt_scm_cover",
+                  )
+                );
               });
               let findImage =
                 filterArray.length > 0 ? filterArray[0].image : "NA";
               setImage(findImage);
               setGovBannerAds(filterArray);
               let filterArray1 = response.data.results.filter((item, index) => {
-                return item.image_type == "govt_scm_box";
+                return (
+                  Array.isArray(item.image_type) &&
+                  item.image_type.some(
+                    (type) => type.image_type === "govt_scm_box",
+                  )
+                );
               });
               setGovBoxAds(filterArray1);
 
               let filterArray2 = response.data.results.filter((item, index) => {
-                return item.image_type == "govt_scm_side_ads";
+                return (
+                  Array.isArray(item.image_type) &&
+                  item.image_type.some(
+                    (type) => type.image_type === "govt_scm_side_ads",
+                  )
+                );
               });
               setGovtScmSideAdds(filterArray2);
             }
@@ -299,18 +319,33 @@ const CareerPage2 = () => {
         axios.get(`/private_adds/private_add`).then((response) => {
           if (response && response.data.results.length > 0) {
             let filterArray = response.data.results.filter((item, index) => {
-              return item.image_type == "govt_scm_cover";
+              return (
+                Array.isArray(item.image_type) &&
+                item.image_type.some(
+                  (type) => type.image_type === "govt_scm_cover",
+                )
+              );
             });
             let findImage =
               filterArray.length > 0 ? filterArray[0].image : "NA";
             setImage(findImage);
             setGovBannerAds(filterArray);
             let filterArray1 = response.data.results.filter((item, index) => {
-              return item.image_type == "govt_scm_box";
+              return (
+                Array.isArray(item.image_type) &&
+                item.image_type.some(
+                  (type) => type.image_type === "govt_scm_box",
+                )
+              );
             });
             setGovBoxAds(filterArray1);
             let filterArray2 = response.data.results.filter((item, index) => {
-              return item.image_type == "govt_scm_side_ads";
+              return (
+                Array.isArray(item.image_type) &&
+                item.image_type.some(
+                  (type) => type.image_type === "govt_scm_side_ads",
+                )
+              );
             });
             setGovtScmSideAdds(filterArray2);
           }
