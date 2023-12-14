@@ -94,24 +94,40 @@ const EventDetails = () => {
         const response = await axios.get(
           `/private_adds/private_add?latitude=${latitude}&longitude=${longitude}`,
         );
-        const filterArray1 = response.data.results.filter(
-          (item) => item.image_type === "event_detail",
-        );
+        const filterArray1 = response.data.results.filter((item) => {
+          return (
+            Array.isArray(item.image_type) &&
+            item.image_type.some((type) => type.image_type === "event_detail")
+          );
+        });
         setEventDetailsBoxAds(filterArray1);
-        const filterArray2 = response?.data?.results?.filter(
-          (item) => item.image_type === "event_detail_footer",
-        );
+        const filterArray2 = response?.data?.results?.filter((item) => {
+          return (
+            Array.isArray(item.image_type) &&
+            item.image_type.some(
+              (type) => type.image_type === "event_detail_footer",
+            )
+          );
+        });
         setEventDetailsBannerAds(filterArray2);
       } catch (error) {
         console.error(error);
         axios.get(`/private_adds/private_add`).then((response) => {
-          const filterArray1 = response.data.results.filter(
-            (item) => item.image_type === "event_detail",
-          );
+          const filterArray1 = response.data.results.filter((item) => {
+            return (
+              Array.isArray(item.image_type) &&
+              item.image_type.some((type) => type.image_type === "event_detail")
+            );
+          });
           setEventDetailsBoxAds(filterArray1);
-          const filterArray2 = response?.data?.results?.filter(
-            (item) => item.image_type === "event_detail_footer",
-          );
+          const filterArray2 = response?.data?.results?.filter((item) => {
+            return (
+              Array.isArray(item.image_type) &&
+              item.image_type.some(
+                (type) => type.image_type === "event_detail_footer",
+              )
+            );
+          });
           setEventDetailsBannerAds(filterArray2);
         });
       }
@@ -119,13 +135,19 @@ const EventDetails = () => {
     const errorCallback = (error) => {
       console.error("Error Code = " + error.code + " - " + error.message);
       axios.get(`/private_adds/private_add`).then((response) => {
-        const filterArray1 = response.data.results.filter(
-          (item) => item.image_type === "event_detail",
-        );
+        const filterArray1 = response.data.results.filter((item) => {
+          return (
+            Array.isArray(item.image_type) &&
+            item.image_type.some((type) => type.image_type === "event_detail")
+          );
+        });
         setEventDetailsBoxAds(filterArray1);
-        const filterArray2 = response?.data?.results?.filter(
-          (item) => item.image_type === "event_detail_footer",
-        );
+        const filterArray2 = response?.data?.results?.filter((item) => {
+          return (
+            Array.isArray(item.image_type) &&
+            item.image_type.some((type) => type.image_type === "event_detail")
+          );
+        });
         setEventDetailsBannerAds(filterArray2);
       });
     };

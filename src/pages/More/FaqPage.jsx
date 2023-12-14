@@ -77,16 +77,22 @@ function FaqPage() {
         const response = await axios.get(
           `/private_adds/private_add?latitude=${latitude}&longitude=${longitude}`,
         );
-        const filterArray1 = response.data.results.filter(
-          (item) => item.image_type === "Faq_index",
-        );
+        const filterArray1 = response.data.results.filter((item) => {
+          return (
+            Array.isArray(item.image_type) &&
+            item.image_type.some((type) => type.image_type === "Faq_index")
+          );
+        });
         setFaqBoxAdds(filterArray1);
       } catch (error) {
         console.error(error);
         axios.get(`/private_adds/private_add`).then((response) => {
-          const filterArray1 = response.data.results.filter(
-            (item) => item.image_type === "Faq_index",
-          );
+          const filterArray1 = response.data.results.filter((item) => {
+            return (
+              Array.isArray(item.image_type) &&
+              item.image_type.some((type) => type.image_type === "Faq_index")
+            );
+          });
           setFaqBoxAdds(filterArray1);
         });
       }
@@ -94,9 +100,12 @@ function FaqPage() {
     const errorCallback = (error) => {
       console.error("Error Code = " + error.code + " - " + error.message);
       axios.get(`/private_adds/private_add`).then((response) => {
-        const filterArray1 = response.data.results.filter(
-          (item) => item.image_type === "Faq_index",
-        );
+        const filterArray1 = response.data.results.filter((item) => {
+          return (
+            Array.isArray(item.image_type) &&
+            item.image_type.some((type) => type.image_type === "Faq_index")
+          );
+        });
         setFaqBoxAdds(filterArray1);
       });
     };

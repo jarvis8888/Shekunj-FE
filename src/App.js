@@ -119,7 +119,7 @@ function App() {
       <Switch>
         <PublicRoute
           exact
-          path={routingConstants.LOGIN}
+          path={`${routingConstants.LOGIN}`}
           component={LoginPage}
         />
         <PublicRoute

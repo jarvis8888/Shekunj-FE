@@ -66,7 +66,6 @@ function MagzinePage(m) {
 
   pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
-
   function onDocumentLoadSuccess({ numPages }) {
     setNumPages(numPages);
     setPageNumber(1);
@@ -90,44 +89,55 @@ function MagzinePage(m) {
   }
 
   useEffect(() => {
-    dispatch(adsList())
-    navigator.geolocation.getCurrentPosition(async function (position, values) {
-      const latitude = position?.coords?.latitude;
-      const longitude = position?.coords?.longitude;
+    dispatch(adsList());
+    navigator.geolocation.getCurrentPosition(
+      async function (position, values) {
+        const latitude = position?.coords?.latitude;
+        const longitude = position?.coords?.longitude;
 
-      let params = {
-        latitude: latitude.toString(),
-        longitude: longitude.toString(),
-      }
-      axios
-        .get(
-          `/private_adds/private_add?latitude=${latitude}&longitude=${longitude}`,
-        )
-        .then((response) => {
-          if (response && response?.data?.results?.length > 0) {
-            let filterArray1 = response?.data?.results?.filter((item, index) => {
-              return item?.image_type == "magazine_index";
-            });
-            setMagzineBoxAdds(filterArray1);
-          }
-        })
-    },
-      function (error) {
+        let params = {
+          latitude: latitude.toString(),
+          longitude: longitude.toString(),
+        };
         axios
           .get(
-            `/private_adds/private_add`,
+            `/private_adds/private_add?latitude=${latitude}&longitude=${longitude}`,
           )
           .then((response) => {
             if (response && response?.data?.results?.length > 0) {
-              let filterArray1 = response?.data?.results?.filter((item, index) => {
-                return item?.image_type == "magazine_index";
-              });
+              let filterArray1 = response?.data?.results?.filter(
+                (item, index) => {
+                  return (
+                    Array.isArray(item.image_type) &&
+                    item.image_type.some(
+                      (type) => type.image_type === "magazine_index",
+                    )
+                  );
+                },
+              );
               setMagzineBoxAdds(filterArray1);
             }
-          })
-      }
-    )
-  }, [])
+          });
+      },
+      function (error) {
+        axios.get(`/private_adds/private_add`).then((response) => {
+          if (response && response?.data?.results?.length > 0) {
+            let filterArray1 = response?.data?.results?.filter(
+              (item, index) => {
+                return (
+                  Array.isArray(item.image_type) &&
+                  item.image_type.some(
+                    (type) => type.image_type === "magazine_index",
+                  )
+                );
+              },
+            );
+            setMagzineBoxAdds(filterArray1);
+          }
+        });
+      },
+    );
+  }, []);
 
   const addEmail = (email) => {
     navigator.geolocation.getCurrentPosition(async function (position, values) {
@@ -150,7 +160,7 @@ function MagzinePage(m) {
         })
         .catch((error) => {
           console.log(error);
-        })
+        });
     });
   };
 
@@ -205,13 +215,13 @@ function MagzinePage(m) {
       </div>
       {/* google add */}
 
-
-      <Container className="comming_soon">
-       
-          <h1 className="comming_soon_h1">COMING SOON
-          </h1>
-          <div className="loader-demo-box">
-          <p className="jumping-dots-loader"> <span></span> <span></span> <span></span> </p>
+      <Container className='comming_soon'>
+        <h1 className='comming_soon_h1'>COMING SOON</h1>
+        <div className='loader-demo-box'>
+          <p className='jumping-dots-loader'>
+            {" "}
+            <span></span> <span></span> <span></span>{" "}
+          </p>
         </div>
       </Container>
 
@@ -224,16 +234,16 @@ function MagzinePage(m) {
                 <div className='Magzine noselect' key={m?.id}>
                   <Row>
                     <Col>
-                      <Card.Link
-                        style={{ color: "#a63d67 " }}
-                      >
+                      <Card.Link style={{ color: "#a63d67 " }}>
                         <Card
                           className='MagzineCard'
                           key={m?.id}
                           href={m?.form_link}
                         >
                           <Link
-                            to={routingConstants.MORE_MAGAZINE + m?.id} key={m?.id}>
+                            to={routingConstants.MORE_MAGAZINE + m?.id}
+                            key={m?.id}
+                          >
                             <Card.Img
                               className='magzineImage'
                               variant='top'
@@ -271,10 +281,9 @@ function MagzinePage(m) {
                       </Card.Link>
                     </Col>
 
-                    {(index % 2 == 1)
-                      ?
+                    {index % 2 == 1 ? (
                       <>
-                        <Col className="magzine_anchore">
+                        <Col className='magzine_anchore'>
                           <Card className='MagzineCardAdd'>
                             {magzineBoxAdds?.length > 0 && (
                               <div
@@ -299,8 +308,9 @@ function MagzinePage(m) {
                           </Card>
                         </Col>
                       </>
-                      : ''
-                    }
+                    ) : (
+                      ""
+                    )}
                   </Row>
                 </div>
               </>
@@ -310,12 +320,11 @@ function MagzinePage(m) {
           <div className='text-center'>{t("common.noDataFound")}</div>
         )}
 
-      <DocViewer
+        <DocViewer
           documents={docs}
           pluginRenderers={DocViewerRenderers}
           sandboxed='allow-scripts'
         />
-
       </Container>
 
       <div className='want noselect'>

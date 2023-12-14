@@ -134,7 +134,12 @@ export default function VerticalTabs() {
           .then((response) => {
             if (response && response.data.results.length > 0) {
               let filterArray1 = response.data.results.filter((item, index) => {
-                return item.image_type == "career_option";
+                return (
+                  Array.isArray(item.image_type) &&
+                  item.image_type.some(
+                    (type) => type.image_type === "career_option",
+                  )
+                );
               });
               setCareerOptionBoxAds(filterArray1);
               // console.log("filterArray1career_option",filterArray1)
@@ -147,7 +152,12 @@ export default function VerticalTabs() {
         axios.get(`/private_adds/private_add`).then((response) => {
           if (response && response.data.results.length > 0) {
             let filterArray1 = response.data.results.filter((item, index) => {
-              return item.image_type == "career_option";
+              return (
+                Array.isArray(item.image_type) &&
+                item.image_type.some(
+                  (type) => type.image_type === "career_option",
+                )
+              );
             });
             setCareerOptionBoxAds(filterArray1);
             // console.log("filterArray1coursebox",filterArray1)

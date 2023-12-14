@@ -118,7 +118,12 @@ const CourseDetails = () => {
           .then((response) => {
             if (response && response.data.results.length > 0) {
               let filterArray1 = response.data.results.filter((item, index) => {
-                return item.image_type == "course_detail";
+                return (
+                  Array.isArray(item.image_type) &&
+                  item.image_type.some(
+                    (type) => type.image_type === "course_detail",
+                  )
+                );
               });
               setCourseDetailAds(filterArray1);
               // console.log("filterArray1course_detail",filterArray1)
@@ -131,7 +136,12 @@ const CourseDetails = () => {
         axios.get(`/private_adds/private_add`).then((response) => {
           if (response && response.data.results.length > 0) {
             let filterArray1 = response.data.results.filter((item, index) => {
-              return item.image_type == "course_detail";
+              return (
+                Array.isArray(item.image_type) &&
+                item.image_type.some(
+                  (type) => type.image_type === "course_detail",
+                )
+              );
             });
             setCourseDetailAds(filterArray1);
             // console.log("filterArray1coursebox",filterArray1)

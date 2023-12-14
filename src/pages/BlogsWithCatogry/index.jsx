@@ -98,16 +98,31 @@ const BlogWithCatogry = () => {
           .then((response) => {
             if (response && response.data.results.length > 0) {
               let filterArray1 = response.data.results.filter((item, index) => {
-                return item.image_type == "blog_index_left";
+                return (
+                  Array.isArray(item.image_type) &&
+                  item.image_type.some(
+                    (type) => type.image_type === "blog_index_left",
+                  )
+                );
               });
               setBlogDetailsBoxAds(filterArray1);
               let filterArray2 = response.data.results.filter((item, index) => {
-                return item.image_type === "blog_index_right1";
+                return (
+                  Array.isArray(item.image_type) &&
+                  item.image_type.some(
+                    (type) => type.image_type === "blog_index_right1",
+                  )
+                );
               });
 
               setSuccesStoriesRight1(filterArray2);
               let filterArray3 = response.data.results.filter((item, index) => {
-                return item.image_type === "blog_index_right2";
+                return (
+                  Array.isArray(item.image_type) &&
+                  item.image_type.some(
+                    (type) => type.image_type === "blog_index_right2",
+                  )
+                );
               });
 
               setSuccesStoriesRight2(filterArray3);
@@ -120,16 +135,31 @@ const BlogWithCatogry = () => {
         axios.get(`/private_adds/private_add`).then((response) => {
           if (response && response.data.results.length > 0) {
             let filterArray1 = response.data.results.filter((item, index) => {
-              return item.image_type == "blog_index_left";
+              return (
+                Array.isArray(item.image_type) &&
+                item.image_type.some(
+                  (type) => type.image_type === "blog_index_left",
+                )
+              );
             });
             setBlogDetailsBoxAds(filterArray1);
             let filterArray2 = response.data.results.filter((item, index) => {
-              return item.image_type === "blog_index_right1";
+              return (
+                Array.isArray(item.image_type) &&
+                item.image_type.some(
+                  (type) => type.image_type === "blog_index_right1",
+                )
+              );
             });
 
             setSuccesStoriesRight1(filterArray2);
             let filterArray3 = response.data.results.filter((item, index) => {
-              return item.image_type === "blog_index_right2";
+              return (
+                Array.isArray(item.image_type) &&
+                item.image_type.some(
+                  (type) => type.image_type === "blog_index_right2",
+                )
+              );
             });
 
             setSuccesStoriesRight2(filterArray3);

@@ -260,13 +260,23 @@ const CareerPage1 = () => {
           .then((response) => {
             if (response && response.data.results.length > 0) {
               let filterArray1 = response.data.results.filter((item, index) => {
-                return item.image_type == "top_school_box";
+                return (
+                  Array.isArray(item.image_type) &&
+                  item.image_type.some(
+                    (type) => type.image_type === "top_school_box",
+                  )
+                );
               });
               setSchoolBoxAds(filterArray1);
               // console.log("filterArray1top_school_box",filterArray1)
 
               let filterArray2 = response.data.results.filter((item, index) => {
-                return item.image_type == "top_school_banner";
+                return (
+                  Array.isArray(item.image_type) &&
+                  item.image_type.some(
+                    (type) => type.image_type === "top_school_banner",
+                  )
+                );
               });
               setSchoolBannerAds(filterArray2);
             }
@@ -278,11 +288,21 @@ const CareerPage1 = () => {
         axios.get(`/private_adds/private_add`).then((response) => {
           if (response && response.data.results.length > 0) {
             let filterArray1 = response.data.results.filter((item, index) => {
-              return item.image_type == "top_school_box";
+              return (
+                Array.isArray(item.image_type) &&
+                item.image_type.some(
+                  (type) => type.image_type === "top_school_box",
+                )
+              );
             });
             setSchoolBoxAds(filterArray1);
             let filterArray2 = response.data.results.filter((item, index) => {
-              return item.image_type == "top_school_banner";
+              return (
+                Array.isArray(item.image_type) &&
+                item.image_type.some(
+                  (type) => type.image_type === "top_school_banner",
+                )
+              );
             });
             setSchoolBannerAds(filterArray2);
           }

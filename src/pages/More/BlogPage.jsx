@@ -64,7 +64,6 @@ function BlogPage() {
   const [trendingLoading, setTrendingLoading] = useState(false);
   const [pageLoading, setPageLoading] = useState(true);
   const [h1Tag, setH1Tag] = useState([]);
-  
 
   const getAllBlogsData = async (limit, offset) => {
     setLoading(true);
@@ -199,23 +198,48 @@ function BlogPage() {
           .then((response) => {
             if (response && response.data.results.length > 0) {
               let filterArray1 = response.data.results.filter((item, index) => {
-                return item.image_type === "blog_index";
+                return (
+                  Array.isArray(item.image_type) &&
+                  item.image_type.some(
+                    (type) => type.image_type === "blog_index",
+                  )
+                );
               });
               setBlogBoxAdds(filterArray1);
               let filterArray2 = response.data.results.filter((item, index) => {
-                return item.image_type === "blog_index_right1";
+                return (
+                  Array.isArray(item.image_type) &&
+                  item.image_type.some(
+                    (type) => type.image_type === "blog_index_right1",
+                  )
+                );
               });
               bolgRight1(filterArray2);
               let filterArray3 = response.data.results.filter((item, index) => {
-                return item.image_type === "blog_index_right2";
+                return (
+                  Array.isArray(item.image_type) &&
+                  item.image_type.some(
+                    (type) => type.image_type === "blog_index_right2",
+                  )
+                );
               });
               bolgRight2(filterArray3);
               let filterArray4 = response.data.results.filter((item, index) => {
-                return item.image_type === "blog_index_left";
+                return (
+                  Array.isArray(item.image_type) &&
+                  item.image_type.some(
+                    (type) => type.image_type === "blog_index_left",
+                  )
+                );
               });
               setBolgLeft(filterArray4);
               let filterArray5 = response.data.results.filter((item, index) => {
-                return item.image_type === "blog_index_trending_grid";
+                return (
+                  Array.isArray(item.image_type) &&
+                  item.image_type.some(
+                    (type) => type.image_type === "blog_index_trending_grid",
+                  )
+                );
               });
               setBolgGrid(filterArray5);
             }
@@ -227,23 +251,46 @@ function BlogPage() {
         axios.get(`/private_adds/private_add`).then((response) => {
           if (response && response.data.results.length > 0) {
             let filterArray1 = response.data.results.filter((item, index) => {
-              return item.image_type === "blog_index";
+              return (
+                Array.isArray(item.image_type) &&
+                item.image_type.some((type) => type.image_type === "blog_index")
+              );
             });
             setBlogBoxAdds(filterArray1);
             let filterArray2 = response.data.results.filter((item, index) => {
-              return item.image_type === "blog_index_right1";
+              return (
+                Array.isArray(item.image_type) &&
+                item.image_type.some(
+                  (type) => type.image_type === "blog_index_right1",
+                )
+              );
             });
             bolgRight1(filterArray2);
             let filterArray3 = response.data.results.filter((item, index) => {
-              return item.image_type === "blog_index_right2";
+              return (
+                Array.isArray(item.image_type) &&
+                item.image_type.some(
+                  (type) => type.image_type === "blog_index_right2",
+                )
+              );
             });
             bolgRight2(filterArray3);
             let filterArray4 = response.data.results.filter((item, index) => {
-              return item.image_type === "blog_index_left";
+              return (
+                Array.isArray(item.image_type) &&
+                item.image_type.some(
+                  (type) => type.image_type === "blog_index_left",
+                )
+              );
             });
             setBolgLeft(filterArray4);
             let filterArray5 = response.data.results.filter((item, index) => {
-              return item.image_type === "blog_index_trending_grid";
+              return (
+                Array.isArray(item.image_type) &&
+                item.image_type.some(
+                  (type) => type.image_type === "blog_index_trending_grid",
+                )
+              );
             });
             setBolgGrid(filterArray5);
           }
@@ -380,7 +427,9 @@ function BlogPage() {
                   <div className='col-xl-4 col-lg-4 col-md-12 col-sm-12'>
                     <div className='sk-blog-sidebar'>
                       <div className='title mb-4'>
-                        <div><img src={fire} alt='fire' width={36} /></div>
+                        <div>
+                          <img src={fire} alt='fire' width={36} />
+                        </div>
                         <div className='sk-heading-story'>
                           <h2>Trending Articles</h2>
                           <h3>Popular articles, news and trends on SheKunj</h3>
@@ -430,7 +479,7 @@ function BlogPage() {
                                 addEmailToClient(blogBoxAdds[0]?.add_email)
                               }
                             >
-                              <div className="sk-add-title">
+                              <div className='sk-add-title'>
                                 <h6>Advertisement</h6>
                               </div>
                               <a
@@ -470,7 +519,9 @@ function BlogPage() {
                     <div className='sk-topBottom-space'>
                       <div className='blog-stories'>
                         <div className='title'>
-                        <div><img src={latestblog} alt='latestblog' width={36} /></div>
+                          <div>
+                            <img src={latestblog} alt='latestblog' width={36} />
+                          </div>
                           <div className='sk-heading-story'>
                             <h2>Latest Article</h2>
                             <h3>
@@ -542,7 +593,6 @@ function BlogPage() {
                                     addEmailToClient(blogBoxAdds[0]?.add_email)
                                   }
                                 >
-                                 
                                   <a
                                     href={blogBoxAdds[0]?.url_adds}
                                     target='_blank'
@@ -576,7 +626,13 @@ function BlogPage() {
                         hashtags={blogsCategories}
                       />
                       <div className='title'>
-                        <div><img src={discoverblog} alt='discoverblog' width={36} /></div>
+                        <div>
+                          <img
+                            src={discoverblog}
+                            alt='discoverblog'
+                            width={36}
+                          />
+                        </div>
                         <div className='sk-heading-story'>
                           <h2 className='mb-0'>Discover More Articles</h2>
                           <h3>

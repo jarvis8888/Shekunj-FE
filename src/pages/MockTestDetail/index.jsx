@@ -91,13 +91,15 @@ function MockTestDetail() {
   const { isLoading, guidanceCategory, testData, countData } = useSelector(
     (state) => state?.guidanceReducer,
   );
-  console.log(
-    "🚀 ~ file: index.jsx:92 ~ MockTestDetail ~ guidanceCategory:",
-    guidanceCategory,
-  );
+ 
 
   const progress = Math.round(100 / (countData?.total_career_que || 0)) || 0;
   const question_history = JSON.parse(localStorage.getItem("question_history"));
+  
+
+  const { t } = useTranslation();
+  const { lan } = useSelector((state) => state.languageReducer);
+
   useEffect(() => {
     // console.log("testDataMockTest", testData)
     if (questionNumber !== 1) {
@@ -142,9 +144,6 @@ function MockTestDetail() {
     }
   }, [testData]);
 
-  const { t } = useTranslation();
-  const { lan } = useSelector((state) => state.languageReducer);
-
   // useEffect(()=> {
   //   setQuestionNumber(countData?.user_career_test_count + 1)
   // },[countData])
@@ -163,16 +162,16 @@ function MockTestDetail() {
     // }else{
     //   localStorage.removeItem('question_history')
     // }
-    const filterHistory = question_history?.filter((his) => his.cat_id === id);
-    if (filterHistory?.length > 0) {
-      const fetchQuestion = filterHistory[0];
-      setQuestionNumber(fetchQuestion?.q_no);
-      //  if(fetchQuestion?.q_no && fetchQuestion?.cat_id===id){
+    // const filterHistory = question_history?.filter((his) => his.cat_id === id);
+    // if (filterHistory?.length > 0) {
+    //   const fetchQuestion = filterHistory[0];
+    //   setQuestionNumber(fetchQuestion?.q_no);
+    //   //  if(fetchQuestion?.q_no && fetchQuestion?.cat_id===id){
 
-      // }else{
-      //   localStorage.removeItem('question_history')
-      // }
-    }
+    //   // }else{
+    //   //   localStorage.removeItem('question_history')
+    //   // }
+    // }
   }, []);
 
   // useEffect(() => {

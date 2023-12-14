@@ -33,7 +33,6 @@ import ContentLoader, { Facebook } from "react-content-loader";
 import { adsList } from "../../store/ads";
 import { ClipLoader } from "react-spinners";
 
-
 const Accordion = styled((props) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
 ))(({ theme }) => ({
@@ -298,7 +297,7 @@ const CourseModule = () => {
             options={{ cMapUrl: "cmaps/", cMapPacked: true }}
             file={course?.description}
             onLoadSuccess={onDocumentLoadSuccess}
-            loading= {<ClipLoader className='loader' color='#ec498a' />}
+            loading={<ClipLoader className='loader' color='#ec498a' />}
           >
             {[...Array(course?.total_pages)]?.map((page, index) => {
               return <Page pageNumber={index + 1} />;
@@ -361,7 +360,7 @@ const CourseModule = () => {
         });
     });
   };
-// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>code below >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>code below >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
   // useEffect(() => {
   //   navigator.geolocation.getCurrentPosition(async function (position, values) {
   //     const latitude = position.coords.latitude;
@@ -395,51 +394,55 @@ const CourseModule = () => {
 
   // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>code latest Below >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
   useEffect(() => {
-    dispatch(adsList())
-    navigator.geolocation.getCurrentPosition(async function (position, values) {
-      const latitude = position.coords.latitude;
-      const longitude = position.coords.longitude;
-  
-      let params = {
-        latitude: latitude.toString(),
-        longitude: longitude.toString(),
-      } 
-      axios
-      .get(
-        `/private_adds/private_add?latitude=${latitude}&longitude=${longitude}`,
-      )
-      .then((response) => {
-        if (response && response.data.results.length > 0) {
-          let filterArray1 = response.data.results.filter((item, index) => {
-           
-            return item.image_type == "courses_module";
-  
-          });
-          setAdsCourseModule(filterArray1);
-          // console.log("filterArray1courses_module",filterArray1)
+    dispatch(adsList());
+    navigator.geolocation.getCurrentPosition(
+      async function (position, values) {
+        const latitude = position.coords.latitude;
+        const longitude = position.coords.longitude;
+
+        let params = {
+          latitude: latitude.toString(),
+          longitude: longitude.toString(),
+        };
+        axios
+          .get(
+            `/private_adds/private_add?latitude=${latitude}&longitude=${longitude}`,
+          )
+          .then((response) => {
+            if (response && response.data.results.length > 0) {
+              let filterArray1 = response.data.results.filter((item, index) => {
+                return (
+                  Array.isArray(item.image_type) &&
+                  item.image_type.some(
+                    (type) => type.image_type === "courses_module",
+                  )
+                );
+              });
+              setAdsCourseModule(filterArray1);
+              // console.log("filterArray1courses_module",filterArray1)
             }
-          })   
-    } ,
-    function(error) {
-      console.error("Error Code = " + error.code + " - " + error.message);
-      // alert("Your location is blocked")    
-    axios
-    .get(
-      `/private_adds/private_add`,
-    )
-    .then((response) => {
-      if (response && response.data.results.length > 0) {
-          let filterArray1 = response.data.results.filter((item, index) => {   
-            return item.image_type == "courses_module";
           });
-          setAdsCourseModule(filterArray1);
-          // console.log("filterArray1coursebox",filterArray1) 
+      },
+      function (error) {
+        console.error("Error Code = " + error.code + " - " + error.message);
+        // alert("Your location is blocked")
+        axios.get(`/private_adds/private_add`).then((response) => {
+          if (response && response.data.results.length > 0) {
+            let filterArray1 = response.data.results.filter((item, index) => {
+              return (
+                Array.isArray(item.image_type) &&
+                item.image_type.some(
+                  (type) => type.image_type === "courses_module",
+                )
+              );
+            });
+            setAdsCourseModule(filterArray1);
+            // console.log("filterArray1coursebox",filterArray1)
           }
-        })
-   }
-  )
-  },[])
- 
+        });
+      },
+    );
+  }, []);
 
   const keys = [...Array().keys(course?.total_pages)];
 
@@ -661,7 +664,6 @@ const CourseModule = () => {
                     </>
                   ) : (
                     <div class='iframe-divarea'>
-                      
                       {manageContent()}
 
                       {course?.file_link && (

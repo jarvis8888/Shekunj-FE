@@ -7,7 +7,7 @@ import { Header, Footer, SEO } from "../../components";
 import "./index.scss";
 import "../HomePage/index.scss";
 import "../Search/index.scss";
-import calendarDateicon from "../../assets/images/calendareventicon.svg"
+import calendarDateicon from "../../assets/images/calendareventicon.svg";
 // import Swiper core and required modules
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -213,22 +213,38 @@ function EventPage() {
           `/private_adds/private_add?latitude=${latitude}&longitude=${longitude}`,
         );
         let filterArray1 = response.data.results.filter((item, index) => {
-          return item.image_type == "event_detail_footer";
+          return (
+            Array.isArray(item.image_type) &&
+            item.image_type.some(
+              (type) => type.image_type === "event_detail_footer",
+            )
+          );
         });
         setEventFooterAds(filterArray1);
         let filterArray2 = response.data.results.filter((item, index) => {
-          return item.image_type == "event_index";
+          return (
+            Array.isArray(item.image_type) &&
+            item.image_type.some((type) => type.image_type === "event_index")
+          );
         });
         setEventBoxAds(filterArray2);
       } catch (error) {
         console.error(error);
         axios.get(`/private_adds/private_add`).then((response) => {
           let filterArray1 = response.data.results.filter((item, index) => {
-            return item.image_type == "event_detail_footer";
+            return (
+              Array.isArray(item.image_type) &&
+              item.image_type.some(
+                (type) => type.image_type === "event_detail_footer",
+              )
+            );
           });
           setEventFooterAds(filterArray1);
           let filterArray2 = response.data.results.filter((item, index) => {
-            return item.image_type == "event_index";
+            return (
+              Array.isArray(item.image_type) &&
+              item.image_type.some((type) => type.image_type === "event_index")
+            );
           });
           setEventBoxAds(filterArray2);
         });
@@ -239,11 +255,19 @@ function EventPage() {
       console.error("Error Code = " + error.code + " - " + error.message);
       axios.get(`/private_adds/private_add`).then((response) => {
         let filterArray1 = response.data.results.filter((item, index) => {
-          return item.image_type == "event_detail_footer";
+          return (
+            Array.isArray(item.image_type) &&
+            item.image_type.some(
+              (type) => type.image_type === "event_detail_footer",
+            )
+          );
         });
         setEventFooterAds(filterArray1);
         let filterArray2 = response.data.results.filter((item, index) => {
-          return item.image_type == "event_index";
+          return (
+            Array.isArray(item.image_type) &&
+            item.image_type.some((type) => type.image_type === "event_index")
+          );
         });
         setEventBoxAds(filterArray2);
       });
