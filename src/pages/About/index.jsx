@@ -179,7 +179,7 @@ const AboutusPage = () => {
             <div className='row'>
               <div className='col-md-6'>
                 <div className='row'>
-                  <div className='col-md-6 col-6'>
+                  <div className='col-md-6'>
                     <div data-aos='slide-right'>
                       <div className='tes_box tes-before'>
                         {/* <img className='NikitaSharmaImage img-responsive' src={Nikita} alt='' /> */}
@@ -216,7 +216,7 @@ const AboutusPage = () => {
                     </div>
                   </div>
 
-                  <div className='col-md-6 col-6'>
+                  <div className='col-md-6'>
                     <div data-aos='slide-down'>
                       <div className='tes_box3'>
                         <h2>4.9</h2>
