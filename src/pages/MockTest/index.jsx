@@ -187,31 +187,31 @@ function MockTest() {
     });
   };
 
-  useEffect(() => {
-    const nv = localStorage.getItem("selectedCourseCategoryValue");
-    localStorage.removeItem("selectedCourseCategoryValue");
-    localStorage.removeItem("isCarrerTestStarted");
-    setShowExitPrompt(false);
-    if (nv) {
-      dispatch(endTest(nv, history));
-      history.push(routingConstants.CAREER_TEST_RESULT + nv);
-    }
-  }, []);
+  // useEffect(() => {
+  //   const nv = localStorage.getItem("selectedCourseCategoryValue");
+  //   localStorage.removeItem("selectedCourseCategoryValue");
+  //   localStorage.removeItem("isCarrerTestStarted");
+  //   setShowExitPrompt(false);
+  //   if (nv) {
+  //     dispatch(endTest(nv, history));
+  //     history.push(routingConstants.CAREER_TEST_RESULT + nv);
+  //   }
+  // }, []);
 
-  useEffect(() => {
-    return () => {
-      const nv = localStorage.getItem("selectedCourseCategoryValue");
-      if (nv) {
-        dispatch(endTest(nv, history));
-      }
-    };
-  }, [dispatch, history]);
+  // useEffect(() => {
+  //   return () => {
+  //     const nv = localStorage.getItem("selectedCourseCategoryValue");
+  //     if (nv) {
+  //       dispatch(endTest(nv, history));
+  //     }
+  //   };
+  // }, [dispatch, history]);
 
-  useEffect(() => {
-    return () => {
-      setShowExitPrompt(false);
-    };
-  }, []);
+  // useEffect(() => {
+  //   return () => {
+  //     setShowExitPrompt(false);
+  //   };
+  // }, []);
 
   useEffect(() => {
     if (testData) {
@@ -504,14 +504,20 @@ function MockTest() {
 
   const checkFunction = () => {
     let num = Math.floor(Math.random() * (13 - 0) + 0);
-    let res = [...guidanceCategory]; // Creating a new array
-    let dummydata = {
-      id: "advertisement",
-    };
 
-    res.splice(num, 0, dummydata); // Inserting the dummydata at the random index
+    if (Array.isArray(guidanceCategory)) {
+      let res = [...guidanceCategory];
+      let dummydata = {
+        id: "advertisement",
+      };
 
-    setTempData(res); // Updating state with the modified array
+      res.splice(num, 0, dummydata);
+
+      setTempData(res);
+    } else {
+      // Handle the case where guidanceCategory is not an array
+      console.error("guidanceCategory is not an array");
+    }
   };
 
   useEffect(() => {

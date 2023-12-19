@@ -91,11 +91,9 @@ function MockTestDetail() {
   const { isLoading, guidanceCategory, testData, countData } = useSelector(
     (state) => state?.guidanceReducer,
   );
- 
 
   const progress = Math.round(100 / (countData?.total_career_que || 0)) || 0;
   const question_history = JSON.parse(localStorage.getItem("question_history"));
-  
 
   const { t } = useTranslation();
   const { lan } = useSelector((state) => state.languageReducer);
@@ -182,8 +180,8 @@ function MockTestDetail() {
 
   useEffect(() => {
     return () => {
-      // const nv = localStorage.getItem("selectedCourseCategoryValue");
-      const nv = localStorage.getItem("guidanceCategory?.id");
+      const nv = localStorage.getItem("selectedCourseCategoryValue");
+      // const nv = localStorage.getItem("guidanceCategory?.id");
       if (nv) {
         dispatch(endTest(nv, history));
       }
