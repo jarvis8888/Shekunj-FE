@@ -163,8 +163,10 @@ const AboutusPage = () => {
                 <img src={img1} class='img-responsive' alt='' srcSet='' />
               </div>
 
-              <div className='col-md-6'>
-                <div className='sec2_con'>
+              <div className='col-md-6 noselect'>
+                <div className='our_his'>
+                  <h2>{t("aboutPage.heading.3")}</h2>
+                  <h5>{t("aboutPage.heading.4")}</h5>
                   <p> {t("aboutPage.content2")}</p>
 
                   {/* <p>{t("aboutPage.content3")}</p> */}
@@ -282,7 +284,7 @@ const AboutusPage = () => {
                   <p className='mb-3'>
                     {t("homePage.highlightStudents.aboutDescription")}
                   </p>
-                  <Link to='/success-stories'>
+                  <Link to='/contact-us'>
                     <a
                       data-aos='zoom-in'
                       href='#!'

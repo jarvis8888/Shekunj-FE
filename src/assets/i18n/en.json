@@ -305,20 +305,22 @@
     },
     "highlightStudents": {
       "homeHeading": "Want to become a part of our next success story?",
-      "aboutHeading": "Strong Women,",
-      "1": "Stronger Foundation.",
-      "aboutDescription": "Making women more educated and empowered is the main aim of Shekunj. An educated woman can do wonders in her field and an empowered woman can lead and empower others. Take a glance at the women successfully enrolled and studied at Shekunj. Join our Women Empowerment Army for becoming the best!",
-      "aboutButton": "View Success Stories",
+      "aboutHeading": "Get Noticed With ",
+      "1": "Shekunj’s Display Ads!",
+      "aboutDescription": "With over 7,00,000 women connected on our platform spread across 11 states, advertising on Shekunj will connect you to an influential audience of women who value authenticity and innovation. Our display ad banners are designed to be eye-catching and visually appealing, withengaging animations, interactive elements, and customization options that encourage clicks andconversions. Whether you're looking to promote a new product, generate leads, or increase website traffic, our display ad banners are the perfect solution, starting at pocket-friendly prices",
+      "aboutButton": "Advertise with Us ",
       "homeButton": "Enroll Now"
     }
   },
   "aboutPage": {
     "heading": {
       "1": "Helping Women to Quest",
-      "2": "the Evolution"
+      "2": "the Evolution",
+      "3": "Women's Triple Success:",
+      "4": "Siksha, Swasthya and Samruddhi"
     },
-    "content1": "Shekunj promotes personal growth for women to achieve their full potential and aims to empower all the women out there - be they 16 or 60 years old - through education and guidance. We are a platform working as a charioteer, by providing opportunities to every woman out there who desires to learn, grow and excel in different fields. We help them to uncover their strengths, step into power, and achieve their goals with perfection.",
-    "content2": "We believe that education leads to empowerment, and that is the truth. Education has the power to make you stand out and prove the world that a WOMAN can actually fulfill her dreams on her own. We in Shekunj, have a profusion of free courses available crafted specially for women irrespective of ages. Our purpose is to bring open source of learning to women and girls and contribute in closing the knowledge gap as well as in gender diversity.",
+    "content1": "Shekunj India’s leading women empowerment organization, envisions a nation where women have access to equal opportunities and resources to thrive- be they 16 or 60 in age. We focus on providing a platform for women designed to unlock their talents and achieve their professional and personal aspirations. Our mission is simple: to support, promote, and empower women to excel in life",
+    "content2": "Shekunj's women empowerment initiatives prioritize three essential components of growth: “Shiksha” for education, “Swasthya” for health, and “Samruddhi” for prosperity. We offer free online and offline training courses and counselling sessions along with internships and job opportunities to enhance your career, promote health and wellness through healthcare solutionsand awareness campaigns, and support women entrepreneurs through mentorship, resources, funds, and referrals to help them grow and succeed in their businesses. Whether you're a student, a working professional, or an entrepreneur, we're committed to creating a multifaceted approach to empowering women in all aspects of their lives.",
     "content3": "Making women more educated and empowered is the main aim of Shekunj. An educated woman can do wonders in her field and an empowered woman can lead and empower others. Take a glance at the women successfully enrolled and studied at Shekunj. Join our Women Empowerment Army for becoming the best!",
     "review": {
       "1": "HR course and training really helped me out to learn and made me capable to start my career in HR industry",
@@ -429,7 +431,7 @@
       "13": "Location",
       "14": "Level",
       "15": "Address",
-      "16":"Ownership"
+      "16": "Ownership"
     },
     "heading": {
       "1": "Top Colleges in India"
