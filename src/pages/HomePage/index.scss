@@ -15,7 +15,7 @@ img {
 
 .sk-homeBanner-sec {
   padding: 50px 0;
-  background: url(../../assets/images/homebannerbg.svg) left center;
+  background: url(../../assets/images/herosec-img.svg) center center;
   background-size: cover;
   position: relative;
 }
@@ -25,10 +25,20 @@ img {
 .sh-bannerContent-top {
   width: 100%;
 }
-
+.sk-leading-women {
+  background: #202020;
+  padding-top: 80px;
+}
+.sk-leading-women .sk-heading-title h2 {
+  color: #fff;
+}
+.sk-leading-women .sk-heading-title p {
+  color: #fff;
+}
 .sh-bannerContent-top h1 {
   font-size: calc(2em + 1.6vw);
   text-transform: capitalize;
+  color: #fff;
 }
 .sh-bannerContent-top h1 span {
   color: #ec498a;
@@ -37,7 +47,7 @@ img {
   margin: 20px 0 40px;
   font-size: 16px;
   font-weight: 400;
-  color: #555555;
+  color: #fff;
 }
 
 .sh-bannerContent-top button {
@@ -49,7 +59,7 @@ img {
   text-align: right;
   line-height: 20px;
   font-size: 18px;
-  color: #dbdbdb;
+  color: #fff;
   opacity: 1;
   background: transparent;
   width: 40px;
@@ -63,7 +73,7 @@ img {
   left: 68px;
   width: 1.5px;
   height: 18px;
-  background: #dbdbdb;
+  background: #fff;
   /* right: 0; */
   margin: 0 auto;
   bottom: 12px;
@@ -74,7 +84,7 @@ img {
   left: 0;
   height: 20px;
   width: 1.5px;
-  background: #dbdbdb;
+  background: #fff;
   transform: skewX(-15deg);
 }
 
@@ -165,7 +175,7 @@ img {
 }
 .sk-homeBanner-sec .swiper-button-next.swiper-button-disabled,
 .sk-homeBanner-sec .swiper-button-prev.swiper-button-disabled {
-  color: #dbdbdb;
+  color: #fff;
   opacity: 1;
 }
 
@@ -875,7 +885,7 @@ img {
   display: inline-block;
   padding: 10px;
 }
-.sk-gScheme-box ul li span img{
+.sk-gScheme-box ul li span img {
   opacity: 0.1;
   max-width: 36px;
 }
@@ -1076,7 +1086,7 @@ img {
     max-width: 600px;
   }
 }
-@media screen and (min-width: 1250px) and (max-width: 1366px){
+@media screen and (min-width: 1250px) and (max-width: 1366px) {
   .sk-blog-slider.sk-slide-arrow .swiper-button-prev {
     left: 88%;
   }
@@ -1112,12 +1122,12 @@ img {
   .sk-hire-container {
     grid-template-columns: repeat(1, 1fr);
   }
-  .sk-gScheme-box ul{
+  .sk-gScheme-box ul {
     display: flex;
     overflow: auto;
-    gap:15px
+    gap: 15px;
   }
-  .sk-blog-slider.sk-slide-arrow .swiper-button-prev{
+  .sk-blog-slider.sk-slide-arrow .swiper-button-prev {
     left: 82%;
   }
   .sk-gScheme-box ul li {

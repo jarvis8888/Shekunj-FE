@@ -33,6 +33,9 @@ import agricultureicon from "../../assets/images/agriculture.svg";
 import vectorimg from "../../assets/images/storyvector.svg";
 import vectorimg1 from "../../assets/images/storyvector1.svg";
 import firstslidebanner from "../../assets/images/happystudentbanner.png";
+import firstslidebanner2 from "../../assets/images/slider2.png";
+import firstslidebanner3 from "../../assets/images/slider3.png";
+import firstslidebanner4 from "../../assets/images/slider4.png";
 import successstoryimg from "../../assets/images/storysuccess.png";
 // import "../More/blogPage.scss";
 import "./index.scss";
@@ -47,6 +50,7 @@ import glassdrop from "../../assets/images/glassdrop.svg";
 import MenuBookRoundedIcon from "@mui/icons-material/MenuBookRounded";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import cousreimg from "../../assets/images/courseimg.png";
+import womensleading from "../../assets/images/indiawomen.png";
 import { Box, Modal, Typography } from "@mui/material";
 // import { useDispatch, useSelector } from "react-redux";
 import { useDispatch, useSelector } from "react-redux";
@@ -479,7 +483,7 @@ function HomePage() {
                     </SwiperSlide>
                     <SwiperSlide>
                       <div className='row align-items-center'>
-                        <div className='col-md-8'>
+                        <div className='col-md-6'>
                           <div className='sh-bannerContent-top'>
                             <h1>
                               {t("homePage.mainSlider.heading.2")}{" "}
@@ -499,14 +503,14 @@ function HomePage() {
                             </div>
                           </div>
                         </div>
-                        <div className='col-md-4'>
-                          <img src={firstslidebanner} alt='' />
+                        <div className='col-md-6'>
+                          <img src={firstslidebanner2} alt='' />
                         </div>
                       </div>
                     </SwiperSlide>
                     <SwiperSlide>
                       <div className='row align-items-center'>
-                        <div className='col-md-8'>
+                        <div className='col-md-6'>
                           <div className='sh-bannerContent-top'>
                             <h1>
                               {" "}
@@ -527,8 +531,8 @@ function HomePage() {
                             </div>
                           </div>
                         </div>
-                        <div className='col-md-4'>
-                          <img src={firstslidebanner} />
+                        <div className='col-md-6'>
+                          <img src={firstslidebanner3} />
                         </div>
                       </div>
                     </SwiperSlide>
@@ -556,7 +560,7 @@ function HomePage() {
                           </div>
                         </div>
                         <div className='col-md-4'>
-                          <img src={firstslidebanner} alt='' />
+                          <img src={firstslidebanner4} alt='' />
                         </div>
                       </div>
                     </SwiperSlide>
@@ -905,9 +909,9 @@ function HomePage() {
                     onClick={() => history.push(routingConstants.GUIDANCE_BOOK)}
                   >
                     <div class='sk-begain-content'>
-                      <h6>I want to</h6>
+                      <h6>I want to crack</h6>
                       <h5>
-                        Change Career <EastRoundedIcon />{" "}
+                        Government Exam <EastRoundedIcon />{" "}
                       </h5>
                     </div>
                     <div class='sk-begain-img'>
@@ -922,9 +926,9 @@ function HomePage() {
                     onClick={() => history.push(routingConstants.GUIDANCE_BOOK)}
                   >
                     <div class='sk-begain-content'>
-                      <h6>I want to crack</h6>
+                      <h6>I need a good career</h6>
                       <h5>
-                        Government Exam <EastRoundedIcon />{" "}
+                        Counselor <EastRoundedIcon />{" "}
                       </h5>
                     </div>
                     <div class='sk-begain-img'>
@@ -1461,7 +1465,29 @@ function HomePage() {
               </div>
             </div>
           </section>
-
+          <section className='sk-leading-women'>
+            <div className='container'>
+              <div class='row'>
+                <div class='col-md-12'>
+                  <div className='sk-heading-title'>
+                    <h2>India's Leading Women Empowerment Organization</h2>
+                    <p>
+                      Take a glance at the happy, glittering faces who have
+                      enrolled with SheKunj. We understand the importance of
+                      education for the solutions of tomorrow. SheKunj is a
+                      first-of-its-kind, women-centered, global network
+                      dedicated to the women empowerment
+                    </p>
+                  </div>
+                </div>
+                <div class='col-md-12'>
+                  <div className='text-center'>
+                    <img src={womensleading} alt='women-india' />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
           <section className='sk-homeStory-sec sk-bg-color'>
             <div className='container'>
               <div className='row'>
