@@ -33,6 +33,7 @@ import agricultureicon from "../../assets/images/agriculture.svg";
 import vectorimg from "../../assets/images/storyvector.svg";
 import vectorimg1 from "../../assets/images/storyvector1.svg";
 import firstslidebanner from "../../assets/images/happystudentbanner.png";
+import shekunjSlider from "../../assets/images/shekunjSlider.png";
 import firstslidebanner2 from "../../assets/images/slider2.png";
 import firstslidebanner3 from "../../assets/images/slider3.png";
 import firstslidebanner4 from "../../assets/images/slider4.png";
@@ -495,10 +496,10 @@ function HomePage() {
                                 className='sk-loadMore'
                                 type='button'
                                 onClick={() =>
-                                  history.push(routingConstants.TOP_COLLEGES)
+                                  history.push(routingConstants.GUIDANCE_BOOK)
                                 }
                               >
-                                {t("homePage.mainSlider.button.5")}
+                                Get onboard and start learning
                               </button>
                             </div>
                           </div>
@@ -523,10 +524,10 @@ function HomePage() {
                                 className='sk-loadMore'
                                 type='button'
                                 onClick={() =>
-                                  history.push(routingConstants.GUIDANCE_BOOK)
+                                  history.push(routingConstants.TOP_COLLEGES)
                                 }
                               >
-                                {t("homePage.mainSlider.button.4")}
+                                Top College In India
                               </button>
                             </div>
                           </div>
@@ -554,13 +555,44 @@ function HomePage() {
                                   history.push(routingConstants.TOP_SCHOOLS)
                                 }
                               >
-                                {t("homePage.mainSlider.button.6")}
+                                Top College In India
                               </button>
                             </div>
                           </div>
                         </div>
                         <div className='col-md-4'>
                           <img src={firstslidebanner4} alt='' />
+                        </div>
+                      </div>
+                    </SwiperSlide>
+                    <SwiperSlide>
+                      <div className='row align-items-center'>
+                        <div className='col-xl-8 col-lg-8 col-md-8'>
+                          <div className='sh-bannerContent-top'>
+                            <h1>Get Your Success Story Featured</h1>
+                            <p>
+                              Share your success story with us and let the world
+                              know your achievements. Empower everyone through
+                              shared tales and celebrate women's inspiring
+                              success stories.
+                            </p>
+                            <div className='sk-thireChangescolor-btn'>
+                              <button
+                                className='sk-loadMore'
+                                type='button'
+                                onClick={() =>
+                                  history.push(routingConstants.SUCCESS_STORIES)
+                                }
+                              >
+                                Feature Your Story
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                        <div className='col-xl-4 col-lg-4 col-md-4'>
+                          <div className='sk-imageBanner'>
+                            <img src={shekunjSlider} alt='' />
+                          </div>
                         </div>
                       </div>
                     </SwiperSlide>
@@ -583,11 +615,8 @@ function HomePage() {
               <div className='row'>
                 <div className='col-xl-8 col-md-10 mx-auto'>
                   <div className='sk-heading-title'>
-                    <h2>Courses In India</h2>
-                    <p>
-                      Courses focused on building strong foundational skills for
-                      career growth
-                    </p>
+                    <h2>Popular Courses in India</h2>
+                    <p>Discover top-rated free skill courses across India</p>
                     <div className='sk-tabBtn-home'>
                       <ul>
                         {categoryList.map((items, index) => {
@@ -880,8 +909,8 @@ function HomePage() {
               <div className='row'>
                 <div className='col-md-6 mx-auto'>
                   <div className='sk-heading-title'>
-                    <h2>Not Sure Where To Begin?</h2>
-                    <p>What is your mail goal on SheKunj’s</p>
+                    <h2>Need a Starting Point?</h2>
+                    <p>What are you aiming to achieve with SheKunj?</p>
                   </div>
                 </div>
               </div>
@@ -892,13 +921,13 @@ function HomePage() {
                     onClick={() => history.push(routingConstants.GUIDANCE_BOOK)}
                   >
                     <div class='sk-begain-content'>
-                      <h6>I want to</h6>
+                      <h6>I’m looking for </h6>
                       <h5>
-                        Upskill <EastRoundedIcon />{" "}
+                        Certification Courses <EastRoundedIcon />{" "}
                       </h5>
                     </div>
                     <div class='sk-begain-img'>
-                      <img src={begainimg} />
+                      <img src={begainimg} alt='begainimg' />
                     </div>
                   </div>
                 </div>
@@ -909,13 +938,13 @@ function HomePage() {
                     onClick={() => history.push(routingConstants.GUIDANCE_BOOK)}
                   >
                     <div class='sk-begain-content'>
-                      <h6>I want to crack</h6>
+                      <h6>I’m looking for</h6>
                       <h5>
-                        Government Exam <EastRoundedIcon />{" "}
+                        Career Counselling <EastRoundedIcon />{" "}
                       </h5>
                     </div>
                     <div class='sk-begain-img'>
-                      <img src={begainimg} />
+                      <img src={begainimg} alt='begainimg' />
                     </div>
                   </div>
                 </div>
@@ -926,13 +955,13 @@ function HomePage() {
                     onClick={() => history.push(routingConstants.GUIDANCE_BOOK)}
                   >
                     <div class='sk-begain-content'>
-                      <h6>I need a good career</h6>
+                      <h6>I’m looking for</h6>
                       <h5>
-                        Counselor <EastRoundedIcon />{" "}
+                        Mock Test <EastRoundedIcon />{" "}
                       </h5>
                     </div>
                     <div class='sk-begain-img'>
-                      <img src={begainimg} />
+                      <img src={begainimg} alt='begainimg' />
                     </div>
                   </div>
                 </div>
@@ -945,10 +974,9 @@ function HomePage() {
               <div className='row'>
                 <div className='col-md-6 mx-auto'>
                   <div className='sk-heading-title'>
-                    <h2>Online Mock Test</h2>
+                    <h2>Free Online Mock Test</h2>
                     <p>
-                      Courses focused on building strong foundational skills for
-                      career growth
+                      Prepare effectively with our inclusive online mock test
                     </p>
                   </div>
                 </div>
@@ -1125,13 +1153,13 @@ function HomePage() {
                   </div>
                 </div>
                 <div className='sk-vectorImg-inner'>
-                  <img src={vectorimg} />
+                  <img src={vectorimg} alt='vectorimg' />
                 </div>
               </div>
               <div className='sk-hireInner-box'>
                 <div className='sk-hireStory-box'>
                   <div className='sk-hireSotory-innerbox sk-woman-story'>
-                    <h2>Get hired for your dream job!</h2>
+                    <h2>Create Your Ideal Resume</h2>
                     <p>
                       Land your dream job by designing a perfect resume in a
                       print-ready <br /> format
@@ -1149,7 +1177,7 @@ function HomePage() {
                     </div>
                   </div>
                   <div className='sk-vectorImg-inner'>
-                    <img src={vectorimg1} />
+                    <img src={vectorimg1} alt='vectorimg1' />
                   </div>
                 </div>
               </div>
@@ -1206,11 +1234,8 @@ function HomePage() {
               <div className='row'>
                 <div className='col-xl-12'>
                   <div className='sk-heading-title'>
-                    <h2>Government Scheme</h2>
-                    <p>
-                      Courses focused on building strong foundational skills for
-                      career growth
-                    </p>
+                    <h2>Government Schemes</h2>
+                    <p>Explore various government schemes</p>
                   </div>
                   <div className='sk-gScheme-box'>
                     {govtData?.length ? (
@@ -1283,7 +1308,7 @@ function HomePage() {
                 <div className='col-xl-4'>
                   <div className='sk-blogSidebar-event'>
                     <div className='sk-blogHeadinghome-title'>
-                      <h3>Upcoming Event</h3>
+                      <h3>Upcoming Events</h3>
                     </div>
                     <div className='sk-eventDatetime-detail'>
                       <ul>
@@ -1349,7 +1374,7 @@ function HomePage() {
                 <div className='col-xl-8'>
                   <div className='sk-blog-slider sk-slide-arrow'>
                     <div className='sk-blogHeadinghome-title'>
-                      <h3>Blog</h3>
+                      <h3>Latest Articles</h3>
                     </div>
                     <div className='sk-blogSlider-home'>
                       <Swiper
@@ -1493,8 +1518,8 @@ function HomePage() {
               <div className='row'>
                 <div className='col-xl-6 col-lg-6 col-md-8 col-sm-12 mx-auto'>
                   <div className='sk-heading-title'>
-                    <h2>Success Story</h2>
-                    <p>Real Stories of Real Women Around the World. Hear it.</p>
+                    <h2>Inspiring Success Stories</h2>
+                    <p>Read empowering success stories of incredible women</p>
                   </div>
                 </div>
               </div>
@@ -1626,14 +1651,8 @@ function HomePage() {
               <div className='row'>
                 <div className='col-xl-12'>
                   <div className='sk-heading-title mb-0'>
-                    <h2>
-                      Why our students{" "}
-                      <span className='sk-favorite-icon'>
-                        L <FavoriteRoundedIcon /> VE{" "}
-                      </span>{" "}
-                      us?
-                    </h2>
-                    <p className='mb-0'>Hear itfrom our Alumni</p>
+                    <h2>Hear from Our Valued Users</h2>
+                    <p className='mb-0'>Gain insights through user feedback</p>
                   </div>
                 </div>
                 <div className='col-xl-12'>
