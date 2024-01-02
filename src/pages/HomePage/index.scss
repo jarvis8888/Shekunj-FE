@@ -496,12 +496,14 @@ img {
   padding: 10px 20px 2px 20px;
   margin: 10px 0;
   transition: 0.3s;
+  height: calc(100% - 15px);
 }
 .sk-begain-img img {
   filter: gray; /* IE6-9 */
   -webkit-filter: grayscale(1); /* Google Chrome, Safari 6+ & Opera 15+ */
   filter: grayscale(1);
   transition: 0.3s;
+  max-width: max-content;
 }
 .sk-eventDatetime-detail ul {
   padding-left: 0;
