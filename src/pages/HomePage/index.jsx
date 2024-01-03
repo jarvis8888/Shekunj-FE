@@ -43,6 +43,9 @@ import "./index.scss";
 import arrowbicon from "../../assets/images/arrowicon.svg";
 import EastRoundedIcon from "@mui/icons-material/EastRounded";
 import begainimg from "../../assets/images/skillgirl.png";
+import begainimg1 from "../../assets/images/skillgirl1.png";
+import begainimg2 from "../../assets/images/skillgirl2.png";
+
 import addbannerhome from "../../assets/images/homeaddbanner.png";
 import mocktesttimg from "../../assets/images/mocktest.png";
 import google from "../../assets/images/google-icon.svg";
@@ -70,6 +73,7 @@ import { apiConstants, routingConstants } from "../../utils/constants";
 import { CustomLoader } from "../../components/customLoader/CustomLoader";
 import { NoDataFound } from "../../components/noDataFound/NoDataFound";
 import LatestBlogCard from "../../components/cards/LatestBlogCard";
+import { withHeaderFooter } from "../../hocs/withHeaderFooter";
 
 function HomePage() {
   const dispatch = useDispatch();
@@ -429,7 +433,6 @@ function HomePage() {
   return (
     <div>
       <SEO />
-      <Header loginPage={false} page='home' />
 
       {loading ? (
         <div>
@@ -438,7 +441,7 @@ function HomePage() {
       ) : (
         <>
           <section className='sk-homeBanner-sec'>
-            <div className='container'>
+            <div className='container sk-custom-container'>
               <div className='row'>
                 <div className='col-md-12'>
                   <Swiper
@@ -567,7 +570,7 @@ function HomePage() {
                     </SwiperSlide>
                     <SwiperSlide>
                       <div className='row align-items-center'>
-                        <div className='col-xl-8 col-lg-8 col-md-8'>
+                        <div className='col-xl-7 col-lg-8 col-md-8'>
                           <div className='sh-bannerContent-top'>
                             <h1>Get Your Success Story Featured</h1>
                             <p>
@@ -589,7 +592,7 @@ function HomePage() {
                             </div>
                           </div>
                         </div>
-                        <div className='col-xl-4 col-lg-4 col-md-4'>
+                        <div className='col-xl-5 col-lg-4 col-md-4'>
                           <div className='sk-imageBanner'>
                             <img src={shekunjSlider} alt='' />
                           </div>
@@ -611,7 +614,7 @@ function HomePage() {
           </section>
 
           <section className='sk-course-sec sk-slide-arrow sk-bg-color'>
-            <div className='container'>
+            <div className='container sk-custom-container'>
               <div className='row'>
                 <div className='col-xl-8 col-md-10 mx-auto'>
                   <div className='sk-heading-title'>
@@ -860,7 +863,7 @@ function HomePage() {
           </section>
 
           <section className='sk-addHome-sec'>
-            <div className='container'>
+            <div className='container sk-custom-container'>
               <div className='row'>
                 <div className='col-xl-9 mx-auto'>
                   <div className='text-center'>
@@ -905,7 +908,7 @@ function HomePage() {
           </section>
 
           <section className='sk-begain-sec'>
-            <div class='container'>
+            <div class='container sk-custom-container'>
               <div className='row'>
                 <div className='col-md-6 mx-auto'>
                   <div className='sk-heading-title'>
@@ -944,7 +947,7 @@ function HomePage() {
                       </h5>
                     </div>
                     <div class='sk-begain-img'>
-                      <img src={begainimg} alt='begainimg' />
+                      <img src={begainimg1} alt='begainimg1' />
                     </div>
                   </div>
                 </div>
@@ -961,7 +964,7 @@ function HomePage() {
                       </h5>
                     </div>
                     <div class='sk-begain-img'>
-                      <img src={begainimg} alt='begainimg' />
+                      <img src={begainimg2} alt='begainimg1' />
                     </div>
                   </div>
                 </div>
@@ -970,7 +973,7 @@ function HomePage() {
           </section>
 
           <section className='sk-mockTest-sec sk-slide-arrow'>
-            <div className='container'>
+            <div className='container sk-custom-container'>
               <div className='row'>
                 <div className='col-md-6 mx-auto'>
                   <div className='sk-heading-title'>
@@ -1185,7 +1188,7 @@ function HomePage() {
           </section>
 
           <section className='sk-addHome-sec'>
-            <div className='container'>
+            <div className='container sk-custom-container'>
               <div className='row'>
                 <div className='col-xl-10 mx-auto'>
                   <div className='text-center'>
@@ -1230,7 +1233,7 @@ function HomePage() {
           </section>
 
           <section className='sk-scheme-sec sk-bg-color'>
-            <div className='container'>
+            <div className='container sk-custom-container'>
               <div className='row'>
                 <div className='col-xl-12'>
                   <div className='sk-heading-title'>
@@ -1303,12 +1306,13 @@ function HomePage() {
           </section>
 
           <section className='sk-blogHome-sec'>
-            <div className='container'>
+            <div className='container sk-custom-container'>
               <div className='row'>
                 <div className='col-xl-4'>
                   <div className='sk-blogSidebar-event'>
                     <div className='sk-blogHeadinghome-title'>
                       <h3>Upcoming Events</h3>
+                      <p>Save the date for upcoming events near you</p>
                     </div>
                     <div className='sk-eventDatetime-detail'>
                       <ul>
@@ -1375,6 +1379,7 @@ function HomePage() {
                   <div className='sk-blog-slider sk-slide-arrow'>
                     <div className='sk-blogHeadinghome-title'>
                       <h3>Latest Articles</h3>
+                      <p>Explore trending articles you can't miss</p>
                     </div>
                     <div className='sk-blogSlider-home'>
                       <Swiper
@@ -1491,7 +1496,7 @@ function HomePage() {
             </div>
           </section>
           <section className='sk-leading-women'>
-            <div className='container'>
+            <div className='container sk-custom-container'>
               <div class='row'>
                 <div class='col-md-12'>
                   <div className='sk-heading-title'>
@@ -1514,7 +1519,7 @@ function HomePage() {
             </div>
           </section>
           <section className='sk-homeStory-sec sk-bg-color'>
-            <div className='container'>
+            <div className='container sk-custom-container'>
               <div className='row'>
                 <div className='col-xl-6 col-lg-6 col-md-8 col-sm-12 mx-auto'>
                   <div className='sk-heading-title'>
@@ -1647,7 +1652,7 @@ function HomePage() {
           </section>
 
           <section className='sk-testmonail-sec sk-homeStory-sec sk-slide-arrow'>
-            <div className='container'>
+            <div className='container sk-custom-container'>
               <div className='row'>
                 <div className='col-xl-12'>
                   <div className='sk-heading-title mb-0'>
@@ -1736,7 +1741,7 @@ function HomePage() {
           </section>
 
           <section>
-            <div className='container'>
+            <div className='container sk-custom-container'>
               <div className='row'>
                 <div className='col-md-12'>
                   <div className='tabs'>
@@ -1763,7 +1768,7 @@ function HomePage() {
           </section>
 
           <section className='sk-addHome-sec'>
-            <div className='container'>
+            <div className='container sk-custom-container'>
               <div className='row'>
                 <div className='col-xl-12 mx-auto'>
                   <div className='text-center'>
@@ -1810,10 +1815,8 @@ function HomePage() {
       )}
 
       {/* slider */}
-
-      <Footer loginPage={false} />
     </div>
   );
 }
 
-export default HomePage;
+export default withHeaderFooter(HomePage);
