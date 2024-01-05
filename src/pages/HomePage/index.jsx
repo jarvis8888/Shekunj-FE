@@ -452,7 +452,7 @@ function HomePage() {
                     speed={1500}
                     autoplay={{ delay: 3000 }}
                     navigation={navigation}
-                    pagination={pagination}
+                    // pagination={pagination}
                     onSwiper={(swiper) => console.log(swiper)}
                     onSlideChange={() => console.log("slide change")}
                   >
@@ -461,8 +461,8 @@ function HomePage() {
                         <div className='col-xl-8 col-lg-8 col-md-8'>
                           <div className='sh-bannerContent-top'>
                             <h1>
-                              {t("homePage.mainSlider.heading.1")}{" "}
-                              {t("homePage.mainSlider.heading.4")}
+                              Crack <span>Dream jobs</span> with top rated
+                              certificate courses
                             </h1>
                             <p>{t("homePage.mainSlider.subHeading.1")}</p>
                             <div className='sk-thireChangescolor-btn'>
@@ -490,8 +490,7 @@ function HomePage() {
                         <div className='col-md-6'>
                           <div className='sh-bannerContent-top'>
                             <h1>
-                              {t("homePage.mainSlider.heading.2")}{" "}
-                              {t("homePage.mainSlider.heading.5")}
+                              A Promise To Never Stop <span>Learning</span>
                             </h1>
                             <p>{t("homePage.mainSlider.subHeading.2")}</p>
                             <div className='sk-thireChangescolor-btn'>
@@ -517,9 +516,8 @@ function HomePage() {
                         <div className='col-md-6'>
                           <div className='sh-bannerContent-top'>
                             <h1>
-                              {" "}
-                              {t("homePage.mainSlider.heading.3.3.1")}{" "}
-                              {t("homePage.mainSlider.heading.3.3.2")}
+                              Get insights about colleges{" "}
+                              <span>On Your Fingertips</span>
                             </h1>
                             <p>{t("homePage.mainSlider.subHeading.3")}</p>
                             <div className='sk-thireChangescolor-btn'>
@@ -545,9 +543,8 @@ function HomePage() {
                         <div className='col-md-8'>
                           <div className='sh-bannerContent-top'>
                             <h1>
-                              {" "}
-                              {t("homePage.mainSlider.heading.6.1")}{" "}
-                              {t("homePage.mainSlider.heading.6.2")}
+                              Give High-Quality Education{" "}
+                              <span>To Your Children</span>
                             </h1>
                             <p> {t("homePage.mainSlider.subHeading.4")}</p>
                             <div className='sk-thireChangescolor-btn'>
@@ -572,7 +569,9 @@ function HomePage() {
                       <div className='row align-items-center'>
                         <div className='col-xl-7 col-lg-8 col-md-8'>
                           <div className='sh-bannerContent-top'>
-                            <h1>Get Your Success Story Featured</h1>
+                            <h1>
+                              Get Your Success <span>Story Featured</span>
+                            </h1>
                             <p>
                               Share your success story with us and let the world
                               know your achievements. Empower everyone through
@@ -921,7 +920,7 @@ function HomePage() {
                 <div class='col-md-4'>
                   <div
                     class='sk-begain-box'
-                    onClick={() => history.push(routingConstants.GUIDANCE_BOOK)}
+                    onClick={() => history.push(routingConstants.COURSES)}
                   >
                     <div class='sk-begain-content'>
                       <h6>I’m looking for </h6>
@@ -947,7 +946,7 @@ function HomePage() {
                       </h5>
                     </div>
                     <div class='sk-begain-img'>
-                      <img src={begainimg1} alt='begainimg1' />
+                      <img src={begainimg2} alt='begainimg1' />
                     </div>
                   </div>
                 </div>
@@ -955,7 +954,7 @@ function HomePage() {
                 <div class='col-md-4'>
                   <div
                     class='sk-begain-box'
-                    onClick={() => history.push(routingConstants.GUIDANCE_BOOK)}
+                    onClick={() => history.push(routingConstants.MOCKTEST)}
                   >
                     <div class='sk-begain-content'>
                       <h6>I’m looking for</h6>
@@ -964,7 +963,7 @@ function HomePage() {
                       </h5>
                     </div>
                     <div class='sk-begain-img'>
-                      <img src={begainimg2} alt='begainimg1' />
+                      <img src={begainimg1} alt='begainimg1' />
                     </div>
                   </div>
                 </div>
@@ -1740,7 +1739,7 @@ function HomePage() {
             </div>
           </section>
 
-          <section>
+          {/* <section>
             <div className='container sk-custom-container'>
               <div className='row'>
                 <div className='col-md-12'>
@@ -1765,7 +1764,7 @@ function HomePage() {
                 </div>
               </div>
             </div>
-          </section>
+          </section> */}
 
           <section className='sk-addHome-sec'>
             <div className='container sk-custom-container'>
