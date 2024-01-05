@@ -37,6 +37,7 @@ import shekunjSlider from "../../assets/images/shekunjSlider.png";
 import firstslidebanner2 from "../../assets/images/slider2.png";
 import firstslidebanner3 from "../../assets/images/slider3.png";
 import firstslidebanner4 from "../../assets/images/slider4.png";
+import firstslidebanner6 from "../../assets/images/firstslidebanner4.png";
 import successstoryimg from "../../assets/images/storysuccess.png";
 // import "../More/blogPage.scss";
 import "./index.scss";
@@ -583,7 +584,7 @@ function HomePage() {
                                 className='sk-loadMore'
                                 type='button'
                                 onClick={() =>
-                                  history.push(routingConstants.SUCCESS_STORIES)
+                                  history.push(routingConstants.GUIDANCE_BOOK)
                                 }
                               >
                                 Feature Your Story
@@ -594,6 +595,38 @@ function HomePage() {
                         <div className='col-xl-5 col-lg-4 col-md-4'>
                           <div className='sk-imageBanner'>
                             <img src={shekunjSlider} alt='' />
+                          </div>
+                        </div>
+                      </div>
+                    </SwiperSlide>
+                    <SwiperSlide>
+                      <div className='row align-items-center'>
+                        <div className='col-xl-7 col-lg-8 col-md-8'>
+                          <div className='sh-bannerContent-top'>
+                            <h1>
+                              Discover <span>Your Perfect Career</span>
+                            </h1>
+                            <p>
+                              Take the world’s most-advanced career advice from
+                              SheKunj's finest career counsellors online and
+                              find your best-fit career. 
+                            </p>
+                            <div className='sk-thireChangescolor-btn'>
+                              <button
+                                className='sk-loadMore'
+                                type='button'
+                                onClick={() =>
+                                  history.push(routingConstants.SUCCESS_STORIES)
+                                }
+                              >
+                                Book A counsellor
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                        <div className='col-xl-5 col-lg-4 col-md-4'>
+                          <div className='sk-imageBanner'>
+                            <img src={firstslidebanner6} alt='' />
                           </div>
                         </div>
                       </div>
