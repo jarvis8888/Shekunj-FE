@@ -63,6 +63,7 @@ const routingConstants = {
   SEARCH: "/search/",
   RESUME_BUILDER: "/resume-builder/",
   JOBS: "/jobs/",
+  RSSFEED: "/rssfeed",
 };
 
 const apiConstants = {
@@ -144,9 +145,9 @@ const apiConstants = {
   META_TAGS: {
     GET_META_TAGS: "/more/meta_tags/",
   },
-  BANNERS:{
-    GET_ALL_BANNERS:"/more/shekunj_banner/"
-  }
+  BANNERS: {
+    GET_ALL_BANNERS: "/more/shekunj_banner/",
+  },
 };
 
 export { carouselConstant, routingConstants, apiConstants };

@@ -74,6 +74,7 @@ const GlobalSearchPage = React.lazy(() => import("./pages/Search"));
 const ResumeBUilderPage = React.lazy(() => import("./pages/ResumeBuilder"));
 const JobPage = React.lazy(() => import("./pages/Jobs"));
 const AllSuccessStories = React.lazy(() => import("./pages/AllSuccessStories"));
+const RssFeedPage = React.lazy(() => import("./pages/rssFeed/RssFeedPage"));
 
 function App() {
   useEffect(() => {
@@ -344,6 +345,7 @@ function App() {
           component={ResumeBUilderPage}
         />
         <Route exact path={routingConstants.JOBS} component={JobPage} />
+        <Route exact path={routingConstants.RSSFEED} component={RssFeedPage} />
         <Route path='*' component={PageNotFound} />
       </Switch>
     </>
