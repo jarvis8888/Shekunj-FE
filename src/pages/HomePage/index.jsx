@@ -55,7 +55,7 @@ import glassdrop from "../../assets/images/glassdrop.svg";
 import MenuBookRoundedIcon from "@mui/icons-material/MenuBookRounded";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import cousreimg from "../../assets/images/courseimg.png";
-import womensleading from "../../assets/images/indiawomen.png";
+import womensleading from "../../assets/images/successstories.png";
 import { Box, Modal, Typography } from "@mui/material";
 // import { useDispatch, useSelector } from "react-redux";
 import { useDispatch, useSelector } from "react-redux";
@@ -646,7 +646,7 @@ function HomePage() {
           </section>
 
           <section className='sk-course-sec sk-slide-arrow sk-bg-color'>
-            <div className='container sk-custom-container'>
+            <div className='container'>
               <div className='row'>
                 <div className='col-xl-8 col-md-10 mx-auto'>
                   <div className='sk-heading-title'>
@@ -1005,7 +1005,7 @@ function HomePage() {
           </section>
 
           <section className='sk-mockTest-sec sk-slide-arrow'>
-            <div className='container sk-custom-container'>
+            <div className='container'>
               <div className='row'>
                 <div className='col-md-6 mx-auto'>
                   <div className='sk-heading-title'>
@@ -1527,24 +1527,33 @@ function HomePage() {
               </div>
             </div>
           </section>
+          <section className='sk-text-bg'>
+            <div className='container'>
+              <div class='col-md-12'>
+                <div className='sk-heading-title mb-0'>
+                  <h2>India's Leading Women Empowerment Organization</h2>
+                  <p className='mb-0'>
+                    Take a glance at the happy, glittering faces who have
+                    enrolled with SheKunj. We understand the importance of
+                    education for the solutions of tomorrow. SheKunj is a
+                    first-of-its-kind, women-centered, global network dedicated
+                    to the women empowerment
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
           <section className='sk-leading-women'>
             <div className='container sk-custom-container'>
-              <div class='row'>
-                <div class='col-md-12'>
-                  <div className='sk-heading-title'>
-                    <h2>India's Leading Women Empowerment Organization</h2>
-                    <p>
-                      Take a glance at the happy, glittering faces who have
-                      enrolled with SheKunj. We understand the importance of
-                      education for the solutions of tomorrow. SheKunj is a
-                      first-of-its-kind, women-centered, global network
-                      dedicated to the women empowerment
-                    </p>
-                  </div>
-                </div>
+              <div class='row align-items-center'>
                 <div class='col-md-12'>
                   <div className='text-center'>
                     <img src={womensleading} alt='women-india' />
+                  </div>
+                  <div className='sk-testCourse-btn'>
+                    <button className='sk-loadMore'>
+                      Views Success Stories
+                    </button>
                   </div>
                 </div>
               </div>
@@ -1562,15 +1571,13 @@ function HomePage() {
               </div>
               <div className='row'>
                 <div className='col-xl-9 col-md-10 col-sm-12 mx-auto'>
-                  <div className='sk-success-story'>
+                  <div className='sk-success-story sk-blog-slider sk-slide-arrow'>
                     <Swiper
                       spaceBetween={30}
                       speed={1500}
                       autoplay={{ delay: 3000 }}
-                      pagination={{
-                        clickable: true,
-                      }}
-                      modules={[Pagination]}
+                      modules={[Navigation, Autoplay]}
+                      navigation={true}
                       className='sk-swiperSuccess-story'
                     >
                       {successData?.length ? (
@@ -1682,9 +1689,23 @@ function HomePage() {
               </div>
             </div>
           </section>
+          <section className='sk-pink-bg'>
+            <div className='container'>
+              <div className='row'>
+                <div className='col-xl-12'>
+                  <div className='sk-heading-title mb-0'>
+                    <h2>Want to become a part of our next success story?</h2>
+                  </div>
+                  <div className='sk-testCourse-btn'>
+                    <button className='sk-loadMore'>Enroll Now</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
 
           <section className='sk-testmonail-sec sk-homeStory-sec sk-slide-arrow'>
-            <div className='container sk-custom-container'>
+            <div className='container'>
               <div className='row'>
                 <div className='col-xl-12'>
                   <div className='sk-heading-title mb-0'>

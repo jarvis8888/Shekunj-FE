@@ -14,7 +14,7 @@ img {
 // Eight may 2023
 
 .sk-homeBanner-sec {
-  padding: 50px 0;
+  padding: 50px 0 15px;
   background: url(../../assets/images/herosec-img.svg) center center;
   background-size: cover;
   position: relative;
@@ -25,20 +25,50 @@ img {
 .sh-bannerContent-top {
   width: 100%;
 }
-.sk-leading-women {
+.sk-text-bg {
   background: #202020;
-  padding-top: 80px;
+  padding: 80px 0 0px;
 }
-.sk-leading-women .sk-heading-title h2 {
+.sk-leading-women {
+  background: #202020 url(../../assets/images/indiawomen.png) no-repeat center;
+  background-size: cover;
+  padding: 0px 0 100px;
+}
+.sk-leading-women .sk-loadMore {
+  background: #fff;
+  color: #202020;
+}
+.sk-leading-women img {
+  padding-top: 170px;
+}
+.sk-pink-bg {
+  background: #d3317d;
+  padding: 50px 0;
+}
+.sk-pink-bg .sk-heading-title h2 {
   color: #fff;
 }
-.sk-leading-women .sk-heading-title p {
+.sk-success-story.sk-blog-slider.sk-slide-arrow .swiper-button-next {
+  bottom: -10px;
+  top: auto;
+  right: 45%;
+}
+.sk-success-story.sk-blog-slider.sk-slide-arrow .swiper-button-prev {
+  bottom: -10px;
+  top: auto;
+  left: 45%;
+}
+.sk-text-bg .sk-heading-title h2 {
+  color: #fff;
+}
+.sk-text-bg .sk-heading-title p {
   color: #fff;
 }
 .sh-bannerContent-top h1 {
   font-size: calc(2em + 1.6vw);
   text-transform: capitalize;
   color: #fff;
+  font-weight: 600;
 }
 .sh-bannerContent-top h1 span {
   color: #ec498a;
