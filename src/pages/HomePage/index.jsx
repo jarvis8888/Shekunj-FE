@@ -75,7 +75,7 @@ import { CustomLoader } from "../../components/customLoader/CustomLoader";
 import { NoDataFound } from "../../components/noDataFound/NoDataFound";
 import LatestBlogCard from "../../components/cards/LatestBlogCard";
 import { withHeaderFooter } from "../../hocs/withHeaderFooter";
-import "../SuccessStories/index.scss";
+// import "../SuccessStories/index.scss";
 
 function HomePage() {
   const dispatch = useDispatch();
@@ -570,7 +570,7 @@ function HomePage() {
                     </SwiperSlide>
                     <SwiperSlide>
                       <div className='row align-items-center'>
-                        <div className='col-xl-7 col-lg-8 col-md-8'>
+                        <div className='col-xl-6 col-lg-6 col-md-6'>
                           <div className='sh-bannerContent-top'>
                             <h1>
                               Get Your Success <span>Story Featured</span>
@@ -594,56 +594,51 @@ function HomePage() {
                             </div>
                           </div>
                         </div>
-                        <div className='col-xl-5 col-lg-4 col-md-4'>
-                          <div className='sk-imageBanner'>
-                            <div className='col-xl-6 col-lg-6 col-md-12 col-sm-12'>
-                              <div className='sk-storyS-images'>
-                                <ul>
-                                  {successData?.map((items, index) => {
-                                    return (
-                                      <>
-                                        <li
-                                          className='sk-scale-animate'
-                                          key={index}
-                                          onClick={() => {
-                                            const hashtagNames =
-                                              items?.hash_tags.map(
-                                                (tag) => tag?.slug,
-                                              );
-                                            const generatedSlug =
-                                              generateSlug(hashtagNames[0]) ||
-                                              "no-hashtag";
-                                            if (items.slug) {
-                                              history.push(
-                                                routingConstants.SUCCESS_STORIES +
-                                                  generatedSlug +
-                                                  "/" +
-                                                  items.slug,
-                                              );
-                                            } else {
-                                              // Handle the case when 'slug' is empty
-                                              // console.log("Slug is empty. Cannot navigate.");
-                                            }
-                                          }}
-                                        >
-                                          <div className='sk-story-eimg'>
-                                            <img src={items.image} alt='' />
-                                            <span></span>
-                                          </div>
-                                          <div className='sk-story-econtent'>
-                                            <div className='sk-ewoman-title'>
-                                              <p>{`${items.name} ${items.last_name}`}</p>
-                                              <h6>{items.designation}</h6>
-                                            </div>
-                                          </div>
-                                        </li>
-                                      </>
-                                    );
-                                  })}
-                                </ul>
-                              </div>
-                            </div>
-                            {/* <img src={shekunjSlider} alt='' /> */}
+                        <div className='sk-imageBanner col-xl-6 col-lg-6 col-md-6'>
+                          <div className='sk-storyS-images'>
+                            <ul>
+                              {successData?.map((items, index) => {
+                                return (
+                                  <>
+                                    <li
+                                      className='sk-scale-animate'
+                                      key={index}
+                                      onClick={() => {
+                                        const hashtagNames =
+                                          items?.hash_tags.map(
+                                            (tag) => tag?.slug,
+                                          );
+                                        const generatedSlug =
+                                          generateSlug(hashtagNames[0]) ||
+                                          "no-hashtag";
+                                        if (items.slug) {
+                                          history.push(
+                                            routingConstants.SUCCESS_STORIES +
+                                              generatedSlug +
+                                              "/" +
+                                              items.slug,
+                                          );
+                                        } else {
+                                          // Handle the case when 'slug' is empty
+                                          // console.log("Slug is empty. Cannot navigate.");
+                                        }
+                                      }}
+                                    >
+                                      <div className='sk-story-eimg'>
+                                        <img src={items.image} alt='' />
+                                        <span></span>
+                                      </div>
+                                      <div className='sk-story-econtent'>
+                                        <div className='sk-ewoman-title'>
+                                          <p>{`${items.name} ${items.last_name}`}</p>
+                                          <h6>{items.designation}</h6>
+                                        </div>
+                                      </div>
+                                    </li>
+                                  </>
+                                );
+                              })}
+                            </ul>
                           </div>
                         </div>
                       </div>
@@ -1575,7 +1570,7 @@ function HomePage() {
           <section className='sk-text-bg'>
             <div className='container'>
               <div class='col-md-12'>
-                <div className='sk-heading-title mb-0'>
+                <div className='sk-heading-title mb-0 pb-5'>
                   <h2>India's Leading Women Empowerment Organization</h2>
                   <p className='mb-0'>
                     Take a glance at the happy, glittering faces who have
