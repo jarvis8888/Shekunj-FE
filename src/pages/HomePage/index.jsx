@@ -75,6 +75,7 @@ import { CustomLoader } from "../../components/customLoader/CustomLoader";
 import { NoDataFound } from "../../components/noDataFound/NoDataFound";
 import LatestBlogCard from "../../components/cards/LatestBlogCard";
 import { withHeaderFooter } from "../../hocs/withHeaderFooter";
+import "../SuccessStories/index.scss";
 
 function HomePage() {
   const dispatch = useDispatch();
@@ -294,7 +295,7 @@ function HomePage() {
     try {
       const url = `${
         apiConstants.COURSES.SUCCESS_STORY
-      }?limit=${6}&offset=${0}`;
+      }?limit=${8}&offset=${0}`;
       const data = await httpServices.get(url);
       const { featured_success_stories } = data;
       setSuccessData(featured_success_stories?.results);
@@ -500,7 +501,7 @@ function HomePage() {
                                 className='sk-loadMore'
                                 type='button'
                                 onClick={() =>
-                                  history.push(routingConstants.GUIDANCE_BOOK)
+                                  history.push(routingConstants.COURSES)
                                 }
                               >
                                 Get onboard and start learning
@@ -595,7 +596,54 @@ function HomePage() {
                         </div>
                         <div className='col-xl-5 col-lg-4 col-md-4'>
                           <div className='sk-imageBanner'>
-                            <img src={shekunjSlider} alt='' />
+                            <div className='col-xl-6 col-lg-6 col-md-12 col-sm-12'>
+                              <div className='sk-storyS-images'>
+                                <ul>
+                                  {successData?.map((items, index) => {
+                                    return (
+                                      <>
+                                        <li
+                                          className='sk-scale-animate'
+                                          key={index}
+                                          onClick={() => {
+                                            const hashtagNames =
+                                              items?.hash_tags.map(
+                                                (tag) => tag?.slug,
+                                              );
+                                            const generatedSlug =
+                                              generateSlug(hashtagNames[0]) ||
+                                              "no-hashtag";
+                                            if (items.slug) {
+                                              history.push(
+                                                routingConstants.SUCCESS_STORIES +
+                                                  generatedSlug +
+                                                  "/" +
+                                                  items.slug,
+                                              );
+                                            } else {
+                                              // Handle the case when 'slug' is empty
+                                              // console.log("Slug is empty. Cannot navigate.");
+                                            }
+                                          }}
+                                        >
+                                          <div className='sk-story-eimg'>
+                                            <img src={items.image} alt='' />
+                                            <span></span>
+                                          </div>
+                                          <div className='sk-story-econtent'>
+                                            <div className='sk-ewoman-title'>
+                                              <p>{`${items.name} ${items.last_name}`}</p>
+                                              <h6>{items.designation}</h6>
+                                            </div>
+                                          </div>
+                                        </li>
+                                      </>
+                                    );
+                                  })}
+                                </ul>
+                              </div>
+                            </div>
+                            {/* <img src={shekunjSlider} alt='' /> */}
                           </div>
                         </div>
                       </div>
