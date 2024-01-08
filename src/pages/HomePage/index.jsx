@@ -37,6 +37,7 @@ import shekunjSlider from "../../assets/images/shekunjSlider.png";
 import firstslidebanner2 from "../../assets/images/slider2.png";
 import firstslidebanner3 from "../../assets/images/slider3.png";
 import firstslidebanner4 from "../../assets/images/slider4.png";
+import firstslidebanner6 from "../../assets/images/firstslidebanner4.png";
 import successstoryimg from "../../assets/images/storysuccess.png";
 // import "../More/blogPage.scss";
 import "./index.scss";
@@ -319,17 +320,18 @@ function HomePage() {
       const { data } = await httpServices.get(url);
       const { event_list, today_tomorrow, this_week, next_week, genres_list } =
         data;
-      const setEventsDataUnique = Array.from(
-        new Set([...today_tomorrow, ...this_week, ...next_week]),
-      );
 
-      const filteredData = setEventsDataUnique.reduce((accumulator, item) => {
-        if (!accumulator.find((existingItem) => existingItem.id === item.id)) {
-          accumulator.push(item);
-        }
-        return accumulator;
-      }, []);
-      setEventsData(filteredData);
+      // const setEventsDataUnique = Array.from(
+      //   new Set([...today_tomorrow, ...this_week, ...next_week]),
+      // );
+
+      // const filteredData = setEventsDataUnique.reduce((accumulator, item) => {
+      //   if (!accumulator.find((existingItem) => existingItem.id === item.id)) {
+      //     accumulator.push(item);
+      //   }
+      //   return accumulator;
+      // }, []);
+      setEventsData(event_list?.results);
     } catch (error) {
       // handle error
     } finally {
@@ -450,13 +452,13 @@ function HomePage() {
                     simulateTouch={true}
                     effect={"fade"}
                     speed={1500}
-                    autoplay={{ delay: 3000 }}
+                    autoplay={{ delay: 1000 }}
                     navigation={navigation}
                     // pagination={pagination}
                     onSwiper={(swiper) => console.log(swiper)}
                     onSlideChange={() => console.log("slide change")}
                   >
-                    <SwiperSlide>
+                    {/* <SwiperSlide>
                       <div className='row align-items-center'>
                         <div className='col-xl-8 col-lg-8 col-md-8'>
                           <div className='sh-bannerContent-top'>
@@ -484,7 +486,7 @@ function HomePage() {
                           </div>
                         </div>
                       </div>
-                    </SwiperSlide>
+                    </SwiperSlide> */}
                     <SwiperSlide>
                       <div className='row align-items-center'>
                         <div className='col-md-6'>
@@ -528,7 +530,7 @@ function HomePage() {
                                   history.push(routingConstants.TOP_COLLEGES)
                                 }
                               >
-                                Top College In India
+                                Top Colleges In India
                               </button>
                             </div>
                           </div>
@@ -555,7 +557,7 @@ function HomePage() {
                                   history.push(routingConstants.TOP_SCHOOLS)
                                 }
                               >
-                                Top College In India
+                                Top Schools In India
                               </button>
                             </div>
                           </div>
@@ -594,6 +596,38 @@ function HomePage() {
                         <div className='col-xl-5 col-lg-4 col-md-4'>
                           <div className='sk-imageBanner'>
                             <img src={shekunjSlider} alt='' />
+                          </div>
+                        </div>
+                      </div>
+                    </SwiperSlide>
+                    <SwiperSlide>
+                      <div className='row align-items-center'>
+                        <div className='col-xl-7 col-lg-8 col-md-8'>
+                          <div className='sh-bannerContent-top'>
+                            <h1>
+                              Discover <span>Your Perfect Career</span>
+                            </h1>
+                            <p>
+                              Take the world’s most-advanced career advice from
+                              SheKunj's finest career counsellors online and
+                              find your best-fit career.
+                            </p>
+                            <div className='sk-thireChangescolor-btn'>
+                              <button
+                                className='sk-loadMore'
+                                type='button'
+                                onClick={() =>
+                                  history.push(routingConstants.GUIDANCE_BOOK)
+                                }
+                              >
+                                Book A counsellor
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                        <div className='col-xl-5 col-lg-4 col-md-4'>
+                          <div className='sk-imageBanner'>
+                            <img src={firstslidebanner6} alt='' />
                           </div>
                         </div>
                       </div>
@@ -685,10 +719,6 @@ function HomePage() {
                       <CustomLoader />
                     ) : courseData?.length ? (
                       courseData?.map((items, index) => {
-                        console.log(
-                          "🚀 ~ file: index.jsx:622 ~ courseData?.map ~ items:",
-                          items,
-                        );
                         return (
                           <>
                             <SwiperSlide>
@@ -1310,7 +1340,7 @@ function HomePage() {
                 <div className='col-xl-4'>
                   <div className='sk-blogSidebar-event'>
                     <div className='sk-blogHeadinghome-title'>
-                      <h3>Upcoming Events</h3>
+                      <h3>All Events</h3>
                       <p>Save the date for upcoming events near you</p>
                     </div>
                     <div className='sk-eventDatetime-detail'>
@@ -1357,7 +1387,7 @@ function HomePage() {
                           })
                         ) : (
                           <>
-                            <NoDataFound size='small' />
+                            <p>No Upcoming Events</p>
                           </>
                         )}
                       </ul>
@@ -1518,7 +1548,12 @@ function HomePage() {
                     <img src={womensleading} alt='women-india' />
                   </div>
                   <div className='sk-testCourse-btn'>
-                    <button className='sk-loadMore'>
+                    <button
+                      className='sk-loadMore'
+                      onClick={() =>
+                        history.push(routingConstants.SUCCESS_STORIES)
+                      }
+                    >
                       Views Success Stories
                     </button>
                   </div>
@@ -1661,10 +1696,15 @@ function HomePage() {
               <div className='row'>
                 <div className='col-xl-12'>
                   <div className='sk-heading-title mb-0'>
-                    <h2>Want to become a part of our next success story?</h2>
+                    <h2>Share your story and inspire others</h2>
                   </div>
                   <div className='sk-testCourse-btn'>
-                    <button className='sk-loadMore'>Enroll Now</button>
+                    <button
+                      className='sk-loadMore'
+                      onClick={() => history.push(routingConstants.CONTACT_US)}
+                    >
+                      Enroll Now
+                    </button>
                   </div>
                 </div>
               </div>
