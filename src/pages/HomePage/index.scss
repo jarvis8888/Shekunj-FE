@@ -33,6 +33,22 @@ img {
   background: #202020 url(../../assets/images/indiawomen.png) no-repeat center;
   background-size: cover;
   padding: 0px 0 100px;
+  position: relative;
+}
+.sk-leading-women::before {
+  position: absolute;
+  content: "";
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgb(32, 32, 32);
+  background: linear-gradient(
+    180deg,
+    rgba(32, 32, 32, 1) 0%,
+    rgba(32, 32, 32, 0.4990371148459384) 52%,
+    rgba(32, 32, 32, 1) 100%
+  );
 }
 .sk-leading-women .sk-loadMore {
   background: #fff;
@@ -1172,6 +1188,9 @@ img {
   }
 }
 @media screen and (max-width: 480px) {
+  .sk-success-story.sk-blog-slider.sk-slide-arrow .swiper-button-prev {
+    left: 32%;
+  }
   .sk-slide-arrow .swiper-button-next {
     right: 0;
   }
