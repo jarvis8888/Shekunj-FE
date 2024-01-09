@@ -401,9 +401,9 @@ function BlogPage() {
   return (
     <>
       <SEO
-        title='Sheकुंज - Articles'
-        description='Shekunj.com works on women empowerment and skill development by providing free training, job-oriented courses, jobs & internships and career counseling.'
-        keywords='women empowerment organizations women empowerment initiative free online courses free career guidance'
+        title='Stay updated with the trending articles & latest published news'
+        description='Get the latest news alerts from Shekunj and follow today’s trending news updates in the fields of Politics, Business, Technology, Bollywood, and more.'
+        keywords='Latest article, Trending article,  Popular articles, Latest published news, Popular news, News, Breaking news, Latest news, Today news, India news, Politics news, Top news in India'
         link={currentUrl}
         currentUrl={currentUrl}
       />

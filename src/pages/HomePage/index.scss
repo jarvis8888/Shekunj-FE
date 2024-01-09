@@ -1117,11 +1117,11 @@ img {
   cursor: pointer;
 }
 .sk-eventDatetime-detail ul li .sk-eventDate {
-  flex: 120px;
+  flex: 120px 0 0;
   max-width: 120px;
 }
 .sk-eventDatetime-detail ul li .sk-eventTime-detail {
-  flex: auto;
+  flex: 1 0 0;
 }
 .sk-eventDatetime-detail ul li .sk-eventDate h6 {
   font-weight: 400;

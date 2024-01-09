@@ -452,8 +452,8 @@ function HomePage() {
                     slidesPerView={1}
                     simulateTouch={true}
                     effect={"fade"}
-                    speed={1500}
-                    autoplay={{ delay: 1000 }}
+                    speed={500}
+                    autoplay={{ delay: 500 }}
                     navigation={navigation}
                     // pagination={pagination}
                     onSwiper={(swiper) => console.log(swiper)}
@@ -1739,14 +1739,14 @@ function HomePage() {
               <div className='row'>
                 <div className='col-xl-12'>
                   <div className='sk-heading-title mb-0'>
-                    <h2>Share your story and inspire others</h2>
+                    <h2>Share Your Story And Inspire Others</h2>
                   </div>
                   <div className='sk-testCourse-btn'>
                     <button
                       className='sk-loadMore'
                       onClick={() => history.push(routingConstants.CONTACT_US)}
                     >
-                      Enroll Now
+                      Connect Us
                     </button>
                   </div>
                 </div>
