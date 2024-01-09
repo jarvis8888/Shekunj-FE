@@ -129,12 +129,17 @@ const AboutusPage = () => {
   return (
     <>
       <SEO
-        title='Sheकुंज - About us'
+        title='Shekunj a Leading Women Empowerment Organization | About Us'
         link='https://www.shekunj.com/about-us'
-        keywords='women empowerment organizations, free online courses in india, free career guidance'
-        description='Shekunj.com works for women empowerment by providing free online certification courses, 
-      career guidance, job and internship opportunities across India.'
+        keywords='Women empowerment organizations, Free online courses in india, Advertise your business, Free career guidance, Online certification courses, Free online counselling in India, Display ad, Banners ads'
+        description='SheKunj is a women empowerment organization that provides free online courses & counselling in India while boosting your business through impactful display & banner 
+ads.'
       />
+      <h1 style={{ display: "none" }}>
+        {
+          "SheKunj - India’s Leading Women Empowerment Organization for Uplifting Women"
+        }
+      </h1>
       <div className='noselect'>
         <Header loginPage={false} page='about-us' />
         <section className='about_ban'>

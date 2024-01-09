@@ -334,9 +334,9 @@ function EventPage() {
   return (
     <>
       <SEO
-        title='Sheकुंज - Events'
-        description='Shekunj.com works on women empowerment and skill development by providing free training, job-oriented courses, jobs & internships and career counseling'
-        keywords='women empowerment organizations women empowerment initiative free online courses free career guidance'
+        title='Discover Upcoming Events & Free Online Workshops of Shekunj'
+        description='Explore our upcoming events, from free online and offline workshops to insightful sessions, offering valuable learning experiences and a platform to connect & grow for all.'
+        keywords='Free online workshops, Free online and offline workshops, Upcoming events, Online workshops with certificates, Online workshops, Virtual events, Online events'
         link={currentUrl}
         currentUrl={currentUrl}
       />

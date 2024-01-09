@@ -200,8 +200,8 @@ function FaqPage() {
   return (
     <>
       <SEO
-        title='Sheकुंज - FAQ'
-        description='Shekunj.com works on women empowerment and skill development by providing free training, job-oriented courses, jobs & internships and career counseling'
+        title="Get answers to your questions at SheKunj's FAQ Section"
+        description="Find answers to common questions about SheKunj's free online certification courses, counselling, and more. Ask your own questions too!"
         keywords='women empowerment organizations women empowerment initiative free online courses free career guidance'
         link={currentUrl}
         currentUrl={currentUrl}

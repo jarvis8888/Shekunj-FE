@@ -445,9 +445,9 @@ function SuccessStory() {
   return (
     <>
       <SEO
-        title='Sheकुंज - Success Stories'
-        description='Shekunj.com works on women empowerment and skill development by providing free training, job-oriented courses, jobs & internships and career counseling'
-        keywords='women empowerment organizations women empowerment initiative free online courses free career guidance'
+        title='Read inspiring success stories of remarkable women'
+        description="Read inspiring success stories of women who have achieved greatness in life. SheKunj celebrates women's achievements and empowers others."
+        keywords="Inspiring success stories, Inspiring stories of women, Women's achievements, Motivational Stories, Success stories, Inspirational success stories."
         link={currentUrl}
         currentUrl={currentUrl}
       />
