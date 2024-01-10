@@ -76,8 +76,7 @@ div#col_grey p {
   border: 1px solid #e3e4eb;
   width: 26px;
   height: 26px;
-  border-radius: 50px;  
-  
+  border-radius: 50px;
 }
 
 .que_num p {
@@ -256,12 +255,14 @@ span.MuiLinearProgress-root {
   color: #fff !important;
 }
 
-.guidance_book_form svg.MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium.MuiSelect-icon.MuiSelect-iconOutlined.css-1636szt {
+.guidance_book_form
+  svg.MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium.MuiSelect-icon.MuiSelect-iconOutlined.css-1636szt {
   right: 5px !important;
   top: calc(50% - 0.15em) !important;
 }
 
-.guidance_book_form svg.MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium.MuiSelect-icon.MuiSelect-iconOutlined.MuiSelect-iconOpen.css-1yhq19e {
+.guidance_book_form
+  svg.MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium.MuiSelect-icon.MuiSelect-iconOutlined.MuiSelect-iconOpen.css-1yhq19e {
   right: 15px !important;
   top: calc(50% - 1em) !important;
 }
@@ -385,7 +386,7 @@ p#col_grey {
 .deatil_box h5 {
   background: #fff;
   padding-bottom: 10px;
-  border-bottom: 1px solid #DFDFDF;
+  border-bottom: 1px solid #dfdfdf;
   margin: 0px;
   display: block;
 }
@@ -398,18 +399,18 @@ p#col_grey {
 .deatil_box_right h5 {
   background: #fff;
   padding-bottom: 18px;
-  border-bottom: 1px solid #DFDFDF;
+  border-bottom: 1px solid #dfdfdf;
   margin: 0px;
   display: block;
 }
 
 .card-img-top {
-  height: 600px;
+  // height: 600px;
   margin-bottom: 15px;
 }
 
-@media screen and (min-width: 768px) and (max-width: 1024px)  {
+@media screen and (min-width: 768px) and (max-width: 1024px) {
   .card-img-top {
-    height: 450px;
+    // height: 450px;
   }
 }

@@ -444,16 +444,16 @@ function HomePage() {
       ) : (
         <>
           <section className='sk-homeBanner-sec'>
-            <div className='container sk-custom-container'>
-              <div className='row'>
+            <div className='container-fluid sk-custom-container-fluid'>
+              <div className='row align-items-center'>
                 <div className='col-md-12'>
                   <Swiper
                     modules={[Navigation, Pagination, Autoplay]}
                     slidesPerView={1}
                     simulateTouch={true}
                     effect={"fade"}
-                    speed={500}
-                    autoplay={{ delay: 500 }}
+                    speed={1000}
+                    // autoplay={{ delay: 500 }}
                     navigation={navigation}
                     // pagination={pagination}
                     onSwiper={(swiper) => console.log(swiper)}
@@ -490,7 +490,7 @@ function HomePage() {
                     </SwiperSlide> */}
                     <SwiperSlide>
                       <div className='row align-items-center'>
-                        <div className='col-md-6'>
+                        <div className='col-xl-6 col-lg-6 col-md-12'>
                           <div className='sh-bannerContent-top'>
                             <h1>
                               A Promise To Never Stop <span>Learning</span>
@@ -509,14 +509,17 @@ function HomePage() {
                             </div>
                           </div>
                         </div>
-                        <div className='col-md-6'>
-                          <img src={firstslidebanner2} alt='' />
+                        <div className='col-xl-6 col-lg-6 col-md-12'>
+                          <div className='first-slide-swiper'>
+                            {" "}
+                            <img src={firstslidebanner2} alt='' />
+                          </div>
                         </div>
                       </div>
                     </SwiperSlide>
                     <SwiperSlide>
                       <div className='row align-items-center'>
-                        <div className='col-md-6'>
+                        <div className='col-xl-7 col-lg-7 col-md-12'>
                           <div className='sh-bannerContent-top'>
                             <h1>
                               Get insights about colleges{" "}
@@ -536,14 +539,17 @@ function HomePage() {
                             </div>
                           </div>
                         </div>
-                        <div className='col-md-6'>
-                          <img src={firstslidebanner3} />
+                        <div className='col-xl-5 col-lg-5 col-md-12'>
+                          <div className='second-slide-swiper'>
+                            {" "}
+                            <img src={firstslidebanner3} />
+                          </div>
                         </div>
                       </div>
                     </SwiperSlide>
                     <SwiperSlide>
                       <div className='row align-items-center'>
-                        <div className='col-md-8'>
+                        <div className='col-xl-7 col-lg-7 col-md-12'>
                           <div className='sh-bannerContent-top'>
                             <h1>
                               Give High-Quality Education{" "}
@@ -563,14 +569,16 @@ function HomePage() {
                             </div>
                           </div>
                         </div>
-                        <div className='col-md-4'>
-                          <img src={firstslidebanner4} alt='' />
+                        <div className='col-md-5'>
+                          <div className='third-slide-swiper'>
+                            <img src={firstslidebanner4} alt='' />
+                          </div>
                         </div>
                       </div>
                     </SwiperSlide>
                     <SwiperSlide>
                       <div className='row align-items-center'>
-                        <div className='col-xl-6 col-lg-6 col-md-6'>
+                        <div className='col-xl-6 col-lg-6 col-md-12'>
                           <div className='sh-bannerContent-top'>
                             <h1>
                               Get Your Success <span>Story Featured</span>
@@ -645,7 +653,7 @@ function HomePage() {
                     </SwiperSlide>
                     <SwiperSlide>
                       <div className='row align-items-center'>
-                        <div className='col-xl-7 col-lg-8 col-md-8'>
+                        <div className='col-xl-6 col-lg-6 col-md-12'>
                           <div className='sh-bannerContent-top'>
                             <h1>
                               Discover <span>Your Perfect Career</span>
@@ -668,8 +676,8 @@ function HomePage() {
                             </div>
                           </div>
                         </div>
-                        <div className='col-xl-5 col-lg-4 col-md-4'>
-                          <div className='sk-imageBanner'>
+                        <div className='col-xl-6 col-lg-6 col-md-12'>
+                          <div className='four-slider'>
                             <img src={firstslidebanner6} alt='' />
                           </div>
                         </div>
@@ -736,9 +744,13 @@ function HomePage() {
                     autoplay={{ delay: 3000 }}
                     className='sk-mySwiper-slide'
                     breakpoints={{
-                      0: {
+                      320: {
+                        slidesPerView: 1,
+                        spaceBetween: 10,
+                      },
+                      375: {
                         slidesPerView: 1.5,
-                        spaceBetween: 15,
+                        spaceBetween: 10,
                       },
                       767: {
                         slidesPerView: 2,
@@ -1068,9 +1080,13 @@ function HomePage() {
                     navigation={true}
                     className='sk-mockSwiper'
                     breakpoints={{
-                      0: {
+                      320: {
+                        slidesPerView: 1,
+                        spaceBetween: 10,
+                      },
+                      375: {
                         slidesPerView: 1.5,
-                        spaceBetween: 15,
+                        spaceBetween: 10,
                       },
                       767: {
                         slidesPerView: 2,
@@ -1321,8 +1337,12 @@ function HomePage() {
                               key={index}
                               onClick={() =>
                                 history.push({
-                                  pathname: `${routingConstants.GOVERNMENT_SCHEMES}${routingConstants.GOVERNMENT_SCHEMES_CATEGORY}/${generateSlug(items?.name)}`,
-                                  state: { id: items.id }, // Passing the ID as state
+                                  pathname: `${
+                                    routingConstants.GOVERNMENT_SCHEMES
+                                  }${
+                                    routingConstants.GOVERNMENT_SCHEMES_CATEGORY
+                                  }/${generateSlug(items?.name)}`,
+                                  state: { id: items.id, name: items?.name }, // Passing the ID as state
                                 })
                               }
                             >
@@ -1572,7 +1592,7 @@ function HomePage() {
           <section className='sk-text-bg'>
             <div className='container'>
               <div class='col-md-12'>
-                <div className='sk-heading-title mb-0 pb-5'>
+                <div className='sk-heading-title mb-0'>
                   <h2>India's Leading Women Empowerment Organization</h2>
                   <p className='mb-0'>
                     Take a glance at the happy, glittering faces who have
@@ -1587,11 +1607,8 @@ function HomePage() {
           </section>
           <section className='sk-leading-women'>
             <div className='container sk-custom-container'>
-              <div class='row align-items-center'>
+              <div class='row align-items-end'>
                 <div class='col-md-12'>
-                  <div className='text-center'>
-                    <img src={womensleading} alt='women-india' />
-                  </div>
                   <div className='sk-testCourse-btn'>
                     <button
                       className='sk-loadMore'
@@ -1622,7 +1639,7 @@ function HomePage() {
                     <Swiper
                       spaceBetween={30}
                       speed={1500}
-                      autoplay={{ delay: 3000 }}
+                      // autoplay={{ delay: 3000 }}
                       modules={[Navigation, Autoplay]}
                       navigation={true}
                       className='sk-swiperSuccess-story'

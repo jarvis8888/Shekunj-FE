@@ -29,7 +29,7 @@ const Career2WithCategory = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const location = useLocation();
-  const id = location.state?.id;
+  const { id, name } = location.state;
   console.log("🚀 ~ Career2WithCategory ~ id:", id);
   const { governmentExams, isLoading } = useSelector(
     (state) => state.careerReducer,
@@ -426,7 +426,7 @@ const Career2WithCategory = () => {
         <section className='sk-Topmiddle-sec'>
           <div className='container sk-custom-container'>
             <div className='noselect sk-spaceBottom-school'>
-              <h1 className='sk-storyHeading-top'>Career2WithCategory</h1>
+              <h1 className='sk-storyHeading-top'>{name}</h1>
             </div>
             <div className='row'>
               <Col md={8} xs={12}>
