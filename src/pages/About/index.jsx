@@ -9,6 +9,7 @@ import Nikita from "../../assets/images/Nikita-Sharma.png";
 import Ankita from "../../assets/images/Ankita-Sharma.png";
 import star from "../../assets/images/Star 2.png";
 import mob_banner from "../../assets/images/About/mob_banner.png";
+import add_banner from "../../assets/images/ads-banner.jpg";
 import axios from "axios";
 
 import "../HomePage/index.scss";
@@ -18,6 +19,7 @@ import "animate.css";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import SEO from "../../components/SEO/index";
+import { withHeaderFooter } from "../../hocs/withHeaderFooter";
 
 const AboutusPage = () => {
   const { t } = useTranslation();
@@ -141,9 +143,8 @@ ads.'
         }
       </h1>
       <div className='noselect'>
-        <Header loginPage={false} page='about-us' />
         <section className='about_ban'>
-          <div className='container'>
+          <div className='container sk-custom-container'>
             <div className='row'>
               <div className='col-lg-0 col-md-0'>
                 <div className='mob_abo_banner'>
@@ -162,7 +163,7 @@ ads.'
         </section>
 
         <section className='ban_sec2 noselect'>
-          <div className='container'>
+          <div className='container sk-custom-container'>
             <div className='row'>
               <div className='col-md-6 noselect'>
                 <img src={img1} class='img-responsive' alt='' srcSet='' />
@@ -182,7 +183,7 @@ ads.'
         </section>
 
         <section className='about_testim'>
-          <div className='container'>
+          <div className='container sk-custom-container'>
             <div className='row'>
               {/* <div className='col-md-6'>
                 <div className='row'>
@@ -278,7 +279,7 @@ ads.'
                 </div>
               </div> */}
 
-              <div className='col-md-12 noselect'>
+              <div className='col-md-6 noselect'>
                 <div className='our_his'>
                   <h2>{t("homePage.highlightStudents.aboutHeading")}</h2>
                   <h5>{t("homePage.highlightStudents.1")}</h5>
@@ -296,13 +297,17 @@ ads.'
                   </Link>
                 </div>
               </div>
+              <div className='col-md-6'>
+                <div className='about-img-thumb'>
+                  <img src={add_banner} alt='add image' />
+                </div>
+              </div>
             </div>
           </div>
         </section>
-        <Footer loginPage={false} />
       </div>
     </>
   );
 };
 
-export default AboutusPage;
+export default withHeaderFooter(AboutusPage);
