@@ -1,12 +1,22 @@
 .SucOption {
-  background-image: url("../../assets/images/Success/sucOptBg.png");
-  background-repeat: no-repeat;
-  background-size: cover;
-  width: 100%;
-  height: 407px;
+  background: #e6e6e6;
+  // background-repeat: no-repeat;
+  // background-size: cover;
+  // width: 100%;
+  // height: 407px;
   display: flex;
   align-items: center;
-  margin-bottom: 31px;
+  // margin-bottom: 31px;
+}
+.mocktest-sec {
+  background: #f5f5f5;
+  padding: 60px 0;
+  margin-bottom: 50px;
+}
+.mocktest-sec h3 {
+  font-size: 48px;
+  text-transform: capitalize;
+  font-weight: 700;
 }
 .SucOption h2 {
   font-family: Source Sans Pro;
@@ -33,13 +43,15 @@
   display: block;
 }
 
-
-@media screen and (min-device-width: 50px) and (max-device-width: 767px) { 
-  .SucOption {
-    background-image: url('../../assets/images/Career/mob_bg.png');
-    align-items: flex-start;
+@media screen and (min-device-width: 50px) and (max-device-width: 767px) {
+  // .SucOption {
+  //   background-image: url("../../assets/images/Career/mob_bg.png");
+  //   align-items: flex-start;
+  // }
+  .mocktest-sec h3 {
+    font-size: 30px;
+    font-weight: 600;
   }
-
   .CompExams .MuiTabs-root.MuiTabs-vertical {
     height: auto;
   }
@@ -47,5 +59,5 @@
     font-size: 34px;
     line-height: 40px;
     padding-top: 47px;
-}
+  }
 }

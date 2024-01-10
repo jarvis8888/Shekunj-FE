@@ -14,14 +14,14 @@ img {
 // Eight may 2023
 
 .sk-homeBanner-sec {
-  padding: 50px 0 15px;
+  padding: 0px 0 0px;
   background: url(../../assets/images/herosec-img.svg) center center;
   background-size: cover;
   position: relative;
 }
-.sk-homeBanner-sec .swiper {
-  padding-bottom: 50px;
-}
+// .sk-homeBanner-sec .swiper {
+//   padding-bottom: 50px;
+// }
 .sh-bannerContent-top {
   width: 100%;
 }
@@ -32,24 +32,15 @@ img {
 .sk-leading-women {
   background: #202020 url(../../assets/images/indiawomen.png) no-repeat center;
   background-size: cover;
-  padding: 0px 0 100px;
   position: relative;
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  min-height: 500px;
+
+  height: 100%;
 }
-.sk-leading-women::before {
-  position: absolute;
-  content: "";
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: rgb(32, 32, 32);
-  background: linear-gradient(
-    180deg,
-    rgb(32 32 32 / 75%) 0%,
-    rgba(32, 32, 32, 0) 52%,
-    rgb(32 32 32 / 75%) 100%
-  );
-}
+
 .sk-leading-women .sk-loadMore {
   background: #fff;
   color: #202020;
@@ -211,7 +202,6 @@ img {
 }
 
 .sk-leading-women img {
-  padding-top: 170px;
   opacity: 0.8;
 }
 .sk-pink-bg {
@@ -238,7 +228,7 @@ img {
   color: #fff;
 }
 .sh-bannerContent-top h1 {
-  font-size: calc(2em + 1.6vw);
+  font-size: calc(2em + 1.4vw);
   text-transform: capitalize;
   color: #fff;
   font-weight: 600;
@@ -269,6 +259,11 @@ img {
   position: relative;
   margin-right: 30px !important;
   font-weight: 500;
+}
+.sk-banner-navigate {
+  position: absolute;
+  bottom: 20px;
+  top: auto;
 }
 .sk-banner-navigate:before {
   position: absolute;
@@ -800,14 +795,20 @@ img {
   border-radius: 4px;
   overflow: hidden;
 }
-
+.sk-leading-women .sk-testCourse-btn {
+  padding-bottom: 60px;
+}
 .sk-story-testmonial .sk-story-content:last-child {
-  margin-left: -50px;
+  margin-left: -80px;
   background: #fff;
-  padding: 30px 30px 15px;
+  padding: 20px 20px 10px;
   box-shadow: 8px 8px 30px #efe8eb;
   border-radius: 4px;
   margin-bottom: -30px;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-between;
 }
 .sk-homeStory-sec .swiper-wrapper {
   margin-bottom: 80px;
@@ -829,7 +830,8 @@ img {
   align-items: center;
   justify-content: space-between;
   border-top: 1px solid #d9d9d9;
-  padding-top: 15px;
+  padding-top: 10px;
+  flex: 1 0 0;
 }
 
 .sk-storySuccess-testmonial span {
@@ -877,7 +879,7 @@ img {
 .sk-storySuccess-testmonial {
   display: flex;
   align-items: center;
-  gap: 25px;
+  gap: 40px;
 }
 
 .sk-readmore-story .sk-storyRead-more {
@@ -1117,8 +1119,8 @@ img {
   cursor: pointer;
 }
 .sk-eventDatetime-detail ul li .sk-eventDate {
-  flex: 120px 0 0;
-  max-width: 120px;
+  flex: 60px 0 0;
+  max-width: 60px;
 }
 .sk-eventDatetime-detail ul li .sk-eventTime-detail {
   flex: 1 0 0;
@@ -1183,11 +1185,11 @@ img {
   position: relative;
 }
 
-.sk-story-testmonial .sk-story-content img {
-  object-fit: cover;
-  height: 260px;
-  object-position: center;
-}
+// .sk-story-testmonial .sk-story-content img {
+//   object-fit: cover;
+//   height: 260px;
+//   object-position: center;
+// }
 .sk-mockTest-sec .sk-course-img img {
   object-fit: contain;
   height: 230px;
@@ -1284,16 +1286,39 @@ img {
   height: 52px;
 }
 
+.sk-storyS-images {
+  padding-top: 65px;
+  padding-right: 60px;
+}
+.four-slider {
+  text-align: center;
+}
+.first-slide-swiper {
+  text-align: right;
+}
+.third-slide-swiper {
+  text-align: center;
+}
+.second-slide-swiper {
+  text-align: right;
+}
+.sk-custom-container-fluid {
+  padding-left: 80px;
+  padding-right: 0;
+}
 // custom responsive start
 
 @media screen and (max-width: 1920px) {
-  .sh-bannerContent-top {
-    max-width: 600px;
-  }
+  // .sh-bannerContent-top {
+  //   max-width: 600px;
+  // }
 }
 @media screen and (min-width: 1250px) and (max-width: 1366px) {
   .sk-blog-slider.sk-slide-arrow .swiper-button-prev {
     left: 88%;
+  }
+  .sk-custom-container-fluid {
+    padding-left: 20px;
   }
 }
 @media screen and (min-width: 991) and (max-width: 1250px) {
@@ -1305,6 +1330,21 @@ img {
   .sk-course-btn .sk-course-btn.sk-courseBg-color {
     padding: 8px 12px;
   }
+  .sk-custom-container-fluid {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .sk-storyS-images ul {
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 15px;
+  }
+  .sk-storyS-images {
+    padding-top: 15px;
+    padding-right: 0px;
+    padding-bottom: 80px;
+  }
+
   .sk-story-testmonial {
     grid-template-columns: repeat(1, 1fr);
   }
@@ -1345,8 +1385,19 @@ img {
   }
 }
 @media screen and (max-width: 480px) {
+  .sk-storyS-images ul li img {
+    width: 100%;
+    height: 84px;
+  }
   .sk-success-story.sk-blog-slider.sk-slide-arrow .swiper-button-prev {
-    left: 32%;
+    left: 40%;
+  }
+  .sk-success-story.sk-blog-slider.sk-slide-arrow .swiper-button-next {
+    right: 40%;
+  }
+  .sk-leading-women {
+    min-height: 300px;
+    background-size: 100%;
   }
   .sk-slide-arrow .swiper-button-next {
     right: 0;
@@ -1382,9 +1433,11 @@ img {
   }
   .sk-begain-box {
     padding-left: 15px;
+    overflow: hidden;
   }
   .sk-readmore-story .sk-storyRead-more {
     font-size: 12px;
+    padding: 0px;
   }
   .sk-hire-container {
     grid-template-columns: repeat(1, 1fr);
@@ -1436,7 +1489,7 @@ img {
     font-size: 24px;
   }
   .sk-homeBanner-sec {
-    padding: 30px 0;
+    padding: 30px 0 0;
   }
   .sh-bannerContent-top p {
     font-size: 14px;

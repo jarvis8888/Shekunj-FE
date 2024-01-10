@@ -8,6 +8,7 @@ import "aos/dist/aos.css";
 import "animate.css";
 
 import TabsExams from "./TabsExams/index";
+import mocktest from "../../assets/images/pencil-banner.png";
 import { getCareerOption } from "../../store/guidance";
 import "./index.scss";
 import { useTranslation } from "react-i18next";
@@ -16,7 +17,7 @@ import { Helmet } from "react-helmet-async";
 function SuccessCareerOption() {
   const dispatch = useDispatch();
   const { t } = useTranslation();
-  const {lan} = useSelector(state => state.languageReducer);
+  const { lan } = useSelector((state) => state.languageReducer);
 
   useEffect(() => {
     dispatch(getCareerOption());
@@ -27,26 +28,51 @@ function SuccessCareerOption() {
     <div>
       <Header loginPage={true} page='guidance' subPage='careerOption' />
 
-      <div className='SucOption noselect'>
-
-      <Helmet>
-        <link rel="canonical" href="https://www.shekunj.com/career-options/" />
-        <title>Best Career Options and Occupations in India - Shekunj.com</title>
-        <meta name="description" content="Find out the list of Top Career Options in India;
+      <div className='noselect'>
+        <Helmet>
+          <link
+            rel='canonical'
+            href='https://www.shekunj.com/career-options/'
+          />
+          <title>
+            Best Career Options and Occupations in India - Shekunj.com
+          </title>
+          <meta
+            name='description'
+            content='Find out the list of Top Career Options in India;
          Government Sector Finance Careers, 
-        Technology Careers, Marketing Careers, JEE, NEET, etc."/>
-        <meta name="keywords" content="Career Options in India,
+        Technology Careers, Marketing Careers, JEE, NEET, etc.'
+          />
+          <meta
+            name='keywords'
+            content='Career Options in India,
  future career options,
  list of career choices,
-career opportunities,"/>
-      </Helmet>
+career opportunities,'
+          />
+        </Helmet>
 
-        <Container>
-          {/* <h2 data-aos='slide-up'>
+        {/* <Container> */}
+        {/* <h2 data-aos='slide-up'>
             {t("successCareerOption.other.3.1")}
           </h2> */}
-          <h3 data-aos='slide-up'>{t("successCareerOption.other.3.2")}</h3>
-        </Container>
+        {/* </Container> */}
+        <section className='mocktest-sec'>
+          <div className='container'>
+            <div className='row align-items-center'>
+              <div className='col-md-6'>
+                <h3 data-aos='slide-up'>
+                  {t("successCareerOption.other.3.2")}
+                </h3>
+              </div>
+              <div className='col-md-6'>
+                <div className='mocktest-img'>
+                  <img src={mocktest} alt='mock banner' />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
 
       <div className='CompExams noselect'>
