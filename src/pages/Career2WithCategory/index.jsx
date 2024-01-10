@@ -15,6 +15,7 @@ import { adsList } from "../../store/ads";
 import "../HomePage/index.scss";
 import "./index.scss";
 import "../Career1/index.scss";
+import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 import { Link, useLocation } from "react-router-dom";
 import axios from "axios";
 import { Helmet } from "react-helmet-async";
@@ -427,9 +428,14 @@ const Career2WithCategory = () => {
           <div className='container sk-custom-container'>
             <div className='noselect sk-spaceBottom-school'>
               <h1 className='sk-storyHeading-top'>{name}</h1>
+              <div class='sk-thireChangescolor-back'>
+                <button class='sk-loadMore' type='button'>
+                  <KeyboardBackspaceIcon /> Back
+                </button>
+              </div>
             </div>
             <div className='row'>
-              <Col md={8} xs={12}>
+              <Col md={8} className='mx-auto'>
                 <>
                   {isLoading ? (
                     <CustomLoader />
