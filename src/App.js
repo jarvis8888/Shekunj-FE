@@ -4,6 +4,7 @@ import PublicRoute from "./routers/PublicRouter";
 import PrivateRoute from "./routers/PrivateRouter";
 import { routingConstants } from "./utils/constants";
 import "./App.css";
+import Career2WithCategory from "./pages/Career2WithCategory";
 
 const ForgotPage = React.lazy(() => import("./pages/ForgotPage/ForgotPage"));
 const SignupPage = React.lazy(() => import("./pages/SignupPage/SignupPage"));
@@ -74,6 +75,9 @@ const GlobalSearchPage = React.lazy(() => import("./pages/Search"));
 const ResumeBUilderPage = React.lazy(() => import("./pages/ResumeBuilder"));
 const JobPage = React.lazy(() => import("./pages/Jobs"));
 const AllSuccessStories = React.lazy(() => import("./pages/AllSuccessStories"));
+const GovernmentSchemesWithCategory = React.lazy(() =>
+  import("./pages/Career2WithCategory"),
+);
 
 function App() {
   useEffect(() => {
@@ -164,6 +168,11 @@ function App() {
           exact
           path={routingConstants.GOVERNMENT_SCHEMES}
           component={Career2}
+        />
+        <Route
+          exact
+          path={`${routingConstants.GOVERNMENT_SCHEMES}${routingConstants.GOVERNMENT_SCHEMES_CATEGORY}/:category`}
+          component={Career2WithCategory}
         />
         <Route exact path={routingConstants.COURSES} component={Courses} />
         <Route exact path={routingConstants.MY_PROFILE} component={MyProfile} />
