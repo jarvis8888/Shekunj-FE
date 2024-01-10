@@ -1336,9 +1336,14 @@ function HomePage() {
                             <li
                               key={index}
                               onClick={() =>
-                                history.push(
-                                  routingConstants.GOVERNMENT_SCHEMES,
-                                )
+                                history.push({
+                                  pathname: `${
+                                    routingConstants.GOVERNMENT_SCHEMES
+                                  }${
+                                    routingConstants.GOVERNMENT_SCHEMES_CATEGORY
+                                  }/${generateSlug(items?.name)}`,
+                                  state: { id: items.id, name: items?.name }, // Passing the ID as state
+                                })
                               }
                             >
                               <h5 className='sk-gScheme-title'>
@@ -1351,9 +1356,10 @@ function HomePage() {
                                 <button
                                   className='sk-storyRead-more'
                                   onClick={() =>
-                                    history.push(
-                                      routingConstants.GOVERNMENT_SCHEMES,
-                                    )
+                                    history.push({
+                                      pathname: `${routingConstants.GOVERNMENT_SCHEMES}${routingConstants.GOVERNMENT_SCHEMES_CATEGORY}/${items?.name}`,
+                                      state: { id: items.id }, // Passing the ID as state
+                                    })
                                   }
                                 >
                                   View All <EastRoundedIcon />
