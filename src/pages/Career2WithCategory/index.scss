@@ -1,319 +1,322 @@
 .mainDiv_gov {
-    margin-top: 50px;
-  }
-  
-  .career_tit {
-    margin-bottom: 30px;
-  }
-  
-  .career_tit h2 {
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 40px;
-    line-height: 52px;
-    color: #323232;
-  }
-  
-  #gov-left-col {
-    height: fit-content;
-    position: sticky;
-  }
-  
-  .BlogReadMore {
-    font-family: "Poppins", sans-serif;
-    // color: #de488b;
-    margin: 30px 0;
-    padding: 5px 0;
-    text-align: start;
-    text-decoration: none;
-  }
-  .BlogReadMore:hover {
-    text-decoration: none;
-  }
-  
-  .career_tit p {
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 30px;
-    color: #828282;
-  }
-  
+  margin-top: 50px;
+}
+
+.career_tit {
+  margin-bottom: 30px;
+}
+
+.career_tit h2 {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 40px;
+  line-height: 52px;
+  color: #323232;
+}
+
+#gov-left-col {
+  height: fit-content;
+  position: sticky;
+}
+.sk-thireChangescolor-back .sk-loadMore {
+  padding: 0;
+  background: transparent;
+  color: #de488b;
+}
+.BlogReadMore {
+  font-family: "Poppins", sans-serif;
+  // color: #de488b;
+  margin: 30px 0;
+  padding: 5px 0;
+  text-align: start;
+  text-decoration: none;
+}
+.BlogReadMore:hover {
+  text-decoration: none;
+}
+
+.career_tit p {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 30px;
+  color: #828282;
+}
+
+.career_box {
+  background: #ffffff;
+  width: 100%;
+  height: 268px;
+  box-shadow: 0 2px 2px 0 rgb(0 0 0 / 16%), 0 0 0 1px rgb(0 0 0 / 8%);
+  border-radius: 5px;
+  padding: 20px 15px;
+  align-items: center;
+  display: grid;
+  margin-bottom: 30px;
+}
+
+.css-ztrqiq-MuiImageListItemBar-root {
+  border-radius: 15px;
+}
+
+.career_logo_img {
+  width: 100%;
+}
+
+.career_logo_box {
+  background: #fff;
+  padding: 10px;
+  border: 1px solid #d1d1d1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gov_logo_box {
+  margin-left: -15px;
+  height: 130px;
+  width: 130px;
+}
+
+.career_box h3 {
+  font-family: Poppins;
+  text-transform: capitalize;
+  color: #323232;
+  font-size: 16px;
+  line-height: 1.3125rem;
+  margin-top: 0;
+  margin-bottom: 5px;
+  margin-left: -15px;
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.career_box p {
+  font-family: Poppins;
+  font-style: normal;
+  color: #828282;
+  position: relative;
+  font-size: 14px;
+}
+
+.career_box p span {
+  color: #4f4f4f;
+}
+
+.career_box ul {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 0;
+  list-style: none;
+  max-width: 100%;
+  margin: 0;
+  // margin-bottom: 30px;
+}
+
+.career_box ul li {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 2;
+  color: #828282;
+  margin-bottom: 2px;
+}
+
+.career_box ul li span {
+  color: #4f4f4f;
+}
+
+.career_box button {
+  background: #ec498a;
+  border: 1px solid #ec498a;
+  box-sizing: border-box;
+  border-radius: 2px;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 21px;
+  text-align: center;
+  text-transform: capitalize;
+  color: #ffffff;
+  padding: 13px 31px;
+  margin-top: 20px;
+}
+
+.career_img .css-1lizpae-MuiImageListItemBar-titleWrap {
+  padding: 65px 16px;
+  color: #fff;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 163px;
+  text-align: center;
+  display: none;
+}
+
+.career_img .MuiImageListItemBar-root {
+  display: none;
+}
+
+.MuiImageListItemBar-title.css-dasnyc-MuiImageListItemBar-title,
+.MuiImageListItemBar-subtitle.css-hk6gwf-MuiImageListItemBar-subtitle {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 18px;
+  text-align: center;
+  color: #ffffff;
+}
+
+@media screen and (min-device-width: 50px) and (max-device-width: 767px) {
   .career_box {
     background: #ffffff;
     width: 100%;
     height: 268px;
     box-shadow: 0 2px 2px 0 rgb(0 0 0 / 16%), 0 0 0 1px rgb(0 0 0 / 8%);
     border-radius: 5px;
-    padding: 20px 15px;
+    padding: 15px;
     align-items: center;
     display: grid;
     margin-bottom: 30px;
   }
-  
-  .css-ztrqiq-MuiImageListItemBar-root {
-    border-radius: 15px;
-  }
-  
+
   .career_logo_img {
-    width: 100%;
+    height: 100% !important;
+    width: 100% !important;
+    filter: blur(0);
   }
-  
+
   .career_logo_box {
     background: #fff;
-    padding: 10px;
+    padding: 5px;
     border: 1px solid #d1d1d1;
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    height: 110px;
+    width: 180px;
   }
-  
+
   .gov_logo_box {
     margin-left: -15px;
-    height: 130px;
-    width: 130px;
+    height: 100px;
+    width: 100px;
   }
-  
+
+  .career_tit h2 {
+    font-size: 24px;
+  }
+
   .career_box h3 {
-    font-family: Poppins;
-    text-transform: capitalize;
-    color: #323232;
-    font-size: 16px;
-    line-height: 1.3125rem;
-    margin-top: 0;
-    margin-bottom: 5px;
-    margin-left: -15px;
-    max-width: 100%;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+    padding-top: 15px;
   }
-  
-  .career_box p {
-    font-family: Poppins;
-    font-style: normal;
-    color: #828282;
-    position: relative;
-    font-size: 14px;
-  }
-  
-  .career_box p span {
-    color: #4f4f4f;
-  }
-  
-  .career_box ul {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    padding: 0;
-    list-style: none;
-    max-width: 100%;
-    margin: 0;
-    // margin-bottom: 30px;
-  }
-  
-  .career_box ul li {
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 2;
-    color: #828282;
-    margin-bottom: 2px;
-  }
-  
-  .career_box ul li span {
-    color: #4f4f4f;
-  }
-  
-  .career_box button {
-    background: #ec498a;
-    border: 1px solid #ec498a;
-    box-sizing: border-box;
-    border-radius: 2px;
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 21px;
-    text-align: center;
-    text-transform: capitalize;
-    color: #ffffff;
-    padding: 13px 31px;
-    margin-top: 20px;
-  }
-  
-  .career_img .css-1lizpae-MuiImageListItemBar-titleWrap {
-    padding: 65px 16px;
-    color: #fff;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    height: 163px;
-    text-align: center;
-    display: none;
-  }
-  
-  .career_img .MuiImageListItemBar-root {
-    display: none;
-  }
-  
-  .MuiImageListItemBar-title.css-dasnyc-MuiImageListItemBar-title,
-  .MuiImageListItemBar-subtitle.css-hk6gwf-MuiImageListItemBar-subtitle {
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 18px;
-    text-align: center;
-    color: #ffffff;
-  }
-  
-  @media screen and (min-device-width: 50px) and (max-device-width: 767px) {
-    .career_box {
-      background: #ffffff;
-      width: 100%;
-      height: 268px;
-      box-shadow: 0 2px 2px 0 rgb(0 0 0 / 16%), 0 0 0 1px rgb(0 0 0 / 8%);
-      border-radius: 5px;
-      padding: 15px;
-      align-items: center;
-      display: grid;
-      margin-bottom: 30px;
-    }
-  
-    .career_logo_img {
-      height: 100% !important;
-      width: 100% !important;
-      filter: blur(0);
-    }
-  
-    .career_logo_box {
-      background: #fff;
-      padding: 5px;
-      border: 1px solid #d1d1d1;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      height: 110px;
-      width: 180px;
-    }
-  
-    .gov_logo_box {
-      margin-left: -15px;
-      height: 100px;
-      width: 100px;
-    }
-  
-    .career_tit h2 {
-      font-size: 24px;
-    }
-  
-    .career_box h3 {
-      padding-top: 15px;
-    }
-  
-    // .top_col_content {
-    //   border-bottom: 1px solid #e3e4eb;
-    //   padding-bottom: 30px;
-    // }
-  
-    .career_box p {
-      font-size: 14px;
-    }
-  
-    .career_box ul li {
-      font-size: 14px;
-    }
-  
-    .career_img img {
-      border-radius: 10px;
-    }
-  
-    .career_tit p {
-      display: none;
-    }
-  
-    .accordion_box_all {
-      display: none;
-    }
-  
-    .career_tit {
-      margin-bottom: 25px;
-    }
-  
-    .mainDiv_career {
-      margin-top: 80px;
-    }
-  
-    .career_box .col-md-7.col-12 .career_img {
-      order: 1;
-    }
-  
-    .career_box .col-md-7.col-12 {
-      order: 2;
-    }
-  
-    .ads_gov {
-      margin: 10px 0px !important;
-      // height: 46px !important;
-      width: 100% !important;
-    }
-  
-    .ads_gov_box {
-      height: 47px !important;
-      // margin-left: 15px !important;
-      margin-bottom: 20px !important;
-    }
-  }
-  
-  .gov_scm_heading {
-    color: #4f4f4f;
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 2;
-  }
-  
-  .career_box_add {
-    background: #ffffff;
-    width: 100%;
-    margin: 0px 15px;
-    align-items: center;
-    display: grid;
-    margin-bottom: 30px;
-  }
-  
-  .ads_gov {
-    margin: 40px 0px;
-    // height: 120px;
-    width: 84%;
-    object-fit: cover;
-  }
-  
-  .ads_gov_cover {
-    text-align: center;
-  }
-  
-  .ads_gov_box {
-    height: 92px;
-    width: 100%;
-    object-fit: cover;
-  }
-  
-  // .loader{
-  //   margin-top: 15%;
-  //   margin-left: 50%;
-  //   color:#ec498a
+
+  // .top_col_content {
+  //   border-bottom: 1px solid #e3e4eb;
+  //   padding-bottom: 30px;
   // }
-  
-  .google_add_courses {
-    width: 100%;
-    padding-top: 40px;
+
+  .career_box p {
+    font-size: 14px;
   }
-  
+
+  .career_box ul li {
+    font-size: 14px;
+  }
+
+  .career_img img {
+    border-radius: 10px;
+  }
+
+  .career_tit p {
+    display: none;
+  }
+
+  .accordion_box_all {
+    display: none;
+  }
+
+  .career_tit {
+    margin-bottom: 25px;
+  }
+
+  .mainDiv_career {
+    margin-top: 80px;
+  }
+
+  .career_box .col-md-7.col-12 .career_img {
+    order: 1;
+  }
+
+  .career_box .col-md-7.col-12 {
+    order: 2;
+  }
+
+  .ads_gov {
+    margin: 10px 0px !important;
+    // height: 46px !important;
+    width: 100% !important;
+  }
+
+  .ads_gov_box {
+    height: 47px !important;
+    // margin-left: 15px !important;
+    margin-bottom: 20px !important;
+  }
+}
+
+.gov_scm_heading {
+  color: #4f4f4f;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 2;
+}
+
+.career_box_add {
+  background: #ffffff;
+  width: 100%;
+  margin: 0px 15px;
+  align-items: center;
+  display: grid;
+  margin-bottom: 30px;
+}
+
+.ads_gov {
+  margin: 40px 0px;
+  // height: 120px;
+  width: 84%;
+  object-fit: cover;
+}
+
+.ads_gov_cover {
+  text-align: center;
+}
+
+.ads_gov_box {
+  height: 92px;
+  width: 100%;
+  object-fit: cover;
+}
+
+// .loader{
+//   margin-top: 15%;
+//   margin-left: 50%;
+//   color:#ec498a
+// }
+
+.google_add_courses {
+  width: 100%;
+  padding-top: 40px;
+}
