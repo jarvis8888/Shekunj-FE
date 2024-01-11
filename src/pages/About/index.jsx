@@ -9,7 +9,7 @@ import Nikita from "../../assets/images/Nikita-Sharma.png";
 import Ankita from "../../assets/images/Ankita-Sharma.png";
 import star from "../../assets/images/Star 2.png";
 import mob_banner from "../../assets/images/About/mob_banner.png";
-import add_banner from "../../assets/images/ads-banner.jpg";
+import add_banner from "../../assets/images/display-ads.png";
 import axios from "axios";
 
 import "../HomePage/index.scss";
@@ -165,11 +165,11 @@ ads.'
         <section className='ban_sec2 noselect'>
           <div className='container sk-custom-container'>
             <div className='row'>
-              <div className='col-md-6 noselect'>
+              <div className='col-xl-6 col-lg-6 col-md-6 noselect'>
                 <img src={img1} class='img-responsive' alt='' srcSet='' />
               </div>
 
-              <div className='col-md-6 noselect'>
+              <div className='col-xl-6 col-lg-6 col-md-6 noselect'>
                 <div className='our_his'>
                   <h2>{t("aboutPage.heading.3")}</h2>
                   <h5>{t("aboutPage.heading.4")}</h5>
@@ -278,9 +278,13 @@ ads.'
                   </div>
                 </div>
               </div> */}
-
+              <div className='col-md-6'>
+                <div className='ab-img'>
+                  <img src={add_banner} alt='add image' />
+                </div>
+              </div>
               <div className='col-md-6 noselect'>
-                <div className='our_his'>
+                <div className='our-about'>
                   <h2>{t("homePage.highlightStudents.aboutHeading")}</h2>
                   <h5>{t("homePage.highlightStudents.1")}</h5>
                   <p className='mb-3'>
@@ -295,11 +299,6 @@ ads.'
                       {t("homePage.highlightStudents.aboutButton")}
                     </a>
                   </Link>
-                </div>
-              </div>
-              <div className='col-md-6'>
-                <div className='about-img-thumb'>
-                  <img src={add_banner} alt='add image' />
                 </div>
               </div>
             </div>
