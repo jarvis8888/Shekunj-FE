@@ -1364,69 +1364,117 @@ function HomePage() {
             </div>
           </section>
 
-          <section className='sk-scheme-sec sk-bg-color'>
-            <div className='container sk-custom-container'>
+          <section className='sk-mockTest-sec sk-slide-arrow sk-gScheme-mainbox '>
+            <div className='container'>
               <div className='row'>
-                <div className='col-xl-12'>
+                <div className='col-md-6 mx-auto'>
                   <div className='sk-heading-title'>
                     <h2>Government Schemes</h2>
                     <p>Explore various government schemes</p>
                   </div>
-                  <div className='sk-gScheme-box'>
-                    {govtData?.length ? (
-                      <ul>
-                        {govtData?.map((items, index) => {
-                          return (
-                            <li
-                              key={index}
-                              onClick={() =>
-                                history.push({
-                                  pathname: `${
-                                    routingConstants.GOVERNMENT_SCHEMES
-                                  }${
-                                    routingConstants.GOVERNMENT_SCHEMES_CATEGORY
-                                  }/${generateSlug(items?.name)}`,
-                                  state: { id: items.id, name: items?.name }, // Passing the ID as state
-                                })
-                              }
-                            >
-                              <h5 className='sk-gScheme-title'>
-                                {items?.schemes_count} Schemes
-                              </h5>
-                              <h4 className='sk-gScheme-heading'>
-                                {items?.name}
-                              </h4>
-                              <div className='sk-readmore-story'>
-                                <button
-                                  className='sk-storyRead-more'
-                                  onClick={() =>
-                                    history.push({
-                                      pathname: `${routingConstants.GOVERNMENT_SCHEMES}${routingConstants.GOVERNMENT_SCHEMES_CATEGORY}/${items?.name}`,
-                                      state: { id: items.id }, // Passing the ID as state
-                                    })
-                                  }
-                                >
-                                  View All <EastRoundedIcon />
-                                </button>
-                              </div>
-                              <span>
-                                {items?.logo && (
-                                  <img
-                                    src={items?.logo}
-                                    alt='agricultureicon'
-                                  />
-                                )}
-                              </span>
-                            </li>
-                          );
-                        })}
-                      </ul>
-                    ) : (
-                      <NoDataFound size='small' />
-                    )}
-                  </div>
                 </div>
-
+              </div>
+              <div className='row'>
+                <div className='col-xl-12'>
+                  <Swiper
+                    modules={[Navigation, Autoplay]}
+                    slidesPerView={3.5}
+                    spaceBetween={24}
+                    // centeredSlides={true}
+                    speed={1500}
+                    autoplay={{ delay: 3000 }}
+                    navigation={true}
+                    className='sk-mockSwiper'
+                    breakpoints={{
+                      320: {
+                        slidesPerView: 1,
+                        spaceBetween: 10,
+                      },
+                      375: {
+                        slidesPerView: 1.5,
+                        spaceBetween: 10,
+                      },
+                      767: {
+                        slidesPerView: 2,
+                        spaceBetween: 15,
+                      },
+                      991: {
+                        slidesPerView: 3,
+                      },
+                      1199: {
+                        slidesPerView: 3.5,
+                      },
+                      1250: {
+                        slidesPerView: 3.5,
+                      },
+                      1920: {
+                        slidesPerView: 4,
+                      },
+                    }}
+                  >
+                    <div>
+                      {govtData?.length ? (
+                        <div className='sk-gScheme-mainbox'>
+                          {govtData?.map((items, index) => {
+                            return (
+                              <SwiperSlide>
+                                <div className='sk-gScheme-box'>
+                                  <div
+                                    className='sk-gScheme-innerbox'
+                                    key={index}
+                                    onClick={() =>
+                                      history.push({
+                                        pathname: `${
+                                          routingConstants.GOVERNMENT_SCHEMES
+                                        }${
+                                          routingConstants.GOVERNMENT_SCHEMES_CATEGORY
+                                        }/${generateSlug(items?.name)}`,
+                                        state: {
+                                          id: items.id,
+                                          name: items?.name,
+                                        }, // Passing the ID as state
+                                      })
+                                    }
+                                  >
+                                    <h5 className='sk-gScheme-title'>
+                                      {items?.schemes_count} Schemes
+                                    </h5>
+                                    <h4 className='sk-gScheme-heading'>
+                                      {items?.name}
+                                    </h4>
+                                    <div className='sk-readmore-story'>
+                                      <button
+                                        className='sk-storyRead-more'
+                                        onClick={() =>
+                                          history.push({
+                                            pathname: `${routingConstants.GOVERNMENT_SCHEMES}${routingConstants.GOVERNMENT_SCHEMES_CATEGORY}/${items?.name}`,
+                                            state: { id: items.id }, // Passing the ID as state
+                                          })
+                                        }
+                                      >
+                                        View All <EastRoundedIcon />
+                                      </button>
+                                    </div>
+                                    <span>
+                                      {items?.logo && (
+                                        <img
+                                          src={items?.logo}
+                                          alt='agricultureicon'
+                                        />
+                                      )}
+                                    </span>
+                                  </div>
+                                </div>
+                              </SwiperSlide>
+                            );
+                          })}
+                        </div>
+                      ) : (
+                        <NoDataFound size='small' />
+                      )}
+                    </div>
+                  </Swiper>
+                </div>
                 <div className='col-xl-12'>
                   <div className='sk-testCourse-btn'>
                     <button
