@@ -1391,6 +1391,9 @@ img {
   }
 }
 @media screen and (max-width: 480px) {
+  .sk-banner-navigate {
+    bottom: 10px;
+  }
   .sk-storyS-images ul li img {
     width: 100%;
     height: 84px;
