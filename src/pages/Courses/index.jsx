@@ -50,6 +50,7 @@ const Courses = () => {
   const [pageCount, setPageCount] = useState(0);
   const [categoryPageCount, setCategoryPageCount] = useState(0);
   const [coursesBoxAds, setCoursesBoxAds] = useState([]);
+  console.log("🚀 ~ Courses ~ coursesBoxAds:", coursesBoxAds)
   const [coursesSideAds, setCoursesSideAds] = useState([]);
   const [image, setImage] = useState("NA");
   const [image1, setImage1] = useState("NA");
