@@ -334,49 +334,54 @@ img {
 .swiper-button-prev {
   color: #ec498a;
 }
-.sk-banner-navigate .swiper-button-next.swiper-button-disabled,
-.sk-banner-navigate .swiper-button-prev.swiper-button-disabled {
-  color: #dbdbdb;
-  opacity: 1;
-}
-.sk-banner-navigate .swiper-button-next:after,
-.sk-banner-navigate .swiper-rtl .swiper-button-prev:after {
-  content: "next";
-  margin-left: -200px;
-}
+// .sk-banner-navigate .swiper-button-next.swiper-button-disabled,
+// .sk-banner-navigate .swiper-button-prev.swiper-button-disabled {
+//   color: #dbdbdb;
+//   opacity: 1;
+// }
+// .sk-banner-navigate .swiper-button-next:after,
+// .sk-banner-navigate .swiper-rtl .swiper-button-prev:after {
+//   content: "next";
+//   margin-left: -200px;
+// }
 
-.sk-homeBanner-sec .swiper-button-next:after,
-.sk-homeBanner-sec .swiper-button-prev:after {
-  font-size: 0;
-}
+// .sk-homeBanner-sec .swiper-button-next:after,
+// .sk-homeBanner-sec .swiper-button-prev:after {
+//   font-size: 0;
+// }
 
-.sk-homeBanner-sec .swiper-button-next {
-  left: 0;
-  top: auto;
-  bottom: 0;
+// .sk-homeBanner-sec .swiper-button-next {
+//   left: 0;
+//   top: auto;
+//   bottom: 0;
+// }
+// .sk-homeBanner-sec .swiper-button-prev {
+//   right: 0;
+//   top: auto;
+//   bottom: 0;
+// }
+// .sk-homeBanner-sec .swiper-button-next,
+// .sk-homeBanner-sec .swiper-button-prev {
+//   color: #db5789;
+//   font-size: 16px;
+//   font-weight: 400;
+// }
+// .sk-homeBanner-sec .swiper-button-next:after,
+// .sk-homeBanner-sec .swiper-rtl .swiper-button-prev:after {
+//   content: "next";
+//   margin-left: -200px;
+// }
+// .sk-homeBanner-sec .swiper-button-next.swiper-button-disabled,
+// .sk-homeBanner-sec .swiper-button-prev.swiper-button-disabled {
+//   color: #fff;
+//   opacity: 1;
+// }
+.sk-homeBanner-sec.sk-slide-arrow .swiper-button-prev {
+  // left: 0px;
 }
-.sk-homeBanner-sec .swiper-button-prev {
-  right: 0;
-  top: auto;
-  bottom: 0;
+.sk-homeBanner-sec.sk-slide-arrow .swiper-button-next {
+  right: 30px;
 }
-.sk-homeBanner-sec .swiper-button-next,
-.sk-homeBanner-sec .swiper-button-prev {
-  color: #db5789;
-  font-size: 16px;
-  font-weight: 400;
-}
-.sk-homeBanner-sec .swiper-button-next:after,
-.sk-homeBanner-sec .swiper-rtl .swiper-button-prev:after {
-  content: "next";
-  margin-left: -200px;
-}
-.sk-homeBanner-sec .swiper-button-next.swiper-button-disabled,
-.sk-homeBanner-sec .swiper-button-prev.swiper-button-disabled {
-  color: #fff;
-  opacity: 1;
-}
-
 .sk-time-education ul {
   list-style: none;
   padding: 0;
@@ -760,6 +765,7 @@ img {
   position: unset;
   // height: calc(100% - 0px);
 }
+
 .sk-slide-arrow .swiper-button-next {
   margin-top: 0px;
   position: absolute;
@@ -1198,7 +1204,7 @@ img {
 // }
 .sk-mockTest-sec .sk-course-img img {
   object-fit: contain;
-  height: 230px;
+  // height: 230px;
   object-position: top;
   background: radial-gradient(#ffffff, #ffffff);
 }
@@ -1290,6 +1296,11 @@ img {
   border-radius: 50px;
   overflow: hidden;
   height: 52px;
+}
+.sk-userReview-box span img {
+  object-fit: cover;
+  height: 60px;
+  object-position: center;
 }
 
 .sk-storyS-images {
@@ -1390,7 +1401,34 @@ img {
     margin-bottom: 0;
   }
 }
+@media screen and (min-width: 481px) and (max-width: 1050px) {
+  .sk-leading-women {
+    background-size: 100%;
+    min-height: 280px;
+  }
+  .sk-text-bg {
+    padding-top: 50px;
+  }
+  .sk-leading-women .sk-testCourse-btn {
+    padding-bottom: 20px;
+  }
+  .sk-success-story.sk-blog-slider.sk-slide-arrow .swiper-button-prev {
+    left: 40%;
+  }
+  .sk-success-story.sk-blog-slider.sk-slide-arrow .swiper-button-next {
+    right: 40%;
+  }
+  .sk-homeBanner-sec.sk-slide-arrow .swiper-button-next {
+    right: 10px;
+  }
+  .sk-homeBanner-sec.sk-slide-arrow .swiper-button-prev {
+    left: 10px;
+  }
+}
 @media screen and (max-width: 480px) {
+  .sk-homeBanner-sec.sk-slide-arrow .swiper-button-next {
+    right: 10px;
+  }
   .sk-banner-navigate {
     bottom: 10px;
   }
@@ -1406,7 +1444,12 @@ img {
   }
   .sk-leading-women {
     min-height: 300px;
+    background: url(../../assets/images/mobileindianwomen.png) no-repeat center
+      center;
     background-size: 100%;
+  }
+  .sk-leading-women .sk-testCourse-btn {
+    padding-bottom: 20px;
   }
   .sk-slide-arrow .swiper-button-next {
     right: 0;
@@ -1497,6 +1540,9 @@ img {
   .sh-bannerContent-top h1 {
     font-size: 24px;
   }
+  // .sk-homeBanner-sec .swiper-slide {
+  //   padding-bottom: 80px;
+  // }
   .sk-homeBanner-sec {
     padding: 30px 0 0;
   }
@@ -1607,7 +1653,7 @@ img {
   }
 
   .sk-mockTest-sec .sk-course-img img {
-    height: 140px;
+    // height: 140px;
     background: radial-gradient(#c3c3c3, #ffffff);
   }
   .sk-gScheme-box ul li {

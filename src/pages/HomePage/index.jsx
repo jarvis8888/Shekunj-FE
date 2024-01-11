@@ -443,19 +443,18 @@ function HomePage() {
         </div>
       ) : (
         <>
-          <section className='sk-homeBanner-sec'>
+          <section className='sk-homeBanner-sec sk-slide-arrow'>
             <div className='container-fluid sk-custom-container-fluid'>
               <div className='row align-items-center'>
                 <div className='col-md-12'>
                   <Swiper
-                    modules={[Navigation, Pagination, Autoplay]}
+                    modules={[Navigation, Autoplay]}
                     slidesPerView={1}
                     simulateTouch={true}
                     effect={"fade"}
                     speed={1000}
                     // autoplay={{ delay: 500 }}
-                    navigation={navigation}
-                    // pagination={pagination}
+                    navigation
                     onSwiper={(swiper) => console.log(swiper)}
                     onSlideChange={() => console.log("slide change")}
                   >
@@ -727,14 +726,14 @@ function HomePage() {
                         </div>
                       </div>
                     </SwiperSlide>
-                    <div className='sk-banner-navigate'>
+                    {/* <div className='sk-banner-navigate'>
                       <div className='swiper-button-next'>
                         <span>NEXT</span>
                       </div>
                       <div className='swiper-button-prev'>
                         <span>PREV</span>
                       </div>
-                    </div>
+                    </div> */}
                   </Swiper>
                 </div>
               </div>
@@ -1046,7 +1045,7 @@ function HomePage() {
                 </div>
               </div>
               <div class='row'>
-                <div class='col-md-4'>
+                <div class='col-xl-4 col-lg-4 col-md-6'>
                   <div
                     class='sk-begain-box'
                     onClick={() => history.push(routingConstants.COURSES)}
@@ -1063,7 +1062,7 @@ function HomePage() {
                   </div>
                 </div>
 
-                <div class='col-md-4'>
+                <div class='col-xl-4 col-lg-4 col-md-6'>
                   <div
                     class='sk-begain-box'
                     onClick={() => history.push(routingConstants.GUIDANCE_BOOK)}
@@ -1080,7 +1079,7 @@ function HomePage() {
                   </div>
                 </div>
 
-                <div class='col-md-4'>
+                <div class='col-xl-4 col-lg-4 col-md-6'>
                   <div
                     class='sk-begain-box'
                     onClick={() => history.push(routingConstants.MOCKTEST)}
@@ -1686,7 +1685,7 @@ function HomePage() {
               <div class='col-md-12'>
                 <div className='sk-heading-title mb-0'>
                   <h2>India's Leading Women Empowerment Organization</h2>
-                  <p className='mb-0'>
+                  <p className='mb-0 pb-3'>
                     Take a glance at the happy, glittering faces who have
                     enrolled with SheKunj. We understand the importance of
                     education for the solutions of tomorrow. SheKunj is a

@@ -10,6 +10,8 @@
   justify-content: center;
   align-items: center;
   width: 100%;
+  backdrop-filter: blur(4px);
+  background: rgb(31 27 27 / 45%);
 }
 
 .pop-up-ads {
@@ -52,9 +54,9 @@
   display: flex;
   align-items: center;
 }
-.pop-up-ads.right-bottom {
-  bottom: 0;
-}
+// .pop-up-ads.right-bottom {
+//   bottom: 0;
+// }
 
 .pop-up-ads.left-bottom img {
   height: auto;
