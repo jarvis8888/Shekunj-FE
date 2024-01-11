@@ -16,7 +16,7 @@ import "../HomePage/index.scss";
 import "./index.scss";
 import "../Career1/index.scss";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useHistory } from "react-router-dom";
 import axios from "axios";
 import { Helmet } from "react-helmet-async";
 import useDeviceDetect from "../../hooks/useDeviceDetect";
@@ -30,6 +30,7 @@ const Career2WithCategory = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const location = useLocation();
+  const history = useHistory();
   const { id, name } = location.state;
   console.log("🚀 ~ Career2WithCategory ~ id:", id);
   const { governmentExams, isLoading } = useSelector(
@@ -429,7 +430,11 @@ const Career2WithCategory = () => {
             <div className='noselect sk-spaceBottom-school'>
               <h1 className='sk-storyHeading-top'>{name}</h1>
               <div class='sk-thireChangescolor-back'>
-                <button class='sk-loadMore' type='button'>
+                <button
+                  class='sk-loadMore'
+                  type='button'
+                  onClick={() => history.push(routingConstants.HOME_PAGE)}
+                >
                   <KeyboardBackspaceIcon /> Back
                 </button>
               </div>
