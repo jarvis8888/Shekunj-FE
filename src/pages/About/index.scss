@@ -8,6 +8,11 @@ section.about_ban {
 .our-about h2 {
   font-size: 21px;
 }
+.ab-img.our-img-about img {
+  box-shadow: 0px 0px 20px #ccc;
+  padding: 10px;
+  margin-bottom: 30px;
+}
 .our-about .learn_more {
   background: #202020 !important;
   border-radius: 4px;
@@ -110,14 +115,16 @@ section.about_testim {
 }
 .our_his {
   // background: linear-gradient(96.72deg, #fad0c4 6.25%, #e4a8e4 103.39%);
-  background-color: #fff;
+  // background-color: #fff;
   border-radius: 10px;
   width: 100%;
   // height: 453px;
   // padding: 0px 0px;
   // margin: 0 20px;
 }
-
+.our-about {
+  padding: 0px 0 30px;
+}
 .our_his h2 {
   font-family: "Poppins", sans-serif;
   font-style: normal;
@@ -159,7 +166,12 @@ section.about_testim {
     margin: 10px 0px 0px 10px;
   }
 }
-
+@media only screen and (min-width: 1199px) and (max-width: 1399px) {
+  .third-slide-swiper img {
+    position: relative;
+    top: 50px;
+  }
+}
 @media only screen and (min-width: 992px) and (max-width: 1280px) {
   .about_Con h2,
   .our_his h2 {
@@ -206,7 +218,7 @@ section.about_testim {
   }
 
   .our_his {
-    height: 453px;
+    // height: 453px;
     padding: 49px 30px;
     margin: 0px;
   }

@@ -278,11 +278,7 @@ ads.'
                   </div>
                 </div>
               </div> */}
-              <div className='col-md-6'>
-                <div className='ab-img'>
-                  <img src={add_banner} alt='add image' />
-                </div>
-              </div>
+
               <div className='col-md-6 noselect'>
                 <div className='our-about'>
                   <h2>{t("homePage.highlightStudents.aboutHeading")}</h2>
@@ -299,6 +295,11 @@ ads.'
                       {t("homePage.highlightStudents.aboutButton")}
                     </a>
                   </Link>
+                </div>
+              </div>
+              <div className='col-md-6'>
+                <div className='ab-img our-img-about'>
+                  <img src={add_banner} alt='add image' />
                 </div>
               </div>
             </div>
