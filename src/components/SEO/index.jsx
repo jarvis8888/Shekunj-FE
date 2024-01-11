@@ -25,13 +25,13 @@ jobs & internships and career counseling.'`,
         <meta property='og:title' content={title} />
         <meta property='og:image' content={image} />
         <meta name='description' content={description} />
-        <meta name='msapplication-TileImage' content={image} />
+        {/* <meta name='msapplication-TileImage' content={image} /> */}
         <meta property='og:keywords' content={keywords} />
         <meta name='keywords' content={keywords} />
         <link rel='canonical' href={link} />
-        <meta property='og:image:width' content='300' />
+        {/* <meta property='og:image:width' content='300' />
         <meta property='og:image:height' content='200' />
-        <meta property='og:image:secure_url' content={image} />
+        <meta property='og:image:secure_url' content={image} /> */}
         {/* <!-- Open Graph Meta Tags --> */}
         <meta property='og:description' content={description} />
 
