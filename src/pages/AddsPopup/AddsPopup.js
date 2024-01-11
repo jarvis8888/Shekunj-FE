@@ -65,20 +65,42 @@ const AddsPopup = (props) => {
   };
 
   useEffect(() => {
-    navigator.geolocation.getCurrentPosition(async function (position, values) {
-      const latitude = position.coords.latitude;
-      const longitude = position.coords.longitude;
+    dispatch(adsList());
+    navigator.geolocation.getCurrentPosition(
+      async function (position, values) {
+        const latitude = position.coords.latitude;
+        const longitude = position.coords.longitude;
 
-      let params = {
-        latitude: latitude.toString(),
-        longitude: longitude.toString(),
-      };
-      axios
-        .get(
-          `/private_adds/private_add?latitude=${latitude}&longitude=${longitude}`,
-        )
-        .then((response) => {
-          if (response.data.results.length > 0) {
+        let params = {
+          latitude: latitude.toString(),
+          longitude: longitude.toString(),
+        };
+        axios
+          .get(
+            `/private_adds/private_add?latitude=${latitude}&longitude=${longitude}`,
+          )
+          .then((response) => {
+            if (response && response.data.results.length > 0) {
+              let filterArray = response.data.results.filter((item, index) => {
+                return (
+                  Array.isArray(item.image_type) &&
+                  item.image_type.some(
+                    (type) => type.image_type === "popup_ads",
+                  )
+                );
+              });
+              let findImage =
+                filterArray.length > 0 ? filterArray[0].image : "NA";
+              setImage(findImage);
+              setPopupAds(filterArray);
+            }
+          });
+      },
+      function (error) {
+        console.error("Error Code = " + error.code + " - " + error.message);
+        // alert("Your location is blocked")
+        axios.get(`/private_adds/private_add`).then((response) => {
+          if (response && response.data.results.length > 0) {
             let filterArray = response.data.results.filter((item, index) => {
               return (
                 Array.isArray(item.image_type) &&
@@ -90,14 +112,10 @@ const AddsPopup = (props) => {
             setImage(findImage);
             setPopupAds(filterArray);
           }
-        })
-        .catch((error) => {
-          // setMessage("No data found");
-          console.log(error);
         });
-    });
-    dispatch(adsList());
-  }, [dispatch]);
+      },
+    );
+  }, []);
 
   return (
     <div>
