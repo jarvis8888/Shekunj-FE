@@ -5,6 +5,25 @@ section.about_ban {
   background-size: cover;
   background-repeat: no-repeat;
 }
+.our-about h2 {
+  font-size: 21px;
+}
+.our-about .learn_more {
+  background: #202020 !important;
+  border-radius: 4px;
+  max-width: 220px;
+  width: 100%;
+}
+
+.our-about .learn_more:hover {
+  background: rgb(236 73 138);
+  color: #fff;
+}
+.our-about h5 {
+  font-size: 40px;
+  color: rgb(236 73 138);
+  font-weight: 600;
+}
 
 .about_Con h2 {
   font-family: "Poppins", sans-serif;
@@ -85,8 +104,6 @@ section.ban_sec2 p {
 section.about_testim {
   margin-top: 50px;
   margin-bottom: 40px;
-  background: url(../../assets/images/ads-banner.jpg) no-repeat right center;
-  background-size: contain;
 }
 .about-img-thumb {
   display: none;
@@ -156,19 +173,12 @@ section.about_testim {
   }
 }
 
-@media only screen and (min-width: 992px) and (max-width: 1199px) {
-  section.about_testim {
-    background-size: 50%;
-  }
-}
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   section.about_ban {
     background-size: contain;
     background-position: center;
   }
-  section.about_testim {
-    background-size: 50%;
-  }
+
   .about_Con h2 {
     font-size: 35px;
     line-height: 120%;
@@ -211,10 +221,9 @@ section.about_testim {
     margin-top: 0px;
     background: none;
   }
-  .about-img-thumb {
-    display: block;
+  .our-about h5 {
+    font-size: 30px;
   }
-
   .our_his {
     margin: 0;
     height: auto;
