@@ -1192,7 +1192,6 @@ function HomePage() {
                                 </div>
                                 <div className='sk-innerHover-box'>
                                   <div className='sk-course-content'>
-                                    
                                     <h6>{items?.name}</h6>
                                     <div className='sk-time-education'>
                                       <ul>

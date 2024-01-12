@@ -508,6 +508,8 @@ img {
 .sk-userReview-box {
   display: flex;
   gap: 10px;
+  position: absolute;
+  bottom: 10px;
   /* align-items: center; */
 }
 
@@ -1185,6 +1187,9 @@ img {
 .sk-testmonail-sec {
   padding: 60px 0;
 }
+.sk-testmonail-sec .swiper-slide {
+  height: auto;
+}
 .sk-testmonail-sec .swiper-wrapper {
   padding: 60px 0 0;
   margin-bottom: 60px;
@@ -1195,6 +1200,8 @@ img {
   padding: 30px;
   border-radius: 6px;
   position: relative;
+  height: calc(100% - 20px);
+  margin-bottom: 80px;
 }
 
 // .sk-story-testmonial .sk-story-content img {
@@ -1215,13 +1222,13 @@ img {
   padding: 8px;
 }
 .sk-studentlove-box p {
-  padding: 30px 50px 0 0;
+  padding: 30px 15px 0 0;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 5;
   -webkit-box-orient: vertical;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
 }
 
 .sk-review-main {
@@ -1437,6 +1444,18 @@ img {
   }
 }
 @media screen and (max-width: 480px) {
+  .sk-begain-img img {
+    max-width: 140px;
+  }
+  .sk-begain-content h5 {
+    font-size: 13px;
+  }
+  .sk-begain-content h6 {
+    font-size: 12px;
+  }
+  .sk-begain-content h5 svg {
+    font-size: 16px;
+  }
   .sk-text-bg {
     padding-top: 40px;
   }
@@ -1458,8 +1477,8 @@ img {
   }
   .sk-leading-women {
     min-height: 300px;
-    background: url(../../assets/images/mobileindianwomen.png) no-repeat center
-      center;
+    background: #202020 url(../../assets/images/mobileindianwomen.png) no-repeat
+      center center;
     background-size: 100%;
   }
   .sk-leading-women .sk-testCourse-btn {
