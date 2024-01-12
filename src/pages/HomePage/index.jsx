@@ -453,7 +453,7 @@ function HomePage() {
                     simulateTouch={true}
                     effect={"fade"}
                     speed={1000}
-                    // autoplay={{ delay: 500 }}
+                    autoplay={{ delay: 1000 }}
                     navigation
                     onSwiper={(swiper) => console.log(swiper)}
                     onSlideChange={() => console.log("slide change")}
@@ -1160,9 +1160,6 @@ function HomePage() {
                                     <img src={items?.image} alt='' />
                                   </div>
                                   <div className='sk-course-content'>
-                                    <span className='sk-smallBox-heading'>
-                                      Government
-                                    </span>
                                     <h6>{items?.name}</h6>
                                     <div className='sk-time-education'>
                                       <ul>
@@ -1195,9 +1192,7 @@ function HomePage() {
                                 </div>
                                 <div className='sk-innerHover-box'>
                                   <div className='sk-course-content'>
-                                    <span className='sk-smallBox-heading'>
-                                      Government
-                                    </span>
+                                    
                                     <h6>{items?.name}</h6>
                                     <div className='sk-time-education'>
                                       <ul>
@@ -1856,7 +1851,7 @@ function HomePage() {
                       className='sk-loadMore'
                       onClick={() => history.push(routingConstants.CONTACT_US)}
                     >
-                      Contact Us
+                      Connect Us
                     </button>
                   </div>
                 </div>
