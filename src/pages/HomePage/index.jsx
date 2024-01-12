@@ -1856,7 +1856,7 @@ function HomePage() {
                       className='sk-loadMore'
                       onClick={() => history.push(routingConstants.CONTACT_US)}
                     >
-                      Connect Us
+                      Contact Us
                     </button>
                   </div>
                 </div>
