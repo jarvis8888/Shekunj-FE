@@ -453,7 +453,7 @@ function HomePage() {
                     simulateTouch={true}
                     effect={"fade"}
                     speed={1000}
-                    // autoplay={{ delay: 500 }}
+                    autoplay={{ delay: 1000 }}
                     navigation
                     onSwiper={(swiper) => console.log(swiper)}
                     onSlideChange={() => console.log("slide change")}
@@ -1856,7 +1856,7 @@ function HomePage() {
                       className='sk-loadMore'
                       onClick={() => history.push(routingConstants.CONTACT_US)}
                     >
-                      Contact Us
+                      Connect Us
                     </button>
                   </div>
                 </div>

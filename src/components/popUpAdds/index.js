@@ -120,14 +120,14 @@ const PopUpAdds = () => {
                         rel='noreferrer'
                       >
                         {detect.isMobile ? (
-                          <video controls>
+                          <video controls autoPlay>
                             <source
                               src={rightData[0]?.file_mobile}
                               type='video/mp4'
                             />
                           </video>
                         ) : (
-                          <video controls>
+                          <video controls autoPlay>
                             <source src={rightData[0]?.file} type='video/mp4' />
                           </video>
                         )}
