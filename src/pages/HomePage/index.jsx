@@ -1160,9 +1160,6 @@ function HomePage() {
                                     <img src={items?.image} alt='' />
                                   </div>
                                   <div className='sk-course-content'>
-                                    <span className='sk-smallBox-heading'>
-                                      Government
-                                    </span>
                                     <h6>{items?.name}</h6>
                                     <div className='sk-time-education'>
                                       <ul>
@@ -1195,9 +1192,7 @@ function HomePage() {
                                 </div>
                                 <div className='sk-innerHover-box'>
                                   <div className='sk-course-content'>
-                                    <span className='sk-smallBox-heading'>
-                                      Government
-                                    </span>
+                                    
                                     <h6>{items?.name}</h6>
                                     <div className='sk-time-education'>
                                       <ul>
