@@ -110,7 +110,7 @@ const PopUpAdds = () => {
               </div>
             )}
             {rightAddIsVisible && (
-              <div className='pop-up-ads right-bottom'>
+              <div className='pop-up-ads'>
                 <>
                   {rightData.length > 0 && (
                     <div>

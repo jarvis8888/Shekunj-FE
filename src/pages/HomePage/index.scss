@@ -1401,6 +1401,16 @@ img {
     margin-bottom: 0;
   }
 }
+@media only screen and (min-width: 1199px) and (max-width: 1399px) {
+  .third-slide-swiper img {
+    position: relative;
+    top: 50px;
+  }
+  .second-slide-swiper img {
+    position: relative;
+    top: 30px;
+  }
+}
 @media screen and (min-width: 481px) and (max-width: 1050px) {
   .sk-leading-women {
     background-size: 100%;
@@ -1426,6 +1436,9 @@ img {
   }
 }
 @media screen and (max-width: 480px) {
+  .sk-text-bg {
+    padding-top: 40px;
+  }
   .sk-homeBanner-sec.sk-slide-arrow .swiper-button-next {
     right: 10px;
   }
