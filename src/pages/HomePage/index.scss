@@ -14,10 +14,48 @@ img {
 // Eight may 2023
 
 .sk-homeBanner-sec {
-  padding: 0px 0 0px;
+  position: relative;
+  background: #f5f5f5;
+}
+// .sk-homeBanner-sec {}
+
+.sk-full-slide0 {
   background: url(../../assets/images/herosec-img.svg) center center;
   background-size: cover;
-  position: relative;
+  padding: 100px 0px 100px;
+}
+.sk-full-slide1 {
+  background: url(../../assets/images/sliderfull1.jpg) no-repeat right center;
+  background-size: cover;
+  padding: 150px 0px;
+}
+.sk-full-slide2 {
+  background: url(../../assets/images/sliderfull2.jpg) no-repeat right center;
+  background-size: cover;
+  padding: 125px 0px 125px;
+}
+.sk-full-slide3 {
+  background: url(../../assets/images/sliderfull3.jpg) no-repeat right center;
+  background-size: cover;
+  padding: 100px 0px 100px;
+}
+.sk-full-slide4 {
+  background: url(../../assets/images/sliderfull4.jpg) no-repeat right center;
+  background-size: cover;
+  padding: 100px 0px 100px;
+}
+
+.first-slide-swiper {
+  display: none;
+}
+.second-slide-swiper {
+  display: none;
+}
+.third-slide-swiper {
+  display: none;
+}
+.four-slider {
+  display: none;
 }
 // .sk-homeBanner-sec .swiper {
 //   padding-bottom: 50px;
@@ -228,7 +266,7 @@ img {
   color: #fff;
 }
 .sh-bannerContent-top h1 {
-  font-size: calc(2em + 1.4vw);
+  font-size: calc(2em + 1.1vw);
   text-transform: capitalize;
   color: #fff;
   font-weight: 600;
@@ -241,6 +279,7 @@ img {
   font-size: 16px;
   font-weight: 400;
   color: #fff;
+  padding-right: 50px;
 }
 
 .sh-bannerContent-top button {
@@ -376,11 +415,12 @@ img {
 //   color: #fff;
 //   opacity: 1;
 // }
-.sk-homeBanner-sec.sk-slide-arrow .swiper-button-prev {
-  // left: 0px;
-}
+
 .sk-homeBanner-sec.sk-slide-arrow .swiper-button-next {
-  right: 30px;
+  right: 20px;
+}
+.sk-homeBanner-sec.sk-slide-arrow .swiper-button-prev {
+  left: 20px;
 }
 .sk-time-education ul {
   list-style: none;
@@ -1312,8 +1352,8 @@ img {
 }
 
 .sk-storyS-images {
-  padding-top: 65px;
-  padding-right: 60px;
+  // padding-top: 65px;
+  // padding-right: 60px;
 }
 .four-slider {
   text-align: center;
@@ -1333,10 +1373,22 @@ img {
 }
 // custom responsive start
 
-@media screen and (max-width: 1920px) {
-  // .sh-bannerContent-top {
-  //   max-width: 600px;
-  // }
+@media screen and (min-width: 1451px) and (max-width: 2550px) {
+  .sk-full-slide0 {
+    padding: 200px 0px 200px;
+  }
+  .sk-full-slide1 {
+    padding: 250px 0px;
+  }
+  .sk-full-slide2 {
+    padding: 225px 0px 225px;
+  }
+  .sk-full-slide3 {
+    padding: 200px 0px 200px;
+  }
+  .sk-full-slide4 {
+    padding: 200px 0px 200px;
+  }
 }
 @media screen and (min-width: 1250px) and (max-width: 1366px) {
   .sk-blog-slider.sk-slide-arrow .swiper-button-prev {
@@ -1366,8 +1418,6 @@ img {
   }
   .sk-storyS-images {
     padding-top: 15px;
-    padding-right: 0px;
-    padding-bottom: 80px;
   }
 
   .sk-story-testmonial {
@@ -1408,6 +1458,44 @@ img {
     min-width: 250px;
     margin-bottom: 0;
   }
+  .first-slide-swiper {
+    display: block;
+  }
+  .second-slide-swiper {
+    display: block;
+  }
+  .third-slide-swiper {
+    display: block;
+  }
+  .four-slider {
+    display: block;
+  }
+  .sk-homeBanner-sec {
+    background: url(../../assets/images/herosec-img.svg) center center no-repeat;
+    padding: 50px 0;
+    background-size: cover;
+  }
+
+  .sk-full-slide0 {
+    background: none;
+    padding: 0px;
+  }
+  .sk-full-slide1 {
+    background: none;
+    padding: 0px;
+  }
+  .sk-full-slide2 {
+    background: none;
+    padding: 0px;
+  }
+  .sk-full-slide3 {
+    background: none;
+    padding: 0px;
+  }
+  .sk-full-slide4 {
+    background: none;
+    padding: 0px;
+  }
 }
 @media only screen and (min-width: 1199px) and (max-width: 1399px) {
   .third-slide-swiper img {
@@ -1436,12 +1524,6 @@ img {
   .sk-success-story.sk-blog-slider.sk-slide-arrow .swiper-button-next {
     right: 40%;
   }
-  .sk-homeBanner-sec.sk-slide-arrow .swiper-button-next {
-    right: 10px;
-  }
-  .sk-homeBanner-sec.sk-slide-arrow .swiper-button-prev {
-    left: 10px;
-  }
 }
 @media screen and (max-width: 480px) {
   .sk-begain-img img {
@@ -1459,9 +1541,7 @@ img {
   .sk-text-bg {
     padding-top: 40px;
   }
-  .sk-homeBanner-sec.sk-slide-arrow .swiper-button-next {
-    right: 10px;
-  }
+
   .sk-banner-navigate {
     bottom: 10px;
   }

@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import React, { useState, useEffect } from "react";
-import Slider from "react-slick";
 import Aos from "aos";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
@@ -14,12 +13,7 @@ import "aos/dist/aos.css";
 import SchoolRoundedIcon from "@mui/icons-material/SchoolRounded";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 // import Swiper core and required modules
-import SwiperCore, {
-  Autoplay,
-  Navigation,
-  Pagination,
-  EffectFade,
-} from "swiper";
+import SwiperCore, { Autoplay, Navigation, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -144,6 +138,7 @@ function HomePage() {
       return `<span class=${className}>${0 + [num]}</span>`;
     },
   };
+
   SwiperCore.use([Autoplay]);
 
   const openTab = (tabName) => {
@@ -444,289 +439,272 @@ function HomePage() {
       ) : (
         <>
           <section className='sk-homeBanner-sec sk-slide-arrow'>
-            <div className='container-fluid sk-custom-container-fluid'>
-              <div className='row align-items-center'>
-                <div className='col-md-12'>
-                  <Swiper
-                    modules={[Navigation, Autoplay]}
-                    slidesPerView={1}
-                    simulateTouch={true}
-                    effect={"fade"}
-                    speed={1000}
-                    autoplay={{ delay: 1000 }}
-                    navigation
-                    onSwiper={(swiper) => console.log(swiper)}
-                    onSlideChange={() => console.log("slide change")}
-                  >
-                    {/* <SwiperSlide>
-                      <div className='row align-items-center'>
-                        <div className='col-xl-8 col-lg-8 col-md-8'>
-                          <div className='sh-bannerContent-top'>
-                            <h1>
-                              Crack <span>Dream jobs</span> with top rated
-                              certificate courses
-                            </h1>
-                            <p>{t("homePage.mainSlider.subHeading.1")}</p>
-                            <div className='sk-thireChangescolor-btn'>
-                              <button
-                                className='sk-loadMore'
-                                type='button'
-                                onClick={() =>
-                                  history.push(routingConstants.COURSES)
-                                }
-                              >
-                                {t("homePage.mainSlider.button.1")}
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                        <div className='col-xl-4 col-lg-4 col-md-4'>
-                          <div className='sk-imageBanner'>
-                            <img src={firstslidebanner} alt='' />
+            <Swiper
+              slidesPerView={1}
+              simulateTouch={true}
+              speed={1000}
+              autoplay={{ delay: 1000 }}
+              navigation
+              modules={[Navigation, Autoplay]}
+            >
+              <SwiperSlide>
+                <div className='sk-full-slide2'>
+                  <div className='container sk-custom-container'>
+                    <div className='row align-items-center'>
+                      <div className='col-xl-6 col-lg-6 col-md-12'>
+                        <div className='sh-bannerContent-top'>
+                          <h1>
+                            A Promise To Never Stop <span>Learning</span>
+                          </h1>
+                          <p>{t("homePage.mainSlider.subHeading.2")}</p>
+                          <div className='sk-thireChangescolor-btn'>
+                            <button
+                              className='sk-loadMore'
+                              type='button'
+                              onClick={() =>
+                                history.push(routingConstants.COURSES)
+                              }
+                            >
+                              Get onboard and start learning
+                            </button>
                           </div>
                         </div>
                       </div>
-                    </SwiperSlide> */}
-                    <SwiperSlide>
-                      <div className='row align-items-center'>
-                        <div className='col-xl-6 col-lg-6 col-md-12'>
-                          <div className='sh-bannerContent-top'>
-                            <h1>
-                              A Promise To Never Stop <span>Learning</span>
-                            </h1>
-                            <p>{t("homePage.mainSlider.subHeading.2")}</p>
-                            <div className='sk-thireChangescolor-btn'>
-                              <button
-                                className='sk-loadMore'
-                                type='button'
-                                onClick={() =>
-                                  history.push(routingConstants.COURSES)
-                                }
-                              >
-                                Get onboard and start learning
-                              </button>
-                            </div>
-                          </div>
+                      <div className='col-xl-6 col-lg-6 col-md-12'>
+                        <div className='first-slide-swiper'>
+                          {" "}
+                          <img src={firstslidebanner2} alt='' />
                         </div>
-                        <div className='col-xl-6 col-lg-6 col-md-12'>
-                          <div className='first-slide-swiper'>
-                            {" "}
-                            <img src={firstslidebanner2} alt='' />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </SwiperSlide>
+              <SwiperSlide>
+                <div className='sk-full-slide3'>
+                  <div className='container sk-custom-container'>
+                    <div className='row align-items-center'>
+                      <div className='col-xl-6 col-lg-6 col-md-12'>
+                        <div className='sh-bannerContent-top'>
+                          <h1>
+                            Get insights about colleges{" "}
+                            <span>On Your Fingertips</span>
+                          </h1>
+                          <p>{t("homePage.mainSlider.subHeading.3")}</p>
+                          <div className='sk-thireChangescolor-btn'>
+                            <button
+                              className='sk-loadMore'
+                              type='button'
+                              onClick={() =>
+                                history.push(routingConstants.TOP_COLLEGES)
+                              }
+                            >
+                              Top Colleges In India
+                            </button>
                           </div>
                         </div>
                       </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                      <div className='row align-items-center'>
-                        <div className='col-xl-7 col-lg-7 col-md-12'>
-                          <div className='sh-bannerContent-top'>
-                            <h1>
-                              Get insights about colleges{" "}
-                              <span>On Your Fingertips</span>
-                            </h1>
-                            <p>{t("homePage.mainSlider.subHeading.3")}</p>
-                            <div className='sk-thireChangescolor-btn'>
-                              <button
-                                className='sk-loadMore'
-                                type='button'
-                                onClick={() =>
-                                  history.push(routingConstants.TOP_COLLEGES)
-                                }
-                              >
-                                Top Colleges In India
-                              </button>
-                            </div>
-                          </div>
+                      <div className='col-xl-6 col-lg-6 col-md-12'>
+                        <div className='second-slide-swiper'>
+                          {" "}
+                          <img src={firstslidebanner3} />
                         </div>
-                        <div className='col-xl-5 col-lg-5 col-md-12'>
-                          <div className='second-slide-swiper'>
-                            {" "}
-                            <img src={firstslidebanner3} />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </SwiperSlide>
+              <SwiperSlide>
+                <div className='sk-full-slide4'>
+                  <div className='container sk-custom-container'>
+                    <div className='row align-items-center'>
+                      <div className='col-xl-6 col-lg-6 col-md-12'>
+                        <div className='sh-bannerContent-top'>
+                          <h1>
+                            Give High-Quality Education{" "}
+                            <span>To Your Children</span>
+                          </h1>
+                          <p> {t("homePage.mainSlider.subHeading.4")}</p>
+                          <div className='sk-thireChangescolor-btn'>
+                            <button
+                              className='sk-loadMore'
+                              type='button'
+                              onClick={() =>
+                                history.push(routingConstants.TOP_SCHOOLS)
+                              }
+                            >
+                              Top Schools In India
+                            </button>
                           </div>
                         </div>
                       </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                      <div className='row align-items-center'>
-                        <div className='col-xl-7 col-lg-7 col-md-12'>
-                          <div className='sh-bannerContent-top'>
-                            <h1>
-                              Give High-Quality Education{" "}
-                              <span>To Your Children</span>
-                            </h1>
-                            <p> {t("homePage.mainSlider.subHeading.4")}</p>
-                            <div className='sk-thireChangescolor-btn'>
-                              <button
-                                className='sk-loadMore'
-                                type='button'
-                                onClick={() =>
-                                  history.push(routingConstants.TOP_SCHOOLS)
-                                }
-                              >
-                                Top Schools In India
-                              </button>
-                            </div>
-                          </div>
+                      <div className='col-md-6'>
+                        <div className='third-slide-swiper'>
+                          <img src={firstslidebanner4} alt='' />
                         </div>
-                        <div className='col-md-5'>
-                          <div className='third-slide-swiper'>
-                            <img src={firstslidebanner4} alt='' />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </SwiperSlide>
+              <SwiperSlide>
+                <div className='sk-full-slide0'>
+                  <div className='container sk-custom-container'>
+                    <div className='row align-items-center'>
+                      <div className='col-xl-6 col-lg-6 col-md-12'>
+                        <div className='sh-bannerContent-top'>
+                          <h1>
+                            Get Your Success <span>Story Featured</span>
+                          </h1>
+                          <p>
+                            Share your success story with us and let the world
+                            know your achievements. Empower everyone through
+                            shared tales and celebrate women's inspiring success
+                            stories.
+                          </p>
+                          <div className='sk-thireChangescolor-btn'>
+                            <button
+                              className='sk-loadMore'
+                              type='button'
+                              onClick={() =>
+                                history.push(routingConstants.SUCCESS_STORIES)
+                              }
+                            >
+                              Feature Your Story
+                            </button>
                           </div>
                         </div>
                       </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                      <div className='row align-items-center'>
-                        <div className='col-xl-6 col-lg-6 col-md-12'>
-                          <div className='sh-bannerContent-top'>
-                            <h1>
-                              Get Your Success <span>Story Featured</span>
-                            </h1>
-                            <p>
-                              Share your success story with us and let the world
-                              know your achievements. Empower everyone through
-                              shared tales and celebrate women's inspiring
-                              success stories.
-                            </p>
-                            <div className='sk-thireChangescolor-btn'>
-                              <button
-                                className='sk-loadMore'
-                                type='button'
-                                onClick={() =>
-                                  history.push(routingConstants.SUCCESS_STORIES)
-                                }
-                              >
-                                Feature Your Story
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                        <div className='sk-imageBanner col-xl-6 col-lg-6 col-md-6'>
-                          <div className='sk-storyS-images'>
-                            <ul>
-                              {detect.isMobile
-                                ? successData
-                                    ?.slice(0, 6)
-                                    .map((items, index) => {
-                                      return (
-                                        <>
-                                          <li
-                                            className='sk-scale-animate'
-                                            key={index}
-                                            onClick={() => {
-                                              const hashtagNames =
-                                                items?.hash_tags.map(
-                                                  (tag) => tag?.slug,
-                                                );
-                                              const generatedSlug =
-                                                generateSlug(hashtagNames[0]) ||
-                                                "no-hashtag";
-                                              if (items.slug) {
-                                                history.push(
-                                                  routingConstants.SUCCESS_STORIES +
-                                                    generatedSlug +
-                                                    "/" +
-                                                    items.slug,
-                                                );
-                                              } else {
-                                                // Handle the case when 'slug' is empty
-                                                // console.log("Slug is empty. Cannot navigate.");
-                                              }
-                                            }}
-                                          >
-                                            <div className='sk-story-eimg'>
-                                              <img src={items.image} alt='' />
-                                              <span></span>
-                                            </div>
-                                            <div className='sk-story-econtent'>
-                                              <div className='sk-ewoman-title'>
-                                                <p>{`${items.name} ${items.last_name}`}</p>
-                                                <h6>{items.designation}</h6>
-                                              </div>
-                                            </div>
-                                          </li>
-                                        </>
-                                      );
-                                    })
-                                : successData?.map((items, index) => {
-                                    return (
-                                      <>
-                                        <li
-                                          className='sk-scale-animate'
-                                          key={index}
-                                          onClick={() => {
-                                            const hashtagNames =
-                                              items?.hash_tags.map(
-                                                (tag) => tag?.slug,
-                                              );
-                                            const generatedSlug =
-                                              generateSlug(hashtagNames[0]) ||
-                                              "no-hashtag";
-                                            if (items.slug) {
-                                              history.push(
-                                                routingConstants.SUCCESS_STORIES +
-                                                  generatedSlug +
-                                                  "/" +
-                                                  items.slug,
-                                              );
-                                            } else {
-                                              // Handle the case when 'slug' is empty
-                                              // console.log("Slug is empty. Cannot navigate.");
-                                            }
-                                          }}
-                                        >
-                                          <div className='sk-story-eimg'>
-                                            <img src={items.image} alt='' />
-                                            <span></span>
+                      <div className='sk-imageBanner col-xl-6 col-lg-6 col-md-6'>
+                        <div className='sk-storyS-images'>
+                          <ul>
+                            {detect.isMobile
+                              ? successData?.slice(0, 6).map((items, index) => {
+                                  return (
+                                    <>
+                                      <li
+                                        className='sk-scale-animate'
+                                        key={index}
+                                        onClick={() => {
+                                          const hashtagNames =
+                                            items?.hash_tags.map(
+                                              (tag) => tag?.slug,
+                                            );
+                                          const generatedSlug =
+                                            generateSlug(hashtagNames[0]) ||
+                                            "no-hashtag";
+                                          if (items.slug) {
+                                            history.push(
+                                              routingConstants.SUCCESS_STORIES +
+                                                generatedSlug +
+                                                "/" +
+                                                items.slug,
+                                            );
+                                          } else {
+                                            // Handle the case when 'slug' is empty
+                                            // console.log("Slug is empty. Cannot navigate.");
+                                          }
+                                        }}
+                                      >
+                                        <div className='sk-story-eimg'>
+                                          <img src={items.image} alt='' />
+                                          <span></span>
+                                        </div>
+                                        <div className='sk-story-econtent'>
+                                          <div className='sk-ewoman-title'>
+                                            <p>{`${items.name} ${items.last_name}`}</p>
+                                            <h6>{items.designation}</h6>
                                           </div>
-                                          <div className='sk-story-econtent'>
-                                            <div className='sk-ewoman-title'>
-                                              <p>{`${items.name} ${items.last_name}`}</p>
-                                              <h6>{items.designation}</h6>
-                                            </div>
+                                        </div>
+                                      </li>
+                                    </>
+                                  );
+                                })
+                              : successData?.map((items, index) => {
+                                  return (
+                                    <>
+                                      <li
+                                        className='sk-scale-animate'
+                                        key={index}
+                                        onClick={() => {
+                                          const hashtagNames =
+                                            items?.hash_tags.map(
+                                              (tag) => tag?.slug,
+                                            );
+                                          const generatedSlug =
+                                            generateSlug(hashtagNames[0]) ||
+                                            "no-hashtag";
+                                          if (items.slug) {
+                                            history.push(
+                                              routingConstants.SUCCESS_STORIES +
+                                                generatedSlug +
+                                                "/" +
+                                                items.slug,
+                                            );
+                                          } else {
+                                            // Handle the case when 'slug' is empty
+                                            // console.log("Slug is empty. Cannot navigate.");
+                                          }
+                                        }}
+                                      >
+                                        <div className='sk-story-eimg'>
+                                          <img src={items.image} alt='' />
+                                          <span></span>
+                                        </div>
+                                        <div className='sk-story-econtent'>
+                                          <div className='sk-ewoman-title'>
+                                            <p>{`${items.name} ${items.last_name}`}</p>
+                                            <h6>{items.designation}</h6>
                                           </div>
-                                        </li>
-                                      </>
-                                    );
-                                  })}
-                            </ul>
+                                        </div>
+                                      </li>
+                                    </>
+                                  );
+                                })}
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </SwiperSlide>
+              <SwiperSlide>
+                <div className='sk-full-slide1'>
+                  <div className='container sk-custom-container'>
+                    <div className='row align-items-center'>
+                      <div className='col-xl-6 col-lg-6 col-md-12'>
+                        <div className='sh-bannerContent-top'>
+                          <h1>
+                            Discover <span>Your Perfect Career</span>
+                          </h1>
+                          <p>
+                            Take the world’s most-advanced career advice from
+                            SheKunj's finest career counsellors online and find
+                            your best-fit career.
+                          </p>
+                          <div className='sk-thireChangescolor-btn'>
+                            <button
+                              className='sk-loadMore'
+                              type='button'
+                              onClick={() =>
+                                history.push(routingConstants.GUIDANCE_BOOK)
+                              }
+                            >
+                              Book A counsellor
+                            </button>
                           </div>
                         </div>
                       </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                      <div className='row align-items-center'>
-                        <div className='col-xl-6 col-lg-6 col-md-12'>
-                          <div className='sh-bannerContent-top'>
-                            <h1>
-                              Discover <span>Your Perfect Career</span>
-                            </h1>
-                            <p>
-                              Take the world’s most-advanced career advice from
-                              SheKunj's finest career counsellors online and
-                              find your best-fit career.
-                            </p>
-                            <div className='sk-thireChangescolor-btn'>
-                              <button
-                                className='sk-loadMore'
-                                type='button'
-                                onClick={() =>
-                                  history.push(routingConstants.GUIDANCE_BOOK)
-                                }
-                              >
-                                Book A counsellor
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                        <div className='col-xl-6 col-lg-6 col-md-12'>
-                          <div className='four-slider'>
-                            <img src={firstslidebanner6} alt='' />
-                          </div>
+                      <div className='col-xl-6 col-lg-6 col-md-12'>
+                        <div className='four-slider'>
+                          <img src={firstslidebanner6} alt='' />
                         </div>
                       </div>
-                    </SwiperSlide>
-                    {/* <div className='sk-banner-navigate'>
+                    </div>
+                  </div>
+                </div>
+              </SwiperSlide>
+              {/* <div className='sk-banner-navigate'>
                       <div className='swiper-button-next'>
                         <span>NEXT</span>
                       </div>
@@ -734,10 +712,7 @@ function HomePage() {
                         <span>PREV</span>
                       </div>
                     </div> */}
-                  </Swiper>
-                </div>
-              </div>
-            </div>
+            </Swiper>
           </section>
 
           <section className='sk-course-sec sk-slide-arrow sk-bg-color'>
