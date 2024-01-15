@@ -50,7 +50,6 @@ const Courses = () => {
   const [pageCount, setPageCount] = useState(0);
   const [categoryPageCount, setCategoryPageCount] = useState(0);
   const [coursesBoxAds, setCoursesBoxAds] = useState([]);
-  console.log("🚀 ~ Courses ~ coursesBoxAds:", coursesBoxAds)
   const [coursesSideAds, setCoursesSideAds] = useState([]);
   const [image, setImage] = useState("NA");
   const [image1, setImage1] = useState("NA");
@@ -105,7 +104,7 @@ const Courses = () => {
     ) {
       const addslen = coursesBoxAds.length;
       let len = state?.allCourses?.count / pageLimit;
-      len = Math.trunc(len);
+      len = Math.ceil(len);
       console.log(len, addslen);
 
       const adds_arr = findAdds(addslen, len);
@@ -470,6 +469,7 @@ const Courses = () => {
 
   const suggestionClicked = (suggestion) => {
     setSearchInput(suggestion);
+    dispatch(allCourses(`?search=${suggestion}`));
     // setHasSuggestion(null);
     setHasSuggestion(false); // Set it to false when a suggestion is clicked.
   };
@@ -612,14 +612,13 @@ const Courses = () => {
                                   <div onClick={() => suggestionClicked(item)} className="suggList">{item}</div>
                                 ))} */}
                               {suggestion.map((item) => (
-                                <button
-                                  type='submit'
+                                <div
                                   style={{ border: "none" }}
                                   onClick={() => suggestionClicked(item)}
                                   className='suggList'
                                 >
                                   {item}
-                                </button>
+                                </div>
                               ))}
                             </div>
                           )}
