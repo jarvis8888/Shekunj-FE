@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import { useHistory } from "react-router-dom";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
@@ -25,14 +26,12 @@ const useStyles = makeStyles({
 
 function ChangeLanguageButton() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const { lan } = useSelector((state) => state.languageReducer);
   const [language, setLanguage] = useState(
     localStorage.getItem("i18nextLng") || "en",
   );
-  console.log(
-    "🚀 ~ file: index.jsx:32 ~ ChangeLanguageButton ~ language:",
-    language,
-  );
+
   const [anchorEl, setAnchorEl] = useState(null);
   const { i18n } = useTranslation();
 
@@ -59,6 +58,14 @@ function ChangeLanguageButton() {
     setLanguage(lang);
     setAnchorEl(null);
     dispatch(translation(lang));
+
+    const currentPath = window.location.pathname;
+    console.log("After change:", currentPath);
+
+    const newPath = currentPath.replace(/\/(en|hi)\//, `/${lang}/`);
+    console.log("New path:", newPath);
+
+    history.push(newPath);
   };
 
   const handleClose = () => {

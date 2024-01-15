@@ -47,9 +47,9 @@ const Navbar = (props) => {
           </span>
 
           <div className={`nav-items ${isOpen && "open"}`}>
-            <a href='/about-us' className={isActive("/about-us") && "active"}>
+            <Link to='/about-us' className={isActive("/about-us") && "active"}>
               {t("header.heading.1")}
-            </a>
+            </Link>
             <a href='/courses' className={isActive("/courses") && "active"}>
               {t("header.heading.2")}
             </a>

@@ -586,3 +586,14 @@ export function PageNavigationListener() {
 
   return null;
 }
+
+export function getCurrentLanguageFromUrl() {
+  // Get the current path from the URL
+  const path = window.location.pathname;
+
+  // Use a regular expression to match the language part of the path
+  const match = path.match(/^\/(en|hi)\//);
+
+  // If there is a match, return the language, otherwise, return a default value
+  return match ? match[1] : 'en'; // Default to 'en' if no match is found
+}

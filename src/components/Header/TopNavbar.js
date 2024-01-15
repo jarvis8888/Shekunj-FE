@@ -15,6 +15,7 @@ import { isAuthenticated } from "../../utils";
 import { Dropdown } from "rsuite";
 import { useLocation } from "react-router-dom";
 import { NotificationComponent } from "../notification/NotificationComponent";
+import { getCurrentLanguageFromUrl } from "../../utils/utils";
 
 function TopNavbar(props) {
   const { t } = useTranslation();
@@ -152,7 +153,7 @@ function TopNavbar(props) {
                   </>
                 ) : (
                   <>
-                    <a href='/login'>
+                    <a href={`${getCurrentLanguageFromUrl()}/login`}>
                       <button type='button' className='sk-header-btn'>
                         {t("header.authButton")}
                       </button>

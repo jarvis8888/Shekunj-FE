@@ -26,7 +26,7 @@ ReactDOM.render(
     <Suspense fallback={<Loader />}>
       <ThemeProvider theme={theme}>
         <Provider store={store}>
-          <Router>
+          <Router basename='/en'>
             <HelmetProvider>
               <App />
               <ScrollToTop />

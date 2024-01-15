@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import PublicRoute from "./routers/PublicRouter";
 import PrivateRoute from "./routers/PrivateRouter";
 import { routingConstants } from "./utils/constants";
@@ -128,7 +128,7 @@ function App() {
         />
         <PublicRoute
           exact
-          path={routingConstants.SIGN_UP}
+          path={`${routingConstants.SIGN_UP}`}
           component={SignupPage}
         />
         <PublicRoute
@@ -141,7 +141,11 @@ function App() {
           path={routingConstants.RESET_PASSWORD}
           component={ResetPassword}
         />
-        <Route exact path={routingConstants.HOME_PAGE} component={HomePage} />
+        <Route
+          exact
+          path={`${routingConstants.HOME_PAGE}`}
+          component={HomePage}
+        />
         <Route exact path={routingConstants.ABOUT} component={About} />
         <Route exact path={routingConstants.TOP_COLLEGES} component={Career} />
         <Route exact path={routingConstants.TOP_SCHOOLS} component={Career1} />
