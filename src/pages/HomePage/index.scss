@@ -1622,10 +1622,16 @@ img {
     overflow: auto;
     flex-wrap: nowrap;
     justify-content: start;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
   .sk-tabBtn-home ul::-webkit-scrollbar {
     width: 0px;
-    background: transparent;
+    background: none;
+    display: none;
+  }
+  .sk-tabBtn-home ul::-moz-scrollbar {
+    display: none;
   }
   .sk-slide-arrow .swiper-button-next {
     right: 5px;
