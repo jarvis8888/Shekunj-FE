@@ -538,7 +538,7 @@ function HomePage() {
                           </div>
                         </div>
                       </div>
-                      <div className='col-md-6'>
+                      <div className='col-xl-6 col-lg-6 col-md-12'>
                         <div className='third-slide-swiper'>
                           <img src={firstslidebanner4} alt='' />
                         </div>
@@ -575,7 +575,7 @@ function HomePage() {
                           </div>
                         </div>
                       </div>
-                      <div className='sk-imageBanner col-xl-6 col-lg-6 col-md-6'>
+                      <div className='sk-imageBanner col-xl-6 col-lg-6 col-md-12'>
                         <div className='sk-storyS-images'>
                           <ul>
                             {detect.isMobile
