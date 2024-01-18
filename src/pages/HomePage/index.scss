@@ -1399,7 +1399,7 @@ img {
     padding-left: 20px;
   }
 }
-@media screen and (min-width: 992) and (max-width: 1250px) {
+@media screen and (min-width: 992px) and (max-width: 1250px) {
   .sk-gScheme-box ul {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -1552,7 +1552,6 @@ img {
   .sk-text-bg {
     padding-top: 40px;
   }
-
   .sk-banner-navigate {
     bottom: 10px;
   }

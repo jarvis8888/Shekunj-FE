@@ -3,14 +3,17 @@
 .App {
   text-align: center;
 }
-
+.rs-btn:focus-visible {
+  outline: 0px solid rgba(52, 152, 255, 0.25) !important;
+  outline: 0px solid var(--rs-color-focus-ring) !important;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
 body {
   overflow-x: hidden;
-  font-family: 'Poppins', sans-serif !important;
+  font-family: "Poppins", sans-serif !important;
 }
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
@@ -54,36 +57,36 @@ body {
     transform: rotate(360deg);
   }
 }
- .whatsapp_float {
-          position: fixed;
-          width: 60px;
-          height: 60px;
-          bottom: 40px;
-          right: 40px;
-          background-color: #25d366;
-          color: #FFF;
-          border-radius: 50px;
-          text-align: center;
-          font-size: 30px;
-          box-shadow: 2px 2px 3px #999;
-          z-index: 100;
-      }
+.whatsapp_float {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  bottom: 40px;
+  right: 40px;
+  background-color: #25d366;
+  color: #fff;
+  border-radius: 50px;
+  text-align: center;
+  font-size: 30px;
+  box-shadow: 2px 2px 3px #999;
+  z-index: 100;
+}
 
-      .whatsapp-icon {
-          margin-top: 16px;
-      }
+.whatsapp-icon {
+  margin-top: 16px;
+}
 
-      /* for mobile */
-      @media screen and (max-width: 767px) {
-          .whatsapp-icon {
-              margin-top: 10px;
-          }
+/* for mobile */
+@media screen and (max-width: 767px) {
+  .whatsapp-icon {
+    margin-top: 10px;
+  }
 
-          .whatsapp_float {
-              width: 40px;
-              height: 40px;
-              bottom: 20px;
-              right: 10px;
-              font-size: 22px;
-          }
-      }
+  .whatsapp_float {
+    width: 40px;
+    height: 40px;
+    bottom: 20px;
+    right: 10px;
+    font-size: 22px;
+  }
+}
