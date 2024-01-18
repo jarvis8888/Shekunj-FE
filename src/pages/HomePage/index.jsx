@@ -754,12 +754,12 @@ function HomePage() {
                   <Swiper
                     modules={[Navigation, Autoplay]}
                     slidesPerView={4}
-                    spaceBetween={30}
+                    spaceBetween={24}
                     // centeredSlides={true}
                     navigation={true}
                     speed={1500}
                     autoHeight={true}
-                    autoplay={{ delay: 3000 }}
+                    autoplay={{ delay: 2000 }}
                     className='sk-mySwiper-slide'
                     breakpoints={{
                       320: {
@@ -1091,10 +1091,10 @@ function HomePage() {
                   <Swiper
                     modules={[Navigation, Autoplay]}
                     slidesPerView={4}
-                    spaceBetween={30}
+                    spaceBetween={24}
                     // centeredSlides={true}
                     speed={1500}
-                    autoplay={{ delay: 3000 }}
+                    autoplay={{ delay: 2000 }}
                     navigation={true}
                     className='sk-mockSwiper'
                     breakpoints={{
@@ -1350,7 +1350,7 @@ function HomePage() {
                     spaceBetween={24}
                     // centeredSlides={true}
                     speed={1500}
-                    autoplay={{ delay: 3000 }}
+                    autoplay={{ delay: 2000 }}
                     navigation={true}
                     className='sk-mockSwiper'
                     breakpoints={{
@@ -1465,7 +1465,7 @@ function HomePage() {
                 <div className='col-xl-4'>
                   <div className='sk-blogSidebar-event'>
                     <div className='sk-blogHeadinghome-title'>
-                      <h3>All Events</h3>
+                      <h3>Event Calender</h3>
                       <p>Save the date for upcoming events near you</p>
                     </div>
                     <div className='sk-eventDatetime-detail'>
@@ -1544,7 +1544,7 @@ function HomePage() {
                         navigation={true}
                         speed={1500}
                         autoHeight={true}
-                        autoplay={{ delay: 3000 }}
+                        autoplay={{ delay: 2000 }}
                         className='sk-mySwiper-slide'
                         breakpoints={{
                           0: {
@@ -1676,7 +1676,7 @@ function HomePage() {
                         history.push(routingConstants.SUCCESS_STORIES)
                       }
                     >
-                      Views Success Stories
+                      View Success Stories
                     </button>
                   </div>
                 </div>
@@ -1697,7 +1697,7 @@ function HomePage() {
                 <div className='col-xl-9 col-md-10 col-sm-12 mx-auto'>
                   <div className='sk-success-story sk-blog-slider sk-slide-arrow'>
                     <Swiper
-                      spaceBetween={30}
+                      spaceBetween={24}
                       speed={1500}
                       // autoplay={{ delay: 3000 }}
                       modules={[Navigation, Autoplay]}
@@ -1850,10 +1850,10 @@ function HomePage() {
                       }}
                       modules={[Navigation, Pagination, Autoplay]}
                       slidesPerView={3}
-                      spaceBetween={30}
+                      spaceBetween={24}
                       // centeredSlides={true}
                       speed={1500}
-                      autoplay={{ delay: 3000 }}
+                      autoplay={{ delay: 2000 }}
                       navigation={true}
                       className='sk-mockSwiper'
                       breakpoints={{
