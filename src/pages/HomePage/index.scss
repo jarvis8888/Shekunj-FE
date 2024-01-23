@@ -831,7 +831,17 @@ img {
 }
 
 .sk-homeStory-sec {
-  padding: 60px 0;
+  padding: 80px 0 60px;
+  position:relative;
+}
+.sk-homeStory-add-space::before{
+  content:"";
+  position:absolute;
+  top: 0;
+  right:0;
+  left:0;
+  height:50px;
+  background:#222;
 }
 .sk-story-testmonial {
   display: grid;
@@ -845,7 +855,7 @@ img {
   overflow: hidden;
 }
 .sk-leading-women .sk-testCourse-btn {
-  padding-bottom: 60px;
+  padding-bottom: 0;
 }
 .sk-story-testmonial .sk-story-content:last-child {
   margin-left: -80px;
@@ -1572,7 +1582,11 @@ img {
     background-size: 100%;
   }
   .sk-leading-women .sk-testCourse-btn {
-    padding-bottom: 20px;
+    padding-bottom: 0;
+    margin-bottom:-40px;
+    z-index:999;
+    position:relative;
+
   }
   .sk-slide-arrow .swiper-button-next {
     right: 0;
@@ -1716,7 +1730,7 @@ img {
     padding: 30px 0;
   }
   .sk-homeStory-sec {
-    padding: 30px 0;
+    padding: 80px 0;
   }
   .sk-courseboth-btn .sk-course-btn.sk-courseBg-color {
     padding: 8px 10px;

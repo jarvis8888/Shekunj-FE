@@ -1265,7 +1265,7 @@ function HomePage() {
                     <h2>Create Your Ideal Resume</h2>
                     <p>
                       Land your dream job by designing a perfect resume in a
-                      print-ready <br /> format
+                      print-ready <br /> format.
                     </p>
                     <div className='sk-thireChangescolor-btn'>
                       <a
@@ -1659,7 +1659,7 @@ function HomePage() {
                     enrolled with SheKunj. We understand the importance of
                     education for the solutions of tomorrow. SheKunj is a
                     first-of-its-kind, women-centered, global network dedicated
-                    to the women empowerment
+                    to the women empowerment.
                   </p>
                 </div>
               </div>
@@ -1683,7 +1683,7 @@ function HomePage() {
               </div>
             </div>
           </section>
-          <section className='sk-homeStory-sec sk-bg-color'>
+          <section className='sk-homeStory-sec sk-bg-color sk-homeStory-add-space'>
             <div className='container sk-custom-container'>
               <div className='row'>
                 <div className='col-xl-6 col-lg-6 col-md-8 col-sm-12 mx-auto'>
@@ -1745,6 +1745,10 @@ function HomePage() {
                                   </div>
                                   <div className='sk-story-content'>
                                     <h4>{items?.title}</h4>
+                                    
+                                      <p>{`${items.name} ${items.last_name}`}</p>
+                                      <h6>{items.designation}</h6>
+                                    
                                     <div className='sk-bottom-box'>
                                       <div className='sk-storySuccess-testmonial'>
                                         <span>
