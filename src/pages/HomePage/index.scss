@@ -848,7 +848,10 @@ img {
   grid-template-columns: repeat(2, 1fr);
   align-items: end;
 }
-
+.sk-ewoman-title p{
+  color:#d3317d;
+  margin-bottom:5px;
+}
 .sk-story-testmonial .sk-story-content:first-child {
   margin-right: -50px;
   border-radius: 4px;
@@ -1584,7 +1587,7 @@ img {
   .sk-leading-women .sk-testCourse-btn {
     padding-bottom: 0;
     margin-bottom:-40px;
-    z-index:999;
+    z-index:9;
     position:relative;
 
   }

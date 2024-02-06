@@ -8,6 +8,7 @@ import traslateicon from "../../assets/images/traslateicon.svg";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import { makeStyles } from "@mui/styles";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory, useLocation } from "react-router-dom";
 
 import { translation } from "../../store/language";
 
@@ -25,13 +26,12 @@ const useStyles = makeStyles({
 
 function ChangeLanguageButton() {
   const dispatch = useDispatch();
+  const history = useHistory();
+  const { search } = useLocation();
+  const location = useLocation();
   const { lan } = useSelector((state) => state.languageReducer);
   const [language, setLanguage] = useState(
     localStorage.getItem("i18nextLng") || "en",
-  );
-  console.log(
-    "🚀 ~ file: index.jsx:32 ~ ChangeLanguageButton ~ language:",
-    language,
   );
   const [anchorEl, setAnchorEl] = useState(null);
   const { i18n } = useTranslation();
@@ -45,12 +45,52 @@ function ChangeLanguageButton() {
   };
 
   useEffect(() => {
-    const initialLanguage = localStorage.getItem("i18nextLng");
-    if (initialLanguage === "en" || initialLanguage === "hi") {
-      setLanguage(initialLanguage);
+    // const initialLanguage = localStorage.getItem("i18nextLng");
+    const paramsLanguage = new URLSearchParams(location.search).get("lang");
+    if (
+      paramsLanguage &&
+      (paramsLanguage === "en" || paramsLanguage === "hi")
+    ) {
+      i18n.changeLanguage(paramsLanguage);
+      localStorage.setItem("i18nextLng", paramsLanguage);
+      setLanguage(paramsLanguage);
+      dispatch(translation(paramsLanguage));
+
+      const { pathname, search } = location;
+      const updatedSearch = new URLSearchParams(search);
+      updatedSearch.set("lang", paramsLanguage);
+
+      const newUrl = `${pathname}?${updatedSearch.toString()}`;
+
+      history.push(newUrl);
     } else {
-      setLanguage("en");
-      localStorage.setItem("i18nextLng", "en");
+      const localLanguage = localStorage.getItem("i18nextLng");
+
+      if (localLanguage && (localLanguage === "en" || localLanguage === "hi")) {
+        i18n.changeLanguage(localLanguage);
+        localStorage.setItem("i18nextLng", localLanguage);
+        setLanguage(localLanguage);
+        dispatch(translation(localLanguage));
+        const { pathname, search } = location;
+        const updatedSearch = new URLSearchParams(search);
+        updatedSearch.set("lang", localLanguage);
+
+        const newUrl = `${pathname}?${updatedSearch.toString()}`;
+
+        history.push(newUrl);
+      } else {
+        i18n.changeLanguage("en");
+        setLanguage("en");
+        localStorage.setItem("i18nextLng", "en");
+        const { pathname, search } = location;
+
+        const updatedSearch = new URLSearchParams(search);
+        updatedSearch.set("lang", "en");
+
+        const newUrl = `${pathname}?${updatedSearch.toString()}`;
+
+        history.push(newUrl);
+      }
     }
   }, [lan]);
 
@@ -59,11 +99,41 @@ function ChangeLanguageButton() {
     setLanguage(lang);
     setAnchorEl(null);
     dispatch(translation(lang));
+    const { pathname, search } = location;
+
+    const updatedSearch = new URLSearchParams(search);
+    updatedSearch.set("lang", lang);
+
+    const newUrl = `${pathname}?${updatedSearch.toString()}`;
+
+    history.push(newUrl);
   };
 
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  // useEffect(() => {
+  //   const setLanguageFromUrl = () => {
+  //     const urlSearchParams = new URLSearchParams(window.location.search);
+  //     const langParam = urlSearchParams.get("lang");
+  //     const { pathname, search } = location;
+
+  //     if (langParam && (langParam === "en" || langParam === "hi")) {
+  //       i18n.changeLanguage(langParam);
+  //       setLanguage(langParam);
+  //       dispatch(translation(langParam));
+  //       localStorage.setItem("i18nextLng", langParam);
+  //     } else {
+  //       i18n.changeLanguage("en");
+  //       setLanguage("en");
+  //       dispatch(translation("en"));
+  //       localStorage.setItem("i18nextLng", "en");
+  //     }
+  //   };
+
+  //   setLanguageFromUrl();
+  // }, [lan, location]);
 
   return (
     <>

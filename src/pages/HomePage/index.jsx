@@ -1744,10 +1744,13 @@ function HomePage() {
                                     <img src={items?.image} alt='' />
                                   </div>
                                   <div className='sk-story-content'>
-                                    <h4>{items?.title}</h4>
-                                    
-                                      <p>{`${items.name} ${items.last_name}`}</p>
-                                      <h6>{items.designation}</h6>
+                                  <div>
+                                  <h4>{items?.title}</h4>
+                                     <div className='sk-ewoman-title'>
+                                    <p>{`${items.name} ${items.last_name}`}</p>
+                                    <h6>{items.designation}</h6>
+                                  </div>
+                                  </div>
                                     
                                     <div className='sk-bottom-box'>
                                       <div className='sk-storySuccess-testmonial'>

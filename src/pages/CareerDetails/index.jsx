@@ -130,9 +130,13 @@ const CareerDetails = () => {
                                                     rel='noreferrer'>
                                                     {topCollages && topCollages.website}
                                                 </Link> */}
-                        <Link to={topCollages?.website} target='_blank'>
+                        <a
+                          href={topCollages?.website}
+                          target='_blank'
+                          rel='noopener noreferrer'
+                        >
                           {topCollages && topCollages?.website}
-                        </Link>
+                        </a>
                         <Route exact path={topCollages?.website} />
                       </h6>
                     </Col>

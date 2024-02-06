@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, useLocation, useHistory } from "react-router-dom";
 import PublicRoute from "./routers/PublicRouter";
 import PrivateRoute from "./routers/PrivateRouter";
 import { routingConstants } from "./utils/constants";
@@ -80,6 +80,9 @@ const GovernmentSchemesWithCategory = React.lazy(() =>
 );
 
 function App() {
+  const location = useLocation();
+  const history = useHistory();
+
   useEffect(() => {
     window.history.scrollRestoration = "manual";
   }, []);
@@ -117,7 +120,7 @@ function App() {
       document.removeEventListener("selectstart", disableTextSelection);
     };
   }, []);
-
+  
   return (
     <>
       <Switch>

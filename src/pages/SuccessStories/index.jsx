@@ -534,7 +534,7 @@ function SuccessStory() {
                                     <p>{`${items.name} ${items.last_name}`}</p>
                                     <h6>{items.designation}</h6>
                                   </div>
-                                </div>
+                                </div>  
                               </li>
                             </>
                           );

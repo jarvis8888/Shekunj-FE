@@ -155,14 +155,13 @@ const Career1Details = () => {
                           {t("careerTopSchools.other.3")}
                         </span>{" "}
                         :{" "}
-                        <Link
-                          // to={{ pathname: topSchools?.website }}
-                          to={topSchools?.website}
+                        <a
+                          rel='noopener noreferrer'
                           target='_blank'
-                          // rel='noreferrer'
+                          href={`https://${topSchools?.website}`}
                         >
                           {topSchools && topSchools?.website}
-                        </Link>
+                        </a>
                       </h6>
                     </Col>
                   )}

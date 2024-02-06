@@ -45,6 +45,7 @@ import timeIcon from "../../assets/images/Courses/time.png";
 
 import "./index.scss";
 import "../CoursesModule/index.scss";
+import { makeHtmlWithStyles } from "../../utils/utils";
 
 const IOSSlider = styled(Slider)(({ theme }) => ({
   color: theme.palette.mode === "dark" ? "#3880ff" : "#3880ff",
@@ -595,12 +596,17 @@ function MockTestDetail() {
                   {isLoading ? (
                     <Skeleton></Skeleton>
                   ) : (
-                    <p>
+                    <span style={{ display: "flex", gap: "5px" }}>
                       {questionNumber?.questionNumber
                         ? questionNumber?.questionNumber
                         : questionNumber}
-                      . {testData?.question}
-                    </p>
+                      .{" "}
+                      <p
+                        dangerouslySetInnerHTML={{
+                          __html: makeHtmlWithStyles(`${testData?.question}`),
+                        }}
+                      />
+                    </span>
                   )}
                   {testData && (
                     <RadioGroup aria-label='gender' name='radio-buttons-group'>

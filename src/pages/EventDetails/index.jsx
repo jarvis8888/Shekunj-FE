@@ -70,7 +70,9 @@ const EventDetails = () => {
   //states
   const [eventsDetails, setEventsDetails] = useState();
   const [eventDetailsBoxAds, setEventDetailsBoxAds] = useState([]);
+  console.log("🚀 ~ EventDetails ~ eventDetailsBoxAds:", eventDetailsBoxAds)
   const [eventDetailsBannerAds, setEventDetailsBannerAds] = useState([]);
+  console.log("🚀 ~ EventDetails ~ eventDetailsBannerAds:", eventDetailsBannerAds)
   const [loading, setLoading] = useState(false);
   const [extraInfo, setExtraInfo] = useState([]);
   const [stopPosition, setStopPosition] = useState(0);
@@ -145,7 +147,7 @@ const EventDetails = () => {
         const filterArray2 = response?.data?.results?.filter((item) => {
           return (
             Array.isArray(item.image_type) &&
-            item.image_type.some((type) => type.image_type === "event_detail")
+            item.image_type.some((type) => type.image_type === "event_detail_footer")
           );
         });
         setEventDetailsBannerAds(filterArray2);

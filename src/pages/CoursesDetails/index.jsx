@@ -198,10 +198,10 @@ const CourseDetails = () => {
                   <h5>{course?.name}</h5>
                   <div className='ban_rat'></div>
                   <h4>
-                    {t("coursesPage.coursesDetailsPage.heading.1.1")}{" "}
-                    <span>
+                    {course?.course_creation}
+                    {/* <span>
                       {t("coursesPage.coursesDetailsPage.heading.1.2")}
-                    </span>
+                    </span> */}
                   </h4>
                 </div>
               </div>

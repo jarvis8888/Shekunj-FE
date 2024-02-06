@@ -867,9 +867,9 @@ const CareerPage = () => {
                                         {c && c.website}
                                       </Link> */}
                                             <a
-                                              rel='noreferrer'
+                                              rel='noopener noreferrer'
                                               target='_blank'
-                                              href={`https:/${c?.website}`}
+                                              href={`https://${c?.website}`}
                                             >
                                               {c && c?.website}
                                             </a>
