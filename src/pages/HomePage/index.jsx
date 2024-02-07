@@ -1462,7 +1462,7 @@ function HomePage() {
           <section className='sk-blogHome-sec'>
             <div className='container sk-custom-container'>
               <div className='row'>
-                <div className='col-xl-4'>
+                <div className='col-xl-4 col-lg-4'>
                   <div className='sk-blogSidebar-event'>
                     <div className='sk-blogHeadinghome-title'>
                       <h3>Event Calender</h3>
@@ -1529,7 +1529,7 @@ function HomePage() {
                     </div>
                   </div>
                 </div>
-                <div className='col-xl-8'>
+                <div className='col-xl-8 col-lg-8'>
                   <div className='sk-blog-slider sk-slide-arrow'>
                     <div className='sk-blogHeadinghome-title'>
                       <h3>Latest Articles</h3>
@@ -1694,7 +1694,7 @@ function HomePage() {
                 </div>
               </div>
               <div className='row'>
-                <div className='col-xl-9 col-md-10 col-sm-12 mx-auto'>
+                <div className='col-xl-10 col-lg-12 col-md-12 col-sm-12 mx-auto'>
                   <div className='sk-success-story sk-blog-slider sk-slide-arrow'>
                     <Swiper
                       spaceBetween={24}
@@ -1744,14 +1744,14 @@ function HomePage() {
                                     <img src={items?.image} alt='' />
                                   </div>
                                   <div className='sk-story-content'>
-                                  <div>
-                                  <h4>{items?.title}</h4>
-                                     <div className='sk-ewoman-title'>
-                                    <p>{`${items.name} ${items.last_name}`}</p>
-                                    <h6>{items.designation}</h6>
-                                  </div>
-                                  </div>
-                                    
+                                    <div>
+                                      <h4>{items?.title}</h4>
+                                      <div className='sk-ewoman-title'>
+                                        <p>{`${items.name} ${items.last_name}`}</p>
+                                        <h6>{items.designation}</h6>
+                                      </div>
+                                    </div>
+
                                     <div className='sk-bottom-box'>
                                       <div className='sk-storySuccess-testmonial'>
                                         <span>

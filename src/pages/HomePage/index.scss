@@ -22,7 +22,7 @@ img {
 .sk-full-slide0 {
   background: url(../../assets/images/herosec-img.svg) center center;
   background-size: cover;
-  padding: 100px 0px 100px;
+  padding: 90px 0 90px;
 }
 .sk-full-slide1 {
   background: url(../../assets/images/sliderfull1.jpg) no-repeat right center;
@@ -37,12 +37,12 @@ img {
 .sk-full-slide3 {
   background: url(../../assets/images/sliderfull3.jpg) no-repeat right center;
   background-size: cover;
-  padding: 100px 0px 100px;
+  padding: 90px 0px 90px;
 }
 .sk-full-slide4 {
   background: url(../../assets/images/sliderfull4.jpg) no-repeat right center;
   background-size: cover;
-  padding: 100px 0px 100px;
+  padding: 90px 0px 90px;
 }
 
 .first-slide-swiper {
@@ -832,25 +832,25 @@ img {
 
 .sk-homeStory-sec {
   padding: 80px 0 60px;
-  position:relative;
+  position: relative;
 }
-.sk-homeStory-add-space::before{
-  content:"";
-  position:absolute;
+.sk-homeStory-add-space::before {
+  content: "";
+  position: absolute;
   top: 0;
-  right:0;
-  left:0;
-  height:50px;
-  background:#222;
+  right: 0;
+  left: 0;
+  height: 50px;
+  background: #222;
 }
 .sk-story-testmonial {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   align-items: end;
 }
-.sk-ewoman-title p{
-  color:#d3317d;
-  margin-bottom:5px;
+.sk-ewoman-title p {
+  color: #d3317d;
+  margin-bottom: 5px;
 }
 .sk-story-testmonial .sk-story-content:first-child {
   margin-right: -50px;
@@ -876,16 +876,19 @@ img {
   margin-bottom: 80px;
 }
 .sk-story-content h4 {
-  font-size: calc(1.11em + 0.5vw);
+  font-size: calc(1.11em + 0.6vw);
   font-weight: 500;
   color: #434242;
-  line-height: 1.6;
-  margin-bottom: 25px;
+  line-height: 1.5;
+  margin-bottom: 15px;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
+}
+.sk-story-content .sk-ewoman-title {
+  padding: 0;
 }
 .sk-bottom-box {
   display: flex;
@@ -997,6 +1000,10 @@ img {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.sk-testCourse-btn .sk-loadMore:hover {
+  background: #d3317d;
+  color: #fff;
 }
 .sk-loadMore {
   background-color: #202020;
@@ -1417,6 +1424,45 @@ img {
     grid-template-columns: repeat(3, 1fr);
   }
 }
+
+@media only screen and (min-width: 1199px) and (max-width: 1399px) {
+  .third-slide-swiper img {
+    position: relative;
+    top: 50px;
+  }
+  .second-slide-swiper img {
+    position: relative;
+    top: 30px;
+  }
+}
+@media only screen and (min-width: 992px) and (max-width: 1250px) {
+  .sk-full-slide0 {
+    padding: 50px 0 50px;
+  }
+  .sk-full-slide1 {
+    background-position-x: 88%;
+    // padding: 50px 0 50px;
+  }
+  .sk-full-slide2 {
+    padding: 50px 0 50px;
+  }
+  .sk-full-slide3 {
+    background-position-x: 60%;
+    padding: 50px 0 50px;
+  }
+  .sk-full-slide4 {
+    padding: 50px 0 50px;
+  }
+  .sk-begain-content h5 {
+    font-size: 14px;
+  }
+  .sk-success-story.sk-blog-slider.sk-slide-arrow .swiper-button-prev {
+    left: 45%;
+  }
+  .sk-success-story.sk-blog-slider.sk-slide-arrow .swiper-button-next {
+    right: 45%;
+  }
+}
 @media screen and (max-width: 991px) {
   .sk-course-btn .sk-course-btn.sk-courseBg-color {
     padding: 8px 12px;
@@ -1510,27 +1556,15 @@ img {
     padding: 0px;
   }
 }
-@media only screen and (min-width: 1199px) and (max-width: 1399px) {
-  .third-slide-swiper img {
-    position: relative;
-    top: 50px;
+@media screen and (min-width: 481px) and (max-width: 991px) {
+  .sk-success-story.sk-blog-slider.sk-slide-arrow .swiper-button-prev {
+    left: 40%;
   }
-  .second-slide-swiper img {
-    position: relative;
-    top: 30px;
+  .sk-success-story.sk-blog-slider.sk-slide-arrow .swiper-button-next {
+    right: 40%;
   }
 }
-@media only screen and (min-width: 991px) and (max-width: 1250px) {
-  .sk-full-slide1 {
-    background-position-x: 88%;
-  }
-  .sk-full-slide3 {
-    background-position-x: 60%;
-  }
-  .sk-begain-content h5 {
-    font-size: 14px;
-  }
-}
+
 @media screen and (min-width: 481px) and (max-width: 1050px) {
   .sk-leading-women {
     background-size: 100%;
@@ -1541,12 +1575,6 @@ img {
   }
   .sk-leading-women .sk-testCourse-btn {
     padding-bottom: 20px;
-  }
-  .sk-success-story.sk-blog-slider.sk-slide-arrow .swiper-button-prev {
-    left: 40%;
-  }
-  .sk-success-story.sk-blog-slider.sk-slide-arrow .swiper-button-next {
-    right: 40%;
   }
 }
 @media screen and (max-width: 480px) {
@@ -1586,10 +1614,9 @@ img {
   }
   .sk-leading-women .sk-testCourse-btn {
     padding-bottom: 0;
-    margin-bottom:-40px;
-    z-index:9;
-    position:relative;
-
+    margin-bottom: -40px;
+    z-index: 9;
+    position: relative;
   }
   .sk-slide-arrow .swiper-button-next {
     right: 0;
