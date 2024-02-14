@@ -1465,7 +1465,7 @@ function HomePage() {
                 <div className='col-xl-4 col-lg-4'>
                   <div className='sk-blogSidebar-event'>
                     <div className='sk-blogHeadinghome-title'>
-                      <h3>Event Calender</h3>
+                      <h3>Event Calendar</h3>
                       <p>Save the date for upcoming events near you</p>
                     </div>
                     <div className='sk-eventDatetime-detail'>
@@ -1827,7 +1827,7 @@ function HomePage() {
                   <div className='sk-heading-title mb-0'>
                     <h2>Share Your Story And Inspire Others</h2>
                   </div>
-                  <div className='sk-testCourse-btn'>
+                  <div className='sk-testCourse-btn sk-connectUs-btn'>
                     <button
                       className='sk-loadMore'
                       onClick={() => history.push(routingConstants.CONTACT_US)}
