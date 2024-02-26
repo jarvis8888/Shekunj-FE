@@ -33,6 +33,8 @@ import SchoolOutlinedIcon from "@mui/icons-material/SchoolOutlined";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import onlineicon from "../../assets/images/onlineicon.svg";
 import offlineicon from "../../assets/images/offline-icon.svg";
+import checkicon from "../../assets/icons/svgs/checkicongreen.svg";
+import wpimages from "../../assets/images/mobileFrame.png";
 import { getAllEvents, singleEventDetails } from "../../store/events/action";
 import { getUserProfile } from "../../store/auth/action";
 import "../HomePage/index.scss";
@@ -70,9 +72,12 @@ const EventDetails = () => {
   //states
   const [eventsDetails, setEventsDetails] = useState();
   const [eventDetailsBoxAds, setEventDetailsBoxAds] = useState([]);
-  console.log("🚀 ~ EventDetails ~ eventDetailsBoxAds:", eventDetailsBoxAds)
+  console.log("🚀 ~ EventDetails ~ eventDetailsBoxAds:", eventDetailsBoxAds);
   const [eventDetailsBannerAds, setEventDetailsBannerAds] = useState([]);
-  console.log("🚀 ~ EventDetails ~ eventDetailsBannerAds:", eventDetailsBannerAds)
+  console.log(
+    "🚀 ~ EventDetails ~ eventDetailsBannerAds:",
+    eventDetailsBannerAds,
+  );
   const [loading, setLoading] = useState(false);
   const [extraInfo, setExtraInfo] = useState([]);
   const [stopPosition, setStopPosition] = useState(0);
@@ -147,7 +152,9 @@ const EventDetails = () => {
         const filterArray2 = response?.data?.results?.filter((item) => {
           return (
             Array.isArray(item.image_type) &&
-            item.image_type.some((type) => type.image_type === "event_detail_footer")
+            item.image_type.some(
+              (type) => type.image_type === "event_detail_footer",
+            )
           );
         });
         setEventDetailsBannerAds(filterArray2);
@@ -267,34 +274,27 @@ const EventDetails = () => {
             <CloseIcon className='ModalClose' onClick={handleClose} />
             <div className='ModalHeadEvent'>
               <Typography variant='h6' id='modal-title'>
-                Congratulations... you have been registered!
+                All the communication will be done on the{" "}
+                <span>WhatsApp Group.</span>
               </Typography>
             </div>
             <div className='ModalMiddleEvent'>
-              <Typography variant='h6' id='simple-modal-description'>
-                You can join our whatsapp group.
-              </Typography>
               <a href={whatsappUrl} target='_blank'>
-                <Button variant='contained' className='ModalButtonEvent'>
-                  JOIN WHATSAPP GROUP
+                <Button
+                  variant='contained'
+                  className='ModalButtonEvent joinBtn'
+                >
+                  Join WhatsApps Group
                 </Button>
               </a>
-              <divider />
-              <Typography variant='h4'>
-                Want to learn more? <br />
-                Checkout our other events
-              </Typography>
-              <div className='ModalLinkEvent'>
+              <div>
+                <img src={wpimages} alt='wpimages' />
+              </div>
+              {/* <div className='ModalLinkEvent'>
                 <a href='/events/all'>
                   <strong>Lets have a look... Shekunj Events!</strong>
                 </a>
-              </div>
-            </div>
-            <div className='ModalBottomEvent'>
-              <Typography variant='h6' id='modal-title'>
-                are you excited to learn ? <br />
-                see you soon !
-              </Typography>
+              </div> */}
             </div>
           </div>
         </Modal>
@@ -320,11 +320,16 @@ const EventDetails = () => {
             /> */}
             <CloseIcon className='ModalClose' onClick={handleClose} />
             <div className='ModalHeadEvent'>
-              <Typography variant='h6' id='modal-title'>
-                Congratulations... you have been registered!
+              <img src={checkicon} alt='checkicon' />
+              <Typography variant='h3' id='modal-title'>
+                Congratulations.
+              </Typography>
+              <Typography>
+                Your registration is complete! Get ready to explore exciting
+                opportunities and enjoy exclusive benefits.
               </Typography>
             </div>
-            <div className='ModalMiddleEvent'>
+            {/* <div className='ModalMiddleEvent'>
               <Typography variant='h3' id='simple-modal-description'>
                 Thank You !
               </Typography>
@@ -345,7 +350,7 @@ const EventDetails = () => {
                 are you excited to learn ? <br />
                 see you soon !
               </Typography>
-            </div>
+            </div> */}
           </div>
         </Modal>
       );
@@ -438,7 +443,7 @@ const EventDetails = () => {
                                     <>
                                       {" "}
                                       <span>
-                                        <img src={offlineicon} alt='' />
+                                        <img src={offlineicon} alt='offline' />
                                       </span>{" "}
                                       Offline{" "}
                                     </>
