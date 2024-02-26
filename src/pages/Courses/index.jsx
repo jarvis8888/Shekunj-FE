@@ -741,7 +741,7 @@ const Courses = () => {
                     >
                       <img
                         src={coursesSideAds[0]?.image}
-                        alt='Image'
+                        alt='google_add_courses'
                         className='google_add_courses'
                       />
                     </a>

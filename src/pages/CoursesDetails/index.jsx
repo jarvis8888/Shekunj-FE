@@ -183,9 +183,12 @@ const CourseDetails = () => {
   return (
     <>
       <SEO
-        title='Sheकुंज - Course Detail'
+        title={course?.meta_title ? course?.meta_title : course?.title}
+        description={course?.meta_description}
+        keywords={course?.meta_keywords}
+        image={course?.image}
         currentUrl={currentUrl}
-        link={currentUrl}
+        link={course?.canonical_tags ? course?.canonical_tags : currentUrl}
       />
       <div>
         <Header loginPage={true} page='courses' />

@@ -792,6 +792,7 @@ function HomePage() {
                       <CustomLoader />
                     ) : courseData?.length ? (
                       courseData?.map((items, index) => {
+                        console.log("🚀 ~ courseData?.map ~ items:", items);
                         return (
                           <>
                             <SwiperSlide>
@@ -850,17 +851,33 @@ function HomePage() {
                                       >
                                         More Info
                                       </button>
-                                      <button
-                                        className='sk-course-btn sk-courseBg-color'
-                                        onClick={() =>
-                                          history.push(
-                                            routingConstants.COURSES_MODULE +
-                                              items?.id,
-                                          )
-                                        }
-                                      >
-                                        Start Learning
-                                      </button>
+                                      {items?.redirection_link
+                                        ?.do_you_want_to_redirect_this_course ? (
+                                        <a
+                                          href={
+                                            items?.redirection_link
+                                              ?.redirection_link
+                                          }
+                                          target='_blank'
+                                          rel='noopener noreferrer' // Recommended for security reasons
+                                        >
+                                          <button className='sk-course-btn sk-courseBg-color'>
+                                            Start Learning
+                                          </button>
+                                        </a>
+                                      ) : (
+                                        <button
+                                          className='sk-course-btn sk-courseBg-color'
+                                          onClick={() =>
+                                            history.push(
+                                              routingConstants.COURSES_MODULE +
+                                                items?.id,
+                                            )
+                                          }
+                                        >
+                                          Start Learning
+                                        </button>
+                                      )}
                                     </div>
                                   </div>
                                 </div>
@@ -924,17 +941,33 @@ function HomePage() {
                                       >
                                         More Info
                                       </button>
-                                      <button
-                                        className='sk-course-btn sk-courseBg-color'
-                                        onClick={() =>
-                                          history.push(
-                                            routingConstants.COURSES_MODULE +
-                                              items?.id,
-                                          )
-                                        }
-                                      >
-                                        Start Learning
-                                      </button>
+                                      {items?.redirection_link
+                                        ?.do_you_want_to_redirect_this_course ? (
+                                        <a
+                                          href={
+                                            items?.redirection_link
+                                              ?.redirection_link
+                                          }
+                                          target='_blank'
+                                          rel='noopener noreferrer' // Recommended for security reasons
+                                        >
+                                          <button className='sk-course-btn sk-courseBg-color'>
+                                            Start Learning
+                                          </button>
+                                        </a>
+                                      ) : (
+                                        <button
+                                          className='sk-course-btn sk-courseBg-color'
+                                          onClick={() =>
+                                            history.push(
+                                              routingConstants.COURSES_MODULE +
+                                                items?.id,
+                                            )
+                                          }
+                                        >
+                                          Start Learning
+                                        </button>
+                                      )}
                                     </div>
                                   </div>
                                 </div>
@@ -1244,11 +1277,7 @@ function HomePage() {
                     towards your bright future.
                   </p>
                   <div className='sk-hireChanges-btn'>
-                    <a
-                      href='https://octahire.com/Home/candidate_register'
-                      target='_blank'
-                      rel='noreferrer'
-                    >
+                    <a href='/jobs' target='_blank' rel='noreferrer'>
                       <button className='sk-loadMore'>
                         View All Job Opportunities
                       </button>
@@ -1269,7 +1298,7 @@ function HomePage() {
                     </p>
                     <div className='sk-thireChangescolor-btn'>
                       <a
-                        href='https://octahire.com/Home/candidate_register'
+                        href='/resume-builder'
                         target='_blank'
                         rel='noreferrer'
                       >

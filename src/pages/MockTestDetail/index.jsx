@@ -32,7 +32,7 @@ import img1 from "../../assets/images/shekunj_magzine.jpg";
 import global from "../../assets/images/Success/global.png";
 
 import { routingConstants } from "../../utils/constants";
-import { Header, Footer } from "../../components";
+import { Header, Footer, SEO } from "../../components";
 import {
   getGuidanceCategory,
   fetchStartUserCareerTest,
@@ -494,257 +494,284 @@ function MockTestDetail() {
     dispatch(fetchUserCareerTestCount(guidanceCategory?.id));
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, [dispatch, guidanceCategory, lan]);
+  const currentUrl = window.location.href;
 
   return (
-    <div>
-      <Header loginPage={true} page='guidance' subPage='careerTest' />
-      <Container>
-        <div className='maindiv_prog setmain noselect'>
-          <div className='select_test' key={guidanceCategory?.id}>
-            {/* <h2>Test Started</h2> */}
+    <>
+      <SEO
+        title={
+          guidanceCategory?.meta_title
+            ? guidanceCategory?.meta_title
+            : guidanceCategory?.title
+        }
+        description={guidanceCategory?.meta_description}
+        keywords={guidanceCategory?.meta_keywords}
+        image={guidanceCategory?.image}
+        currentUrl={currentUrl}
+        link={
+          guidanceCategory?.canonical_tags
+            ? guidanceCategory?.canonical_tags
+            : currentUrl
+        }
+      />
+      <div>
+        <Header loginPage={true} page='guidance' subPage='careerTest' />
+        <Container>
+          <div className='maindiv_prog setmain noselect'>
+            <div className='select_test' key={guidanceCategory?.id}>
+              {/* <h2>Test Started</h2> */}
 
-            <Row>
-              <Col md={8} xs={12} className='mx-auto'>
-                <div className='deatil_box'>
-                  <img
-                    src={guidanceCategory && guidanceCategory?.image}
-                    class='card-img-top'
-                    alt='...'
-                  ></img>
-                  <h4 className='mb-3'>
-                    {guidanceCategory && guidanceCategory?.name}
-                  </h4>
-                  <Row>
-                    {guidanceCategory && (
-                      <Col md={6} xs={12} className='mb-3'>
-                        <span>{t("mockTest.detail.career_test_time")}</span> :{" "}
-                        {guidanceCategory && guidanceCategory?.career_test_time}
-                      </Col>
-                    )}
-                  </Row>
-                  <Row>
-                    {guidanceCategory?.no_of_questions && (
-                      <Col md={6} xs={12}>
-                        <h6>
-                          <span>{t("mockTest.detail.no_of_questions")}</span> :{" "}
+              <Row>
+                <Col md={8} xs={12} className='mx-auto'>
+                  <div className='deatil_box'>
+                    <img
+                      src={guidanceCategory && guidanceCategory?.image}
+                      class='card-img-top'
+                      alt='...'
+                    ></img>
+                    <h4 className='mb-3'>
+                      {guidanceCategory && guidanceCategory?.name}
+                    </h4>
+                    <Row>
+                      {guidanceCategory && (
+                        <Col md={6} xs={12} className='mb-3'>
+                          <span>{t("mockTest.detail.career_test_time")}</span> :{" "}
                           {guidanceCategory &&
-                            guidanceCategory?.no_of_questions}
-                        </h6>
-                      </Col>
-                    )}
-                    {guidanceCategory && (
-                      <Col md={6} xs={12}>
-                        <span>{t("mockTest.detail.total_score")}</span> :{" "}
-                        {guidanceCategory && guidanceCategory?.total_score}
-                      </Col>
-                    )}
-                  </Row>
-                </div>
-              </Col>
-            </Row>
+                            guidanceCategory?.career_test_time}
+                        </Col>
+                      )}
+                    </Row>
+                    <Row>
+                      {guidanceCategory?.no_of_questions && (
+                        <Col md={6} xs={12}>
+                          <h6>
+                            <span>{t("mockTest.detail.no_of_questions")}</span>{" "}
+                            :{" "}
+                            {guidanceCategory &&
+                              guidanceCategory?.no_of_questions}
+                          </h6>
+                        </Col>
+                      )}
+                      {guidanceCategory && (
+                        <Col md={6} xs={12}>
+                          <span>{t("mockTest.detail.total_score")}</span> :{" "}
+                          {guidanceCategory && guidanceCategory?.total_score}
+                        </Col>
+                      )}
+                    </Row>
+                  </div>
+                </Col>
+              </Row>
 
-            <Row>
-              <Col md={3} xs={12} className='mt-1 mx-auto'>
-                <button
-                  onClick={() => {
-                    handleStartCourse();
-                  }}
-                  disabled={isTestStarted}
-                >
-                  {isTestStarted
-                    ? t("successCareerTestPage.button.1")
-                    : t("successCareerTestPage.button.2")}
-                </button>
-              </Col>
-            </Row>
+              <Row>
+                <Col md={3} xs={12} className='mt-1 mx-auto'>
+                  <button
+                    onClick={() => {
+                      handleStartCourse();
+                    }}
+                    disabled={isTestStarted}
+                  >
+                    {isTestStarted
+                      ? t("successCareerTestPage.button.1")
+                      : t("successCareerTestPage.button.2")}
+                  </button>
+                </Col>
+              </Row>
+            </div>
+
+            {isTestStarted && (
+              <Row className='pt-md-5 pb-md-5'>
+                <Col md={12} xs={12} className='text-left'>
+                  <div ref={target} className='circular_progress_module'>
+                    <Stack
+                      className='d-flex justify-content-between'
+                      spacing={2}
+                      direction='row'
+                    >
+                      <h3>{guidanceCategory?.name}</h3>
+                      {/* <button onClick={() => handleFinishQuestion()}>
+                    {t("coursesPage.coursesModulePage.button.2")}
+                  </button> */}
+                    </Stack>
+                    {renderProgress(testData?.progress)}
+                  </div>
+                </Col>
+              </Row>
+            )}
           </div>
 
           {isTestStarted && (
-            <Row className='pt-md-5 pb-md-5'>
-              <Col md={12} xs={12} className='text-left'>
-                <div ref={target} className='circular_progress_module'>
-                  <Stack
-                    className='d-flex justify-content-between'
-                    spacing={2}
-                    direction='row'
-                  >
-                    <h3>{guidanceCategory?.name}</h3>
-                    {/* <button onClick={() => handleFinishQuestion()}>
-                    {t("coursesPage.coursesModulePage.button.2")}
-                  </button> */}
-                  </Stack>
-                  {renderProgress(testData?.progress)}
-                </div>
-              </Col>
-            </Row>
-          )}
-        </div>
+            <>
+              <div className='time_set noselect'>
+                <p>
+                  <img src={timeIcon} alt='timeIcon' />{" "}
+                  {t("common.time.5") + " "}
+                  {showTimer && renderTimmer(testTime)}
+                </p>
+              </div>
 
-        {isTestStarted && (
-          <>
-            <div className='time_set noselect'>
-              <p>
-                <img src={timeIcon} alt='timeIcon' /> {t("common.time.5") + " "}
-                {showTimer && renderTimmer(testTime)}
-              </p>
-            </div>
-
-            <Row>
-              <Col md={8} xs={12}>
-                <div className='que_box noselect'>
-                  <h2>{t("allCertificatePage.other.5")}</h2>
-                  {isLoading ? (
-                    <Skeleton></Skeleton>
-                  ) : (
-                    <span style={{ display: "flex", gap: "5px" }}>
-                      {questionNumber?.questionNumber
-                        ? questionNumber?.questionNumber
-                        : questionNumber}
-                      .{" "}
-                      <p
-                        dangerouslySetInnerHTML={{
-                          __html: makeHtmlWithStyles(`${testData?.question}`),
-                        }}
-                      />
-                    </span>
-                  )}
-                  {testData && (
-                    <RadioGroup aria-label='gender' name='radio-buttons-group'>
-                      {testData?.optionA &&
-                        (isLoading ? (
-                          <Skeleton />
-                        ) : (
-                          <FormControlLabel
-                            value='1'
-                            control={
-                              <Radio
-                                checked={check1}
-                                onChange={(e) => handleAnswerCheck(e, "A")}
-                              />
-                            }
-                            label={testData?.optionA}
-                          />
-                        ))}
-                      {testData?.optionB &&
-                        (isLoading ? (
-                          <Skeleton />
-                        ) : (
-                          <FormControlLabel
-                            value='2'
-                            control={
-                              <Radio
-                                checked={check2}
-                                onChange={(e) => handleAnswerCheck(e, "B")}
-                              />
-                            }
-                            label={testData?.optionB}
-                          />
-                        ))}
-                      {testData?.optionC &&
-                        (isLoading ? (
-                          <Skeleton />
-                        ) : (
-                          <FormControlLabel
-                            value='3'
-                            control={
-                              <Radio
-                                checked={check3}
-                                onChange={(e) => handleAnswerCheck(e, "C")}
-                              />
-                            }
-                            label={testData?.optionC}
-                          />
-                        ))}
-                      {testData?.optionD &&
-                        (isLoading ? (
-                          <Skeleton />
-                        ) : (
-                          <FormControlLabel
-                            value='4'
-                            control={
-                              <Radio
-                                checked={check4}
-                                onChange={(e) => handleAnswerCheck(e, "D")}
-                              />
-                            }
-                            label={testData?.optionD}
-                          />
-                        ))}
-                    </RadioGroup>
-                  )}
-                </div>{" "}
-                <div className='prev_next_btn noselect'>
-                  <Row>
-                    <Col md={6} xs={6}>
-                      {questionNumber > "1" ? (
-                        <button
-                          className='back_button'
-                          onClick={() => handlePrevQuestion()}
-                          disabled={!testData?.prev_module}
-                        >
-                          {t("coursesPage.coursesModulePage.button.1")}
-                        </button>
-                      ) : (
-                        " "
-                      )}
-                    </Col>
-
-                    <Col md={6} xs={6} className='text-right'>
-                      {countData?.total_career_que === questionNumber ? (
-                        <button
-                          className='next_button'
-                          onClick={() => handleFinishQuestion()}
-                        >
-                          {t("coursesPage.coursesModulePage.button.2")}
-                        </button>
-                      ) : (
-                        <button
-                          className='next_button'
-                          onClick={() => handleNextQuestion()}
-                        >
-                          {t("coursesPage.coursesModulePage.button.3")}
-                        </button>
-                      )}
-                    </Col>
-                  </Row>
-                </div>
-              </Col>
-              <Col md={4} xs={12}>
-                <div className='que_status noselect'>
-                  <h2>{t("successCareerTestPage.heading.2")}</h2>
-                  <div className='que_num'>
-                    {[...Array(countData?.total_career_que).keys()].map((i) => (
-                      <p
-                        id={
-                          i + 1 <= countData?.user_career_test_count
-                            ? "col_gre"
-                            : "col_grey"
-                        }
+              <Row>
+                <Col md={8} xs={12}>
+                  <div className='que_box noselect'>
+                    <h2>{t("allCertificatePage.other.5")}</h2>
+                    {isLoading ? (
+                      <Skeleton></Skeleton>
+                    ) : (
+                      <span style={{ display: "flex", gap: "5px" }}>
+                        {questionNumber?.questionNumber
+                          ? questionNumber?.questionNumber
+                          : questionNumber}
+                        .{" "}
+                        <p
+                          dangerouslySetInnerHTML={{
+                            __html: makeHtmlWithStyles(`${testData?.question}`),
+                          }}
+                        />
+                      </span>
+                    )}
+                    {testData && (
+                      <RadioGroup
+                        aria-label='gender'
+                        name='radio-buttons-group'
                       >
-                        {i + 1}
-                      </p>
-                    ))}
+                        {testData?.optionA &&
+                          (isLoading ? (
+                            <Skeleton />
+                          ) : (
+                            <FormControlLabel
+                              value='1'
+                              control={
+                                <Radio
+                                  checked={check1}
+                                  onChange={(e) => handleAnswerCheck(e, "A")}
+                                />
+                              }
+                              label={testData?.optionA}
+                            />
+                          ))}
+                        {testData?.optionB &&
+                          (isLoading ? (
+                            <Skeleton />
+                          ) : (
+                            <FormControlLabel
+                              value='2'
+                              control={
+                                <Radio
+                                  checked={check2}
+                                  onChange={(e) => handleAnswerCheck(e, "B")}
+                                />
+                              }
+                              label={testData?.optionB}
+                            />
+                          ))}
+                        {testData?.optionC &&
+                          (isLoading ? (
+                            <Skeleton />
+                          ) : (
+                            <FormControlLabel
+                              value='3'
+                              control={
+                                <Radio
+                                  checked={check3}
+                                  onChange={(e) => handleAnswerCheck(e, "C")}
+                                />
+                              }
+                              label={testData?.optionC}
+                            />
+                          ))}
+                        {testData?.optionD &&
+                          (isLoading ? (
+                            <Skeleton />
+                          ) : (
+                            <FormControlLabel
+                              value='4'
+                              control={
+                                <Radio
+                                  checked={check4}
+                                  onChange={(e) => handleAnswerCheck(e, "D")}
+                                />
+                              }
+                              label={testData?.optionD}
+                            />
+                          ))}
+                      </RadioGroup>
+                    )}
+                  </div>{" "}
+                  <div className='prev_next_btn noselect'>
+                    <Row>
+                      <Col md={6} xs={6}>
+                        {questionNumber > "1" ? (
+                          <button
+                            className='back_button'
+                            onClick={() => handlePrevQuestion()}
+                            disabled={!testData?.prev_module}
+                          >
+                            {t("coursesPage.coursesModulePage.button.1")}
+                          </button>
+                        ) : (
+                          " "
+                        )}
+                      </Col>
+
+                      <Col md={6} xs={6} className='text-right'>
+                        {countData?.total_career_que === questionNumber ? (
+                          <button
+                            className='next_button'
+                            onClick={() => handleFinishQuestion()}
+                          >
+                            {t("coursesPage.coursesModulePage.button.2")}
+                          </button>
+                        ) : (
+                          <button
+                            className='next_button'
+                            onClick={() => handleNextQuestion()}
+                          >
+                            {t("coursesPage.coursesModulePage.button.3")}
+                          </button>
+                        )}
+                      </Col>
+                    </Row>
                   </div>
-                </div>
-                <div className='ans_not noselect'>
-                  <ul>
-                    <li>
-                      <span className='dotte1'></span>{" "}
-                      {t("successCareerTestPage.other.2")}
-                    </li>
-                    <li>
-                      <span className='dotte2'></span>{" "}
-                      {t("successCareerTestPage.other.3")}
-                    </li>
-                  </ul>
-                </div>
-              </Col>
-            </Row>
-          </>
-        )}
-      </Container>
-      <Footer loginPage={false} />
-    </div>
+                </Col>
+                <Col md={4} xs={12}>
+                  <div className='que_status noselect'>
+                    <h2>{t("successCareerTestPage.heading.2")}</h2>
+                    <div className='que_num'>
+                      {[...Array(countData?.total_career_que).keys()].map(
+                        (i) => (
+                          <p
+                            id={
+                              i + 1 <= countData?.user_career_test_count
+                                ? "col_gre"
+                                : "col_grey"
+                            }
+                          >
+                            {i + 1}
+                          </p>
+                        ),
+                      )}
+                    </div>
+                  </div>
+                  <div className='ans_not noselect'>
+                    <ul>
+                      <li>
+                        <span className='dotte1'></span>{" "}
+                        {t("successCareerTestPage.other.2")}
+                      </li>
+                      <li>
+                        <span className='dotte2'></span>{" "}
+                        {t("successCareerTestPage.other.3")}
+                      </li>
+                    </ul>
+                  </div>
+                </Col>
+              </Row>
+            </>
+          )}
+        </Container>
+        <Footer loginPage={false} />
+      </div>
+    </>
   );
 }
 

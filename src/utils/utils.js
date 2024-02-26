@@ -7,6 +7,16 @@ import { routingConstants } from "./constants";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import banner1 from "../assets/images/collegeBanner/top-college-banner.png";
+import banner2 from "../assets/images/collegeBanner/top-college-banner(1).png";
+import banner3 from "../assets/images/collegeBanner/top-college-banner(2).png";
+import banner4 from "../assets/images/collegeBanner/top-college-banner(3).png";
+import banner5 from "../assets/images/collegeBanner/top-college-banner(4).png";
+import banner6 from "../assets/images/collegeBanner/top-college-banner(5).png";
+import banner7 from "../assets/images/collegeBanner/top-college-banner(6).png";
+import banner8 from "../assets/images/collegeBanner/top-college-banner(7).png";
+import banner9 from "../assets/images/collegeBanner/top-college-banner(8).png";
+import banner10 from "../assets/images/collegeBanner/top-college-banner(9).png";
 
 export const toasterConfig = {
   position: "top-right",
@@ -586,3 +596,16 @@ export function PageNavigationListener() {
 
   return null;
 }
+
+export const dummyCollegeAndSchoolPhotos = [
+  banner1,
+  banner2,
+  banner3,
+  banner4,
+  banner5,
+  banner6,
+  banner7,
+  banner8,
+  banner9,
+  banner10,
+];

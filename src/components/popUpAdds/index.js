@@ -16,7 +16,7 @@ const PopUpAdds = () => {
     sessionStorage.setItem("leftAddClosed", true);
     setTimeout(() => {
       setRightAddIsVisible(true); // Show right add when left add is closed
-    }, 10000);
+    }, 45000);
   };
   const rightHandleClose = () => {
     setRightAddIsVisible(false);
