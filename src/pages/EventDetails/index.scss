@@ -1088,10 +1088,11 @@ button.book_event_btn:hover {
 
 .ModalBodyBoxEvent {
   position: absolute;
-  background-color: #efefef;
-  padding: 4px;
+  background: url(../../assets/images/modalbgwhatsapp.jpg) no-repeat center;
+  padding: 50px 50px 0;
   right: 0;
-  width: 35%;
+  width: 100%;
+  max-width: 600px;
   margin-left: auto;
   margin-right: auto;
   text-align: center;
@@ -1099,14 +1100,23 @@ button.book_event_btn:hover {
   .ModalHeadEvent {
     // margin-top: 0px;
     // margin-bottom: 0px;
-    background-color: #d62c79;
     color: white;
-    height: 75px;
     display: flex;
     justify-content: center;
     align-items: center;
+    span {
+      font-weight: 600;
+    }
+    h3 {
+      font-weight: 600 !important;
+      color: #fff;
+    }
   }
   .ModalMiddleEvent {
+    h3 {
+      color: #fff;
+      font-weight: 600 !important;
+    }
     h6 {
       margin: 10px 0;
       color: #666;
@@ -1120,16 +1130,28 @@ button.book_event_btn:hover {
 
 .ModalBodyBoxEvent2 {
   position: absolute;
-  width: 400;
-  background-color: #efefef;
+  // width: 400;
+  // background-color: #efefef;
   // boxShadow: theme.shadows[5],
-  padding: 4px;
+  padding: 120px 20px;
   // outline: "none"
   // margin-top: 50px;
   // margin-bottom: 50px;
-  height: 56%;
-  width: 60%;
+  width: 100%;
+  max-width: 600px;
   text-align: center;
+  background: url(../../assets/images/modalbgwhatsapp.jpg) no-repeat center
+    center;
+  h3 {
+    color: #fff;
+    font-weight: 600;
+    text-shadow: 0px 15px 20px rgb(0 0 0 / 38%);
+    padding-bottom: 20px;
+    padding-top: 10px;
+  }
+  p {
+    color: #fff;
+  }
 }
 .ModalBoxEvent {
   top: 25%;
@@ -1152,10 +1174,16 @@ button.book_event_btn:hover {
 }
 
 .ModalButtonEvent {
-  color: white;
-  background-color: #d62c79;
-  // margin-top: 20px;
-  // margin-bottom: 20px;
+  color: #d62c79;
+  background-color: #fff;
+  padding: 12px 15px;
+  text-transform: capitalize;
+  margin-top: 15px;
+  box-shadow: 0 5px 15px 0 #0003;
+}
+.ModalButtonEvent:hover {
+  background: #020202;
+  color: #fff;
 }
 .ModalLinkEvent a {
   color: #d62c79 !important;
