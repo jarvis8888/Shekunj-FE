@@ -72,8 +72,7 @@
 
   color: #323232;
 
-
-  font-size: .875rem;
+  font-size: 0.875rem;
   line-height: 1.3125rem;
   margin-top: 0;
   margin-bottom: 0;
@@ -84,7 +83,7 @@
 }
 
 .career_box h3 {
-  font-size: .875rem;
+  font-size: 0.875rem;
   line-height: 1.3125rem;
   margin-top: 0;
   margin-bottom: 5px;
@@ -92,7 +91,6 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-
 }
 
 .career_box p {
@@ -174,7 +172,6 @@
 }
 
 @media screen and (max-device-width: 667px) {
-
   .career_box {
     height: auto;
     box-shadow: none;
@@ -258,7 +255,6 @@
   }
 }
 
-
 .filter_side {
   display: none;
 }
@@ -315,7 +311,7 @@
 .deatil_box h5 {
   background: #fff;
   padding-bottom: 10px;
-  border-bottom: 1px solid #DFDFDF;
+  border-bottom: 1px solid #dfdfdf;
   margin: 0px;
   display: block;
 }
@@ -328,7 +324,7 @@
 .deatil_box_right h5 {
   background: #fff;
   padding-bottom: 18px;
-  border-bottom: 1px solid #DFDFDF;
+  border-bottom: 1px solid #dfdfdf;
   margin: 0px;
   display: block;
 }
@@ -355,13 +351,15 @@
   margin-top: -87px;
   margin-left: 30px;
 }
-.college_logo_img{
+.college_logo_img {
   max-width: 100%;
   padding: 10px;
   border-radius: 5px;
   border: 1px solid #d1d1d1;
+  position: relative;
+  z-index: 9;
 }
-.coverMainSecCollege{
+.coverMainSecCollege {
   padding-top: 60px;
 }
 .college_detail_cover {
@@ -369,9 +367,9 @@
   height: 300px;
   display: block;
 }
-.college_detail_cover_img{
+.college_detail_cover_img {
   width: 100%;
   background-size: cover;
   height: 100%;
+  filter: blur(2.5px);
 }
-

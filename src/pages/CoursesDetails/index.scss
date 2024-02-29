@@ -69,14 +69,14 @@ section.CouDtl_ban .row {
   margin: 0;
 }
 .CouDtl_con {
-  margin-top: 67px;
+  margin-top: 40px;
 }
 .CouDtl_con h4 {
   font-family: "Poppins", sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 30px;
-  line-height: 18px;
+  // line-height: 18px;
   color: #4f4f4f;
 }
 .CouDtl_con h4 span {
@@ -329,6 +329,11 @@ section.CouDtl_ban .row {
   margin-bottom: 20px;
   height: 120px;
 }
+.features_box img {
+  width: 100%;
+  max-width: 30px;
+  min-width: 30px;
+}
 .features_box h6 {
   font-family: "Poppins", sans-serif;
   font-style: normal;
@@ -436,8 +441,8 @@ section.CouDtl_ban .row {
     max-width: 100%;
   }
   .CouDtl_con h4 {
-    font-size: 25px;
-    line-height: 16px;
+    font-size: 21px;
+    // line-height: 16px;
     margin-bottom: 35px;
   }
   .sec2_right .btn.btn_str_Cor,

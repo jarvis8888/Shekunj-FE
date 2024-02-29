@@ -784,6 +784,8 @@ img {
   padding: 10px;
   border-radius: 5px;
   border: 1px solid #d1d1d1;
+  position: relative;
+  z-index: 9;
 }
 
 .coverMainSecCollege {
@@ -800,6 +802,7 @@ img {
   width: 100%;
   background-size: cover;
   height: 100%;
+  filter: blur(2.5px);
 }
 
 .card-img-top {
@@ -1086,6 +1089,35 @@ button.book_event_btn:hover {
 //   box-sizing: border-box;
 // }
 
+.ModalHeadEvent {
+  animation: fadein 2s ease-in;
+}
+@-webkit-keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@-moz-keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 .ModalBodyBoxEvent {
   position: absolute;
   background: url(../../assets/images/modalbgwhatsapp.jpg) no-repeat center;
@@ -1113,6 +1145,9 @@ button.book_event_btn:hover {
     }
   }
   .ModalMiddleEvent {
+    img {
+      animation: fadein 2s ease-in;
+    }
     h3 {
       color: #fff;
       font-weight: 600 !important;
