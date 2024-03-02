@@ -12,12 +12,28 @@
 //   background: linear-gradient(to right, #b91d73, #f953c6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 //   padding-top: 60px;
 // }
+.sk-mocktest-content {
+  padding: 20px;
+  h6 {
+    white-space: pre-line;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 18px;
+    line-height: 26px;
+    margin-bottom: 10px;
+  }
+}
 .sk-mtask-box {
   border: 1px solid #efefef;
   border-radius: 8px;
-  margin-bottom: 30px;
+  margin-bottom: 60px;
   overflow: hidden;
   transition: 0.3s;
+  position: relative;
+  height: calc(100% - 30px);
 }
 .sk-ad-title {
   display: inline-block;
@@ -33,6 +49,7 @@
   align-items: start;
   height: calc(100% - 30px);
   padding: 15px;
+  margin-bottom: 30px;
 }
 .sk-mtask-box:hover {
   transform: scale(1.03);
@@ -974,6 +991,8 @@ p.sucess_first_p {
   text-align: center;
   box-shadow: none;
   transition: 0.3s;
+  position: absolute;
+  bottom: 20px;
 }
 .sk-mtask-box .actions Button a {
   color: #fff;

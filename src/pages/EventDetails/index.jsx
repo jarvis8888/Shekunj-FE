@@ -35,6 +35,8 @@ import onlineicon from "../../assets/images/onlineicon.svg";
 import offlineicon from "../../assets/images/offline-icon.svg";
 import checkicon from "../../assets/icons/svgs/checkicongreen.svg";
 import wpimages from "../../assets/images/mobileFrame.png";
+import messagehello from "../../assets/images/messagehello.png";
+import messagehi from "../../assets/images/messagehi.png";
 import { getAllEvents, singleEventDetails } from "../../store/events/action";
 import { getUserProfile } from "../../store/auth/action";
 import "../HomePage/index.scss";
@@ -258,8 +260,8 @@ const EventDetails = () => {
   const handleClose = () => {
     setOpen(false);
   };
-
   const whatsappUrl = eventsDetails?.whatsapp_group_link?.whatsapp_link;
+
   const whatsAppModal = () => {
     if (eventsDetails && eventsDetails?.whatsapp_group_link?.join_group) {
       return (
@@ -287,8 +289,14 @@ const EventDetails = () => {
                   Join WhatsApps Group
                 </Button>
               </a>
-              <div>
+              <div className='sk-wp-screen'>
+                <span className='hello-msg'>
+                  <img src={messagehello} alt='msg' />
+                </span>
                 <img src={wpimages} alt='wpimages' />
+                <span className='hi-msg'>
+                  <img src={messagehi} alt='msg1' />
+                </span>
               </div>
               {/* <div className='ModalLinkEvent'>
                 <a href='/events/all'>

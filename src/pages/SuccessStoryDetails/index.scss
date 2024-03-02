@@ -557,6 +557,8 @@
   padding: 10px;
   border-radius: 5px;
   border: 1px solid #d1d1d1;
+  position: relative;
+  z-index: 9;
 }
 .coverMainSecCollege {
   padding-top: 60px;
@@ -570,6 +572,7 @@
   width: 100%;
   background-size: cover;
   height: 100%;
+  filter: blur(2.5px);
 }
 .card-img-top {
   margin-bottom: 15px;

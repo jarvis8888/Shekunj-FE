@@ -457,32 +457,28 @@ function MockTest() {
                 image={gb?.image}
                 alt='image'
               />
-              <CardContent>
-                <Typography
-                  variant='h6'
-                  className='guidanceOptionTitle limited-text-mock-test'
-                  fullWidth
-                >
+              <div className='sk-mocktest-content'>
+                <Typography variant='h6' className='' fullWidth>
                   {gb?.name}
                 </Typography>
-              </CardContent>
-              <Typography
-                sx={{ mb: 1.5 }}
-                className='guidanceOptionTitle2'
-                color='text.secondary'
-                fullWidth
-              >
-                {t(`mockTest.total_time`)}: {gb?.career_test_time}
-              </Typography>
-              <CardActions className='actions'>
-                <Button
-                  size='small'
-                  variant='contained'
-                  href={gb && gb.form_link}
+                <Typography
+                  sx={{ mb: 1.5 }}
+                  className=''
+                  color='text.secondary'
+                  fullWidth
                 >
-                  {t(`mockTest.take_test`)}
-                </Button>
-              </CardActions>
+                  {t(`mockTest.total_time`)}: {gb?.career_test_time}
+                </Typography>
+                <CardActions className='actions p-0 m-0'>
+                  <Button
+                    size='small'
+                    variant='contained'
+                    href={gb && gb.form_link}
+                  >
+                    {t(`mockTest.take_test`)}
+                  </Button>
+                </CardActions>
+              </div>
             </Link>
           </div>
         </div>
