@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { Footer, Header, SEO, SocialShare } from "../../components";
 import { Link, useParams } from "react-router-dom";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { routingConstants } from "../../utils/constants";
 import { singleBlogDetails } from "../../store/blogs/action";
 import "../HomePage/index.scss";
@@ -35,6 +35,7 @@ import hash from "../../assets/images/hashtag.svg";
 
 const BlogDetails = () => {
   const history = useHistory();
+  const location = useLocation()
   const { blogs } = useSelector((state) => state.blogsReducer);
   const dispatch = useDispatch();
 
@@ -276,6 +277,15 @@ const BlogDetails = () => {
   const namesArray = blogCategories?.map((category) => category.name);
 
   const getCategoryColor = assignColorToCategory(namesArray);
+  
+  useEffect(() => {
+    const localLanguage = localStorage.getItem("i18nextLng");
+    const { pathname, search } = location;
+    const updatedSearch = new URLSearchParams(search);
+    updatedSearch.set("lang", localLanguage);
+    const newUrl = `${pathname}?${updatedSearch.toString()}`;
+    history.push(newUrl);
+  }, [lan]);
 
   return (
     <>
@@ -459,4 +469,4 @@ const BlogDetails = () => {
   );
 };
 
-export default withHeaderFooter(BlogDetails);
+export default withHeaderFooter(BlogDetails, true);

@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Row, Col } from "react-bootstrap";
 import { toast } from "react-toastify";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { useParams, Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import Timer from "react-compound-timer";
@@ -86,6 +86,7 @@ function MockTestDetail() {
   const { id } = useParams();
 
   const history = useHistory();
+  const location = useLocation();
   const dispatch = useDispatch();
   const detect = useDeviceDetect();
   // eslint-disable-next-line no-unused-vars
@@ -496,6 +497,15 @@ function MockTestDetail() {
   }, [dispatch, guidanceCategory, lan]);
   const currentUrl = window.location.href;
 
+  useEffect(() => {
+    const localLanguage = localStorage.getItem("i18nextLng");
+    const { pathname, search } = location;
+    const updatedSearch = new URLSearchParams(search);
+    updatedSearch.set("lang", localLanguage);
+    const newUrl = `${pathname}?${updatedSearch.toString()}`;
+    history.push(newUrl);
+  }, [lan]);
+
   return (
     <>
       <SEO
@@ -515,7 +525,7 @@ function MockTestDetail() {
         }
       />
       <div>
-        <Header loginPage={true} page='guidance' subPage='careerTest' />
+        <Header loginPage={true} page='guidance' subPage='careerTest' urlLangShow={true} />
         <Container>
           <div className='maindiv_prog setmain noselect'>
             <div className='select_test' key={guidanceCategory?.id}>

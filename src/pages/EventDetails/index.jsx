@@ -10,7 +10,7 @@ import {
   SEO,
   SocialShare,
 } from "../../components";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useLocation } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import * as Yup from "yup";
 import Moment from "react-moment";
@@ -70,16 +70,14 @@ const EventDetails = () => {
   const { registerData } = useSelector((state) => state.eventsReducer);
   const detect = useDeviceDetect();
   const dispatch = useDispatch();
+  const location = useLocation()
 
   //states
   const [eventsDetails, setEventsDetails] = useState();
   const [eventDetailsBoxAds, setEventDetailsBoxAds] = useState([]);
-  console.log("🚀 ~ EventDetails ~ eventDetailsBoxAds:", eventDetailsBoxAds);
+
   const [eventDetailsBannerAds, setEventDetailsBannerAds] = useState([]);
-  console.log(
-    "🚀 ~ EventDetails ~ eventDetailsBannerAds:",
-    eventDetailsBannerAds,
-  );
+  
   const [loading, setLoading] = useState(false);
   const [extraInfo, setExtraInfo] = useState([]);
   const [stopPosition, setStopPosition] = useState(0);
@@ -215,7 +213,7 @@ const EventDetails = () => {
         if (res?.message === "You are already registered for this event") {
           toast.warn(res.message, toasterConfig);
           resetForm();
-          history.push(routingConstants.MORE_EVENT);
+          history.push(`${routingConstants.MORE_EVENT}/all`);
         } else {
           localStorage.setItem("event_data", JSON.stringify(data));
           toast.success(res.message, toasterConfig);
@@ -389,6 +387,15 @@ const EventDetails = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  useEffect(() => {
+    const localLanguage = localStorage.getItem("i18nextLng");
+    const { pathname, search } = location;
+    const updatedSearch = new URLSearchParams(search);
+    updatedSearch.set("lang", localLanguage);
+    const newUrl = `${pathname}?${updatedSearch.toString()}`;
+    history.push(newUrl);
+  }, [lan]);
 
   return (
     <>
@@ -774,4 +781,4 @@ const EventDetails = () => {
   );
 };
 
-export default withHeaderFooter(EventDetails);
+export default withHeaderFooter(EventDetails, true);

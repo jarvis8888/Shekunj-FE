@@ -24,7 +24,8 @@ const useStyles = makeStyles({
   },
 });
 
-function ChangeLanguageButton() {
+function ChangeLanguageButton(props) {
+  const { urlLangShow } = props;
   const dispatch = useDispatch();
   const history = useHistory();
   const { search } = useLocation();
@@ -71,25 +72,25 @@ function ChangeLanguageButton() {
         localStorage.setItem("i18nextLng", localLanguage);
         setLanguage(localLanguage);
         dispatch(translation(localLanguage));
-        const { pathname, search } = location;
-        const updatedSearch = new URLSearchParams(search);
-        updatedSearch.set("lang", localLanguage);
+        // const { pathname, search } = location;
+        // const updatedSearch = new URLSearchParams(search);
+        // updatedSearch.set("lang", localLanguage);
 
-        const newUrl = `${pathname}?${updatedSearch.toString()}`;
+        // const newUrl = `${pathname}?${updatedSearch.toString()}`;
 
-        history.push(newUrl);
+        // history.push(newUrl);
       } else {
         i18n.changeLanguage("en");
         setLanguage("en");
         localStorage.setItem("i18nextLng", "en");
-        const { pathname, search } = location;
+        // const { pathname, search } = location;
 
-        const updatedSearch = new URLSearchParams(search);
-        updatedSearch.set("lang", "en");
+        // const updatedSearch = new URLSearchParams(search);
+        // updatedSearch.set("lang", "en");
 
-        const newUrl = `${pathname}?${updatedSearch.toString()}`;
+        // const newUrl = `${pathname}?${updatedSearch.toString()}`;
 
-        history.push(newUrl);
+        // history.push(newUrl);
       }
     }
   }, [lan]);
@@ -99,14 +100,13 @@ function ChangeLanguageButton() {
     setLanguage(lang);
     setAnchorEl(null);
     dispatch(translation(lang));
-    const { pathname, search } = location;
-
-    const updatedSearch = new URLSearchParams(search);
-    updatedSearch.set("lang", lang);
-
-    const newUrl = `${pathname}?${updatedSearch.toString()}`;
-
-    history.push(newUrl);
+    if (urlLangShow) {
+      const { pathname, search } = location;
+      const updatedSearch = new URLSearchParams(search);
+      updatedSearch.set("lang", lang);
+      const newUrl = `${pathname}?${updatedSearch.toString()}`;
+      history.push(newUrl);
+    }
   };
 
   const handleClose = () => {
