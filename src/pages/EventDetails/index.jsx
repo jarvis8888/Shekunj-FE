@@ -274,13 +274,13 @@ const EventDetails = () => {
         >
           <div className='ModalBodyBoxEvent'>
             <CloseIcon className='ModalClose' onClick={handleClose} />
-            <div className='ModalHeadEvent'>
-              <Typography variant='h6' id='modal-title'>
-                All the communication will be done on the{" "}
-                <span>WhatsApp Group.</span>
-              </Typography>
-            </div>
-            <div className='ModalMiddleEvent'>
+            <div className='animatedHeading'>
+              <div className='ModalHeadEvent'>
+                <Typography variant='h6' id='modal-title'>
+                  All the communication will be done on the{" "}
+                  <span>WhatsApp Group.</span>
+                </Typography>
+              </div>
               <a href={whatsappUrl} target='_blank'>
                 <Button
                   variant='contained'
@@ -289,11 +289,17 @@ const EventDetails = () => {
                   Join WhatsApps Group
                 </Button>
               </a>
+            </div>
+            <div className='ModalMiddleEvent'>
               <div className='sk-wp-screen'>
                 <span className='hello-msg'>
                   <img src={messagehello} alt='msg' />
                 </span>
-                <img src={wpimages} alt='wpimages' />
+                <img
+                  src={wpimages}
+                  alt='wpimages'
+                  className='animteBottomimg'
+                />
                 <span className='hi-msg'>
                   <img src={messagehi} alt='msg1' />
                 </span>
