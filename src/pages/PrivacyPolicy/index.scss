@@ -1,80 +1,83 @@
 .priva_policy {
-    width: 100%;
-    height: 263px;
-    background: linear-gradient(
-96.72deg
-, #FAD0C4 6.25%, #E4A8E4 103.39%);
-    display: flex;
-    align-items: center;
+  width: 100%;
+  height: 263px;
+  background: linear-gradient(96.72deg, #fad0c4 6.25%, #e4a8e4 103.39%);
+  display: flex;
+  align-items: center;
 }
 .priva_policy h2 {
-    font-family: "Poppins", sans-serif;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 60px;
-    line-height: 80px;
-    color: #FFFFFF;
+  font-family: "Poppins", sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 60px;
+  line-height: 80px;
+  color: #ffffff;
 }
 .priva_policy_content h3 {
-    font-family: "Poppins", sans-serif;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 24px;
-    line-height: 32px;
-    color: #333333;
-    margin-bottom: 24px;
+  font-family: "Poppins", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 32px;
+  color: #333333;
+  margin-bottom: 24px;
 }
 .priva_policy_content p {
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 24px;
-    color: #828282;
-    margin-bottom: 24px;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+  color: #828282;
+  margin-bottom: 24px;
 }
 .priva_policy_content hr {
-    border: 1px solid #E3E4EB;
-    margin-top: 35px;
-    margin-bottom: 24px;
+  border: 1px solid #e3e4eb;
+  margin-top: 35px;
+  margin-bottom: 24px;
 }
 .priva_policy_content {
-    padding-top: 105px;
-    padding-bottom: 70px;
+  padding-top: 105px;
+  padding-bottom: 70px;
 }
 .priva_policy_content a {
-    color: rgb(236 73 138);
+  color: rgb(236 73 138);
 }
 .priva_policy_content ul li {
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 24px;
-    color: #828282;
-    padding-bottom: 25px;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+  color: #828282;
+  padding-bottom: 25px;
+}
+.priva_policy_content ol li {
+  color: #828282;
+  padding-bottom: 20px;
+  line-height: 24px;
 }
 .priva_policy_content p.para_bg {
-    background: #F1BFD1;
-    padding: 20px 23px;
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: 300;
-    font-size: 14px;
-    line-height: 21px;
-    color: #000000;
+  background: #f1bfd1;
+  padding: 20px 23px;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 21px;
+  color: #000000;
 }
 
-@media screen and (min-device-width: 50px) and (max-device-width: 767px) { 
-    .priva_policy h2 {
-        font-size: 35px;
-    }
+@media screen and (min-device-width: 50px) and (max-device-width: 767px) {
+  .priva_policy h2 {
+    font-size: 35px;
+  }
 
-    .priva_policy_content {
-        padding: 50px 0;
-    }
+  .priva_policy_content {
+    padding: 50px 0;
+  }
 
-    .priva_policy {
-        height: 170px;
-    }
+  .priva_policy {
+    height: 170px;
+  }
 }

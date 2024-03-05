@@ -1089,10 +1089,11 @@ button.book_event_btn:hover {
 //   box-sizing: border-box;
 // }
 
-.ModalHeadEvent {
-  animation: fadein 2s ease-in;
+.animatedHeading {
+  animation: fadeinHeading 1.5s ease-in;
 }
-@-webkit-keyframes fadein {
+
+@keyframes fadeinHeading {
   from {
     opacity: 0;
   }
@@ -1101,23 +1102,6 @@ button.book_event_btn:hover {
   }
 }
 
-@-moz-keyframes fadein {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes fadein {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
 .ModalBodyBoxEvent {
   position: absolute;
   background: url(../../assets/images/modalbgwhatsapp.jpg) no-repeat center;
@@ -1146,7 +1130,8 @@ button.book_event_btn:hover {
   }
   .ModalMiddleEvent {
     img {
-      animation: fadein 2s ease-in;
+      margin: auto;
+      display: block;
     }
     h3 {
       color: #fff;
@@ -1162,7 +1147,54 @@ button.book_event_btn:hover {
     }
   }
 }
+.animteBottomimg {
+  animation: fadein 4s ease-in;
+}
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.sk-wp-screen {
+  position: relative;
+}
 
+.hello-msg {
+  left: 15%;
+  position: absolute;
+  top: 50%;
+  transform: translate(10%, 10px);
+  animation: fadeinhello 6s ease-in;
+}
+
+@keyframes fadeinhello {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.hi-msg {
+  position: absolute;
+  display: inline-block;
+  top: 40%;
+  right: 20%;
+  transform: translate(10%, 10%);
+  animation: fadeinhi 12s ease-in;
+}
+@keyframes fadeinhi {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 .ModalBodyBoxEvent2 {
   position: absolute;
   // width: 400;

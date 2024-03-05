@@ -749,9 +749,9 @@
         "1": "Personal information",
         "2": "Means any information related to an identified or identifiable person including common identifiers like name, identification number, location details, online identifier or one or more factors specific to the physical,psychological, genetic,mental, economic, cultural or social identity of that person and any other information that is so categorized by applicable laws. We collect information about you and/or of your usage to provide better services and offerings. The Personal Information that we collect, and how we collect it, depends how you interact and connect with us. We collect the following categories of Personal Information in the following ways"
       },
-      "2": "Many of our services require you to register/sign up for an account on shekunj.com. When you do, we will ask for personal information, such as, but not limited to your name, email address and telephone number to create/update your account.",
-      "3": "• To provide you additional services, we may collect your profile information such as, but not limited to educational background, work experience, date of birth.",
-      "4": "• We collect information about the services that you use and how you use them such as, but not limited to log information and location information.",
+      "2": "To facilitate your experience on our platform, we request personal details such as your name, email address, and telephone number when you register or sign up on Shekunj.com.",
+      "3": "In our commitment to providing comprehensive services, we may gather additional profile information, including educational background, work experience, and date of birth.",
+      "4": "We gather insights into the services you use and how you use them, encompassing log information and location details.",
       "5": "We may collect your personal information such as but not limited to student profile, student details and other related ",
       "6": "We may also collect information relating to your caste and information about whether you are eligible for any affirmative action programmes or policies, if you opt to provide such information;",
       "7": "When you communicate with us or use the Platform to communicate with other Users (such as partners, franchises), we collect information about your communication and any information you choose to provide;",
@@ -769,7 +769,8 @@
       "19": "We makes no representations or warranties regarding how your information is stored or used on third-party servers. We recommend that you review the applicable privacy statements and policies of each third-party site linked from the Platform to determine their use of your personal information.",
       "20": "We do not store any account related information or any credit / debit card details. We shall not be liable for any loss or damage sustained by Users as a result of any disclosure (inadvertent or otherwise) of any information concerning the User's account, credit cards or debit cards in the course of any online transactions or payments made for any products and/or services offered through the Platform.",
       "21": "In case any Personal Information is shared by you, which is not requested by us during registration, (whether mandatorily or optionally), We will not be liable for any information security breach or disclosure in relation to such information.",
-      "22": "If you have any questions regarding this Privacy Policy or the protection of your Personal Information, please contact us on support@octahire.com. You can also write to us to suggest changes in Privacy Policy"
+      "22": "If you have any questions regarding this Privacy Policy or the protection of your Personal Information, please contact us on support@octahire.com. You can also write to us to suggest changes in Privacy Policy",
+      "23": "When you engage with Shekunj.com through its application or platform, communicating with other members (such as advertisers, colleges/institutes, etc.), we collect information related to your communication and any additional details you choose to share."
     }
   },
   "googleLoginComponent": {
