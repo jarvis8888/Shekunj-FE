@@ -22,10 +22,10 @@ const PrivacyPolicy = () => {
         <Container>
           <h3>{t("privacyPolicyPage.heading.2")}</h3>
           <p>
-            The debugger for the browser must be activated in order to debug the
-            code. Built-in debuggers may be switched on and off, requiring the
-            user to report faults. The remaining section of the code should stop
-            execution before moving on to the next line while debugging.
+            At Shekunj, our primary goal is to educate and empower women. We
+            firmly believe that an educated woman can excel in her chosen field,
+            and an empowered woman can inspire and uplift others. To achieve
+            this vision, we offer various free courses spanning various domains.
           </p>
 
           <h3>Content </h3>

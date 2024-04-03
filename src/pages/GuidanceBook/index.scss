@@ -223,6 +223,62 @@
   background-repeat: no-repeat;
   color: #fff !important;
 }
+.bookCpopup {
+  background: url("../../assets/images/bookCpopup.png") no-repeat top center;
+  background-size: cover;
+  padding: 50px;
+}
+.sk-open-btn .sk-btn-submit {
+  background: #202020;
+  color: #fff;
+  border-radius: 4px;
+  width: 100%;
+  max-width: 156px;
+  transition: 0.5s;
+}
+.sk-open-btn {
+  text-align: center;
+}
+
+.sk-open-btn .sk-btn-submit {
+  background: #222;
+  color: #fff;
+  border-radius: 4px;
+  width: 100%;
+  max-width: 156px;
+  transition: 0.5s;
+}
+
+.sk-open-btn .sk-btn-submit:hover {
+  background: #fff;
+  color: #222;
+}
+
+.sk-open-btn {
+  text-align: center;
+}
+
+.videoBox {
+  text-align: center;
+}
+
+.BookContentBox {
+  text-align: center;
+}
+
+.BookContentBox h3 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.BookContentBox p {
+  color: #fff;
+}
+
+.BookContentBox img {
+  padding-bottom: 20px;
+}
 
 .guidance_book_form
   svg.MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium.MuiSelect-icon.MuiSelect-iconOutlined.css-1636szt {
@@ -459,7 +515,8 @@ img.edit_icon_guidance {
   margin: auto;
 }
 
- .sk-bookTab-sec .sk-inline-field input,  .sk-bookTab-sec .sk-inline-field .sk-custom-select{
+.sk-bookTab-sec .sk-inline-field input,
+.sk-bookTab-sec .sk-inline-field .sk-custom-select {
   background: rgba(255, 255, 255, 0.3);
   border: 1.5px solid #fff;
   padding: 12px 15px 12px 40px;
