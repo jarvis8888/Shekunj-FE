@@ -22,117 +22,93 @@ const PrivacyPolicy = () => {
         <Container>
           <h3>{t("privacyPolicyPage.heading.2")}</h3>
           <p>
-            Making women more educated and empowered is the main aim of Shekunj.
-            An educated woman can do wonders in her field and an empowered woman
-            can lead and empower others. By this thought we have started this
-            platform for acheive this aim we have added multiple courses of
-            different domains, The content includes but not limited only to
-            images, Texts, Test papers, Videos of these courses has been added
-            from the multiple websites/Blogs/Pages and other resources include
-            but not limited to Microsoft Learn, Google etc. We are not charging
-            anything for the learning and certification. We also not claim that
-            the learning content belongs to us.
+            The debugger for the browser must be activated in order to debug the
+            code. Built-in debuggers may be switched on and off, requiring the
+            user to report faults. The remaining section of the code should stop
+            execution before moving on to the next line while debugging.
           </p>
 
           <h3>Content </h3>
 
           <p>
-            Our platform model means we do not review or edit the content for
-            legal issues, and we are not in a position to determine the legality
-            of content. We do not exercise any editorial control over the
-            content that is available on the platform and, as such, do not
-            guarantee in any manner the reliability, validity, accuracy, or
-            truthfulness of the content. If you access content, you rely on any
-            information provided by an counsellor at your own risk. The content
-            includes but not limited only to images, Texts, Test papers, Videos
-            of these courses has been added from the multiple
-            websites/Blogs/Pages and other resources include but not limited to
-            Microsoft Learn, Google, Infoedge , Freepik , shutter stock images
-            etc. We are not charging anything for the learning and
-            certification. We also not claim that the learning content belongs
-            to us.{" "}
+            Our platform operates on a model that refrains from reviewing or
+            editing content for legal compliance. We do not exert editorial
+            control, and thus cannot guarantee the content's reliability,
+            validity, accuracy, or truthfulness. Users accessing content do so
+            at their own risk. The content, encompassing images, texts, test
+            papers, and videos, is curated from reputable sources such as
+            Microsoft Learn, Google, Infoedge, Freepik, Shutterstock, and more.
+            Importantly, our learning resources are provided free of charge, and
+            we do not claim ownership of the content.
           </p>
 
           <h3>Sensitive information and other related </h3>
 
           <p>
-            If, By using the Services, you may be exposed to content that you
-            consider offensive, indecent, or objectionable. Shekunj.com has no
-            responsibility to keep such content from you and no liability for
-            your access or enrollment in any course or other content, to the
-            extent permissible under applicable law. This also applies to any
-            content relating to health, wellness, and physical exercise. You
-            acknowledge the inherent risks and dangers in the strenuous nature
-            of these types of content, and by accessing such content you choose
-            to assume those risks voluntarily, including risk of illness, bodily
-            injury, disability, or death. You assume full responsibility for the
-            choices you make before, during, and after your access to the
-            content.{" "}
+            While using our services, you may encounter content that some may
+            find offensive or objectionable. Shekunj.com holds no responsibility
+            for shielding users from such content, and users accept the
+            associated risks voluntarily. This extends to health, wellness, and
+            physical exercise-related content. Users are accountable for their
+            choices and assume risks, including illness, bodily injury,
+            disability, or death.
           </p>
 
           <p>
-            When you interact directly with a student or an instructor, you must
-            be careful about the types of personal information that you share.
-            While we restrict the types of information instructors may request
-            from students, we do not control what students and instructors do
-            with the information they obtain from other users on the platform.
-            You should not share your email or other personal information about
-            you for your safety.
+            Direct interactions with students or instructors require caution in
+            sharing personal information. While we restrict the information
+            instructors may request, we do not govern the actions of users with
+            acquired information. Users are advised against sharing personal
+            details for safety reasons. Shekunj.com is not involved in
+            instructor/counselor hiring and disclaims responsibility for
+            interactions between instructors and students, including disputes,
+            claims, losses, injuries, or damages.
           </p>
 
           <p>
-            We do not hire or employ instructors/counsellor nor are we
-            responsible or liable for any interactions involved between
-            instructors and students. We are not liable for disputes, claims,
-            losses, injuries, or damage of any kind that might arise out of or
-            relate to the conduct of instructors/counsellors or students.
-          </p>
-
-          <p>
-            When you use our Services, you will find links to other websites
-            that we don’t own or control. We are not responsible for the content
-            or any other aspect of these third-party sites, including their
-            collection of information about you. You should also read their
-            terms and conditions and privacy policies.
+            Users may encounter links to third-party websites not owned or
+            controlled by us when using our services. We disclaim responsibility
+            for the content and aspects of these sites, including data
+            collection practices. Users are encouraged to review the terms and
+            conditions and privacy policies of these third-party sites.
           </p>
 
           <h3>Trademarks and rights</h3>
 
           <p>
-            Our platforms and services are protected by copyright, trademark,
-            and other laws . Nothing gives you a right to use the Shekunj name
-            or any of the shekunj trademarks, logos, domain names, and other
-            distinctive brand features. Any feedback, comments, or suggestions
-            you may provide regarding Shekunj on our email address. You cannot
-            directly post it on social media and other public platform which can
-            create a negative image of our brand name. Shekunj has all the
-            rights to take action on it.
+            Our platforms and services are safeguarded by copyright, trademark,
+            and other laws. Users are not granted the right to use the Shekunj
+            name or trademarks without explicit permission. Feedback, comments,
+            or suggestions must be communicated via email and should not be
+            posted directly on social media or public platforms that may tarnish
+            the brand's image. Shekunj reserves the right to take appropriate
+            action in such cases.
           </p>
 
           <h3>Dispute Resolution </h3>
 
           <p>
-            We belive to live with happiness and we believe to solve the issues
-            by words but still If there’s a dispute, our Support Team is happy
-            to help resolve the issue. If that doesn't work and you live in
-            India, Then you can book an appointment for a small meet to solve
-            the issue.{" "}
+            We advocate a harmonious existence and believe in resolving issues
+            through dialogue. If disputes arise, our Support Team is available
+            to assist in resolution. In the event of an unsuccessful resolution,
+            individuals in India can schedule an appointment for a mediation
+            session to address the issue.
           </p>
 
           <h3>How to Contact Us </h3>
 
           <p>
-            The best way to get in touch with us is to contact our support team.
-            We’d love to hear your questions, concerns, and feedback about our
-            Services.{" "}
+            We welcome your inquiries, concerns, and feedback about our
+            Services. The most effective way to connect with us is through our
+            support team. Your questions will be met with the attention they
+            deserve.
           </p>
 
           <h3>Information collection </h3>
 
           <p>
-            We collect information about you or your usage to provide better
-            services to all of our users. We collect information in the
-            following ways:{" "}
+            At Shekunj.com, we prioritize enhancing our services for all users,
+            and to achieve this, we collect information in various ways:
           </p>
 
           <ul>
@@ -140,11 +116,12 @@ const PrivacyPolicy = () => {
 
             <li>{t("privacyPolicyPage.content.3")}</li>
 
-            <li>{t("privacyPolicyPage.content.2")}</li>
+            {/* <li>{t("privacyPolicyPage.content.2")}</li> */}
 
-            <li>{t("privacyPolicyPage.content.3")}</li>
+            {/* <li>{t("privacyPolicyPage.content.3")}</li> */}
 
             <li>{t("privacyPolicyPage.content.4")}</li>
+            <li>{t("privacyPolicyPage.content.23")}</li>
 
             {/* <li>{t("privacyPolicyPage.content.5")}</li>
 
@@ -161,298 +138,249 @@ const PrivacyPolicy = () => {
             <li>{t("privacyPolicyPage.content.11")}</li> */}
           </ul>
 
-          <p>
+          {/* <p>
             When you communicate with shekunj.com or its Application or use the
             shekunj.com platform to communicate with other Members (such as
             advertisers, colleges/ institutes, etc.), we collect information
             about your communication and any other additional information you
             choose to provide.{" "}
-          </p>
+          </p> */}
 
           <h3>Processing personal information</h3>
 
           <p>
-            Shekunj.com may process your Personal Information for the following
-            purposes:{" "}
+            At Shekunj.com, we engage in the processing of your Personal
+            Information for various purposes, ensuring a secure and enhanced
+            user experience. The key objectives include:
           </p>
 
-          <ul>
+          <ol>
             <li>
-              We use information collected from cookies and other technologies,
-              like pixel tags, to improve your user experience and the overall
-              quality of our services. When showing you tailored ads, we will
-              not associate an identifier from cookies or similar technologies
-              with sensitive categories, such as those based on race, religion,
-              sexual orientation or health.
+              Enhancing User Experience: We utilize data obtained from cookies
+              and advanced technologies like pixel tags to elevate your overall
+              user experience and optimize the quality of our services. When
+              presenting tailored advertisements, we strictly avoid associating
+              identifiers with sensitive categories such as race, religion,
+              sexual orientation, or health.
             </li>
             <li>
-              Our automated systems analyse your content to provide you
-              customised search results, recommendations and specific promotions
-              and offers{" "}
+              Tailored Recommendations: Our automated systems analyze your
+              content to offer personalized search results, recommendations, and
+              exclusive promotions tailored to your preferences.
             </li>
             <li>
-              Send alerts and newsletter(s) to you (Provided you subscribe to
-              the same. To unsubscribe, please visit your account settings)
+              Communication and Alerts: We send alerts and newsletters based on
+              your subscription preferences. To manage your subscriptions,
+              please visit your account settings.
             </li>
             <li>
-              Improving our website and its content to provide better features
-              and services{" "}
+              Website Improvement: Continuous enhancement of our website and its
+              content to deliver better features and services.
             </li>
             <li>
-              Conducting market research and surveys with the aim of improving
-              our products and services.
+              Market Research and Surveys: Conducting market research and
+              surveys to refine our products and services for an improved user
+              experience.
             </li>
             <li>
-              Sending you information about our products and services for
-              marketing purposes and promotions.{" "}
+              Marketing and Promotions: Sending information about our products
+              and services for marketing purposes and promotions.
             </li>
             <li>
-              Preventing, detecting, investigating and prosecuting crimes
-              (including but not limited to fraud and other financial crimes) in
-              any jurisdiction, identity verification, government sanctions
-              screening and due diligence checks{" "}
+              Security and Legal Compliance: <br /> - Preventing, detecting, and
+              investigating crimes, including fraud and financial crimes. <br />{" "}
+              - Identity verification, government sanctions screening, and due
+              diligence checks. <br /> - Establishing, exercising, or defending
+              legal rights in legal proceedings, seeking professional advice
+              when necessary.
             </li>
             <li>
-              Establishing, exercising or defending legal rights in connection
-              with legal proceedings (including any prospective legal
-              proceedings) and seeking professional or legal advice in relation
-              to such legal proceedings.{" "}
+              Sharing with Educational Institutions: We may share personal
+              information (name, mobile number, and email address) with
+              carefully selected educational institutions based on your
+              expressed interest. These institutions may use the information for
+              marketing campaigns or recruitment. However, we explicitly
+              instruct them not to use this data for any other purposes.
             </li>
-            <li>
-              We may share personal information (such as name, mobile number,
-              and email address) with carefully selected education colleges/
-              educational institutions based on your expression of interest
-              regarding courses, specializations and institutions so that they
-              may consider further marketing campaigns or recruitment measures.
-              Some of these educational institutions may have access to your
-              personal information to verify the status of your application or
-              enrolment. We will inform the education institutions that they are
-              not allowed to use your personal information for any reason other
-              than mentioned above. Users should note however that, how these
-              educational institutions use this data is not governed by our
-              privacy policy. Therefore, we cannot be held responsible for how
-              the data is utilized once it is shared with them. Educational
-              institutions have separate policy practices for which shekunj.com
-              has no responsibility or liability. For further information on how
-              such institutions use your information, please visit the
-              applicable privacy policy of that institution.{" "}
-            </li>
-          </ul>
-
+          </ol>
+          <p>
+            Note: The utilization of data by educational institutions is not
+            governed by our privacy policy, and we are not responsible for how
+            they handle the shared information.
+          </p>
+          <p>
+            Users are encouraged to refer to the privacy policies of respective
+            institutions for further information on their data practices.
+          </p>
           <h3>Third-Party Services </h3>
 
           <p>
-            Third parties provide certain services available on shekunj.com, we
-            may provide information, including Personal Information, that
-            ‘shekunj.com collects on the Web to third-party service providers to
-            help us deliver programs, products, information, and services. These
-            third party services include charges and fees
+            Certain services on Shekunj.com are provided by third parties. We
+            may share information, including Personal Information, collected on
+            the web with third-party service providers to facilitate the
+            delivery of programs, products, information, and services. These
+            services may include associated charges.
           </p>
 
           <h3>Social Media </h3>
 
           <p>
-            shekunj.com operates channels, pages and accounts on some social
-            media sites to inform, assist and engage with you. shekunj.com
-            monitors and records comments and posts made on these channels about
-            shekunj.com in order to improve its products and services. Please
-            note that you must not communicate with shekunj.com through such
-            social media sites the following information:{" "}
+            Shekunj.com actively maintains channels, pages, and accounts on
+            various social media platforms to keep you informed, assist, and
+            foster engagement. In these spaces, we carefully monitor and
+            document comments and posts related to Shekunj.com. This practice
+            allows us to enhance our products and services.
           </p>
 
           <p>
-            Sensitive personal data includes (i) special categories of personal
-            data meaning any information revealing racial or ethnic origin,
-            political opinions, religious or philosophical beliefs, or trade
-            union membership, and the processing of genetic data, biometric data
-            for the purpose of uniquely identifying a natural person, data
-            concerning health or data concerning a natural person's sex life or
-            sexual orientation and (ii) other sensitive personal data such as
-            criminal convictions and offences and national identification number
-            ; Excessive, inappropriate, offensive or insulting information
-            towards individuals. (iii) You cannot post anything against
-            shekunj.com on social media without the permission of{" "}
-            <a href='/'> shekunj.com</a>
+            Kindly be aware that while we encourage interaction, certain
+            information should not be shared with Shekunj.com through social
+            media channels. This includes sensitive personal data, comprising
+            special categories such as racial or ethnic origin, political
+            opinions, religious beliefs, and more. Additionally, we discourage
+            the sharing of other sensitive personal data like criminal
+            convictions and national identification numbers.
+          </p>
+          <p>
+            Inappropriate, offensive, or insulting content towards individuals
+            or groups is not in line with our communication standards. We
+            appreciate your cooperation in maintaining a positive and respectful
+            online environment.
           </p>
 
           <h3>Changes to this Policy</h3>
 
           <p>
-            Shekunj.com reserves the right to update, change or modify this
-            policy at any time. The policy shall come to effect from the date of
-            such update, change or modification.{" "}
+            Shekunj.com reserves the right to update, modify, or change this
+            policy at any time. Such alterations will become effective as of the
+            date of the update, modification, or change.
           </p>
 
           <h3>Disclaimer</h3>
 
           <p>
-            Shekunj.com shall not be liable for any loss or damage sustained by
-            reason of any disclosure (inadvertent or otherwise) of any
-            information concerning the user's account and / or information
-            relating to or regarding online transactions using credit cards /
-            debit cards and / or their verification process and particulars nor
-            for any error, omission or inaccuracy with respect to any
-            information so disclosed and used whether or not in pursuance of a
-            legal process or otherwise. shekunj.com does not store any Credit /
-            Debit card details.{" "}
+            Shekunj.com holds no liability for any loss or damage resulting from
+            the inadvertent or intentional disclosure of user account
+            information, including details related to online transactions,
+            credit/debit card verification processes, and particulars. The
+            platform does not store any credit/debit card details. Shekunj.com
+            will not be held responsible for the breach of voluntarily shared
+            personal information not requested during registration.
           </p>
 
-          <p>
+          {/* <p>
             Any other personal information shared by you which is not asked by
             shekunj.com during registration, either mandatorily or optionally;
             accounts to wilful and intentional furnishing; and shekunj.com will
             not be liable for breach of such information.{" "}
-          </p>
+          </p> */}
 
           {/* <h3 className="text-center">Terms & Conditions </h3> */}
 
           <h3>Terms and Conditions</h3>
 
           <p>
-            The following terms and conditions, along with all other terms and
-            legal notices located on www.shekunj.com (collectively, "Terms"),
-            govern Your use of www.shekunj.com (the "Website"). The Website is
-            owned and operated by Rdot Ventures Pvt.Ltd.{" "}
-          </p>
-
-          <p>
             These Terms of Use ("Terms") constitute a legally binding agreement
-            ("Agreement") between the user who visits the Website in connection
-            with use of our services, or whose information Company otherwise
-            receives in connection with the services provided through its
-            education business (“You”) and the Company governing Your access to
-            and use of the Platform, including any subdomains thereof, and any
-            other websites through which the Website makes its services
-            available (collectively, "Site"), our mobile, tablet and other smart
-            device applications, and application program interfaces
-            (collectively, "Application"). The Application and Site are
-            collectively termed as "Platform".
+            ("Agreement") between the user ("You") and R Dot Ventures Pvt. Ltd.,
+            the owner and operator of www.shekunj.com ("Website"). These Terms
+            govern Your use of the Website, collectively referred to as the
+            "Platform," including subdomains, mobile applications, and
+            application program interfaces.
+          </p>
+          <p>
+            Access to any part of the Platform or content downloaded from it is
+            subject to Your acceptance and compliance with these Terms and the
+            Privacy Policy. If You do not understand or agree to be bound by
+            these Terms and the Privacy Policy, refrain from using this
+            Platform.
           </p>
 
           <p>
-            Access to any part of the Platform or any content downloaded from it
-            is contingent on Your acceptance of and compliance with these Terms
-            and Privacy Policy. If You do not understand and agree to be bound
-            by all Terms and the Privacy Policy, do not use this Platform.{" "}
+            These Terms are binding upon You, your heirs, representatives,
+            successors, and assigns. The headings within these Terms are
+            inserted for reference convenience only and carry no additional
+            meaning or effect.
           </p>
 
           <p>
-            These Terms are binding upon You and Your heirs, representatives,
-            successors and assigns, as may be applicable. The headings of the
-            several articles and subdivisions of these Terms are inserted solely
-            for the convenience of reference and shall have no further meaning,
-            force or effect.{" "}
+            Additionally, depending on the chosen basic services, specific
+            product conditions may apply.
+          </p>
+
+          <h3>Representation and Warranty</h3>
+
+          <p>
+            You affirm that if you are under 18 or the majority age in your
+            jurisdiction, you must use the Platform under the supervision of a
+            parent, legal guardian, or responsible adult. By accessing or using
+            the Platform, you declare that you meet the minimum age requirement,
+            possess the legal capacity, and have the authority to enter into a
+            contract by applicable laws. You also assert that you are not under
+            any legal or other disability hindering your compliance with these
+            Terms or the installation and use of purchased products with minimal
+            risk to yourself or others. Additionally, you confirm that you are
+            not acquiring products/services for resale without the Company's
+            prior written consent.
           </p>
 
           <p>
-            Additionally, basis services chosen, certain product specific
-            conditions may apply.{" "}
-          </p>
-
-          <h3>You represent and warrant that: </h3>
-
-          <p>
-            If You are under the age of 18 or the age of majority in Your
-            jurisdiction, You must use the Platform under the supervision of
-            Your parent, legal guardian or responsible adult.{" "}
-          </p>
-
-          <p>
-            By accessing or using the Platform You r epresent and warrant that
-            You fulfil the requirement of minimum age and have the legal
-            capacity and authority to enter into a contract as per the
-            applicable laws.{" "}
-          </p>
-
-          <p>
-            You are not under any legal or other disability which limits Your
-            ability to comply with these Terms or to install and use the
-            products You purchase with minimal risk of harm to You or others.
-            You further represent that You are not purchasing the
-            products/services for resale to others and will not do so without
-            the Company’s prior written consent.{" "}
-          </p>
-
-          <p>
-            You are eligible to conduct the purpose “hereinafter defined”
-            lawfully
+            You must lawfully pursue the defined purpose for using the Platform.
           </p>
 
           <h3>Purpose</h3>
 
           <p>
-            The Platform is made available for Learning use and to help students
-            get details, discover & research on colleges, courses and exams of
-            their interest and for allied services related thereto. Platform
-            also helps connect colleges/educational institutes/ coaching centres
-            etc. with prospective students who may be of interest to them.
-            Counselling section is just solve the queries of the students and
-            the person who shared that.
+            The Platform serves educational purposes, assisting students in
+            exploring colleges, courses, and exams. It facilitates connections
+            between educational institutions and prospective students. The
+            counseling section addresses student queries. Content Material and
+            related policies are detailed in the privacy policy document.
           </p>
 
-          <h3>
-            Content Material and related policies has been added in the privacy
-            policy document
-          </h3>
-
-          <h3>Disclaimer for websites that we link to</h3>
-
-          <p>We use our best endeavours to ensure that:</p>
-
-          <ul>
-            <li>
-              the websites/apps we select for inclusion in the Platform work,
-              and continue to work properly;
-            </li>
-            <li>their content remains acceptable and useful; and</li>
-            <li>their operation will not be injurious to our users.</li>
-          </ul>
+          <h3>Disclaimer for Linked Websites:</h3>
 
           <p>
-            We explicitly disclaim, and will not accept any responsibility for
-            any of the following in respect of the sites that we link to:
+            We diligently ensure that websites/apps included in the Platform
+            operate correctly, maintain acceptable content, and do not harm
+            users. However, we explicitly disclaim responsibility for:
           </p>
 
           <ul>
             <li>Infection by computer viruses</li>
-            <li>Damage caused by downloaded software</li>
-            <li>Technical problems, failures and speed of operation</li>
+            <li>Damage from downloaded software</li>
+            <li>Technical issues and speed of operation</li>
             <li>Libelous or illegal material</li>
-            <li>
-              The quality or truth of any material, or advice that is offered
-            </li>
+            <li>The quality or truth of any offered material or advice</li>
           </ul>
 
-          <h3>Use to be in conformity with the Purpose</h3>
+          <h3>Use Compliance</h3>
 
           <p>
-            The Platform (including the Platform and related products) or
-            Service or Product that You subscribe to or use (whether the same is
-            paid for by You or not) is meant for the Purpose and only Your
-            exclusive use. Copying or downloading or recreating or sharing
-            passwords or sublicensing or sharing in any manner which is not in
-            accordance with these terms, is a misuse of the Platform or Service
-            or Product and Company reserves its rights to act in such manner as
-            to protect its loss of revenue or reputation or claim damages
-            including stopping Your service or access and reporting to relevant
-            authorities. In the event You are found to be copying or misusing or
-            transmitting, scraping or crawling any data or photographs or
-            graphics or any information available on the Platform or Service of
-            Product for any purpose other than that being a bonafide purpose, we
-            reserve the right to take such action that we deem fit including
-            stopping access and claiming damages.
+            The Platform, its products, or subscribed services are intended
+            solely for the specified Purpose and your exclusive use. Any
+            unauthorized actions such as copying, downloading, recreating,
+            sharing passwords, sublicensing, or any use not by these terms is
+            considered misuse. The Company reserves the right to protect against
+            revenue loss or damage to reputation, including suspending access,
+            reporting to relevant authorities, and seeking damages, if you are
+            found to be misusing or transmitting data or information for
+            purposes other than the intended bona fide purpose.
           </p>
 
-          <h3>Accuracy and correctness of the information provided by You:</h3>
+          <h3>Accuracy and Integrity of Information</h3>
 
           <p>
-            Whilst using this Platform an obligation is cast upon You to only
-            provide true and correct information and in the case of creating a
-            profile You undertake to at all times keep the information up to
-            date.
+            When utilizing this Platform, you must provide only accurate and
+            truthful information. If you create a profile, you commit to
+            maintaining up-to-date information. We retain the right to suspend
+            or remove any content or profile that contains false, incorrect,
+            incomplete, or outdated information, or that impersonates someone
+            else. Keeping your contact details current is essential, as
+            inaccurate information may lead to service termination, and we may
+            be unable to reach you.
           </p>
 
-          <p>
+          {/* <p>
             We reserve the right to remove/suspend any content or profile
             providing false/incorrect or incomplete or outdated information or
             masquerading/ impersonating as someone else.
@@ -462,20 +390,23 @@ const PrivacyPolicy = () => {
             Keep Your contact details upto date, wrong and false details by
             themselves can be a cause for termination of services. Also as a
             consequence we may not be able to reach You.
-          </p>
+          </p> */}
 
-          <h3>
-            Security of Log in credentials and Responsibility of
-            content/activities:
-          </h3>
+          <h3>Security of Login Credentials and Content Responsibility</h3>
 
           <p>
-            Do not share passwords, be responsible in what You post If You have
-            registered on the Platform, the safety and security of Your log in
-            credentials is Your responsibility, do not share these with anyone.
+            Maintain the confidentiality of your passwords and exercise
+            responsibility in your posts. If you are a registered user,
+            safeguarding the security of your login credentials is solely your
+            responsibility; refrain from sharing them with others. You are
+            accountable for all activities under your account, assuming they are
+            performed with proper authorization and lawful permissions. Links to
+            third-party websites/apps provided on the Platform are for
+            convenience only; their presence does not constitute an endorsement.
+            Accessing these links is at your own risk.
           </p>
 
-          <p>
+          {/* <p>
             You are fully responsible for all activities that occur under the
             account and any other actions taken in connection with the Platform.
             It is presumed that all activity happening through a user’s account
@@ -489,43 +420,34 @@ const PrivacyPolicy = () => {
             these links should not under any circumstances be considered as an
             endorsement of the contents of the same, if You choose to access
             these websites/apps You do so at Your own risk.
-          </p>
+          </p> */}
 
-          <h3>Disclaimer of Online Avability:</h3>
-
-          <p>
-            In addition to the other disclaimers and limitations discussed in
-            this notice, there are no guarantees and no warranties regarding
-            online availability, impressions, and clickthrough of the Website,
-            its web pages, the Application and any material, information, links,
-            or content presented on the web pages that may be accessible through
-            the Platform. Platform reserves the right although it is under no
-            obligation to ensure that advertising sponsors and advertising must
-            be approved by Company before the posting of any advertising
-            material, information, links, content, banners, and graphics on the
-            Platform, however, the same may be reported by contacting us. Any
-            advertising should be related to interactive digital television and
-            related subject areas. Company reserves the right to accept or to
-            reject any advertising sponsor or any advertising for any reason.
-          </p>
-
-          <h3>Make Your own decisions:</h3>
+          <h3>Disclaimer of Online Availability</h3>
 
           <p>
-            If You are making or planning to make any decision, whether personal
-            or business decisions, based on the content on the site, You should
-            conduct an independent verification before making Your important
-            decision. In the case of any listings or banners displaying any
-            content related to any educational products, You may contact the
-            institution/individual directly. All decisions made would be
-            entirely Your prerogative and Company does not claim to offer any
-            advice, either legal or financial. Company doesn't take any
-            ownership, directly or indirectly towards any person whatsoever,
-            with respect to banners hosted on its Platform by its customers,
-            which{" "}
+            The Platform makes no guarantees or warranties regarding online
+            availability, impressions, and clickthrough. While the Platform
+            reserves the right (though not obligated) to approve advertising
+            sponsors and content, it is not responsible for verifying the
+            authenticity or compliance of banners, graphics, or listings. Users
+            are encouraged to report any discrepancies. Users should
+            independently verify information before making decisions based on
+            the Platform's content. The Platform does not provide legal or
+            financial advice and is not responsible for user decisions.
           </p>
 
+          <h3>User Autonomy and Decision-Making</h3>
+
           <p>
+            Users are encouraged to independently verify information before
+            making personal or business decisions based on the Platform's
+            content. The Platform does not endorse or claim ownership over
+            banners hosted by customers and does not conduct independent
+            verification of their authenticity or compliance. Users are
+            responsible for their decisions.
+          </p>
+
+          {/* <p>
             are strictly in the nature of sale of space by Platform & it has not
             carried out any independent verification on the authenticity or
             compliance requirements, as may have been required under any law for
@@ -539,39 +461,46 @@ const PrivacyPolicy = () => {
             PROCEEDING FURTHER. YOU HEREBY UNDERSTAND AND AGREE TO THE TERMS
             BELOW. IF YOU DO NOT UNDERSTAND AND AGREE WITH THESE TERMS THEN DO
             NOT PLACE AN ORDER FOR A PRODUCT/SERVICE.
+          </p> */}
+          <h3>Terms of Purchase/Subscription</h3>
+          <p>
+            Before purchasing or subscribing to a product/service on this
+            Platform, carefully review and understand the provided terms. By
+            proceeding with an order, you acknowledge and agree to the terms. If
+            you do not comprehend or agree with these terms, refrain from
+            placing an order for a product/service.
           </p>
 
-          <h3>Disclaimer :</h3>
+          <h3>Disclaimer:</h3>
 
           <p>
-            The Company expressly disclaims warranties of any kind for any use
-            of or any access to the Platform, to any material, information,
-            links, or content presented on the web pages at the Platform, to any
-            external website linked thereto, and to any external material,
-            information, links, or content linked thereto. The Platform, and any
-            material, information, links, and content presented on the web pages
-            at the Platform, as well as any external website and any external
-            material, information, links, and content linked thereto, are
-            provided on an "as is" basis, without warranty of any kind, either
-            express or implied, including, without limitation, the implied
-            warranties of merchantability or fitness for a particular purpose,
-            or non-infringement. The Company has no control over any external
-            website or over any external material, information, links, and
-            content linked to the Platform. Certain jurisdictions do not permit
-            the exclusion of implied warranties and the foregoing exclusions of
-            implied warranties may not apply to You. The Platform and its
-            internal web pages may be unavailable for online access from time to
-            time and at anytime; there are no guarantees and no warranties of
-            online availability, impressions, and click-throughs. The entire
-            risk as to the performance of, or non-performance of, or arising out
-            of the use of, or the access of, or the lack of access to the
-            Platform, to any material, information, links, or content presented
-            on the web pages at the Platform, to any external website linked
-            thereto, or to any external material, information, links, or content
-            linked thereto, is borne by the user, visitor, customer, or other
-            people. you can read the policies before registering in the website.
-            Policies and terms will be considered as accepted by you while you
-            are entering in the website{" "}
+            The Company explicitly disclaims all warranties related to the use
+            or access of the Platform, including any material, information,
+            links, or content displayed on the Platform's web pages, as well as
+            any external websites and their associated material, information,
+            links, or content. All such resources are provided "as is," without
+            any express or implied warranties, such as merchantability, fitness
+            for a particular purpose, or non-infringement.
+          </p>
+
+          <p>
+            The Company lacks control over external websites and their content
+            linked to the Platform. In certain jurisdictions, the exclusion of
+            implied warranties may not be permitted, and these exclusions may
+            not apply to you. Additionally, the Platform and its internal web
+            pages may be intermittently unavailable online, with no guarantees
+            or warranties regarding availability, impressions, or
+            click-throughs.
+          </p>
+
+          <p>
+            Users, visitors, customers, and others acknowledge that the entire
+            risk associated with the performance or non-performance, use, or
+            lack of access to the Platform and its contents, as well as external
+            websites and their materials, lies with them. It is advisable to
+            review the policies before registering on the website, and by
+            entering the website, users implicitly accept and agree to abide by
+            the policies and terms.
           </p>
 
           {/* <hr />
