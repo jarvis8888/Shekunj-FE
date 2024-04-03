@@ -10,6 +10,8 @@ import wnoicon from "../../assets/images/wicon.svg";
 import qualificationsicon from "../../assets/images/qualificationicon.svg";
 import purposeicon from "../../assets/images/purpuseicon.svg";
 import dobicon from "../../assets/images/calendaricon.svg";
+import logo from "../../assets/icons/logo_white.svg";
+import video from "../../assets/images/bookvideo.png";
 
 import CountUp from "react-countup";
 import "./index.scss";
@@ -519,6 +521,32 @@ const GuidancePage = () => {
               </div>
             </section>
           }
+          <section>
+            <div className='bookCpopup'>
+              <div className='row align-items-center'>
+                <div className='col-md-4'>
+                  <div className='BookContentBox'>
+                    <h3>Thank You</h3>
+                    <p>for reaching out for counseling with </p>
+                    <img src={logo} alt='logo' />
+                    <p>
+                      Our team will connect with you shortly. Please ensure
+                      you're available to make the most of your upcoming
+                      session.{" "}
+                    </p>
+                  </div>
+                </div>
+                <div className='col-md-8'>
+                  <div className='videoBox'>
+                    <img src={video} alt='video' />
+                    <div className='sk-open-btn'>
+                      <button className='sk-btn-submit'>Open</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
           {/* <section className='sk-bookC-counter'>
             <div className='container sk-custom-container '>
               <div className='row'>
