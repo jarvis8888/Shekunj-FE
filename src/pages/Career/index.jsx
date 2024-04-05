@@ -761,7 +761,7 @@ const CareerPage = () => {
                                     <div className='sk-topLeftimg-box'>
                                       <Link
                                         to={
-                                          routingConstants.TOP_COLLEGES + c.id
+                                          routingConstants.TOP_COLLEGES + c.slug
                                         }
                                         key={c?.id}
                                       >
@@ -770,13 +770,14 @@ const CareerPage = () => {
                                           alt='...'
                                           className=''
                                         />
+                                        
                                       </Link>
                                     </div>
                                     <div className='top_col_content'>
                                       <h3 className='sk-innerContent-design'>
                                         <Link
                                           to={
-                                            routingConstants.TOP_COLLEGES + c.id
+                                            routingConstants.TOP_COLLEGES + c.slug
                                           }
                                           className=''
                                           key={c?.id}
@@ -879,7 +880,7 @@ const CareerPage = () => {
                                       <div className='sk-Topview-more'>
                                         <a
                                           href={
-                                            routingConstants.TOP_COLLEGES + c.id
+                                            routingConstants.TOP_COLLEGES + c.slug
                                           }
                                         >
                                           View More

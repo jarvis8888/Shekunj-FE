@@ -12,6 +12,7 @@ import purposeicon from "../../assets/images/purpuseicon.svg";
 import dobicon from "../../assets/images/calendaricon.svg";
 import logo from "../../assets/icons/logo_white.svg";
 import video from "../../assets/images/bookvideo.png";
+import CloseIcon from "@mui/icons-material/Close";
 
 import CountUp from "react-countup";
 import "./index.scss";
@@ -32,6 +33,8 @@ import { withHeaderFooter } from "../../hocs/withHeaderFooter";
 import { SEO } from "../../components";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { Modal } from "@mui/material";
+import useDeviceDetect from "../../hooks/useDeviceDetect";
 // import Calendar from "../../../assets/icons/calendar.png";
 function range(start, end) {
   return Array(end - start + 1)
@@ -71,9 +74,60 @@ const GuidancePurpose = [
 
 const GuidancePage = () => {
   const { t } = useTranslation();
+  const detect = useDeviceDetect();
+
+  const [open, setOpen] = useState(false);
+  const [mediaType, setMediaType] = useState(null);
+  const [advertiser, setAdvertiser] = useState(null);
 
   useEffect(() => {
     Aos.init({ duration: 2000 });
+  }, []);
+
+  const getAllPopUpData = async (latitude, longitude) => {
+    try {
+      // http://13.233.216.29:8000/admin/private_adds/popupadds/
+      const url = `http://13.233.216.29:8000/en/api/private_adds/popup_adds/`;
+      const res = await fetch(url);
+      const data = await res.json();
+      const { popup_adds } = data;
+      const homePagePopups = popup_adds.filter(
+        (item) => item.popup_adds_on_page === "book_counsellor_page",
+      );
+      if (homePagePopups.length > 0) {
+        const firstPopup = homePagePopups[0];
+        console.log("🚀 ~ getAllPopUpData ~ firstPopup:", firstPopup);
+
+        if (firstPopup.popup_type === "image") {
+          setMediaType("image");
+          setAdvertiser(firstPopup);
+        } else if (firstPopup.popup_type === "video") {
+          setMediaType("video");
+          setAdvertiser(firstPopup);
+        }
+      }
+    } catch (error) {
+    } finally {
+    }
+  };
+
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(
+      async function (position) {
+        const latitude = position.coords.latitude;
+        const longitude = position.coords.longitude;
+        getAllPopUpData(latitude, longitude);
+      },
+      function (error) {
+        console.error("Error Code = " + error.code + " - " + error.message);
+        // alert("Your location is blocked")
+
+        // If the location is blocked, you can set default values for latitude and longitude
+        const defaultLatitude = 0;
+        const defaultLongitude = 0;
+        getAllPopUpData(defaultLatitude, defaultLongitude);
+      },
+    );
   }, []);
 
   const StudentInitialValues = {
@@ -118,7 +172,7 @@ const GuidancePage = () => {
   });
   const onStudentFormSubmit = useFormik({
     initialValues: StudentInitialValues,
-    validationSchema: StudentValidationSchema,
+    // validationSchema: StudentValidationSchema,
     onSubmit: async (values, { resetForm }) => {
       try {
         const res = await httpServices.post(
@@ -128,6 +182,7 @@ const GuidancePage = () => {
         if (res.status_code === 200) {
           toast.success(res.message, toasterConfig);
           resetForm();
+          setOpen(true);
         }
       } catch (error) {
       } finally {
@@ -180,6 +235,7 @@ const GuidancePage = () => {
         );
         if (res.status_code === 200) {
           toast.success(res.message, toasterConfig);
+
           resetForm();
         }
       } catch (error) {
@@ -198,6 +254,87 @@ const GuidancePage = () => {
     handleSubmit: InstituteHandleSubmit,
     isSubmitting: InstituteIsSubmitting,
   } = onInstituteFormSubmit;
+
+  const handleRedirect = (url) => {
+    window.open(url, "_blank");
+  };
+
+  const FormSuccessModal = () => {
+    return (
+      <>
+        <Modal
+          aria-labelledby='simple-modal-title'
+          aria-describedby='simple-modal-description'
+          open={open}
+          onClose={() => setOpen(false)}
+          className='ModalBoxEvent'
+        >
+          <div className='ModalBodyBoxEvent'>
+            <CloseIcon className='ModalClose' onClick={() => setOpen(false)} />
+            <section>
+              <div className='bookCpopup'>
+                <div className='row align-items-center'>
+                  <div className='col-md-4'>
+                    <div className='BookContentBox'>
+                      <h3>Thank You</h3>
+                      <p>for reaching out for counseling with </p>
+                      <img src={logo} alt='logo' />
+                      <p>
+                        Our team will connect with you shortly. Please ensure
+                        you're available to make the most of your upcoming
+                        session.{" "}
+                      </p>
+                    </div>
+                  </div>
+                  <div className='col-md-8'>
+                    <div className='videoBox'>
+                      {mediaType === "image" &&
+                        (detect.isMobile ? (
+                          <>
+                            {" "}
+                            <img
+                              src={advertiser?.file_mobile}
+                              alt='advertiser'
+                            />
+                          </>
+                        ) : (
+                          <>
+                            <img src={advertiser?.file} alt='advertiser' />
+                          </>
+                        ))}
+                      {mediaType === "video" &&
+                        (detect.isMobile ? (
+                          <video controls>
+                            <source
+                              src={advertiser?.file_mobile}
+                              type='video/mp4'
+                            />
+                            Your browser does not support the video tag.
+                          </video>
+                        ) : (
+                          <video controls>
+                            <source src={advertiser?.file} type='video/mp4' />
+                            Your browser does not support the video tag.
+                          </video>
+                        ))()}
+                      <div className='sk-open-btn'>
+                        <button
+                          className='sk-btn-submit'
+                          onClick={() => handleRedirect(advertiser?.url_adds)}
+                        >
+                          Open
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </Modal>
+      </>
+    );
+  };
 
   const currentUrl = window.location.href;
   return (
@@ -521,32 +658,7 @@ const GuidancePage = () => {
               </div>
             </section>
           }
-          <section>
-            <div className='bookCpopup'>
-              <div className='row align-items-center'>
-                <div className='col-md-4'>
-                  <div className='BookContentBox'>
-                    <h3>Thank You</h3>
-                    <p>for reaching out for counseling with </p>
-                    <img src={logo} alt='logo' />
-                    <p>
-                      Our team will connect with you shortly. Please ensure
-                      you're available to make the most of your upcoming
-                      session.{" "}
-                    </p>
-                  </div>
-                </div>
-                <div className='col-md-8'>
-                  <div className='videoBox'>
-                    <img src={video} alt='video' />
-                    <div className='sk-open-btn'>
-                      <button className='sk-btn-submit'>Open</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
+
           {/* <section className='sk-bookC-counter'>
             <div className='container sk-custom-container '>
               <div className='row'>
@@ -585,6 +697,7 @@ const GuidancePage = () => {
           </section> */}
         </div>
       </div>
+      {FormSuccessModal()}
     </>
   );
 };

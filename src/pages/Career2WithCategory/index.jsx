@@ -32,7 +32,6 @@ const Career2WithCategory = () => {
   const location = useLocation();
   const history = useHistory();
   const { id, name } = location.state;
-  console.log("🚀 ~ Career2WithCategory ~ id:", id);
   const { governmentExams, isLoading } = useSelector(
     (state) => state.careerReducer,
   );

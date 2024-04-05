@@ -780,7 +780,7 @@ const CareerPage1 = () => {
                                 <div className='sk-topSchoolbox-list'>
                                   <div className='sk-topLeftimg-box'>
                                     <Link
-                                      to={routingConstants.TOP_SCHOOL + c.id}
+                                      to={routingConstants.TOP_SCHOOL + c.slug}
                                       key={c?.id}
                                     >
                                       <img
@@ -793,7 +793,9 @@ const CareerPage1 = () => {
                                   <div className='top_col_content'>
                                     <h3 className='sk-innerContent-design'>
                                       <Link
-                                        to={routingConstants.TOP_SCHOOL + c.id}
+                                        to={
+                                          routingConstants.TOP_SCHOOL + c.slug
+                                        }
                                         className=''
                                         key={c?.id}
                                       >
@@ -889,7 +891,7 @@ const CareerPage1 = () => {
                                     <div className='sk-Topview-more'>
                                       <a
                                         href={
-                                          routingConstants.TOP_SCHOOL + c.id
+                                          routingConstants.TOP_SCHOOL + c.slug
                                         }
                                       >
                                         View More

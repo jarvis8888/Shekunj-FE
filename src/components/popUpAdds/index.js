@@ -25,17 +25,34 @@ const PopUpAdds = () => {
 
   const getAllPopUpData = async (latitude, longitude) => {
     try {
+      // http://13.233.216.29:8000/admin/private_adds/popupadds/
       const url = `private_adds/popup_adds?latitude=${latitude}&longitude=${longitude}`;
       const res = await httpServices.get(url);
       const { popup_adds } = res;
-      let filterArray1 = popup_adds.filter((item, index) => {
-        return item.popup_type === "image";
-      });
-      setLeftData(filterArray1);
-      let filterArray2 = popup_adds.filter((item, index) => {
-        return item.popup_type === "video";
-      });
-      setRightData(filterArray2);
+
+      const homePagePopups = popup_adds.filter(
+        (item) => item.popup_adds_on_page === "home_page",
+      );
+
+      // Separate image and video popups
+      const imagePopups = homePagePopups.filter(
+        (item) => item.popup_type === "image",
+      );
+      const videoPopups = homePagePopups.filter(
+        (item) => item.popup_type === "video",
+      );
+
+      // Set the data for the home page popups
+      setLeftData(imagePopups); // Assuming left data is for images
+      setRightData(videoPopups);
+      // let filterArray1 = popup_adds.filter((item, index) => {
+      //   return item.popup_type === "image";
+      // });
+      // setLeftData(filterArray1);
+      // let filterArray2 = popup_adds.filter((item, index) => {
+      //   return item.popup_type === "video";
+      // });
+      // setRightData(filterArray2);
     } catch (error) {
     } finally {
     }

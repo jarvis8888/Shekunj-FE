@@ -792,7 +792,6 @@ function HomePage() {
                       <CustomLoader />
                     ) : courseData?.length ? (
                       courseData?.map((items, index) => {
-                        console.log("🚀 ~ courseData?.map ~ items:", items);
                         return (
                           <>
                             <SwiperSlide>
@@ -855,8 +854,8 @@ function HomePage() {
                                         ?.do_you_want_to_redirect_this_course ? (
                                         <a
                                           href={
-                                            items?.redirection_link
-                                              ?.redirection_link
+                                            routingConstants.COURSE_DETAILS +
+                                              items?.slug
                                           }
                                           target='_blank'
                                           rel='noopener noreferrer' // Recommended for security reasons
@@ -870,8 +869,8 @@ function HomePage() {
                                           className='sk-course-btn sk-courseBg-color'
                                           onClick={() =>
                                             history.push(
-                                              routingConstants.COURSES_MODULE +
-                                                items?.id,
+                                              routingConstants.COURSE_DETAILS +
+                                              items?.slug,
                                             )
                                           }
                                         >
@@ -945,8 +944,8 @@ function HomePage() {
                                         ?.do_you_want_to_redirect_this_course ? (
                                         <a
                                           href={
-                                            items?.redirection_link
-                                              ?.redirection_link
+                                            routingConstants.COURSE_DETAILS +
+                                              items?.slug
                                           }
                                           target='_blank'
                                           rel='noopener noreferrer' // Recommended for security reasons
@@ -960,8 +959,8 @@ function HomePage() {
                                           className='sk-course-btn sk-courseBg-color'
                                           onClick={() =>
                                             history.push(
-                                              routingConstants.COURSES_MODULE +
-                                                items?.id,
+                                              routingConstants.COURSE_DETAILS +
+                                              items?.slug,
                                             )
                                           }
                                         >
@@ -1427,7 +1426,7 @@ function HomePage() {
                                           routingConstants.GOVERNMENT_SCHEMES_CATEGORY
                                         }/${generateSlug(items?.name)}`,
                                         state: {
-                                          id: items.id,
+                                          id: items?.id,
                                           name: items?.name,
                                         }, // Passing the ID as state
                                       })
@@ -1445,7 +1444,7 @@ function HomePage() {
                                         onClick={() =>
                                           history.push({
                                             pathname: `${routingConstants.GOVERNMENT_SCHEMES}${routingConstants.GOVERNMENT_SCHEMES_CATEGORY}/${items?.name}`,
-                                            state: { id: items.id }, // Passing the ID as state
+                                            state: { id: items?.id, name: items?.name, }, // Passing the ID as state
                                           })
                                         }
                                       >
