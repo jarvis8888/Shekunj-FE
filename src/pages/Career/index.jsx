@@ -770,14 +770,15 @@ const CareerPage = () => {
                                           alt='...'
                                           className=''
                                         />
-                                        
                                       </Link>
+                                      <span>Banvari Tailor</span>
                                     </div>
                                     <div className='top_col_content'>
                                       <h3 className='sk-innerContent-design'>
                                         <Link
                                           to={
-                                            routingConstants.TOP_COLLEGES + c.slug
+                                            routingConstants.TOP_COLLEGES +
+                                            c.slug
                                           }
                                           className=''
                                           key={c?.id}
@@ -880,7 +881,8 @@ const CareerPage = () => {
                                       <div className='sk-Topview-more'>
                                         <a
                                           href={
-                                            routingConstants.TOP_COLLEGES + c.slug
+                                            routingConstants.TOP_COLLEGES +
+                                            c.slug
                                           }
                                         >
                                           View More

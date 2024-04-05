@@ -5,7 +5,16 @@
 .career_tit {
   margin-bottom: 10px;
 }
+.sk-topLeftimg-box {
+  text-align: center;
+}
 
+.sk-topLeftimg-box span {
+  display: inline-block;
+  padding: 10px;
+  text-transform: uppercase;
+  color: #f2b0cf;
+}
 .career_tit h1 {
   font-family: Poppins;
   font-style: normal;
@@ -319,7 +328,7 @@
 .deatil_box h5 {
   background: #fff;
   padding-bottom: 10px;
-  border-bottom: 1px solid #DFDFDF;
+  border-bottom: 1px solid #dfdfdf;
   margin: 0px;
   display: block;
 }
@@ -378,7 +387,7 @@
   //margin-left: 15px;
   margin-bottom: 30px;
   width: 100%;
- // object-fit: cover;
+  // object-fit: cover;
 }
 
 // .loader-container {
@@ -420,12 +429,10 @@
 //   object-fit: contain;
 // }
 
-@media screen and (max-width:767px) {
-
+@media screen and (max-width: 767px) {
   .top_col_content h3 {
     margin-left: 0px !important;
   }
-
 }
 
 .top_col_content h3 {
@@ -435,5 +442,5 @@
 .loader {
   margin-top: 15%;
   margin-left: 50%;
-  color: #ec498a
+  color: #ec498a;
 }
