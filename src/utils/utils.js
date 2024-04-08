@@ -17,6 +17,27 @@ import banner7 from "../assets/images/collegeBanner/top-college-banner(6).png";
 import banner8 from "../assets/images/collegeBanner/top-college-banner(7).png";
 import banner9 from "../assets/images/collegeBanner/top-college-banner(8).png";
 import banner10 from "../assets/images/collegeBanner/top-college-banner(9).png";
+import collegeLogo1 from "../assets/images/collegeLogo/collegeLogo1.png";
+import collegeLogo2 from "../assets/images/collegeLogo/collegeLogo2.png";
+import collegeLogo3 from "../assets/images/collegeLogo/collegeLogo3.png";
+import collegeLogo4 from "../assets/images/collegeLogo/collegeLogo4.png";
+import collegeLogo5 from "../assets/images/collegeLogo/collegeLogo5.png";
+import collegeLogo6 from "../assets/images/collegeLogo/collegeLogo6.png";
+import collegeLogo7 from "../assets/images/collegeLogo/collegeLogo7.png";
+import collegeLogo8 from "../assets/images/collegeLogo/collegeLogo8.png";
+import collegeLogo9 from "../assets/images/collegeLogo/collegeLogo9.png";
+import collegeLogo10 from "../assets/images/collegeLogo/collegeLogo10.png";
+
+import schoolLogo1 from "../assets/images/schoolLogo/schoolLogo1.png";
+import schoolLogo2 from "../assets/images/schoolLogo/schoolLogo2.png";
+import schoolLogo3 from "../assets/images/schoolLogo/schoolLogo3.png";
+import schoolLogo4 from "../assets/images/schoolLogo/schoolLogo4.png";
+import schoolLogo5 from "../assets/images/schoolLogo/schoolLogo5.png";
+import schoolLogo6 from "../assets/images/schoolLogo/schoolLogo6.png";
+import schoolLogo7 from "../assets/images/schoolLogo/schoolLogo7.png";
+import schoolLogo8 from "../assets/images/schoolLogo/schoolLogo8.png";
+import schoolLogo9 from "../assets/images/schoolLogo/schoolLogo9.png";
+import schoolLogo10 from "../assets/images/schoolLogo/schoolLogo10.png";
 
 export const toasterConfig = {
   position: "top-right",
@@ -608,4 +629,30 @@ export const dummyCollegeAndSchoolPhotos = [
   banner8,
   banner9,
   banner10,
+];
+
+export const dummyCollegesLogos = [
+  collegeLogo1,
+  collegeLogo2,
+  collegeLogo3,
+  collegeLogo4,
+  collegeLogo5,
+  collegeLogo6,
+  collegeLogo7,
+  collegeLogo8,
+  collegeLogo9,
+  collegeLogo10,
+];
+
+export const dummySchoolLogos = [
+  schoolLogo1,
+  schoolLogo2,
+  schoolLogo3,
+  schoolLogo4,
+  schoolLogo5,
+  schoolLogo6,
+  schoolLogo7,
+  schoolLogo8,
+  schoolLogo9,
+  schoolLogo10,
 ];

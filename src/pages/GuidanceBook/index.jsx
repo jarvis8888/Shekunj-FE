@@ -96,7 +96,6 @@ const GuidancePage = () => {
       );
       if (homePagePopups.length > 0) {
         const firstPopup = homePagePopups[0];
-        console.log("🚀 ~ getAllPopUpData ~ firstPopup:", firstPopup);
 
         if (firstPopup.popup_type === "image") {
           setMediaType("image");
@@ -316,7 +315,7 @@ const GuidancePage = () => {
                             <source src={advertiser?.file} type='video/mp4' />
                             Your browser does not support the video tag.
                           </video>
-                        ))()}
+                        ))}
                       <div className='sk-open-btn'>
                         <button
                           className='sk-btn-submit'

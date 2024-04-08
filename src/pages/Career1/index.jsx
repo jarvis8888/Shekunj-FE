@@ -35,7 +35,7 @@ import Pagination from "../../components/Pagination";
 import NewPagination from "../../components/Pagination/NewPagination";
 import { CustomLoader } from "../../components/customLoader/CustomLoader";
 import { NoDataFound } from "../../components/noDataFound/NoDataFound";
-import { capitalizeFirstLetter } from "../../utils/utils";
+import { capitalizeFirstLetter, dummySchoolLogos } from "../../utils/utils";
 
 const CareerPage1 = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -90,7 +90,13 @@ const CareerPage1 = () => {
   }, [lan]);
 
   const transformImg = (image) => {
-    return image ? image : TopSchool;
+    if (!image) {
+      const randomIndex = Math.floor(
+        Math.random() * dummySchoolLogos.length,
+      );
+      return dummySchoolLogos[randomIndex];
+    }
+    return image;
   };
   const page_adds = JSON.parse(sessionStorage.getItem("current_adds"));
   const handleCollapse = (id, checked) => {
@@ -788,6 +794,7 @@ const CareerPage1 = () => {
                                         className=''
                                         alt='logo'
                                       />
+                                      <span>ONLY FOR REFERENCE</span>
                                     </Link>
                                   </div>
                                   <div className='top_col_content'>

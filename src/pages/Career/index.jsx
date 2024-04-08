@@ -41,7 +41,7 @@ import { CustomLoader } from "../../components/customLoader/CustomLoader";
 import { NoDataFound } from "../../components/noDataFound/NoDataFound";
 import { withHeaderFooter } from "../../hocs/withHeaderFooter";
 import NewPagination from "../../components/Pagination/NewPagination";
-import { capitalizeFirstLetter } from "../../utils/utils";
+import { capitalizeFirstLetter, dummyCollegesLogos } from "../../utils/utils";
 
 const CareerPage = () => {
   // const [loading, setLoading] = useState(false);
@@ -97,9 +97,14 @@ const CareerPage = () => {
   //     Number.isNaN(parseInt(price, 10)) ? 0 : parseInt(price, 10) || 0,
   //   );
   // };
-
   const transformImg = (image) => {
-    return image ? image : TopCollage;
+    if (!image) {
+      const randomIndex = Math.floor(
+        Math.random() * dummyCollegesLogos.length,
+      );
+      return dummyCollegesLogos[randomIndex];
+    }
+    return image;
   };
 
   // const STREAM = {
@@ -771,7 +776,7 @@ const CareerPage = () => {
                                           className=''
                                         />
                                       </Link>
-                                      <span>Banvari Tailor</span>
+                                      <span>ONLY FOR REFERENCE</span>
                                     </div>
                                     <div className='top_col_content'>
                                       <h3 className='sk-innerContent-design'>
