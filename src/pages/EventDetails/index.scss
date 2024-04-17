@@ -1220,8 +1220,11 @@ button.book_event_btn:hover {
     color: #fff;
   }
 }
+.css-i9fmh8-MuiBackdrop-root-MuiModal-backdrop {
+  background-color: none !important;
+}
 .ModalBoxEvent {
-  top: 25%;
+  top: 0;
   left: 0%;
   right: 0%;
   width: 100%;

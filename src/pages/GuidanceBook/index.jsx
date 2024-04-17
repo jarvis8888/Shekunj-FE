@@ -86,11 +86,9 @@ const GuidancePage = () => {
 
   const getAllPopUpData = async (latitude, longitude) => {
     try {
-      // http://13.233.216.29:8000/admin/private_adds/popupadds/
-      const url = `http://13.233.216.29:8000/en/api/private_adds/popup_adds/`;
-      const res = await fetch(url);
-      const data = await res.json();
-      const { popup_adds } = data;
+      const url = `private_adds/popup_adds?latitude=${latitude}&longitude=${longitude}`;
+      const res = await httpServices.get(url);
+      const { popup_adds } = res;
       const homePagePopups = popup_adds.filter(
         (item) => item.popup_adds_on_page === "book_counsellor_page",
       );
@@ -273,7 +271,7 @@ const GuidancePage = () => {
             <section>
               <div className='bookCpopup'>
                 <div className='row align-items-center'>
-                  <div className='col-md-4'>
+                  <div className={advertiser ? "col-md-4" : "col-md-4 mx-auto"}>
                     <div className='BookContentBox'>
                       <h3>Thank You</h3>
                       <p>for reaching out for counseling with </p>
@@ -285,47 +283,49 @@ const GuidancePage = () => {
                       </p>
                     </div>
                   </div>
-                  <div className='col-md-8'>
-                    <div className='videoBox'>
-                      {mediaType === "image" &&
-                        (detect.isMobile ? (
-                          <>
-                            {" "}
-                            <img
-                              src={advertiser?.file_mobile}
-                              alt='advertiser'
-                            />
-                          </>
-                        ) : (
-                          <>
-                            <img src={advertiser?.file} alt='advertiser' />
-                          </>
-                        ))}
-                      {mediaType === "video" &&
-                        (detect.isMobile ? (
-                          <video controls>
-                            <source
-                              src={advertiser?.file_mobile}
-                              type='video/mp4'
-                            />
-                            Your browser does not support the video tag.
-                          </video>
-                        ) : (
-                          <video controls>
-                            <source src={advertiser?.file} type='video/mp4' />
-                            Your browser does not support the video tag.
-                          </video>
-                        ))}
-                      <div className='sk-open-btn'>
-                        <button
-                          className='sk-btn-submit'
-                          onClick={() => handleRedirect(advertiser?.url_adds)}
-                        >
-                          Open
-                        </button>
+                  {advertiser ? (
+                    <div className='col-md-8'>
+                      <div className='videoBox'>
+                        {mediaType === "image" &&
+                          (detect.isMobile ? (
+                            <>
+                              {" "}
+                              <img
+                                src={advertiser?.file_mobile}
+                                alt='advertiser'
+                              />
+                            </>
+                          ) : (
+                            <>
+                              <img src={advertiser?.file} alt='advertiser' />
+                            </>
+                          ))}
+                        {mediaType === "video" &&
+                          (detect.isMobile ? (
+                            <video controls>
+                              <source
+                                src={advertiser?.file_mobile}
+                                type='video/mp4'
+                              />
+                              Your browser does not support the video tag.
+                            </video>
+                          ) : (
+                            <video controls>
+                              <source src={advertiser?.file} type='video/mp4' />
+                              Your browser does not support the video tag.
+                            </video>
+                          ))}
+                        <div className='sk-open-btn'>
+                          <button
+                            className='sk-btn-submit'
+                            onClick={() => handleRedirect(advertiser?.url_adds)}
+                          >
+                            Open
+                          </button>
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  ) : null}
                 </div>
               </div>
             </section>

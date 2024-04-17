@@ -776,7 +776,7 @@ const CareerPage = () => {
                                           className=''
                                         />
                                       </Link>
-                                      <span>ONLY FOR REFERENCE</span>
+                                      <span>THIS IMAGE IS ONLY FOR REFERENCE</span>
                                     </div>
                                     <div className='top_col_content'>
                                       <h3 className='sk-innerContent-design'>

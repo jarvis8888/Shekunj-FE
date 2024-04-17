@@ -284,7 +284,7 @@ const EventDetails = () => {
                   variant='contained'
                   className='ModalButtonEvent joinBtn'
                 >
-                  Join WhatsApps Group
+                  Join WhatsApp Group
                 </Button>
               </a>
             </div>

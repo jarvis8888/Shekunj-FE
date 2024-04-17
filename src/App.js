@@ -280,7 +280,7 @@ function App() {
         />
         <Route exact path={routingConstants.CONTACT_US} component={ContactUs} />
         <Route exact path={routingConstants.EMAIL_PAGE} component={EmailPage} />
-        <PrivateRoute
+        <Route
           exact
           path={`${routingConstants.COURSE_DETAILS}:id`}
           component={CoursesDetails}

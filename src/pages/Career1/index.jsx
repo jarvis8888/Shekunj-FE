@@ -794,7 +794,7 @@ const CareerPage1 = () => {
                                         className=''
                                         alt='logo'
                                       />
-                                      <span>ONLY FOR REFERENCE</span>
+                                      <span>THIS IMAGE IS ONLY FOR REFERENCE</span>
                                     </Link>
                                   </div>
                                   <div className='top_col_content'>

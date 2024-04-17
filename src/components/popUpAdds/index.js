@@ -106,7 +106,7 @@ const PopUpAdds = () => {
                   {leftData.length > 0 && (
                     <div>
                       <div class='sk-ad-title d-block p-2 sk-ad-windows'>
-                        Advertisement
+                        Ad
                       </div>
                       <a
                         href={leftData[0]?.url_adds}
@@ -135,7 +135,7 @@ const PopUpAdds = () => {
                   {rightData.length > 0 && (
                     <div>
                       <div class='sk-ad-title d-block p-2 sk-ad-windows'>
-                        Advertisement
+                        Ad
                       </div>
 
                       <a
