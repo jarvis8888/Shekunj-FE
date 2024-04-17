@@ -231,7 +231,7 @@ function FaqPage() {
           <section className='faqs-container'>
             <div className='container sk-custom-container'>
               <div className='row'>
-                <div className='col-xl-2 col-md-3 col-sm-12'>
+                <div className='col-xl-3 col-lg-3 col-md-3 col-sm-12'>
                   <div className='tabs-container'>
                     <ul>
                       {faqData?.map((tab) => (
@@ -248,7 +248,7 @@ function FaqPage() {
                     </ul>
                   </div>
                 </div>
-                <div className='col-xl-7 col-md-5 questions-container-wrapper'>
+                <div className='col-xl-6 col-lg-6 col-md-6 questions-container-wrapper'>
                   <div className='questions-container'>
                     {faqQuestionsData.filter((q) => q.id === activeTab)
                       .length ? (
@@ -286,39 +286,41 @@ function FaqPage() {
                     )}
                   </div>
                   <div className='technical-support'>
-                    <div>
+                    <div className='faq-tech-q'>
                       <div className='technical-title'>Technical Support</div>
                       <div className='technical-description'>
                         If you have some additional question, please contact our
                         Help Desk
                       </div>
                     </div>
-                    <form onSubmit={handleSubmit}>
-                      <div class='input-container'>
-                        <input
-                          type='email'
-                          name='email'
-                          placeholder='Email id'
-                          value={values.email}
-                          onChange={handleChange}
-                          touched={touched}
-                          onBlur={handleBlur}
-                        />
-                        <button type='submit'>
-                          {" "}
-                          <span>
-                            <img src={faqsendicon} />
-                          </span>{" "}
-                          Send{" "}
-                        </button>
-                      </div>
-                      {errors.email && (
-                        <div className='sk-error-message'>{errors.email}</div>
-                      )}
-                    </form>
+                    <div className='faq-form'>
+                      <form onSubmit={handleSubmit}>
+                        <div class='input-container'>
+                          <input
+                            type='email'
+                            name='email'
+                            placeholder='Email id'
+                            value={values.email}
+                            onChange={handleChange}
+                            touched={touched}
+                            onBlur={handleBlur}
+                          />
+                          <button type='submit'>
+                            {" "}
+                            <span>
+                              <img src={faqsendicon} />
+                            </span>{" "}
+                            Send{" "}
+                          </button>
+                        </div>
+                        {errors.email && (
+                          <div className='sk-error-message'>{errors.email}</div>
+                        )}
+                      </form>
+                    </div>
                   </div>
                 </div>
-                <div className='col-xl-3 col-md-4'>
+                <div className='col-xl-3 col-lg-3 col-md-3'>
                   <a
                     href={faqBoxAdds[0]?.url_adds}
                     target='_blank'
