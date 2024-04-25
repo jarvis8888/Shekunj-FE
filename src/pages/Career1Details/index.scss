@@ -323,15 +323,33 @@
 }
 
 .school_detail_cover {
-  width: 1366;
+  // width: 1366;
   height: 300px;
   display: block;
+  position: relative;
+}
+
+.school_detail_cover:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-image: linear-gradient(
+    to bottom,
+    #f0f0f0,
+    #f0f0f0ed,
+    rgb(230 231 239 / 87%),
+    rgba(243, 243, 247, 0.4117647059),
+    rgba(255, 255, 255, 0.1019607843)
+  );
 }
 .school_detail_cover_img {
   width: 100%;
   background-size: cover;
   height: 100%;
-  filter: blur(2.5px);
+  // filter: blur(2.5px);
 }
 
 .school_logo {
@@ -341,14 +359,14 @@
   overflow: hidden;
   padding: 10px;
   margin-top: -87px;
-  margin-left: 30px;
+  // margin-left: 30px;
 }
 
 .DetailMainDiv_career {
   padding: 20px 0;
 }
 .coverMainSecSchool {
-  padding-top: 60px;
+  // padding-top: 60px;
 }
 .school_logo_img {
   max-width: 100%;

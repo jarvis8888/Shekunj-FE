@@ -550,7 +550,7 @@
   overflow: hidden;
   padding: 10px;
   margin-top: -87px;
-  margin-left: 30px;
+  // margin-left: 30px;
 }
 .college_logo_img {
   max-width: 100%;
@@ -561,18 +561,19 @@
   z-index: 9;
 }
 .coverMainSecCollege {
-  padding-top: 60px;
+  // padding-top: 60px;
 }
 .college_detail_cover {
-  width: 1366;
+  // width: 1366;
   height: 200px;
   display: block;
 }
+
 .college_detail_cover_img {
   width: 100%;
   background-size: cover;
   height: 100%;
-  filter: blur(2.5px);
+  // filter: blur(2.5px);
 }
 .card-img-top {
   margin-bottom: 15px;
