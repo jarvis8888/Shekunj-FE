@@ -26,8 +26,8 @@ const Career1Details = () => {
   const dispatch = useDispatch();
   const { lan } = useSelector((state) => state.languageReducer);
   const { t } = useTranslation();
-  const location = useLocation()
-  const history = useHistory()
+  const location = useLocation();
+  const history = useHistory();
 
   useEffect(() => {
     dispatch(singleCareer1Details(id));
@@ -74,9 +74,14 @@ const Career1Details = () => {
         }
       />
       <div>
-        <Header loginPage={true} page='career' subPage='colleges' urlLangShow={true} />
+        <Header
+          loginPage={true}
+          page='career'
+          subPage='colleges'
+          urlLangShow={true}
+        />
 
-        <Container className='coverMainSecSchool'>
+        <div className='coverMainSecSchool'>
           <div className='school_detail_cover'>
             <img
               src={transformCovImg(topSchools?.Cover_photo)}
@@ -84,7 +89,7 @@ const Career1Details = () => {
               className='school_detail_cover_img'
             />
           </div>
-        </Container>
+        </div>
 
         <Container>
           <Row>

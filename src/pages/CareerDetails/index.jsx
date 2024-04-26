@@ -5,7 +5,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { AccordionComponent, Footer, Header, SEO } from "../../components";
 // import { Link, useParams } from "react-router-dom";
 import ContentLoader, { Facebook } from "react-content-loader";
-import { Link, useParams, Route, useLocation, useHistory } from "react-router-dom";
+import {
+  Link,
+  useParams,
+  Route,
+  useLocation,
+  useHistory,
+} from "react-router-dom";
 import {
   getTopCollages,
   reSetFilterValue,
@@ -29,7 +35,7 @@ const CareerDetails = () => {
   const { lan } = useSelector((state) => state.languageReducer);
   const { t } = useTranslation();
   const location = useLocation();
-  const history = useHistory()
+  const history = useHistory();
 
   useEffect(() => {
     dispatch(singleCareerDetails(id));
@@ -62,7 +68,6 @@ const CareerDetails = () => {
     history.push(newUrl);
   }, [lan]);
 
-
   return (
     <>
       <SEO
@@ -78,9 +83,14 @@ const CareerDetails = () => {
         }
       />
       <div>
-        <Header loginPage={true} page='career' subPage='colleges' urlLangShow={true} />
+        <Header
+          loginPage={true}
+          page='career'
+          subPage='colleges'
+          urlLangShow={true}
+        />
 
-        <Container className='coverMainSecCollege'>
+        <div className='coverMainSecCollege'>
           <div className='college_detail_cover'>
             <img
               src={transformCovImg(topCollages?.Cover_photo)}
@@ -88,7 +98,7 @@ const CareerDetails = () => {
               className='college_detail_cover_img'
             />
           </div>
-        </Container>
+        </div>
 
         <Container>
           <Row>
