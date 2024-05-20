@@ -18,6 +18,7 @@ import dummySchool from "../../assets/images/dummySchool.jpg";
 import {
   capitalizeFirstLetter,
   dummyCollegeAndSchoolPhotos,
+  dummySchoolLogos,
 } from "../../utils/utils";
 
 const Career1Details = () => {
@@ -35,7 +36,11 @@ const Career1Details = () => {
   }, [dispatch, id, lan]);
 
   const transformImg = (image) => {
-    return image ? image : TopCollage;
+    if (!image) {
+      const randomIndex = Math.floor(Math.random() * dummySchoolLogos.length);
+      return dummySchoolLogos[randomIndex];
+    }
+    return image;
   };
   const transformGalley = (image) => {
     return image ? image : noImageIcon;
@@ -118,9 +123,9 @@ const Career1Details = () => {
                         >
                           {t("careerTopColleges.other.13")}{" "}
                         </span>{" "}
-                        : {topSchools && topSchools.city}{" "}
+                        : {topSchools && capitalizeFirstLetter(topSchools.city)}{" "}
                         {topSchools.city && ","}{" "}
-                        {topSchools && topSchools.state}{" "}
+                        {topSchools && capitalizeFirstLetter(topSchools.state)}{" "}
                         {topSchools.state && ""}{" "}
                       </h6>
 

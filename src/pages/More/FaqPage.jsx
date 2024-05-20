@@ -250,10 +250,11 @@ function FaqPage() {
                 </div>
                 <div className='col-xl-6 col-lg-6 col-md-6 questions-container-wrapper'>
                   <div className='questions-container'>
-                    {faqQuestionsData.filter((q) => q.id === activeTab)
-                      .length ? (
+                    {faqQuestionsData?.filter(
+                      (q) => q?.faq_caregory?.id === activeTab,
+                    ).length ? (
                       faqQuestionsData
-                        .filter((q) => q.id === activeTab)
+                        .filter((q) => q?.faq_caregory?.id === activeTab)
                         .map((q) => (
                           <div key={q.id} className='question'>
                             <div

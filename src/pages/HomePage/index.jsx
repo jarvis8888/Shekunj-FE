@@ -266,8 +266,8 @@ function HomePage() {
     try {
       const res = await httpServices.get(
         filter
-          ? `${apiConstants.COURSES.COURSE_LIST}` + `?category_id=${filter}`
-          : `${apiConstants.COURSES.COURSE_LIST}?limit=40`,
+          ? `${apiConstants.COURSES.COURSE_LIST}?is_popular=True` + `&category_id=${filter}`
+          : `${apiConstants.COURSES.COURSE_LIST}?is_popular=True&limit=40`,
       );
       const courses = {
         ...res,

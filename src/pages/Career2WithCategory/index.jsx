@@ -459,7 +459,7 @@ const Career2WithCategory = () => {
                                       <Link
                                         to={
                                           routingConstants.GOVERNMENT_SCHEMES +
-                                          c.id
+                                          c.slug
                                         }
                                         key={c?.id}
                                       >
@@ -475,7 +475,7 @@ const Career2WithCategory = () => {
                                         <Link
                                           to={
                                             routingConstants.GOVERNMENT_SCHEMES +
-                                            c.id
+                                            c.slug
                                             // c.name.split(" ").join("_")
                                           }
                                           className=''
@@ -546,7 +546,7 @@ const Career2WithCategory = () => {
                                                 className=''
                                                 to={
                                                   routingConstants.GOVERNMENT_SCHEMES +
-                                                  c.id
+                                                  c.slug
                                                   // c.name.split(" ").join("_")
                                                 }
                                                 key={c?.id}

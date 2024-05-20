@@ -28,7 +28,7 @@ import { apiConstants } from "../../utils/constants";
 import httpServices from "../../utils/ApiServices";
 import { toast } from "react-toastify";
 import toasterConfig from "../../utils/toasterCongig";
-import { blockInvalidChar } from "../../utils/utils";
+import { addEmailToClient, blockInvalidChar } from "../../utils/utils";
 import { withHeaderFooter } from "../../hocs/withHeaderFooter";
 import { SEO } from "../../components";
 import DatePicker from "react-datepicker";
@@ -252,7 +252,8 @@ const GuidancePage = () => {
     isSubmitting: InstituteIsSubmitting,
   } = onInstituteFormSubmit;
 
-  const handleRedirect = (url) => {
+  const handleRedirect = (url, email) => {
+    addEmailToClient(email)
     window.open(url, "_blank");
   };
 
@@ -318,7 +319,7 @@ const GuidancePage = () => {
                         <div className='sk-open-btn'>
                           <button
                             className='sk-btn-submit'
-                            onClick={() => handleRedirect(advertiser?.url_adds)}
+                            onClick={() => handleRedirect(advertiser?.url_adds, advertiser?.add_email)}
                           >
                             Open
                           </button>

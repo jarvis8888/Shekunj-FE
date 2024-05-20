@@ -563,9 +563,9 @@ const CareerPage2 = () => {
                                       <Link
                                         to={
                                           routingConstants.GOVERNMENT_SCHEMES +
-                                          c.id
+                                          c.slug
                                         }
-                                        key={c?.id}
+                                        key={c?.slug}
                                       >
                                         <img
                                           srcSet={transformImg(c?.logo)}
@@ -579,11 +579,11 @@ const CareerPage2 = () => {
                                         <Link
                                           to={
                                             routingConstants.GOVERNMENT_SCHEMES +
-                                            c.id
+                                            c.slug
                                             // c.name.split(" ").join("_")
                                           }
                                           className=''
-                                          key={c?.id}
+                                          key={c?.slug}
                                         >
                                           {c && c.name}
                                         </Link>
@@ -650,10 +650,10 @@ const CareerPage2 = () => {
                                                 className=''
                                                 to={
                                                   routingConstants.GOVERNMENT_SCHEMES +
-                                                  c.id
+                                                  c.slug
                                                   // c.name.split(" ").join("_")
                                                 }
-                                                key={c?.id}
+                                                key={c?.slug}
                                               >
                                                 Read More...
                                               </Link>

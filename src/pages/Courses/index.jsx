@@ -124,6 +124,7 @@ const Courses = () => {
     dispatch(setFilter(null));
     setCategoryId(null);
     setCategoryPageCount(0);
+    setSearchInput("");
   };
 
   const handleResetFilterDemo = (s, obj) => {
@@ -443,8 +444,9 @@ const Courses = () => {
     setSuggestion([]);
   };
   const handleResetSearch = () => {
-    dispatch(allCourses());
     setSearchInput("");
+    dispatch(allCourses());
+    
   };
 
   useEffect(() => {
@@ -669,7 +671,7 @@ const Courses = () => {
                     aria-controls='panel1a-content'
                     id='panel1a-header'
                   >
-                    <Typography>Categories</Typography>
+                    <Typography>All Categories</Typography>
                   </AccordionSummary>
                   <AccordionDetails>
                     <Typography>
@@ -704,7 +706,7 @@ const Courses = () => {
                     aria-controls='panel1a-content'
                     id='panel1a-header'
                   >
-                    <Typography>Categories</Typography>
+                    <Typography>All Categories</Typography>
                   </AccordionSummary>
                   <AccordionDetails>
                     <Typography>

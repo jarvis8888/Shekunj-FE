@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./index.scss";
 import httpServices from "../../utils/ApiServices";
 import useDeviceDetect from "../../hooks/useDeviceDetect";
+import { addEmailToClient } from "../../utils/utils";
 
 const PopUpAdds = () => {
   const detect = useDeviceDetect();
@@ -104,7 +105,7 @@ const PopUpAdds = () => {
               <div className='pop-up-ads '>
                 <>
                   {leftData.length > 0 && (
-                    <div>
+                    <div onClick={() => addEmailToClient(leftData[0]?.add_email)}>
                       <div class='sk-ad-title d-block p-2 sk-ad-windows'>
                         Ad
                       </div>
@@ -133,7 +134,7 @@ const PopUpAdds = () => {
               <div className='pop-up-ads'>
                 <>
                   {rightData.length > 0 && (
-                    <div>
+                    <div onClick={() => addEmailToClient(rightData[0]?.add_email)}>
                       <div class='sk-ad-title d-block p-2 sk-ad-windows'>
                         Ad
                       </div>

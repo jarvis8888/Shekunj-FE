@@ -25,8 +25,12 @@ function MyProgress() {
   const handleShow = () => setAddPopup(true);
 
   useEffect(() => {
-    handleShow()
-  }, []);
+    const timer = setTimeout(() => {
+      handleShow();
+    }, 2000); 
+  
+    return () => clearTimeout(timer);
+  }, []); 
 
   const { user } = useSelector((state) => state.authReducer);
   const { myProgress } = useSelector((state) => state.myProgressReducer);
