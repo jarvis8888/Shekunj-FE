@@ -1,145 +1,136 @@
 .main_div_conUs {
-    background: linear-gradient(
-96.72deg
-, #FAD0C4 6.25%, #E4A8E4 103.39%);
-    width: 100%;
-    height: 410px;
+  background: linear-gradient(96.72deg, #fad0c4 6.25%, #e4a8e4 103.39%);
+  width: 100%;
+  padding: 100px 0;
+}
+.add_con {
+  padding-top: 50px;
 }
 .conUs_tit h3 {
-    font-style: normal;
-    font-weight: normal;
-    font-size: 35px;
-    text-transform: capitalize;
-    line-height: 32px;
-    color: rgb(51 51 51);
-    margin-top: 55px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 35px;
+  text-transform: capitalize;
+  line-height: 32px;
+  color: rgb(51 51 51);
 }
 .conUs_tit h2 {
-    font-family: "Poppins", sans-serif;
-    font-style: normal;
-    font-weight: 900;
-    font-size: 45px;
-    line-height: 64px;
-    text-transform: capitalize;
-    color: rgb(255 255 255);
-    margin-top: 50px;
+  font-family: "Poppins", sans-serif;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 45px;
+  line-height: 64px;
+  text-transform: capitalize;
+  color: rgb(255 255 255);
 }
 
 .ConUs_form .MuiFormControl-root.MuiTextField-root {
-    background: #fcfcfd;
-    border: 1px solid #e6e5eb;
-    box-sizing: border-box;
-    border-radius: 5px;
-    width: 100%;
-    height: 50px;
+  background: #fcfcfd;
+  border: 1px solid #e6e5eb;
+  box-sizing: border-box;
+  border-radius: 5px;
+  width: 100%;
+  height: 50px;
 }
 
 .ConUs_form .MuiFormControl-root.MuiTextField-root {
-    background: #fcfcfd;
-    border: 1px solid #e6e5eb;
-    box-sizing: border-box;
-    border-radius: 5px;
-    width: 100%;
-    height: 50px;
+  background: #fcfcfd;
+  border: 1px solid #e6e5eb;
+  box-sizing: border-box;
+  border-radius: 5px;
+  width: 100%;
+  height: 50px;
 }
 
 .ConUs_form .MuiOutlinedInput-notchedOutline {
-    border: none;
+  border: none;
 }
 
 .ConUs_form .MuiOutlinedInput-root {
-    height: 50px;
+  height: 50px;
 }
 
 .ConUs_form textarea.textarea_set {
-    width: 100%;
-    background: #fcfcfd;
-    border: 1px solid #e6e5eb;
-    box-sizing: border-box;
-    border-radius: 5px;
-    padding: 15px 12px;
+  width: 100%;
+  background: #fcfcfd;
+  border: 1px solid #e6e5eb;
+  box-sizing: border-box;
+  border-radius: 5px;
+  padding: 15px 12px;
 }
 
 .ConUs_form p {
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 140%;
-    color: #000000;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 140%;
+  color: #000000;
 }
 .ConUs_form {
-    background: #FFFFFF;
-    box-shadow: 0px 20px 130px rgb(0 0 0 / 15%);
-    border-radius: 15px;
-    padding: 30px;
-    margin-top: -260px;
-    margin-bottom: 250px;
+  background: #ffffff;
+  box-shadow: 0px 20px 130px rgb(0 0 0 / 15%);
+  border-radius: 15px;
+  padding: 30px;
 }
 .ConUs_form button.send_btn {
-    background: #EC498A;
-    border: 1px solid #EC498A;
-    box-sizing: border-box;
-    border-radius: 2px;
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 16px;
-    text-align: center;
-    text-transform: capitalize;
-    color: #FFFFFF;
-    width: 100%;
-    height: 44px;
+  background: #ec498a;
+  border: 1px solid #ec498a;
+  box-sizing: border-box;
+  border-radius: 2px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  text-align: center;
+  text-transform: capitalize;
+  color: #ffffff;
+  width: 100%;
+  height: 44px;
 }
 .add_con h3 {
-    font-family: "Poppins", sans-serif;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 18px;
-    line-height: 24px;
-    color: #333333;
+  font-family: "Poppins", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 24px;
+  color: #333333;
 }
 .add_con p {
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 24px;
-    color: #2F80ED;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  color: #2f80ed;
 }
 .add_main {
+  position: relative;
+  padding: 80px 0;
+}
+
+@media screen and (max-width: 767px) {
+  .add_con {
+    bottom: 0 !important;
+  }
+  .contact_banner01 .ConUs_form {
+    margin-top: 50px;
+  }
+  .conUs_tit h2 {
+    margin-top: 20px;
+    font-size: 29px;
+    line-height: 40px;
+  }
+  .add_con {
+    position: unset;
+  }
+  .main_div_conUs {
+    height: auto;
+  }
+  .add_main {
     position: relative;
+    margin-top: 40px;
+  }
+  .ConUs_form {
+    margin-bottom: 30px;
+  }
 }
-.add_con {
-    position: absolute;
-    bottom: 120px;
-    width: 100%;
-}
-
-@media screen and (max-width:767px){
-    .add_con {
-        bottom: 0 !important;
-    }
-    .contact_banner01  .ConUs_form {
-        margin-top: 50px;
-    }
-    .conUs_tit h2 {
-        margin-top: 20px;
-        font-size: 29px;
-        line-height: 40px;
-    
-    }
-    .add_con {
-        position: unset;
-    }
-    .main_div_conUs {
-        height: auto;
-    }
-    .add_main {
-        position: relative;
-        margin-top: 40px;
-    }
-    .ConUs_form {
-        margin-bottom: 30px;
-    }
-}
-
