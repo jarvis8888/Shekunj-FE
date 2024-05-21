@@ -177,7 +177,7 @@ function App() {
           path={`${routingConstants.GOVERNMENT_SCHEMES}${routingConstants.GOVERNMENT_SCHEMES_CATEGORY}/:category`}
           component={Career2WithCategory}
         />
-        <Route exact path={routingConstants.COURSES} component={Courses} />
+        <Route exact path={`${routingConstants.COURSES}`} component={Courses} />
         <Route exact path={routingConstants.MY_PROFILE} component={MyProfile} />
         <Route
           exact

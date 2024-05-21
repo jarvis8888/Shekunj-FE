@@ -25,6 +25,7 @@ import Pagination from "../../components/Pagination";
 import axios from "axios";
 import { adsList } from "../../store/ads";
 import { Helmet } from "react-helmet-async";
+import { useLocation, useHistory } from "react-router-dom";
 // accordion
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
@@ -37,6 +38,8 @@ import { CustomLoader } from "../../components/customLoader/CustomLoader";
 
 const Courses = () => {
   const { t } = useTranslation();
+  const location = useLocation();
+  const history = useHistory();
   const scrollRef = useRef(null);
   const state = useSelector((state) => {
     return state.coursesReducer;
@@ -73,8 +76,25 @@ const Courses = () => {
 
   const { lan } = useSelector((state) => state.languageReducer);
   const tempVal = [];
+  const paramsCourses = new URLSearchParams(location.search).get("search");
+
   useEffect(() => {
-    dispatch(allCourses());
+    if (paramsCourses) {
+      dispatch(
+        allCourses(`?category__slug=${paramsCourses}&limit=${pageLimit}`),
+      );
+
+      // Remove the search parameter from the URL
+      // const newSearchParams = new URLSearchParams(location.search);
+      // newSearchParams.delete("search");
+
+      // history.replace({
+      //   pathname: location.pathname,
+      //   search: newSearchParams.toString(),
+      // });
+    } else {
+      dispatch(allCourses());
+    }
     // dispatch(allCourses(`?limit=${pageLimit}`));
   }, [dispatch, pageLimit, lan]);
 
@@ -117,7 +137,7 @@ const Courses = () => {
   }, [state, coursesBoxAds]);
 
   const handleResetFilter = () => {
-    if (state?.selectedFilter) {
+    if (state?.selectedFilter || paramsCourses) {
       dispatch(allCourses(`?limit=${pageLimit}&offset=0`));
       setPageCount(0);
     }
@@ -125,6 +145,13 @@ const Courses = () => {
     setCategoryId(null);
     setCategoryPageCount(0);
     setSearchInput("");
+      const newSearchParams = new URLSearchParams(location.search);
+      newSearchParams.delete("search");
+
+      history.replace({
+        pathname: location.pathname,
+        search: newSearchParams.toString(),
+      });
   };
 
   const handleResetFilterDemo = (s, obj) => {
@@ -306,6 +333,15 @@ const Courses = () => {
           }`,
         ),
       );
+    } else if (paramsCourses) {
+      setCategoryPageCount(categoryPageCount - pageLimit);
+      dispatch(
+        allCourses(
+          `?category__slug=${paramsCourses}&limit=${pageLimit}&offset=${
+            categoryPageCount - pageLimit
+          }`,
+        ),
+      );
     } else {
       setPageCount(pageCount - pageLimit);
       dispatch(
@@ -326,6 +362,15 @@ const Courses = () => {
       dispatch(
         allCourses(
           `?category_id=${categoryId}&limit=${pageLimit}&offset=${
+            categoryPageCount + pageLimit
+          }`,
+        ),
+      );
+    } else if (paramsCourses) {
+      setCategoryPageCount(categoryPageCount + pageLimit);
+      dispatch(
+        allCourses(
+          `?category__slug=${paramsCourses}&limit=${pageLimit}&offset=${
             categoryPageCount + pageLimit
           }`,
         ),
@@ -446,7 +491,6 @@ const Courses = () => {
   const handleResetSearch = () => {
     setSearchInput("");
     dispatch(allCourses());
-    
   };
 
   useEffect(() => {
@@ -488,6 +532,8 @@ const Courses = () => {
       });
     }
   };
+
+  useEffect(() => {}, []);
 
   useEffect(() => {
     scrollToElement(scrollRef, 0);

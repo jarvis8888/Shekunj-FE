@@ -48,7 +48,7 @@ export const TopFooter = memo((props) => {
                     {data?.length
                       ? data.map((item, index) => (
                           <li key={item.id}>
-                            <a href={routingConstants.COURSES}>
+                            <a href={`${routingConstants.COURSES}?search=${item.slug}`}>
                               {item.name.length > 20
                                 ? item.name.substring(0, 20) + "..."
                                 : item.name}
