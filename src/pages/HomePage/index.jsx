@@ -507,7 +507,7 @@ function HomePage() {
                       <div className='col-xl-6 col-lg-6 col-md-12'>
                         <div className='second-slide-swiper'>
                           {" "}
-                          <img src={firstslidebanner3} />
+                          <img src={firstslidebanner3} alt="" />
                         </div>
                       </div>
                     </div>
@@ -1276,7 +1276,7 @@ function HomePage() {
                     towards your bright future.
                   </p>
                   <div className='sk-hireChanges-btn'>
-                    <a href='/jobs' target='_blank' rel='noreferrer'>
+                    <a href='https://octahire.com/' target='_blank' rel='noreferrer'>
                       <button className='sk-loadMore'>
                         View All Job Opportunities
                       </button>
@@ -1297,7 +1297,7 @@ function HomePage() {
                     </p>
                     <div className='sk-thireChangescolor-btn'>
                       <a
-                        href='/resume-builder'
+                        href='https://octahire.com/'
                         target='_blank'
                         rel='noreferrer'
                       >

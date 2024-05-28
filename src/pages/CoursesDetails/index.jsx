@@ -187,7 +187,13 @@ const CourseDetails = () => {
     const localLanguage = localStorage.getItem("i18nextLng");
     const { pathname, search } = location;
     const updatedSearch = new URLSearchParams(search);
-    updatedSearch.set("lang", localLanguage);
+
+    if (localLanguage === "hi") {
+      updatedSearch.set("lang", "hi");
+    } else {
+      updatedSearch.delete("lang");
+    }
+
     const newUrl = `${pathname}?${updatedSearch.toString()}`;
     history.push(newUrl);
   }, [lan]);

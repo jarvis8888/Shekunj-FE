@@ -19,8 +19,8 @@ const Career2Details = () => {
   const dispatch = useDispatch();
   const { lan } = useSelector((state) => state.languageReducer);
   const { t } = useTranslation();
-  const location = useLocation()
-  const history = useHistory()
+  const location = useLocation();
+  const history = useHistory();
 
   useEffect(() => {
     dispatch(singleCareer2Details(id));
@@ -43,7 +43,13 @@ const Career2Details = () => {
     const localLanguage = localStorage.getItem("i18nextLng");
     const { pathname, search } = location;
     const updatedSearch = new URLSearchParams(search);
-    updatedSearch.set("lang", localLanguage);
+
+    if (localLanguage === "hi") {
+      updatedSearch.set("lang", "hi");
+    } else {
+      updatedSearch.delete("lang");
+    }
+
     const newUrl = `${pathname}?${updatedSearch.toString()}`;
     history.push(newUrl);
   }, [lan]);
@@ -68,7 +74,12 @@ const Career2Details = () => {
       />
       <div>
         <SEO title='Sheकुंज - Career' />
-        <Header loginPage={true} page='career' subPage='colleges' urlLangShow={true} />
+        <Header
+          loginPage={true}
+          page='career'
+          subPage='colleges'
+          urlLangShow={true}
+        />
 
         <Container className='coverMainSecGov'>
           <div className='gov_detail_cover'>

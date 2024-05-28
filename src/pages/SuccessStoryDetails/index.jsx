@@ -35,14 +35,13 @@ const SuccessStoryDetails = () => {
   const dispatch = useDispatch();
   const trendingSectionRef = useRef(null);
   const history = useHistory();
-  const location = useLocation()
+  const location = useLocation();
 
   const { lan } = useSelector((state) => state.languageReducer);
 
   const { t } = useTranslation();
 
   const { id } = useParams();
-
 
   // const lastNumber = id.split("-").pop();
 
@@ -328,7 +327,13 @@ const SuccessStoryDetails = () => {
     const localLanguage = localStorage.getItem("i18nextLng");
     const { pathname, search } = location;
     const updatedSearch = new URLSearchParams(search);
-    updatedSearch.set("lang", localLanguage);
+
+    if (localLanguage === "hi") {
+      updatedSearch.set("lang", "hi");
+    } else {
+      updatedSearch.delete("lang");
+    }
+
     const newUrl = `${pathname}?${updatedSearch.toString()}`;
     history.push(newUrl);
   }, [lan]);

@@ -103,7 +103,12 @@ function ChangeLanguageButton(props) {
     if (urlLangShow) {
       const { pathname, search } = location;
       const updatedSearch = new URLSearchParams(search);
-      updatedSearch.set("lang", lang);
+
+      if (lang === "hi") {
+        updatedSearch.set("lang", lang);
+      } else {
+        updatedSearch.delete("lang");
+      }
       const newUrl = `${pathname}?${updatedSearch.toString()}`;
       history.push(newUrl);
     }
