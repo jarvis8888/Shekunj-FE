@@ -48,7 +48,9 @@ export const TopFooter = memo((props) => {
                     {data?.length
                       ? data.map((item, index) => (
                           <li key={item.id}>
-                            <a href={`${routingConstants.COURSES}?search=${item.slug}`}>
+                            <a
+                              href={`${routingConstants.COURSES}?search=${item.slug}`}
+                            >
                               {item.name.length > 20
                                 ? item.name.substring(0, 20) + "..."
                                 : item.name}
@@ -64,38 +66,13 @@ export const TopFooter = memo((props) => {
                   <h5>{t("phase2.FOOTER.Popular_Topics")}</h5>
                   <ul>
                     <li>
-                      <a href='/government-schemes-in-india'>
-                        {t("phase2.FOOTER.Government_Schemes")}
-                      </a>
-                    </li>
-                    <li>
                       <a href='/mock-test/'>
                         {t("phase2.FOOTER.Online_Mock_Test")}
                       </a>
                     </li>
                     <li>
-                      <a href='/success-stories'>{t("header.heading.8")}</a>
-                    </li>
-                    <li>
-                      <a href='/resume-builder'>{t("header.heading.4")}</a>
-                    </li>
-                    <li>
-                      <a href='/contact-us'>Advertisement</a>
-                    </li>
-                    <li>
-                      <a href='/top-colleges-in-india/'>Top Colleges</a>
-                    </li>
-                    <li>
-                      <a href='/top-schools-in-india/'>Top Schools</a>
-                    </li>
-                    <li>
-                      <a href='/career-options/'>
-                        {t("headerComponent.menuItem.5")}
-                      </a>
-                    </li>
-                    <li>
-                      <a href='/online-counselling/'>
-                        {t("phase2.FOOTER.Guidance")}
+                      <a href='/government-schemes-in-india'>
+                        {t("phase2.FOOTER.Government_Schemes")}
                       </a>
                     </li>
                     <li>
@@ -105,13 +82,17 @@ export const TopFooter = memo((props) => {
                       </a>
                     </li>
                     <li>
-                      <a href='/events/all'> {t("phase2.HEADER.events")}</a>
+                      <a href='/resume-builder'>
+                        {t("phase2.FOOTER.Resume_Builder")}
+                      </a>
                     </li>
                     <li>
-                      <a href='/article'>{t("phase2.HEADER.blog")}</a>
+                      <a href='/online-counselling/'>
+                        {t("phase2.FOOTER.Guidance")}
+                      </a>
                     </li>
                     <li>
-                      <a href='/jobs'>{t("header.heading.6")}</a>
+                      <a href='/jobs'>{t("phase2.FOOTER.Jobs")}</a>
                     </li>
                   </ul>
                 </div>
@@ -124,9 +105,6 @@ export const TopFooter = memo((props) => {
                       <a href='/about-us'> {t("header.heading.1")}</a>
                     </li>
                     <li>
-                      <a href='/contact-us'>{t("phase2.FOOTER.Contact_Us")}</a>
-                    </li>
-                    {/* <li>
                       <a href='/success-stories'>{t("header.heading.8")}</a>
                     </li>
                     <li>
@@ -137,7 +115,7 @@ export const TopFooter = memo((props) => {
                     </li>
                     <li>
                       <a href='/events/all'>{t("phase2.HEADER.events")}</a>
-                    </li> */}
+                    </li>
                   </ul>
                 </div>
               </div>
@@ -145,9 +123,14 @@ export const TopFooter = memo((props) => {
                 <div className='sk-footer-menu'>
                   <h5>{t("phase2.FOOTER.Need_Some_Help?")}</h5>
                   <ul>
-                    {/* <li>
+                    <li>
                       <a href='/contact-us'>{t("phase2.FOOTER.Contact_Us")}</a>
-                    </li> */}
+                    </li>
+                    <li>
+                      <a href='/frequently-asked-questions'>
+                        {t("phase2.HEADER.FAQ")}
+                      </a>
+                    </li>
                     <li>
                       <a href='/frequently-asked-questions'>
                         {t("phase2.FOOTER.Help_Support")}
@@ -161,11 +144,6 @@ export const TopFooter = memo((props) => {
                     <li>
                       <a href='/sitemap.xml' target='_blank'>
                         {t("phase2.FOOTER.Sitemap")}
-                      </a>
-                    </li>
-                    <li>
-                      <a href='/frequently-asked-questions'>
-                        {t("phase2.HEADER.FAQ")}
                       </a>
                     </li>
                   </ul>

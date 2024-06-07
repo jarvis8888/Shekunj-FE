@@ -454,7 +454,7 @@ const SuccessStoryDetails = () => {
 
                       <div className='my-4'>
                         <div className='sk-social-icon'>
-                          <h6 className='text-left pb-0'>Share this article</h6>
+                          <h6 className='text-left pb-0'>Share this Story</h6>
                           <SocialShare
                             currentUrl={currentUrl}
                             title={successStoriesDetails?.title}

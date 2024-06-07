@@ -54,6 +54,7 @@ function EventPage() {
   const { lan } = useSelector((state) => state.languageReducer);
   const sectionRef = useRef(null);
   const [currentData2, setCurrentData2] = useState([]);
+  const scrollRef = useRef(null);
 
   const [eventBoxAds, setEventBoxAds] = useState([]);
   const [eventFooterAds, setEventFooterAds] = useState([]);
@@ -330,6 +331,14 @@ function EventPage() {
 
     return renderAd(ad);
   };
+  const scroll = (direction) => {
+    if (direction === 'left') {
+      scrollRef.current.scrollLeft -= 200;
+    } else {
+      scrollRef.current.scrollLeft += 200;
+    }
+  };
+
   const currentUrl = window.location.href;
   return (
     <>
@@ -440,7 +449,8 @@ function EventPage() {
                 </div>
                 <div className='sk-category'>
                   <h6>Genre</h6>
-                  <ul>
+                  <button className="arrow left" onClick={() => scroll('left')}>{'<'}</button>
+                  <ul ref={scrollRef}>
                     {genresListData.length &&
                       genresListData.map((items, index) => {
                         return (
@@ -461,6 +471,7 @@ function EventPage() {
                         );
                       })}
                   </ul>
+                  <button className="arrow right" onClick={() => scroll('right')}>{'>'}</button>
                 </div>
               </div>
             </div>

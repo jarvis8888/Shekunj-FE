@@ -88,10 +88,12 @@ function MockTest() {
   const [selectedCourseCategoryValue, setSelectedCourseCategoryValue] =
     useState(null);
   const [mockTestBoxAds, setMockTestBoxAds] = useState([]);
+  console.log("🚀 ~ mockTestBoxAds:", mockTestBoxAds)
   const [image, setImage] = useState("NA");
   const [adds, setAdds] = useState([]);
   const [searchInput, setSearchInput] = useState("");
   const [tempData, setTempData] = useState([]);
+  console.log("🚀 ~ tempData:", tempData)
 
   const history = useHistory();
   const dispatch = useDispatch();
@@ -418,30 +420,31 @@ function MockTest() {
 
   const shuffleFun = (gb, index) => {
     if (gb?.id === "advertisement") {
-      return (
-        <>
-          {mockTestBoxAds?.length > 0 ? (
-            <div className='col-xl-3 col-lg-4 col-md-4 col-sm-6'>
-              <div
-                className='mocktest-add'
-                onClick={() => addEmail(mockTestBoxAds[0]?.add_email)}
-              >
-                <span className='sk-ad-title'>Advertisement</span>
-                <a href={mockTestBoxAds[0]?.url_adds} target='_blank'>
-                  <img
-                    src={mockTestBoxAds[0]?.image}
-                    alt='mockTestBoxAds'
-                    className='guidanceOptionImageAdd'
-                  />
-                </a>
-                <div className='overlay'></div>
-              </div>
+      if (mockTestBoxAds?.length > 0) {
+        const adIndex = (index / 3) % mockTestBoxAds.length;
+        const ad = mockTestBoxAds[Math.floor(adIndex)];
+        
+        return (
+          <div className='col-xl-3 col-lg-4 col-md-4 col-sm-6'>
+            <div
+              className='mocktest-add'
+              onClick={() => addEmail(ad?.add_email)}
+            >
+              <span className='sk-ad-title'>Advertisement</span>
+              <a href={ad?.url_adds} target='_blank' rel='noopener noreferrer'>
+                <img
+                  src={ad?.image}
+                  alt='mockTestBoxAds'
+                  className='guidanceOptionImageAdd'
+                />
+              </a>
+              <div className='overlay'></div>
             </div>
-          ) : (
-            ""
-          )}
-        </>
-      );
+          </div>
+        );
+      } else {
+        return null;
+      }
     } else {
       return (
         <div className='col-xl-3 col-lg-4 col-md-4 col-sm-6'>
@@ -485,6 +488,7 @@ function MockTest() {
       );
     }
   };
+  
 
   // const checkFunction = () => {
   //   let num = Math.floor(Math.random() * (13 - 0) + 0);
@@ -507,7 +511,9 @@ function MockTest() {
         id: "advertisement",
       };
 
-      res.splice(num, 0, dummydata);
+      for (let i = 2; i < res.length; i += 3) {
+        res.splice(i, 0, dummydata);
+      }
 
       setTempData(res);
     } else {
