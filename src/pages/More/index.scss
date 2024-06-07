@@ -89,6 +89,24 @@ body {
 .global_img img {
   max-width: 100%;
 }
+.sk-category .arrow.left,
+.sk-category .arrow.right {
+  height: 44px;
+  border-radius: 50px;
+  border: 1px solid #d9d9d9;
+  color: #020202;
+  text-align: center;
+  justify-content: center;
+  background: #fff;
+  width: 44px;
+  padding: 0;
+  margin: 0;
+  vertical-align: middle;
+  flex: 44px 0 0;
+  min-width: 44px;
+  max-width: 44px;
+  margin-top: -14px;
+}
 
 .SuccStory_banner p {
   font-family: "Poppins", sans-serif;
@@ -506,7 +524,6 @@ button.want_btn {
   justify-content: space-around;
   margin-top: 30px !important;
 }
-
 
 .title {
   font-size: 30px;
@@ -1421,7 +1438,6 @@ button.want_btn {
   text-indent: 23px;
 }
 
-
 @media screen and (max-width: 480px) {
   .event-Carousel .owl-nav:before {
     background: linear-gradient(90deg, rgb(146 146 146 / 58%), transparent);
@@ -1452,4 +1468,3 @@ button.want_btn {
     left: 20px;
   }
 }
-
