@@ -10,9 +10,9 @@ This is the official frontend repository for the **Shekunj** platform. It is a m
 - **State Management**: Redux (with Redux Toolkit)
 - **Styling**: SCSS (Modular & Global)
 - **Routing**: React Router DOM
-- **API Handling**: Axios / Fetch API
-- **Form Handling**: React Hook Form / Formik (if used)
-- **Authentication**: Token-based (JWT or similar)
+- **API Handling**: Axios 
+- **Form Handling**: Formik 
+- **Authentication**: Token-based (JWT)
 - **Others**: ESLint, Prettier for code quality
 
 ---
