@@ -6,6 +6,8 @@ import { routingConstants } from "./utils/constants";
 import "./App.css";
 import Career2WithCategory from "./pages/Career2WithCategory";
 
+//test 
+
 const ForgotPage = React.lazy(() => import("./pages/ForgotPage/ForgotPage"));
 const SignupPage = React.lazy(() => import("./pages/SignupPage/SignupPage"));
 const LoginPage = React.lazy(() => import("./pages/LoginPage/LoginPage"));
