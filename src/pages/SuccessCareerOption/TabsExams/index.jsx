@@ -294,7 +294,7 @@ export default function VerticalTabs() {
           <Col md={8} xs={12} ref={ref}>
             <TabPanel value={value} index={0}>
               {/* <Row > */}
-              <Container className='wrap-container'>
+              <div className='wrap-container'>
                 {/* {showGovtExams && careerOptions && ( */}
                 {showGovtExams &&
                   careerOptions &&
@@ -319,7 +319,6 @@ export default function VerticalTabs() {
                               src={guidanceCategoryDetail?.image}
                               className='GuidanceOptionCardImage'
                             ></img>
-                            <br />
                             <button
                               onClick={() =>
                                 handleFullView(guidanceCategoryDetail?.id)
@@ -373,7 +372,7 @@ export default function VerticalTabs() {
 
                 {/* )} */}
                 {/* </Row> */}
-              </Container>
+              </div>
               {/* </Row> */}
               {/* <>
                                 <div

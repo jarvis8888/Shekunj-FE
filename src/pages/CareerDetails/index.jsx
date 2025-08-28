@@ -54,12 +54,12 @@ const CareerDetails = () => {
     return image ? image : noImageIcon;
   };
   const transformCovImg = (image) => {
-    if (!image) {
-      const randomIndex = Math.floor(
-        Math.random() * dummyCollegeAndSchoolPhotos.length,
-      );
-      return dummyCollegeAndSchoolPhotos[randomIndex];
-    }
+    // if (!image) {
+    //   const randomIndex = Math.floor(
+    //     Math.random() * dummyCollegeAndSchoolPhotos.length,
+    //   );
+    //   return dummyCollegeAndSchoolPhotos[randomIndex];
+    // }
     return image;
   };
   const currentUrl = window.location.href;
@@ -104,7 +104,7 @@ const CareerDetails = () => {
         <div className='coverMainSecCollege'>
           <div className='college_detail_cover'>
             <img
-              src={transformCovImg(topCollages?.Cover_photo)}
+              src={transformCovImg(topCollages?.default_cover?.image)}
               alt='...'
               className='college_detail_cover_img'
             />
