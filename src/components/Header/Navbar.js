@@ -87,7 +87,12 @@ const Navbar = (props) => {
             >
               {t("header.heading.4")}
             </a>
-            <a href='/jobs' className={isActive("/jobs") && "active"}>
+            <a
+              href='https://www.octahire.com'
+              className={isActive("/jobs") && "active"}
+              target='_blank'
+              rel='noreferrer'
+            >
               {t("header.heading.6")}
             </a>
             <Dropdown

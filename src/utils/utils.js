@@ -401,12 +401,12 @@ const getMonthString = (date) => {
     "Nov",
     "Dec",
   ];
-  const monthIndex = parseInt(date.split("-")[1], 10) - 1;
+  const monthIndex = parseInt(date?.split("-")[1], 10) - 1;
   return months[monthIndex];
 };
 
 const getDayString = (date) => {
-  const day = parseInt(date.split("-")[2], 10);
+  const day = parseInt(date?.split("-")[2], 10);
   return day.toString();
 };
 
@@ -488,7 +488,10 @@ export const makeHtmlWithStyles = (htmlString) => {
 };
 
 export const capitalizeFirstLetter = (str) => {
-  return str?.charAt(0).toUpperCase() + str?.slice(1);
+  if (typeof str !== "string") {
+    str = String(str || "");
+  }
+  return str.charAt(0).toUpperCase() + str.slice(1);
 };
 
 export function formatTimeRangeOnCard(

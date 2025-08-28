@@ -275,6 +275,7 @@
 
 .BookContentBox p {
   color: #fff;
+  margin-bottom: 0;
 }
 
 .BookContentBox img {
@@ -691,18 +692,21 @@ img.edit_icon_guidance {
   }
 }
 
-
 .ModalBoxEvent {
-  position: fixed; 
-  top: 50%;
-  left: 50%; 
-  transform: translate(-50%, -50%); 
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  // transform: translate(-50%, -50%);
   width: 100%;
-  max-width: 900px;
+  max-width: 700px;
+  height: 300px;
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: transparent;
+  margin: auto !important;
 }
 
 .ModalBottomEvent {
